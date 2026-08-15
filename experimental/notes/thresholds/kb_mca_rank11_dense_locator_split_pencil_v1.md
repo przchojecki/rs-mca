@@ -5,13 +5,13 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: In the pinned post-near rank-eleven anchor-star setup, the dense-locator, split-pencil, kernel, circuit-shadow, rank-stratified isolated-incidence, and cross-support completion-defect theorems eliminate every rank-nine component target for K'=10..44. Exact integral heavy-owner optimization and a near-saturation carrier close K'=22; the completion-defect hierarchy closes K'=23; the universal completion cap plus the full 55-shadow deficit ledger close K'=24..40; the sharp actual-record isolated cap closes K'=41; the support-five cross-support payment closes K'=42; the descending support ladder closes K'=43; and the refined completion branch lattice closes K'=44. The first remaining rank-nine row is K'=45. Rank eight remains open on K'=22..22525, with K'=22526..37995 routed to the guarded dense-owner chronology terminal; no active-v4 atom moves.
+direct_statement: In the pinned post-near rank-eleven anchor-star setup, the dense-locator, split-pencil, kernel, circuit-shadow, rank-stratified isolated-incidence, and cross-support completion-defect theorems eliminate every rank-nine component target for K'=10..45. Exact integral heavy-owner optimization and a near-saturation carrier close K'=22; the completion-defect hierarchy closes K'=23; the universal completion cap plus the full 55-shadow deficit ledger close K'=24..40; the sharp actual-record isolated cap closes K'=41; the support-five cross-support payment closes K'=42; the descending support ladder closes K'=43; the refined completion branch lattice closes K'=44; and the joint support-four/support-five zero carrier plus the full completion product close K'=45. The first remaining rank-nine row is K'=46. Rank eight remains open on K'=22..22525, with K'=22526..37995 routed to the guarded dense-owner chronology terminal; no active-v4 atom moves.
 architecture: POST_NEAR_ERROR_RANK11_DENSE_LOCATOR_COMPONENT_ROUTE_V1
 partition_digest: inherited post-near rank-eleven route of PRs 1168 and 1169; no new first-match atom or partition digest
 atom_or_cell: rank-eleven dense-locator component family, one fixed rank-nine split-pencil cell, its lifted owner plane, and one fixed nine-coordinate component chart
 quantifier: Every survivor satisfying the pinned rank-eleven 32-anchor, 18-dense-root, ten-dimensional correction-space setup, uniformly for 10<=K'<=1048576
 projection_and_unit: Distinct bad finite slopes per received line at record level; record/coordinate-subset incidences only where explicitly stated
-claimed_bound: generic isolated equivalent <=2526815879272440; actual retained-record isolated incidences <=C(n',11); component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core original-row plane <=1434405 records; fixed kernel lane closed through K'=1048576; rank-nine rows K'=10..44 closed; exact K'=22 gap 1232731756628187885277355254597101817411431837269258943471111; exact K'=23 gap 1704262040773185642290284810631267267026794188450394076492364; minimum K'=24..40 gap 2272401814108959137912675549447888006236817090602808413697595 at K'=40; exact K'=41 sharp-isolated gap 3959829848992990899082071934034620604165114037293042026746826; exact K'=42 cross-support gap 4081031051590194485758587836050845115467905186032497191061176; exact K'=43 descending-ladder gap 4456829341030748859349785682161828589177837723939653522311506; exact K'=44 branch-lattice gap 535634409944931896502583174279429171539133692200964798538249; first branch-lattice method wall K'=45 with capacity excess 5651502053446174523626296867091469400380654135040887972894842; rank-eight owner-pair capacity closes from K'=37996; dense-owner averaging first forces 200632 records at K'=22526
+claimed_bound: generic isolated equivalent <=2526815879272440; actual retained-record isolated incidences <=C(n',11); component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core original-row plane <=1434405 records; fixed kernel lane closed through K'=1048576; rank-nine rows K'=10..45 closed; exact K'=22 gap 1232731756628187885277355254597101817411431837269258943471111; exact K'=23 gap 1704262040773185642290284810631267267026794188450394076492364; minimum K'=24..40 gap 2272401814108959137912675549447888006236817090602808413697595 at K'=40; exact K'=41 sharp-isolated gap 3959829848992990899082071934034620604165114037293042026746826; exact K'=42 cross-support gap 4081031051590194485758587836050845115467905186032497191061176; exact K'=43 descending-ladder gap 4456829341030748859349785682161828589177837723939653522311506; exact K'=44 branch-lattice gap 535634409944931896502583174279429171539133692200964798538249; exact K'=45 full-product gap 1616971801308361526826641488053709685917408248376428345137933; first full-product method wall K'=46 with capacity excess 5057508862309072579343840146913199075599800084788396842011438; rank-eight owner-pair capacity closes from K'=37996; dense-owner averaging first forces 200632 records at K'=22526
 minimal_row_split_pencil_bound: At K'=10, the weighted selected-support capacity is 9274769506943785, the full-density demand is 11736940042024039, and the strict gap is 2462170535080254
 k11_circuit_split_pencil_bound: At K'=11, the uniform rank-nine chart cap is 9275866238180030; high-circuit plus coalesced low-circuit capacity is 870719390190680409022824387604193486699840723094988553120053384 against demand 901408286315387898338134887980054663001598216883356906995509296.
 k11_falsifier: A rank-nine shadow above the common-core-offset cap; a circuit of size at least six with fewer than 45 rank-nine shadows; two distinct supports of size at most five representing the same global functional; or failure of the exact demand/capacity gap or its positive record coefficient.
@@ -31,6 +31,9 @@ k42_cross_support_carrier: A source support-c deletion with q-s completions conf
 k42_cross_support_payment: Partitioning by the maximum support-five completion count gives five carrier branches and the all-at-most-q-5 fallback. Their worst weighted premium closes K'=42 by 4081031051590194485758587836050845115467905186032497191061176; K'=43 is the first wall, with capacity excess 2590504432899371163130658487199612335023802688487478696166262.
 k43_descending_support_ladder: Apply terminal/fallback partitions successively at source supports 5,4,3,2. The 26 terminal leaves and one all-fallback leaf exhaust every completion-maximum vector. Their worst K'=43 branch is c5_defect_2, and exact demand exceeds capacity by 4456829341030748859349785682161828589177837723939653522311506.
 k44_completion_branch_lattice: Refine parent leaves c5_defect_2 and c5_defect_3 at source support six, inheriting all parent caps and intersecting the new carrier caps. The resulting 35 leaves close K'=44 by 535634409944931896502583174279429171539133692200964798538249; K'=45 is the first wall, with capacity excess 5651502053446174523626296867091469400380654135040887972894842.
+k45_joint_zero_carrier: Terminal support-four and support-five defects s_4,s_5 with q>s_4+s_5 force a common zero-closed space of dimension 4..6 and defect 0<=delta<=min(s_4,s_5); every support-four deletion then has at most delta+3 completion-carrier points outside the common zero set.
+k45_support4_external_charge: Splitting support-four circuits by their number j of points outside the common zero set and charging each circuit through its j external deletions gives the exact branch-safe cap printed in the paper and manifest.
+k45_full_completion_product: The Cartesian terminal/fallback product over supports 2..9 has 9!=362880 exhaustive leaves, of which 259200 admit the joint support-four charge. At K'=45 the all-fallback premium is 40126324034612056409620566967689123241580103372 and complete demand exceeds capacity by 1616971801308361526826641488053709685917408248376428345137933. At K'=46 the same payment fails by 5057508862309072579343840146913199075599800084788396842011438.
 status: PROVED LOCAL THEOREM PACKET / GLOBAL ROW OPEN
 impact: ROUTE_CUT / BASE-FIELD-NORMALIZED SPLIT-PENCIL AND FIXED-CHART LEDGER
 falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; a lifted plane above 1434405 records whose shared pair core has size below 134944; failure of the marked 5868470021012020 endpoint; a rank-nine chart exceeding 981105*(m'-10)*n' marked extensions; a residual rank-nine chart exceeding floor(981105*(n'-j)*(m'+j-20)/2) marked extensions; an admissible exact petal partition above 981105*(1048577*K'+34798536326); a kernel chart violating M_d*C(K'-10,d+1); a loopless corank-d eleven-set with fewer than C(d+2,t) spanning (11-t)-subsets for some 2<=t<d; one such shadow with more than C(K'-d-11+t,t) same-rank extensions; one record violating either nine-shadow resource; fewer than C(67472+d,t) rank-raising support t-sets; a rank-(10-d+t) target with more than C(9-d+t,t) source shadows; a loopless rank-three matroid violating 2b(M)>=(m-1)(m-1-a); a loopless rank-four matroid violating the printed bounded-point/line recurrence; an official corank-two chart with more than 84416263 records; an official corank-three chart with more than 983902549 records; a shortening-weighted ratio at least one, a failed t=1 dominance comparison, or a nonpositive terminal polynomial coefficient; failure of the integer-gap envelope or any exact capacity replay; a rank-eight chart exceeding 981105*C(n'-9,2); failure of either owner-capacity crossing; failure of the 22526 dense-owner bridge; a rank-eight nine-set at K'=10; a K'=11 rank-eight extension whose circuit depends on the extension pair or violates the printed 55-shadow table; a defect in the 4070408-slope rank-nine fence; or a defect in the 4070352-slope rank-eight weighted fence.
@@ -45,7 +48,7 @@ Status: **PROVED LOCAL THEOREM PACKET / ZERO DEPLOYED LEDGER MOVEMENT**.
 Exact parent: PR #1169 head
 `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
 
-This packet imports seventy-nine proved public results, each commit- and
+This packet imports eighty-two proved public results, each commit- and
 tree-pinned to the prize DAG.
 They begin after the rank-eleven branch has produced one fixed degree-31
 anchor interpolant, eighteen dense-pair roots, and a ten-dimensional
@@ -70,7 +73,9 @@ and the full 55-shadow deficit ledger close `K'=24..40`.  Rank-stratified
 elimination of isolated actual records closes `K'=41`.  Cross-support
 completion-defect coupling closes `K'=42`; its descending support ladder
 closes `K'=43`, and selective support-six branch-lattice refinement closes
-`K'=44`.  The residual rank-nine rows are now `45..15528`.
+`K'=44`.  A joint support-four/support-five zero carrier and the exhaustive
+support-`2..9` completion product close `K'=45`.  The residual rank-nine
+rows are now `46..15528`.
 Canonical rank-basis capacities, two coupled
 nine-shadow resources, the uniform corank-one cap, and the bounded-parallel
 corank-two theorem and the bounded-point/line corank-three theorem remove
@@ -1161,7 +1166,52 @@ The same 35-leaf ledger first fails at `K'=45` by capacity excess
 5651502053446174523626296867091469400380654135040887972894842.
 ```
 
-The remaining rank-nine interval is `45<=K'<=15528`.
+At `K'=45`, use both support-four and support-five terminal data.  If their
+defects are `s_4,s_5`, the condition `q>s_4+s_5` rules out the
+Grassmann-minimal intersection of their vanishing spaces: such an
+intersection would make their sum all of the ten-dimensional correction
+space while the root bound forces the two completion carriers to overlap.
+Closing their intersection under common zeros gives parameters
+
+```text
+4<=t<=6,  0<=delta<=min(s_4,s_5).
+```
+
+Every support-four deletion then has at most `delta+3` completion-carrier
+points outside the common zero set `B`.  Writing `b=K'-t-delta` and
+`N=m'-b`, the support-four circuit count is at most `C(b,4)` when
+`delta=0`, and otherwise at most
+
+```text
+C(b,4) + sum_(j=1)^4 floor(
+  C(b,4-j) C(N,j-1) (delta+4-j) / j
+).
+```
+
+The division by `j` is exact incidence bookkeeping: every circuit with
+`j` external points is exposed by each of its `j` external deletions.
+
+Refine every completion maximum at supports `2..9`.  The Cartesian product
+has `9!=362880` exhaustive leaves; `259200` have both support four and five
+terminal and receive the joint charge.  The unique worst final leaf is
+all-fallback, with premium
+
+```text
+40126324034612056409620566967689123241580103372.
+```
+
+It lies below the exact safe premium ceiling by
+`323417025195949241219620287627046670164885155`.  Complete demand exceeds
+capacity by
+
+```text
+1616971801308361526826641488053709685917408248376428345137933,
+```
+
+closing `K'=45`.  The same full-product payment first fails at `K'=46` by
+capacity excess
+`5057508862309072579343840146913199075599800084788396842011438`.
+The remaining rank-nine interval is `46<=K'<=15528`.
 
 ## 9. Canonical kernel bases and the finite capacity cut
 
@@ -1906,7 +1956,7 @@ adjacent-row extension.
 
 ## 19. Exact impact on the open route
 
-The packet supplies seventy-nine proved local results.
+The packet supplies eighty-two proved local results.
 
 1. High-core absorption has exactly dimension ten, not a range `2,...,10`.
 2. More than 99 percent of record/eleven-subset incidences enter an affine
@@ -2134,10 +2184,21 @@ The packet supplies seventy-nine proved local results.
     `535634409944931896502583174279429171539133692200964798538249`;
     its first wall is `K'=45` with excess
     `5651502053446174523626296867091469400380654135040887972894842`.
+80. Joint terminal support-four/support-five completion carriers have a
+    common zero closure of dimension `4..6` and defect
+    `0<=delta<=min(s_4,s_5)`; every support-four deletion then has at most
+    `delta+3` external completion coordinates.
+81. Charging each support-four circuit through each of its external
+    deletions gives the exact external-carrier cap recorded in the manifest.
+82. The exhaustive `9!=362880` support-`2..9` completion product closes
+    `K'=45` by
+    `1616971801308361526826641488053709685917408248376428345137933`;
+    its first wall is `K'=46`, with excess
+    `5057508862309072579343840146913199075599800084788396842011438`.
 
 It does not select the complete component lane, recursively cover its
 remainder, construct a chronology-correct owner satisfying PR #1169, or pay
-rank-nine targets on `45<=K'<=15528`, rank-eight targets on
+rank-nine targets on `46<=K'<=15528`, rank-eight targets on
 `22<=K'<22526`, or the dense-owner chronology terminal on `22526..37995`.
 Therefore `U_BC`,
 `U_new`, error rank eleven, and the KoalaBear row remain open.
@@ -2150,8 +2211,8 @@ The exact unresolved intervals are:
 12:                no rank-eleven component target,
 13:                no rank-eleven component target,
 14..21:            no rank-eleven component target,
-22..44:            rank eight only,
-45..15528:         rank nine or rank eight,
+22..45:            rank eight only,
+46..15528:         rank nine or rank eight,
 15529..22525:     rank eight only,
 22526..37995:     dense-owner chronology terminal only,
 37996..1048576:   no rank-eleven component target.
@@ -2159,7 +2220,7 @@ The exact unresolved intervals are:
 
 ## 20. Provenance and replay
 
-The manifest pins all 79 public source nodes by commit, Git tree, and
+The manifest pins all 82 public source nodes by commit, Git tree, and
 source-contract SHA-256.  The primary verifier recomputes all displayed
 integer endpoints and a finite-field dense-root saturation model.  The
 independent verifier uses a separate rational-product calculation and an
@@ -2181,7 +2242,8 @@ reconstructs all 68 old core-offset charts, all eight old joint-payment
 rows, every integral chart, the `K'=22` and `K'=23` payments, all seventeen
 old full-deficit rows, the exact `K'=41` sharp payment, all six cross-support
 branches at `K'=42`, all 27 descending-support leaves at `K'=43,44`, and all
-35 refined branch-lattice leaves at `K'=44,45`.  A separate `GF(101)`
+35 refined branch-lattice leaves at `K'=44,45`, all 30 joint zero-carrier
+parameter rows, and all `362880` full-product leaves at `K'=45,46`.  A separate `GF(101)`
 model checks the carrier's Vandermonde and private-coordinate ranks.  The six shortening-weighted branch
 comparisons, and twelve positive shifted-power coefficients, together with finite
 affine-plane/rank-three models and the two dense-owner bridge boundary rows.

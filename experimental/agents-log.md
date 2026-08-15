@@ -5088,3 +5088,43 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Refine the active support-five/support-six leaves at
   support seven and audit all competing leaves at `K'=45`.  Preserve every
   inherited cap, kernel corank, and rank-nine mark.
+
+### 2026-08-15 - Joint zero carrier and full completion product close K'=45
+
+- **Agent/model:** Codex, importing three proved public prize-DAG nodes after
+  proof audit, exact arithmetic, independent replay, and hostile mutation
+  testing.
+- **Exact parent:** this PR's `K'=43..44` extension at
+  `62b63a52a3e01d6086ba3e2333d4fdb21350a180`.
+- **Research source:** prize-DAG commit
+  `e95151ead0a4afa7bc0cede3de887442cc2b3204`; the three source-contract
+  SHA-256 values are
+  `dae4d0f7200653bb1e9f7f3f1c73b1ca1d83f3040d915a98952a92fd49eedae8`,
+  `9b4f391a6f919caed461b33ad7a911cfaf6bbbd1a1355223f730158039ae55ae`,
+  and `f935bbbc6266e4df746a0b9f4d4d53a0afef01a5fa5a384199f682bee8018c6f`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** Terminal support-four/support-five completion
+  carriers force a common zero closure of dimension `4..6` and defect
+  `0<=delta<=min(s_4,s_5)`.  This gives an external support-four circuit
+  charge on every joint-terminal leaf.  The complete Cartesian
+  terminal/fallback product over supports `2..9` then has `9!=362880`
+  exhaustive leaves, `259200` of which use the joint charge.
+- **Impact:** At `K'=45` the unique worst leaf is all-fallback, with premium
+  `40126324034612056409620566967689123241580103372`.  Exact demand exceeds
+  complete capacity by
+  `1616971801308361526826641488053709685917408248376428345137933`.
+  The first remaining rank-nine row is `K'=46`.
+- **Controls:** The canonical manifest pins 82 public source nodes and has
+  SHA-256 `6d526aa3bb5b7e36ea1338f62cf34a7caea1ab9f39a53b0844b2c55a736c0b1d`.
+  The primary verifier rejects 144 hostile mutations.  The independent
+  verifier separately reconstructs all joint carrier rows, external-charge
+  caps, and 725760 completion leaves across `K'=45,46`.
+- **Nonclaim:** At `K'=46` the same full-product payment has exact capacity
+  excess
+  `5057508862309072579343840146913199075599800084788396842011438`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** The `K'=46` wall is the all-fallback leaf, so another
+  terminal-only refinement cannot move it.  Seek a valid cap or shared
+  resource that prices the simultaneous fallback regime while preserving
+  every inherited cap, kernel corank, and rank-nine mark.

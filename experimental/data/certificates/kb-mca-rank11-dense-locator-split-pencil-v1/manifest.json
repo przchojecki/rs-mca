@@ -298,6 +298,27 @@
         "tree": "07fe487bc4f2d7e3bcb9bc07853ab54bed89d91c",
         "contract_sha256": "fb48b423a9f8b9aa11be869b91ed7edb21332feb48cfb4f9eec7070264661cc2"
       },
+      "sparse_circuit_support45_joint_zero_carrier": {
+        "id": "rate_half_mca_sparse_circuit_support45_joint_zero_carrier",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_support45_joint_zero_carrier",
+        "commit": "e95151ead0a4afa7bc0cede3de887442cc2b3204",
+        "tree": "ed1d41c270f67153af8516c24a345f92cb7c4b2a",
+        "contract_sha256": "dae4d0f7200653bb1e9f7f3f1c73b1ca1d83f3040d915a98952a92fd49eedae8"
+      },
+      "sparse_circuit_support4_external_charge": {
+        "id": "rate_half_mca_sparse_circuit_support4_external_charge",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_support4_external_charge",
+        "commit": "e95151ead0a4afa7bc0cede3de887442cc2b3204",
+        "tree": "f87ee6da94ec41ecc58db9b190fa03a8a2b01b4a",
+        "contract_sha256": "9b4f391a6f919caed461b33ad7a911cfaf6bbbd1a1355223f730158039ae55ae"
+      },
+      "rank11_k45_full_completion_product_payment": {
+        "id": "rate_half_mca_rank11_k45_full_completion_product_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k45_full_completion_product_payment",
+        "commit": "e95151ead0a4afa7bc0cede3de887442cc2b3204",
+        "tree": "3d98099d8b40e2d2aaa443a42c7ebf2d603c3cd5",
+        "contract_sha256": "f935bbbc6266e4df746a0b9f4d4d53a0afef01a5fa5a384199f682bee8018c6f"
+      },
       "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -3007,6 +3028,210 @@
       15528
     ]
   },
+  "sparse_circuit_support45_joint_zero_carrier": {
+    "correction_dimension": 10,
+    "source_supports": [
+      4,
+      5
+    ],
+    "source_vanishing_dimensions": {
+      "4": 7,
+      "5": 6
+    },
+    "support4_terminal_defects": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "support5_terminal_defects": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "overlap_condition": "q>s_4+s_5",
+    "intersection_dimension_lower_bound": 4,
+    "carrier_union_upper_bound": "q+6",
+    "zero_closure_dimension_range": [
+      4,
+      6
+    ],
+    "quotient_defect": "delta=K-t-|B|",
+    "quotient_defect_bound": "0<=delta<=min(s_4,s_5)",
+    "external_completion_carrier_bound": "|U_A\\B|<=delta+3"
+  },
+  "sparse_circuit_support4_external_charge": {
+    "component_size": 11,
+    "support": 4,
+    "zero_closure_dimension_range": [
+      4,
+      6
+    ],
+    "quotient_defect_range": "0<=delta<=min(s_4,s_5)",
+    "carrier_size": "b=K-t-delta",
+    "outside_size": "N=m-b",
+    "inside_support_count": "C(b,4)",
+    "outside_stratum_count": "floor(C(b,4-j)C(N,j-1)(delta+4-j)/j)",
+    "incidence_multiplier": "C(m-4,7)",
+    "K45_caps_by_minimum_defect": {
+      "0": {
+        "t": 4,
+        "delta": 0,
+        "b": 41,
+        "support_count": 101270,
+        "incidence_cap": 128418333025617494219383854271189320
+      },
+      "1": {
+        "t": 4,
+        "delta": 1,
+        "b": 40,
+        "support_count": 12861576017972,
+        "incidence_cap": 16309490987560221486803236111312261069715952
+      },
+      "2": {
+        "t": 4,
+        "delta": 2,
+        "b": 39,
+        "support_count": 25691604516697,
+        "incidence_cap": 32578977236967057729773689331510654377703052
+      },
+      "3": {
+        "t": 4,
+        "delta": 3,
+        "b": 38,
+        "support_count": 38521252754461,
+        "incidence_cap": 48847981285537255883023887048112197222518076
+      },
+      "4": {
+        "t": 4,
+        "delta": 4,
+        "b": 37,
+        "support_count": 51350520748135,
+        "incidence_cap": 65116503154664572206800622437528709545004660
+      }
+    }
+  },
+  "rank11_k45_full_completion_product_payment": {
+    "closed_row": 45,
+    "new_closed_prefix": [
+      10,
+      45
+    ],
+    "first_method_wall": 46,
+    "residual_record_floor": 274980728111260126,
+    "source_support_order": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "branch_stream_format": "c2*/c3*/c4*/c5*/c6*/c7*/c8*/c9*:premium\\n",
+    "joint_cap_condition": "support4 and support5 both terminal",
+    "deficit_weights": {
+      "2": 36,
+      "3": 28,
+      "4": 21,
+      "5": 15,
+      "6": 10,
+      "7": 6,
+      "8": 3,
+      "9": 1
+    },
+    "K45": {
+      "n": 1048621,
+      "m": 67517,
+      "q": 35,
+      "max_core": 44,
+      "chart": 9276292351483023,
+      "kernel_capacity": 20541224524206770168358957675733727352177985505266924004331,
+      "rank_nine_marks": 39188933245978335442844817333731704607806583940216121605190822065,
+      "option_counts": {
+        "2": 9,
+        "3": 8,
+        "4": 7,
+        "5": 6,
+        "6": 5,
+        "7": 4,
+        "8": 3,
+        "9": 2
+      },
+      "leaf_count": 362880,
+      "joint_branch_count": 259200,
+      "nonjoint_branch_count": 103680,
+      "joint_tightened_count": 48384,
+      "maximum_before_joint": 41119280132819537082584175767452500583010727727,
+      "maximum_before_joint_branch": "c2d4/c3d3/c4d3/c5d2/c6d2/c7d1/c8d1/c9d0",
+      "maximum_joint_premium": 30915047166299259953679561401812508774596279777,
+      "maximum_joint_branch": "c2d4/c3d3/c4d4/c5d4/c6d2/c7d1/c8d1/c9d0",
+      "maximum_nonjoint_premium": 40126324034612056409620566967689123241580103372,
+      "maximum_nonjoint_branch": "c2F/c3F/c4F/c5F/c6F/c7F/c8F/c9F",
+      "active_branch": "c2F/c3F/c4F/c5F/c6F/c7F/c8F/c9F",
+      "completion_premium": 40126324034612056409620566967689123241580103372,
+      "premium_sum": 4516992466459490087860442686982670073703752922053860,
+      "branch_digest_sha256": "2c1a2a7a62ff7f5de8b82d638c92e353dd9e3dd65e4631d7d9f79133a5f96e35",
+      "safe_premium_ceiling": 40449741059808005650840187255316169911744988527,
+      "premium_ceiling_margin": 323417025195949241219620287627046670164885155,
+      "full_rank_capacity": 913143619008078468726311141809692801590446007571848493844592126,
+      "total_capacity": 913164160232602675496479500767368535317798185557353760768596457,
+      "required_component_incidence": 914781132033911037023306142255422245003715593805730189113734390,
+      "gap": 1616971801308361526826641488053709685917408248376428345137933,
+      "record_coefficient_cross": 142851171448156502676296279588073248696830521058,
+      "floor_record_raw_cross": 88933449071959883975465281842954032725457453660703558982586308
+    },
+    "K46_method_wall": {
+      "n": 1048622,
+      "m": 67518,
+      "q": 36,
+      "max_core": 45,
+      "chart": 9276567058088142,
+      "kernel_capacity": 21751650530081444013940677187640620839959717917604171377948,
+      "rank_nine_marks": 39190430140044801063655583653581550188715563500477985857422724940,
+      "option_counts": {
+        "2": 9,
+        "3": 8,
+        "4": 7,
+        "5": 6,
+        "6": 5,
+        "7": 4,
+        "8": 3,
+        "9": 2
+      },
+      "leaf_count": 362880,
+      "joint_branch_count": 259200,
+      "nonjoint_branch_count": 103680,
+      "joint_tightened_count": 48384,
+      "maximum_before_joint": 42381083143683853520395732110044714484659018898,
+      "maximum_before_joint_branch": "c2d4/c3d3/c4d3/c5d2/c6d2/c7d1/c8d1/c9d0",
+      "maximum_joint_premium": 31836223407628847732900048412578398943234942490,
+      "maximum_joint_branch": "c2d4/c3d3/c4d4/c5d4/c6d2/c7d1/c8d1/c9d0",
+      "maximum_nonjoint_premium": 41485443362306086690496505287800656619099676245,
+      "maximum_nonjoint_branch": "c2F/c3F/c4F/c5F/c6F/c7F/c8F/c9F",
+      "active_branch": "c2F/c3F/c4F/c5F/c6F/c7F/c8F/c9F",
+      "completion_premium": 41485443362306086690496505287800656619099676245,
+      "premium_sum": 4655053386787774373499587052577145207954940702098208,
+      "branch_digest_sha256": "48d09c958e0c88d2352ba4c8fc9791030368e351b5c217eccdc44b458232e920",
+      "safe_premium_ceiling": 40473870699241308965734759467339955863395959944,
+      "premium_ceiling_margin": -1011572663064777724761745820460700755703716301,
+      "full_rank_capacity": 919965955669639494478099312996879789919890518131202840054556942,
+      "total_capacity": 919987707320169575922113253674067430540730477849120444225934890,
+      "required_component_incidence": 914930198457860503342769413527154231465130677764332047383923452,
+      "record_coefficient_cross": 141521867583307961813553943491614275588487811575,
+      "floor_record_raw_cross": -278162987426998991863911208080225949157989004663361826310629090,
+      "capacity_excess": 5057508862309072579343840146913199075599800084788396842011438
+    },
+    "remaining_rank9_interval": [
+      46,
+      15528
+    ]
+  },
   "kernel_canonical_basis_globalizer": {
     "correction_dimension": 10,
     "component_subset_size": 11,
@@ -4963,9 +5188,10 @@
     "rank9_k42_cross_support_defect_closed_K_prime": 42,
     "rank9_k43_descending_support_ladder_closed_K_prime": 43,
     "rank9_k44_branch_lattice_closed_K_prime": 44,
+    "rank9_k45_full_completion_product_closed_K_prime": 45,
     "rank9_low_shortening_reopened": true,
     "rank9_remaining_interval": [
-      45,
+      46,
       15528
     ],
     "kernel_dominant_lane_closed_through_Kprime": 1048576,

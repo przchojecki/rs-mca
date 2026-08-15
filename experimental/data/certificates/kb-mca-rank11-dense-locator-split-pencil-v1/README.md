@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages seventy-nine proved local results after the fixed
+This certificate packages eighty-two proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -155,6 +155,21 @@ rank-eleven anchor-star reduction:
   `535634409944931896502583174279429171539133692200964798538249`; the
   same branch lattice first fails at `K'=45` by capacity excess
   `5651502053446174523626296867091469400380654135040887972894842`;
+- a joint support-four/support-five zero carrier: terminal defects `s_4,s_5`
+  with `q>s_4+s_5` force a common zero-closed space of dimension `4..6`,
+  zero defect `0<=delta<=min(s_4,s_5)`, and at most `delta+3` external
+  completion coordinates for every support-four deletion;
+- the resulting support-four external-carrier charge, obtained by splitting
+  each circuit by its number of points outside the common zero set and
+  charging it once per external deletion;
+- the complete Cartesian completion product over supports `2..9`.  Its
+  `9!=362880` exhaustive leaves include `259200` joint-terminal leaves; at
+  `K'=45` the unique worst leaf is all-fallback, with premium
+  `40126324034612056409620566967689123241580103372`.  Exact demand exceeds
+  complete capacity by
+  `1616971801308361526826641488053709685917408248376428345137933`; the same
+  payment first fails at `K'=46` by capacity excess
+  `5057508862309072579343840146913199075599800084788396842011438`;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -283,14 +298,17 @@ model over `GF(17)`.  It also independently reconstructs all eight old joint
 payment rows, every exact integral chart, the `K'=22` and `K'=23` payments,
 all seventeen old full-deficit rows, the old `K'=41` density wall, the sharp
 `K'=41` payment, the cross-support carrier, the six `K'=42` branches, the
-27-leaf descending-support payments at `K'=43,44`, and the 35-leaf
-branch-lattice payments at `K'=44,45`. The primary replay checks the
+27-leaf descending-support payments at `K'=43,44`, the 35-leaf
+branch-lattice payments at `K'=44,45`, and all `362880` leaves of the full
+completion product at `K'=45,46`.  It independently checks all 30 admissible
+joint zero-carrier parameter rows and the support-four external charge. The
+primary replay checks the
 existing affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `45<=K'<=15528` is open; the
+lane. The low rank-nine interval `46<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not

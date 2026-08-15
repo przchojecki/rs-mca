@@ -12450,6 +12450,187 @@ capacity, and gap.  The adjacent replay at $K'=45$ yields the stated method
 wall.
 \end{proof}
 
+\begin{proposition}[Joint support-four/support-five zero carrier]
+\label{prop:kb-rank11-support45-joint-zero-carrier}
+Put $q=K'-10$.  Suppose independent support-four and support-five
+deletions have respectively $q-s_4$ and $q-s_5$ circuit completions, with
+$q>s_4+s_5$.  Let $U_4,U_5$ be their completion carriers and let
+$H_4,H_5\le V'$ be the subspaces vanishing on those carriers.  Then
+\[
+ \dim(H_4\cap H_5)\ge4,
+ \qquad |U_4\cup U_5|\le q+6.                       \tag{JZ1}
+\]
+Close $H_4\cap H_5$ under all its common zeros in the residual evaluation
+set.  If $B$ is that zero set and
+\[
+ H_B=\{f\in V':f|_B=0\},\qquad t=\dim H_B,
+ \qquad \delta=K'-t-|B|,
+\]
+then
+\[
+ 4\le t\le6,
+ \qquad 0\le\delta\le\min(s_4,s_5).                \tag{JZ2}
+\]
+For every independent three-set $A$, the union of $A$ and all its
+support-four circuit completions has at most $\delta+3$ points outside
+$B$.
+\end{proposition}
+
+\begin{proof}
+For $c\in\{4,5\}$ write $A_c$ for the independent $(c-1)$-deletion and
+$Z_c$ for its $q-s_c$ completions.  The private completion coordinates give
+a $(q-s_c)$-dimensional label space supported on
+$U_c=A_c\cup Z_c$, so
+\[
+ |U_4|=q+3-s_4,qquad |U_5|=q+4-s_5,qquad
+ \dim H_4=7,qquad\dim H_5=6.                       \tag{1}
+\]
+Grassmann gives $\dim(H_4\cap H_5)\ge3$.  If equality held, then
+$H_4+H_5=V'$.  The polynomial common-root bound applied to the
+three-dimensional intersection would give
+$|U_4\cup U_5|\le K'-3=q+7$.  Equation~(1) would then force
+\[
+ |U_4\cap U_5|\ge q-s_4-s_5>0.
+\]
+At a point of this overlap every polynomial in $H_4+H_5=V'$ vanishes,
+contrary to the empty common zero set of $V'$.  Thus the intersection has
+dimension at least four, and the same root bound proves (JZ1).
+
+The zero closure $B$ contains both carriers and satisfies
+$H_4\cap H_5\subseteq H_B\subseteq H_5$, proving $4\le t\le6$.
+The root bound gives $|B|\le K'-t$, hence $\delta\ge0$.  The evaluation
+functionals on $B$ are independent before restriction to $V'$, and their
+rank on $V'$ is $10-t$.  Therefore the label subspace supported on $B$ has
+dimension
+\[
+ |B|-(10-t)=q-\delta.
+\]
+It contains both private completion-label spaces, of dimensions
+$q-s_4$ and $q-s_5$, so $\delta\le\min(s_4,s_5)$.
+
+Finally let $U_A$ be the carrier of an arbitrary independent three-set and
+let $H_A\le V'$ be its seven-dimensional vanishing space.  Then
+$\dim(H_A\cap H_B)\ge t-3$.  The root bound gives
+\[
+ |U_A\cup B|\le K'-(t-3).
+\]
+Since $|B|=K'-t-\delta$, subtraction yields
+$|U_A\setminus B|\le\delta+3$.
+\end{proof}
+
+\begin{proposition}[Support-four external-carrier charge]
+\label{prop:kb-rank11-support4-external-charge}
+Under Proposition~\ref{prop:kb-rank11-support45-joint-zero-carrier}, put
+$b=K'-t-\delta$ and $N=m'-b$.  Define
+\[
+ C_4(t,\delta)=
+ \begin{cases}
+ \binom b4,&\delta=0,\\[2mm]
+ \displaystyle \binom b4+
+ \sum_{j=1}^4\floor{
+  \frac{\binom b{4-j}\binom N{j-1}(\delta+4-j)}j},&\delta>0.
+ \end{cases}                                      \tag{EC1}
+\]
+The number of support-four circuit supports is at most $C_4(t,\delta)$,
+and their selected eleven-set incidence is at most
+\[
+ C_4(t,\delta)\binom{m'-4}{7}.                     \tag{EC2}
+\]
+A branch with terminal defects $s_4,s_5$ may therefore use the maximum of
+(EC2) over $4\le t\le6$ and
+$0\le\delta\le\min(s_4,s_5)$.
+\end{proposition}
+
+\begin{proof}
+If $\delta=0$, every support-four label has a representation on $B$.
+Comparing it with its circuit representation uses at most
+$|B|+4=K'-t+4\le K'$ evaluation functionals, so Vandermonde independence
+puts the circuit support inside $B$.
+
+Suppose $\delta>0$, and fix a circuit with exactly $j$ points outside $B$.
+Deleting one outside point leaves an independent three-set with $j-1$
+external points.  Proposition~\ref{prop:kb-rank11-support45-joint-zero-carrier}
+allows at most $\delta+4-j$ external completions.  There are at most
+$\binom b{4-j}\binom N{j-1}$ possible deleted three-sets, and each circuit
+is charged exactly $j$ times.  Division by $j$, integer flooring, and
+summation over $j=1,\ldots,4$ prove (EC1).  Each circuit extends to at most
+$\binom{m'-4}{7}$ selected eleven-sets, proving (EC2).
+\end{proof}
+
+\begin{proposition}[$K'=45$ full completion-product payment]
+\label{prop:kb-rank11-k45-full-completion-product-payment}
+In the fixed component target, every rank-nine alternative is empty at
+$K'=45$.  Refine the completion maximum independently at every source
+support $c=2,\ldots,9$.  The resulting Cartesian product has
+\[
+ \prod_{c=2}^9(11-c)=9!=362880
+\]
+disjoint exhaustive leaves.  On the $259200$ leaves where supports four
+and five are both terminal, also intersect the support-four incidence cap
+with Proposition~\ref{prop:kb-rank11-support4-external-charge}.
+
+The unique worst final leaf is the all-fallback leaf, with premium
+\[
+40126324034612056409620566967689123241580103372.
+\]
+This is below the exact safe premium ceiling by
+\[
+323417025195949241219620287627046670164885155.
+\]
+Complete component demand exceeds complete capacity by
+\[
+1616971801308361526826641488053709685917408248376428345137933.
+\]
+The same payment first fails at $K'=46$, where complete capacity exceeds
+demand by
+\[
+5057508862309072579343840146913199075599800084788396842011438.
+\]
+\end{proposition}
+
+\begin{proof}
+At source support $c$, the branch-lattice theorem partitions the completion
+maximum into terminal values $q-s$, $0\le s\le9-c$, and the fallback
+$M_c\le q-(10-c)$.  Their Cartesian product is exhaustive, and every child
+inherits all preceding support caps.  Exactly
+\[
+ 6\cdot5\cdot(9\cdot8\cdot5\cdot4\cdot3\cdot2)=259200
+\]
+leaves have terminal support-four and support-five defects.  On each,
+$q>s_4+s_5$, so the joint zero-carrier and external-charge propositions
+apply before the exact deficits $\binom{11-c}{2}$ are assigned.
+
+Streaming exact enumeration of all leaves gives the displayed maximum.  At
+$K'=45$, retaining every kernel corank and the all-core rank-nine chart gives
+\[
+\begin{split}
+K_{\rm cap}&=
+20541224524206770168358957675733727352177985505266924004331,\\
+G&=39188933245978335442844817333731704607806583940216121605190822065,\\
+F_{\rm cap}&=
+913143619008078468726311141809692801590446007571848493844592126,\\
+\operatorname{Cap}_{45}&=
+913164160232602675496479500767368535317798185557353760768596457.
+\end{split}
+\]
+Sharp isolated incidence gives demand
+\[
+D_{45}=
+914781132033911037023306142255422245003715593805730189113734390.
+\]
+Their difference is the positive gap above.  The cleared record coefficient
+and floor-record cross are positive, respectively
+\[
+142851171448156502676296279588073248696830521058
+\]
+and
+\[
+88933449071959883975465281842954032725457453660703558982586308,
+\]
+so the contradiction persists above the record floor.  Independent replay
+at $K'=46$ again selects the all-fallback leaf and gives the stated wall.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -14039,8 +14220,15 @@ Proposition~\ref{prop:kb-rank11-k43-descending-support-payment} pays
 $K'=43$.  Proposition~\ref{prop:kb-rank11-completion-branch-lattice}
 permits selective refinement of the heaviest leaves, and
 Proposition~\ref{prop:kb-rank11-k44-branch-lattice-payment} pays $K'=44$.
+Proposition~\ref{prop:kb-rank11-support45-joint-zero-carrier} couples the
+terminal support-four and support-five carriers,
+Proposition~\ref{prop:kb-rank11-support4-external-charge} converts that
+coupling into a support-four incidence cap, and
+Proposition~\ref{prop:kb-rank11-k45-full-completion-product-payment} pays
+$K'=45$ after the exhaustive support-$2$ through support-$9$ completion
+product.
 Thus the remaining intervals are rank eight only on
-$22\le K'\le44$, rank nine or rank eight on $45\le K'\le15528$, rank
+$22\le K'\le45$, rank nine or rank eight on $46\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -14050,9 +14238,9 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=45$, the 35-leaf completion
-branch lattice has the printed capacity excess
-$5651502053446174523626296867091469400380654135040887972894842$.
+At the first remaining rank-nine row $K'=46$, the full completion product
+has the printed capacity excess
+$5057508862309072579343840146913199075599800084788396842011438$.
 This is a method wall: a continuation must sharpen the complete weighted
 deficit vector, lower the rank-nine chart, or extract another shared resource without omitting a kernel
 corank or reusing a rank-nine mark.

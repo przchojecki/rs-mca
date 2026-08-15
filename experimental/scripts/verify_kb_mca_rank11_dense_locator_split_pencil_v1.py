@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import copy
 import hashlib
+import itertools
 import json
 from fractions import Fraction
 from functools import cache
@@ -311,6 +312,27 @@ SOURCE_NODES = {
         "commit": "ba9dc04e52505f6c42639f8692ab1abcf78b9b77",
         "tree": "07fe487bc4f2d7e3bcb9bc07853ab54bed89d91c",
         "contract_sha256": "fb48b423a9f8b9aa11be869b91ed7edb21332feb48cfb4f9eec7070264661cc2",
+    },
+    "sparse_circuit_support45_joint_zero_carrier": {
+        "id": "rate_half_mca_sparse_circuit_support45_joint_zero_carrier",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_support45_joint_zero_carrier",
+        "commit": "e95151ead0a4afa7bc0cede3de887442cc2b3204",
+        "tree": "ed1d41c270f67153af8516c24a345f92cb7c4b2a",
+        "contract_sha256": "dae4d0f7200653bb1e9f7f3f1c73b1ca1d83f3040d915a98952a92fd49eedae8",
+    },
+    "sparse_circuit_support4_external_charge": {
+        "id": "rate_half_mca_sparse_circuit_support4_external_charge",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_support4_external_charge",
+        "commit": "e95151ead0a4afa7bc0cede3de887442cc2b3204",
+        "tree": "f87ee6da94ec41ecc58db9b190fa03a8a2b01b4a",
+        "contract_sha256": "9b4f391a6f919caed461b33ad7a911cfaf6bbbd1a1355223f730158039ae55ae",
+    },
+    "rank11_k45_full_completion_product_payment": {
+        "id": "rate_half_mca_rank11_k45_full_completion_product_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k45_full_completion_product_payment",
+        "commit": "e95151ead0a4afa7bc0cede3de887442cc2b3204",
+        "tree": "3d98099d8b40e2d2aaa443a42c7ebf2d603c3cd5",
+        "contract_sha256": "f935bbbc6266e4df746a0b9f4d4d53a0afef01a5fa5a384199f682bee8018c6f",
     },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1320,6 +1342,205 @@ def completion_branch_payment_row(
         "active_branch": active,
         "completion_premium": premium,
         "premium_saving": uncoupled - premium,
+        "full_rank_capacity": full_rank,
+        "total_capacity": total,
+        "required_component_incidence": demand,
+        "gap": demand - total,
+        "record_coefficient_cross": coefficient,
+        "floor_record_raw_cross": raw,
+    }
+
+
+def support4_external_support_count(
+    kprime: int, mprime: int, zero_dimension: int, quotient_defect: int
+) -> int:
+    carrier = kprime - zero_dimension - quotient_defect
+    outside = mprime - carrier
+    if quotient_defect == 0:
+        return comb(carrier, 4)
+    return comb(carrier, 4) + sum(
+        comb(carrier, 4 - external)
+        * comb(outside, external - 1)
+        * (quotient_defect + 4 - external)
+        // external
+        for external in range(1, 5)
+    )
+
+
+def support4_external_incidence_cap(
+    kprime: int, mprime: int, support4_defect: int, support5_defect: int
+) -> tuple[int, int, int, int]:
+    candidates = []
+    for quotient_defect in range(min(support4_defect, support5_defect) + 1):
+        for zero_dimension in range(4, 7):
+            support_count = support4_external_support_count(
+                kprime, mprime, zero_dimension, quotient_defect
+            )
+            candidates.append(
+                (
+                    support_count * comb(mprime - 4, 7),
+                    zero_dimension,
+                    quotient_defect,
+                    support_count,
+                )
+            )
+    return max(candidates)
+
+
+def full_completion_source_options(
+    kprime: int, support: int, baseline: dict[int, int]
+) -> list[tuple[str, int | None, dict[int, int]]]:
+    quotient = kprime - 10
+    mprime = 67472 + kprime
+    options = [
+        (
+            f"c{support}d{defect}",
+            defect,
+            cross_support_terminal_caps(
+                quotient, mprime, support, defect, baseline
+            ),
+        )
+        for defect in range(10 - support)
+    ]
+    fallback = dict(baseline)
+    fallback[support] = min(
+        fallback[support],
+        completion_deletion_cap(mprime, support, quotient - (10 - support)),
+    )
+    options.append((f"c{support}F", None, fallback))
+    return options
+
+
+@cache
+def full_completion_branch_summary(kprime: int) -> dict[str, Any]:
+    quotient = kprime - 10
+    mprime = 67472 + kprime
+    supports = tuple(range(2, 10))
+    weights = {support: comb(11 - support, 2) for support in supports}
+    baseline = {
+        support: (
+            completion_defect_row(
+                quotient,
+                mprime,
+                support,
+                {2: 7, 3: 2, 4: 1, 5: 0}[support],
+            )["active_cap"]
+            if support <= 5
+            else universal_completion_row(quotient, mprime, support)["incidence_cap"]
+        )
+        for support in supports
+    }
+    option_table = {
+        support: full_completion_source_options(kprime, support, baseline)
+        for support in supports
+    }
+    digest = hashlib.sha256()
+    premium_sum = 0
+    leaf_count = 0
+    joint_count = 0
+    tightened_count = 0
+    maximum = (-1, "")
+    maximum_before = (-1, "")
+    maximum_joint = (-1, "")
+    maximum_nonjoint = (-1, "")
+
+    for choices in itertools.product(*(option_table[support] for support in supports)):
+        caps = dict(baseline)
+        defects: dict[int, int | None] = {}
+        labels = []
+        for support, (label, defect, local_caps) in zip(supports, choices):
+            labels.append(label)
+            defects[support] = defect
+            for target in supports:
+                caps[target] = min(caps[target], local_caps[target])
+        label = "/".join(labels)
+        before = sum(weights[target] * caps[target] for target in supports)
+        if before > maximum_before[0]:
+            maximum_before = (before, label)
+
+        joint = defects[4] is not None and defects[5] is not None
+        if joint:
+            joint_count += 1
+            require(
+                quotient > int(defects[4]) + int(defects[5]),
+                "support-four/support-five overlap condition",
+            )
+            joint_cap = support4_external_incidence_cap(
+                kprime, mprime, int(defects[4]), int(defects[5])
+            )[0]
+            if joint_cap < caps[4]:
+                tightened_count += 1
+            caps[4] = min(caps[4], joint_cap)
+
+        premium = sum(weights[target] * caps[target] for target in supports)
+        if premium > maximum[0]:
+            maximum = (premium, label)
+        if joint and premium > maximum_joint[0]:
+            maximum_joint = (premium, label)
+        if not joint and premium > maximum_nonjoint[0]:
+            maximum_nonjoint = (premium, label)
+        digest.update(f"{label}:{premium}\n".encode())
+        premium_sum += premium
+        leaf_count += 1
+
+    return {
+        "option_counts": {
+            str(support): len(option_table[support]) for support in supports
+        },
+        "leaf_count": leaf_count,
+        "joint_branch_count": joint_count,
+        "nonjoint_branch_count": leaf_count - joint_count,
+        "joint_tightened_count": tightened_count,
+        "maximum_before_joint": maximum_before[0],
+        "maximum_before_joint_branch": maximum_before[1],
+        "maximum_joint_premium": maximum_joint[0],
+        "maximum_joint_branch": maximum_joint[1],
+        "maximum_nonjoint_premium": maximum_nonjoint[0],
+        "maximum_nonjoint_branch": maximum_nonjoint[1],
+        "active_branch": maximum[1],
+        "completion_premium": maximum[0],
+        "premium_sum": premium_sum,
+        "branch_digest_sha256": digest.hexdigest(),
+    }
+
+
+@cache
+def full_completion_payment_row(kprime: int, records: int) -> dict[str, Any]:
+    nprime = 1048576 + kprime
+    mprime = 67472 + kprime
+    core_rows = {
+        core: integral_core_offset_row(kprime, core)["chart"]
+        for core in range(9, kprime)
+    }
+    maximizing_core = max(core_rows, key=core_rows.get)
+    chart = core_rows[maximizing_core]
+    marks = comb(nprime, 9) * chart
+    kernel = refined_kernel_capacity(kprime)
+    summary = full_completion_branch_summary(kprime)
+    premium = summary["completion_premium"]
+    full_rank = (marks + records * premium) // 55
+    total = kernel + full_rank
+    demand = records * comb(mprime, 11) - comb(nprime, 11)
+    coefficient = 55 * comb(mprime, 11) - premium
+    raw = records * coefficient - 55 * comb(nprime, 11) - 55 * kernel - marks
+    ceiling = (
+        records * 55 * comb(mprime, 11)
+        - 55 * comb(nprime, 11)
+        - 55 * kernel
+        - marks
+        - 1
+    ) // records
+    return {
+        "n": nprime,
+        "m": mprime,
+        "q": kprime - 10,
+        "max_core": maximizing_core,
+        "chart": chart,
+        "kernel_capacity": kernel,
+        "rank_nine_marks": marks,
+        **summary,
+        "safe_premium_ceiling": ceiling,
+        "premium_ceiling_margin": ceiling - premium,
         "full_rank_capacity": full_rank,
         "total_capacity": total,
         "required_component_incidence": demand,
@@ -2783,6 +3004,10 @@ def expected() -> dict[str, Any]:
         )
         for kprime in (44, 45)
     }
+    full_completion_payment_rows = {
+        str(kprime): full_completion_payment_row(kprime, refined_record_cap)
+        for kprime in (45, 46)
+    }
     kernel_endpoint = 4598
     kernel_wall = 4599
     kernel_endpoint_demand = kernel_demand_ceiling(kernel_endpoint)
@@ -3817,6 +4042,76 @@ def expected() -> dict[str, Any]:
             },
             "remaining_rank9_interval": [45, 15528],
         },
+        "sparse_circuit_support45_joint_zero_carrier": {
+            "correction_dimension": 10,
+            "source_supports": [4, 5],
+            "source_vanishing_dimensions": {"4": 7, "5": 6},
+            "support4_terminal_defects": list(range(6)),
+            "support5_terminal_defects": list(range(5)),
+            "overlap_condition": "q>s_4+s_5",
+            "intersection_dimension_lower_bound": 4,
+            "carrier_union_upper_bound": "q+6",
+            "zero_closure_dimension_range": [4, 6],
+            "quotient_defect": "delta=K-t-|B|",
+            "quotient_defect_bound": "0<=delta<=min(s_4,s_5)",
+            "external_completion_carrier_bound": "|U_A\\B|<=delta+3",
+        },
+        "sparse_circuit_support4_external_charge": {
+            "component_size": 11,
+            "support": 4,
+            "zero_closure_dimension_range": [4, 6],
+            "quotient_defect_range": "0<=delta<=min(s_4,s_5)",
+            "carrier_size": "b=K-t-delta",
+            "outside_size": "N=m-b",
+            "inside_support_count": "C(b,4)",
+            "outside_stratum_count": (
+                "floor(C(b,4-j)C(N,j-1)(delta+4-j)/j)"
+            ),
+            "incidence_multiplier": "C(m-4,7)",
+            "K45_caps_by_minimum_defect": {
+                str(defect): {
+                    "t": support4_external_incidence_cap(
+                        45, 67517, defect, defect
+                    )[1],
+                    "delta": support4_external_incidence_cap(
+                        45, 67517, defect, defect
+                    )[2],
+                    "b": 45
+                    - support4_external_incidence_cap(45, 67517, defect, defect)[1]
+                    - support4_external_incidence_cap(45, 67517, defect, defect)[2],
+                    "support_count": support4_external_incidence_cap(
+                        45, 67517, defect, defect
+                    )[3],
+                    "incidence_cap": support4_external_incidence_cap(
+                        45, 67517, defect, defect
+                    )[0],
+                }
+                for defect in range(5)
+            },
+        },
+        "rank11_k45_full_completion_product_payment": {
+            "closed_row": 45,
+            "new_closed_prefix": [10, 45],
+            "first_method_wall": 46,
+            "residual_record_floor": refined_record_cap,
+            "source_support_order": list(range(2, 10)),
+            "branch_stream_format": (
+                "c2*/c3*/c4*/c5*/c6*/c7*/c8*/c9*:premium\\n"
+            ),
+            "joint_cap_condition": "support4 and support5 both terminal",
+            "deficit_weights": {
+                str(support): comb(11 - support, 2)
+                for support in range(2, 10)
+            },
+            "K45": full_completion_payment_rows["45"],
+            "K46_method_wall": {
+                key: value
+                for key, value in full_completion_payment_rows["46"].items()
+                if key != "gap"
+            }
+            | {"capacity_excess": -full_completion_payment_rows["46"]["gap"]},
+            "remaining_rank9_interval": [46, 15528],
+        },
         "kernel_canonical_basis_globalizer": {
             "correction_dimension": 10,
             "component_subset_size": 11,
@@ -4430,8 +4725,9 @@ def expected() -> dict[str, Any]:
             "rank9_k42_cross_support_defect_closed_K_prime": 42,
             "rank9_k43_descending_support_ladder_closed_K_prime": 43,
             "rank9_k44_branch_lattice_closed_K_prime": 44,
+            "rank9_k45_full_completion_product_closed_K_prime": 45,
             "rank9_low_shortening_reopened": True,
-            "rank9_remaining_interval": [45, 15528],
+            "rank9_remaining_interval": [46, 15528],
             "kernel_dominant_lane_closed_through_Kprime": 1048576,
             "kernel_fixed_lane_closed": True,
             "kernel_uniform_corank2_cap_proved": True,
@@ -4500,6 +4796,9 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
     k43_ladder = value["rank11_k43_descending_support_ladder_payment"]
     branch_lattice = value["sparse_circuit_completion_branch_lattice_refinement"]
     k44_branch = value["rank11_k44_branch_lattice_payment"]
+    joint_zero_carrier = value["sparse_circuit_support45_joint_zero_carrier"]
+    support4_external_charge = value["sparse_circuit_support4_external_charge"]
+    k45_full_product = value["rank11_k45_full_completion_product_payment"]
     require(
         weighted_elimination["first_closed_demand"]
         > weighted_elimination["first_closed_cap"],
@@ -4510,7 +4809,7 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         "rank-nine exact-petal boundary",
     )
     require(value["claims"]["rank9_low_shortening_reopened"] is True, "rank-nine reopened interval")
-    require(value["claims"]["rank9_remaining_interval"] == [45, 15528], "rank-nine remaining interval")
+    require(value["claims"]["rank9_remaining_interval"] == [46, 15528], "rank-nine remaining interval")
     require(residual_petal["last_open_raw_cross"] < 0, "residual-petal last raw cross")
     require(residual_petal["first_closed_raw_cross"] > 0, "residual-petal first raw cross")
     for kprime in range(10, 20618):
@@ -5344,6 +5643,115 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         and value["claims"]["rank9_k44_branch_lattice_closed_K_prime"] == 44,
         "branch-lattice rank-nine closure claims",
     )
+    require(
+        joint_zero_carrier
+        == {
+            "correction_dimension": 10,
+            "source_supports": [4, 5],
+            "source_vanishing_dimensions": {"4": 7, "5": 6},
+            "support4_terminal_defects": list(range(6)),
+            "support5_terminal_defects": list(range(5)),
+            "overlap_condition": "q>s_4+s_5",
+            "intersection_dimension_lower_bound": 4,
+            "carrier_union_upper_bound": "q+6",
+            "zero_closure_dimension_range": [4, 6],
+            "quotient_defect": "delta=K-t-|B|",
+            "quotient_defect_bound": "0<=delta<=min(s_4,s_5)",
+            "external_completion_carrier_bound": "|U_A\\B|<=delta+3",
+        },
+        "joint support-four/support-five zero carrier",
+    )
+    joint_dimension_checks = 0
+    for support4_defect in range(6):
+        for support5_defect in range(5):
+            require(
+                35 > support4_defect + support5_defect,
+                "K'=45 joint overlap condition",
+            )
+            source_overlap = (
+                (35 + 3 - support4_defect)
+                + (35 + 4 - support5_defect)
+                - (35 + 7)
+            )
+            require(
+                source_overlap == 35 - support4_defect - support5_defect > 0,
+                "joint source-carrier overlap",
+            )
+            joint_dimension_checks += 1
+    expected_external_caps = {}
+    for defect in range(5):
+        cap, zero_dimension, quotient_defect, support_count = (
+            support4_external_incidence_cap(45, 67517, defect, defect)
+        )
+        expected_external_caps[str(defect)] = {
+            "t": zero_dimension,
+            "delta": quotient_defect,
+            "b": 45 - zero_dimension - quotient_defect,
+            "support_count": support_count,
+            "incidence_cap": cap,
+        }
+    require(
+        support4_external_charge
+        == {
+            "component_size": 11,
+            "support": 4,
+            "zero_closure_dimension_range": [4, 6],
+            "quotient_defect_range": "0<=delta<=min(s_4,s_5)",
+            "carrier_size": "b=K-t-delta",
+            "outside_size": "N=m-b",
+            "inside_support_count": "C(b,4)",
+            "outside_stratum_count": (
+                "floor(C(b,4-j)C(N,j-1)(delta+4-j)/j)"
+            ),
+            "incidence_multiplier": "C(m-4,7)",
+            "K45_caps_by_minimum_defect": expected_external_caps,
+        },
+        "support-four external charge",
+    )
+    row45_full = full_completion_payment_row(
+        45, k41_sharp["residual_record_floor"]
+    )
+    row46_full = full_completion_payment_row(
+        46, k41_sharp["residual_record_floor"]
+    )
+    row46_wall = dict(row46_full)
+    row46_wall["capacity_excess"] = -row46_wall.pop("gap")
+    require(
+        k45_full_product["closed_row"] == 45
+        and k45_full_product["new_closed_prefix"] == [10, 45]
+        and k45_full_product["first_method_wall"] == 46
+        and k45_full_product["residual_record_floor"]
+        == k41_sharp["residual_record_floor"]
+        and k45_full_product["source_support_order"] == list(range(2, 10))
+        and k45_full_product["joint_cap_condition"]
+        == "support4 and support5 both terminal"
+        and k45_full_product["K45"] == row45_full
+        and row45_full["leaf_count"] == 362880
+        and row45_full["joint_branch_count"] == 259200
+        and row45_full["joint_tightened_count"] == 48384
+        and row45_full["active_branch"]
+        == "c2F/c3F/c4F/c5F/c6F/c7F/c8F/c9F"
+        and row45_full["completion_premium"]
+        == 40126324034612056409620566967689123241580103372
+        and row45_full["gap"]
+        == 1616971801308361526826641488053709685917408248376428345137933
+        and row45_full["premium_ceiling_margin"] > 0
+        and row45_full["floor_record_raw_cross"] > 0
+        and k45_full_product["K46_method_wall"] == row46_wall
+        and row46_wall["active_branch"]
+        == "c2F/c3F/c4F/c5F/c6F/c7F/c8F/c9F"
+        and row46_wall["capacity_excess"]
+        == 5057508862309072579343840146913199075599800084788396842011438
+        and row46_wall["premium_ceiling_margin"] < 0
+        and row46_wall["floor_record_raw_cross"] < 0
+        and k45_full_product["remaining_rank9_interval"] == [46, 15528],
+        "full completion-product K'=45 payment and K'=46 wall",
+    )
+    require(
+        value["claims"]["rank9_k45_full_completion_product_closed_K_prime"]
+        == 45,
+        "full completion-product closure claim",
+    )
     kernel_cut = value["kernel_rankstratified_capacity_cut"]
     for kprime in range(10, kernel_cut["closed_K_prime_maximum"] + 1):
         require(kernel_demand_ceiling(kprime) > kernel_capacity(kprime), f"kernel cut {kprime}")
@@ -5896,6 +6304,10 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         "k44_descending_excess": k43_ladder["K44_method_wall"]["capacity_excess"],
         "k44_branch_gap": k44_branch["gap"],
         "k45_branch_excess": k44_branch["K45_method_wall"]["capacity_excess"],
+        "joint_zero_carrier_checks": joint_dimension_checks,
+        "k45_full_product_leaves": row45_full["leaf_count"],
+        "k45_full_product_gap": row45_full["gap"],
+        "k46_full_product_excess": row46_wall["capacity_excess"],
         "kernel_endpoint_gap": kernel_cut["endpoint_gap"],
         "kernel_wall_gap": kernel_cut["wall_capacity"] - kernel_cut["wall_demand"],
         "multibasis_endpoint_gap": multibasis_cut["endpoint_gap"],
@@ -6006,6 +6418,10 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["sparse_circuit_completion_branch_lattice_refinement"]["support6_specialization"].__setitem__("replacement_leaf_count", 4),
         lambda item: item["rank11_k44_branch_lattice_payment"]["branch_premiums"].__setitem__("c5_defect_2__c6_defect_2", 0),
         lambda item: item["rank11_k44_branch_lattice_payment"]["K45_method_wall"].__setitem__("capacity_excess", 0),
+        lambda item: item["sparse_circuit_support45_joint_zero_carrier"].__setitem__("intersection_dimension_lower_bound", 3),
+        lambda item: item["sparse_circuit_support4_external_charge"]["K45_caps_by_minimum_defect"]["2"].__setitem__("incidence_cap", 0),
+        lambda item: item["rank11_k45_full_completion_product_payment"]["K45"].__setitem__("branch_digest_sha256", "0" * 64),
+        lambda item: item["rank11_k45_full_completion_product_payment"]["K46_method_wall"].__setitem__("capacity_excess", 0),
         lambda item: item["kernel_canonical_basis_globalizer"].__setitem__("extra_common_zero_offset", 9),
         lambda item: item["kernel_rankstratified_capacity_cut"].__setitem__("closed_K_prime_maximum", 4599),
         lambda item: item["kernel_multibasis_decoration_compression"]["basis_multiplicities"].__setitem__(0, 2),
@@ -6076,6 +6492,7 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["claims"].__setitem__("rank9_k42_cross_support_defect_closed_K_prime", 41),
         lambda item: item["claims"].__setitem__("rank9_k43_descending_support_ladder_closed_K_prime", 42),
         lambda item: item["claims"].__setitem__("rank9_k44_branch_lattice_closed_K_prime", 43),
+        lambda item: item["claims"].__setitem__("rank9_k45_full_completion_product_closed_K_prime", 44),
         lambda item: item["claims"].__setitem__("rank9_remaining_interval", [10, 15528]),
         lambda item: item["claims"].__setitem__("rank9_low_shortening_reopened", False),
         lambda item: item["claims"].__setitem__("incidence_is_record_count", True),
@@ -6154,6 +6571,10 @@ def main() -> None:
         f"k44_descending_excess={result['k44_descending_excess']} "
         f"k44_branch_gap={result['k44_branch_gap']} "
         f"k45_branch_excess={result['k45_branch_excess']} "
+        f"joint_zero_carrier_checks={result['joint_zero_carrier_checks']} "
+        f"k45_full_product_leaves={result['k45_full_product_leaves']} "
+        f"k45_full_product_gap={result['k45_full_product_gap']} "
+        f"k46_full_product_excess={result['k46_full_product_excess']} "
         f"kernel_endpoint_gap={result['kernel_endpoint_gap']} "
         f"kernel_wall_gap={result['kernel_wall_gap']} "
         f"multibasis_endpoint_gap={result['multibasis_endpoint_gap']} "
