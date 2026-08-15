@@ -1,0 +1,94 @@
+{
+  "canonical_payload_sha256": "f08059cdb1593c8b22355e8f512da326d882106e2c1cd7c75a02263bf59351cc",
+  "claims": {
+    "active_v4_ledger_movement": 0,
+    "koalabear_closed": false,
+    "rank11_paid": false,
+    "transverse_branch_paid": true
+  },
+  "files": [
+    {
+      "bytes": 2673,
+      "path": "experimental/campaigns/kb-mca-rank11-rich-flat-post-1172/00_contract.md",
+      "sha256": "3003039baf413675b1fd164f03ec010a9ad6e9dcc04ab81532c459e81c76e22d"
+    },
+    {
+      "bytes": 2181,
+      "path": "experimental/campaigns/kb-mca-rank11-rich-flat-post-1172/01_frontier_map.md",
+      "sha256": "a841753ac327c6cc74bfc7b9aa613723df7672d4b85f82476a53b8cf37130935"
+    },
+    {
+      "bytes": 2001,
+      "path": "experimental/campaigns/kb-mca-rank11-rich-flat-post-1172/02_controls.md",
+      "sha256": "d931596298c8862c3988a71b054f14270fa13b7e718ad9b22e42085853500f85"
+    },
+    {
+      "bytes": 790,
+      "path": "experimental/campaigns/kb-mca-rank11-rich-flat-post-1172/03_idea_ledger.csv",
+      "sha256": "17fb27fe6537b96548a36841d8b7bd04052dd6afb319ae7bab7e6ec8850454aa"
+    },
+    {
+      "bytes": 519,
+      "path": "experimental/campaigns/kb-mca-rank11-rich-flat-post-1172/campaign.json",
+      "sha256": "96f9a0460a526345b10d0b53b1ac63fb40361bbfc7011c3b3f00a3ab6afaaa52"
+    },
+    {
+      "bytes": 8687,
+      "path": "experimental/campaigns/kb-mca-rank11-rich-flat-post-1172/proofs/anchored_rich_flat_router.md",
+      "sha256": "61c163ba4503891c36a1281c06ca618a67bab92bf9c167ac7e05a82cb2b8ecf1"
+    },
+    {
+      "bytes": 1188,
+      "path": "experimental/campaigns/kb-mca-rank11-rich-flat-post-1172/reviews/literature_sweep.md",
+      "sha256": "ead59f1bb59ae7d885b1ff8f38bcbb80a0b5f27217f7b2ab3e735ccc92659834"
+    },
+    {
+      "bytes": 835,
+      "path": "experimental/campaigns/kb-mca-rank11-rich-flat-post-1172/reviews/wolfram_replay.md",
+      "sha256": "9ac02c368972aeeeca8ada2b31e831756c39cd3de4f3d80bb9437e6465f19693"
+    },
+    {
+      "bytes": 2218,
+      "path": "experimental/campaigns/kb-mca-rank11-rich-flat-post-1172/reviews/mathematics_audit.md",
+      "sha256": "c7d0a94c8a4ad6a3887a3838c2365a4736055a9cb48ae97339669da9f65c8b53"
+    },
+    {
+      "bytes": 766,
+      "path": "experimental/campaigns/kb-mca-rank11-rich-flat-post-1172/reviews/certificate_review.md",
+      "sha256": "306f366f23802df0b27f27378b3e895358bbc59576ea539270f2bd088179fb7c"
+    },
+    {
+      "bytes": 1828,
+      "path": "experimental/notes/thresholds/kb_mca_rank11_anchored_rich_flat_router_v1.md",
+      "sha256": "e1ee802537cf63b98cfc504d0523054fe398421f278cf76d4c098485952cdad1"
+    },
+    {
+      "bytes": 11998,
+      "path": "experimental/scripts/verify_kb_mca_rank11_rich_flat_router_v1.py",
+      "sha256": "0faf56a768deab721d29b627782851940ac0396a205107e4936feada9c7fa047"
+    },
+    {
+      "bytes": 4624,
+      "path": "experimental/scripts/audit_kb_mca_rank11_rich_flat_router_v1.py",
+      "sha256": "8cb75497a16efb8ab482c05bc5869fbd83a80f52ea34291dff49095888f71433"
+    },
+    {
+      "bytes": 1357,
+      "path": "experimental/scripts/verify_kb_mca_rank11_rich_flat_manifest_v1.py",
+      "sha256": "398c35e27b41e892867f96ad49d9ee480783836bc5b653060e8082e97bd4ae60"
+    },
+    {
+      "bytes": 823,
+      "path": "experimental/data/certificates/kb-mca-rank11-rich-flat-router-v1/README.md",
+      "sha256": "1ab4eb82984eeb5d878ebc621a246486c4631a2529abc3d97109b63f782d9b4f"
+    },
+    {
+      "bytes": 1396,
+      "path": "experimental/data/certificates/kb-mca-rank11-rich-flat-router-v1/result.json",
+      "sha256": "11f352f6d1efe5508ad97ce7f3444f0ad9145c621040f619ee82b992c360cd12"
+    }
+  ],
+  "parent": "193b7bf99a5cc7ccea042f25677e698d9f988eee",
+  "result_sha256": "11f352f6d1efe5508ad97ce7f3444f0ad9145c621040f619ee82b992c360cd12",
+  "schema": "kb-mca-rank11-rich-flat-router-manifest-v1"
+}

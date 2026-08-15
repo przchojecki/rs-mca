@@ -1,0 +1,117 @@
+{
+  "canonical_payload_sha256": "7190997f4e6e464ce41aa3c8389968985686604ad81e9b272ca7c07130d323a5",
+  "claims": {
+    "active_v4_ledger_movement": 0,
+    "rank11_paid": false,
+    "rank_one_router_proved": true
+  },
+  "files": [
+    {
+      "bytes": 2296,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/00_contract.md",
+      "sha256": "df321f14f70607548897e06849a169cb28bfa9436a41110dd09a396cc414995c"
+    },
+    {
+      "bytes": 2035,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/01_frontier_map.md",
+      "sha256": "6c4bd5a1d7d460ab7208c057ac19e99413d4cc0a64fe9ffe86c93727acbdccf1"
+    },
+    {
+      "bytes": 1940,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/02_controls.md",
+      "sha256": "dc6e0da8d661bfe33df8d2e89ed95554c15dafdf39d28624ffcbe74e458572da"
+    },
+    {
+      "bytes": 1194,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/03_idea_ledger.csv",
+      "sha256": "bb8bd8e757623e5bebbccbd798c3b771a0f2b669072b787bdb35ee1cab105f15"
+    },
+    {
+      "bytes": 780,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/04_dependency_ledger.csv",
+      "sha256": "069333de1a3cd2e32b5f4d770747f1f1b37998c86c4a98d3c3a8f625a82676fb"
+    },
+    {
+      "bytes": 862,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/05_claim_registry.csv",
+      "sha256": "d8e9c3ff92049b35e026d608c7400f691e3772f89abb069683a7349d9734e7e2"
+    },
+    {
+      "bytes": 721,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/06_review_registry.csv",
+      "sha256": "8837c60c1a6f50f5a1252d719f460f225ccfde41c5066400037916b26597d499"
+    },
+    {
+      "bytes": 991,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/README.md",
+      "sha256": "95d81950ae0f77b8ee07075bfa7cfeb47a7588c3807db79ee5adabadff5130d2"
+    },
+    {
+      "bytes": 2119,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/campaign.json",
+      "sha256": "e2db12718cda5a6e0ef9b55183971caa440bb05d40c435deb60c8e3d137d9449"
+    },
+    {
+      "bytes": 7217,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/proofs/rank_one_pair_anticode_router.md",
+      "sha256": "413bfa4184883939d12e13b019b6724bb0e6377dc1ae07a745671b90dd3b42e0"
+    },
+    {
+      "bytes": 942,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/reviews/independent_certificate_review.md",
+      "sha256": "dc4686136b7e817a46de43e201646de54b788fd964c7fcb65cf0a69f06735222"
+    },
+    {
+      "bytes": 3180,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/reviews/independent_math_review.md",
+      "sha256": "225753d3b3634bf278b1473cb5d72cfea055e60a4fb2a5b7b0d28ade7607abe0"
+    },
+    {
+      "bytes": 1005,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/reviews/literature_sweep.md",
+      "sha256": "cc0cff2a5c2f1427f8d002d21bfe3c804c0c2f2008477106992f8c60b77f9fdc"
+    },
+    {
+      "bytes": 1021,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/reviews/source_scope_review.md",
+      "sha256": "fd592ddf48affbe2a09cf92a54e9bd3aa39fb6bf252ad8479032e3e41c7a2571"
+    },
+    {
+      "bytes": 3526,
+      "path": "experimental/campaigns/kb-mca-rank11-rank-one-anticode-post-1168/source_integration_fragment.tex",
+      "sha256": "bccb279fc812167910e124264100ca01234235e9c777c95ca7ec1462d14d2b36"
+    },
+    {
+      "bytes": 1112,
+      "path": "experimental/data/certificates/kb-mca-rank11-rank-one-pair-anticode-router-v1/README.md",
+      "sha256": "6e26fd2720c695164f5f59714abccd998e2b6ca6c838c9fd59703dac3ab927f3"
+    },
+    {
+      "bytes": 2799,
+      "path": "experimental/data/certificates/kb-mca-rank11-rank-one-pair-anticode-router-v1/canonical_payload.json",
+      "sha256": "cf971ef376ab208896ced4295d2d3f77d90f89a64d2cf7350420205a89a91118"
+    },
+    {
+      "bytes": 1769,
+      "path": "experimental/notes/thresholds/kb_mca_rank11_rank_one_pair_anticode_router_v1.md",
+      "sha256": "3857f940310c9a18091f6f4a55b69e3412fff18f1898f96d9dae585788f263de"
+    },
+    {
+      "bytes": 13098,
+      "path": "experimental/scripts/verify_kb_mca_rank11_rank_one_pair_anticode_router_v1.py",
+      "sha256": "e0237b7c2aaa636f8b889aca6749cadc287ea431451390b1cda37c2a1a956639"
+    },
+    {
+      "bytes": 1102,
+      "path": "experimental/scripts/verify_kb_mca_rank11_rank_one_pair_anticode_router_v1.wl",
+      "sha256": "2e9186951e5b2131dbe0ffda49e4a65bb2961892f0f25898b282ef3483ad6816"
+    },
+    {
+      "bytes": 4885,
+      "path": "experimental/scripts/verify_kb_mca_rank11_rank_one_pair_anticode_router_v1_independent.py",
+      "sha256": "27575ecbcf8560861d833c29193541d7a7c8afc16393d429ee69e96a087a4a6d"
+    }
+  ],
+  "parent": "6a5dcdae1591fc7f044eda6a942bfe178521a48c",
+  "schema": "kb-mca-rank11-rank-one-pair-anticode-router-manifest-v1"
+}

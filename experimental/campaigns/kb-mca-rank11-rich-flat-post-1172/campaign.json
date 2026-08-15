@@ -1,0 +1,18 @@
+{
+  "schema": "rs-mca-campaign-v1",
+  "campaign": "kb-mca-rank11-rich-flat-post-1172",
+  "parent_pr": 1172,
+  "parent_commit": "193b7bf99a5cc7ccea042f25677e698d9f988eee",
+  "workboard_item": "K4",
+  "row": "KoalaBear MCA",
+  "status": "PROVED_DIRECT_BRANCH_PAYMENT_AND_ROUTE_CUT",
+  "claims": {
+    "transverse_branch_paid": true,
+    "rank11_paid": false,
+    "koalabear_closed": false,
+    "active_v4_ledger_movement": 0
+  },
+  "selected_cutoff": 1547,
+  "transverse_threshold": 42452,
+  "emitted_core_size": 42453
+}
