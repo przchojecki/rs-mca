@@ -170,6 +170,18 @@ rank-eleven anchor-star reduction:
   `1616971801308361526826641488053709685917408248376428345137933`; the same
   payment first fails at `K'=46` by capacity excess
   `5057508862309072579343840146913199075599800084788396842011438`;
+- the exact deep support-four/support-five defect partition.  With the
+  convention `M_c=0` for an empty circuit stratum, the defects
+  `s_c=q-M_c` range over all `(q+1)^2` disjoint pairs.  Every pair retains
+  the inherited and cross-support caps, and pairs with `s_4+s_5<q` retain
+  the joint external-carrier charge;
+- componentwise Pareto compression of the other-support product from
+  `8640` raw branches to `1182` distinct vectors and nine maximal vectors,
+  followed by exhaustive replay of all exact defect pairs.  This closes
+  every row `K'=46..53`; the minimum gap is
+  `2503373059664320603163477388007627909210651834842589498907998` at
+  `K'=53`.  The refined payment first fails at `K'=54` by capacity excess
+  `2477882110233058360154706764229180240778698202487636349407165`;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -301,14 +313,17 @@ all seventeen old full-deficit rows, the old `K'=41` density wall, the sharp
 27-leaf descending-support payments at `K'=43,44`, the 35-leaf
 branch-lattice payments at `K'=44,45`, and all `362880` leaves of the full
 completion product at `K'=45,46`.  It independently checks all 30 admissible
-joint zero-carrier parameter rows and the support-four external charge. The
+joint zero-carrier parameter rows and the support-four external charge.  It
+also reconstructs all `15189` exact support-four/support-five defect pairs,
+the nine-row Pareto frontiers, and the eight safe rows plus the `K'=54`
+wall without calling the primary implementation. The
 primary replay checks the
 existing affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `46<=K'<=15528` is open; the
+lane. The low rank-nine interval `54<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not

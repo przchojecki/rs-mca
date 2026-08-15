@@ -188,6 +188,15 @@ At this snapshot:
   `1616971801308361526826641488053709685917408248376428345137933`.
   The full product first fails at `K'=46` by capacity excess
   `5057508862309072579343840146913199075599800084788396842011438`.
+  Refining the support-four and support-five maxima to all exact defects
+  `s_c=q-M_c` recovers the joint charge throughout `s_4+s_5<q`, including
+  the former fallback/fallback regime.  The other-support product has
+  `8640` raw branches, `1182` distinct cap vectors, and nine componentwise
+  maximal vectors.  Exhausting every exact pair against those nine vectors
+  closes `K'=46..53`; the minimum gap is
+  `2503373059664320603163477388007627909210651834842589498907998` at
+  `K'=53`.  The refined payment first fails at `K'=54` by capacity excess
+  `2477882110233058360154706764229180240778698202487636349407165`.
   These refinements stay
   in residual units and do not use the original-row core floor.
   Canonical-basis, nine-shadow, projective-paving, bounded-parallel,
@@ -199,14 +208,14 @@ At this snapshot:
   at `K'=10`; at `K'=11` the chart-local fence remains above both selector
   demands, but its full-circuit witness creates 54 neighboring rank-nine
   shadows and is paid globally.  Thus the exact component boundary is: no
-  component target at `K'=10..21`; rank eight only on `22..45`; rank nine
-  or rank eight on `46..15528`; rank eight only on `15529..22525`;
+  component target at `K'=10..21`; rank eight only on `22..53`; rank nine
+  or rank eight on `54..15528`; rank eight only on `15529..22525`;
   chronology on `22526..37995`; and no
   component target from `K'=37996` onward.  No active-v4 atom moves, and
   error rank eleven is not paid.
-- At the first open rank-nine row `K'=46`, the full completion product has
+- At the first open rank-nine row `K'=54`, the exact deep-defect payment has
   capacity excess
-  `5057508862309072579343840146913199075599800084788396842011438`.
+  `2477882110233058360154706764229180240778698202487636349407165`.
   This is an exact method wall, not a counterexample.  The next proof must
   sharpen the complete weighted deficit vector, lower the rank-nine chart,
   or add a genuinely shared resource without omitting a kernel corank or

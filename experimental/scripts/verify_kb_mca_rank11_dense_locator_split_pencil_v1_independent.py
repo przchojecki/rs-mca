@@ -71,6 +71,20 @@ BRANCH_LATTICE_SOURCES = {
         "tree": "3d98099d8b40e2d2aaa443a42c7ebf2d603c3cd5",
         "contract_sha256": "f935bbbc6266e4df746a0b9f4d4d53a0afef01a5fa5a384199f682bee8018c6f",
     },
+    "sparse_circuit_support45_deep_defect_partition": {
+        "id": "rate_half_mca_sparse_circuit_support45_deep_defect_partition",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_support45_deep_defect_partition",
+        "commit": "8c3a30f9a0d2a29289226431c810a5a74cd200c6",
+        "tree": "9f1c4245583178cd1e094139bad7848f21229faa",
+        "contract_sha256": "53267e8271a57e087c39ce77a696d93729588d57cd108ffdd279c51bf3192c4b",
+    },
+    "rank11_k46_k53_deep_joint_completion_payment": {
+        "id": "rate_half_mca_rank11_k46_k53_deep_joint_completion_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k46_k53_deep_joint_completion_payment",
+        "commit": "8c3a30f9a0d2a29289226431c810a5a74cd200c6",
+        "tree": "2522ee09a58d64f91fd94d6963b6e2b7322fec3d",
+        "contract_sha256": "9c1f1aa7bfe20879f792cac64748da44436f8db6ed4996bfcc36da79527121a5",
+    },
 }
 FIXED_CHART_SOURCES = {
     "component_star_large_owner_uniqueness": {
@@ -2370,6 +2384,238 @@ def independent_full_payment(kprime: int, records: int) -> dict[str, object]:
     }
 
 
+def independent_deep_exact_caps(
+    quotient: int,
+    mprime: int,
+    support: int,
+    defect: int,
+    baseline: dict[int, int],
+) -> dict[int, int]:
+    if defect <= 9 - support:
+        return independent_terminal_caps(
+            quotient, mprime, support, defect, baseline
+        )
+    caps = dict(baseline)
+    ceiling = quotient - defect
+    deletion_cap = (
+        0
+        if ceiling == 0
+        else independent_completion_cap(
+            quotient, mprime, support, ceiling
+        )[0]
+    )
+    caps[support] = min(
+        caps[support],
+        deletion_cap,
+    )
+    return caps
+
+
+def independent_deep_maximal_other(
+    kprime: int, baseline: dict[int, int]
+) -> tuple[dict[tuple[int, ...], str], list[tuple[str, tuple[int, ...]]]]:
+    supports = tuple(range(2, 10))
+    other_supports = (2, 3, 6, 7, 8, 9)
+    rows: dict[tuple[int, ...], str] = {}
+    for choices in product(
+        *(independent_full_source_options(kprime, support, baseline)
+          for support in other_supports)
+    ):
+        caps = dict(baseline)
+        labels = []
+        for support, (label, _defect, local_caps) in zip(
+            other_supports, choices
+        ):
+            labels.append(label)
+            for target in supports:
+                caps[target] = min(caps[target], local_caps[target])
+        rows[tuple(caps[target] for target in supports)] = "/".join(labels)
+    vectors = list(rows)
+    maximal = [
+        (rows[vector], vector)
+        for vector in vectors
+        if not any(
+            other != vector
+            and all(left <= right for left, right in zip(vector, other))
+            for other in vectors
+        )
+    ]
+    maximal.sort()
+    return rows, maximal
+
+
+@cache
+def independent_deep_branch_summary(kprime: int) -> dict[str, object]:
+    quotient = kprime - 10
+    mprime = 67472 + kprime
+    supports = tuple(range(2, 10))
+    weights = {support: comb(11 - support, 2) for support in supports}
+    baseline = {
+        support: (
+            independent_defect_cap(
+                quotient,
+                mprime,
+                support,
+                {2: 7, 3: 2, 4: 1, 5: 0}[support],
+            )[0]
+            if support <= 5
+            else independent_completion_cap(
+                quotient, mprime, support, quotient
+            )[0]
+        )
+        for support in supports
+    }
+    raw, maximal = independent_deep_maximal_other(kprime, baseline)
+    other_digest = hashlib.sha256()
+    for label, vector in maximal:
+        other_digest.update(f"{label}:{','.join(map(str, vector))}\n".encode())
+
+    pair_digest = hashlib.sha256()
+    pair_sum = 0
+    joint_count = 0
+    tightened_count = 0
+    maximum = (-1, -1, -1, "", ())
+    maximum_joint = (-1, "")
+    maximum_nonjoint = (-1, "")
+    for support4_defect in range(quotient + 1):
+        caps4 = independent_deep_exact_caps(
+            quotient, mprime, 4, support4_defect, baseline
+        )
+        for support5_defect in range(quotient + 1):
+            caps5 = independent_deep_exact_caps(
+                quotient, mprime, 5, support5_defect, baseline
+            )
+            pair_caps = [
+                min(baseline[target], caps4[target], caps5[target])
+                for target in supports
+            ]
+            joint = support4_defect + support5_defect < quotient
+            if joint:
+                joint_count += 1
+                cap = independent_external_incidence_cap(
+                    kprime,
+                    mprime,
+                    support4_defect,
+                    support5_defect,
+                )[0]
+                if cap < pair_caps[2]:
+                    tightened_count += 1
+                pair_caps[2] = min(pair_caps[2], cap)
+
+            local_maximum = (-1, "", ())
+            for label, vector in maximal:
+                caps = tuple(
+                    min(pair_caps[index], vector[index])
+                    for index in range(len(supports))
+                )
+                premium = sum(
+                    weights[target] * caps[index]
+                    for index, target in enumerate(supports)
+                )
+                if premium > local_maximum[0]:
+                    local_maximum = (premium, label, caps)
+            pair_digest.update(
+                f"{support4_defect},{support5_defect}:"
+                f"{local_maximum[0]}:{local_maximum[1]}\n".encode()
+            )
+            pair_sum += local_maximum[0]
+            labels = local_maximum[1].split("/")
+            full_label = "/".join(
+                (
+                    labels[0],
+                    labels[1],
+                    f"c4d{support4_defect}",
+                    f"c5d{support5_defect}",
+                    *labels[2:],
+                )
+            )
+            if local_maximum[0] > maximum[0]:
+                maximum = (
+                    local_maximum[0],
+                    support4_defect,
+                    support5_defect,
+                    full_label,
+                    local_maximum[2],
+                )
+            if joint and local_maximum[0] > maximum_joint[0]:
+                maximum_joint = (local_maximum[0], full_label)
+            if not joint and local_maximum[0] > maximum_nonjoint[0]:
+                maximum_nonjoint = (local_maximum[0], full_label)
+
+    pair_count = (quotient + 1) ** 2
+    return {
+        "exact_pair_count": pair_count,
+        "joint_pair_count": joint_count,
+        "nonjoint_pair_count": pair_count - joint_count,
+        "joint_tightened_pair_count": tightened_count,
+        "other_raw_branch_count": 8640,
+        "other_unique_vector_count": len(raw),
+        "other_maximal_vector_count": len(maximal),
+        "other_maximal_digest_sha256": other_digest.hexdigest(),
+        "raw_leaf_count": pair_count * 8640,
+        "pair_maximum_sum": pair_sum,
+        "pair_maximum_digest_sha256": pair_digest.hexdigest(),
+        "maximum_joint_premium": maximum_joint[0],
+        "maximum_joint_branch": maximum_joint[1],
+        "maximum_nonjoint_premium": maximum_nonjoint[0],
+        "maximum_nonjoint_branch": maximum_nonjoint[1],
+        "active_s4": maximum[1],
+        "active_s5": maximum[2],
+        "active_branch": maximum[3],
+        "active_caps": {
+            str(target): maximum[4][index]
+            for index, target in enumerate(supports)
+        },
+        "completion_premium": maximum[0],
+    }
+
+
+@cache
+def independent_deep_payment(kprime: int, records: int) -> dict[str, object]:
+    nprime = 1048576 + kprime
+    mprime = 67472 + kprime
+    charts = {
+        core: independent_integral_chart(kprime, core)
+        for core in range(9, kprime)
+    }
+    maximizing_core = max(charts, key=charts.get)
+    chart = charts[maximizing_core]
+    kernel = independent_refined_kernel_capacity(kprime)
+    marks = comb(nprime, 9) * chart
+    summary = independent_deep_branch_summary(kprime)
+    premium = int(summary["completion_premium"])
+    full_rank = (marks + records * premium) // 55
+    total = kernel + full_rank
+    demand = records * comb(mprime, 11) - comb(nprime, 11)
+    coefficient = 55 * comb(mprime, 11) - premium
+    raw = records * coefficient - 55 * comb(nprime, 11) - 55 * kernel - marks
+    ceiling = (
+        records * 55 * comb(mprime, 11)
+        - 55 * comb(nprime, 11)
+        - 55 * kernel
+        - marks
+        - 1
+    ) // records
+    return {
+        "n": nprime,
+        "m": mprime,
+        "q": kprime - 10,
+        "max_core": maximizing_core,
+        "chart": chart,
+        "kernel_capacity": kernel,
+        "rank_nine_marks": marks,
+        **summary,
+        "safe_premium_ceiling": ceiling,
+        "premium_ceiling_margin": ceiling - premium,
+        "full_rank_capacity": full_rank,
+        "total_capacity": total,
+        "required_component_incidence": demand,
+        "gap": demand - total,
+        "record_coefficient_cross": coefficient,
+        "floor_record_raw_cross": raw,
+    }
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -2416,6 +2662,8 @@ def main() -> None:
     joint_zero_carrier = data["sparse_circuit_support45_joint_zero_carrier"]
     support4_external_charge = data["sparse_circuit_support4_external_charge"]
     k45_full_product = data["rank11_k45_full_completion_product_payment"]
+    deep_partition = data["sparse_circuit_support45_deep_defect_partition"]
+    deep_payment = data["rank11_k46_k53_deep_joint_completion_payment"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -3728,6 +3976,77 @@ def main() -> None:
         and k45_full_product["remaining_rank9_interval"] == [46, 15528],
         "independent K'=45 full completion-product payment",
     )
+    require(
+        deep_partition["source_supports"] == [4, 5]
+        and deep_partition["empty_stratum_convention"] == "M_c=0"
+        and deep_partition["completion_maximum_range"] == "0<=M_c<=q"
+        and deep_partition["exact_defect"] == "s_c=q-M_c"
+        and deep_partition["joint_condition"] == "s_4+s_5<q"
+        and deep_partition["pareto_rule"]
+        == "discard a only if another b satisfies a_c<=b_c for every support",
+        "independent deep partition statement",
+    )
+    deep_pair_checks = 0
+    for kprime in range(46, 55):
+        quotient = kprime - 10
+        partition_row = deep_partition["rows"][str(kprime)]
+        require(
+            partition_row["q"] == quotient
+            and partition_row["exact_pair_count"] == (quotient + 1) ** 2
+            and partition_row["joint_eligible_pair_count"]
+            == quotient * (quotient + 1) // 2
+            and partition_row["nonjoint_pair_count"]
+            == (quotient + 1) * (quotient + 2) // 2
+            and partition_row["other_support_option_product"] == 8640
+            and partition_row["raw_leaf_count"]
+            == (quotient + 1) ** 2 * 8640,
+            f"independent partition row K'={kprime}",
+        )
+        deep_pair_checks += partition_row["exact_pair_count"]
+
+    deep_gaps = []
+    deep_raw_leaves = 0
+    for kprime in range(46, 54):
+        replay = independent_deep_payment(kprime, non_dense)
+        declared = deep_payment["rows"][str(kprime)]
+        require(declared == replay, f"independent deep row K'={kprime}")
+        require(
+            replay["active_s4"]
+            == replay["active_s5"]
+            == (kprime - 11) // 2
+            and replay["other_raw_branch_count"] == 8640
+            and replay["other_unique_vector_count"] == 1182
+            and replay["other_maximal_vector_count"] == 9
+            and replay["gap"] > 0
+            and replay["premium_ceiling_margin"] > 0
+            and replay["floor_record_raw_cross"] > 0,
+            f"independent deep signs K'={kprime}",
+        )
+        deep_gaps.append(replay["gap"])
+        deep_raw_leaves += replay["raw_leaf_count"]
+    deep54 = independent_deep_payment(54, non_dense)
+    deep54_wall = dict(deep54)
+    deep54_wall["capacity_excess"] = -deep54_wall.pop("gap")
+    require(
+        deep_payment["closed_rows"] == list(range(46, 54))
+        and deep_payment["new_closed_prefix"] == [10, 53]
+        and deep_payment["first_method_wall"] == 54
+        and deep_payment["residual_record_floor"] == non_dense
+        and deep_payment["rows"]["54"] == deep54_wall
+        and min(deep_gaps)
+        == 2503373059664320603163477388007627909210651834842589498907998
+        and deep54_wall["active_s4"] == deep54_wall["active_s5"] == 21
+        and deep54_wall["capacity_excess"]
+        == 2477882110233058360154706764229180240778698202487636349407165
+        and deep54_wall["premium_ceiling_margin"]
+        == -495611154275787830253977941644262122450512788
+        and deep54_wall["floor_record_raw_cross"] < 0
+        and deep_payment["remaining_rank9_interval"] == [54, 15528]
+        and data["claims"]["rank9_k46_k53_deep_joint_completion_closed_K_prime"]
+        == 53
+        and data["claims"]["rank9_remaining_interval"] == [54, 15528],
+        "independent K'=46..53 deep payment and K'=54 wall",
+    )
     k14_toy = codimension_four_sparse_circuit_toy()
     require(k14_toy == (10, 6, 4, 3), "K'=14 finite-field branches")
 
@@ -4603,8 +4922,9 @@ def main() -> None:
         "rank9_k43_descending_support_ladder_closed_K_prime": 43,
         "rank9_k44_branch_lattice_closed_K_prime": 44,
         "rank9_k45_full_completion_product_closed_K_prime": 45,
+        "rank9_k46_k53_deep_joint_completion_closed_K_prime": 53,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [46, 15528],
+        "rank9_remaining_interval": [54, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -4661,6 +4981,10 @@ def main() -> None:
         f"k45_full_product_leaves={full45['leaf_count']} "
         f"k45_full_product_gap={full45['gap']} "
         f"k46_full_product_excess={full46_wall['capacity_excess']} "
+        f"deep_pair_checks={deep_pair_checks} "
+        f"deep_raw_leaves={deep_raw_leaves} "
+        f"k53_deep_gap={min(deep_gaps)} "
+        f"k54_deep_excess={deep54_wall['capacity_excess']} "
         f"k14_toy={'/'.join(map(str, k14_toy))} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "

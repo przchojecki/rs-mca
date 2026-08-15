@@ -5128,3 +5128,40 @@ Keep entries concise and link to the relevant files.
   terminal-only refinement cannot move it.  Seek a valid cap or shared
   resource that prices the simultaneous fallback regime while preserving
   every inherited cap, kernel corank, and rank-nine mark.
+
+### 2026-08-15 - Exact deep defects close K'=46..53
+
+- **Agent/model:** Codex, importing two proved public prize-DAG nodes after
+  proof audit, exact arithmetic, primary replay, and an independently coded
+  replay.
+- **Exact parent:** this PR's `K'=45` extension at
+  `f2080254b669749eb15f9fd8fec0dd5e6e915433`.
+- **Research source:** prize-DAG commit
+  `8c3a30f9a0d2a29289226431c810a5a74cd200c6`; source-contract SHA-256 values
+  `53267e8271a57e087c39ce77a696d93729588d57cd108ffdd279c51bf3192c4b`
+  and `9c1f1aa7bfe20879f792cac64748da44436f8db6ed4996bfcc36da79527121a5`.
+- **Status:** PROVED EIGHT-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** Exact support-four/support-five completion defects
+  form `(q+1)^2` disjoint pairs.  Every pair retains the inherited caps, and
+  `s_4+s_5<q` retains the joint external support-four charge.  Of `8640`
+  raw other-support branches, `1182` cap vectors are distinct and exactly
+  nine are componentwise maximal.
+- **Impact:** Exhausting all exact pairs against those nine vectors closes
+  `K'=46..53`.  The minimum gap is
+  `2503373059664320603163477388007627909210651834842589498907998` at
+  `K'=53`; the first remaining rank-nine row is `K'=54`.
+- **Controls:** The canonical manifest pins 84 public source nodes and has
+  SHA-256 `cd0f42c108679f9b41f8ec5af2f8dc136a6a5d4112db7cd5932832041e4b002c`.
+  The primary verifier rejects 149 hostile mutations.  Primary and
+  independent verifiers agree on all `15189` defect pairs, nine Pareto
+  frontiers, eight safe rows, and the adjacent wall.  The 167-page paper
+  builds with SHA-256
+  `f34ec9214b0d04995130a22056cf6c665adcf6fb426b92340784ad98d625ec81`.
+- **Nonclaim:** At `K'=54`, the same payment has exact capacity excess
+  `2477882110233058360154706764229180240778698202487636349407165`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** Attack the balanced deep-joint wall
+  `s_4=s_5=21` without dropping inherited caps, kernel coranks, or rank-nine
+  marks.  A valid support-five external charge or another shared resource is
+  the most direct next candidate.

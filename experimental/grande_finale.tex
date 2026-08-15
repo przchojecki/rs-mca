@@ -12631,6 +12631,103 @@ so the contradiction persists above the record floor.  Independent replay
 at $K'=46$ again selects the all-fallback leaf and gives the stated wall.
 \end{proof}
 
+\begin{proposition}[Exact deep support-four/support-five defect partition]
+\label{prop:kb-rank11-support45-deep-defect-partition}
+For one residual record, let $M_c$ be the maximum number of circuit
+completions of an independent deletion at support $c\in\{4,5\}$, with
+$M_c=0$ if that circuit stratum is empty.  Put
+\[
+ s_c=q-M_c.
+\]
+Then $0\le s_4,s_5\le q$, and the $(q+1)^2$ exact pairs
+$(s_4,s_5)$ form a disjoint exhaustive partition.  On each pair, every
+inherited deletion and cross-support cap remains available, the source-$c$
+deletion ceiling is $q-s_c$, and the joint zero-carrier and external
+support-four charge apply whenever
+\[
+ s_4+s_5<q.                                           \tag{ED1}
+\]
+Moreover, for nonnegative deficit weights, any cap vector componentwise
+dominated by another cap vector may be discarded when maximizing the
+premium.
+\end{proposition}
+
+\begin{proof}
+On a nonempty stratum, finiteness gives an attaining deletion and the
+universal completion theorem gives $1\le M_c\le q$; the empty-stratum
+convention gives $M_c=0$.  Thus $s_c=q-M_c$ is a unique integer in
+$[0,q]$, proving the exact product partition.  The source incidence cap is
+\[
+ \left\lfloor \frac{\binom{m'}{c-1}}{c}
+ \max_{0\le b\le q-s_c} b\binom{m'-c+1-b}{11-c}\right\rfloor,
+\]
+and intersecting it and every valid cross-support cap with the parent cap
+loses no inherited resource.
+
+Under (ED1), both maxima are positive, so attaining deletions exist, and
+$q>s_4+s_5$ is precisely the hypothesis of
+Propositions~\ref{prop:kb-rank11-support45-joint-zero-carrier} and
+\ref{prop:kb-rank11-support4-external-charge}.  Finally, if
+$a_c\le b_c$ for all $c$ and $w_c\ge0$, then for every later cap vector
+$u$,
+\[
+ \sum_c w_c\min(a_c,u_c)\le
+ \sum_c w_c\min(b_c,u_c).
+\]
+Hence a dominated vector cannot maximize while its dominator remains.
+\end{proof}
+
+\begin{proposition}[$K'=46$ through $K'=53$ deep-joint payment]
+\label{prop:kb-rank11-k46-k53-deep-joint-payment}
+In the fixed component target, every rank-nine alternative is empty for
+\[
+ 46\le K'\le53.
+\]
+Use Proposition~\ref{prop:kb-rank11-support45-deep-defect-partition} at
+supports four and five.  The option product at supports
+$2,3,6,7,8,9$ has $8640$ raw vectors, $1182$ distinct vectors, and exactly
+nine componentwise maximal vectors.  Exhausting every exact defect pair
+against those nine vectors selects
+\[
+ s_4=s_5=\left\lfloor\frac{q-1}{2}\right\rfloor,
+ \qquad\hbox{all other supports fallback}.             \tag{ED2}
+\]
+The minimum demand-capacity gap is attained at $K'=53$ and equals
+\[
+2503373059664320603163477388007627909210651834842589498907998.
+\]
+The same payment first fails at $K'=54$, where capacity exceeds demand by
+\[
+2477882110233058360154706764229180240778698202487636349407165.
+\]
+\end{proposition}
+
+\begin{proof}
+The other-support option counts are $9,8,5,4,3,2$.  Deduplication and the
+componentwise comparison in the preceding proposition leave nine maximal
+vectors on each row.  Exact enumeration of the $(q+1)^2$ defect pairs gives
+(ED2).  At the last safe row the premium is
+\[
+40141995068282471040632276636969794558475239350,
+\]
+which lies below the exact safe premium ceiling by
+\[
+500709701466164598631229888808678512345658964.
+\]
+Combining this premium with the unchanged all-core rank-nine marks, every
+kernel-corank capacity, and the sharp isolated demand gives the displayed
+positive gap.  The cleared record coefficient and floor-record cross are
+positive on every row $46\le K'\le53$, so the contradiction persists above
+the record floor.
+
+At $K'=54$, (ED2) has $s_4=s_5=21$, but its premium exceeds the exact safe
+ceiling by
+\[
+495611154275787830253977941644262122450512788.
+\]
+The resulting exact capacity excess is the one displayed above.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -14226,9 +14323,13 @@ Proposition~\ref{prop:kb-rank11-support4-external-charge} converts that
 coupling into a support-four incidence cap, and
 Proposition~\ref{prop:kb-rank11-k45-full-completion-product-payment} pays
 $K'=45$ after the exhaustive support-$2$ through support-$9$ completion
-product.
+product.  Proposition~\ref{prop:kb-rank11-support45-deep-defect-partition}
+refines the former simultaneous fallback to every exact support-four and
+support-five defect pair, and
+Proposition~\ref{prop:kb-rank11-k46-k53-deep-joint-payment} pays
+$46\le K'\le53$ after exact Pareto compression of the other supports.
 Thus the remaining intervals are rank eight only on
-$22\le K'\le45$, rank nine or rank eight on $46\le K'\le15528$, rank
+$22\le K'\le53$, rank nine or rank eight on $54\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -14238,9 +14339,9 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=46$, the full completion product
+At the first remaining rank-nine row $K'=54$, the deep exact-defect payment
 has the printed capacity excess
-$5057508862309072579343840146913199075599800084788396842011438$.
+$2477882110233058360154706764229180240778698202487636349407165$.
 This is a method wall: a continuation must sharpen the complete weighted
 deficit vector, lower the rank-nine chart, or extract another shared resource without omitting a kernel
 corank or reusing a rank-nine mark.
