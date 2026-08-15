@@ -1,0 +1,6 @@
+dependency_id,statement,source,version,scope,proof_status,independent_check,notes
+D-001,support-local transversality and reversible gauge,PR1166,b67078c7c0254ce9e54e5748634de5133fae98ef,actual post-near Koala records,proved,replayed,import exact source
+D-002,sub-square interleaving and margin split,PR1167,491ccdf53d54846f5a013b808960645275c64ed3,actual sextic line field and fixed records,proved,replayed,rank ten only paid
+D-003,ordinary affine-span list cap,experimental/grande_finale.tex at PR1167,491ccdf53d54846f5a013b808960645275c64ed3,affine explanation flats,proved,reviewed,no active chronology claim
+D-004,fixed-pair n-A multiplicity sharpness,PR1167 GF11 certificate,642641809784eba3e4323f331bc28cc3d09192a287bd2708752a179080896f53,local actual-record hypotheses,proved,replayed,negative control
+D-005,Koala row and budget,active source at PR1167,491ccdf53d54846f5a013b808960645275c64ed3,distinct affine slopes per actual line,proved,replayed,units frozen

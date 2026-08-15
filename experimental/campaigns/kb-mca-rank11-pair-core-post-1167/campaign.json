@@ -1,0 +1,15 @@
+{
+  "title": "KoalaBear rank-11 aggregate minimizing-pair/core attack",
+  "created": "2026-08-13",
+  "schema_version": 2,
+  "claim_statuses": [
+    "idea",
+    "explored",
+    "candidate",
+    "provisionally-verified",
+    "handoff",
+    "refuted",
+    "blocked",
+    "known"
+  ]
+}

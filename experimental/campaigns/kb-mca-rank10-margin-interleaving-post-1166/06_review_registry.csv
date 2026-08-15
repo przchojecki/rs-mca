@@ -1,0 +1,7 @@
+review_id,claim_id,joint,reviewer_isolated,status,artifact,blocking_issue
+R-001,C-001,projection-collision proof,true,pass,reviews/independent_math_review.md,none
+R-002,C-002,low-pair and multiplicity proof,true,pass,reviews/independent_math_review.md,none
+R-003,C-003,exact rank-ten arithmetic and rank-eleven wall,true,pass,reviews/independent_math_review.md,none
+R-004,C-001,exact optimizer and sextic field guard,true,pass,reviews/independent_certificate_review.md,none
+R-005,C-002,Sage sharpness fixture and distinct-slope multiplicity semantics,true,pass,reviews/independent_certificate_review.md,none
+R-006,C-003,rank-eleven method wall and certificate mutation semantics,true,pass,reviews/independent_certificate_review.md,none

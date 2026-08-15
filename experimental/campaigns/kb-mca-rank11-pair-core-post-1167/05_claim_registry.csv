@@ -1,0 +1,4 @@
+claim_id,statement,status,scope,dependencies,controls,review_joints,rederivation,formalization,owner,artifact,notes
+C-001,nonuniform margin and fixed-pair route cut,provisionally-verified,post-near error rank eleven,D-001;D-002;D-003,C-001|C-003|C-004,statement|algebra|controls,complete,not_started,coordinator,proofs/nonuniform_theta_pair_route_cut.md,no payment claimed
+C-002,complete declared-certificate-class ceiling,provisionally-verified,local theta plus pair/core deficiency certificates,D-002;D-003;D-004,C-002|C-003|C-005,optimizer|barrier|normalization,complete,not_started,barrier worker,threads/barrier_adversary.md,rank eleven remains unpaid
+C-003,cross-pair collision or chronology owner terminal,provisionally-verified,distinct minimizing typed pairs on one actual line,D-001;D-002,C-003|C-004|C-006,algebra|source alignment|countermodels,complete,not_started,explorer,proofs/nonuniform_theta_pair_route_cut.md,explicit primitive route cut

@@ -1,0 +1,7 @@
+dependency_id,statement,source,status,use
+D-001,PR #1168 rank-eleven minimizing-pair output,PR #1168 exact head 6a5dcdae1591fc7f044eda6a942bfe178521a48c,proved,parent frontier
+D-002,RS degree-<K nonzero polynomial has at most K-1 roots,elementary,proved,maximal-overlap and universal-core bounds
+D-003,two independent degree-<K polynomials have at most K-2 common roots,elementary gcd bound,proved,rank-one difference
+D-004,one global affine codeword line owns at most n-m+1 slopes,elementary pair-noncontainment count,proved,large clone payment
+D-005,affine hyperplane tuple determines at most one point when full rank,elementary linear algebra,proved,proper correction-space count
+D-006,rank-one matrix anticode two-type classification,proved in packet,proved,cross-pair router

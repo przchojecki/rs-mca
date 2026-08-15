@@ -1,0 +1,5 @@
+idea_id,title,track,status,forecast,first_unjustified_step,control_result,dependency_status,owner,artifact,last_updated
+I-001,weighted actual-record minimizing-pair graph,structural,candidate,route cut proved,route dense fixed pair to paid owner without distinct-neighbor overclaim,passed,dependencies proved,coordinator,proofs/nonuniform_theta_pair_route_cut.md,2026-08-13
+I-002,complete pair-core deficiency layer cake,barrier,candidate,sharp no-go proved,new cross-pair compatibility input required,passed,dependencies proved,barrier worker,threads/barrier_adversary.md,2026-08-13
+I-003,cross-pair core collision or syndrome-rank compiler,structural,explored,genuine uncertainty,derive a constraint coupling distinct minimizing pairs on the identical received line,GF7 kills local expansion,requires I-001 terminal,explorer,pending,2026-08-13
+I-004,parallel-bundle owner transport,owner,explored,genuine uncertainty,show a deficiency-at-most-four pair with 200632 slopes lands in an owner,pending,chronology not source-bound,coordinator,pending,2026-08-13
