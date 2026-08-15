@@ -105,9 +105,9 @@ SOURCE_NODES = {
     "rank9_weighted_target_elimination": {
         "id": "rate_half_mca_rank11_rank9_weighted_target_elimination",
         "path": "background/nodes/rate_half_mca_rank11_rank9_weighted_target_elimination",
-        "commit": "01d5e936e4d9a6df7daf59310b9c00c10cb6d081",
-        "tree": "671ed959f3e958354f111b0a3211c7af9106d537",
-        "contract_sha256": "78436c5e0cc6cd9d313e8d4de24e849d87676a4236be6e2c09b203576a002ab9",
+        "commit": "77960db9fdcf69e5e053a020707b2be1505b1205",
+        "tree": "7044fbca17167f49a1bd890f21d1ec1d5282f74d",
+        "contract_sha256": "28cfa4f50ea4ffa9a61888148c3916b0638906117d6efdbd2a779d8f4a925d94",
     },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1482,7 +1482,18 @@ def expected() -> dict[str, Any]:
         * comb(67472 + 10 - 9, 2),
         10**9 * comb(1048576 + 10, 9),
     )
-    weighted_boundary_k = 67473
+    weighted_last_open_k = 20617
+    weighted_last_open_n = 1048576 + weighted_last_open_k
+    weighted_last_open_m = 67472 + weighted_last_open_k
+    weighted_last_open_demand = ceil_ratio(
+        lane_ppb
+        * non_dense
+        * comb(weighted_last_open_m, 9)
+        * comb(weighted_last_open_m - 9, 2),
+        10**9 * comb(weighted_last_open_n, 9),
+    )
+    weighted_last_open_cap = owner_cap * (weighted_last_open_m - 10) * weighted_last_open_n
+    weighted_boundary_k = 20618
     weighted_boundary_n = 1048576 + weighted_boundary_k
     weighted_boundary_m = 67472 + weighted_boundary_k
     weighted_boundary_demand = ceil_ratio(
@@ -1766,14 +1777,25 @@ def expected() -> dict[str, Any]:
             "boundary_cap": weighted_boundary_cap,
         },
         "rank9_weighted_target_elimination": {
-            "small_dimension_ceiling": 67472,
-            "weighted_boundary_K_prime": weighted_boundary_k,
-            "forced_common_core_floor": pair_intersection,
-            "boundary_demand": weighted_boundary_demand,
-            "boundary_cap": weighted_boundary_cap,
-            "boundary_gap": weighted_boundary_demand - weighted_boundary_cap,
-            "remaining_routes": [
+            "last_open_K_prime": weighted_last_open_k,
+            "last_open_demand": weighted_last_open_demand,
+            "last_open_cap": weighted_last_open_cap,
+            "last_open_gap": weighted_last_open_cap - weighted_last_open_demand,
+            "first_closed_K_prime": weighted_boundary_k,
+            "first_closed_demand": weighted_boundary_demand,
+            "first_closed_cap": weighted_boundary_cap,
+            "first_closed_gap": weighted_boundary_demand - weighted_boundary_cap,
+            "closed_K_prime_maximum": 1048576,
+            "reopened_interval": [10, weighted_last_open_k],
+            "deleted_core_size_formula": "1048576-K_prime",
+            "original_row_common_core_is_residual_floor": False,
+            "remaining_routes_above_boundary": [
                 "FIXED_KERNEL_NINESUBSET_CHART",
+                "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3",
+            ],
+            "remaining_routes_below_boundary": [
+                "FIXED_KERNEL_NINESUBSET_CHART",
+                "RANK9_SHARED_PAIR_CORE_PLANE",
                 "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3",
             ],
         },
@@ -2377,7 +2399,8 @@ def expected() -> dict[str, Any]:
             "cross_cell_census": False,
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
-            "rank9_fixed_target_eliminated": True,
+            "rank9_fixed_target_eliminated_from_Kprime": 20618,
+            "rank9_low_shortening_reopened": True,
             "kernel_dominant_lane_closed_through_Kprime": 1048576,
             "kernel_fixed_lane_closed": True,
             "kernel_uniform_corank2_cap_proved": True,
@@ -2417,8 +2440,16 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
     require(fence["rich_slope_count"] > value["component_ninesubset_targets"]["fixed_selector_record_floor"], "local-cap fence")
     require(fence["base_prime"] > fence["forbidden_slope_count"] * fence["rich_slope_count"], "forbidden-slope translate")
     weighted_elimination = value["rank9_weighted_target_elimination"]
-    require(weighted_elimination["boundary_demand"] > weighted_elimination["boundary_cap"], "weighted target gap")
-    require(value["claims"]["rank9_fixed_target_eliminated"], "rank-nine elimination")
+    require(
+        weighted_elimination["first_closed_demand"]
+        > weighted_elimination["first_closed_cap"],
+        "weighted target gap",
+    )
+    require(
+        value["claims"]["rank9_fixed_target_eliminated_from_Kprime"] == 20618,
+        "rank-nine repaired boundary",
+    )
+    require(value["claims"]["rank9_low_shortening_reopened"] is True, "rank-nine reopened interval")
     kernel_cut = value["kernel_rankstratified_capacity_cut"]
     for kprime in range(10, kernel_cut["closed_K_prime_maximum"] + 1):
         require(kernel_demand_ceiling(kprime) > kernel_capacity(kprime), f"kernel cut {kprime}")
@@ -2940,8 +2971,8 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         ),
         "rank8_minimal_closed_kprime": rank8_minimal["residual_K_prime"],
         "rank8_circuit_sizes": len(circuit_sizes),
-        "weighted_demand": weighted_elimination["boundary_demand"],
-        "weighted_cap": weighted_elimination["boundary_cap"],
+        "weighted_demand": weighted_elimination["first_closed_demand"],
+        "weighted_cap": weighted_elimination["first_closed_cap"],
         "kernel_endpoint_gap": kernel_cut["endpoint_gap"],
         "kernel_wall_gap": kernel_cut["wall_capacity"] - kernel_cut["wall_demand"],
         "multibasis_endpoint_gap": multibasis_cut["endpoint_gap"],
@@ -3001,8 +3032,8 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["component_ninesubset_targets"].__setitem__("rank8_error_rank_ceiling", 4),
         lambda item: item["rank9_fixed_chart_local_cap_fence"].__setitem__("rich_slope_count", 2578110),
         lambda item: item["component_ninesubset_weighted_concentrator"].__setitem__("marked_component_extension_floor", 5868470021012019),
-        lambda item: item["rank9_weighted_component_cap"].__setitem__("boundary_cap", 147748596828055574),
-        lambda item: item["rank9_weighted_target_elimination"].__setitem__("boundary_gap", 6701539979372921063),
+        lambda item: item["rank9_weighted_component_cap"].__setitem__("boundary_cap", 92395178310909599),
+        lambda item: item["rank9_weighted_target_elimination"].__setitem__("first_closed_gap", 2403530864990),
         lambda item: item["kernel_canonical_basis_globalizer"].__setitem__("extra_common_zero_offset", 9),
         lambda item: item["kernel_rankstratified_capacity_cut"].__setitem__("closed_K_prime_maximum", 4599),
         lambda item: item["kernel_multibasis_decoration_compression"]["basis_multiplicities"].__setitem__(0, 2),
@@ -3062,7 +3093,8 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["claims"].__setitem__("rank8_Kprime11_fixed_circuit_census_proved", False),
         lambda item: item["claims"].__setitem__("fixed_chart_output_suffices_for_payment", True),
         lambda item: item["claims"].__setitem__("full_rank_star_owner_is_record_intrinsic", False),
-        lambda item: item["claims"].__setitem__("rank9_fixed_target_eliminated", False),
+        lambda item: item["claims"].__setitem__("rank9_fixed_target_eliminated_from_Kprime", 20619),
+        lambda item: item["claims"].__setitem__("rank9_low_shortening_reopened", False),
         lambda item: item["claims"].__setitem__("incidence_is_record_count", True),
         lambda item: item["claims"].__setitem__("rank11_paid", True),
         lambda item: item["source_prize_dag"]["nodes"]["component_star"].__setitem__("commit", "0" * 40),

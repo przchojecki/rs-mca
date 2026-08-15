@@ -30,6 +30,27 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Rank-nine reverse-shortening scope repair
+
+- **Agent/model:** Codex with exact adjacent-row arithmetic and independent
+  row-unit audit.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED HIGH-ROW ELIMINATION / RETRACTED LOW-ROW ARGUMENT. Zero
+  active-v4 ledger movement.
+- **What is being added:** The weighted rank-nine demand first exceeds its
+  cap at `K'=20618`, by `2403530864991`; the cap wins at `20617` by
+  `7221289203362`. The old low-row proof compared an original-row
+  `134944` common core with residual `m'` after a lift that already inserts
+  `1048576-K'` common coordinates, so that argument is removed.
+- **How it is useful:** It preserves the valid weighted closure on
+  `20618..1048576` while reopening the exact rank-nine interval
+  `10..20617` before the packet is reviewed or merged.
+- **What to do next:** Seek a residual-unit owner-plane or chronology bound
+  on `10..20617`; never transport the original-row pair-core floor without
+  subtracting the deleted locator core.
+
 ### 2026-08-15 - Rank-eight codimension-one circuit-shadow census
 
 - **Agent/model:** Codex with hyperplane factorization, exact matroid
@@ -4684,9 +4705,9 @@ Keep entries concise and link to the relevant files.
   fencing any attempt to pay `2578110` from those conclusions alone. The
   repaired continuation keeps the pre-deduplication marked weight: at the
   shortest endpoint it is `5868470021012020`. A rank-nine chart carries at
-  most `981105*(m'-10)*n'` such incidences. The exact boundary demand
-  `6849288576200976639` exceeds the cap `147748596828055575`, and the ratio
-  increases with shortening dimension, eliminating the rank-nine target.
+  most `981105*(m'-10)*n'` such incidences. The later scope audit places the
+  exact first weighted crossing at `K'=20618`; it retracts this entry's
+  former all-row elimination claim and reopens `10<=K'<=20617`.
 - **Owner key:** In the full-rank star branch, deficiency at most `22320`
   makes the owner unique for its record.  Two candidates force an
   intersection `22833` above the RS root cap, so weighted aggregation no
@@ -4698,8 +4719,9 @@ Keep entries concise and link to the relevant files.
   base-field-normalized split-pencil cell ledger satisfying the deployed
   slope unit, followed by a low-core/large-shared-core plane dichotomy.  It
   now supplies one overlap-correct fixed chart and eliminates its rank-nine
-  alternative by retaining pre-deduplication weight. The fixed-kernel and
-  rank-eight alternatives still need payment before entering the
+  alternative by retaining pre-deduplication weight only from `K'=20618`.
+  Below that row the rank-nine, fixed-kernel, and rank-eight alternatives
+  still need payment before entering the
   chronology-correct owner required by the #1169 acceptance contract.
 - **Nonclaim:** No complete-lane, fixed-kernel, or rank-eight target payment;
   no large-owner or kernel-plane

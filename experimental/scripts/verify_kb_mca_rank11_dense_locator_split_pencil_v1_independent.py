@@ -73,9 +73,9 @@ FIXED_CHART_SOURCES = {
     "rank9_weighted_target_elimination": {
         "id": "rate_half_mca_rank11_rank9_weighted_target_elimination",
         "path": "background/nodes/rate_half_mca_rank11_rank9_weighted_target_elimination",
-        "commit": "01d5e936e4d9a6df7daf59310b9c00c10cb6d081",
-        "tree": "671ed959f3e958354f111b0a3211c7af9106d537",
-        "contract_sha256": "78436c5e0cc6cd9d313e8d4de24e849d87676a4236be6e2c09b203576a002ab9",
+        "commit": "77960db9fdcf69e5e053a020707b2be1505b1205",
+        "tree": "7044fbca17167f49a1bd890f21d1ec1d5282f74d",
+        "contract_sha256": "28cfa4f50ea4ffa9a61888148c3916b0638906117d6efdbd2a779d8f4a925d94",
     },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1413,7 +1413,16 @@ def main() -> None:
     require(fixed_core + heavy_weight > 1048576 - 1, "pair root bound")
     require(fence_slopes == 4070408 > selector_records, "strict local fence")
 
-    boundary_k = 67473
+    last_open_k = 20617
+    last_open_n = 1048576 + last_open_k
+    last_open_m = 67472 + last_open_k
+    last_open_ratio = Fraction(495405467 * non_dense, 10**9)
+    for index in range(9):
+        last_open_ratio *= Fraction(last_open_m - index, last_open_n - index)
+    last_open_ratio *= comb(last_open_m - 9, 2)
+    last_open_demand = ceiling(last_open_ratio)
+    last_open_cap = coefficient * (last_open_m - 10) * last_open_n
+    boundary_k = 20618
     boundary_n = 1048576 + boundary_k
     boundary_m = 67472 + boundary_k
     boundary_ratio = Fraction(495405467 * non_dense, 10**9)
@@ -1429,21 +1438,34 @@ def main() -> None:
         "boundary_cap": boundary_cap,
     }, "weighted rank-nine cap")
     require(weighted_elimination == {
-        "small_dimension_ceiling": 67472,
-        "weighted_boundary_K_prime": boundary_k,
-        "forced_common_core_floor": 2 * m - n,
-        "boundary_demand": boundary_demand,
-        "boundary_cap": boundary_cap,
-        "boundary_gap": boundary_demand - boundary_cap,
-        "remaining_routes": [
+        "last_open_K_prime": last_open_k,
+        "last_open_demand": last_open_demand,
+        "last_open_cap": last_open_cap,
+        "last_open_gap": last_open_cap - last_open_demand,
+        "first_closed_K_prime": boundary_k,
+        "first_closed_demand": boundary_demand,
+        "first_closed_cap": boundary_cap,
+        "first_closed_gap": boundary_demand - boundary_cap,
+        "closed_K_prime_maximum": 1048576,
+        "reopened_interval": [10, last_open_k],
+        "deleted_core_size_formula": "1048576-K_prime",
+        "original_row_common_core_is_residual_floor": False,
+        "remaining_routes_above_boundary": [
             "FIXED_KERNEL_NINESUBSET_CHART",
             "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3",
         ],
+        "remaining_routes_below_boundary": [
+            "FIXED_KERNEL_NINESUBSET_CHART",
+            "RANK9_SHARED_PAIR_CORE_PLANE",
+            "RANK8_OWNER_FLAT_ERROR_RANK_AT_MOST_3",
+        ],
     }, "weighted rank-nine elimination")
-    require(boundary_demand == 6849288576200976639, "weighted boundary demand")
-    require(boundary_cap == 147748596828055575, "weighted boundary cap")
+    require(last_open_demand == 92386821615379573, "weighted last-open demand")
+    require(last_open_cap == 92394042904582935, "weighted last-open cap")
+    require(boundary_demand == 92397581841774591, "weighted boundary demand")
+    require(boundary_cap == 92395178310909600, "weighted boundary cap")
     ratios = []
-    for k_value in (67473, 67474, 100000, 1048576):
+    for k_value in (20618, 20619, 100000, 1048576):
         n_value, m_value = 1048576 + k_value, 67472 + k_value
         ratio = Fraction(comb(m_value, 9), comb(n_value, 9))
         ratio *= Fraction(m_value - 9, n_value)
@@ -2308,7 +2330,8 @@ def main() -> None:
         "cross_cell_census": False,
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
-        "rank9_fixed_target_eliminated": True,
+        "rank9_fixed_target_eliminated_from_Kprime": 20618,
+        "rank9_low_shortening_reopened": True,
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,

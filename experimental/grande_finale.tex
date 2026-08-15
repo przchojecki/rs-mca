@@ -10894,12 +10894,12 @@ component through $P_i$.  Finally
 so all anchored error differences lie in $\operatorname{span}(r_1,u)$.
 \end{proof}
 
-\begin{proposition}[Weighted exclusion of the rank-nine fixed target]
+\begin{proposition}[Weighted high-row exclusion of the rank-nine fixed target]
 \label{prop:kb-rank11-rank9-weighted-exclusion}
 In the fixed target of
 Proposition~\ref{prop:kb-rank11-component-ninesubset-target}, alternative
 \textup{(N2)} is empty for every residual dimension
-$10\le K'\le1048576$.  Before deduplication, one fixed nine-subset carries
+$20618\le K'\le1048576$.  Before deduplication, one fixed nine-subset carries
 marked component-extension weight at least
 \[
  \ceil{\frac{495405467}{10^9}\,274980728111260126
@@ -10911,12 +10911,17 @@ Every rank-nine chart has marked weight at most
  981105(m'-10)n'.
  \tag{C9}\label{eq:kb-rank11-weighted-nine-cap}
 \]
-At the first dimension not excluded by the common-core size, $K'=67473$,
-the two integer bounds are
+At the exact first weighted crossing the adjacent integer bounds are
 \[
- 6849288576200976639>147748596828055575.
+ \begin{array}{c|rr}
+ K'&\text{demand}&\text{cap}\\ \hline
+ 20617&92386821615379573&92394042904582935\\
+ 20618&92397581841774591&92395178310909600.
+ \end{array}
 \]
-Consequently the fixed target reduces to \textup{(N1)} or \textup{(N3)}.
+Consequently the fixed target reduces to \textup{(N1)} or \textup{(N3)}
+only from $K'=20618$ onward.  The rank-nine branch remains open below that
+row.
 \end{proposition}
 
 \begin{proof}
@@ -10945,11 +10950,9 @@ fixed-owner exception disjointness gives at most
 $n'-m'+1=981105$ owned records.  Summing the disjoint petals proves
 \eqref{eq:kb-rank11-weighted-nine-cap}.
 
-The $2578110>1434405$ distinct records also force
-$|J|\ge134944$.  If $K'\le67472$, then $m'\le134944$, contradicting
-$J\subset C_p$ and $|C_p|<m'$.  It remains to take $K'\ge67473$.
-Exact cross-multiplication at $K'=67473$ gives the displayed strict gap
-$6701539979372921064$.  Finally, after cancelling
+Exact cross-multiplication is negative at $K'=20617$ and positive at
+$K'=20618$; after rounding the first strict gap is $2403530864991$.
+After cancelling
 $\binom{m'-9}{2}=(m'-9)(m'-10)/2$, the ratio of the unrounded lower bound
 to \eqref{eq:kb-rank11-weighted-nine-cap} is a positive constant times
 \[
@@ -10957,6 +10960,13 @@ to \eqref{eq:kb-rank11-weighted-nine-cap} is a positive constant times
 \]
 Every factor increases with $K'$ because $n'-m'=981104$.  The boundary
 contradiction therefore persists through the deployed endpoint.
+
+The former low-row argument applied the original-row intersection floor
+$2m-n=134944$ after reversing the shortening and then compared that lifted
+core with residual $m'$.  This mixes rows: the reverse lift already inserts
+$1048576-K'$ deleted locator coordinates into every owner core.  Hence an
+original-row core of size $134944$ need not contain any residual core of
+that size.  No conclusion for $10\le K'\le20617$ is claimed here.
 \end{proof}
 
 \begin{proposition}[Canonical kernel-basis capacity]
