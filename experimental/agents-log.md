@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Shortening-weighted terminal kernel cut
+
+- **Agent/model:** Codex with an exact record/extension coupling, Newton
+  forward-difference certificate, and independent shifted-power replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED CAPACITY CUT. Zero active-v4 ledger movement; no
+  KoalaBear closure.
+- **What is being added:** For each fixed corank basis, the number of common
+  zero normals simultaneously controls its record cap and its extension
+  count. The weighted noncomplete cap decreases from `t=1`; exact endpoint
+  comparisons select the complete branch for coranks one through three and
+  `t=1` for coranks four through nine. The resulting degree-eleven demand
+  gap has twelve positive Newton coefficients at `K'=796599`; an independent
+  ordinary-power expansion also has twelve positive coefficients.
+- **How it is useful:** Together with the previous cutoff through
+  `K'=796598`, this removes the fixed-kernel branch on every official
+  residual dimension through `K'=1048576`.
+- **What to do next:** Attack rank eight on `10..22525` and the guarded
+  dense-owner chronology terminal on `22526..37995`. No fixed-kernel
+  interval remains.
+
 ### 2026-08-15 - Uniform corank-three projective cap
 
 - **Agent/model:** Codex with a rank-four matroid deletion-contraction

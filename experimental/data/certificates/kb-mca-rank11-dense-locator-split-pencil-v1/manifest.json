@@ -298,6 +298,20 @@
         "tree": "a45a48306ea298efbcec8d4d71f8e468aa05104b",
         "contract_sha256": "f62c32a69299fa026812eebb2490dbf74ffe00676e3a0e32d314fcd0f89d310c"
       },
+      "kernel_shortening_weighted_extension_cap": {
+        "id": "rate_half_mca_rank11_kernel_shortening_weighted_extension_cap",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_shortening_weighted_extension_cap",
+        "commit": "47a9ef9f064f30ad998db559eb1e198f2d9ea8c9",
+        "tree": "750a3fafcb3ca2f9e7e754792a6bbb1b2668ee8b",
+        "contract_sha256": "7e8c30e32fed0c67ff8d4526f89e8a6314d3548ee1e8af4b032b831832918ce0"
+      },
+      "kernel_shortening_weighted_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_shortening_weighted_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_shortening_weighted_capacity_cut",
+        "commit": "47a9ef9f064f30ad998db559eb1e198f2d9ea8c9",
+        "tree": "7137541f08951af4c7af4173c507370a0f3be1bb",
+        "contract_sha256": "346275c29a091b24c528cbdf0f880e9585261f636c92ae041ceda9aefb5a9281"
+      },
       "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -2192,6 +2206,89 @@
     "audit_corank3_cap": 3935391907,
     "unconditional_kernel_closed_through_K_prime": 796598
   },
+  "kernel_shortening_weighted_extension_cap": {
+    "status": "proved",
+    "K_prime_minimum": 796599,
+    "K_prime_maximum": 1048576,
+    "complete_record_caps": [
+      8147918,
+      84416263,
+      983902549,
+      12232092309,
+      158406193634,
+      2109949210211,
+      28689347099870,
+      396280526311830,
+      5542092977392141
+    ],
+    "uniform_coranks": [
+      1,
+      2,
+      3
+    ],
+    "noncomplete_coranks": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "weighted_extension_formula": "M_d(t)*C(K_prime-10-t,d+1)",
+    "noncomplete_maximizer": "t=1",
+    "successive_ratio_formula": "((1048576+d+t+1)*(67472+d+t)*(K_prime-10-t-d-1))/((1048576+t)*(67472+d+t+1)*(K_prime-10-t))",
+    "all_basis_decoration_divisor": "d+2",
+    "t1_F_fractions": {
+      "4": [
+        39454364588033681799449404,
+        645140654628855
+      ],
+      "5": [
+        5171392066056191766078781868141,
+        5441519492853793965
+      ],
+      "6": [
+        10845267613602799461300374655281788406,
+        734365704516293844907605
+      ],
+      "7": [
+        236920293652959955631837334531958308623273,
+        1032380486753585722033044225
+      ],
+      "8": [
+        397489705792142424121936242288309604876375549928,
+        111464056369332649181844021859713
+      ],
+      "9": [
+        2075542489830289697734864933850536886198804539463,
+        37455710631658593932397487767705
+      ]
+    },
+    "dominance_checks": 6,
+    "ratio_checks": 54
+  },
+  "kernel_shortening_weighted_capacity_cut": {
+    "status": "proved",
+    "premises": [],
+    "previous_closed_K_prime": 796598,
+    "replay_K_prime_minimum": 796599,
+    "closed_K_prime_maximum": 1048576,
+    "polynomial_degree": 11,
+    "positive_newton_coefficients": 12,
+    "positive_shifted_power_coefficients": 12,
+    "newton_vector_sha256": "aff86a3b8a160d2cdfe5de1d4f1db5100d570ded1c5f2d5809937fde4adb29af",
+    "shifted_power_vector_sha256": "85f67eade03100e7fc6f3ef0443a3a787f1133427a0f9d4030d638eca9080082",
+    "start_gap": [
+      163607766738146432088035886273429009536069713488731053136104291048295063467174708876935437273669390774659434055459181,
+      3205224939120412144939276105863678937500000
+    ],
+    "endpoint_gap": [
+      3383724749569405694944548056687883446805318318301821619508298759621435594918814557204032973789877059894016469249150399,
+      2256740008156208551028673992904018843750000
+    ],
+    "capacity_formula": "sum_d C(1048576+K_prime,10-d)*U_d(K_prime)/(d+2)",
+    "positivity_formula": "G(796599+s)=sum_j C(s,j)*Delta^j G(796599)"
+  },
   "rank8_owner_pair_weight_cap": {
     "kernel_dimension": 2,
     "owner_flat_dimension": 4,
@@ -2229,7 +2326,8 @@
     "fixed_chart_output_suffices_for_payment": false,
     "full_rank_star_owner_is_record_intrinsic": true,
     "rank9_fixed_target_eliminated": true,
-    "kernel_dominant_lane_closed_through_Kprime": 796598,
+    "kernel_dominant_lane_closed_through_Kprime": 1048576,
+    "kernel_fixed_lane_closed": true,
     "kernel_uniform_corank2_cap_proved": true,
     "kernel_uniform_corank3_cap_proved": true,
     "rank8_owner_flat_closed_from_Kprime": 37996,

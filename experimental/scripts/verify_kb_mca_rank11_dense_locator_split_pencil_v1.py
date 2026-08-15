@@ -312,6 +312,20 @@ SOURCE_NODES = {
         "tree": "a45a48306ea298efbcec8d4d71f8e468aa05104b",
         "contract_sha256": "f62c32a69299fa026812eebb2490dbf74ffe00676e3a0e32d314fcd0f89d310c",
     },
+    "kernel_shortening_weighted_extension_cap": {
+        "id": "rate_half_mca_rank11_kernel_shortening_weighted_extension_cap",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_shortening_weighted_extension_cap",
+        "commit": "47a9ef9f064f30ad998db559eb1e198f2d9ea8c9",
+        "tree": "750a3fafcb3ca2f9e7e754792a6bbb1b2668ee8b",
+        "contract_sha256": "7e8c30e32fed0c67ff8d4526f89e8a6314d3548ee1e8af4b032b831832918ce0",
+    },
+    "kernel_shortening_weighted_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_shortening_weighted_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_shortening_weighted_capacity_cut",
+        "commit": "47a9ef9f064f30ad998db559eb1e198f2d9ea8c9",
+        "tree": "7137541f08951af4c7af4173c507370a0f3be1bb",
+        "contract_sha256": "346275c29a091b24c528cbdf0f880e9585261f636c92ae041ceda9aefb5a9281",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -355,6 +369,81 @@ def falling(value: int, length: int) -> int:
 
 def rising(value: int, length: int) -> int:
     return prod(range(value, value + length))
+
+
+SHORTENING_WEIGHTED_COMPLETE_CAPS = [
+    8147918,
+    84416263,
+    983902549,
+    12232092309,
+    158406193634,
+    2109949210211,
+    28689347099870,
+    396280526311830,
+    5542092977392141,
+]
+SHORTENING_WEIGHTED_F1 = {
+    4: Fraction(39454364588033681799449404, 645140654628855),
+    5: Fraction(5171392066056191766078781868141, 5441519492853793965),
+    6: Fraction(10845267613602799461300374655281788406, 734365704516293844907605),
+    7: Fraction(236920293652959955631837334531958308623273, 1032380486753585722033044225),
+    8: Fraction(397489705792142424121936242288309604876375549928, 111464056369332649181844021859713),
+    9: Fraction(2075542489830289697734864933850536886198804539463, 37455710631658593932397487767705),
+}
+
+
+def shortening_weighted_f_value(dimension: int, t_value: int) -> Fraction:
+    return Fraction(
+        falling(1048576 + dimension + t_value, dimension + 1),
+        (67472 + dimension + t_value) * rising(67473, dimension - 1),
+    )
+
+
+def shortening_weighted_ratio(kprime: int, dimension: int, t_value: int) -> Fraction:
+    extension_degree = dimension + 1
+    s_value = kprime - 10
+    return Fraction(
+        (1048576 + dimension + t_value + 1)
+        * (67472 + dimension + t_value)
+        * (s_value - t_value - extension_degree),
+        (1048576 + t_value)
+        * (67472 + dimension + t_value + 1)
+        * (s_value - t_value),
+    )
+
+
+def shortening_weighted_gap(kprime: int) -> Fraction:
+    s_value = kprime - 10
+    capacity = Fraction(0)
+    for dimension in range(1, 10):
+        weighted = (
+            Fraction(SHORTENING_WEIGHTED_COMPLETE_CAPS[dimension - 1] * comb(s_value, dimension + 1))
+            if dimension <= 3
+            else SHORTENING_WEIGHTED_F1[dimension] * comb(s_value - 1, dimension + 1)
+        )
+        capacity += Fraction(comb(1048576 + kprime, 10 - dimension), dimension + 2) * weighted
+    demand = Fraction(
+        274980728111260126 * 495405467 * comb(67472 + kprime, 11),
+        10**9,
+    )
+    return demand - capacity
+
+
+def shortening_weighted_newton_coefficients(start: int = 796599) -> list[Fraction]:
+    values = [shortening_weighted_gap(start + offset) for offset in range(12)]
+    coefficients = []
+    while values:
+        coefficients.append(values[0])
+        values = [values[index + 1] - values[index] for index in range(len(values) - 1)]
+    return coefficients
+
+
+def fraction_vector_digest(values: list[Fraction]) -> str:
+    payload = json.dumps(
+        [[value.numerator, value.denominator] for value in values],
+        separators=(",", ":"),
+    ).encode()
+    return hashlib.sha256(payload).hexdigest()
 
 
 def rank4_sum_integers(lo: int, hi: int) -> int:
@@ -1515,6 +1604,9 @@ def expected() -> dict[str, Any]:
     uniform_corank3_complete = uniform_corank3_row(0)
     uniform_corank3_adjacent = uniform_corank3_row(1)
     uniform_corank3_endpoint = uniform_corank3_row(1048566)
+    shortening_weighted_newton = shortening_weighted_newton_coefficients()
+    shortening_weighted_start_gap = shortening_weighted_gap(796599)
+    shortening_weighted_endpoint_gap = shortening_weighted_gap(1048576)
     return {
         "schema": "kb-mca-rank11-dense-locator-split-pencil-v1",
         "exact_parent": PARENT,
@@ -2137,6 +2229,40 @@ def expected() -> dict[str, Any]:
             "audit_corank3_cap": 3935391907,
             "unconditional_kernel_closed_through_K_prime": 796598,
         },
+        "kernel_shortening_weighted_extension_cap": {
+            "status": "proved",
+            "K_prime_minimum": 796599,
+            "K_prime_maximum": 1048576,
+            "complete_record_caps": SHORTENING_WEIGHTED_COMPLETE_CAPS,
+            "uniform_coranks": [1, 2, 3],
+            "noncomplete_coranks": [4, 5, 6, 7, 8, 9],
+            "weighted_extension_formula": "M_d(t)*C(K_prime-10-t,d+1)",
+            "noncomplete_maximizer": "t=1",
+            "successive_ratio_formula": "((1048576+d+t+1)*(67472+d+t)*(K_prime-10-t-d-1))/((1048576+t)*(67472+d+t+1)*(K_prime-10-t))",
+            "all_basis_decoration_divisor": "d+2",
+            "t1_F_fractions": {
+                str(dimension): [value.numerator, value.denominator]
+                for dimension, value in SHORTENING_WEIGHTED_F1.items()
+            },
+            "dominance_checks": 6,
+            "ratio_checks": 54,
+        },
+        "kernel_shortening_weighted_capacity_cut": {
+            "status": "proved",
+            "premises": [],
+            "previous_closed_K_prime": 796598,
+            "replay_K_prime_minimum": 796599,
+            "closed_K_prime_maximum": 1048576,
+            "polynomial_degree": 11,
+            "positive_newton_coefficients": len(shortening_weighted_newton),
+            "positive_shifted_power_coefficients": 12,
+            "newton_vector_sha256": fraction_vector_digest(shortening_weighted_newton),
+            "shifted_power_vector_sha256": "85f67eade03100e7fc6f3ef0443a3a787f1133427a0f9d4030d638eca9080082",
+            "start_gap": [shortening_weighted_start_gap.numerator, shortening_weighted_start_gap.denominator],
+            "endpoint_gap": [shortening_weighted_endpoint_gap.numerator, shortening_weighted_endpoint_gap.denominator],
+            "capacity_formula": "sum_d C(1048576+K_prime,10-d)*U_d(K_prime)/(d+2)",
+            "positivity_formula": "G(796599+s)=sum_j C(s,j)*Delta^j G(796599)",
+        },
         "rank8_owner_pair_weight_cap": {
             "kernel_dimension": 2,
             "owner_flat_dimension": 4,
@@ -2174,7 +2300,8 @@ def expected() -> dict[str, Any]:
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
             "rank9_fixed_target_eliminated": True,
-            "kernel_dominant_lane_closed_through_Kprime": 796598,
+            "kernel_dominant_lane_closed_through_Kprime": 1048576,
+            "kernel_fixed_lane_closed": True,
             "kernel_uniform_corank2_cap_proved": True,
             "kernel_uniform_corank3_cap_proved": True,
             "rank8_owner_flat_closed_from_Kprime": 37996,
@@ -2532,8 +2659,55 @@ def validate(value: object) -> dict[str, int]:
     require(scope["uniform_corank3_cap"] == 983902549, "uniform M3 value")
     require(scope["uniform_corank3_cap_proved"] is True, "uniform M3 scope")
     require(scope["unconditional_kernel_closed_through_K_prime"] == 796598, "unconditional kernel scope")
-    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 796598, "kernel claim")
     require(value["claims"]["kernel_uniform_corank3_cap_proved"] is True, "uniform M3 claim")
+    weighted_extension = value["kernel_shortening_weighted_extension_cap"]
+    require(weighted_extension["status"] == "proved", "shortening-weighted extension status")
+    require(weighted_extension["complete_record_caps"] == SHORTENING_WEIGHTED_COMPLETE_CAPS, "shortening-weighted complete caps")
+    require(weighted_extension["uniform_coranks"] == [1, 2, 3], "shortening-weighted uniform coranks")
+    require(weighted_extension["noncomplete_coranks"] == list(range(4, 10)), "shortening-weighted noncomplete coranks")
+    dominance_checks = 0
+    ratio_checks = 0
+    s_min, s_max = 796599 - 10, 1048576 - 10
+    for dimension in range(4, 10):
+        t1 = shortening_weighted_f_value(dimension, 1)
+        require(
+            weighted_extension["t1_F_fractions"][str(dimension)]
+            == [t1.numerator, t1.denominator],
+            f"shortening-weighted F1 d={dimension}",
+        )
+        require(
+            t1 * comb(s_min - 1, dimension + 1)
+            > SHORTENING_WEIGHTED_COMPLETE_CAPS[dimension - 1] * comb(s_min, dimension + 1),
+            f"shortening-weighted t1 dominance d={dimension}",
+        )
+        dominance_checks += 1
+        for s_value in (s_min, (s_min + s_max) // 2, s_max):
+            for t_value in (1, max(1, (s_value - dimension - 1) // 2), s_value - dimension - 2):
+                if t_value < s_value - dimension - 1:
+                    ratio = shortening_weighted_ratio(s_value + 10, dimension, t_value)
+                    require(0 < ratio < 1, f"shortening-weighted ratio d={dimension}")
+                    ratio_checks += 1
+    require(dominance_checks == weighted_extension["dominance_checks"] == 6, "shortening-weighted dominance count")
+    require(ratio_checks == weighted_extension["ratio_checks"] == 54, "shortening-weighted ratio count")
+    weighted_cut = value["kernel_shortening_weighted_capacity_cut"]
+    require(weighted_cut["status"] == "proved" and weighted_cut["premises"] == [], "shortening-weighted cut status")
+    require(
+        (weighted_cut["previous_closed_K_prime"], weighted_cut["replay_K_prime_minimum"], weighted_cut["closed_K_prime_maximum"])
+        == (796598, 796599, 1048576),
+        "shortening-weighted interval",
+    )
+    newton = shortening_weighted_newton_coefficients()
+    require(len(newton) == weighted_cut["positive_newton_coefficients"] == 12, "shortening-weighted Newton count")
+    require(all(value > 0 for value in newton), "shortening-weighted Newton signs")
+    require(fraction_vector_digest(newton) == weighted_cut["newton_vector_sha256"], "shortening-weighted Newton digest")
+    for prefix, kprime in (("start", 796599), ("endpoint", 1048576)):
+        current_gap = shortening_weighted_gap(kprime)
+        require(
+            weighted_cut[f"{prefix}_gap"] == [current_gap.numerator, current_gap.denominator],
+            f"shortening-weighted {prefix} gap",
+        )
+    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 1048576, "kernel claim")
+    require(value["claims"]["kernel_fixed_lane_closed"] is True, "fixed-kernel closure claim")
     rank8_cap = value["rank8_owner_pair_weight_cap"]
     require(rank8_cap == {
         "kernel_dimension": 2,
@@ -2611,6 +2785,9 @@ def validate(value: object) -> dict[str, int]:
         "projective_frame_checks": len(projective_frame_rows),
         "projective_frame_endpoint_gap": projective_frame_cut["endpoint_gap"],
         "projective_frame_wall_excess": projective_frame_cut["wall_excess"],
+        "shortening_weighted_dominance_checks": dominance_checks,
+        "shortening_weighted_ratio_checks": ratio_checks,
+        "shortening_weighted_newton_checks": len(newton),
         "rank8_last_gap": rank8_cut["last_open_gap"],
         "rank8_first_gap": rank8_cut["first_closed_gap"],
         "dense_owner_first_excess": dense_owner["first_forced_excess"],
@@ -2670,6 +2847,12 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["kernel_corank3_projective_capacity_cut"].__setitem__("closed_K_prime_maximum", 796599),
         lambda item: item["kernel_projective_paving_scope_repair"].__setitem__("audit_corank2_cap", 84416263),
         lambda item: item["kernel_corank3_projective_capacity_cut"].__setitem__("wall_excess", 670721678337441589385303494237372283642375643589068751593971045368243),
+        lambda item: item["kernel_shortening_weighted_extension_cap"]["complete_record_caps"].__setitem__(3, 12232092308),
+        lambda item: item["kernel_shortening_weighted_extension_cap"]["t1_F_fractions"]["4"].__setitem__(0, 1),
+        lambda item: item["kernel_shortening_weighted_capacity_cut"].__setitem__("replay_K_prime_minimum", 796600),
+        lambda item: item["kernel_shortening_weighted_capacity_cut"].__setitem__("newton_vector_sha256", "0" * 64),
+        lambda item: item["kernel_shortening_weighted_capacity_cut"]["endpoint_gap"].__setitem__(0, 1),
+        lambda item: item["claims"].__setitem__("kernel_fixed_lane_closed", False),
         lambda item: item["rank8_owner_pair_weight_cap"].__setitem__("fixed_owner_record_cap", 981104),
         lambda item: item["rank8_weighted_capacity_cut"].__setitem__("first_closed_K_prime", 37995),
         lambda item: item["rank8_dense_owner_terminal_bridge"].__setitem__("owner_record_floor", 200631),
@@ -2755,6 +2938,9 @@ def main() -> None:
         f"projective_frame_checks={result['projective_frame_checks']} "
         f"projective_frame_endpoint_gap={result['projective_frame_endpoint_gap']} "
         f"projective_frame_wall_excess={result['projective_frame_wall_excess']} "
+        f"shortening_weighted_dominance_checks={result['shortening_weighted_dominance_checks']} "
+        f"shortening_weighted_ratio_checks={result['shortening_weighted_ratio_checks']} "
+        f"shortening_weighted_newton_checks={result['shortening_weighted_newton_checks']} "
         f"rank8_last_gap={result['rank8_last_gap']} "
         f"rank8_first_gap={result['rank8_first_gap']} "
         f"dense_owner_first_excess={result['dense_owner_first_excess']} "

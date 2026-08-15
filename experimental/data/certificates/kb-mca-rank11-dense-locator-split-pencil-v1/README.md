@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages forty-five proved local results after the fixed
+This certificate packages forty-seven proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -104,6 +104,13 @@ rank-eleven anchor-star reduction:
 - the resulting unconditional three-root hierarchy-forest replay excludes through
   `K'=796598`, with both shared resources slack and first reversal at
   `K'=796599`;
+- a shortening-weighted record/extension cap using the common zero-normal
+  parameter in both factors; its noncomplete weighted maximum is `t=1`,
+  while the proved complete caps remain valid for coranks one through three;
+- the resulting degree-eleven gap polynomial has twelve positive Newton
+  coefficients at `K'=796599`; an independent shifted-power expansion also
+  has twelve positive coefficients, excluding the fixed-kernel branch through
+  `K'=1048576`;
 - the rank-eight marked owner-pair cap `981105*C(n'-9,2)`;
 - exact exclusion of the rank-eight owner-flat target for
   `37996<=K'<=1048576`, with the last failed row `K'=37995` printed;
@@ -123,7 +130,8 @@ full-containment rows, all `17599` rank-eight-deficit rows, and all `494`
 two-step boundary rows, all `58` all-step boundary rows, the projective
 partition, bounded-parallel induction identities, line-split and plane-split
 extrema, the rank-four recurrence at five separated corank-three shortening
-rows, and nine exact projective-capacity boundary rows. The primary verifier
+rows, nine exact projective-capacity boundary rows, and the twelve-coefficient
+terminal shortening polynomial. The primary verifier
 separately exhausts all `1048567` corank-three rows, checks the
 complete-chart scope and integer-gap audit, and checks all
 `11` rank-eight monotonicity
@@ -133,6 +141,6 @@ proof-critical manifest mutations.
 
 The owner key remains recordwise. The local-cap fence does not instantiate the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane, pay the fixed-kernel branch above `K'=796598` or the rank-eight branch
-below `K'=22526`, assign the bridged dense owner in first-match chronology,
+lane, pay the rank-eight branch below `K'=22526`, assign the bridged dense
+owner in first-match chronology,
 pay error rank eleven, move an active v4 atom, or close KoalaBear.

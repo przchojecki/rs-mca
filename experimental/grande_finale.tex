@@ -12071,6 +12071,92 @@ the replay start, endpoint, and adjacent wall from direct forest products.
 These give the displayed opposite integer signs.
 \end{proof}
 
+\begin{proposition}[Shortening-weighted record/extension cap]
+\label{prop:kb-rank11-kernel-shortening-weighted-extension}
+Put $R=1048576$, $w=67472$, $S=K'-10$, and let $P_d$ be the printed
+complete-chart cap in corank $d$. For one fixed basis of a decorated
+corank-$d$ kernel incidence, define
+\[
+ F_d(t)=
+ \frac{(R+d+t)^{\underline{d+1}}}
+ {(w+d+t)(w+1)^{\overline{d-1}}}.
+\]
+On $796599\le K'\le1048576$, its record/extension contribution is at most
+\[
+ U_d(K')=
+ \begin{cases}
+ P_d\binom{S}{d+1},&1\le d\le3,\\[2mm]
+ F_d(1)\binom{S-1}{d+1},&4\le d\le9.
+ \end{cases}
+ \tag{SWE}\label{eq:kb-rank11-kernel-shortening-weighted-extension}
+\]
+After summing over bases, every undecorated incidence is counted at least
+$d+2$ times.
+\end{proposition}
+
+\begin{proof}
+Let $z$ be the number of common zero normals outside the fixed basis and
+put $t=S-z$. Every extension of the basis uses $d+1$ of those zero normals,
+so one record has at most $\binom{S-t}{d+1}$ extensions. The same $z$ is
+deleted in the support-local chart. Thus the complete chart contributes at
+most $P_d\binom{S}{d+1}$, while a noncomplete chart contributes at most
+$F_d(t)\binom{S-t}{d+1}$.
+
+For $q=d+1$ and every nonzero term with $t\ge1$, the successive ratio of
+the unfloored noncomplete bounds is
+\[
+ \frac{(R+d+t+1)(w+d+t)(S-t-q)}
+ {(R+t)(w+d+t+1)(S-t)}
+ <\left(1+\frac q{R+t}\right)
+  \left(1-\frac q{S-t}\right)<1.
+\]
+The final inequality uses $R+t>S-t$. Hence the noncomplete maximum is at
+$t=1$. For $d\le3$, the already proved uniform caps $P_d$ and the larger
+complete extension count give the first branch of \textup{(SWE)}. For
+$4\le d\le9$, exact cross multiplication at $K'=796599$ shows that the
+$t=1$ branch exceeds the complete branch; their ratio increases with $S$.
+The six comparisons are replayed with exact rationals. The all-bases
+decoration theorem supplies the final divisor $d+2$.
+\end{proof}
+
+\begin{corollary}[Terminal shortening-weighted kernel cut]
+\label{cor:kb-rank11-kernel-shortening-weighted-capacity}
+The fixed-kernel branch is impossible on every official residual dimension
+\[
+ 10\le K'\le1048576.
+\]
+\end{corollary}
+
+\begin{proof}
+The projective-frame capacity cut handles $K'\le796598$. On the remaining
+interval, Proposition~\ref{prop:kb-rank11-kernel-shortening-weighted-extension}
+gives the rational capacity
+\[
+ C(K')=\sum_{d=1}^{9}
+ \frac{\binom{R+K'}{10-d}U_d(K')}{d+2}.
+\]
+Compare it with the exact unrounded demand
+\[
+ D(K')=\frac{495405467}{10^9}\,
+ 274980728111260126\binom{w+K'}{11},
+\]
+and put $G=D-C$. This is a polynomial of degree at most eleven. Exact
+forward differencing at $K_0=796599$ gives
+\[
+ \Delta^jG(K_0)>0\qquad(0\le j\le11).
+\]
+For every integer $s\ge0$, Newton interpolation therefore gives
+\[
+ G(K_0+s)=\sum_{j=0}^{11}\binom{s}{j}\Delta^jG(K_0)>0.
+\]
+This covers the complete upper interval. Floors only decrease capacity.
+The primary verifier reconstructs and hashes all twelve exact Newton
+coefficients. The independent verifier instead expands $G(K_0+s)$ in the
+ordinary power basis; all twelve coefficients are positive and have
+SHA-256 digest
+\texttt{85f67eade03100e7fc6f3ef0443a3a787f1133427a0f9d4030d638eca9080082}.
+\end{proof}
+
 \begin{proposition}[Rank-eight owner-pair capacity]
 \label{prop:kb-rank11-rank8-owner-pair-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -12221,6 +12307,10 @@ and Corollary~\ref{cor:kb-rank11-kernel-corank3-uniform-projective-frame}
 prove that cap uniformly.  Therefore
 Corollary~\ref{cor:kb-rank11-kernel-projective-frame-capacity} extends the
 exact interval through $K'=796598$, but not above the printed $796599$ wall.
+Proposition~\ref{prop:kb-rank11-kernel-shortening-weighted-extension}
+couples each chart's record cap to its extension count instead of maximizing
+them separately. Corollary~\ref{cor:kb-rank11-kernel-shortening-weighted-capacity}
+then removes the fixed-kernel branch through the deployed endpoint.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
 rank-eight target from $K'=37996$ onward, but not below its printed wall.
 Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
@@ -12228,15 +12318,14 @@ surviving rank-eight interval to the guarded dense-owner terminal, but does
 not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Thus the remaining intervals are rank eight only on
 $10\le K'\le22525$, dense-owner chronology only on
-$22526\le K'\le37995$, no component target on
-$37996\le K'\le796598$, and kernel only on
-$796599\le K'\le1048576$.
+$22526\le K'\le37995$, and no rank-eleven component target on
+$37996\le K'\le1048576$.
 The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,
 construct the chronology owner required by
-Remark~\ref{rem:mca-dense-core-owner-acceptance-contract}, pay either the
-large-owner, fixed-kernel, rank-eight, or kernel-plane branch, move an
+Remark~\ref{rem:mca-dense-core-owner-acceptance-contract}, pay the remaining
+rank-eight or dense-owner chronology branch, move an
 active-v4 atom, or close
 KoalaBear.
 \end{remark}
