@@ -11603,6 +11603,109 @@ start, endpoint, and adjacent wall from exact tree-path products.  These
 give the displayed opposite integer signs.
 \end{proof}
 
+\begin{proposition}[Corank-two projective-normal basis cap]
+\label{prop:kb-rank11-kernel-corank2-projective-basis}
+After canonical rank-eight basis cancellation, the complete shortened
+corank-two chart has
+\[
+ (n,K,m,s)=(1048578,2,67474,2).
+\]
+Every selected record owns at least
+$3(m-1)(m-2)=13657614768$ ordered coordinate triples whose agreement
+normals are linearly independent.  Consequently the number of records in
+the chart is at most
+\[
+ M_2\le\left\lfloor
+ \frac{n(n-1)(n-2)}{3(m-1)(m-2)}
+ \right\rfloor=84416263.
+ \tag{PB}\label{eq:kb-rank11-kernel-corank2-projective-basis}
+\]
+This improves the support-local transversality cap $253241283$ by
+$168825020$.
+\end{proposition}
+
+\begin{proof}
+Represent the affine explanation family by parameter points in $\F^3$.
+The common-zero bound gives $z\le K-s=0$.  For any one-dimensional normal
+span, the support-local MDS step leaves at least
+\[
+ w+s-1=67472+2-1=67473=m-1
+\]
+incident normals outside it.  Thus no two of the $m$ incident nonzero
+normals are projectively equal.  Same-support pair noncontainment gives full
+incident rank, so the resulting $m$ points in $\operatorname{PG}(2)$ are
+not all collinear.
+
+Choose a projective line containing $q\ge2$ of the points and put
+$r=m-q\ge1$.  A collinear triple not contained in that line has zero or one
+point on it.  There are at most $\binom r3$ triples of the first type, while
+each pair off the line determines at most one triple of the second type.
+Hence the number of collinear triples is at most
+\[
+ \binom q3+\binom r3+\binom r2
+ =\binom q3+\binom{r+1}3
+ \le\binom{m-1}3.
+\]
+The last inequality follows from
+\[
+ \binom{m-1}3-\binom q3-\binom{r+1}3
+ =(r-1)\left(\binom q2-1\right)
+  +(q-2)\binom{r-1}2\ge0.
+\]
+Therefore the number of ordered independent triples is at least
+\[
+ m(m-1)(m-2)-6\binom{m-1}3=3(m-1)(m-2).
+\]
+Three independent affine hyperplanes in $\F^3$ meet in at most one
+parameter point.  Double counting the $n(n-1)(n-2)$ ordered coordinate
+triples proves \textup{(PB)}; the integer division has remainder
+$2935655472$.
+\end{proof}
+
+\begin{corollary}[Projective-basis kernel-capacity cut]
+\label{cor:kb-rank11-kernel-projective-basis-capacity}
+The projective caps for coranks one and two, the other individual
+ambient/record caps, and the 28 inequalities \textup{(MS)} exclude the
+dominant kernel lane for
+\[
+ 10\le K'\le568338.
+\]
+At $K'=568338$, integer demand exceeds floored capacity by
+\[
+38432453444617070485037263551626410396462586389410416394578520596038.
+\]
+At $K'=568339$, capacity exceeds demand by
+\[
+36180877960369511460476382880286784896208001102094988739728829832800,
+\]
+so no larger interval is claimed by this resource system.
+\end{corollary}
+
+\begin{proof}
+The predecessor handles $K'\le377673$.  On the remaining exact replay the
+corank-one and corank-two individual caps bind, both shared nine-shadow
+resources are strict, every nonroot individual cap is strict, and every
+corank is positive.  The seven hierarchy tree edges are
+\[
+ (t,d)=(2,3),(2,4),(2,6),(2,8),(3,5),(2,7),(2,9).
+\]
+They give the two rooted components
+\[
+ 1\longrightarrow3,qquad
+ 2\longrightarrow4\longrightarrow6\longrightarrow8,qquad
+ 2\longrightarrow5\longrightarrow7\longrightarrow9.
+\]
+Seventeen of the 28 hierarchy rows are equalities.  Backward tree recurrence
+gives positive edge prices and positive prices for both root caps, with dual
+objective equal to the primal sum.
+
+The source-pinned exact replay checks all $190666$ rows
+$377674\le K'\le568339$ in 64 bounded workers.  The independent verifier
+enumerates every projective line split in the basis bound and reconstructs
+the replay start, endpoint, and adjacent wall from exact tree-path products.
+These give the displayed opposite integer signs.
+\end{proof}
+
 \begin{proposition}[Rank-eight owner-pair capacity]
 \label{prop:kb-rank11-rank8-owner-pair-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -11739,6 +11842,10 @@ Proposition~\ref{prop:kb-rank11-kernel-corank1-projective-pair} sharpens the
 active corank-one cap, and
 Corollary~\ref{cor:kb-rank11-kernel-projective-pair-capacity} extends the
 exact interval through $K'=377673$, but not above the printed $377674$ wall.
+Proposition~\ref{prop:kb-rank11-kernel-corank2-projective-basis} sharpens the
+active corank-two cap, and
+Corollary~\ref{cor:kb-rank11-kernel-projective-basis-capacity} extends the
+exact interval through $K'=568338$, but not above the printed $568339$ wall.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
 rank-eight target from $K'=37996$ onward, but not below its printed wall.
 Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
@@ -11747,7 +11854,7 @@ not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Thus the remaining intervals are rank eight only on
 $10\le K'\le22525$, dense-owner chronology only on
 $22526\le K'\le37995$, no component target on
-$37996\le K'\le377673$, and kernel only above.
+$37996\le K'\le568338$, and kernel only above.
 The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,

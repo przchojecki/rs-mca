@@ -235,6 +235,20 @@ SOURCE_NODES = {
         "tree": "4aea913141cc4c115644cca0873964b553c0cf42",
         "contract_sha256": "505c2796e34cf21743ac3465c10f71a0ee90c22b29f839a18ceebd8ab2597ff4",
     },
+    "kernel_corank2_projective_basis_cap": {
+        "id": "rate_half_mca_rank11_kernel_corank2_projective_basis_cap",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_corank2_projective_basis_cap",
+        "commit": "75a424e9656fc44f1de88f40eca97667802e9be1",
+        "tree": "2cccdc7854b55e3f5b2627ca5ee2bf4cb58640cc",
+        "contract_sha256": "e1a679080c4efd83af40aa7d969960946b3ca3d7654e46e65be8dcb68a910d6c",
+    },
+    "kernel_corank2_projective_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_corank2_projective_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_corank2_projective_capacity_cut",
+        "commit": "75a424e9656fc44f1de88f40eca97667802e9be1",
+        "tree": "04a835e76a31f02d5463aa24bbef632d7e55a0eb",
+        "contract_sha256": "5dccc97d43ef8bac99b5d2bfc92f26869be4f2e52af5cd8ffff7bd40373555f3",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -829,6 +843,99 @@ def kernel_projective_pair_certificate(
     return optimum, allocation, cap_dual, branches, tight
 
 
+PROJECTIVE_BASIS_RECORD_CAP = 84416263
+PROJECTIVE_BASIS_DUAL_TREE = [[2, 3], [2, 4], [2, 6], [2, 8], [3, 5], [2, 7], [2, 9]]
+PROJECTIVE_BASIS_TIGHT_ROWS = [
+    [2, 3], [2, 4], [2, 6], [2, 7], [2, 8], [2, 9],
+    [3, 5], [3, 7], [3, 8], [3, 9],
+    [4, 6], [4, 8], [4, 9],
+    [5, 7], [5, 9], [6, 8], [7, 9],
+]
+
+
+def kernel_projective_basis_data(
+    kprime: int,
+) -> tuple[list[Fraction], list[str], list[Fraction], list[Fraction], Fraction, Fraction]:
+    terms = kernel_hybrid_terms(kprime)
+    nprime = 1048576 + kprime
+    extension1 = comb(kprime - 10, 2)
+    extension2 = comb(kprime - 10, 3)
+    ambient1 = comb(nprime, 9) * PROJECTIVE_PAIR_RECORD_CAP * extension1 // 3
+    ambient2 = comb(nprime, 8) * PROJECTIVE_BASIS_RECORD_CAP * extension2 // 4
+    terms[0] = (ambient1, terms[0][1], "ambient" if ambient1 <= terms[0][1] else "record")
+    terms[1] = (ambient2, terms[1][1], "ambient" if ambient2 <= terms[1][1] else "record")
+    caps = [Fraction(min(left, right), 274980728111260126) for left, right, _ in terms]
+    branches = [branch for _, _, branch in terms]
+    _, _, containment, shadow_budget, containment_budget = kernel_rank8_shadow_data(kprime)
+    shadow = kernel_shadow_weights_caps(kprime)[0]
+    return caps, branches, shadow, containment, shadow_budget, containment_budget
+
+
+def kernel_projective_basis_certificate(
+    kprime: int,
+) -> tuple[Fraction, list[Fraction], dict[int, Fraction], list[str], list[list[int]]]:
+    caps, branches, shadow, containment, shadow_budget, containment_budget = kernel_projective_basis_data(kprime)
+    tree = [tuple(edge) for edge in PROJECTIVE_BASIS_DUAL_TREE]
+    parent = {source: (step, source) for step, source in tree}
+    children: dict[int, list[tuple[int, int]]] = {dimension: [] for dimension in range(1, 10)}
+    for step, source in tree:
+        children[source - step].append((step, source))
+
+    factors = [Fraction(0) for _ in range(9)]
+    roots = [0 for _ in range(9)]
+    factors[0] = factors[1] = Fraction(1)
+    roots[0], roots[1] = 1, 2
+    for source in range(3, 10):
+        step, _ = parent[source]
+        target = source - step
+        factors[source - 1] = (
+            multistep_multiplicity(step, source)
+            * factors[target - 1]
+            / multistep_raising(kprime, step, source)
+        )
+        roots[source - 1] = roots[target - 1]
+    require(roots == [1, 2, 1, 2, 2, 2, 2, 2, 2], f"projective-basis roots K={kprime}")
+    allocation = [factors[index] * caps[roots[index] - 1] for index in range(9)]
+
+    hierarchy_dual: dict[tuple[int, int], Fraction] = {}
+    for source in range(9, 2, -1):
+        edge = parent[source]
+        child_charge = sum(
+            multistep_multiplicity(*child) * hierarchy_dual[child]
+            for child in children[source]
+        )
+        hierarchy_dual[edge] = (1 + child_charge) / multistep_raising(kprime, *edge)
+    cap_dual = {
+        root: 1 + sum(
+            multistep_multiplicity(*child) * hierarchy_dual[child]
+            for child in children[root]
+        )
+        for root in (1, 2)
+    }
+
+    require(all(0 < number <= cap for number, cap in zip(allocation, caps)), f"projective-basis caps K={kprime}")
+    require(allocation[:2] == caps[:2], f"projective-basis root caps K={kprime}")
+    require(all(allocation[index] < caps[index] for index in range(2, 9)), f"projective-basis nonroot caps K={kprime}")
+    require(branches[:2] == ["ambient", "ambient"], f"projective-basis branches K={kprime}")
+    require(sum(shadow[index] * allocation[index] for index in range(9)) < shadow_budget, f"projective-basis shadow slack K={kprime}")
+    require(sum(containment[index] * allocation[index] for index in range(9)) < containment_budget, f"projective-basis containment slack K={kprime}")
+
+    tight = []
+    for step in range(2, 9):
+        for dimension in range(step + 1, 10):
+            left = multistep_raising(kprime, step, dimension) * allocation[dimension - 1]
+            right = multistep_multiplicity(step, dimension) * allocation[dimension - step - 1]
+            require(left <= right, f"projective-basis hierarchy t={step} d={dimension} K={kprime}")
+            if left == right:
+                tight.append([step, dimension])
+    require(tight == PROJECTIVE_BASIS_TIGHT_ROWS, f"projective-basis tight rows K={kprime}")
+    require(all(number > 0 for number in hierarchy_dual.values()), f"projective-basis hierarchy dual K={kprime}")
+    require(all(number > 0 for number in cap_dual.values()), f"projective-basis cap dual K={kprime}")
+    optimum = sum(allocation, Fraction(0))
+    require(optimum == cap_dual[1] * caps[0] + cap_dual[2] * caps[1], f"projective-basis strong duality K={kprime}")
+    return optimum, allocation, cap_dual, branches, tight
+
+
 def kernel_demand_ceiling(kprime: int) -> int:
     return ceil_ratio(
         495405467 * 274980728111260126 * comb(67472 + kprime, 11),
@@ -1090,6 +1197,18 @@ def expected() -> dict[str, Any]:
     projective_pair_endpoint_capacity = scaled_fraction_floor(projective_pair_endpoint_optimum)
     projective_pair_wall_demand = kernel_demand_ceiling(projective_pair_wall)
     projective_pair_wall_capacity = scaled_fraction_floor(projective_pair_wall_optimum)
+    projective_basis_start = 377674
+    projective_basis_endpoint = 568338
+    projective_basis_wall = 568339
+    projective_basis_start_optimum = kernel_projective_basis_certificate(projective_basis_start)[0]
+    projective_basis_endpoint_optimum = kernel_projective_basis_certificate(projective_basis_endpoint)[0]
+    projective_basis_wall_optimum = kernel_projective_basis_certificate(projective_basis_wall)[0]
+    projective_basis_start_demand = kernel_demand_ceiling(projective_basis_start)
+    projective_basis_start_capacity = scaled_fraction_floor(projective_basis_start_optimum)
+    projective_basis_endpoint_demand = kernel_demand_ceiling(projective_basis_endpoint)
+    projective_basis_endpoint_capacity = scaled_fraction_floor(projective_basis_endpoint_optimum)
+    projective_basis_wall_demand = kernel_demand_ceiling(projective_basis_wall)
+    projective_basis_wall_capacity = scaled_fraction_floor(projective_basis_wall_optimum)
     rank8_last_open = 37995
     rank8_first_closed = 37996
     rank8_last_demand = rank8_weighted_demand(rank8_last_open)
@@ -1516,6 +1635,64 @@ def expected() -> dict[str, Any]:
             "source_replay_peak_mb": 57,
             "capacity_formula": "two active individual caps plus exact all-step hierarchy tree",
         },
+        "kernel_corank2_projective_basis_cap": {
+            "domain_size": 1048578,
+            "code_dimension": 2,
+            "support_size": 67474,
+            "explanation_dimension": 2,
+            "support_excess": 67472,
+            "normal_space_dimension": 3,
+            "zero_normal_upper_bound": 0,
+            "minimum_normals_outside_projective_class": 67473,
+            "maximum_projective_class_size": 1,
+            "minimum_projective_points": 67474,
+            "noncollinear": True,
+            "maximum_collinear_unordered_triples": 51194051445096,
+            "minimum_independent_ordered_triples_per_record": 13657614768,
+            "coordinate_ordered_triple_resource": 1152924803143827456,
+            "record_cap": PROJECTIVE_BASIS_RECORD_CAP,
+            "division_remainder": 2935655472,
+            "previous_transversality_record_cap": 253241283,
+            "previous_division_remainder": 389629290,
+            "record_cap_improvement": 168825020,
+            "capacity_formula": "floor(n*(n-1)*(n-2)/(3*(m-1)*(m-2)))",
+        },
+        "kernel_corank2_projective_capacity_cut": {
+            "previous_closed_K_prime": projective_pair_endpoint,
+            "replay_K_prime_minimum": projective_basis_start,
+            "closed_K_prime_maximum": projective_basis_endpoint,
+            "first_open_K_prime": projective_basis_wall,
+            "checked_rows_including_wall": 190666,
+            "active_individual_caps": [1, 2],
+            "active_individual_cap_branches": ["ambient", "ambient"],
+            "active_shared_resources": [],
+            "slack_shared_resources": ["rank_preserving_nine_shadow", "full_containment_nine_shadow"],
+            "positive_coranks": list(range(1, 10)),
+            "dual_tree": PROJECTIVE_BASIS_DUAL_TREE,
+            "tight_hierarchy_rows": PROJECTIVE_BASIS_TIGHT_ROWS,
+            "replay_start_optimum_numerator": projective_basis_start_optimum.numerator,
+            "replay_start_optimum_denominator": projective_basis_start_optimum.denominator,
+            "replay_start_demand": projective_basis_start_demand,
+            "replay_start_capacity": projective_basis_start_capacity,
+            "replay_start_gap": projective_basis_start_demand - projective_basis_start_capacity,
+            "endpoint_optimum_numerator": projective_basis_endpoint_optimum.numerator,
+            "endpoint_optimum_denominator": projective_basis_endpoint_optimum.denominator,
+            "endpoint_demand": projective_basis_endpoint_demand,
+            "endpoint_capacity": projective_basis_endpoint_capacity,
+            "endpoint_gap": projective_basis_endpoint_demand - projective_basis_endpoint_capacity,
+            "wall_optimum_numerator": projective_basis_wall_optimum.numerator,
+            "wall_optimum_denominator": projective_basis_wall_optimum.denominator,
+            "wall_demand": projective_basis_wall_demand,
+            "wall_capacity": projective_basis_wall_capacity,
+            "wall_excess": projective_basis_wall_capacity - projective_basis_wall_demand,
+            "source_replay_script_sha256": "f69404cfc33d035cee8214cf6571749b29f2e5eb18a10daf8abb758acd672c62",
+            "source_replay_result_sha256": "cce4f82fc9f21570ef15a97da212a171ca3db3af7ec24df23ef9c477cf6e176c",
+            "source_replay_chunks": 64,
+            "source_replay_worker_timeout_seconds": 60,
+            "source_replay_worker_memory_mb": 256,
+            "source_replay_peak_mb": 57,
+            "capacity_formula": "two strengthened individual caps plus exact all-step hierarchy tree",
+        },
         "rank8_owner_pair_weight_cap": {
             "kernel_dimension": 2,
             "owner_flat_dimension": 4,
@@ -1553,7 +1730,7 @@ def expected() -> dict[str, Any]:
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
             "rank9_fixed_target_eliminated": True,
-            "kernel_dominant_lane_closed_through_Kprime": 377673,
+            "kernel_dominant_lane_closed_through_Kprime": 568338,
             "rank8_owner_flat_closed_from_Kprime": 37996,
             "rank8_dense_owner_terminal_from_Kprime": 22526,
             "chronology_owner": False,
@@ -1756,7 +1933,47 @@ def validate(value: object) -> dict[str, int]:
         require(tight == projective_cut["tight_hierarchy_rows"], f"projective {prefix} tight")
     require(projective_cut["endpoint_gap"] == 608290099077401798561583762592584078050381528604243813748500153228, "projective endpoint gap")
     require(projective_cut["wall_excess"] == 1089804128361045148874283346879615159892995682385275039289561845323, "projective wall excess")
-    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 377673, "kernel claim")
+    projective_basis_cap = value["kernel_corank2_projective_basis_cap"]
+    basis_n = projective_basis_cap["domain_size"]
+    basis_m = projective_basis_cap["support_size"]
+    maximum_collinear = comb(basis_m - 1, 3)
+    independent_triples = basis_m * (basis_m - 1) * (basis_m - 2) - 6 * maximum_collinear
+    basis_record_cap, basis_remainder = divmod(
+        basis_n * (basis_n - 1) * (basis_n - 2), independent_triples
+    )
+    q, r = 17, basis_m - 17
+    split_difference = maximum_collinear - comb(q, 3) - comb(r + 1, 3)
+    split_decomposition = (r - 1) * (comb(q, 2) - 1) + (q - 2) * comb(r - 1, 2)
+    require(projective_basis_cap["zero_normal_upper_bound"] == 0, "projective-basis zero normals")
+    require(projective_basis_cap["maximum_projective_class_size"] == 1, "projective-basis class size")
+    require(projective_basis_cap["noncollinear"] is True, "projective-basis noncollinearity")
+    require(split_difference == split_decomposition >= 0, "projective-basis split identity")
+    require(maximum_collinear == projective_basis_cap["maximum_collinear_unordered_triples"], "projective-basis collinear triples")
+    require(independent_triples == projective_basis_cap["minimum_independent_ordered_triples_per_record"] == 13657614768, "projective-basis triple floor")
+    require(basis_record_cap == projective_basis_cap["record_cap"] == PROJECTIVE_BASIS_RECORD_CAP, "projective-basis record cap")
+    require(basis_remainder == projective_basis_cap["division_remainder"] == 2935655472, "projective-basis remainder")
+    projective_basis_cut = value["kernel_corank2_projective_capacity_cut"]
+    require(projective_basis_cut["checked_rows_including_wall"] == projective_basis_cut["first_open_K_prime"] - projective_basis_cut["replay_K_prime_minimum"] + 1, "projective-basis replay count")
+    require(projective_basis_cut["active_individual_caps"] == [1, 2], "projective-basis active caps")
+    require(projective_basis_cut["active_shared_resources"] == [], "projective-basis active resources")
+    require(projective_basis_cut["dual_tree"] == PROJECTIVE_BASIS_DUAL_TREE, "projective-basis dual tree")
+    require(projective_basis_cut["tight_hierarchy_rows"] == PROJECTIVE_BASIS_TIGHT_ROWS, "projective-basis tight rows")
+    projective_basis_rows = (
+        ("replay_start", 377674, True),
+        ("endpoint", 568338, True),
+        ("wall", 568339, False),
+    )
+    for prefix, kprime, closed in projective_basis_rows:
+        optimum, allocation, cap_dual, branches, tight = kernel_projective_basis_certificate(kprime)
+        require(optimum == Fraction(projective_basis_cut[f"{prefix}_optimum_numerator"], projective_basis_cut[f"{prefix}_optimum_denominator"]), f"projective-basis {prefix} optimum")
+        require((kernel_demand_ratio(kprime) > optimum) is closed, f"projective-basis {prefix} sign")
+        require(all(number > 0 for number in allocation), f"projective-basis {prefix} support")
+        require(all(number > 0 for number in cap_dual.values()), f"projective-basis {prefix} dual")
+        require(branches[:2] == projective_basis_cut["active_individual_cap_branches"], f"projective-basis {prefix} branches")
+        require(tight == projective_basis_cut["tight_hierarchy_rows"], f"projective-basis {prefix} tight")
+    require(projective_basis_cut["endpoint_gap"] == 38432453444617070485037263551626410396462586389410416394578520596038, "projective-basis endpoint gap")
+    require(projective_basis_cut["wall_excess"] == 36180877960369511460476382880286784896208001102094988739728829832800, "projective-basis wall excess")
+    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 568338, "kernel claim")
     rank8_cap = value["rank8_owner_pair_weight_cap"]
     require(rank8_cap == {
         "kernel_dimension": 2,
@@ -1824,6 +2041,10 @@ def validate(value: object) -> dict[str, int]:
         "projective_pair_checks": len(projective_rows),
         "projective_pair_endpoint_gap": projective_cut["endpoint_gap"],
         "projective_pair_wall_excess": projective_cut["wall_excess"],
+        "projective_basis_record_cap": projective_basis_cap["record_cap"],
+        "projective_basis_checks": len(projective_basis_rows),
+        "projective_basis_endpoint_gap": projective_basis_cut["endpoint_gap"],
+        "projective_basis_wall_excess": projective_basis_cut["wall_excess"],
         "rank8_last_gap": rank8_cut["last_open_gap"],
         "rank8_first_gap": rank8_cut["first_closed_gap"],
         "dense_owner_first_excess": dense_owner["first_forced_excess"],
@@ -1870,6 +2091,9 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["kernel_corank1_projective_pair_cap"].__setitem__("record_cap", 8147919),
         lambda item: item["kernel_projective_pair_capacity_cut"].__setitem__("closed_K_prime_maximum", 377674),
         lambda item: item["kernel_projective_pair_capacity_cut"].__setitem__("wall_excess", 1089804128361045148874283346879615159892995682385275039289561845322),
+        lambda item: item["kernel_corank2_projective_basis_cap"].__setitem__("record_cap", 84416264),
+        lambda item: item["kernel_corank2_projective_capacity_cut"].__setitem__("closed_K_prime_maximum", 568339),
+        lambda item: item["kernel_corank2_projective_capacity_cut"].__setitem__("wall_excess", 36180877960369511460476382880286784896208001102094988739728829832799),
         lambda item: item["rank8_owner_pair_weight_cap"].__setitem__("fixed_owner_record_cap", 981104),
         lambda item: item["rank8_weighted_capacity_cut"].__setitem__("first_closed_K_prime", 37995),
         lambda item: item["rank8_dense_owner_terminal_bridge"].__setitem__("owner_record_floor", 200631),
@@ -1938,6 +2162,10 @@ def main() -> None:
         f"projective_pair_checks={result['projective_pair_checks']} "
         f"projective_pair_endpoint_gap={result['projective_pair_endpoint_gap']} "
         f"projective_pair_wall_excess={result['projective_pair_wall_excess']} "
+        f"projective_basis_record_cap={result['projective_basis_record_cap']} "
+        f"projective_basis_checks={result['projective_basis_checks']} "
+        f"projective_basis_endpoint_gap={result['projective_basis_endpoint_gap']} "
+        f"projective_basis_wall_excess={result['projective_basis_wall_excess']} "
         f"rank8_last_gap={result['rank8_last_gap']} "
         f"rank8_first_gap={result['rank8_first_gap']} "
         f"dense_owner_first_excess={result['dense_owner_first_excess']} "
