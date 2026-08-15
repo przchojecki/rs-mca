@@ -4825,3 +4825,38 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** At `K'=12`, classify sparse supports in the
   two-dimensional quotient dual and extend the core-offset ledger to
   `j=9,10,11`.
+
+### 2026-08-15 - K'=12 quotient-line circuit payment
+
+- **Agent/model:** Codex, importing two further proved public prize-DAG
+  nodes after proof audit, exact arithmetic, independent finite-field, and
+  hostile-mutation replay.
+- **Exact parent:** this PR's `K'=11` extension at
+  `cf9301daab617a1493f235497164b3b53ab1aded`.
+- **Status:** PROVED LOCAL ROW CLOSURE / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A characteristic-free sparse-circuit theorem for
+  a projective quotient line.  Catalecticant minors handle the transverse
+  case; primitive cofactor kernels and root-fiber incidence handle lines
+  lying in the determinantal locus without assuming a secant-line
+  classification.  At `m'=67484`, supports of size at most five contribute
+  at most
+  `11868577829520852215896202871552159662636920` incidences per record.
+  The complete `K'=12` payment retains the absolute corank-one kernel term,
+  pays circuits of size at least six through 45 rank-nine shadows, and pays
+  the remaining circuits through that quotient-line cap.  Total capacity is
+  `873945204333998831582903951502910514268526233054054867526472861`
+  against demand
+  `901555241262544083284435178226046105523688795046262319915891531`.
+- **Impact:** `K'=12` has no rank-eleven component target.  The rank-nine
+  interval contracts from `12..15528` to `13..15528`.
+- **Controls:** Primary replay and all 97 hostile mutations passed under the
+  local RAM guard.  The independent replay reconstructed the kernel cap and
+  all three core-offset capacities, and checked 8,190 Vandermonde subsets,
+  54 cofactor-fiber branches, and the exact positive gap.  The 154-page paper
+  compiled with no undefined references or overfull boxes.
+- **Nonclaim:** No quotient-plane theorem, row `K'>=13`, chronology owner,
+  error-rank-eleven payment, active-v4 ledger movement, KoalaBear closure,
+  or prize closure.
+- **What to do next:** At `K'=13`, control low-support points on the
+  projective quotient plane while retaining both corank-one and corank-two
+  kernel capacity and the `j=9,10,11,12` core-offset chart ledger.

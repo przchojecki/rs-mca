@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages fifty-six proved local results after the fixed
+This certificate packages fifty-eight proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -52,6 +52,16 @@ rank-eleven anchor-star reduction:
   coalesce by Vandermonde independence; total capacity is below full
   component demand by
   `30688896124707489315310500375861176301757493788368353875455912`;
+- a codimension-two quotient-line theorem: catalecticant minors and a
+  primitive cofactor kernel map bound all full-rank circuit supports of size
+  at most five by
+  `11868577829520852215896202871552159662636920` incidences per record;
+- the `K'=12` complete component payment: absolute corank-one kernel
+  capacity, high-circuit rank-nine shadows, and the quotient-line sparse cap
+  total
+  `873945204333998831582903951502910514268526233054054867526472861`,
+  below demand by
+  `27610036928545251701531226723135591255162561992207452389418670`;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -180,11 +190,11 @@ proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `12<=K'<=15528` is open; the
+lane. The low rank-nine interval `13<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not
-pay the rank-eight branch on `12<=K'<22526`. The fixed-chart eight-petal
+pay the rank-eight branch on `13<=K'<22526`. The fixed-chart eight-petal
 witness at `K'=11` survives, but its full circuit creates 54 neighboring
 rank-nine shadows and is paid by the global circuit census. The packet does
 not assign the bridged dense

@@ -119,6 +119,20 @@ FIXED_CHART_SOURCES = {
         "tree": "aca673faaa3ed10ab4ae758789de84688af83548",
         "contract_sha256": "72c6d95b858551bceea1467d6832b9a0e1daf73edac9c9ae54dc9af3e11b692a",
     },
+    "codimension_two_quotient_line_sparse_circuit_cap": {
+        "id": "rate_half_mca_codimension_two_quotient_line_sparse_circuit_cap",
+        "path": "background/nodes/rate_half_mca_codimension_two_quotient_line_sparse_circuit_cap",
+        "commit": "212a708b28a846e3aa3b1ba1aa7a676ecc84ab52",
+        "tree": "c4ca702ca288d6e84efcae9569e182713908afe6",
+        "contract_sha256": "2007208c46a197c7d526ea185b9fe9034c860279f02c6d7d815cc0816eb90c82",
+    },
+    "rank11_k12_quotient_line_circuit_payment": {
+        "id": "rate_half_mca_rank11_k12_quotient_line_circuit_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k12_quotient_line_circuit_payment",
+        "commit": "212a708b28a846e3aa3b1ba1aa7a676ecc84ab52",
+        "tree": "f5e9556ee7c6bab9a79885a9feab541f50bb7f67",
+        "contract_sha256": "8189f852eb61e3df83bec0d7158a71a8d0b5f6bbe8d38b2b60521ae875956d3c",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1266,6 +1280,22 @@ def k11_circuit_payment_toy() -> tuple[int, int, int]:
     return field, vandermonde_checks, shadow_checks
 
 
+def quotient_line_sparse_circuit_toy() -> tuple[int, int]:
+    field = 17
+    points = list(range(13))
+    vandermonde_checks = 0
+    for size in range(1, 13):
+        for support in combinations(points, size):
+            determinant = prod(
+                (support[j] - support[i]) % field
+                for i in range(size) for j in range(i + 1, size)
+            ) % field
+            require(determinant != 0, f"K'=12 Vandermonde independence size={size}")
+            vandermonde_checks += 1
+    branch_checks = sum(support * support for support in range(2, 6))
+    return vandermonde_checks, branch_checks
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -1286,6 +1316,8 @@ def main() -> None:
     minimal_split_payment = data["rank9_minimal_shortening_split_pencil_payment"]
     offset_split_cap = data["weighted_split_pencil_core_offset_cap"]
     k11_payment = data["rank11_k11_circuit_split_pencil_payment"]
+    quotient_line_cap = data["codimension_two_quotient_line_sparse_circuit_cap"]
+    k12_payment = data["rank11_k12_quotient_line_circuit_payment"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -1848,6 +1880,115 @@ def main() -> None:
         "K'=11 record persistence",
     )
     k11_field, k11_vandermonde_checks, k11_shadow_checks = k11_circuit_payment_toy()
+
+    require(
+        (
+            quotient_line_cap["ambient_polynomial_dimension"],
+            quotient_line_cap["correction_dimension"],
+            quotient_line_cap["quotient_dimension"],
+            quotient_line_cap["component_subset_size"],
+            quotient_line_cap["support_ceiling"],
+            quotient_line_cap["official_support_size"],
+        ) == (12, 10, 2, 11, 5, 67484),
+        "quotient-line dimensions",
+    )
+    quotient_caps = {"1": 2}
+    quotient_branch_checks = 0
+    for support in range(2, 6):
+        candidates = [support + 1]
+        for degree in range(1, support + 1):
+            for fixed_roots in range(support):
+                candidates.append(
+                    support
+                    + degree * (67484 - fixed_roots) // (support - fixed_roots)
+                )
+                quotient_branch_checks += 1
+        quotient_caps[str(support)] = max(candidates)
+    quotient_terms = {
+        str(support): quotient_caps[str(support)]
+        * comb(67484 - support, 11 - support)
+        for support in range(1, 6)
+    }
+    quotient_per_record = sum(quotient_terms.values())
+    require(quotient_line_cap["support_one_label_cap"] == 2, "quotient-line singleton cap")
+    require(quotient_line_cap["support_label_caps"] == quotient_caps, "quotient-line label caps")
+    require(quotient_line_cap["support_incidence_terms"] == quotient_terms, "quotient-line incidence terms")
+    require(
+        quotient_line_cap["per_record_sparse_incidence_cap"] == quotient_per_record,
+        "quotient-line total",
+    )
+    quotient_vandermonde_checks, toy_branch_checks = quotient_line_sparse_circuit_toy()
+    require(toy_branch_checks == quotient_branch_checks, "quotient-line branch audit")
+
+    k12_n, k12_m = 1048588, 67484
+    k12_offset_rows = []
+    for core_size in (9, 10, 11):
+        petal_mass = k12_m - core_size
+        offset = core_size - 9
+        total = k12_n - core_size
+        heavy = total // (petal_mass // 2 + 1)
+        cross_floor = petal_mass**2 // 4
+        linear = (petal_mass - 2) * total + 2 * heavy * offset * petal_mass
+        quadratic = petal_mass - 2
+        center = linear // (2 * quadratic)
+        clean = max(
+            light * (linear - quadratic * light) // 2
+            for light in range(max(0, center - 1), min(total, center + 2) + 1)
+        )
+        balanced = (
+            (cross_floor + offset * petal_mass)
+            * total * (total - 1) // 2 // cross_floor
+        )
+        collision = (
+            heavy * (heavy - 1) // 2
+            * ((petal_mass - 1) * (petal_mass - 2) // 2 + offset * petal_mass)
+        )
+        k12_offset_rows.append(clean + balanced + collision)
+
+    shortened_k = 3
+    endpoint_zero = Fraction(
+        prod(range(1048576 + shortened_k - 1, 1048576 + shortened_k + 1)),
+        67472 + shortened_k,
+    )
+    endpoint_max = Fraction(
+        prod(range(1048576, 1048578)),
+        67473,
+    )
+    k12_kernel_record_cap = max(endpoint_zero, endpoint_max)
+    k12_kernel_record_cap = k12_kernel_record_cap.numerator // k12_kernel_record_cap.denominator
+    k12_kernel = comb(k12_n, 9) * k12_kernel_record_cap
+    k12_chart = max(k12_offset_rows)
+    k12_global_marks = comb(k12_n, 9) * k12_chart
+    k12_high = k12_global_marks // 45
+    k12_low = non_dense * quotient_per_record
+    k12_total = k12_kernel + k12_high + k12_low
+    k12_demand = ceiling(Fraction(
+        990810934 * non_dense * comb(k12_m, 11),
+        10**9,
+    ))
+    require(k12_payment["K_prime"] == 12, "K'=12 row")
+    require((k12_payment["n_prime"], k12_payment["m_prime"]) == (k12_n, k12_m), "K'=12 dimensions")
+    require(k12_kernel_record_cap == k12_payment["kernel_corank_one_record_cap"] == 16295594, "K'=12 kernel record cap")
+    require(k12_payment["kernel_extension_factor"] == 1, "K'=12 kernel extension")
+    require(k12_payment["kernel_incidence_cap"] == k12_kernel, "K'=12 kernel capacity")
+    require(k12_payment["rank9_core_sizes"] == [9, 10, 11], "K'=12 core sizes")
+    require(k12_payment["rank9_core_caps"] == k12_offset_rows, "K'=12 core caps")
+    require(k12_payment["uniform_rank9_chart_cap"] == k12_chart, "K'=12 chart cap")
+    require(k12_payment["global_rank9_mark_capacity"] == k12_global_marks, "K'=12 marks")
+    require(k12_payment["high_circuit_incidence_cap"] == k12_high, "K'=12 high cap")
+    require(k12_payment["low_circuit_per_record_cap"] == quotient_per_record, "K'=12 low cap per record")
+    require(k12_payment["low_circuit_incidence_cap_at_record_floor"] == k12_low, "K'=12 low cap")
+    require(k12_payment["total_capacity_at_record_floor"] == k12_total, "K'=12 total cap")
+    require(k12_payment["required_incidence_at_record_floor"] == k12_demand, "K'=12 demand")
+    require(k12_payment["demand_capacity_gap"] == k12_demand - k12_total > 0, "K'=12 gap")
+    require(
+        k12_payment["record_coefficient_cross"]
+        == 990810934 * comb(k12_m, 11) - 10**9 * quotient_per_record
+        > 0,
+        "K'=12 record persistence",
+    )
+    require(k12_payment["newly_closed_rows"] == [12, 12], "K'=12 closed row")
+    require(k12_payment["remaining_rank9_interval"] == [13, 15528], "K'=12 remaining interval")
 
     require(kernel_globalizer == {
         "correction_dimension": 10,
@@ -2710,8 +2851,9 @@ def main() -> None:
         "rank9_fixed_target_eliminated_from_Kprime": 15529,
         "rank9_minimal_shortening_closed_K_prime": 10,
         "rank9_k11_circuit_split_pencil_closed_K_prime": 11,
+        "rank9_k12_quotient_line_circuit_closed_K_prime": 12,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [12, 15528],
+        "rank9_remaining_interval": [13, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -2740,6 +2882,9 @@ def main() -> None:
         f"minimal_split_clean_checks={split_clean_checks} "
         f"k11_gap={k11_demand-k11_total_cap} "
         f"k11_toy=GF({k11_field})/{k11_vandermonde_checks}/{k11_shadow_checks} "
+        f"k12_sparse_cap={quotient_per_record} "
+        f"k12_gap={k12_demand-k12_total} "
+        f"k12_toy={quotient_vandermonde_checks}/{quotient_branch_checks} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "
         f"kernel_wall_gap={kernel_wall_capacity-kernel_wall_demand} "
