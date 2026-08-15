@@ -12157,6 +12157,102 @@ SHA-256 digest
 \texttt{85f67eade03100e7fc6f3ef0443a3a787f1133427a0f9d4030d638eca9080082}.
 \end{proof}
 
+\begin{proposition}[Rank-eight fixed-chart local-payment fence]
+\label{prop:kb-rank11-rank8-fixed-chart-local-cap-fence}
+At residual dimension $K'=11$, the local rank-eight output of
+Proposition~\ref{prop:kb-rank11-component-ninesubset-target}, even with the
+marked-extension unit retained, admits
+\[
+ 4070352>2578110
+\]
+distinct exact-support records on one fixed chart.  Each record has
+$\binom{67473}{2}$ rank-ten affine-owner component extensions, so the
+marked weight is
+\[
+ 9265216597693056>5869376383979174,
+ \tag{R8F}\label{eq:kb-rank11-rank8-fixed-chart-local-cap-fence}
+\]
+where the right side is the exact weighted-selector demand at $K'=11$.
+The errors have affine rank at most two, every support is pair-noncontained,
+and the construction lifts reversibly to the official row.
+\end{proposition}
+
+\begin{proof}
+On the residual domain, choose a nine-set $B$, put
+\[
+ u_0(X)=\prod_{b\in B}(X-b),\qquad u_1(X)=Xu_0(X),
+\]
+and take the ten-space
+\[
+ V'=\langle1,X,\ldots,X^7,u_0,u_1\rangle.
+\]
+Its evaluation rank on $B$ is eight, with kernel
+$U=\langle u_0,u_1\rangle$.  For distinct $x,y\notin B$, the determinant
+of kernel evaluation on $\{x,y\}$ is
+\[
+ u_0(x)u_0(y)(y-x)\ne0,
+\]
+so $B\cup\{x,y\}$ has evaluation rank ten.
+
+Here $(n',m')=(1048587,67483)$.  Partition the complement of $B$ into
+eight petals $P_e$ of size $67473$ and a remainder $R$ of size
+\[
+ 1048587-9-8\cdot67473=508794.
+\]
+Choose distinct $t_e$ and owner pairs
+$(a_e,b_e)=(t_eu_0,1)$.  Define the received pair by
+\[
+ (r_0,r_1)=
+ \begin{cases}
+ (0,1),&B,\\
+ (a_e,1),&P_e,\\
+ (s_x,0),&x\in R.
+ \end{cases}
+\]
+Choose the $s_x$ successively so that all
+\[
+ \gamma_{e,x}=s_x-a_e(x)
+\]
+are distinct and avoid the eighteen dense slopes.  At the $j$-th
+remainder coordinate, at most $64j+8\cdot18$ values are forbidden.  The
+maximum
+\[
+ 64(508794-1)+144=32562896
+\]
+is below the deployed base prime $2130706433$, so the greedy choice exists.
+
+At slope $\gamma_{e,x}$ use explanation
+$h_{e,x}=a_e+\gamma_{e,x}$.  Its exact support is
+\[
+ B\mathbin{\dot\cup}P_e\mathbin{\dot\cup}\{x\},
+\]
+of size $67483$.  Equality at another remainder coordinate would repeat a
+slope, while equality on another petal would force
+$(t_e-t_f)u_0=0$ off $B$.  For every two-set in $P_e$, adjoining it to $B$
+gives a rank-ten component owned by $(a_e,1)$.  If any polynomial pair
+contained the complete support, its second component would equal one on
+$|B|+|P_e|=67482>10$ coordinates, hence would be the constant one, but the
+received second column is zero at $x$.  Thus the support is pair-noncontained.
+Finally
+\[
+ e_{e,x}=r_0-a_e+\gamma_{e,x}(r_1-1),
+\]
+so all error differences lie in $\langle u_0,r_1-1\rangle$.
+
+There are $8\cdot508794=4070352$ records and their marked weight is the
+left side of \textup{(R8F)}.  Direct evaluation of the weighted selector at
+$K'=11$ gives the right side.  To lift, choose a common core $J$ of size
+$K-11$, multiply the residual received values, owners, explanations, and
+correction space by its locator, and set both received columns to zero on
+$J$.  Evaluation ranks are unchanged off $J$, every support gains $J$, and
+the same root-bound argument preserves pair noncontainment.
+
+This witness has only four million records and its normalized deviations
+do not span the complete ten-space.  It therefore fences a payment from the
+printed chart-local output; it is not an unsafe line and does not realize
+the dense-anchor ancestors.
+\end{proof}
+
 \begin{proposition}[Rank-eight owner-pair capacity]
 \label{prop:kb-rank11-rank8-owner-pair-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -12320,6 +12416,11 @@ explicit fence. Thus the remaining intervals are rank eight only on
 $10\le K'\le22525$, dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
 $37996\le K'\le1048576$.
+Proposition~\ref{prop:kb-rank11-rank8-fixed-chart-local-cap-fence} shows
+that neither the distinct nor the weighted fixed-chart output alone can
+pay the lower rank-eight interval.  Any continuation must retain the
+normalized full-span/anchor ancestry or couple charts and owners through a
+chronology-correct global incidence argument.
 The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,

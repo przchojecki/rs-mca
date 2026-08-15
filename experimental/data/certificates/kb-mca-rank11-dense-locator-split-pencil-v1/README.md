@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages forty-seven proved local results after the fixed
+This certificate packages forty-eight proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -112,6 +112,10 @@ rank-eleven anchor-star reduction:
   has twelve positive coefficients, excluding the fixed-kernel branch through
   `K'=1048576`;
 - the rank-eight marked owner-pair cap `981105*C(n'-9,2)`;
+- a `K'=11` eight-petal rank-eight construction with `4070352` records and
+  `9265216597693056` marked component extensions, exceeding both fixed-chart
+  selector demands and fencing every continuation that uses only the printed
+  chart-local output;
 - exact exclusion of the rank-eight owner-flat target for
   `37996<=K'<=1048576`, with the last failed row `K'=37995` printed;
 - a marked-weight bridge placing one `delta<=4` owner with at least
@@ -135,12 +139,15 @@ terminal shortening polynomial. The primary verifier
 separately exhausts all `1048567` corank-three rows, checks the
 complete-chart scope and integer-gap audit, and checks all
 `11` rank-eight monotonicity
-factors and both dense-owner bridge boundary rows, and checks a toy
-affine-plane line design. Both reject
+factors and both dense-owner bridge boundary rows.  The independent replay
+also checks a finite-field rank-eight petal model, while the primary replay
+checks the existing affine-plane line design. Both reject
 proof-critical manifest mutations.
 
-The owner key remains recordwise. The local-cap fence does not instantiate the dense-anchor ancestors or an
+The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane, pay the rank-eight branch below `K'=22526`, assign the bridged dense
+lane.  In particular, the rank-eight fence requires the next proof to retain
+normalized-span ancestry or a cross-chart chronology coupling; it does not
+pay the rank-eight branch below `K'=22526`.  The packet does not assign the bridged dense
 owner in first-match chronology,
 pay error rank eleven, move an active v4 atom, or close KoalaBear.

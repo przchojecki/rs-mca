@@ -332,6 +332,13 @@
         "commit": "ab1551006e0da01a3357065cf218bc303e4a7098",
         "tree": "92bae9306cabf755ddf1b180ea6dcc8db3be3944",
         "contract_sha256": "c77779cfc39566264dbfa48bfe4081eb6c46a4913c579e21e1bcf204de13da67"
+      },
+      "rank8_fixed_chart_local_cap_fence": {
+        "id": "rate_half_mca_rank11_rank8_fixed_chart_local_cap_fence",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_fixed_chart_local_cap_fence",
+        "commit": "90f7509bb2b706cc5daf90003efc45dd23a82c75",
+        "tree": "cdaab7eb0a655760057433a9d22f76f6e0963bc3",
+        "contract_sha256": "553bbf5c9ba10d97f220480d50aea1dd7017407ddd833459f513992b97667093"
       }
     }
   },
@@ -2319,6 +2326,27 @@
     "delta5_record_cap": 196221,
     "terminal_interval_maximum": 37995
   },
+  "rank8_fixed_chart_local_cap_fence": {
+    "residual_K_prime": 11,
+    "residual_n_prime": 1048587,
+    "residual_m_prime": 67483,
+    "selector_size": 9,
+    "selector_rank": 8,
+    "kernel_dimension": 2,
+    "owner_count": 8,
+    "petal_size": 67473,
+    "remainder_size": 508794,
+    "rich_slope_count": 4070352,
+    "selector_record_floor": 2578110,
+    "component_extensions_per_record": 2276269128,
+    "marked_component_weight": 9265216597693056,
+    "weighted_selector_demand": 5869376383979174,
+    "forbidden_slope_count": 18,
+    "maximum_greedy_forbidden_values": 32562896,
+    "base_prime": 2130706433,
+    "error_affine_rank_ceiling": 2,
+    "lifted_owner_core_deficiency": 1
+  },
   "claims": {
     "local_theorem_packet": true,
     "incidence_is_record_count": false,
@@ -2332,6 +2360,7 @@
     "kernel_uniform_corank3_cap_proved": true,
     "rank8_owner_flat_closed_from_Kprime": 37996,
     "rank8_dense_owner_terminal_from_Kprime": 22526,
+    "rank8_fixed_chart_output_suffices_for_payment": false,
     "chronology_owner": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,

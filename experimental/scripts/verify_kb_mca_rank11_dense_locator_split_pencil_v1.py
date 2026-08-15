@@ -347,6 +347,13 @@ SOURCE_NODES = {
         "tree": "92bae9306cabf755ddf1b180ea6dcc8db3be3944",
         "contract_sha256": "c77779cfc39566264dbfa48bfe4081eb6c46a4913c579e21e1bcf204de13da67",
     },
+    "rank8_fixed_chart_local_cap_fence": {
+        "id": "rate_half_mca_rank11_rank8_fixed_chart_local_cap_fence",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_fixed_chart_local_cap_fence",
+        "commit": "90f7509bb2b706cc5daf90003efc45dd23a82c75",
+        "tree": "cdaab7eb0a655760057433a9d22f76f6e0963bc3",
+        "contract_sha256": "553bbf5c9ba10d97f220480d50aea1dd7017407ddd833459f513992b97667093",
+    },
 }
 
 
@@ -1601,6 +1608,15 @@ def expected() -> dict[str, Any]:
     dense_owner_last_pairs = comb(1048576 + dense_owner_last - 9, 2)
     dense_owner_first_weight = rank8_weighted_demand(dense_owner_first)
     dense_owner_first_pairs = comb(1048576 + dense_owner_first - 9, 2)
+    rank8_fence_kprime = 11
+    rank8_fence_nprime = 1048576 + rank8_fence_kprime
+    rank8_fence_mprime = 67472 + rank8_fence_kprime
+    rank8_fence_petal = rank8_fence_mprime - 1 - 9
+    rank8_fence_remainder = rank8_fence_nprime - 9 - 8 * rank8_fence_petal
+    rank8_fence_slopes = 8 * rank8_fence_remainder
+    rank8_fence_extensions = comb(rank8_fence_petal, 2)
+    rank8_fence_marked = rank8_fence_slopes * rank8_fence_extensions
+    rank8_fence_demand = rank8_weighted_demand(rank8_fence_kprime)
     uniform_corank3_complete = uniform_corank3_row(0)
     uniform_corank3_adjacent = uniform_corank3_row(1)
     uniform_corank3_endpoint = uniform_corank3_row(1048566)
@@ -2293,6 +2309,27 @@ def expected() -> dict[str, Any]:
             "delta5_record_cap": 196221,
             "terminal_interval_maximum": 37995,
         },
+        "rank8_fixed_chart_local_cap_fence": {
+            "residual_K_prime": rank8_fence_kprime,
+            "residual_n_prime": rank8_fence_nprime,
+            "residual_m_prime": rank8_fence_mprime,
+            "selector_size": 9,
+            "selector_rank": 8,
+            "kernel_dimension": 2,
+            "owner_count": 8,
+            "petal_size": rank8_fence_petal,
+            "remainder_size": rank8_fence_remainder,
+            "rich_slope_count": rank8_fence_slopes,
+            "selector_record_floor": 2578110,
+            "component_extensions_per_record": rank8_fence_extensions,
+            "marked_component_weight": rank8_fence_marked,
+            "weighted_selector_demand": rank8_fence_demand,
+            "forbidden_slope_count": 18,
+            "maximum_greedy_forbidden_values": 64 * (rank8_fence_remainder - 1) + 8 * 18,
+            "base_prime": 2130706433,
+            "error_affine_rank_ceiling": 2,
+            "lifted_owner_core_deficiency": 1,
+        },
         "claims": {
             "local_theorem_packet": True,
             "incidence_is_record_count": False,
@@ -2306,6 +2343,7 @@ def expected() -> dict[str, Any]:
             "kernel_uniform_corank3_cap_proved": True,
             "rank8_owner_flat_closed_from_Kprime": 37996,
             "rank8_dense_owner_terminal_from_Kprime": 22526,
+            "rank8_fixed_chart_output_suffices_for_payment": False,
             "chronology_owner": False,
             "rank11_paid": False,
             "active_v4_ledger_movement": 0,
@@ -2314,9 +2352,10 @@ def expected() -> dict[str, Any]:
     }
 
 
-def validate(value: object) -> dict[str, int]:
+def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, int]:
     require(isinstance(value, dict), "manifest object")
-    wanted = expected()
+    if wanted is None:
+        wanted = expected()
     require(value == wanted, "canonical manifest")
     dense = dense_root_model()
     component = value["component_incidence"]
@@ -2742,6 +2781,53 @@ def validate(value: object) -> dict[str, int]:
     }, "dense-owner terminal bridge")
     require(1 + 981104 // 5 == dense_owner["delta5_record_cap"], "dense-owner deficiency cut")
     require(value["claims"]["rank8_dense_owner_terminal_from_Kprime"] == 22526, "dense-owner claim")
+    rank8_fence = value["rank8_fixed_chart_local_cap_fence"]
+    require(rank8_fence == {
+        "residual_K_prime": 11,
+        "residual_n_prime": 1048587,
+        "residual_m_prime": 67483,
+        "selector_size": 9,
+        "selector_rank": 8,
+        "kernel_dimension": 2,
+        "owner_count": 8,
+        "petal_size": 67473,
+        "remainder_size": 508794,
+        "rich_slope_count": 4070352,
+        "selector_record_floor": 2578110,
+        "component_extensions_per_record": 2276269128,
+        "marked_component_weight": 9265216597693056,
+        "weighted_selector_demand": 5869376383979174,
+        "forbidden_slope_count": 18,
+        "maximum_greedy_forbidden_values": 32562896,
+        "base_prime": 2130706433,
+        "error_affine_rank_ceiling": 2,
+        "lifted_owner_core_deficiency": 1,
+    }, "rank-eight fixed-chart fence")
+    require(
+        rank8_fence["selector_size"]
+        + rank8_fence["owner_count"] * rank8_fence["petal_size"]
+        + rank8_fence["remainder_size"]
+        == rank8_fence["residual_n_prime"],
+        "rank-eight fence partition",
+    )
+    require(
+        rank8_fence["rich_slope_count"] > rank8_fence["selector_record_floor"],
+        "rank-eight distinct fence",
+    )
+    require(
+        rank8_fence["marked_component_weight"]
+        == rank8_fence["rich_slope_count"] * comb(rank8_fence["petal_size"], 2)
+        > rank8_fence["weighted_selector_demand"],
+        "rank-eight weighted fence",
+    )
+    require(
+        rank8_fence["base_prime"] > rank8_fence["maximum_greedy_forbidden_values"],
+        "rank-eight greedy field budget",
+    )
+    require(
+        value["claims"]["rank8_fixed_chart_output_suffices_for_payment"] is False,
+        "rank-eight local-payment claim",
+    )
     return {
         **dense,
         "component_ppb": component["component_incidence_ppb_floor"],
@@ -2749,6 +2835,11 @@ def validate(value: object) -> dict[str, int]:
         "plane_cap": value["rank9_split_pencil_paircore"]["low_common_core_plane_cap"],
         "selector_records": value["component_ninesubset_concentrator"]["fixed_selector_record_floor"],
         "local_fence_slopes": fence["rich_slope_count"],
+        "rank8_local_fence_slopes": rank8_fence["rich_slope_count"],
+        "rank8_local_fence_weighted_excess": (
+            rank8_fence["marked_component_weight"]
+            - rank8_fence["weighted_selector_demand"]
+        ),
         "weighted_demand": weighted_elimination["boundary_demand"],
         "weighted_cap": weighted_elimination["boundary_cap"],
         "kernel_endpoint_gap": kernel_cut["endpoint_gap"],
@@ -2795,6 +2886,7 @@ def validate(value: object) -> dict[str, int]:
 
 
 def tamper_selftest(reference: dict[str, Any]) -> int:
+    wanted = expected()
     mutations = (
         lambda item: item["dense_root_saturation"].__setitem__("dense_root_count", 17),
         lambda item: item["component_incidence"].__setitem__("isolated_bezout", 197),
@@ -2857,6 +2949,10 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["rank8_weighted_capacity_cut"].__setitem__("first_closed_K_prime", 37995),
         lambda item: item["rank8_dense_owner_terminal_bridge"].__setitem__("owner_record_floor", 200631),
         lambda item: item["claims"].__setitem__("rank8_dense_owner_terminal_from_Kprime", 22525),
+        lambda item: item["rank8_fixed_chart_local_cap_fence"].__setitem__("rich_slope_count", 2578110),
+        lambda item: item["rank8_fixed_chart_local_cap_fence"].__setitem__("marked_component_weight", 5869376383979174),
+        lambda item: item["rank8_fixed_chart_local_cap_fence"].__setitem__("maximum_greedy_forbidden_values", 2130706433),
+        lambda item: item["claims"].__setitem__("rank8_fixed_chart_output_suffices_for_payment", True),
         lambda item: item["claims"].__setitem__("fixed_chart_output_suffices_for_payment", True),
         lambda item: item["claims"].__setitem__("full_rank_star_owner_is_record_intrinsic", False),
         lambda item: item["claims"].__setitem__("rank9_fixed_target_eliminated", False),
@@ -2869,7 +2965,7 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         changed = copy.deepcopy(reference)
         mutation(changed)
         try:
-            validate(changed)
+            validate(changed, wanted)
         except Reject:
             caught += 1
     require(caught == len(mutations), "all hostile mutations rejected")
@@ -2901,6 +2997,8 @@ def main() -> None:
         f"plane_cap={result['plane_cap']} "
         f"selector_records={result['selector_records']} "
         f"local_fence_slopes={result['local_fence_slopes']} "
+        f"rank8_local_fence_slopes={result['rank8_local_fence_slopes']} "
+        f"rank8_local_fence_weighted_excess={result['rank8_local_fence_weighted_excess']} "
         f"weighted_demand={result['weighted_demand']} "
         f"weighted_cap={result['weighted_cap']} "
         f"kernel_endpoint_gap={result['kernel_endpoint_gap']} "

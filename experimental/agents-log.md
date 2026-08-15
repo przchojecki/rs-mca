@@ -30,6 +30,29 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Rank-eight fixed-chart local-payment fence
+
+- **Agent/model:** Codex with an exact eight-petal construction and an
+  independent prime-field replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED ROUTE FENCE. Zero active-v4 ledger movement; no
+  KoalaBear closure.
+- **What is being added:** At `K'=11`, one rank-eight nine-coordinate chart
+  admits `4070352` pair-noncontained exact-support records. Each has
+  `C(67473,2)` rank-ten affine-owner component extensions, giving marked
+  weight `9265216597693056`, above the exact weighted selector demand
+  `5869376383979174`. Error affine rank is at most two, and locator
+  multiplication lifts the family to the official row.
+- **How it is useful:** This proves that neither the deduplicated nor the
+  weighted rank-eight fixed-chart output is a payable terminal by itself.
+  The remaining lower-interval proof must retain normalized full-span/anchor
+  ancestry or couple charts and owners through global chronology/incidence.
+- **What to do next:** Formulate the first global coupling identity which
+  excludes the eight-petal model from the actual dense-anchor family; do not
+  spend another cycle sharpening a cap from the same chart-local hypotheses.
+
 ### 2026-08-15 - Shortening-weighted terminal kernel cut
 
 - **Agent/model:** Codex with an exact record/extension coupling, Newton

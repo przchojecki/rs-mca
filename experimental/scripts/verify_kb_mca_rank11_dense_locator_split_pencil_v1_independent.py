@@ -315,6 +315,13 @@ FIXED_CHART_SOURCES = {
         "tree": "92bae9306cabf755ddf1b180ea6dcc8db3be3944",
         "contract_sha256": "c77779cfc39566264dbfa48bfe4081eb6c46a4913c579e21e1bcf204de13da67",
     },
+    "rank8_fixed_chart_local_cap_fence": {
+        "id": "rate_half_mca_rank11_rank8_fixed_chart_local_cap_fence",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_fixed_chart_local_cap_fence",
+        "commit": "90f7509bb2b706cc5daf90003efc45dd23a82c75",
+        "tree": "cdaab7eb0a655760057433a9d22f76f6e0963bc3",
+        "contract_sha256": "553bbf5c9ba10d97f220480d50aea1dd7017407ddd833459f513992b97667093",
+    },
 }
 
 
@@ -1037,6 +1044,84 @@ def affine_plane_design(field: int = 7) -> tuple[int, int, int]:
     return len(points), len(slopes), design_pairs
 
 
+def rank8_local_fence_toy() -> tuple[int, int, int]:
+    field = 1009
+    domain = list(range(1, 20))
+    selector = domain[:9]
+    petals = [domain[9:12], domain[12:15]]
+    remainder = domain[15:]
+    owner_parameters = [0, 1]
+
+    def u0(x: int) -> int:
+        return prod((x - root) % field for root in selector) % field
+
+    vandermonde = prod(
+        (selector[j] - selector[i]) % field
+        for i in range(8) for j in range(i + 1, 8)
+    ) % field
+    require(vandermonde != 0, "rank-eight toy selector rank")
+    require(all(u0(x) != 0 for x in domain[9:]), "rank-eight toy locator roots")
+
+    r0 = {x: 0 for x in selector}
+    r1 = {x: 1 for x in selector}
+    for owner, petal in enumerate(petals):
+        for x in petal:
+            r0[x] = owner * u0(x) % field
+            r1[x] = 1
+
+    slopes: set[int] = set()
+    records: list[tuple[int, int, int]] = []
+    for x in remainder:
+        received_value = next(
+            value for value in range(field)
+            if len({(value - owner * u0(x)) % field for owner in owner_parameters}) == 2
+            and all(
+                (value - owner * u0(x)) % field not in slopes
+                for owner in owner_parameters
+            )
+        )
+        r0[x], r1[x] = received_value, 0
+        for owner in owner_parameters:
+            slope = (received_value - owner * u0(x)) % field
+            slopes.add(slope)
+            records.append((owner, x, slope))
+
+    require(len(slopes) == len(records) == 8, "rank-eight toy slopes")
+    errors: list[tuple[int, int, list[int]]] = []
+    component_checks = 0
+    for owner, singled, slope in records:
+        support = []
+        error = []
+        for x in domain:
+            explanation = (owner * u0(x) + slope) % field
+            line_value = (r0[x] + slope * r1[x]) % field
+            error.append((line_value - explanation) % field)
+            if line_value == explanation:
+                support.append(x)
+        require(support == selector + petals[owner] + [singled], "rank-eight toy support")
+        require(len(selector) + len(petals[owner]) > 10 and r1[singled] == 0, "rank-eight toy noncontainment")
+        for x, y in combinations(petals[owner], 2):
+            determinant = u0(x) * u0(y) * (y - x) % field
+            require(determinant != 0, "rank-eight toy extension rank")
+            require(
+                all(r0[z] == owner * u0(z) % field and r1[z] == 1 for z in selector + [x, y]),
+                "rank-eight toy component owner",
+            )
+            component_checks += 1
+        errors.append((owner, slope, error))
+
+    anchor_owner, anchor_slope, anchor_error = errors[0]
+    for owner, slope, error in errors[1:]:
+        predicted = [
+            (-(owner - anchor_owner) * u0(x)
+             + (slope - anchor_slope) * (r1[x] - 1)) % field
+            for x in domain
+        ]
+        actual = [(left - right) % field for left, right in zip(error, anchor_error)]
+        require(actual == predicted, "rank-eight toy error two-space")
+    return len(records), len(slopes), component_checks
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -1083,6 +1168,7 @@ def main() -> None:
     rank8_owner_cap = data["rank8_owner_pair_weight_cap"]
     rank8_cut = data["rank8_weighted_capacity_cut"]
     dense_owner = data["rank8_dense_owner_terminal_bridge"]
+    rank8_fence = data["rank8_fixed_chart_local_cap_fence"]
     require(
         data["source_prize_dag"]["nodes"]["rank9_split_pencil_paircore"]
         == PAIRCORE_SOURCE,
@@ -2057,6 +2143,41 @@ def main() -> None:
     }, "dense-owner terminal bridge")
     require(1 + 981104 // 5 == dense_owner["delta5_record_cap"] < dense_owner["owner_record_floor"], "dense-owner deficiency")
 
+    rank8_fence_kprime = 11
+    rank8_fence_nprime = 1048576 + rank8_fence_kprime
+    rank8_fence_mprime = 67472 + rank8_fence_kprime
+    rank8_fence_petal = rank8_fence_mprime - 1 - 9
+    rank8_fence_remainder = rank8_fence_nprime - 9 - 8 * rank8_fence_petal
+    rank8_fence_slopes = 8 * rank8_fence_remainder
+    rank8_fence_extensions = comb(rank8_fence_petal, 2)
+    rank8_fence_marked = rank8_fence_slopes * rank8_fence_extensions
+    rank8_fence_demand = independent_rank8_demand(rank8_fence_kprime)
+    require(rank8_fence == {
+        "residual_K_prime": rank8_fence_kprime,
+        "residual_n_prime": rank8_fence_nprime,
+        "residual_m_prime": rank8_fence_mprime,
+        "selector_size": 9,
+        "selector_rank": 8,
+        "kernel_dimension": 2,
+        "owner_count": 8,
+        "petal_size": rank8_fence_petal,
+        "remainder_size": rank8_fence_remainder,
+        "rich_slope_count": rank8_fence_slopes,
+        "selector_record_floor": 2578110,
+        "component_extensions_per_record": rank8_fence_extensions,
+        "marked_component_weight": rank8_fence_marked,
+        "weighted_selector_demand": rank8_fence_demand,
+        "forbidden_slope_count": 18,
+        "maximum_greedy_forbidden_values": 64 * (rank8_fence_remainder - 1) + 8 * 18,
+        "base_prime": 2130706433,
+        "error_affine_rank_ceiling": 2,
+        "lifted_owner_core_deficiency": 1,
+    }, "rank-eight fixed-chart fence")
+    require(rank8_fence_slopes > rank8_fence["selector_record_floor"], "rank-eight distinct fence")
+    require(rank8_fence_marked > rank8_fence_demand, "rank-eight weighted fence")
+    require(rank8_fence["base_prime"] > rank8_fence["maximum_greedy_forbidden_values"], "rank-eight field budget")
+    toy_rank8_records, toy_rank8_slopes, toy_rank8_components = rank8_local_fence_toy()
+
     core_checks = 0
     for owner_core in range(2 * m - n, m):
         owner_multiplicity = (n - owner_core) // (m - owner_core)
@@ -2081,6 +2202,7 @@ def main() -> None:
         "kernel_uniform_corank3_cap_proved": True,
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,
+        "rank8_fixed_chart_output_suffices_for_payment": False,
         "chronology_owner": False,
         "rank11_paid": False,
         "active_v4_ledger_movement": 0,
@@ -2139,6 +2261,9 @@ def main() -> None:
         f"rank8_first_gap={rank8_first_demand-rank8_first_cap} "
         f"rank8_monotone_factors={monotone_factors} "
         f"dense_owner_first_excess={dense_owner['first_forced_excess']} "
+        f"rank8_local_fence_slopes={rank8_fence_slopes} "
+        f"rank8_local_fence_weighted_excess={rank8_fence_marked-rank8_fence_demand} "
+        f"rank8_toy={toy_rank8_records}/{toy_rank8_slopes}/{toy_rank8_components} "
         f"toy_points={points} toy_slopes={slopes} design_pairs={design_pairs}"
     )
 
