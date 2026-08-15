@@ -11528,6 +11528,81 @@ and strong duality on every row and obtain the displayed opposite boundary
 signs.
 \end{proof}
 
+\begin{proposition}[Corank-one projective-normal pair cap]
+\label{prop:kb-rank11-kernel-corank1-projective-pair}
+After canonical rank-nine basis cancellation, the complete shortened
+corank-one chart has
+\[
+ (n,K,m,s)=(1048577,1,67473,1).
+\]
+Every selected record owns at least $2(m-1)=134944$ ordered coordinate
+pairs whose agreement normals are linearly independent.  Consequently the
+number of records in the chart is at most
+\[
+ M_1\le\left\lfloor\frac{n(n-1)}{2(m-1)}\right\rfloor=8147918.
+ \tag{PP}
+\]
+This improves the support-local transversality cap $16295594$ by $8147676$.
+\end{proposition}
+
+\begin{proof}
+Represent the affine explanation family by parameter points in $\F^2$.
+Agreement at a coordinate is an affine line with a normal in $\F^2$.
+The common-zero bound gives $z\le K-s=0$, so all $m$ normals incident with
+one selected point are nonzero.  Same-support pair noncontainment forces
+them to span $\F^2$.
+
+Let their nonempty projective-class sizes be $a_1,\ldots,a_c$.  Then
+$c\ge2$, $\sum_i a_i=m$, and the number of ordered independent pairs is
+\[
+ m^2-\sum_i a_i^2.
+\]
+Convexity gives $\sum_i a_i^2\le(m-1)^2+1$, with equality for class sizes
+$m-1,1$.  Thus every selected point owns at least $2(m-1)$ ordered
+independent coordinate pairs.  Two independent affine lines meet in at
+most one parameter point, so a coordinate pair is owned by at most one
+record.  Double counting the $n(n-1)$ ordered coordinate pairs proves
+\textup{(PP)}; the integer division has remainder $29760$.
+\end{proof}
+
+\begin{corollary}[Projective-pair kernel-capacity cut]
+\label{cor:kb-rank11-kernel-projective-pair-capacity}
+The projective cap \textup{(PP)}, the other individual ambient/record caps,
+and the 28 inequalities \textup{(MS)} exclude the dominant kernel lane for
+\[
+ 10\le K'\le377673.
+\]
+At $K'=377673$, integer demand exceeds floored capacity by
+\[
+608290099077401798561583762592584078050381528604243813748500153228.
+\]
+At $K'=377674$, capacity exceeds demand by
+\[
+1089804128361045148874283346879615159892995682385275039289561845323,
+\]
+so no larger interval is claimed by this resource system.
+\end{corollary}
+
+\begin{proof}
+The predecessor handles $K'\le18158$.  On the remaining exact replay the
+corank-one and corank-two individual caps bind, both shared nine-shadow
+resources are strict, and every corank is positive.  The seven hierarchy
+tree edges are
+\[
+ (t,d)=(2,3),(3,4),(2,5),(2,6),(2,7),(2,8),(2,9).
+\]
+They determine all nonroot counts.  Twenty-two of the 28 hierarchy rows
+are equalities.  Backward tree recurrence gives positive edge prices and
+positive prices for both root caps, with dual objective equal to the primal
+sum.
+
+The source-pinned exact replay checks all $359516$ rows
+$18159\le K'\le377674$ in 64 bounded workers.  The packet verifiers
+independently reconstruct the projective partition bound and the replay
+start, endpoint, and adjacent wall from exact tree-path products.  These
+give the displayed opposite integer signs.
+\end{proof}
+
 \begin{proposition}[Rank-eight owner-pair capacity]
 \label{prop:kb-rank11-rank8-owner-pair-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -11660,15 +11735,19 @@ Proposition~\ref{prop:kb-rank11-kernel-multistep-shadow} supplies all 28
 step sizes, and
 Corollary~\ref{cor:kb-rank11-kernel-multistep-shadow-capacity} extends the
 exact interval through $K'=18158$, but not above the printed $18159$ wall.
+Proposition~\ref{prop:kb-rank11-kernel-corank1-projective-pair} sharpens the
+active corank-one cap, and
+Corollary~\ref{cor:kb-rank11-kernel-projective-pair-capacity} extends the
+exact interval through $K'=377673$, but not above the printed $377674$ wall.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
 rank-eight target from $K'=37996$ onward, but not below its printed wall.
 Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
 surviving rank-eight interval to the guarded dense-owner terminal, but does
 not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Thus the remaining intervals are rank eight only on
-$10\le K'\le18158$, rank eight plus kernel on $18159\le K'\le22525$,
-dense-owner chronology plus kernel on $22526\le K'\le37995$, and kernel
-only above.
+$10\le K'\le22525$, dense-owner chronology only on
+$22526\le K'\le37995$, no component target on
+$37996\le K'\le377673$, and kernel only above.
 The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,

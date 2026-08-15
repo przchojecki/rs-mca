@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages thirty-two proved local route cuts after the fixed
+This certificate packages thirty-four proved local route cuts after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -67,6 +67,11 @@ rank-eleven anchor-star reduction:
   for every `2<=t<d<=9`;
 - the resulting exact all-step hierarchy exclusion through `K'=18158`,
   with first reversal at `K'=18159`;
+- a corank-one projective-normal pair count: every record owns at least
+  `2*(67473-1)=134944` ordered independent coordinate pairs, lowering the
+  complete shortened record cap from `16295594` to `8147918`;
+- the resulting two-root hierarchy exclusion through `K'=377673`, with
+  both shared resources slack and first reversal at `K'=377674`;
 - the rank-eight marked owner-pair cap `981105*C(n'-9,2)`;
 - exact exclusion of the rank-eight owner-flat target for
   `37996<=K'<=1048576`, with the last failed row `K'=37995` printed;
@@ -83,7 +88,8 @@ normalization model.  The independent verifier recomputes the ratios by a
 separate method, exhausts all `981104` admissible owner-core sizes, all
 `11763` hybrid rows, all `15436` one-shadow rows, all `15661`
 full-containment rows, all `17599` rank-eight-deficit rows, and all `494`
-two-step boundary rows, all `58` all-step boundary rows, checks all
+two-step boundary rows, all `58` all-step boundary rows, the projective
+partition extremum and three exact projective-capacity boundary rows, checks all
 `11` rank-eight monotonicity
 factors and both dense-owner bridge boundary rows, and checks a toy
 affine-plane line design. Both reject
@@ -91,6 +97,6 @@ proof-critical manifest mutations.
 
 The owner key remains recordwise. The local-cap fence does not instantiate the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane, pay the fixed-kernel branch above `K'=18158` or the rank-eight branch
+lane, pay the fixed-kernel branch above `K'=377673` or the rank-eight branch
 below `K'=22526`, assign the bridged dense owner in first-match chronology,
 pay error rank eleven, move an active v4 atom, or close KoalaBear.

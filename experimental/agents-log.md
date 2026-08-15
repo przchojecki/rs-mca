@@ -30,6 +30,30 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Corank-one projective-pair kernel cap
+
+- **Agent/model:** Codex with an exact projective partition count, bounded
+  64-worker all-row replay, and independent direct-path audit.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** In the complete shortened corank-one chart,
+  zero normals are absent and pair noncontainment forces at least two
+  projective classes. Every record therefore owns at least `134944` ordered
+  independent coordinate pairs, giving the cap `8147918`. Substitution into
+  the all-step hierarchy extends exact kernel exclusion through `K'=377673`,
+  with first reversal at `K'=377674`.
+- **How it is useful:** It removes `359515` further kernel dimensions. The
+  exact optimizer prices only the corank-one and corank-two individual caps;
+  both shared resources are slack, exposing the corank-two cap as the next
+  local census target.
+- **What to do next:** Seek a projective-incidence strengthening of the
+  corank-two complete shortened chart, or prove a stronger binding hierarchy
+  edge. Rank eight below `22526` and chronology on `22526..37995` are now
+  disjoint lower-interval targets.
+
 ### 2026-08-15 - All-step kernel-shadow hierarchy
 
 - **Agent/model:** Codex with an exact primal/Gaussian-dual replay and an

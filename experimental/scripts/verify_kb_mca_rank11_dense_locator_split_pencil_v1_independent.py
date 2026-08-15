@@ -188,6 +188,20 @@ FIXED_CHART_SOURCES = {
         "tree": "948a43bb37ed08bc01ceea42dfa26a8b1e59c7a5",
         "contract_sha256": "1645081d2c338bd79210f3417f2520c14bfc72d0351af70fbb042b3ecd408636",
     },
+    "kernel_corank1_projective_pair_cap": {
+        "id": "rate_half_mca_rank11_kernel_corank1_projective_pair_cap",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_corank1_projective_pair_cap",
+        "commit": "ce200a0cd7e6db25623bac54121b8ab219fe8e79",
+        "tree": "0df97220f4e335c305eae2c962d2add70f6d5f42",
+        "contract_sha256": "274e46e67449c810193279941492511ddd67acff87649f5756b2b330718d9015",
+    },
+    "kernel_projective_pair_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_projective_pair_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_projective_pair_capacity_cut",
+        "commit": "ce200a0cd7e6db25623bac54121b8ab219fe8e79",
+        "tree": "4aea913141cc4c115644cca0873964b553c0cf42",
+        "contract_sha256": "505c2796e34cf21743ac3465c10f71a0ee90c22b29f839a18ceebd8ab2597ff4",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -641,6 +655,39 @@ def independent_multistep_recurrence(
     return optimum, allocation, mu, eta, hierarchy_dual
 
 
+def independent_projective_pair_optimum(
+    kprime: int,
+) -> tuple[Fraction, list[Fraction]]:
+    rows = independent_kernel_hybrid_terms(kprime)
+    extension = comb(kprime - 10, 2)
+    ambient = comb(1048576 + kprime, 9) * 8147918 * extension // 3
+    rows[0] = (ambient, rows[0][1], "ambient" if ambient <= rows[0][1] else "record")
+    caps = [Fraction(min(left, right), 274980728111260126) for left, right, _ in rows]
+
+    def ratio(step: int, source: int) -> Fraction:
+        raising = Fraction(
+            comb(source + 2, step) * comb(67472 + source, step),
+            comb(kprime - source - 11 + step, step),
+        )
+        return Fraction(comb(9 - source + step, step), 1) / raising
+
+    factor = {1: Fraction(1), 2: Fraction(1)}
+    factor[3] = ratio(2, 3)
+    factor[4] = ratio(3, 4)
+    factor[5] = factor[3] * ratio(2, 5)
+    factor[6] = factor[4] * ratio(2, 6)
+    factor[7] = factor[5] * ratio(2, 7)
+    factor[8] = factor[6] * ratio(2, 8)
+    factor[9] = factor[7] * ratio(2, 9)
+    allocation = [
+        caps[0] * factor[dimension] if dimension != 2 else caps[1]
+        for dimension in range(1, 10)
+    ]
+    require(all(0 < number <= cap for number, cap in zip(allocation, caps)), f"projective direct caps K={kprime}")
+    require(allocation[:2] == caps[:2], f"projective direct roots K={kprime}")
+    return sum(allocation, Fraction(0)), allocation
+
+
 def independent_kernel_demand(kprime: int) -> int:
     return ceiling(
         Fraction(
@@ -731,6 +778,8 @@ def main() -> None:
     kernel_two_step_cut = data["kernel_two_step_nine_shadow_capacity_cut"]
     kernel_multistep_hierarchy = data["kernel_multistep_shadow_hierarchy"]
     kernel_multistep_cut = data["kernel_three_step_shadow_capacity_cut"]
+    kernel_projective_cap = data["kernel_corank1_projective_pair_cap"]
+    kernel_projective_cut = data["kernel_projective_pair_capacity_cut"]
     rank8_owner_cap = data["rank8_owner_pair_weight_cap"]
     rank8_cut = data["rank8_weighted_capacity_cut"]
     dense_owner = data["rank8_dense_owner_terminal_bridge"]
@@ -1323,6 +1372,62 @@ def main() -> None:
     require(multistep_wall_capacity - multistep_wall_demand == 20286290696334777989469267474876769475675508046109372076445, "multistep wall excess")
     require(independent_kernel_demand_ratio(18159) < multistep_wall, "multistep wall")
 
+    projective_n, projective_m = 1048577, 67473
+    concentrated_maximum = max(
+        (projective_m - classes + 1) ** 2 + classes - 1
+        for classes in range(2, projective_m + 1)
+    )
+    projective_pairs = projective_m**2 - concentrated_maximum
+    projective_cap, projective_remainder = divmod(
+        projective_n * (projective_n - 1), projective_pairs
+    )
+    require(kernel_projective_cap == {
+        "domain_size": projective_n,
+        "code_dimension": 1,
+        "support_size": projective_m,
+        "explanation_dimension": 1,
+        "zero_normal_upper_bound": 0,
+        "minimum_projective_classes": 2,
+        "minimum_independent_ordered_pairs_per_record": projective_pairs,
+        "coordinate_ordered_pair_resource": projective_n * (projective_n - 1),
+        "record_cap": projective_cap,
+        "division_remainder": projective_remainder,
+        "previous_transversality_record_cap": projective_n * (projective_n - 1) // projective_m,
+        "record_cap_improvement": projective_n * (projective_n - 1) // projective_m - projective_cap,
+        "capacity_formula": "floor(n*(n-1)/(2*(m-1)))",
+    }, "projective pair cap")
+    require(projective_pairs == 134944 and projective_cap == 8147918, "projective pair arithmetic")
+    projective_tree = [[2, 3], [3, 4], [2, 5], [2, 6], [2, 7], [2, 8], [2, 9]]
+    projective_tight = [
+        [2, 3], [2, 5], [2, 6], [2, 7], [2, 8], [2, 9],
+        [3, 4], [3, 6], [3, 7], [3, 8], [3, 9],
+        [4, 5], [4, 7], [4, 8], [4, 9],
+        [5, 6], [5, 8], [5, 9],
+        [6, 7], [6, 9], [7, 8], [8, 9],
+    ]
+    require(kernel_projective_cut["dual_tree"] == projective_tree, "projective tree")
+    require(kernel_projective_cut["tight_hierarchy_rows"] == projective_tight, "projective tight rows")
+    require(kernel_projective_cut["checked_rows_including_wall"] == 359516, "projective replay rows")
+    require(kernel_projective_cut["source_replay_chunks"] == 64, "projective replay chunks")
+    projective_checks = 0
+    for prefix, kprime, closed in (
+        ("replay_start", 18159, True),
+        ("endpoint", 377673, True),
+        ("wall", 377674, False),
+    ):
+        optimum, allocation = independent_projective_pair_optimum(kprime)
+        require(optimum == Fraction(kernel_projective_cut[f"{prefix}_optimum_numerator"], kernel_projective_cut[f"{prefix}_optimum_denominator"]), f"projective {prefix} optimum")
+        require((independent_kernel_demand_ratio(kprime) > optimum) is closed, f"projective {prefix} sign")
+        scaled = 274980728111260126 * optimum
+        capacity = scaled.numerator // scaled.denominator
+        demand = independent_kernel_demand(kprime)
+        require(capacity == kernel_projective_cut[f"{prefix}_capacity"], f"projective {prefix} capacity")
+        require(demand == kernel_projective_cut[f"{prefix}_demand"], f"projective {prefix} demand")
+        require(all(number > 0 for number in allocation), f"projective {prefix} allocation")
+        projective_checks += 1
+    require(kernel_projective_cut["endpoint_gap"] == 608290099077401798561583762592584078050381528604243813748500153228, "projective endpoint gap")
+    require(kernel_projective_cut["wall_excess"] == 1089804128361045148874283346879615159892995682385275039289561845323, "projective wall excess")
+
     require(rank8_owner_cap == {
         "kernel_dimension": 2,
         "owner_flat_dimension": 4,
@@ -1391,7 +1496,7 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated": True,
-        "kernel_dominant_lane_closed_through_Kprime": 18158,
+        "kernel_dominant_lane_closed_through_Kprime": 377673,
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,
         "chronology_owner": False,
@@ -1432,6 +1537,10 @@ def main() -> None:
         f"multistep_checks={multistep_checks+1} "
         f"multistep_endpoint_gap={multistep_endpoint_demand-multistep_endpoint_capacity} "
         f"multistep_wall_excess={multistep_wall_capacity-multistep_wall_demand} "
+        f"projective_pair_cap={projective_cap} "
+        f"projective_pair_checks={projective_checks} "
+        f"projective_pair_endpoint_gap={kernel_projective_cut['endpoint_gap']} "
+        f"projective_pair_wall_excess={kernel_projective_cut['wall_excess']} "
         f"rank8_last_gap={rank8_last_cap-rank8_last_demand} "
         f"rank8_first_gap={rank8_first_demand-rank8_first_cap} "
         f"rank8_monotone_factors={monotone_factors} "
