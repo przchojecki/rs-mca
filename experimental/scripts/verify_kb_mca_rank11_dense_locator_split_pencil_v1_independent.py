@@ -224,6 +224,20 @@ FIXED_CHART_SOURCES = {
         "tree": "aaeafc666b5880de825572df4dc527aba32a7d97",
         "contract_sha256": "29303e23b2286b8c6dbd5d496d5ec9dc779f929bf880d20c5c1eb86268e9782a",
     },
+    "rank_stratified_isolated_incidence_cap": {
+        "id": "rate_half_mca_rank11_rank_stratified_isolated_incidence_cap",
+        "path": "background/nodes/rate_half_mca_rank11_rank_stratified_isolated_incidence_cap",
+        "commit": "ad44a0555d5f085cc90e7c96b28248d9e244f647",
+        "tree": "e9d6ce6768c7e61fc98c85394e50a8a725ece9b9",
+        "contract_sha256": "25def3f3f47dedd1d7aeb704c24dd28c00b507fda019bd72e9240ed6bcbd123c",
+    },
+    "rank11_k41_sharp_isolated_payment": {
+        "id": "rate_half_mca_rank11_k41_sharp_isolated_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k41_sharp_isolated_payment",
+        "commit": "ad44a0555d5f085cc90e7c96b28248d9e244f647",
+        "tree": "9dbe7abfaa4dd656219239a9f4f2b2f661208598",
+        "contract_sha256": "0b926a50e1d5ab12e56bdb1db2cdd143e7de60bf371862501d3853beb86ded69",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -493,6 +507,32 @@ def require(condition: bool, message: str) -> None:
 
 def ceiling(value: Fraction) -> int:
     return -(-value.numerator // value.denominator)
+
+
+def rank_stratified_isolated_model() -> tuple[int, int]:
+    prime = 101
+    row = [pow(i + 2, 3, prime) for i in range(10)]
+    constant_values = [(7 * i * i + 3) % prime for i in range(10)]
+    linear_values = [(11 * i + 5) % prime for i in range(10)]
+    constant = (19 - sum(x * y for x, y in zip(row, constant_values))) % prime
+    linear = (23 - sum(x * y for x, y in zip(row, linear_values))) % prime
+    require(linear != 0, "isolated-model nonidentity branch")
+    root = (-constant * pow(linear, -1, prime)) % prime
+    require(
+        [z for z in range(prime) if (constant + z * linear) % prime == 0]
+        == [root],
+        "isolated-model unique slope",
+    )
+    kernel = [0] * 9 + [1]
+    rank_nine_rows = [[int(i == j) for j in range(10)] for i in range(9)]
+    require(
+        all(
+            sum(x * y for x, y in zip(basis, kernel)) % prime == 0
+            for basis in rank_nine_rows
+        ),
+        "isolated-model kernel line",
+    )
+    return prime, root
 
 
 def short_fall(value: int, length: int) -> int:
@@ -1847,6 +1887,8 @@ def main() -> None:
     universal_completion = data["sparse_circuit_universal_completion_incidence_cap"]
     full_deficit_ledger = data["rank9_full_circuit_deficit_ledger"]
     full_deficit_payment = data["rank11_k24_k40_full_deficit_shadow_payment"]
+    sharp_isolated = data["rank_stratified_isolated_incidence_cap"]
+    k41_sharp = data["rank11_k41_sharp_isolated_payment"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -2776,7 +2818,7 @@ def main() -> None:
         for support in range(2, 10)
     }
     independent_full_rows: dict[str, dict[str, int]] = {}
-    for kprime in range(24, 42):
+    for kprime in range(24, 43):
         quotient = kprime - 10
         mprime = 67472 + kprime
         structured = {
@@ -2828,18 +2870,19 @@ def main() -> None:
             active,
             full_weights,
         )
-        declared = full_deficit_payment["rows"][str(kprime)]
-        require(
-            declared["maximizing_core"] == replay["maximizing_core"] == kprime - 1
-            and declared["uniform_rank9_chart_cap"] == replay["chart"]
-            and declared["active_sparse_premium"] == replay["premium"]
-            and declared["demand_capacity_gap"] == replay["gap"],
-            f"independent full-deficit row {kprime}",
-        )
+        if kprime <= 41:
+            declared = full_deficit_payment["rows"][str(kprime)]
+            require(
+                declared["maximizing_core"] == replay["maximizing_core"] == kprime - 1
+                and declared["uniform_rank9_chart_cap"] == replay["chart"]
+                and declared["active_sparse_premium"] == replay["premium"]
+                and declared["demand_capacity_gap"] == replay["gap"],
+                f"independent full-deficit row {kprime}",
+            )
         require(replay["coefficient"] > 0, f"full-deficit coefficient {kprime}")
         if kprime <= 40:
             require(replay["gap"] > 0 and replay["raw"] > 0, f"closed row {kprime}")
-        else:
+        elif kprime == 41:
             require(replay["gap"] < 0 and replay["raw"] < 0, "K'=41 wall")
         independent_full_rows[str(kprime)] = replay
     require(
@@ -2853,6 +2896,56 @@ def main() -> None:
         == -independent_full_rows["41"]["gap"]
         == 4398836630793080990004182400858693750491819390616783425932508,
         "independent full-deficit wall",
+    )
+    require(sharp_isolated == {
+        "correction_dimension": 10,
+        "tuple_size": 11,
+        "dense_locator_degree": 18,
+        "retained_slopes_are_distinct": True,
+        "retained_slopes_avoid_locator_roots": True,
+        "old_generic_isolated_cap_per_tuple": 198,
+        "new_record_isolated_cap_per_tuple": 1,
+        "component_lower_bound": "N*C(m_prime,11)-C(n_prime,11)",
+    }, "independent sharp isolated-incidence constants")
+    isolated_field, isolated_root = rank_stratified_isolated_model()
+    row41 = independent_full_rows["41"]
+    sharp_demand = non_dense * comb(67513, 11) - comb(1048617, 11)
+    sharp_coefficient = 55 * comb(67513, 11) - row41["premium"]
+    sharp_raw = (
+        non_dense * sharp_coefficient
+        - 55 * comb(1048617, 11)
+        - 55 * row41["kernel"]
+        - row41["marks"]
+    )
+    row42 = independent_full_rows["42"]
+    k42_demand = non_dense * comb(67514, 11) - comb(1048618, 11)
+    k42_excess = row42["total"] - k42_demand
+    require(
+        k41_sharp["closed_row"] == 41
+        and k41_sharp["new_closed_prefix"] == [10, 41]
+        and k41_sharp["first_method_wall"] == 42
+        and k41_sharp["residual_record_floor"] == non_dense
+        and k41_sharp["n"] == 1048617
+        and k41_sharp["m"] == 67513
+        and k41_sharp["q"] == 31
+        and k41_sharp["isolated_cap_per_eleven_set"] == 1
+        and k41_sharp["isolated_global_cap"] == comb(1048617, 11)
+        and k41_sharp["max_core"] == row41["maximizing_core"] == 40
+        and k41_sharp["chart"] == row41["chart"]
+        and k41_sharp["kernel_capacity"] == row41["kernel"]
+        and k41_sharp["rank_nine_marks"] == row41["marks"]
+        and k41_sharp["completion_premium"] == row41["premium"]
+        and k41_sharp["full_rank_capacity"] == row41["full_rank"]
+        and k41_sharp["total_capacity"] == row41["total"]
+        and k41_sharp["required_component_incidence"] == sharp_demand
+        and k41_sharp["gap"] == sharp_demand - row41["total"]
+        == 3959829848992990899082071934034620604165114037293042026746826
+        and k41_sharp["record_coefficient_cross"] == sharp_coefficient > 0
+        and k41_sharp["floor_record_raw_cross"] == sharp_raw > 0
+        and k41_sharp["K42_capacity_excess"] == k42_excess
+        == 2710771376158610722953158157862051010402433288229120154217278
+        and k41_sharp["remaining_rank9_interval"] == [42, 15528],
+        "independent K'=41 sharp payment",
     )
     k14_toy = codimension_four_sparse_circuit_toy()
     require(k14_toy == (10, 6, 4, 3), "K'=14 finite-field branches")
@@ -3724,8 +3817,9 @@ def main() -> None:
         "rank9_k22_integral_near_saturation_closed_K_prime": 22,
         "rank9_k23_completion_defect_closed_K_prime": 23,
         "rank9_k24_k40_full_deficit_shadow_closed_K_prime": 40,
+        "rank9_k41_sharp_isolated_closed_K_prime": 41,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [41, 15528],
+        "rank9_remaining_interval": [42, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -3768,6 +3862,9 @@ def main() -> None:
         f"full_deficit_rows=17 "
         f"k40_full_deficit_gap={independent_full_rows['40']['gap']} "
         f"k41_full_deficit_excess={-independent_full_rows['41']['gap']} "
+        f"k41_sharp_gap={k41_sharp['gap']} "
+        f"k42_sharp_excess={k42_excess} "
+        f"isolated_model=GF({isolated_field})/{isolated_root} "
         f"k14_toy={'/'.join(map(str, k14_toy))} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "

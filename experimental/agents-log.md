@@ -4976,3 +4976,38 @@ Keep entries concise and link to the relevant files.
   vector or introduce another genuinely shared incidence resource.  Do not
   maximize support strata independently, omit a kernel corank, or reuse a
   rank-nine mark.
+
+### 2026-08-15 - Sharp isolated-incidence payment closes K'=41
+
+- **Agent/model:** Codex, importing two further proved public prize-DAG nodes
+  after proof audit, exact arithmetic, finite-field replay, and hostile
+  mutation testing.
+- **Exact parent:** this PR's `K'=24..40` extension at
+  `768e95bb74fec99e40cad8144ac8ce4568263f9f`.
+- **Research source:** prize-DAG commit
+  `ad44a0555d5f085cc90e7c96b28248d9e244f647`; source-contract SHA-256 values
+  `25def3f3f47dedd1d7aeb704c24dd28c00b507fda019bd72e9240ed6bcbd123c`
+  and `0b926a50e1d5ab12e56bdb1db2cdd143e7de60bf371862501d3853beb86ded69`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** For one fixed eleven-set, evaluation rank at most
+  nine places every compatible retained record on an affine kernel line.  At
+  rank ten, ten-coordinate interpolation leaves one linear equation in the
+  slope; its identity branch is positive-dimensional and its nonidentity
+  branch retains at most one slope.  Therefore actual retained records have
+  at most one isolated incidence per eleven-set, rather than the generic
+  multiplicity allowance 198 used by the older density bound.
+- **Impact:** With every component-capacity term unchanged, exact demand
+  `R*C(m',11)-C(n',11)` closes `K'=41` by
+  `3959829848992990899082071934034620604165114037293042026746826`.
+  The first remaining rank-nine row is `K'=42`.
+- **Controls:** The primary verifier regenerates the 73-source manifest and
+  rejects 127 hostile mutations.  The independent verifier reconstructs the
+  weighted component capacity, sharp demand, positive record coefficient,
+  and a `GF(101)` rank-nine/rank-ten elimination model.
+- **Nonclaim:** At `K'=42` the sharp payment has exact capacity excess
+  `2710771376158610722953158157862051010402433288229120154217278`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** At `K'=42`, sharpen the rank-nine chart or the complete
+  weighted deficit premium, or identify another shared resource.  Preserve
+  every kernel corank and do not reuse a rank-nine mark.

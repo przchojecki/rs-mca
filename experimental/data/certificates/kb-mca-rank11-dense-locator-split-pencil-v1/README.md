@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages seventy-one proved local results after the fixed
+This certificate packages seventy-three proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -112,6 +112,17 @@ rank-eleven anchor-star reduction:
   is `2272401814108959137912675549447888006236817090602808413697595`
   at `K'=40`; the refined method first fails at `K'=41` by capacity excess
   `4398836630793080990004182400858693750491819390616783425932508`;
+- a rank-stratified isolated-incidence theorem: on a fixed eleven-set,
+  evaluation rank at most nine puts every compatible record on a kernel line,
+  while rank ten leaves at most one isolated retained slope after
+  ten-coordinate interpolation.  Thus actual retained records contribute at
+  most one isolated incidence per eleven-set, replacing the generic
+  multiplicity allowance `198` by `1` for this payment;
+- the resulting sharp `K'=41` payment.  Exact component demand
+  `R*C(m',11)-C(n',11)` exceeds unchanged complete capacity by
+  `3959829848992990899082071934034620604165114037293042026746826`; the same
+  payment first fails at `K'=42` by capacity excess
+  `2710771376158610722953158157862051010402433288229120154217278`;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -238,13 +249,14 @@ tests, all 605 circuit-shadow omissions, structured/unstructured
 codimension-three circuit models, and a codimension-four completion-ladder
 model over `GF(17)`.  It also independently reconstructs all eight old joint
 payment rows, every exact integral chart, the `K'=22` and `K'=23` payments,
-all seventeen full-deficit rows, and the `K'=41` method wall. The primary replay checks the
+all seventeen old full-deficit rows, the old `K'=41` density wall, the sharp
+`K'=41` payment, and the `K'=42` method wall. The primary replay checks the
 existing affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `41<=K'<=15528` is open; the
+lane. The low rank-nine interval `42<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not

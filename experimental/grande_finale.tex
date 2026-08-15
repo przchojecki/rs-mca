@@ -10595,6 +10595,47 @@ a positive-dimensional evaluation kernel.  These alternatives are
 exhaustive, and halving the total component floor gives the one-lane floor.
 \end{proof}
 
+\begin{proposition}[Rank-stratified isolated-record bound]
+\label{prop:kb-rank11-rank-stratified-isolated-incidence}
+Fix an eleven-set $T$ and consider only retained record points
+$(\gamma,R_\gamma)$ satisfying
+\eqref{eq:kb-rank11-dense-locator-coordinate} on every coordinate of $T$.
+At most one such point is isolated.  Consequently, if $N$ retained records
+have exact support size $m'$ in a residual domain of size $n'$, at least
+\[
+ N\binom{m'}{11}-\binom{n'}{11}
+\]
+record/eleven-set incidences lie on positive-dimensional components.
+This counts actual retained records and does not replace the valid generic
+multiplicity bound in Proposition~\ref{prop:kb-rank11-component-incidence}.
+\end{proposition}
+
+\begin{proof}
+Write $a_x=(a'_0-r'_0)(x)$ and $b_x=(b'_0-r'_1)(x)$.
+Put $r=\rank(\operatorname{ev}_T:V'\to\F^T)$.  If $r\le9$, choose
+$0\ne u\in\ker(\operatorname{ev}_T)$.  Every compatible point then lies on
+the affine kernel line $(\gamma,R_\gamma+tu)$ and is not isolated.
+
+Suppose $r=10$, and choose a ten-set $B\subset T$ on which evaluation is an
+isomorphism.  There are unique $U_0,U_1\in V'$ whose values on $B$ cancel
+the constant and linear terms in
+\eqref{eq:kb-rank11-dense-locator-coordinate}.  On $q(Z)\ne0$, the ten
+equations indexed by $B$ are equivalent to
+\[
+ q(Z)R=U_0+ZU_1.
+\]
+Substitution in the remaining coordinate $y\in T\setminus B$ leaves one
+equation
+\[
+ (a_y+U_0(y))+Z(b_y+U_1(y))=0.
+\]
+If it is an identity, every retained solution belongs to a one-parameter
+affine-owner component.  Otherwise it has at most one root.  Retained slopes
+are distinct and avoid the roots of $q$, so at most one retained record point
+is isolated on $T$.  Summing over the $\binom{n'}{11}$ choices of $T$ gives
+the assertion.
+\end{proof}
+
 \begin{corollary}[Component-star owner-pencil trichotomy]
 \label{cor:kb-rank11-component-star}
 At least $540546700$ parts per billion of the non-dense records have at
@@ -12112,6 +12153,56 @@ $24\le K'\le40$ both the cleared record coefficient and its minimum-record
 cross-product are positive.  The gaps decrease to the displayed $K'=40$
 value.  At $K'=41$ both the gap and the cross-product are negative, giving
 the stated honest method wall.
+\end{proof}
+
+\begin{proposition}[$K'=41$ sharp isolated-incidence payment]
+\label{prop:kb-rank11-k41-sharp-isolated-payment}
+In the fixed component target, every rank-nine alternative is empty at
+$K'=41$.  Retain every kernel-corank term, integral core chart, completion
+premium, and full 55-shadow capacity from
+Proposition~\ref{prop:kb-rank11-k24-k40-full-deficit-payment}, and replace
+only the generic isolated-point allowance by
+Proposition~\ref{prop:kb-rank11-rank-stratified-isolated-incidence}.
+Then exact component demand exceeds complete capacity by
+\[
+3959829848992990899082071934034620604165114037293042026746826.
+\]
+The same payment first fails at $K'=42$, where capacity exceeds demand by
+\[
+2710771376158610722953158157862051010402433288229120154217278.
+\]
+\end{proposition}
+
+\begin{proof}
+At $K'=41$, write $n'=1048617$, $m'=67513$, and
+$N=N_{\min}=274980728111260126$.  The rank-stratified demand is exactly
+\[
+N\binom{m'}{11}-\binom{n'}{11}
+=914185087092839732068202094579173634339667328332842235009045152.
+\]
+The unchanged kernel and full-rank capacities are respectively
+\[
+16046971808807649741426607721480807522683424615973152263500
+\]
+and
+\[
+910209210272037933519378596037417532927979530870933219830034826,
+\]
+whose sum is
+\[
+910225257243846741169120022645139013735502214295549192982298326.
+\]
+Subtraction gives the displayed positive gap.  After clearing the
+55-shadow denominator, the coefficient of $N$ is
+\[
+143297102916558158042999955475306246365479723103>0,
+\]
+and the minimum-record cross-product is
+\[
+217790641694614499449513956371904133229081272051117311471075418>0.
+\]
+Thus the contradiction persists for every $N\ge N_{\min}$.  Exact replay
+at $K'=42$ gives the displayed capacity excess, so no later row is claimed.
 \end{proof}
 
 \begin{proposition}[Canonical kernel-basis capacity]
@@ -13692,8 +13783,10 @@ Proposition~\ref{prop:kb-rank11-k22-near-saturation-payment} passes the old
 $K'=22$ wall, Proposition~\ref{prop:kb-rank11-completion-defect-hierarchy}
 pays $K'=23$, and
 Proposition~\ref{prop:kb-rank11-k24-k40-full-deficit-payment} pays rank nine
-through $K'=40$.  Thus the remaining intervals are rank eight only on
-$22\le K'\le40$, rank nine or rank eight on $41\le K'\le15528$, rank
+through $K'=40$, and
+Proposition~\ref{prop:kb-rank11-k41-sharp-isolated-payment} pays $K'=41$.
+Thus the remaining intervals are rank eight only on
+$22\le K'\le41$, rank nine or rank eight on $42\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -13703,9 +13796,9 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=41$, the full-deficit formula has the
-printed capacity excess
-$4398836630793080990004182400858693750491819390616783425932508$.
+At the first remaining rank-nine row $K'=42$, the sharp-isolated
+full-deficit formula has the printed capacity excess
+$2710771376158610722953158157862051010402433288229120154217278$.
 This is a method wall: a continuation must sharpen the complete weighted
 deficit vector, lower the rank-nine chart, or extract another shared resource without omitting a kernel
 corank or reusing a rank-nine mark.
