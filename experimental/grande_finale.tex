@@ -11936,10 +11936,100 @@ proves \textup{(PF)}; the integer division has remainder
 $1056607358217600$.
 \end{proof}
 
-\begin{corollary}[Conditional projective-frame kernel-capacity cut]
+\begin{proposition}[Rank-four bounded-point/line basis floor]
+\label{prop:kb-rank11-rank4-bounded-point-line}
+Let $M$ be a loopless rank-four matroid on $m=a+r$ elements, where
+$a\ge1$ and $r\ge3$. Suppose every parallel class has size at most $a$ and
+every rank-two flat has size at most $a+1$. Put
+\[
+ h_a(r)=\min\left\{\left\lfloor\frac{a+1}{2}\right\rfloor,
+                    \left\lfloor\frac{a+r}{4}\right\rfloor\right\},
+\]
+\[
+ C_a(r)=(a+r-1)(r-1)(r-2),\qquad
+ L_a(r)=3(a+r-h_a(r)-1)(r-2),
+\]
+and define $Q_a(3)=6$ and, for $r\ge4$,
+\[
+ Q_a(r)=\min\{C_a(r),Q_a(r-1)+L_a(r)\}.
+ \tag{BPL}\label{eq:kb-rank11-rank4-bounded-point-line}
+\]
+Then the number $b(M)$ of unordered bases satisfies
+\[
+ 6b(M)\ge Q_a(r).
+\]
+\end{proposition}
+
+\begin{proof}
+Induct on $r$. At $r=3$, rank four supplies one basis. If $M$ has a coloop
+$e$, then $M\setminus e$ has rank three on $q=m-1$ elements. Sequentially
+choosing an ordered independent triple gives at least $q$, $q-a=r-1$, and
+$q-(a+1)=r-2$ choices, respectively. Hence $6b(M)\ge C_a(r)$.
+
+Otherwise choose $e$ in a smallest parallel class $P$, of size $c$.
+The simplification has at least four points, so $4c\le m$. A rank-two flat
+through $P$ and any other parallel class contains at least $2c$ elements,
+so $2c\le a+1$. Thus $c\le h_a(r)$. Deletion preserves rank four and the
+two ceilings. After contracting $e$ and deleting the loops $P\setminus e$,
+the resulting rank-three matroid has $a+r-c$ elements and parallel-class
+ceiling $a+1-c$. Proposition~\ref{prop:kb-rank11-rank3-bounded-parallel}
+therefore gives
+\[
+ 6b(M/e)\ge3(a+r-c-1)(r-2)\ge L_a(r).
+\]
+Deletion--contraction gives the second branch of \textup{(BPL)}.
+
+For exact evaluation, unfold the recurrence. Besides the no-reset path, a
+last coloop reset at $j\ge4$ contributes
+\[
+ C_a(j)+\sum_{x=j+1}^{r}L_a(x).
+\]
+The difference between the candidates at $j+1$ and $j$ is
+$(j-1)(3h_a(j+1)-a-2)$. Since $h_a$ is nondecreasing, the reset candidates
+have one turn; the no-reset path is no larger than the $j=4$ candidate by
+$6(h_a(4)-1)\ge0$. Hence only the no-reset path and the reset adjacent to
+that sign change can minimize. Splitting
+$h_a(x)=\min\{\lfloor(a+1)/2\rfloor,\lfloor(a+x)/4\rfloor\}$ at its
+constant branch and by $a+x$ modulo four gives an exact integer evaluator.
+\end{proof}
+
+\begin{corollary}[Uniform corank-three projective-frame cap]
+\label{cor:kb-rank11-kernel-corank3-uniform-projective-frame}
+Every official corank-three shortened chart satisfies
+\[
+ M_3\le983902549.
+ \tag{UPF}\label{eq:kb-rank11-kernel-corank3-uniform-projective-frame}
+\]
+\end{corollary}
+
+\begin{proof}
+After canonical rank-seven basis cancellation, delete all global zero
+normals and put $t=K'-10-z$, $a=t+1$. The remaining chart has
+\[
+ (n,K,m,s)=(1048579+t,3+t,67475+t,3),\qquad r=m-a=67474.
+\]
+Support-local transversality leaves at least $67474$ incident normals
+outside every one-dimensional span and at least $67473$ outside every
+two-dimensional span. Thus the incident loopless rank-four matroid has
+parallel-class ceiling $a$ and rank-two-flat ceiling $a+1$.
+Proposition~\ref{prop:kb-rank11-rank4-bounded-point-line} gives at least
+$4Q_{t+1}(67474)$ ordered independent coordinate quadruples per record, so
+\[
+ M_3(t)\le\left\lfloor
+ \frac{(1048576+t)(1048577+t)(1048578+t)(1048579+t)}
+      {4Q_{t+1}(67474)}
+ \right\rfloor.
+\]
+The one-turn exact evaluator checks every $0\le t\le1048566$. Its maximum
+is $983902549$ at $t=0$; the values at $t=1$ and $t=1048566$ are
+$983891721$ and $951742008$. The primary verifier exhausts all $1048567$
+rows with exact integers, while the independent verifier unfolds the
+recurrence directly at five separated rows. A source-pinned 512 MB,
+60-second-limited worker independently reports the same all-row maximum.
+\end{proof}
+
+\begin{corollary}[Projective-frame kernel-capacity cut]
 \label{cor:kb-rank11-kernel-projective-frame-capacity}
-Assume that every official corank-three shortened chart satisfies the
-uniform record cap $M_3\le983902549$.
 The projective caps for coranks one, two, and three, the other individual
 ambient/record caps, and the 28 inequalities \textup{(MS)} exclude the
 dominant kernel lane for
@@ -12126,8 +12216,9 @@ prove the stronger cap uniformly.  Therefore
 Corollary~\ref{cor:kb-rank11-kernel-projective-basis-capacity} extends the
 exact interval through $K'=568338$, but not above the printed $568339$ wall.
 Proposition~\ref{prop:kb-rank11-kernel-corank3-projective-frame} sharpens the
-complete-chart corank-three cap.  Conditional only on uniform promotion of
-the corank-three cap,
+complete-chart corank-three cap.  Proposition~\ref{prop:kb-rank11-rank4-bounded-point-line}
+and Corollary~\ref{cor:kb-rank11-kernel-corank3-uniform-projective-frame}
+prove that cap uniformly.  Therefore
 Corollary~\ref{cor:kb-rank11-kernel-projective-frame-capacity} extends the
 exact interval through $K'=796598$, but not above the printed $796599$ wall.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
@@ -12138,11 +12229,8 @@ not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Thus the remaining intervals are rank eight only on
 $10\le K'\le22525$, dense-owner chronology only on
 $22526\le K'\le37995$, no component target on
-$37996\le K'\le568338$, and kernel only on
-$568339\le K'\le1048576$.  The remaining conditional capacity replay
-describes what the same ledger would prove if its corank-three uniform-cap
-premise were established; it does not shrink this unconditional kernel
-interval.
+$37996\le K'\le796598$, and kernel only on
+$796599\le K'\le1048576$.
 The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,

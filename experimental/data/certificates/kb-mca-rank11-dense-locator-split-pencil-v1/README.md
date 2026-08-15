@@ -1,7 +1,7 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages forty-two proved local results and one exact
-conditional capacity replay after the fixed rank-eleven anchor-star reduction:
+This certificate packages forty-five proved local results after the fixed
+rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
   space;
@@ -97,8 +97,11 @@ conditional capacity replay after the fixed rank-eleven anchor-star reduction:
   least `1228711865141376` ordered independent coordinate quadruples and
   lowering the complete shortened record cap from `3935435218` to
   `983902549`;
-- conditional only on the corank-three cap holding uniformly, the exact
-  three-root hierarchy-forest replay excludes through
+- a loopless rank-four matroid theorem with point ceiling `a`, rank-two-flat
+  ceiling `a+1`, and recursive basis floor `6b(M)>=Q_a(r)`;
+- its shortening-aware application, which proves the corank-three cap
+  `983902549` uniformly over all `1048567` official charts;
+- the resulting unconditional three-root hierarchy-forest replay excludes through
   `K'=796598`, with both shared resources slack and first reversal at
   `K'=796599`;
 - the rank-eight marked owner-pair cap `981105*C(n'-9,2)`;
@@ -119,7 +122,9 @@ separate method, exhausts all `981104` admissible owner-core sizes, all
 full-containment rows, all `17599` rank-eight-deficit rows, and all `494`
 two-step boundary rows, all `58` all-step boundary rows, the projective
 partition, bounded-parallel induction identities, line-split and plane-split
-extrema and nine exact projective-capacity boundary rows, checks the
+extrema, the rank-four recurrence at five separated corank-three shortening
+rows, and nine exact projective-capacity boundary rows. The primary verifier
+separately exhausts all `1048567` corank-three rows, checks the
 complete-chart scope and integer-gap audit, and checks all
 `11` rank-eight monotonicity
 factors and both dense-owner bridge boundary rows, and checks a toy
@@ -128,6 +133,6 @@ proof-critical manifest mutations.
 
 The owner key remains recordwise. The local-cap fence does not instantiate the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane, pay the fixed-kernel branch above `K'=568338` or the rank-eight branch
+lane, pay the fixed-kernel branch above `K'=796598` or the rank-eight branch
 below `K'=22526`, assign the bridged dense owner in first-match chronology,
 pay error rank eleven, move an active v4 atom, or close KoalaBear.

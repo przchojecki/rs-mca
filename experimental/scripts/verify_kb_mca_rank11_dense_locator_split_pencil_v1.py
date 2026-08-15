@@ -270,12 +270,26 @@ SOURCE_NODES = {
         "tree": "214797e76ee997373f9e6d769dc106dfa28c859f",
         "contract_sha256": "1df3954f0b52dc475f5212be64af83530645e3b1b035b2178185f422671e6b8a",
     },
+    "matroid_rank4_bounded_point_line_basis_floor": {
+        "id": "matroid_rank4_bounded_point_line_basis_floor",
+        "path": "background/nodes/matroid_rank4_bounded_point_line_basis_floor",
+        "commit": "a75333b21538bf9b2b90c3332f32e093659867b8",
+        "tree": "8c347327c17423e1cc73ce756b299bf685d84234",
+        "contract_sha256": "1e81b6891afdd1d54f65891b2f29128bb3fd47ff53526fa83e769446bc041f97",
+    },
+    "kernel_corank3_uniform_projective_basis_cap": {
+        "id": "rate_half_mca_rank11_kernel_corank3_uniform_projective_basis_cap",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_corank3_uniform_projective_basis_cap",
+        "commit": "a75333b21538bf9b2b90c3332f32e093659867b8",
+        "tree": "5d52e54f0eb4d557304b2d1c3be6c9f5a39cf9fa",
+        "contract_sha256": "598eb55c00ce2778fa57b185360f80208b5ae34b418a001bd5293b55d6669a7d",
+    },
     "kernel_corank3_projective_capacity_cut": {
         "id": "rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
         "path": "background/nodes/rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
-        "commit": "543be2bd2eac138a525893d6396fc25c4b839b79",
-        "tree": "e9a26cdd40dddeab90e308890ef99831ff64354f",
-        "contract_sha256": "2cf4bca5b0dc130a84bbee61c0769a7a700f0f4f9eeac633d9c0b3c0936a2c76",
+        "commit": "a75333b21538bf9b2b90c3332f32e093659867b8",
+        "tree": "d9dbd0b8eb8edec4138d2a84b5ece248e6faa424",
+        "contract_sha256": "ed03c341d0cbcc9b70648c4563dd9d9ccfdc505a801bd4a795becce560560e59",
     },
     "matroid_paving_basis_floor": {
         "id": "matroid_paving_basis_floor",
@@ -341,6 +355,121 @@ def falling(value: int, length: int) -> int:
 
 def rising(value: int, length: int) -> int:
     return prod(range(value, value + length))
+
+
+def rank4_sum_integers(lo: int, hi: int) -> int:
+    return 0 if lo > hi else (lo + hi) * (hi - lo + 1) // 2
+
+
+def rank4_square_prefix(value: int) -> int:
+    return value * (value + 1) * (2 * value + 1) // 6
+
+
+def rank4_sum_squares(lo: int, hi: int) -> int:
+    return 0 if lo > hi else rank4_square_prefix(hi) - rank4_square_prefix(lo - 1)
+
+
+def rank4_progression_sums(lo: int, hi: int, residue: int) -> tuple[int, int, int]:
+    first = lo + ((residue - lo) % 4)
+    if first > hi:
+        return 0, 0, 0
+    count = (hi - first) // 4 + 1
+    last = first + 4 * (count - 1)
+    index_sum = count * (count - 1) // 2
+    index_square_sum = count * (count - 1) * (2 * count - 1) // 6
+    return (
+        count,
+        count * (first + last) // 2,
+        count * first * first + 8 * first * index_sum + 16 * index_square_sum,
+    )
+
+
+def rank4_sum_h_weight(a: int, lo: int, hi: int) -> int:
+    if lo > hi:
+        return 0
+    half = (a + 1) // 2
+    constant_start = 4 * half - a
+    floor_end = min(hi, constant_start - 1)
+    total = 0
+    if lo <= floor_end:
+        numerator = 0
+        for residue in range(4):
+            count, value_sum, square_sum = rank4_progression_sums(lo, floor_end, residue)
+            remainder = (a + residue) % 4
+            shifted_a = a - remainder
+            numerator += square_sum + (shifted_a - 2) * value_sum - 2 * shifted_a * count
+        require(numerator % 4 == 0, "rank-four residue divisibility")
+        total += numerator // 4
+    constant_lo = max(lo, constant_start)
+    if constant_lo <= hi:
+        count = hi - constant_lo + 1
+        total += half * (rank4_sum_integers(constant_lo, hi) - 2 * count)
+    return total
+
+
+def rank4_sum_increment6(a: int, lo: int, hi: int) -> int:
+    if lo > hi:
+        return 0
+    count = hi - lo + 1
+    value_sum = rank4_sum_integers(lo, hi)
+    unfloored = (
+        (a - 1) * (value_sum - 2 * count)
+        + rank4_sum_squares(lo, hi)
+        - 2 * value_sum
+    )
+    return 3 * (unfloored - rank4_sum_h_weight(a, lo, hi))
+
+
+def rank4_h(a: int, rank_gap: int) -> int:
+    return min((a + 1) // 2, (a + rank_gap) // 4)
+
+
+def rank4_coloop6(a: int, rank_gap: int) -> int:
+    return (a + rank_gap - 1) * (rank_gap - 1) * (rank_gap - 2)
+
+
+def rank4_increment6(a: int, rank_gap: int) -> int:
+    return 3 * (a + rank_gap - rank4_h(a, rank_gap) - 1) * (rank_gap - 2)
+
+
+def rank4_basis_floor6(a: int, rank_gap: int = 67474) -> int:
+    base = 6 + rank4_sum_increment6(a, 4, rank_gap)
+    half = (a + 1) // 2
+    threshold = (a + 4) // 3
+    if threshold > half:
+        reset = rank_gap
+    else:
+        first_nondecreasing = max(5, 4 * threshold - a)
+        reset = rank_gap if first_nondecreasing > rank_gap else first_nondecreasing - 1
+    reset_value = rank4_coloop6(a, reset) + rank4_sum_increment6(a, reset + 1, rank_gap)
+    return min(base, reset_value)
+
+
+def uniform_corank3_row(t_value: int) -> dict[str, int]:
+    floor6 = rank4_basis_floor6(t_value + 1)
+    resource = falling(1048579 + t_value, 4)
+    ordered = 4 * floor6
+    cap, remainder = divmod(resource, ordered)
+    return {
+        "t": t_value,
+        "basis_floor_times_6": floor6,
+        "ordered_basis_floor": ordered,
+        "record_cap": cap,
+        "division_remainder": remainder,
+        "next_integer_gap": 983902550 * ordered - resource,
+    }
+
+
+def scan_uniform_corank3() -> tuple[int, int, int]:
+    maximum = (-1, 0)
+    first_excess = -1
+    for t_value in range(1048567):
+        current = uniform_corank3_row(t_value)
+        require(current["next_integer_gap"] > 0, "uniform corank-three next-integer gap")
+        maximum = max(maximum, (current["record_cap"], -t_value))
+        if current["record_cap"] > 983902549 and first_excess < 0:
+            first_excess = t_value
+    return maximum[0], -maximum[1], first_excess
 
 
 def kernel_record_cap(kprime: int, dimension: int) -> int:
@@ -1383,6 +1512,9 @@ def expected() -> dict[str, Any]:
     dense_owner_last_pairs = comb(1048576 + dense_owner_last - 9, 2)
     dense_owner_first_weight = rank8_weighted_demand(dense_owner_first)
     dense_owner_first_pairs = comb(1048576 + dense_owner_first - 9, 2)
+    uniform_corank3_complete = uniform_corank3_row(0)
+    uniform_corank3_adjacent = uniform_corank3_row(1)
+    uniform_corank3_endpoint = uniform_corank3_row(1048566)
     return {
         "schema": "kb-mca-rank11-dense-locator-split-pencil-v1",
         "exact_parent": PARENT,
@@ -1903,11 +2035,49 @@ def expected() -> dict[str, Any]:
             "record_cap_improvement": 2951532669,
             "capacity_formula": "floor((n)_fall_4/(4*(m-1)*(m-2)*(m-3)))",
         },
+        "matroid_rank4_bounded_point_line_basis_floor": {
+            "status": "proved",
+            "rank": 4,
+            "loopless": True,
+            "parallel_class_ceiling": "a",
+            "rank2_flat_ceiling": "a+1",
+            "smallest_class_ceiling": "h_a(r)=min(floor((a+1)/2),floor((a+r)/4))",
+            "coloop_floor_times_6": "C_a(r)=(a+r-1)*(r-1)*(r-2)",
+            "contraction_increment_times_6": "L_a(r)=3*(a+r-h_a(r)-1)*(r-2)",
+            "recurrence": "Q_a(3)=6; Q_a(r)=min(C_a(r),Q_a(r-1)+L_a(r))",
+            "basis_floor": "6*b(M)>=Q_a(r)",
+            "reset_difference_sign": "3*h_a(x)-a-2",
+        },
+        "kernel_corank3_uniform_projective_basis_cap": {
+            "status": "proved",
+            "rank_gap": 67474,
+            "t_minimum": 0,
+            "t_maximum": 1048566,
+            "parallel_class_ceiling": "t+1",
+            "rank2_flat_ceiling": "t+2",
+            "basis_floor_times_6": "Q_(t+1)(67474)",
+            "ordered_basis_floor": "4*Q_(t+1)(67474)",
+            "record_cap_formula": "floor((1048576+t)*(1048577+t)*(1048578+t)*(1048579+t)/(4*Q_(t+1)(67474)))",
+            "complete_row": uniform_corank3_complete,
+            "adjacent_row": uniform_corank3_adjacent,
+            "first_nontrivial_row": uniform_corank3_row(2),
+            "middle_row": uniform_corank3_row(1048566 // 2),
+            "official_endpoint": uniform_corank3_endpoint,
+            "uniform_record_cap": 983902549,
+            "checked_rows": 1048567,
+            "first_maximizer": 0,
+            "first_excess": None,
+            "recurrence_checks": 9440,
+            "residue_checks": 2240,
+            "source_scan_script_sha256": "0b00e75ab46b74b152a8e8d3cd5302dca4f02ee709259d8ec4eed3e7878efcf5",
+            "source_scan_result_sha256": "c9f43ce8d0ef2d81a8fd37b23fb71800f1f04aa90b252e9163c2850f0c869042",
+            "source_scan_worker_timeout_seconds": 60,
+            "source_scan_worker_memory_mb": 512,
+            "source_scan_max_containers": 1,
+        },
         "kernel_corank3_projective_capacity_cut": {
-            "status": "conditional",
-            "premises": [
-                "uniform corank-three record cap M_3<=983902549",
-            ],
+            "status": "proved",
+            "premises": [],
             "previous_closed_K_prime": projective_basis_endpoint,
             "replay_K_prime_minimum": projective_frame_start,
             "closed_K_prime_maximum": projective_frame_endpoint,
@@ -1959,13 +2129,13 @@ def expected() -> dict[str, Any]:
             "uniform_corank1_cap": 8147918,
             "uniform_corank2_cap": 84416263,
             "uniform_corank2_cap_proved": True,
-            "uniform_corank3_cap_proved": False,
+            "uniform_corank3_cap": 983902549,
+            "uniform_corank3_cap_proved": True,
             "integer_gap_formula": "floor(max(P_d,F_d(1),F_d(K_prime-10)))",
             "audit_K_prime": 377674,
             "audit_corank2_cap": 253238254,
             "audit_corank3_cap": 3935391907,
-            "unconditional_kernel_closed_through_K_prime": 568338,
-            "conditional_kernel_closed_through_K_prime": 796598,
+            "unconditional_kernel_closed_through_K_prime": 796598,
         },
         "rank8_owner_pair_weight_cap": {
             "kernel_dimension": 2,
@@ -2004,10 +2174,9 @@ def expected() -> dict[str, Any]:
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
             "rank9_fixed_target_eliminated": True,
-            "kernel_dominant_lane_closed_through_Kprime": 568338,
-            "kernel_conditional_lane_closed_through_Kprime": 796598,
+            "kernel_dominant_lane_closed_through_Kprime": 796598,
             "kernel_uniform_corank2_cap_proved": True,
-            "kernel_uniform_corank3_cap_proved": False,
+            "kernel_uniform_corank3_cap_proved": True,
             "rank8_owner_flat_closed_from_Kprime": 37996,
             "rank8_dense_owner_terminal_from_Kprime": 22526,
             "chronology_owner": False,
@@ -2301,9 +2470,39 @@ def validate(value: object) -> dict[str, int]:
     require(independent_quadruples == projective_frame_cap["minimum_independent_ordered_quadruples_per_record"] == 1228711865141376, "projective-frame quadruple floor")
     require(frame_record_cap == projective_frame_cap["record_cap"] == PROJECTIVE_FRAME_RECORD_CAP, "projective-frame record cap")
     require(frame_remainder == projective_frame_cap["division_remainder"] == 1056607358217600, "projective-frame remainder")
+    rank4_floor = value["matroid_rank4_bounded_point_line_basis_floor"]
+    require(rank4_floor["status"] == "proved" and rank4_floor["rank"] == 4, "rank-four matroid status")
+    require(rank4_floor["parallel_class_ceiling"] == "a", "rank-four point ceiling")
+    require(rank4_floor["rank2_flat_ceiling"] == "a+1", "rank-four line ceiling")
+    require(rank4_floor["basis_floor"] == "6*b(M)>=Q_a(r)", "rank-four basis floor")
+    rank4_recurrence_checks = 0
+    for a_test in range(1, 31):
+        direct = 6
+        for r_test in range(3, 81):
+            if r_test >= 4:
+                direct = min(
+                    rank4_coloop6(a_test, r_test),
+                    direct + rank4_increment6(a_test, r_test),
+                )
+            require(rank4_basis_floor6(a_test, r_test) == direct, "rank-four recurrence evaluator")
+            rank4_recurrence_checks += 1
+    require(rank4_recurrence_checks == 2340, "rank-four recurrence grid")
+    uniform_frame_cap = value["kernel_corank3_uniform_projective_basis_cap"]
+    require(uniform_frame_cap["status"] == "proved", "uniform projective-frame status")
+    require(uniform_frame_cap["rank_gap"] == 67474, "uniform projective-frame rank gap")
+    require(uniform_frame_cap["parallel_class_ceiling"] == "t+1", "uniform projective-frame point ceiling")
+    require(uniform_frame_cap["rank2_flat_ceiling"] == "t+2", "uniform projective-frame line ceiling")
+    require(uniform_frame_cap["complete_row"] == uniform_corank3_row(0), "uniform projective-frame complete row")
+    require(uniform_frame_cap["adjacent_row"] == uniform_corank3_row(1), "uniform projective-frame adjacent row")
+    require(uniform_frame_cap["first_nontrivial_row"] == uniform_corank3_row(2), "uniform projective-frame first nontrivial row")
+    require(uniform_frame_cap["middle_row"] == uniform_corank3_row(1048566 // 2), "uniform projective-frame middle row")
+    require(uniform_frame_cap["official_endpoint"] == uniform_corank3_row(1048566), "uniform projective-frame endpoint")
+    require(uniform_frame_cap["uniform_record_cap"] == PROJECTIVE_FRAME_RECORD_CAP, "uniform projective-frame cap")
+    require(uniform_frame_cap["checked_rows"] == 1048567, "uniform projective-frame row count")
+    require(uniform_frame_cap["first_maximizer"] == 0 and uniform_frame_cap["first_excess"] is None, "uniform projective-frame maximum")
     projective_frame_cut = value["kernel_corank3_projective_capacity_cut"]
-    require(projective_frame_cut["status"] == "conditional", "projective-frame status")
-    require(projective_frame_cut["premises"] == ["uniform corank-three record cap M_3<=983902549"], "projective-frame premises")
+    require(projective_frame_cut["status"] == "proved", "projective-frame status")
+    require(projective_frame_cut["premises"] == [], "projective-frame premises")
     require(projective_frame_cut["checked_rows_including_wall"] == projective_frame_cut["first_open_K_prime"] - projective_frame_cut["replay_K_prime_minimum"] + 1, "projective-frame replay count")
     require(projective_frame_cut["active_individual_caps"] == [1, 2, 3], "projective-frame active caps")
     require(projective_frame_cut["active_shared_resources"] == [], "projective-frame active resources")
@@ -2330,10 +2529,11 @@ def validate(value: object) -> dict[str, int]:
     require(scope["audit_corank3_cap"] == 3935391907, "integer-gap M3")
     require(scope["uniform_corank2_cap"] == 84416263, "uniform M2 value")
     require(scope["uniform_corank2_cap_proved"] is True, "uniform M2 scope")
-    require(scope["uniform_corank3_cap_proved"] is False, "uniform M3 scope")
-    require(scope["unconditional_kernel_closed_through_K_prime"] == 568338, "unconditional kernel scope")
-    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 568338, "kernel claim")
-    require(value["claims"]["kernel_conditional_lane_closed_through_Kprime"] == 796598, "conditional kernel claim")
+    require(scope["uniform_corank3_cap"] == 983902549, "uniform M3 value")
+    require(scope["uniform_corank3_cap_proved"] is True, "uniform M3 scope")
+    require(scope["unconditional_kernel_closed_through_K_prime"] == 796598, "unconditional kernel scope")
+    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 796598, "kernel claim")
+    require(value["claims"]["kernel_uniform_corank3_cap_proved"] is True, "uniform M3 claim")
     rank8_cap = value["rank8_owner_pair_weight_cap"]
     require(rank8_cap == {
         "kernel_dimension": 2,
@@ -2406,6 +2606,8 @@ def validate(value: object) -> dict[str, int]:
         "projective_basis_endpoint_gap": projective_basis_cut["endpoint_gap"],
         "projective_basis_wall_excess": projective_basis_cut["wall_excess"],
         "projective_frame_record_cap": projective_frame_cap["record_cap"],
+        "uniform_projective_frame_record_cap": uniform_frame_cap["uniform_record_cap"],
+        "rank4_recurrence_checks": rank4_recurrence_checks,
         "projective_frame_checks": len(projective_frame_rows),
         "projective_frame_endpoint_gap": projective_frame_cut["endpoint_gap"],
         "projective_frame_wall_excess": projective_frame_cut["wall_excess"],
@@ -2462,6 +2664,9 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["kernel_corank2_projective_capacity_cut"].__setitem__("status", "conditional"),
         lambda item: item["kernel_corank2_projective_capacity_cut"].__setitem__("wall_excess", 36180877960369511460476382880286784896208001102094988739728829832799),
         lambda item: item["kernel_corank3_projective_basis_cap"].__setitem__("record_cap", 983902550),
+        lambda item: item["matroid_rank4_bounded_point_line_basis_floor"].__setitem__("rank2_flat_ceiling", "a+2"),
+        lambda item: item["kernel_corank3_uniform_projective_basis_cap"]["adjacent_row"].__setitem__("record_cap", 983902550),
+        lambda item: item["kernel_corank3_projective_capacity_cut"].__setitem__("status", "conditional"),
         lambda item: item["kernel_corank3_projective_capacity_cut"].__setitem__("closed_K_prime_maximum", 796599),
         lambda item: item["kernel_projective_paving_scope_repair"].__setitem__("audit_corank2_cap", 84416263),
         lambda item: item["kernel_corank3_projective_capacity_cut"].__setitem__("wall_excess", 670721678337441589385303494237372283642375643589068751593971045368243),
@@ -2500,6 +2705,12 @@ def main() -> None:
     value = json.loads(MANIFEST.read_text())
     result = validate(value)
     controls = tamper_selftest(value) if args.tamper_selftest else 0
+    uniform_maximum, uniform_first_maximizer, uniform_first_excess = scan_uniform_corank3()
+    require(
+        (uniform_maximum, uniform_first_maximizer, uniform_first_excess)
+        == (983902549, 0, -1),
+        "uniform corank-three all-row scan",
+    )
     print(
         "KB_MCA_RANK11_DENSE_LOCATOR_SPLIT_PENCIL_V1_PASS "
         f"roots={result['roots']} high_rank={result['high_rank']} "
@@ -2538,6 +2749,9 @@ def main() -> None:
         f"projective_basis_endpoint_gap={result['projective_basis_endpoint_gap']} "
         f"projective_basis_wall_excess={result['projective_basis_wall_excess']} "
         f"projective_frame_record_cap={result['projective_frame_record_cap']} "
+        f"uniform_projective_frame_record_cap={result['uniform_projective_frame_record_cap']} "
+        f"uniform_projective_frame_rows=1048567 "
+        f"rank4_recurrence_checks={result['rank4_recurrence_checks']} "
         f"projective_frame_checks={result['projective_frame_checks']} "
         f"projective_frame_endpoint_gap={result['projective_frame_endpoint_gap']} "
         f"projective_frame_wall_excess={result['projective_frame_wall_excess']} "

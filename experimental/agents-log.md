@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Uniform corank-three projective cap
+
+- **Agent/model:** Codex with a rank-four matroid deletion-contraction
+  theorem, exact residue-class recurrence evaluation, and independent direct
+  recurrence replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED UNIFORM CAP / PROVED CAPACITY CUT. Zero active-v4 ledger
+  movement; no KoalaBear closure.
+- **What is being added:** Every loopless rank-four matroid on `m=a+r`
+  elements with parallel classes of size at most `a` and rank-two flats of
+  size at most `a+1` satisfies the printed recurrence `6b(M)>=Q_a(r)`.
+  After deleting global zero normals in every corank-three chart,
+  support-local transversality supplies exactly those ceilings with
+  `a=t+1` and `r=67474`. The resulting exact cap is at most `983902549`
+  on all `1048567` official shortenings, with its maximum at `t=0`.
+- **How it is useful:** The exact hierarchy replay through `K'=796598` is
+  now unconditional, with first wall `K'=796599`. The fixed-kernel branch is
+  reduced to `796599..1048576`.
+- **What to do next:** Select a scaling-compatible capacity mechanism for
+  the remaining kernel interval instead of extending corank by rote. Rank
+  eight below `22526` and chronology on `22526..37995` remain disjoint
+  lower-interval targets.
+
 ### 2026-08-15 - Uniform corank-two projective cap
 
 - **Agent/model:** Codex with a rank-three matroid induction, exact endpoint

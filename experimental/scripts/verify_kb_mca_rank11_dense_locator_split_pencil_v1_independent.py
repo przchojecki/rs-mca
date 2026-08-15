@@ -237,12 +237,26 @@ FIXED_CHART_SOURCES = {
         "tree": "214797e76ee997373f9e6d769dc106dfa28c859f",
         "contract_sha256": "1df3954f0b52dc475f5212be64af83530645e3b1b035b2178185f422671e6b8a",
     },
+    "matroid_rank4_bounded_point_line_basis_floor": {
+        "id": "matroid_rank4_bounded_point_line_basis_floor",
+        "path": "background/nodes/matroid_rank4_bounded_point_line_basis_floor",
+        "commit": "a75333b21538bf9b2b90c3332f32e093659867b8",
+        "tree": "8c347327c17423e1cc73ce756b299bf685d84234",
+        "contract_sha256": "1e81b6891afdd1d54f65891b2f29128bb3fd47ff53526fa83e769446bc041f97",
+    },
+    "kernel_corank3_uniform_projective_basis_cap": {
+        "id": "rate_half_mca_rank11_kernel_corank3_uniform_projective_basis_cap",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_corank3_uniform_projective_basis_cap",
+        "commit": "a75333b21538bf9b2b90c3332f32e093659867b8",
+        "tree": "5d52e54f0eb4d557304b2d1c3be6c9f5a39cf9fa",
+        "contract_sha256": "598eb55c00ce2778fa57b185360f80208b5ae34b418a001bd5293b55d6669a7d",
+    },
     "kernel_corank3_projective_capacity_cut": {
         "id": "rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
         "path": "background/nodes/rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
-        "commit": "543be2bd2eac138a525893d6396fc25c4b839b79",
-        "tree": "e9a26cdd40dddeab90e308890ef99831ff64354f",
-        "contract_sha256": "2cf4bca5b0dc130a84bbee61c0769a7a700f0f4f9eeac633d9c0b3c0936a2c76",
+        "commit": "a75333b21538bf9b2b90c3332f32e093659867b8",
+        "tree": "d9dbd0b8eb8edec4138d2a84b5ece248e6faa424",
+        "contract_sha256": "ed03c341d0cbcc9b70648c4563dd9d9ccfdc505a801bd4a795becce560560e59",
     },
     "matroid_paving_basis_floor": {
         "id": "matroid_paving_basis_floor",
@@ -304,6 +318,34 @@ def short_fall(value: int, length: int) -> int:
 
 def short_rise(value: int, length: int) -> int:
     return prod(value + offset for offset in range(length))
+
+
+def independent_rank4_h(a: int, rank_gap: int) -> int:
+    return min((a + 1) // 2, (a + rank_gap) // 4)
+
+
+def independent_rank4_floor6(a: int, rank_gap: int = 67474) -> int:
+    value = 6
+    for current in range(4, rank_gap + 1):
+        coloop = (a + current - 1) * (current - 1) * (current - 2)
+        increment = 3 * (a + current - independent_rank4_h(a, current) - 1) * (current - 2)
+        value = min(coloop, value + increment)
+    return value
+
+
+def independent_uniform_corank3_row(t_value: int) -> dict[str, int]:
+    floor6 = independent_rank4_floor6(t_value + 1)
+    resource = short_fall(1048579 + t_value, 4)
+    ordered = 4 * floor6
+    cap, remainder = divmod(resource, ordered)
+    return {
+        "t": t_value,
+        "basis_floor_times_6": floor6,
+        "ordered_basis_floor": ordered,
+        "record_cap": cap,
+        "division_remainder": remainder,
+        "next_integer_gap": 983902550 * ordered - resource,
+    }
 
 
 def independent_kernel_record_cap(kprime: int, rank: int) -> int:
@@ -929,6 +971,8 @@ def main() -> None:
     kernel_projective_basis_uniform = data["kernel_corank2_uniform_projective_basis_cap"]
     kernel_projective_basis_cut = data["kernel_corank2_projective_capacity_cut"]
     kernel_projective_frame_cap = data["kernel_corank3_projective_basis_cap"]
+    matroid_rank4_floor = data["matroid_rank4_bounded_point_line_basis_floor"]
+    kernel_projective_frame_uniform = data["kernel_corank3_uniform_projective_basis_cap"]
     kernel_projective_frame_cut = data["kernel_corank3_projective_capacity_cut"]
     kernel_projective_scope = data["kernel_projective_paving_scope_repair"]
     rank8_owner_cap = data["rank8_owner_pair_weight_cap"]
@@ -1735,8 +1779,42 @@ def main() -> None:
         "capacity_formula": "floor((n)_fall_4/(4*(m-1)*(m-2)*(m-3)))",
     }, "projective frame cap")
     require(projective_frames == 1228711865141376 and frame_cap == 983902549, "projective frame arithmetic")
-    require(kernel_projective_frame_cut["status"] == "conditional", "projective-frame status")
-    require(kernel_projective_frame_cut["premises"] == ["uniform corank-three record cap M_3<=983902549"], "projective-frame premises")
+    require(matroid_rank4_floor == {
+        "status": "proved",
+        "rank": 4,
+        "loopless": True,
+        "parallel_class_ceiling": "a",
+        "rank2_flat_ceiling": "a+1",
+        "smallest_class_ceiling": "h_a(r)=min(floor((a+1)/2),floor((a+r)/4))",
+        "coloop_floor_times_6": "C_a(r)=(a+r-1)*(r-1)*(r-2)",
+        "contraction_increment_times_6": "L_a(r)=3*(a+r-h_a(r)-1)*(r-2)",
+        "recurrence": "Q_a(3)=6; Q_a(r)=min(C_a(r),Q_a(r-1)+L_a(r))",
+        "basis_floor": "6*b(M)>=Q_a(r)",
+        "reset_difference_sign": "3*h_a(x)-a-2",
+    }, "rank-four matroid floor")
+    uniform_samples = {
+        "complete_row": 0,
+        "adjacent_row": 1,
+        "first_nontrivial_row": 2,
+        "middle_row": 1048566 // 2,
+        "official_endpoint": 1048566,
+    }
+    uniform_sample_checks = 0
+    for key, t_value in uniform_samples.items():
+        direct = independent_uniform_corank3_row(t_value)
+        require(kernel_projective_frame_uniform[key] == direct, f"uniform projective-frame {key}")
+        require(direct["next_integer_gap"] > 0, f"uniform projective-frame {key} gap")
+        uniform_sample_checks += len(direct)
+    require(kernel_projective_frame_uniform["status"] == "proved", "uniform projective-frame status")
+    require(kernel_projective_frame_uniform["rank_gap"] == 67474, "uniform projective-frame rank gap")
+    require(kernel_projective_frame_uniform["parallel_class_ceiling"] == "t+1", "uniform projective-frame point ceiling")
+    require(kernel_projective_frame_uniform["rank2_flat_ceiling"] == "t+2", "uniform projective-frame line ceiling")
+    require(kernel_projective_frame_uniform["uniform_record_cap"] == 983902549, "uniform projective-frame cap")
+    require(kernel_projective_frame_uniform["checked_rows"] == 1048567, "uniform projective-frame rows")
+    require(kernel_projective_frame_uniform["first_maximizer"] == 0, "uniform projective-frame maximizer")
+    require(kernel_projective_frame_uniform["first_excess"] is None, "uniform projective-frame excess")
+    require(kernel_projective_frame_cut["status"] == "proved", "projective-frame status")
+    require(kernel_projective_frame_cut["premises"] == [], "projective-frame premises")
     projective_frame_forest = [[2, 4], [2, 5], [3, 6], [4, 7], [5, 8], [6, 9]]
     projective_frame_tight = [
         [2, 4], [2, 5], [2, 7], [2, 8], [2, 9],
@@ -1781,13 +1859,13 @@ def main() -> None:
         "uniform_corank1_cap": 8147918,
         "uniform_corank2_cap": 84416263,
         "uniform_corank2_cap_proved": True,
-        "uniform_corank3_cap_proved": False,
+        "uniform_corank3_cap": 983902549,
+        "uniform_corank3_cap_proved": True,
         "integer_gap_formula": "floor(max(P_d,F_d(1),F_d(K_prime-10)))",
         "audit_K_prime": 377674,
         "audit_corank2_cap": 253238254,
         "audit_corank3_cap": 3935391907,
-        "unconditional_kernel_closed_through_K_prime": 568338,
-        "conditional_kernel_closed_through_K_prime": 796598,
+        "unconditional_kernel_closed_through_K_prime": 796598,
     }, "projective paving scope")
 
     require(rank8_owner_cap == {
@@ -1858,10 +1936,9 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated": True,
-        "kernel_dominant_lane_closed_through_Kprime": 568338,
-        "kernel_conditional_lane_closed_through_Kprime": 796598,
+        "kernel_dominant_lane_closed_through_Kprime": 796598,
         "kernel_uniform_corank2_cap_proved": True,
-        "kernel_uniform_corank3_cap_proved": False,
+        "kernel_uniform_corank3_cap_proved": True,
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,
         "chronology_owner": False,
@@ -1875,6 +1952,7 @@ def main() -> None:
         f"plane_cap={plane_cap} core_checks={core_checks} "
         f"selector_records={selector_records} ninecell_cap={ninecell_cap} "
         f"local_fence_slopes={fence_slopes} "
+        f"uniform_projective_frame_sample_checks={uniform_sample_checks} "
         f"weighted_demand={boundary_demand} weighted_cap={boundary_cap} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "
