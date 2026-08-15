@@ -12320,6 +12320,136 @@ Thus the contradiction persists above the record floor.  Independent exact
 replay of all six branches at $K'=43$ gives the displayed wall.
 \end{proof}
 
+\begin{proposition}[Descending-support completion ladder]
+\label{prop:kb-rank11-descending-support-completion-ladder}
+In the setup of
+Proposition~\ref{prop:kb-rank11-cross-support-defect-carrier}, let $M_c$ be
+the maximum number of completions of an independent deletion among
+support-$c$ circuits.  Inspect source supports in the order
+\[
+5,4,3,2.
+\]
+At source $c$, terminate in defect branch $s$ when
+$M_c=q-s$ for $0\le s\le9-c$; otherwise retain $M_c\le q-(10-c)$ and
+continue to the next source.  These alternatives partition all completion
+maxima into 26 terminal branches and one all-fallback branch.  Every
+terminal branch may use the carrier cap of
+Proposition~\ref{prop:kb-rank11-cross-support-defect-carrier}, and every
+later branch retains all earlier fallback ceilings.
+\end{proposition}
+
+\begin{proof}
+For fixed $c$, the integer $M_c$ lies in $[0,q]$.  The values
+$q,q-1,\ldots,q-(9-c)$ are the terminal defects; their complement is
+exactly $M_c\le q-(10-c)$.  Thus each stage is a disjoint exhaustive
+partition.  Applying the four stages successively gives
+\[
+(10-5)+(10-4)+(10-3)+(10-2)+1=27
+\]
+leaves, of which 26 are terminal.  On a terminal leaf, the carrier theorem
+applies with the recorded source and defect.  On a fallback leaf, the
+recorded completion ceiling holds by construction.  Intersecting each new
+cap with all inherited supportwise caps preserves every preceding bound.
+\end{proof}
+
+\begin{proposition}[$K'=43$ descending-support payment]
+\label{prop:kb-rank11-k43-descending-support-payment}
+In the fixed component target, every rank-nine alternative is empty at
+$K'=43$.  Weighting all 27 leaves of
+Proposition~\ref{prop:kb-rank11-descending-support-completion-ladder} by the
+full shadow deficits $\binom{11-d}{2}$, the worst leaf is
+\texttt{c5\_defect\_2}, with premium
+\[
+39510045591272162389536743615445318852720199164.
+\]
+Exact component demand exceeds complete capacity by
+\[
+4456829341030748859349785682161828589177837723939653522311506.
+\]
+The same 27-leaf payment first fails at $K'=44$, where capacity exceeds
+demand by
+\[
+1729575114830772639212937201922834766923716849296098844264209.
+\]
+\end{proposition}
+
+\begin{proof}
+For each leaf, retain every inherited completion cap and intersect it with
+the source and target carrier caps supplied by the recorded terminal
+defect.  Sum the eight support contributions with weights
+$36,28,21,15,10,6,3,1$, maximize once over the 27 leaves, and combine that
+premium with the unchanged integral core chart, all kernel-corank terms,
+and the sharp isolated-incidence demand.  Exact integer replay gives the
+displayed active leaf and positive gap.  Repeating the same exhaustive
+ledger at $K'=44$ gives the displayed negative gap.
+\end{proof}
+
+\begin{proposition}[Completion branch-lattice refinement]
+\label{prop:kb-rank11-completion-branch-lattice}
+Let a previously certified branch carry supportwise incidence caps, and
+choose any source support $2\le c\le9$.  Replacing that branch by the
+terminal defects $0\le s\le9-c$ and the fallback
+$M_c\le q-(10-c)$ gives $11-c$ disjoint exhaustive children.  Every child
+inherits all parent caps; terminal children intersect them with the
+cross-support carrier caps, and the fallback child intersects the source
+cap with its new completion ceiling.  The operation may be repeated on any
+selected children.
+\end{proposition}
+
+\begin{proof}
+The integer partition is the one-stage argument in
+Proposition~\ref{prop:kb-rank11-descending-support-completion-ladder}.
+Inheritance and intersection can only lower a valid parent cap.  The
+carrier theorem validates every additional terminal cap.  Since the
+children partition the parent branch, replacing any collection of parent
+leaves preserves exhaustiveness and disjointness.
+\end{proof}
+
+\begin{proposition}[$K'=44$ completion branch-lattice payment]
+\label{prop:kb-rank11-k44-branch-lattice-payment}
+In the fixed component target, every rank-nine alternative is empty at
+$K'=44$.  Refine the two parent leaves
+\texttt{c5\_defect\_2} and \texttt{c5\_defect\_3} from
+Proposition~\ref{prop:kb-rank11-k43-descending-support-payment} at source
+support six.  Each is replaced by four terminal defects and one fallback,
+so the ledger has
+\[
+27-2+2\cdot5=35
+\]
+leaves.  Its worst leaf is
+\texttt{c5\_defect\_2\_\_c6\_defect\_2}, with premium
+\[
+40318474413130846902399237147930487840413149400.
+\]
+Exact demand and capacity are respectively
+\[
+\begin{split}
+D_{44}&=914632087688377144021446114681200227193194740473705158570542108,\\
+\operatorname{Cap}_{44}
+&=914096453278432212124943531506920798021655606781504193772003859,
+\end{split}
+\]
+and hence demand exceeds capacity by
+\[
+535634409944931896502583174279429171539133692200964798538249.
+\]
+The same 35-leaf payment first fails at $K'=45$, where capacity exceeds
+demand by
+\[
+5651502053446174523626296867091469400380654135040887972894842.
+\]
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{prop:kb-rank11-completion-branch-lattice} proves that the
+35 leaves are exhaustive and that every inherited and new cap is valid.
+Weight each leaf by the full shadow deficits, maximize once over the leaf
+premiums, and retain every preceding chart, kernel, and isolated-demand
+term.  Exact integer replay yields the displayed active leaf, demand,
+capacity, and gap.  The adjacent replay at $K'=45$ yields the stated method
+wall.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -13903,8 +14033,14 @@ Proposition~\ref{prop:kb-rank11-k41-sharp-isolated-payment} pays $K'=41$.
 Proposition~\ref{prop:kb-rank11-cross-support-defect-carrier} couples the
 sparse support strata, and
 Proposition~\ref{prop:kb-rank11-k42-cross-support-payment} pays $K'=42$.
+Proposition~\ref{prop:kb-rank11-descending-support-completion-ladder} makes
+the lower-support completion alternatives exhaustive, and
+Proposition~\ref{prop:kb-rank11-k43-descending-support-payment} pays
+$K'=43$.  Proposition~\ref{prop:kb-rank11-completion-branch-lattice}
+permits selective refinement of the heaviest leaves, and
+Proposition~\ref{prop:kb-rank11-k44-branch-lattice-payment} pays $K'=44$.
 Thus the remaining intervals are rank eight only on
-$22\le K'\le42$, rank nine or rank eight on $43\le K'\le15528$, rank
+$22\le K'\le44$, rank nine or rank eight on $45\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -13914,9 +14050,9 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=43$, the cross-support
-completion-defect formula has the printed capacity excess
-$2590504432899371163130658487199612335023802688487478696166262$.
+At the first remaining rank-nine row $K'=45$, the 35-leaf completion
+branch lattice has the printed capacity excess
+$5651502053446174523626296867091469400380654135040887972894842$.
 This is a method wall: a continuation must sharpen the complete weighted
 deficit vector, lower the rank-nine chart, or extract another shared resource without omitting a kernel
 corank or reusing a rank-nine mark.

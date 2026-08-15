@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages seventy-five proved local results after the fixed
+This certificate packages seventy-nine proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -136,6 +136,25 @@ rank-eleven anchor-star reduction:
   `4081031051590194485758587836050845115467905186032497191061176`; the same
   six-branch payment first fails at `K'=43` by
   `2590504432899371163130658487199612335023802688487478696166262`;
+- a descending-support completion ladder which applies the same exhaustive
+  terminal/fallback split successively at source supports `5,4,3,2`.  Its
+  `26` terminal branches and one all-fallback branch partition every vector
+  of supportwise completion maxima;
+- the resulting 27-branch `K'=43` payment.  Its worst branch is
+  `c5_defect_2`, with weighted premium
+  `39510045591272162389536743615445318852720199164`; exact demand exceeds
+  capacity by
+  `4456829341030748859349785682161828589177837723939653522311506`;
+- a reusable completion branch-lattice refinement: any existing leaf can be
+  partitioned at source support `c` into defects `0..9-c` and one fallback,
+  inheriting every old cap and intersecting it with the new carrier caps;
+- the resulting 35-branch `K'=44` payment, obtained by refining the two
+  parent leaves `c5_defect_2` and `c5_defect_3` at source support six.  Its
+  active leaf is `c5_defect_2__c6_defect_2`, and exact demand exceeds
+  capacity by
+  `535634409944931896502583174279429171539133692200964798538249`; the
+  same branch lattice first fails at `K'=45` by capacity excess
+  `5651502053446174523626296867091469400380654135040887972894842`;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -263,14 +282,15 @@ codimension-three circuit models, and a codimension-four completion-ladder
 model over `GF(17)`.  It also independently reconstructs all eight old joint
 payment rows, every exact integral chart, the `K'=22` and `K'=23` payments,
 all seventeen old full-deficit rows, the old `K'=41` density wall, the sharp
-`K'=41` payment, the cross-support carrier, the six `K'=42` branches, and the
-`K'=43` method wall. The primary replay checks the
+`K'=41` payment, the cross-support carrier, the six `K'=42` branches, the
+27-leaf descending-support payments at `K'=43,44`, and the 35-leaf
+branch-lattice payments at `K'=44,45`. The primary replay checks the
 existing affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `43<=K'<=15528` is open; the
+lane. The low rank-nine interval `45<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not

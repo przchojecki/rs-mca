@@ -284,6 +284,34 @@ SOURCE_NODES = {
         "tree": "301831b4776e41e2f0940c7c29c64bfca3803d5d",
         "contract_sha256": "db90a48687728e7e6490e5ee976b54b3eda5b35b7184be7fc4a98e82c3a635b8",
     },
+    "sparse_circuit_descending_support_completion_ladder": {
+        "id": "rate_half_mca_sparse_circuit_descending_support_completion_ladder",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_descending_support_completion_ladder",
+        "commit": "9c5cf1b564c405558538a6c325a61be1fefbeba5",
+        "tree": "d777964d698f4e76deb79fac6cd3a69b2ea839e2",
+        "contract_sha256": "b2a9f966a819fbc77724775722e7a35695dadc14daae67c6271e9eec5809ac7b",
+    },
+    "rank11_k43_descending_support_ladder_payment": {
+        "id": "rate_half_mca_rank11_k43_descending_support_ladder_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k43_descending_support_ladder_payment",
+        "commit": "9c5cf1b564c405558538a6c325a61be1fefbeba5",
+        "tree": "57f41bf548a8425c2894436ab2f58fedbce75fea",
+        "contract_sha256": "3e72a2ed68c9f14fc09a96c1448e93e178b1d1dc5684b23c32e429c32858a91b",
+    },
+    "sparse_circuit_completion_branch_lattice_refinement": {
+        "id": "rate_half_mca_sparse_circuit_completion_branch_lattice_refinement",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_completion_branch_lattice_refinement",
+        "commit": "ba9dc04e52505f6c42639f8692ab1abcf78b9b77",
+        "tree": "bbdcaa0fe1f26509bcec024d943c2e87c477293b",
+        "contract_sha256": "af8bfd54a653a1fe0c0d4bb05a5dde740d6a365924f4240de79fb59616b605be",
+    },
+    "rank11_k44_branch_lattice_payment": {
+        "id": "rate_half_mca_rank11_k44_branch_lattice_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k44_branch_lattice_payment",
+        "commit": "ba9dc04e52505f6c42639f8692ab1abcf78b9b77",
+        "tree": "07fe487bc4f2d7e3bcb9bc07853ab54bed89d91c",
+        "contract_sha256": "fb48b423a9f8b9aa11be869b91ed7edb21332feb48cfb4f9eec7070264661cc2",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1163,6 +1191,133 @@ def cross_support_payment_row(kprime: int, records: int) -> dict[str, Any]:
         "rank_nine_marks": marks,
         "uncoupled_completion_premium": uncoupled,
         "branch_premiums": branches,
+        "completion_premium": premium,
+        "premium_saving": uncoupled - premium,
+        "full_rank_capacity": full_rank,
+        "total_capacity": total,
+        "required_component_incidence": demand,
+        "gap": demand - total,
+        "record_coefficient_cross": coefficient,
+        "floor_record_raw_cross": raw,
+    }
+
+
+def cross_support_terminal_caps(
+    quotient: int,
+    mprime: int,
+    source: int,
+    defect: int,
+    inherited: dict[int, int],
+) -> dict[int, int]:
+    branch = dict(inherited)
+    branch[source] = min(
+        branch[source],
+        completion_deletion_cap(mprime, source, quotient - defect),
+    )
+    for target in range(2, 10):
+        if source + (defect + 1) * target - defect - 1 <= 10:
+            carrier = quotient + source - 1 + defect * (target - 1)
+            branch[target] = min(
+                branch[target],
+                comb(carrier, target) * comb(mprime - target, 11 - target),
+            )
+    return branch
+
+
+def descending_support_leaf_caps(kprime: int) -> dict[str, dict[int, int]]:
+    quotient = kprime - 10
+    mprime = 67472 + kprime
+    inherited = {
+        support: (
+            completion_defect_row(
+                quotient,
+                mprime,
+                support,
+                {2: 7, 3: 2, 4: 1, 5: 0}[support],
+            )["active_cap"]
+            if support <= 5
+            else universal_completion_row(quotient, mprime, support)["incidence_cap"]
+        )
+        for support in range(2, 10)
+    }
+    prefixes: list[str] = []
+    leaves: dict[str, dict[int, int]] = {}
+    for source in (5, 4, 3, 2):
+        for defect in range(10 - source):
+            label = "__".join(prefixes + [f"c{source}_defect_{defect}"])
+            leaves[label] = cross_support_terminal_caps(
+                quotient, mprime, source, defect, inherited
+            )
+        inherited = dict(inherited)
+        inherited[source] = min(
+            inherited[source],
+            completion_deletion_cap(mprime, source, quotient - (10 - source)),
+        )
+        prefixes.append(f"c{source}_fallback")
+    leaves["__".join(prefixes)] = inherited
+    return leaves
+
+
+def completion_branch_premiums(kprime: int, refine_support6: bool) -> tuple[int, dict[str, int]]:
+    quotient = kprime - 10
+    mprime = 67472 + kprime
+    weights = {support: comb(11 - support, 2) for support in range(2, 10)}
+    parents = descending_support_leaf_caps(kprime)
+    leaves: dict[str, dict[int, int]] = {}
+    for label, inherited in parents.items():
+        if not refine_support6 or label not in {"c5_defect_2", "c5_defect_3"}:
+            leaves[label] = inherited
+            continue
+        for defect in range(4):
+            leaves[f"{label}__c6_defect_{defect}"] = cross_support_terminal_caps(
+                quotient, mprime, 6, defect, inherited
+            )
+        fallback = dict(inherited)
+        fallback[6] = min(
+            fallback[6], completion_deletion_cap(mprime, 6, quotient - 4)
+        )
+        leaves[f"{label}__c6_fallback"] = fallback
+    branches = {
+        label: sum(weights[support] * caps[support] for support in range(2, 10))
+        for label, caps in leaves.items()
+    }
+    uncoupled, _ = cross_support_branch_premiums(kprime)
+    return uncoupled, branches
+
+
+def completion_branch_payment_row(
+    kprime: int, records: int, refine_support6: bool
+) -> dict[str, Any]:
+    nprime = 1048576 + kprime
+    mprime = 67472 + kprime
+    core_rows = {
+        core: integral_core_offset_row(kprime, core)["chart"]
+        for core in range(9, kprime)
+    }
+    maximizing_core = max(core_rows, key=core_rows.get)
+    chart = core_rows[maximizing_core]
+    marks = comb(nprime, 9) * chart
+    kernel = refined_kernel_capacity(kprime)
+    uncoupled, branches = completion_branch_premiums(kprime, refine_support6)
+    active = max(branches, key=branches.get)
+    premium = branches[active]
+    full_rank = (marks + records * premium) // 55
+    total = kernel + full_rank
+    demand = records * comb(mprime, 11) - comb(nprime, 11)
+    coefficient = 55 * comb(mprime, 11) - premium
+    raw = records * coefficient - 55 * comb(nprime, 11) - 55 * kernel - marks
+    return {
+        "n": nprime,
+        "m": mprime,
+        "q": kprime - 10,
+        "isolated_global_cap": comb(nprime, 11),
+        "max_core": maximizing_core,
+        "chart": chart,
+        "kernel_capacity": kernel,
+        "rank_nine_marks": marks,
+        "uncoupled_completion_premium": uncoupled,
+        "branch_premiums": branches,
+        "active_branch": active,
         "completion_premium": premium,
         "premium_saving": uncoupled - premium,
         "full_rank_capacity": full_rank,
@@ -2616,6 +2771,18 @@ def expected() -> dict[str, Any]:
         str(kprime): cross_support_payment_row(kprime, refined_record_cap)
         for kprime in (42, 43)
     }
+    descending_support_payment_rows = {
+        str(kprime): completion_branch_payment_row(
+            kprime, refined_record_cap, False
+        )
+        for kprime in (43, 44)
+    }
+    branch_lattice_payment_rows = {
+        str(kprime): completion_branch_payment_row(
+            kprime, refined_record_cap, True
+        )
+        for kprime in (44, 45)
+    }
     kernel_endpoint = 4598
     kernel_wall = 4599
     kernel_endpoint_demand = kernel_demand_ceiling(kernel_endpoint)
@@ -3558,6 +3725,98 @@ def expected() -> dict[str, Any]:
             },
             "remaining_rank9_interval": [43, 15528],
         },
+        "sparse_circuit_descending_support_completion_ladder": {
+            "correction_dimension": 10,
+            "minimum_quotient_dimension": 8,
+            "source_order": [5, 4, 3, 2],
+            "terminal_defects": {
+                str(source): list(range(10 - source))
+                for source in (5, 4, 3, 2)
+            },
+            "fallback_ceilings": {
+                str(source): f"q-{10 - source}"
+                for source in (5, 4, 3, 2)
+            },
+            "carrier_condition": "c+(s+1)d-s-1<=10",
+            "carrier_size": "q+c-1+s(d-1)",
+            "terminal_branch_count": 26,
+            "all_fallback_branch_count": 1,
+            "total_leaf_count": 27,
+        },
+        "rank11_k43_descending_support_ladder_payment": {
+            "closed_row": 43,
+            "new_closed_prefix": [10, 43],
+            "first_method_wall": 44,
+            "residual_record_floor": refined_record_cap,
+            "deficit_weights": {
+                str(support): comb(11 - support, 2)
+                for support in range(2, 10)
+            },
+            "source_order": [5, 4, 3, 2],
+            "branch_count": 27,
+            **descending_support_payment_rows["43"],
+            "K44_method_wall": {
+                key: value
+                for key, value in descending_support_payment_rows["44"].items()
+                if key
+                not in {
+                    "isolated_global_cap",
+                    "uncoupled_completion_premium",
+                    "premium_saving",
+                    "gap",
+                }
+            }
+            | {
+                "capacity_excess": -descending_support_payment_rows["44"]["gap"]
+            },
+            "remaining_rank9_interval": [44, 15528],
+        },
+        "sparse_circuit_completion_branch_lattice_refinement": {
+            "correction_dimension": 10,
+            "minimum_quotient_dimension": 8,
+            "source_support_range": [2, 9],
+            "terminal_defects": "0<=s<=9-c",
+            "fallback_ceiling": "q-(10-c)",
+            "carrier_condition": "c+(s+1)d-s-1<=10",
+            "carrier_size": "q+c-1+s(d-1)",
+            "replacement_leaf_count": "11-c",
+            "support6_specialization": {
+                "terminal_defects": [0, 1, 2, 3],
+                "fallback_ceiling": "q-4",
+                "replacement_leaf_count": 5,
+            },
+        },
+        "rank11_k44_branch_lattice_payment": {
+            "closed_row": 44,
+            "new_closed_prefix": [10, 44],
+            "first_method_wall": 45,
+            "residual_record_floor": refined_record_cap,
+            "deficit_weights": {
+                str(support): comb(11 - support, 2)
+                for support in range(2, 10)
+            },
+            "parent_source_order": [5, 4, 3, 2],
+            "refined_parent_leaves": ["c5_defect_2", "c5_defect_3"],
+            "refinement_source_support": 6,
+            "parent_branch_count": 27,
+            "refined_branch_count": 35,
+            **branch_lattice_payment_rows["44"],
+            "K45_method_wall": {
+                key: value
+                for key, value in branch_lattice_payment_rows["45"].items()
+                if key
+                not in {
+                    "isolated_global_cap",
+                    "uncoupled_completion_premium",
+                    "premium_saving",
+                    "gap",
+                }
+            }
+            | {
+                "capacity_excess": -branch_lattice_payment_rows["45"]["gap"]
+            },
+            "remaining_rank9_interval": [45, 15528],
+        },
         "kernel_canonical_basis_globalizer": {
             "correction_dimension": 10,
             "component_subset_size": 11,
@@ -4169,8 +4428,10 @@ def expected() -> dict[str, Any]:
             "rank9_k24_k40_full_deficit_shadow_closed_K_prime": 40,
             "rank9_k41_sharp_isolated_closed_K_prime": 41,
             "rank9_k42_cross_support_defect_closed_K_prime": 42,
+            "rank9_k43_descending_support_ladder_closed_K_prime": 43,
+            "rank9_k44_branch_lattice_closed_K_prime": 44,
             "rank9_low_shortening_reopened": True,
-            "rank9_remaining_interval": [43, 15528],
+            "rank9_remaining_interval": [45, 15528],
             "kernel_dominant_lane_closed_through_Kprime": 1048576,
             "kernel_fixed_lane_closed": True,
             "kernel_uniform_corank2_cap_proved": True,
@@ -4235,6 +4496,10 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
     k41_sharp = value["rank11_k41_sharp_isolated_payment"]
     cross_support_carrier = value["sparse_circuit_cross_support_defect_carrier"]
     k42_cross_support = value["rank11_k42_cross_support_defect_payment"]
+    descending_ladder = value["sparse_circuit_descending_support_completion_ladder"]
+    k43_ladder = value["rank11_k43_descending_support_ladder_payment"]
+    branch_lattice = value["sparse_circuit_completion_branch_lattice_refinement"]
+    k44_branch = value["rank11_k44_branch_lattice_payment"]
     require(
         weighted_elimination["first_closed_demand"]
         > weighted_elimination["first_closed_cap"],
@@ -4245,7 +4510,7 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         "rank-nine exact-petal boundary",
     )
     require(value["claims"]["rank9_low_shortening_reopened"] is True, "rank-nine reopened interval")
-    require(value["claims"]["rank9_remaining_interval"] == [43, 15528], "rank-nine remaining interval")
+    require(value["claims"]["rank9_remaining_interval"] == [45, 15528], "rank-nine remaining interval")
     require(residual_petal["last_open_raw_cross"] < 0, "residual-petal last raw cross")
     require(residual_petal["first_closed_raw_cross"] > 0, "residual-petal first raw cross")
     for kprime in range(10, 20618):
@@ -4951,6 +5216,134 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         and value["claims"]["rank9_k42_cross_support_defect_closed_K_prime"] == 42,
         "refined rank-nine closure claims",
     )
+    require(
+        descending_ladder
+        == {
+            "correction_dimension": 10,
+            "minimum_quotient_dimension": 8,
+            "source_order": [5, 4, 3, 2],
+            "terminal_defects": {
+                str(source): list(range(10 - source))
+                for source in (5, 4, 3, 2)
+            },
+            "fallback_ceilings": {
+                str(source): f"q-{10 - source}"
+                for source in (5, 4, 3, 2)
+            },
+            "carrier_condition": "c+(s+1)d-s-1<=10",
+            "carrier_size": "q+c-1+s(d-1)",
+            "terminal_branch_count": 26,
+            "all_fallback_branch_count": 1,
+            "total_leaf_count": 27,
+        },
+        "descending-support ladder constants",
+    )
+    row43_ladder = completion_branch_payment_row(
+        43, k41_sharp["residual_record_floor"], False
+    )
+    row44_ladder = completion_branch_payment_row(
+        44, k41_sharp["residual_record_floor"], False
+    )
+    require(
+        k43_ladder["closed_row"] == 43
+        and k43_ladder["new_closed_prefix"] == [10, 43]
+        and k43_ladder["first_method_wall"] == 44
+        and k43_ladder["source_order"] == [5, 4, 3, 2]
+        and k43_ladder["branch_count"] == len(row43_ladder["branch_premiums"]) == 27
+        and all(k43_ladder[key] == row43_ladder[key] for key in row43_ladder)
+        and row43_ladder["active_branch"] == "c5_defect_2"
+        and row43_ladder["completion_premium"]
+        == 39510045591272162389536743615445318852720199164
+        and row43_ladder["gap"]
+        == 4456829341030748859349785682161828589177837723939653522311506
+        and row43_ladder["record_coefficient_cross"] > 0
+        and row43_ladder["floor_record_raw_cross"] > 0
+        and all(
+            k43_ladder["K44_method_wall"][key] == row44_ladder[key]
+            for key in row44_ladder
+            if key
+            not in {
+                "isolated_global_cap",
+                "uncoupled_completion_premium",
+                "premium_saving",
+                "gap",
+            }
+        )
+        and k43_ladder["K44_method_wall"]["capacity_excess"]
+        == -row44_ladder["gap"]
+        == 1729575114830772639212937201922834766923716849296098844264209
+        and row44_ladder["floor_record_raw_cross"] < 0
+        and k43_ladder["remaining_rank9_interval"] == [44, 15528],
+        "descending-support K'=43 payment and K'=44 wall",
+    )
+    require(
+        branch_lattice
+        == {
+            "correction_dimension": 10,
+            "minimum_quotient_dimension": 8,
+            "source_support_range": [2, 9],
+            "terminal_defects": "0<=s<=9-c",
+            "fallback_ceiling": "q-(10-c)",
+            "carrier_condition": "c+(s+1)d-s-1<=10",
+            "carrier_size": "q+c-1+s(d-1)",
+            "replacement_leaf_count": "11-c",
+            "support6_specialization": {
+                "terminal_defects": [0, 1, 2, 3],
+                "fallback_ceiling": "q-4",
+                "replacement_leaf_count": 5,
+            },
+        },
+        "completion branch-lattice constants",
+    )
+    row44_branch = completion_branch_payment_row(
+        44, k41_sharp["residual_record_floor"], True
+    )
+    row45_branch = completion_branch_payment_row(
+        45, k41_sharp["residual_record_floor"], True
+    )
+    require(
+        k44_branch["closed_row"] == 44
+        and k44_branch["new_closed_prefix"] == [10, 44]
+        and k44_branch["first_method_wall"] == 45
+        and k44_branch["parent_source_order"] == [5, 4, 3, 2]
+        and k44_branch["refined_parent_leaves"]
+        == ["c5_defect_2", "c5_defect_3"]
+        and k44_branch["refinement_source_support"] == 6
+        and k44_branch["parent_branch_count"] == 27
+        and k44_branch["refined_branch_count"]
+        == len(row44_branch["branch_premiums"])
+        == 35
+        and all(k44_branch[key] == row44_branch[key] for key in row44_branch)
+        and row44_branch["active_branch"] == "c5_defect_2__c6_defect_2"
+        and row44_branch["completion_premium"]
+        == 40318474413130846902399237147930487840413149400
+        and row44_branch["gap"]
+        == 535634409944931896502583174279429171539133692200964798538249
+        and row44_branch["record_coefficient_cross"] > 0
+        and row44_branch["floor_record_raw_cross"] > 0
+        and all(
+            k44_branch["K45_method_wall"][key] == row45_branch[key]
+            for key in row45_branch
+            if key
+            not in {
+                "isolated_global_cap",
+                "uncoupled_completion_premium",
+                "premium_saving",
+                "gap",
+            }
+        )
+        and k44_branch["K45_method_wall"]["capacity_excess"]
+        == -row45_branch["gap"]
+        == 5651502053446174523626296867091469400380654135040887972894842
+        and row45_branch["floor_record_raw_cross"] < 0
+        and k44_branch["remaining_rank9_interval"] == [45, 15528],
+        "branch-lattice K'=44 payment and K'=45 wall",
+    )
+    require(
+        value["claims"]["rank9_k43_descending_support_ladder_closed_K_prime"] == 43
+        and value["claims"]["rank9_k44_branch_lattice_closed_K_prime"] == 44,
+        "branch-lattice rank-nine closure claims",
+    )
     kernel_cut = value["kernel_rankstratified_capacity_cut"]
     for kprime in range(10, kernel_cut["closed_K_prime_maximum"] + 1):
         require(kernel_demand_ceiling(kprime) > kernel_capacity(kprime), f"kernel cut {kprime}")
@@ -5499,6 +5892,10 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         "k42_sharp_excess": k41_sharp["K42_capacity_excess"],
         "k42_cross_support_gap": k42_cross_support["gap"],
         "k43_cross_support_excess": k42_cross_support["K43_method_wall"]["capacity_excess"],
+        "k43_descending_gap": k43_ladder["gap"],
+        "k44_descending_excess": k43_ladder["K44_method_wall"]["capacity_excess"],
+        "k44_branch_gap": k44_branch["gap"],
+        "k45_branch_excess": k44_branch["K45_method_wall"]["capacity_excess"],
         "kernel_endpoint_gap": kernel_cut["endpoint_gap"],
         "kernel_wall_gap": kernel_cut["wall_capacity"] - kernel_cut["wall_demand"],
         "multibasis_endpoint_gap": multibasis_cut["endpoint_gap"],
@@ -5603,6 +6000,12 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["sparse_circuit_cross_support_defect_carrier"]["support5_target_supports"].__setitem__("1", [2, 3, 4]),
         lambda item: item["rank11_k42_cross_support_defect_payment"]["branch_premiums"].__setitem__("fallback", 0),
         lambda item: item["rank11_k42_cross_support_defect_payment"]["K43_method_wall"].__setitem__("capacity_excess", 0),
+        lambda item: item["sparse_circuit_descending_support_completion_ladder"].__setitem__("total_leaf_count", 26),
+        lambda item: item["rank11_k43_descending_support_ladder_payment"]["branch_premiums"].__setitem__("c5_defect_2", 0),
+        lambda item: item["rank11_k43_descending_support_ladder_payment"]["K44_method_wall"].__setitem__("capacity_excess", 0),
+        lambda item: item["sparse_circuit_completion_branch_lattice_refinement"]["support6_specialization"].__setitem__("replacement_leaf_count", 4),
+        lambda item: item["rank11_k44_branch_lattice_payment"]["branch_premiums"].__setitem__("c5_defect_2__c6_defect_2", 0),
+        lambda item: item["rank11_k44_branch_lattice_payment"]["K45_method_wall"].__setitem__("capacity_excess", 0),
         lambda item: item["kernel_canonical_basis_globalizer"].__setitem__("extra_common_zero_offset", 9),
         lambda item: item["kernel_rankstratified_capacity_cut"].__setitem__("closed_K_prime_maximum", 4599),
         lambda item: item["kernel_multibasis_decoration_compression"]["basis_multiplicities"].__setitem__(0, 2),
@@ -5671,6 +6074,8 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["claims"].__setitem__("rank9_k24_k40_full_deficit_shadow_closed_K_prime", 39),
         lambda item: item["claims"].__setitem__("rank9_k41_sharp_isolated_closed_K_prime", 40),
         lambda item: item["claims"].__setitem__("rank9_k42_cross_support_defect_closed_K_prime", 41),
+        lambda item: item["claims"].__setitem__("rank9_k43_descending_support_ladder_closed_K_prime", 42),
+        lambda item: item["claims"].__setitem__("rank9_k44_branch_lattice_closed_K_prime", 43),
         lambda item: item["claims"].__setitem__("rank9_remaining_interval", [10, 15528]),
         lambda item: item["claims"].__setitem__("rank9_low_shortening_reopened", False),
         lambda item: item["claims"].__setitem__("incidence_is_record_count", True),
@@ -5745,6 +6150,10 @@ def main() -> None:
         f"k42_sharp_excess={result['k42_sharp_excess']} "
         f"k42_cross_support_gap={result['k42_cross_support_gap']} "
         f"k43_cross_support_excess={result['k43_cross_support_excess']} "
+        f"k43_descending_gap={result['k43_descending_gap']} "
+        f"k44_descending_excess={result['k44_descending_excess']} "
+        f"k44_branch_gap={result['k44_branch_gap']} "
+        f"k45_branch_excess={result['k45_branch_excess']} "
         f"kernel_endpoint_gap={result['kernel_endpoint_gap']} "
         f"kernel_wall_gap={result['kernel_wall_gap']} "
         f"multibasis_endpoint_gap={result['multibasis_endpoint_gap']} "

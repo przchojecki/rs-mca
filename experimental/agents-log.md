@@ -5050,3 +5050,41 @@ Keep entries concise and link to the relevant files.
   extract another shared resource.  Preserve every kernel corank, intersect
   every new cap with its prior supportwise cap, and do not reuse a rank-nine
   mark.
+
+### 2026-08-15 - Descending-support and branch-lattice payments close K'=43..44
+
+- **Agent/model:** Codex, importing four proved public prize-DAG nodes after
+  proof audit, exact arithmetic, independent replay, and hostile mutation
+  testing.
+- **Exact parent:** this PR's `K'=42` extension at
+  `6e8e563dde5956320b78f8486cbe2bd958615d32`.
+- **Research sources:** prize-DAG commits
+  `9c5cf1b564c405558538a6c325a61be1fefbeba5` and
+  `ba9dc04e52505f6c42639f8692ab1abcf78b9b77`; the four source-contract
+  SHA-256 values are
+  `b2a9f966a819fbc77724775722e7a35695dadc14daae67c6271e9eec5809ac7b`,
+  `3e72a2ed68c9f14fc09a96c1448e93e178b1d1dc5684b23c32e429c32858a91b`,
+  `af8bfd54a653a1fe0c0d4bb05a5dde740d6a365924f4240de79fb59616b605be`,
+  and `fb48b423a9f8b9aa11be869b91ed7edb21332feb48cfb4f9eec7070264661cc2`.
+- **Status:** PROVED TWO-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** An exhaustive descending-support ladder applies
+  terminal/fallback completion partitions successively at supports
+  `5,4,3,2`, producing 27 leaves.  A reusable branch-lattice theorem then
+  refines selected parent leaves while inheriting every old cap; refining
+  `c5_defect_2` and `c5_defect_3` at support six produces 35 leaves.
+- **Impact:** The 27-leaf ledger closes `K'=43` by
+  `4456829341030748859349785682161828589177837723939653522311506`.
+  The 35-leaf ledger closes `K'=44` by
+  `535634409944931896502583174279429171539133692200964798538249`.
+  The first remaining rank-nine row is `K'=45`.
+- **Controls:** The canonical manifest now pins 79 public source nodes.  The
+  primary verifier recomputes every branch and rejects 139 hostile
+  mutations.  The independent verifier separately reconstructs all 27- and
+  35-leaf ledgers, active branches, exact payments, and adjacent walls.
+- **Nonclaim:** At `K'=45` the 35-leaf payment has exact capacity excess
+  `5651502053446174523626296867091469400380654135040887972894842`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** Refine the active support-five/support-six leaves at
+  support seven and audit all competing leaves at `K'=45`.  Preserve every
+  inherited cap, kernel corank, and rank-nine mark.
