@@ -354,6 +354,13 @@ SOURCE_NODES = {
         "tree": "cdaab7eb0a655760057433a9d22f76f6e0963bc3",
         "contract_sha256": "553bbf5c9ba10d97f220480d50aea1dd7017407ddd833459f513992b97667093",
     },
+    "rank8_minimal_shortening_exclusion": {
+        "id": "rate_half_mca_rank11_rank8_minimal_shortening_exclusion",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_minimal_shortening_exclusion",
+        "commit": "d7d09fd437080a63d4571ce84abb6220698528a1",
+        "tree": "cfeeaeda449d3527d14218bb2519ab25e3803518",
+        "contract_sha256": "d03271ea09234ab73dad72b6509a136b07427a479bba822c7db55adf8c4c868e",
+    },
 }
 
 
@@ -2330,6 +2337,16 @@ def expected() -> dict[str, Any]:
             "error_affine_rank_ceiling": 2,
             "lifted_owner_core_deficiency": 1,
         },
+        "rank8_minimal_shortening_exclusion": {
+            "residual_K_prime": 10,
+            "ambient_RS_dimension": 10,
+            "correction_space_dimension": 10,
+            "selector_size": 9,
+            "selector_rank": 9,
+            "excluded_selector_rank": 8,
+            "interpolation_degree_ceiling": 8,
+            "first_uncovered_K_prime": 11,
+        },
         "claims": {
             "local_theorem_packet": True,
             "incidence_is_record_count": False,
@@ -2344,6 +2361,7 @@ def expected() -> dict[str, Any]:
             "rank8_owner_flat_closed_from_Kprime": 37996,
             "rank8_dense_owner_terminal_from_Kprime": 22526,
             "rank8_fixed_chart_output_suffices_for_payment": False,
+            "rank8_minimal_shortening_closed_K_prime": 10,
             "chronology_owner": False,
             "rank11_paid": False,
             "active_v4_ledger_movement": 0,
@@ -2828,6 +2846,32 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         value["claims"]["rank8_fixed_chart_output_suffices_for_payment"] is False,
         "rank-eight local-payment claim",
     )
+    rank8_minimal = value["rank8_minimal_shortening_exclusion"]
+    require(rank8_minimal == {
+        "residual_K_prime": 10,
+        "ambient_RS_dimension": 10,
+        "correction_space_dimension": 10,
+        "selector_size": 9,
+        "selector_rank": 9,
+        "excluded_selector_rank": 8,
+        "interpolation_degree_ceiling": 8,
+        "first_uncovered_K_prime": 11,
+    }, "rank-eight minimal-shortening exclusion")
+    require(
+        rank8_minimal["residual_K_prime"]
+        == rank8_minimal["ambient_RS_dimension"]
+        == rank8_minimal["correction_space_dimension"],
+        "rank-eight minimal dimension equality",
+    )
+    require(
+        rank8_minimal["selector_rank"] == rank8_minimal["selector_size"]
+        and rank8_minimal["excluded_selector_rank"] + 1 == rank8_minimal["selector_rank"],
+        "rank-eight minimal selector exclusion",
+    )
+    require(
+        value["claims"]["rank8_minimal_shortening_closed_K_prime"] == 10,
+        "rank-eight minimal closure claim",
+    )
     return {
         **dense,
         "component_ppb": component["component_incidence_ppb_floor"],
@@ -2840,6 +2884,7 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
             rank8_fence["marked_component_weight"]
             - rank8_fence["weighted_selector_demand"]
         ),
+        "rank8_minimal_closed_kprime": rank8_minimal["residual_K_prime"],
         "weighted_demand": weighted_elimination["boundary_demand"],
         "weighted_cap": weighted_elimination["boundary_cap"],
         "kernel_endpoint_gap": kernel_cut["endpoint_gap"],
@@ -2953,6 +2998,9 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["rank8_fixed_chart_local_cap_fence"].__setitem__("marked_component_weight", 5869376383979174),
         lambda item: item["rank8_fixed_chart_local_cap_fence"].__setitem__("maximum_greedy_forbidden_values", 2130706433),
         lambda item: item["claims"].__setitem__("rank8_fixed_chart_output_suffices_for_payment", True),
+        lambda item: item["rank8_minimal_shortening_exclusion"].__setitem__("correction_space_dimension", 9),
+        lambda item: item["rank8_minimal_shortening_exclusion"].__setitem__("selector_rank", 8),
+        lambda item: item["claims"].__setitem__("rank8_minimal_shortening_closed_K_prime", 11),
         lambda item: item["claims"].__setitem__("fixed_chart_output_suffices_for_payment", True),
         lambda item: item["claims"].__setitem__("full_rank_star_owner_is_record_intrinsic", False),
         lambda item: item["claims"].__setitem__("rank9_fixed_target_eliminated", False),
@@ -2999,6 +3047,7 @@ def main() -> None:
         f"local_fence_slopes={result['local_fence_slopes']} "
         f"rank8_local_fence_slopes={result['rank8_local_fence_slopes']} "
         f"rank8_local_fence_weighted_excess={result['rank8_local_fence_weighted_excess']} "
+        f"rank8_minimal_closed_kprime={result['rank8_minimal_closed_kprime']} "
         f"weighted_demand={result['weighted_demand']} "
         f"weighted_cap={result['weighted_cap']} "
         f"kernel_endpoint_gap={result['kernel_endpoint_gap']} "

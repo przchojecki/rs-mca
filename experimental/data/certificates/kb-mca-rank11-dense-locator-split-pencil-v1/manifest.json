@@ -339,6 +339,13 @@
         "commit": "90f7509bb2b706cc5daf90003efc45dd23a82c75",
         "tree": "cdaab7eb0a655760057433a9d22f76f6e0963bc3",
         "contract_sha256": "553bbf5c9ba10d97f220480d50aea1dd7017407ddd833459f513992b97667093"
+      },
+      "rank8_minimal_shortening_exclusion": {
+        "id": "rate_half_mca_rank11_rank8_minimal_shortening_exclusion",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_minimal_shortening_exclusion",
+        "commit": "d7d09fd437080a63d4571ce84abb6220698528a1",
+        "tree": "cfeeaeda449d3527d14218bb2519ab25e3803518",
+        "contract_sha256": "d03271ea09234ab73dad72b6509a136b07427a479bba822c7db55adf8c4c868e"
       }
     }
   },
@@ -2347,6 +2354,16 @@
     "error_affine_rank_ceiling": 2,
     "lifted_owner_core_deficiency": 1
   },
+  "rank8_minimal_shortening_exclusion": {
+    "residual_K_prime": 10,
+    "ambient_RS_dimension": 10,
+    "correction_space_dimension": 10,
+    "selector_size": 9,
+    "selector_rank": 9,
+    "excluded_selector_rank": 8,
+    "interpolation_degree_ceiling": 8,
+    "first_uncovered_K_prime": 11
+  },
   "claims": {
     "local_theorem_packet": true,
     "incidence_is_record_count": false,
@@ -2361,6 +2378,7 @@
     "rank8_owner_flat_closed_from_Kprime": 37996,
     "rank8_dense_owner_terminal_from_Kprime": 22526,
     "rank8_fixed_chart_output_suffices_for_payment": false,
+    "rank8_minimal_shortening_closed_K_prime": 10,
     "chronology_owner": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,

@@ -12157,6 +12157,34 @@ SHA-256 digest
 \texttt{85f67eade03100e7fc6f3ef0443a3a787f1133427a0f9d4030d638eca9080082}.
 \end{proof}
 
+\begin{proposition}[Rank-eight minimal-shortening exclusion]
+\label{prop:kb-rank11-rank8-minimal-shortening-exclusion}
+At residual dimension $K'=10$, the rank-eight affine-owner alternative of
+Proposition~\ref{prop:kb-rank11-component-ninesubset-target} is empty.
+Every nine-coordinate restriction of the correction space has rank nine.
+This conclusion is sharp for the dimension-equality argument: the adjacent
+row $K'=11$ admits the rank-eight chart in
+Proposition~\ref{prop:kb-rank11-rank8-fixed-chart-local-cap-fence}.
+\end{proposition}
+
+\begin{proof}
+The dense-root saturation theorem places the ten-dimensional correction
+space $V'$ inside the residual degree-below-$K'$ Reed--Solomon space.  At
+$K'=10$ both spaces have dimension ten, so
+\[
+ V'=\{f\in\F[X]:\deg f<10\}.
+\]
+For any nine distinct coordinates $b_1,\ldots,b_9$, the evaluation minor
+formed by $1,X,\ldots,X^8$ has Vandermonde determinant
+\[
+ \prod_{1\le i<j\le9}(b_j-b_i)\ne0.
+\]
+Thus evaluation on the nine-set has rank nine, contradicting the rank-eight
+target.  At $K'=11$, the space
+$\langle1,X,\ldots,X^7,L_B,XL_B\rangle$ from the next proposition has
+rank eight on $B$, so no adjacent-row propagation is claimed.
+\end{proof}
+
 \begin{proposition}[Rank-eight fixed-chart local-payment fence]
 \label{prop:kb-rank11-rank8-fixed-chart-local-cap-fence}
 At residual dimension $K'=11$, the local rank-eight output of
@@ -12412,8 +12440,9 @@ rank-eight target from $K'=37996$ onward, but not below its printed wall.
 Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
 surviving rank-eight interval to the guarded dense-owner terminal, but does
 not assign chronology or coalesce the multiple owners allowed by the
-explicit fence. Thus the remaining intervals are rank eight only on
-$10\le K'\le22525$, dense-owner chronology only on
+explicit fence. Proposition~\ref{prop:kb-rank11-rank8-minimal-shortening-exclusion}
+removes the shortest row. Thus the remaining intervals are rank eight only on
+$11\le K'\le22525$, dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
 $37996\le K'\le1048576$.
 Proposition~\ref{prop:kb-rank11-rank8-fixed-chart-local-cap-fence} shows

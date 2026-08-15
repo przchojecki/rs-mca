@@ -322,6 +322,13 @@ FIXED_CHART_SOURCES = {
         "tree": "cdaab7eb0a655760057433a9d22f76f6e0963bc3",
         "contract_sha256": "553bbf5c9ba10d97f220480d50aea1dd7017407ddd833459f513992b97667093",
     },
+    "rank8_minimal_shortening_exclusion": {
+        "id": "rate_half_mca_rank11_rank8_minimal_shortening_exclusion",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_minimal_shortening_exclusion",
+        "commit": "d7d09fd437080a63d4571ce84abb6220698528a1",
+        "tree": "cfeeaeda449d3527d14218bb2519ab25e3803518",
+        "contract_sha256": "d03271ea09234ab73dad72b6509a136b07427a479bba822c7db55adf8c4c868e",
+    },
 }
 
 
@@ -1122,6 +1129,17 @@ def rank8_local_fence_toy() -> tuple[int, int, int]:
     return len(records), len(slopes), component_checks
 
 
+def rank8_minimal_shortening_toy() -> int:
+    field = 103
+    points = list(range(2, 11))
+    determinant = prod(
+        (points[j] - points[i]) % field
+        for i in range(len(points)) for j in range(i + 1, len(points))
+    ) % field
+    require(determinant != 0, "rank-eight minimal Vandermonde")
+    return determinant
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -1169,6 +1187,7 @@ def main() -> None:
     rank8_cut = data["rank8_weighted_capacity_cut"]
     dense_owner = data["rank8_dense_owner_terminal_bridge"]
     rank8_fence = data["rank8_fixed_chart_local_cap_fence"]
+    rank8_minimal = data["rank8_minimal_shortening_exclusion"]
     require(
         data["source_prize_dag"]["nodes"]["rank9_split_pencil_paircore"]
         == PAIRCORE_SOURCE,
@@ -2177,6 +2196,22 @@ def main() -> None:
     require(rank8_fence_marked > rank8_fence_demand, "rank-eight weighted fence")
     require(rank8_fence["base_prime"] > rank8_fence["maximum_greedy_forbidden_values"], "rank-eight field budget")
     toy_rank8_records, toy_rank8_slopes, toy_rank8_components = rank8_local_fence_toy()
+    require(rank8_minimal == {
+        "residual_K_prime": 10,
+        "ambient_RS_dimension": 10,
+        "correction_space_dimension": 10,
+        "selector_size": 9,
+        "selector_rank": 9,
+        "excluded_selector_rank": 8,
+        "interpolation_degree_ceiling": 8,
+        "first_uncovered_K_prime": 11,
+    }, "rank-eight minimal-shortening exclusion")
+    require(
+        rank8_minimal["ambient_RS_dimension"] == rank8_minimal["correction_space_dimension"]
+        and rank8_minimal["selector_rank"] == rank8_minimal["selector_size"],
+        "rank-eight minimal rank exclusion",
+    )
+    rank8_minimal_determinant = rank8_minimal_shortening_toy()
 
     core_checks = 0
     for owner_core in range(2 * m - n, m):
@@ -2203,6 +2238,7 @@ def main() -> None:
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,
         "rank8_fixed_chart_output_suffices_for_payment": False,
+        "rank8_minimal_shortening_closed_K_prime": 10,
         "chronology_owner": False,
         "rank11_paid": False,
         "active_v4_ledger_movement": 0,
@@ -2264,6 +2300,8 @@ def main() -> None:
         f"rank8_local_fence_slopes={rank8_fence_slopes} "
         f"rank8_local_fence_weighted_excess={rank8_fence_marked-rank8_fence_demand} "
         f"rank8_toy={toy_rank8_records}/{toy_rank8_slopes}/{toy_rank8_components} "
+        f"rank8_minimal_kprime={rank8_minimal['residual_K_prime']} "
+        f"rank8_minimal_det={rank8_minimal_determinant} "
         f"toy_points={points} toy_slopes={slopes} design_pairs={design_pairs}"
     )
 

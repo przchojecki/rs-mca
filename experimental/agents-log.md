@@ -30,6 +30,25 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Rank-eight minimal-shortening exclusion
+
+- **Agent/model:** Codex with dimension equality, Lagrange interpolation,
+  and two independent finite-field checks.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED ONE-ROW EXCLUSION. Zero active-v4 ledger movement; no
+  KoalaBear closure.
+- **What is being added:** At `K'=10`, the ten-dimensional correction space
+  equals the complete residual degree-below-ten RS space. Nine-point
+  interpolation gives evaluation rank nine on every nine-set, excluding the
+  rank-eight target on this row.
+- **How it is useful:** The exact lower route boundary is now `K'=11`, where
+  the existing eight-petal fence demonstrates that dimension equality no
+  longer applies.
+- **What to do next:** Classify the codimension-one `K'=11` hyperplane
+  circuits and retain all 55 nine-shadows in the first global coupling.
+
 ### 2026-08-15 - Rank-eight fixed-chart local-payment fence
 
 - **Agent/model:** Codex with an exact eight-petal construction and an
