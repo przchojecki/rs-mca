@@ -11765,6 +11765,161 @@ $N_{\min}=274980728111260126$.  Adding the three capacities there gives the
 displayed total, strictly below the displayed demand.
 \end{proof}
 
+\begin{proposition}[Sparse-circuit completion ladder]
+\label{prop:kb-rank11-sparse-circuit-completion-ladder}
+Let $K\ge13$, put $q=K-10$, and let
+$V\le P_K=\F[X]_{<K}$ have dimension ten and no common zero on a set $S$
+of $m$ distinct field points.  Every eleven-set $T\subseteq S$ on which
+$V$ has evaluation rank ten selects one minimal circuit support $C_T$.
+For the circuits with $2\le c=|C_T|\le5$, one of the following holds:
+\begin{enumerate}
+\item every such circuit lies in one carrier of size at most $q+4$;
+\item every independent $(c-1)$-set has at most $q-1$ completions to a
+support-$c$ circuit, for every $2\le c\le5$.
+\end{enumerate}
+Consequently, if $I_c$ counts the eleven-sets selecting a support-$c$
+circuit, then
+\begin{align*}
+ I_c\le\max\{S_c,U_c\},\qquad
+ S_c&=\binom{q+4}{c}\binom{m-c}{11-c},\\
+ U_c&=\floor{\frac{\binom m{c-1}}c
+       \max_{0\le b\le q-1}b\binom{m-c+1-b}{11-c}}.
+\end{align*}
+On every specialization $14\le K'\le21$, the maximum in $U_c$ occurs at
+$b=q-1$.
+\end{proposition}
+
+\begin{proof}
+Put $\Lambda=V^\perp$, so $\dim\Lambda=q$.  Annihilator duality gives
+$\dim(\Lambda\cap E_T)=1$ for every selected eleven-set.  Fix an
+independent deletion $A$ of size $c-1$.  The space
+$H_A=\{f\in V:f|_A=0\}$ has dimension $11-c$.  If its common-zero set has
+size $z$, division by its locator embeds $H_A$ in $P_{K-z}$, whence
+$z\le K+c-11$.  The points of $A$ already account for $c-1$ zeros, so
+$A$ has at most $q$ circuit completions.
+
+If one deletion has all $q$ completions, their private completion
+coordinates make their labels independent.  They span $\Lambda$ and have
+carrier $U$ of size $c-1+q\le q+4$.  Any other sparse label has the same
+representations on its support and $U$; their union has size at most
+$q+9=K-1$, so Vandermonde independence forces its support into $U$.  This
+gives $S_c$.
+
+Otherwise let $b\le q-1$ be the completions of one deletion.  A selected
+eleven-set cannot retain two of their labels, since its intersection with
+$\Lambda$ is one-dimensional.  Thus that deletion contributes at most
+$b\binom{m-c+1-b}{11-c}$ eleven-sets.  Summing over all deletions and
+dividing by the $c$ charges of each circuit gives $U_c$.  Finally,
+$b\binom{m-c+1-b}{11-c}$ is increasing through $b=q-1$ on the eight stated
+rows; the exact ratio test has threshold greater than $6700$, whereas
+$q-1\le10$.
+\end{proof}
+
+\begin{proposition}[Joint sparse/high rank-nine-shadow ledger]
+\label{prop:kb-rank11-joint-sparse-shadow-ledger}
+Suppose every full-rank eleven-set has one circuit.  A support-$c$ circuit
+has exactly
+\[
+ q_c=55-\binom{11-c}{2}
+\]
+rank-nine shadows.  Hence $q_c=19,27,34,40$ for $c=2,3,4,5$, while
+$q_c\ge45$ for $c\ge6$.  If all rank-nine marks have total capacity $G$
+and $R$ records have per-record sparse bounds $L_c$, then complete
+full-rank incidence is at most
+\[
+ \floor{\frac{G+R\sum_{c=2}^5(45-q_c)L_c}{45}}.
+\]
+If each record lies in one of several structural branches with cap vectors
+$L_c^{(a)}$, the sum is replaced by its maximum over $a$.
+\end{proposition}
+
+\begin{proof}
+Omitting a pair disjoint from the circuit leaves rank eight; all other
+omitted pairs leave rank nine.  This proves the formula for $q_c$.  If
+$I_c$ counts sparse incidences and $H$ the incidences of support at least
+six, the one global shadow resource gives
+\[
+ 45H+\sum_{c=2}^5q_cI_c\le G.
+\]
+Adding $\sum(45-q_c)I_c$ and using $I_c\le RL_c$ proves the claim.  For
+multiple branches, maximize the premium record by record.  In particular,
+the sparse strata consume their ordinary shadows before receiving the
+printed premiums $26,18,11,5$.
+\end{proof}
+
+\begin{proposition}[$K'=14$ through $K'=21$ joint sparse-shadow payment]
+\label{prop:kb-rank11-k14-k21-joint-sparse-shadow-payment}
+In the fixed target of
+Proposition~\ref{prop:kb-rank11-component-ninesubset-target}, every
+rank-eleven component alternative is empty for $14\le K'\le21$.  The exact
+demand-minus-capacity gaps are
+\[
+\begin{array}{c@{\quad}r}
+K'&\text{gap}\\ \hline
+14&21650768172043394032492459946400263590275020562192971022865376\\
+15&18588028475285812265606143363906671348737995144736255147834120\\
+16&15524989535492821727324938882048706164611583704587475891361669\\
+17&12461651333490539307570308245171118440833885273861127661424680\\
+18& 9398013850103444858371174848818672822082629043827750046751608\\
+19& 6334077066154944217959550399858581606171131782792291719264278\\
+20& 3269840962466993657882795068981405767940223879562014346498774\\
+21&  205305519860193617784849691734671763401656917434567909452790
+\end{array}
+\]
+The identical payment first fails at $K'=22$, where capacity exceeds
+demand by
+\[
+ 2859529280846211417198922209345618432657212793529140162369036.
+\]
+\end{proposition}
+
+\begin{proof}
+For one row put $n=1048576+K'$, $m=67472+K'$, and $q=K'-10$.  Retain every
+nonzero canonical-basis corank term:
+\[
+ K_{\rm cap}=\sum_{d=1}^{\min(9,q-1)}
+   \binom n{10-d}M_d(K')\binom q{d+1}.
+\]
+For every core size $9\le j<K'$, specialize
+Proposition~\ref{prop:kb-rank11-weighted-selected-support-core-offset} at
+$P=m-j$, $S=n-j$, and offset $j-9$.  Let $C_*$ be the largest resulting
+chart cap and put $G=\binom n9C_*$.  No rank-deficient incidence enters
+this full-rank resource.
+
+Proposition~\ref{prop:kb-rank11-sparse-circuit-completion-ladder} supplies
+the two per-record vectors
+\begin{align*}
+ L_c^{\rm S}&=\binom{q+4}{c}\binom{m-c}{11-c},\\
+ L_c^{\rm U}&=\floor{\frac{\binom m{c-1}(q-1)
+                 \binom{m-c+2-q}{11-c}}c}.
+\end{align*}
+By Proposition~\ref{prop:kb-rank11-joint-sparse-shadow-ledger}, full-rank
+capacity is
+\[
+ F_{\rm cap}=\floor{\frac{G+R_{\rm actual}
+  \max_{a\in\{\rm S,U\}}\sum_{c=2}^5(45-q_c)L_c^a}{45}}.
+\]
+The dense-locator demand is
+\[
+ \ceil{\frac{990810934}{10^9}R_{\rm actual}\binom m{11}}.
+\]
+The exact replay scans every displayed $j$ and both completion branches.
+On all eight rows, the demand coefficient after clearing $45\cdot10^9$ is
+positive, and the full cross-product is already positive at
+$R_{\min}=274980728111260126$.  Therefore demand exceeds
+$K_{\rm cap}+F_{\rm cap}$ for every admissible record count.  Integer
+evaluation gives the displayed gaps.  At $K'=22$, the same formulas give
+capacity
+\[
+905885518366475292751564400874300832826807604203127204847344067
+\]
+and demand
+\[
+903025989085629081334365478664955214394150391409598064684975031,
+\]
+which proves only the stated method wall.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -13332,9 +13487,15 @@ absolute kernel term while paying the complete $K'=12$ component
 population.  Proposition~\ref{prop:kb-rank11-codimension-three-sparse-circuit}
 controls the quotient-plane sparse circuits, and
 Proposition~\ref{prop:kb-rank11-k13-sparse-circuit-payment} retains both
-kernel coranks while paying the complete $K'=13$ component population.  Thus the
-remaining intervals are rank nine or rank eight on
-$14\le K'\le15528$, rank eight only on $15529\le K'\le22525$,
+kernel coranks while paying the complete $K'=13$ component population.
+Proposition~\ref{prop:kb-rank11-sparse-circuit-completion-ladder} extends
+the completion dichotomy to arbitrary quotient dimension, and
+Proposition~\ref{prop:kb-rank11-joint-sparse-shadow-ledger} prevents its
+sparse incidences from spending the rank-nine-shadow capacity twice.
+Proposition~\ref{prop:kb-rank11-k14-k21-joint-sparse-shadow-payment}
+retains every kernel corank and core offset and pays the next eight rows.
+Thus the remaining intervals are rank nine or rank eight on
+$22\le K'\le15528$, rank eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
 $37996\le K'\le1048576$.
@@ -13343,6 +13504,12 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
+At the first remaining row $K'=22$, the joint sparse-shadow formula has the
+printed capacity excess
+$2859529280846211417198922209345618432657212793529140162369036$.
+This is a method wall: a continuation must lower the sparse completion
+premium or extract another shared resource without omitting a kernel
+corank or reusing a rank-nine mark.
 Proposition~\ref{prop:kb-rank11-rank8-circuit-shadow-census} gives the exact
 first-row split: the full-circuit case has 54 rank-nine shadows, while every
 proper circuit gives additional rank-eight shadows and a locator ideal of

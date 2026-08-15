@@ -4896,3 +4896,41 @@ Keep entries concise and link to the relevant files.
   carrier dichotomy or a sharper deletion count pays the quotient
   three-space, retaining all nonzero kernel coranks and core offsets through
   `j=13`.
+
+### 2026-08-15 - K'=14..21 joint sparse-shadow payment
+
+- **Agent/model:** Codex, importing three proved public prize-DAG nodes after
+  proof audit, exact arithmetic, an independent finite-field model, and
+  hostile-mutation replay.
+- **Exact parent:** this PR's `K'=13` extension at
+  `8cf7c8f97fcaf61d3e13ca8d43c87345e865d6e1`.
+- **Research source:** prize-DAG commit
+  `e9a8a76800cd05dbe8382a3ac253d83a52d71d2c`; source-contract SHA-256 values
+  `25bbeb3c2124f34399659550c214400bc6afe4ce9d5ee615939241e2e94c298b`,
+  `2f9446f4efd0a3cbb393a74f78f77384dee26f2f3d5fdddb53ba1b4b71762013`,
+  and `eb1c5343d7aee27704ff1c9a5a30639e3cb101c51e7b13eb0a3f04be071f56e1`.
+- **Status:** PROVED EIGHT-ROW CLOSURE / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** For quotient dimension `q=K'-10`, every
+  independent deletion has at most `q` sparse-circuit completions. Equality
+  spans the quotient and confines every support-at-most-five circuit to a
+  carrier of size at most `q+4`; otherwise deletion counting uses at most
+  `q-1` completions.  A joint ledger charges support sizes `2,3,4,5` their
+  exact `19,27,34,40` rank-nine shadows and grants only premiums
+  `26,18,11,5`.  Retaining every kernel corank, core offset, and completion
+  branch closes `K'=14..21`.
+- **Impact:** The smallest strict gap is
+  `205305519860193617784849691734671763401656917434567909452790` at
+  `K'=21`.  The rank-nine interval contracts from `14..15528` to
+  `22..15528`.
+- **Controls:** Primary replay and all 113 hostile mutations pass.  The
+  independent replay reconstructs 68 core-offset charts, all eight row
+  payments, the exact `K'=22` wall, and structured/unstructured
+  codimension-four completion models over `GF(17)`.
+- **Nonclaim:** The identical payment fails at `K'=22`, where capacity
+  exceeds demand by
+  `2859529280846211417198922209345618432657212793529140162369036`.
+  There is no chronology owner, error-rank-eleven payment, active-v4
+  movement, KoalaBear closure, or prize closure.
+- **What to do next:** Lower the `K'=22` sparse premium or add a genuinely
+  shared shadow resource without omitting a kernel corank or reusing a
+  rank-nine mark.

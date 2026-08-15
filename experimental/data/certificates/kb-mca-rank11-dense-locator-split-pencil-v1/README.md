@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages sixty proved local results after the fixed
+This certificate packages sixty-three proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -72,6 +72,19 @@ rank-eleven anchor-star reduction:
   `898085191110430398284744062896212914931984716650701254999384513`,
   below demand by
   `3617026878762290164882578515067303096680225900459379608374624`;
+- a dimension-parametric sparse-circuit completion ladder: with quotient
+  dimension `q=K'-10`, `q` completions force one carrier of size at most
+  `q+4`, while the complementary branch has at most `q-1` completions per
+  independent deletion;
+- a joint sparse/high rank-nine-shadow ledger which charges support sizes
+  `2,3,4,5` their exact `19,27,34,40` ordinary shadows and grants only the
+  complementary premiums `26,18,11,5`;
+- the complete `K'=14..21` payments, retaining every nonzero kernel corank,
+  every core offset, and both completion branches; the smallest positive
+  gap is
+  `205305519860193617784849691734671763401656917434567909452790` at
+  `K'=21`, while the same method first fails at `K'=22` by capacity excess
+  `2859529280846211417198922209345618432657212793529140162369036`;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -194,18 +207,20 @@ factors and both dense-owner bridge boundary rows.  The independent replay
 also checks finite-field rank-eight petal, minimal-shortening, and
 circuit-shadow models, all `33736` clean-dominant split-pencil sizes, the
 independently derived minimal-row demand, 2,046 sparse-support Vandermonde
-tests, all 605 circuit-shadow omissions, and structured/unstructured
-codimension-three circuit models over `GF(17)`. The primary replay checks the
+tests, all 605 circuit-shadow omissions, structured/unstructured
+codimension-three circuit models, and a codimension-four completion-ladder
+model over `GF(17)`.  It also independently reconstructs all eight joint
+payment rows and the `K'=22` method wall. The primary replay checks the
 existing affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `14<=K'<=15528` is open; the
+lane. The low rank-nine interval `22<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not
-pay the rank-eight branch on `14<=K'<22526`. The fixed-chart eight-petal
+pay the rank-eight branch on `22<=K'<22526`. The fixed-chart eight-petal
 witness at `K'=11` survives, but its full circuit creates 54 neighboring
 rank-nine shadows and is paid by the global circuit census. The packet does
 not assign the bridged dense

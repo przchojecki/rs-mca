@@ -147,6 +147,27 @@ FIXED_CHART_SOURCES = {
         "tree": "5e0b2f59feeead4f69ae1365950555d8f30228c3",
         "contract_sha256": "12473a9dbffe68438eb813e042d666c9ab08b25ac48bc8cdc0c5dcc2d3b4b30b",
     },
+    "sparse_circuit_completion_dimension_ladder": {
+        "id": "rate_half_mca_sparse_circuit_completion_dimension_ladder",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_completion_dimension_ladder",
+        "commit": "e9a8a76800cd05dbe8382a3ac253d83a52d71d2c",
+        "tree": "32f790041de21037bdb2dad648a7e20a7be782e3",
+        "contract_sha256": "25bbeb3c2124f34399659550c214400bc6afe4ce9d5ee615939241e2e94c298b",
+    },
+    "rank9_sparse_shadow_joint_ledger": {
+        "id": "rate_half_mca_rank9_sparse_shadow_joint_ledger",
+        "path": "background/nodes/rate_half_mca_rank9_sparse_shadow_joint_ledger",
+        "commit": "e9a8a76800cd05dbe8382a3ac253d83a52d71d2c",
+        "tree": "b0c09e54fcdaaf64bffd8f1dfadcea410b205a15",
+        "contract_sha256": "2f9446f4efd0a3cbb393a74f78f77384dee26f2f3d5fdddb53ba1b4b71762013",
+    },
+    "rank11_k14_k21_sparse_shadow_payment": {
+        "id": "rate_half_mca_rank11_k14_k21_sparse_shadow_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k14_k21_sparse_shadow_payment",
+        "commit": "e9a8a76800cd05dbe8382a3ac253d83a52d71d2c",
+        "tree": "8d83ef5e484e76301b88e39f8c28998fb5d37edf",
+        "contract_sha256": "eb1c5343d7aee27704ff1c9a5a30639e3cb101c51e7b13eb0a3f04be071f56e1",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1440,6 +1461,194 @@ def codimension_three_sparse_circuit_toy() -> tuple[int, int, int]:
     return len(structured_circuits), len(unstructured_circuits), maximum
 
 
+def codimension_four_sparse_circuit_toy() -> tuple[int, int, int, int]:
+    prime = 17
+    evaluations = [
+        [pow(point, degree, prime) for degree in range(14)]
+        for point in range(14)
+    ]
+
+    def circuits(constraints: list[list[int]]) -> set[tuple[int, ...]]:
+        basis = nullspace_mod(constraints, prime)
+        require(len(basis) == 10, "K'=14 quotient dimension")
+        columns = [
+            [
+                sum(coefficient * pow(point, degree, prime)
+                    for degree, coefficient in enumerate(polynomial)) % prime
+                for polynomial in basis
+            ]
+            for point in range(14)
+        ]
+        require(all(any(column) for column in columns), "K'=14 basepoint free")
+
+        def subset_rank(subset: tuple[int, ...]) -> int:
+            return rank_mod(
+                [[columns[column][row] for column in subset] for row in range(10)],
+                prime,
+            )
+
+        found: set[tuple[int, ...]] = set()
+        for size in range(2, 6):
+            for subset in combinations(range(14), size):
+                if subset_rank(subset) != size - 1:
+                    continue
+                if all(
+                    subset_rank(subset[:index] + subset[index + 1:]) == size - 1
+                    for index in range(size)
+                ):
+                    found.add(subset)
+        return found
+
+    def maximum(found: set[tuple[int, ...]]) -> int:
+        completion_map: dict[tuple[int, ...], set[int]] = {}
+        for circuit in found:
+            for index, point in enumerate(circuit):
+                deletion = circuit[:index] + circuit[index + 1:]
+                completion_map.setdefault(deletion, set()).add(point)
+        return max(map(len, completion_map.values()))
+
+    structured_constraints = [
+        [(left - right) % prime for left, right in zip(evaluations[point], evaluations[0])]
+        for point in (1, 2, 3, 4)
+    ]
+    structured = circuits(structured_constraints)
+    require(maximum(structured) == 4, "K'=14 structured completion maximum")
+    require(
+        all(set(circuit) <= {0, 1, 2, 3, 4} for circuit in structured),
+        "K'=14 structured carrier",
+    )
+    dense = [
+        sum(weight * evaluations[point][degree]
+            for weight, point in zip((1, 1, 1, 1, 1, -5), range(5, 11))) % prime
+        for degree in range(14)
+    ]
+    unstructured = circuits(structured_constraints[:3] + [dense])
+    return len(structured), len(unstructured), maximum(structured), maximum(unstructured)
+
+
+def independent_joint_offset(petal: int, total: int, offset: int) -> int:
+    heavy = total // (petal // 2 + 1)
+    cross = petal**2 // 4
+    balanced = (cross + offset * petal) * total * (total - 1) // 2 // cross
+    collision = (
+        heavy * (heavy - 1) // 2
+        * ((petal - 1) * (petal - 2) // 2 + offset * petal)
+    )
+    linear = (petal - 2) * total + 2 * heavy * offset * petal
+    quadratic = petal - 2
+    vertex = Fraction(linear, 2 * quadratic)
+    floor_vertex = vertex.numerator // vertex.denominator
+    clean = max(
+        light * (linear - quadratic * light) // 2
+        for light in {0, total, floor_vertex, floor_vertex + 1}
+        if 0 <= light <= total
+    )
+    return clean + balanced + collision
+
+
+def analytic_completion_maximum(
+    mprime: int,
+    support: int,
+    ceiling: int,
+) -> tuple[int, int]:
+    exponent = 11 - support
+    size = mprime - support + 1
+    threshold = Fraction(size - exponent, exponent + 1)
+    pivot = (threshold.numerator + threshold.denominator - 1) // threshold.denominator
+    pivot = min(ceiling, max(1, pivot))
+    return max(
+        (count * comb(size - count, exponent), count)
+        for count in range(max(1, pivot - 2), min(ceiling, pivot + 2) + 1)
+    )
+
+
+def independent_joint_sparse_row(kprime: int, records: int) -> dict[str, object]:
+    nprime = 1048576 + kprime
+    mprime = 67472 + kprime
+    quotient = kprime - 10
+    coranks = list(range(1, min(9, quotient - 1) + 1))
+    ranks = [10 - corank for corank in coranks]
+    record_caps = [independent_kernel_record_cap(kprime, rank) for rank in ranks]
+    extensions = [comb(quotient, corank + 1) for corank in coranks]
+    kernel_terms = [
+        comb(nprime, rank) * cap * extension
+        for rank, cap, extension in zip(ranks, record_caps, extensions)
+    ]
+    kernel = sum(kernel_terms)
+
+    core_sizes = list(range(9, kprime))
+    core_caps = [
+        independent_joint_offset(mprime - core, nprime - core, core - 9)
+        for core in core_sizes
+    ]
+    chart = max(core_caps)
+    maximizing_core = core_sizes[core_caps.index(chart)]
+    marks = comb(nprime, 9) * chart
+
+    structured_terms = {
+        str(support): comb(quotient + 4, support) * comb(mprime - support, 11 - support)
+        for support in range(2, 6)
+    }
+    maximizers: dict[str, int] = {}
+    unstructured_terms: dict[str, int] = {}
+    for support in range(2, 6):
+        value, count = analytic_completion_maximum(mprime, support, quotient - 1)
+        maximizers[str(support)] = count
+        unstructured_terms[str(support)] = comb(mprime, support - 1) * value // support
+    shadow_counts = {
+        str(support): 55 - comb(11 - support, 2)
+        for support in range(2, 6)
+    }
+    premium_weights = {
+        support: 45 - shadow_counts[support]
+        for support in shadow_counts
+    }
+    structured_premium = sum(
+        premium_weights[support] * structured_terms[support]
+        for support in premium_weights
+    )
+    unstructured_premium = sum(
+        premium_weights[support] * unstructured_terms[support]
+        for support in premium_weights
+    )
+    premium = max(structured_premium, unstructured_premium)
+    full_rank = (marks + records * premium) // 45
+    total = kernel + full_rank
+    demand = ceiling(Fraction(990810934 * records * comb(mprime, 11), 10**9))
+    coefficient = 45 * 990810934 * comb(mprime, 11) - 10**9 * premium
+    raw = records * coefficient - 10**9 * (45 * kernel + marks)
+    return {
+        "K_prime": kprime,
+        "n_prime": nprime,
+        "m_prime": mprime,
+        "quotient_dimension": quotient,
+        "kernel_coranks": coranks,
+        "kernel_record_caps": record_caps,
+        "kernel_extension_factors": extensions,
+        "kernel_incidence_terms": kernel_terms,
+        "kernel_incidence_cap": kernel,
+        "rank9_core_sizes": core_sizes,
+        "rank9_core_caps": core_caps,
+        "rank9_core_maximizer": maximizing_core,
+        "uniform_rank9_chart_cap": chart,
+        "global_rank9_mark_capacity": marks,
+        "structured_support_terms": structured_terms,
+        "unstructured_completion_maximizers": maximizers,
+        "unstructured_support_terms": unstructured_terms,
+        "rank9_shadow_counts": shadow_counts,
+        "premium_weights": premium_weights,
+        "structured_sparse_premium": structured_premium,
+        "unstructured_sparse_premium": unstructured_premium,
+        "active_sparse_premium": premium,
+        "full_rank_joint_capacity_at_record_floor": full_rank,
+        "total_capacity_at_record_floor": total,
+        "required_incidence_at_record_floor": demand,
+        "demand_capacity_gap": demand - total,
+        "record_coefficient_cross": coefficient,
+        "raw_demand_capacity_cross": raw,
+    }
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -1464,6 +1673,9 @@ def main() -> None:
     k12_payment = data["rank11_k12_quotient_line_circuit_payment"]
     completion_cap = data["codimension_three_sparse_circuit_completion_cap"]
     k13_payment = data["rank11_k13_sparse_circuit_completion_payment"]
+    completion_ladder = data["sparse_circuit_completion_dimension_ladder"]
+    joint_shadow_ledger = data["rank9_sparse_shadow_joint_ledger"]
+    joint_sparse_payment = data["rank11_k14_k21_sparse_shadow_payment"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -2232,6 +2444,61 @@ def main() -> None:
     )
     require(k13_payment["newly_closed_rows"] == [13, 13], "K'=13 closed row")
     require(k13_payment["remaining_rank9_interval"] == [14, 15528], "K'=13 remaining interval")
+
+    joint_rows = [
+        independent_joint_sparse_row(kprime, non_dense)
+        for kprime in range(14, 22)
+    ]
+    endpoint_totals = {
+        str(row["K_prime"]): {
+            "structured": sum(row["structured_support_terms"].values()),
+            "unstructured": sum(row["unstructured_support_terms"].values()),
+        }
+        for row in (joint_rows[0], joint_rows[-1])
+    }
+    require(completion_ladder["official_K_prime_interval"] == [14, 21], "completion interval")
+    require(completion_ladder["completion_ceiling_formula"] == "q", "completion ceiling")
+    require(completion_ladder["unstructured_completion_ceiling_formula"] == "q-1", "completion fallback")
+    require(completion_ladder["structured_carrier_ceiling_formula"] == "q+4", "completion carrier")
+    require(completion_ladder["endpoint_totals"] == endpoint_totals, "completion endpoints")
+    require(joint_shadow_ledger["rank9_shadow_counts"] == [19, 27, 34, 40], "joint shadow counts")
+    require(joint_shadow_ledger["premium_weights"] == [26, 18, 11, 5], "joint premiums")
+    require(joint_shadow_ledger["baseline_shadow_cost"] == 45, "joint baseline")
+    require(joint_sparse_payment["rows"] == joint_rows, "independent joint rows")
+    require(joint_sparse_payment["closed_K_prime_interval"] == [14, 21], "joint closed rows")
+    require(all(
+        row["rank9_core_maximizer"] == row["K_prime"] - 1
+        and set(row["unstructured_completion_maximizers"].values())
+        == {row["quotient_dimension"] - 1}
+        and row["demand_capacity_gap"] > 0
+        and row["record_coefficient_cross"] > 0
+        and row["raw_demand_capacity_cross"] > 0
+        for row in joint_rows
+    ), "independent joint strict rows")
+    require(
+        joint_sparse_payment["minimum_record_coefficient_cross"]
+        == min(row["record_coefficient_cross"] for row in joint_rows)
+        == 142682033239797420617137269900169736054865857428491736720,
+        "independent joint coefficient",
+    )
+    require(
+        joint_sparse_payment["minimum_gap_row"] == 21
+        and joint_rows[-1]["demand_capacity_gap"]
+        == 205305519860193617784849691734671763401656917434567909452790,
+        "independent joint minimum gap",
+    )
+    require(joint_sparse_payment["newly_closed_rows"] == [14, 21], "joint newly closed")
+    require(joint_sparse_payment["remaining_rank9_interval"] == [22, 15528], "joint remaining interval")
+    joint_wall = independent_joint_sparse_row(22, non_dense)
+    require(joint_sparse_payment["K22_method_wall"] == {
+        "K_prime": 22,
+        "total_capacity_at_record_floor": joint_wall["total_capacity_at_record_floor"],
+        "required_incidence_at_record_floor": joint_wall["required_incidence_at_record_floor"],
+        "capacity_excess": -joint_wall["demand_capacity_gap"],
+    }, "independent K'=22 wall")
+    require(joint_wall["demand_capacity_gap"] < 0, "independent K'=22 failure")
+    k14_toy = codimension_four_sparse_circuit_toy()
+    require(k14_toy == (10, 6, 4, 3), "K'=14 finite-field branches")
 
     require(kernel_globalizer == {
         "correction_dimension": 10,
@@ -3096,8 +3363,9 @@ def main() -> None:
         "rank9_k11_circuit_split_pencil_closed_K_prime": 11,
         "rank9_k12_quotient_line_circuit_closed_K_prime": 12,
         "rank9_k13_sparse_circuit_completion_closed_K_prime": 13,
+        "rank9_k14_k21_sparse_shadow_closed_K_prime": 21,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [14, 15528],
+        "rank9_remaining_interval": [22, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -3132,6 +3400,10 @@ def main() -> None:
         f"k13_sparse_cap={sparse_cap} "
         f"k13_gap={k13_demand-k13_total} "
         f"k13_toy={structured_circuits}/{unstructured_circuits}/{completion_maximum} "
+        f"joint_sparse_rows={len(joint_rows)} "
+        f"k21_joint_gap={joint_rows[-1]['demand_capacity_gap']} "
+        f"k22_joint_excess={-joint_wall['demand_capacity_gap']} "
+        f"k14_toy={'/'.join(map(str, k14_toy))} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "
         f"kernel_wall_gap={kernel_wall_capacity-kernel_wall_demand} "

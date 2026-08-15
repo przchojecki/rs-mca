@@ -88,7 +88,7 @@ At this snapshot:
 - The rank-ten margin/interleaving split now pays the complete direct post-near KoalaBear affine-error-rank-10 branch.  At threshold T=667, the support-transverse high part costs 5143522968716559, the common-support interleaved low part costs 56727790457914040, and the disjoint near add-back costs 134944, for total 61871313426765543 and slack 213109414684629544.  The projection-collapse guard uses the actual sextic line field |F|=2130706433^6.  The same exact one-threshold formula first fails at error rank 11, whose minimum is 1040506078215897711 at T=876; an exact post-near constant-code star proves the per-pair multiplicity factor n-A is sharp.  This moves no active-v4 atom and does not close KoalaBear.
 - The rank-eleven successor now sums the record-local support margins before taking a minimum and compiles low-margin records into actual fixed minimizing pairs.  Every over-budget post-near error-rank-11 line forces one pair of deficiency at most 8 with weighted load at least 743449148, and independently a possibly different pair of deficiency at most 4 owning at least 200632 distinct slopes.  The complete printed-theorem core-deficiency cutoff has minimum 813929118931913384, while the stronger summed-margin relaxation has minimum 811958533186703629; both exceed the row budget.  A finite parallel-star control rules out distinct-neighbor promotion and a smaller one-pair multiplier.  Thus the next missing theorem couples different pair cores or routes dense parallel groups to a chronology owner.  This is a route cut with zero active-v4 ledger movement, not a rank-eleven payment or KoalaBear closure.
 - The dense-core owner substrate now has a guarded acceptance contract.  Any reuse of the active S/A/E large-owner chronology must charge the proved `2w` near-rational set separately from the 31-slope exception set, replacing the contained-owner target by `B*-(2w+31)-(n-g)`.  Any certificate computed in the effective `K=k+1` lattice envelope must also impose the exact degree-`<k` quotient guard and same-support pair-noncontainment test.  An explicit `(1_E,X^k)` record refutes silent dimension transport, while the deployed pole-line record passes the repaired guard with all frozen owner fields unassigned.  These results make the #1168 owner interface witness-sound and honestly priced; they do not construct the missing chronology owner, pay rank eleven, or move an active-v4 atom.
-- The post-near rank-eleven dense-locator packet now proves sixty local
+- The post-near rank-eleven dense-locator packet now proves sixty-three local
   results under its pinned 32-anchor/18-dense-root/ten-space setup.  High-core
   absorption is exactly ten-dimensional; at least `990810934` parts per
   billion of record/eleven-subset incidences enter positive-dimensional owner
@@ -128,6 +128,17 @@ At this snapshot:
   capacity by
   `3617026878762290164882578515067303096680225900459379608374624`,
   closing `K'=13`.
+  In arbitrary quotient dimension `q=K'-10`, every independent deletion
+  has at most `q` sparse-circuit completions.  Equality spans the quotient
+  and confines every support-at-most-five circuit to one carrier of size at
+  most `q+4`; otherwise deletion counting uses at most `q-1` completions.
+  A joint shadow ledger then charges a support-`c` circuit its exact
+  `55-C(11-c,2)` rank-nine shadows before granting only the premium
+  `26,18,11,5` for `c=2,3,4,5`.  Retaining every nonzero kernel corank,
+  scanning every core offset, and maximizing over both completion branches
+  closes all eight rows `K'=14..21`.  The smallest gap is
+  `205305519860193617784849691734671763401656917434567909452790` at
+  `K'=21`.
   These refinements stay
   in residual units and do not use the original-row core floor.
   Canonical-basis, nine-shadow, projective-paving, bounded-parallel,
@@ -139,11 +150,19 @@ At this snapshot:
   at `K'=10`; at `K'=11` the chart-local fence remains above both selector
   demands, but its full-circuit witness creates 54 neighboring rank-nine
   shadows and is paid globally.  Thus the exact component boundary is: no
-  component target at `K'=10..13`; rank nine or rank eight on `14..15528`;
+  component target at `K'=10..21`; rank nine or rank eight on `22..15528`;
   rank eight only on `15529..22525`; chronology on `22526..37995`; and no
   component target from `K'=37996` onward.  No active-v4 atom moves, and
   error rank eleven is not paid.
-- At the first open residual row `K'=14`, the correction space has codimension four in `RS_{<14}`.  The completion dichotomy does not yet extend to the resulting projective quotient three-space: the next proof must control low-support circuits when four completions can span the quotient, while retaining every nonzero kernel-corank term and the `j=9,10,11,12,13` core-offset ledger.
+- At the first open residual row `K'=22`, the same joint payment has capacity
+  `905885518366475292751564400874300832826807604203127204847344067`
+  against demand
+  `903025989085629081334365478664955214394150391409598064684975031`.
+  Its capacity excess
+  `2859529280846211417198922209345618432657212793529140162369036`
+  is an exact method wall, not a counterexample.  The next proof must lower
+  the completion premium or extract another shared shadow resource without
+  omitting a kernel corank or spending rank-nine marks twice.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.
