@@ -1,0 +1,6 @@
+dependency_id,statement,source,version,scope,proof_status,independent_check,notes
+D-001,support-local transversality and gauge,PR1166 ready head,b67078c7c0254ce9e54e5748634de5133fae98ef,actual post-near records through error rank nine,proved,replayed,source dependency
+D-002,ordinary affine-span list compiler,experimental/grande_finale.tex,b6d30ef4,affine subcode lists at agreement A,proved,source reviewed,self-contained
+D-003,intrinsic near stratum at most 2w,PR1160,c5f4ea7a0c78828c901ae5f3428894a8b2e2806b,Koala row,proved,pinned predecessor,external commit dependency
+D-004,sub-square-root interleaving collapse,this packet,v1,finite-field linear codes,proved,independent proof audit,self-contained
+D-005,public-DAG candidate,AllenGrahamHart/rs-mca-prize-dag,c2c37ceb81f2512736f82d619a3a0e63e4156482,rank-ten target/provenance,proved there,rederived here,not imported as source theorem

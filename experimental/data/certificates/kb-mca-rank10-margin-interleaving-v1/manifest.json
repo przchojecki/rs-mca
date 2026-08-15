@@ -1,0 +1,142 @@
+{
+  "schema": "kb-mca-rank10-margin-interleaving-v1",
+  "parent": "b67078c7c0254ce9e54e5748634de5133fae98ef",
+  "row": {
+    "p": 2130706433,
+    "extension_degree": 6,
+    "n": 2097152,
+    "K": 1048576,
+    "m": 1116048,
+    "w": 67472,
+    "near": 134944,
+    "budget": 274980728111395087
+  },
+  "formula": "2w+max_{0<=j<=s}H_j(T)+(n-m+T-1)M_s(T)",
+  "first_paying_threshold_rank9": 16,
+  "optima": {
+    "9": {
+      "threshold": 667,
+      "agreement": 1115382,
+      "ordinary_list_cap": 57781140652,
+      "high_cap": 5143522968716559,
+      "high_rank": 9,
+      "low_cap": 56727790457914040,
+      "total": 61871313426765543,
+      "slack": 213109414684629544,
+      "subsquare_over_line_field": true,
+      "subsquare_over_base_field": false
+    },
+    "10": {
+      "threshold": 876,
+      "agreement": 1115173,
+      "ordinary_list_cap": 935656856201,
+      "high_cap": 121710694220360988,
+      "high_rank": 10,
+      "low_cap": 918795383995401779,
+      "total": 1040506078215897711,
+      "slack": -765525350104502624,
+      "subsquare_over_line_field": true,
+      "subsquare_over_base_field": false
+    },
+    "11": {
+      "threshold": 1146,
+      "agreement": 1114903,
+      "ordinary_list_cap": 15402824060064,
+      "high_cap": 2891265097510228534,
+      "high_rank": 11,
+      "low_cap": 15129408530173803936,
+      "total": 18020673627684167414,
+      "slack": -17745692899572772327,
+      "subsquare_over_line_field": true,
+      "subsquare_over_base_field": false
+    },
+    "12": {
+      "threshold": 1487,
+      "agreement": 1114562,
+      "ordinary_list_cap": 258997933505221,
+      "high_cap": 69245986282321862866,
+      "high_rank": 12,
+      "low_cap": 254488779482895102390,
+      "total": 323734765765217100200,
+      "slack": -323459785037105705113,
+      "subsquare_over_line_field": true,
+      "subsquare_over_base_field": false
+    }
+  },
+  "neighbor_totals_rank9": {
+    "666": 61871337525323046,
+    "668": 61871313610314122
+  },
+  "star_multiplicity_control": {
+    "field": 11,
+    "n": 10,
+    "K": 1,
+    "m": 3,
+    "threshold": 2,
+    "common_pair": [
+      0,
+      0
+    ],
+    "common_core_size": 2,
+    "owners": 8,
+    "n_minus_A": 8,
+    "support_digest": "034404ef77f61613515f414f775fafc9b8e344b03ba2172540f5544e1c062f08"
+  },
+  "claims": {
+    "error_rank_10": "PAID",
+    "error_rank_11_or_more": "UNPAID_BY_THIS_FORMULA",
+    "active_v4_ledger_movement": 0,
+    "KoalaBear_closed": false
+  },
+  "scan_counts": {
+    "9": 66662,
+    "10": 65810,
+    "11": 64482,
+    "12": 62597
+  },
+  "provenance": {
+    "repository": "przchojecki/rs-mca",
+    "exact_pr1166_parent": "b67078c7c0254ce9e54e5748634de5133fae98ef",
+    "public_dag_candidate": "c2c37ceb81f2512736f82d619a3a0e63e4156482",
+    "exa_sources_reviewed": 20,
+    "load_bearing_external_lemma": false,
+    "wolfram_exact_T667_replay": true
+  },
+  "packet_files": [
+    "agents.md",
+    "experimental/agents-log.md",
+    "experimental/grande_finale.tex",
+    "experimental/notes/thresholds/kb_mca_rank10_margin_interleaving_split_v1.md",
+    "experimental/data/certificates/kb-mca-rank10-margin-interleaving-v1/README.md",
+    "experimental/scripts/verify_kb_mca_rank10_margin_interleaving_v1.py",
+    "experimental/scripts/verify_kb_mca_rank10_margin_interleaving_v1.sage",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/campaign.json",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/00_contract.md",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/01_frontier_map.md",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/02_controls.md",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/03_idea_ledger.csv",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/04_dependency_ledger.csv",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/05_claim_registry.csv",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/06_review_registry.csv",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/reviews/literature_sweep.md"
+  ],
+  "packet_file_sha256": {
+    "agents.md": "25ac3abd1f7797787dc0145f3a6ff96ff4a889e0d1cfb7b5d90f5719ed61a5d6",
+    "experimental/agents-log.md": "94742632e67c08d4d700dfa86085c84082bb13fdaf800d4ef10688fd91697d38",
+    "experimental/grande_finale.tex": "ec6e3ab75e75f89bd411802bfbb98013b5c79e260ef52674c499d95563f70f24",
+    "experimental/notes/thresholds/kb_mca_rank10_margin_interleaving_split_v1.md": "a2830eb5261976dbd34699abdf276f126096b59253bc4977b7ac6f8096ae7918",
+    "experimental/data/certificates/kb-mca-rank10-margin-interleaving-v1/README.md": "a98d7751fd9ab8af3572ef1efeab24a00328288d9749e125270c20ad730cd190",
+    "experimental/scripts/verify_kb_mca_rank10_margin_interleaving_v1.py": "ea85bb8e7050d2f1087c3f390e3547b1c07d69ac74736fe272b034ef19822572",
+    "experimental/scripts/verify_kb_mca_rank10_margin_interleaving_v1.sage": "f14b10c19631d378769fedac9cc39d36eba02417be99c41d96ca4d9374782d17",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/campaign.json": "622681c1918f973db059479415df9cbf8b3c85a68b4b224fe461e860fbcfa620",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/00_contract.md": "4678286daafcd77bd762784e291f5fad527cba0f063c4c50c9a93408114b2d85",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/01_frontier_map.md": "290cc16218db9f4db2aebfd700283c761b15b3f6e5d7d55f014af698bfbaa2c5",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/02_controls.md": "d4975f25338ff72d8f88cc50c8601c658cfb6cada3b1922c448df9fcb6c41ef2",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/03_idea_ledger.csv": "dd369df2d90c0180b7b9f6839b44d143d6e18bf452b5863907aa26a4c478cd4a",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/04_dependency_ledger.csv": "40d9d42300acdf1011e6332e0ece33163c8b844bdc9bb22d60abb6b83f2af4e1",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/05_claim_registry.csv": "aa869f79640e4c1e09a7f38626bf71da12db65a061d46f0c56c33b5e660752e3",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/06_review_registry.csv": "4369c82d0532f1e4c1c7cd7da39a7ea97f7e2f78a57e1f4e69a4aa6fce26e753",
+    "experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/reviews/literature_sweep.md": "e1c0e41a73fad00210a4c178228d4d3ff5bc220c2c87e256b3e99f5325a77855"
+  },
+  "payload_sha256": "642641809784eba3e4323f331bc28cc3d09192a287bd2708752a179080896f53"
+}
