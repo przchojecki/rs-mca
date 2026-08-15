@@ -12846,6 +12846,109 @@ persists above the record floor.  At $K'=60$, exact replay again selects
 capacity excess.
 \end{proof}
 
+\begin{proposition}[Small-source cross-support collision charge]
+\label{prop:kb-rank11-cross-support-collision-charge}
+Fix source support $2\le c\le5$ and target support $2\le d\le9$ with
+$c+d\le11$.  Suppose the exact source completion maximum is
+$M_c=q-s>0$, and let $B$ be an attaining source carrier.  Then
+\[
+ |B|=b=q+c-1-s,
+\]
+and the carrier $U_A$ of every independent target $(d-1)$-deletion satisfies
+\[
+ |U_A\setminus B|\le s+d-1.                         \tag{XC1}
+\]
+Writing $N=m'-b$, the number of target support-$d$ circuits is at most
+\[
+ \begin{cases}
+ \binom bd,&s=0,\\[2mm]
+ \displaystyle \binom bd+
+ \sum_{j=1}^{d}\left\lfloor
+ \frac{\binom b{d-j}\binom N{j-1}(s+d-j)}{j}
+ \right\rfloor,&0<s<q.
+ \end{cases}                                        \tag{XC2}
+\]
+Their selected eleven-set incidence is at most (XC2) multiplied by
+$\binom{m'-d}{11-d}$.  No target cap is inferred from an empty source
+stratum $s=q$.
+\end{proposition}
+
+\begin{proof}
+Let $A_0$ be the attaining source deletion.  For any independent target
+deletion $A$, the two deletion-vanishing spaces have dimensions $11-c$ and
+$11-d$.  Grassmann gives intersection dimension at least
+\[
+ (11-c)+(11-d)-10=12-c-d>0.
+\]
+The intersection vanishes on $B\cup U_A$.  The common-root bound gives
+\[
+ |U_A\setminus B|
+ \le K'-(12-c-d)-(q+c-1-s)=s+d-1,
+\]
+proving (XC1).
+
+At $s=0$, the source-completion labels span the full $q$-dimensional
+annihilator.  Every target circuit label has a representation on $B$.
+Comparing it with its minimal target support uses at most
+$|B|+d=q+c+d-1\le K'$ coordinates, so Vandermonde independence forces the
+target circuit into $B$.
+
+For $0<s<q$, a target circuit with $j$ points outside $B$ is exposed by
+each of its $j$ outside deletions.  The remaining deletion already contains
+$j-1$ outside points, so (XC1) permits at most $s+d-j$ outside completions.
+There are at most $\binom b{d-j}\binom N{j-1}$ such deletions.  Division by
+the exact exposure multiplicity $j$, flooring, and summation prove (XC2).
+The final selected-set multiplier is immediate.
+\end{proof}
+
+\begin{proposition}[$K'=60$ through $K'=70$ cross-support collision payment]
+\label{prop:kb-rank11-k60-k70-cross-support-collision-payment}
+In the fixed component target, every rank-nine alternative is empty for
+\[
+ 60\le K'\le70.
+\]
+Refine source supports $2,3,4,5$ to every exact defect.  On each nonempty
+source stratum apply
+Proposition~\ref{prop:kb-rank11-cross-support-collision-charge} to all
+targets with $c+d\le11$.  Retain the same-support caps, the joint
+support-four charge when $s_4+s_5<q$, and every support-$6$ through
+support-$9$ terminal/fallback branch.  Grouped Pareto compression selects
+\[
+ s_2=s_3=s_4=s_5=\left\lceil\frac q2\right\rceil,
+ \qquad c6F/c7F/c8F/c9F                              \tag{XC3}
+\]
+on every row $60\le K'\le71$.  The minimum demand-capacity gap is attained
+at $K'=70$ and equals
+\[
+854274172985042754802177028749324962520517760595473749602211.
+\]
+The same payment first fails at $K'=71$, where capacity exceeds demand by
+\[
+824875968499878215752683873455674299360608616555107905777434.
+\]
+\end{proposition}
+
+\begin{proof}
+The exact defects at supports $2$ through $5$, the existing joint charge,
+and all $5\cdot4\cdot3\cdot2=120$ higher-support choices are exhaustive.
+No mixed-support cap is applied at an empty source value.  Duplicate vectors
+may be identified, and componentwise dominated vectors discarded, because
+all deficit weights are nonnegative and every later operation intersects
+caps.  Exact enumeration gives (XC3).
+
+Combine its premium $P$ with the unchanged rank-nine marks $G$ and residual
+record floor $R$ as
+\[
+ \operatorname{Cap}_{\rm full}=\left\lfloor\frac{G+RP}{55}\right\rfloor.
+\]
+Adding every kernel-corank capacity and comparing with
+$R\binom{m'}{11}-\binom{n'}{11}$ gives positive gaps on $60\le K'\le70$,
+with the displayed minimum at the last safe row.  The cleared record
+coefficient and floor-record cross are positive on all eleven rows.  At
+$K'=71$, exact replay again selects (XC3), now with all four defects equal
+to $31$, and gives the displayed capacity excess.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -14451,8 +14554,14 @@ uses the positive intersection of any two same-support deletion-vanishing
 spaces for supports two through five, and
 Proposition~\ref{prop:kb-rank11-k54-k59-small-support-collision-payment}
 pays $54\le K'\le59$ after exact defects and grouped Pareto compression.
+Proposition~\ref{prop:kb-rank11-cross-support-collision-charge} couples each
+nonempty source carrier of support two through five to every target support
+whose two support sizes sum to at most eleven, and
+Proposition~\ref{prop:kb-rank11-k60-k70-cross-support-collision-payment}
+pays $60\le K'\le70$ after retaining every inherited cap and higher-support
+branch.
 Thus the remaining intervals are rank eight only on
-$22\le K'\le59$, rank nine or rank eight on $60\le K'\le15528$, rank
+$22\le K'\le70$, rank nine or rank eight on $71\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -14462,9 +14571,9 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=60$, the exact small-support
+At the first remaining rank-nine row $K'=71$, the exact cross-support
 collision payment has the printed capacity excess
-$3672733965923291717387950853821894967875078243379846951201638$.
+$824875968499878215752683873455674299360608616555107905777434$.
 This is a method wall: a continuation must sharpen the complete weighted
 deficit vector, lower the rank-nine chart, or extract another shared resource without omitting a kernel
 corank or reusing a rank-nine mark.

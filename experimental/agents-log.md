@@ -5206,3 +5206,45 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Couple the exact low-support carriers to support six,
   seven, and eight before adding another branch layer.  Preserve every
   inherited cap, kernel corank, and rank-nine mark.
+
+### 2026-08-15 - Cross-support collisions close K'=60..70
+
+- **Agent/model:** Codex, importing two proved public prize-DAG nodes after
+  proof audit, exact arithmetic, primary replay, independent reimplementation,
+  and hostile mutation testing.
+- **Exact parent:** this PR's `K'=54..59` extension at
+  `0d7998d1b66d165a7eafc819371a26bc32572919`.
+- **Research source:** prize-DAG commit
+  `b484010bbcf39a7cc7daf7240c4ed1c08c4c9663`; source trees
+  `74c9ec6f3fce88080c5e7a2a11f22763a0db7dca` and
+  `64aca8fbb26848d41a4208640bd51066ce9d9779`; source-contract SHA-256 values
+  `ad7994569e830ab2d56e58bdb16ca8658e0a2903a28e50e7e0985514e34075c5`
+  and `edcce8ae674f96b095193af674e42b55a1370c21b32382e2de717c1b5fbd5a09`.
+- **Status:** PROVED ELEVEN-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** An attaining nonempty carrier at source support
+  `2<=c<=5` intersects every target deletion-vanishing space with
+  `2<=d<=9` and `c+d<=11`.  The common-root bound leaves at most
+  `s+d-1` target-carrier points outside the source carrier.  Exact
+  outside-deletion exposure therefore gives a target-circuit cap.  The 26
+  admissible mixed-support pairs are combined with exact low-support defects,
+  all inherited same-support and joint caps, and every higher-support branch.
+- **Impact:** Grouped Pareto compression selects
+  `s_2=s_3=s_4=s_5=ceil(q/2)` and all higher supports fallback.  It closes
+  `K'=60..70`; the minimum gap is
+  `854274172985042754802177028749324962520517760595473749602211` at
+  `K'=70`.  The first remaining rank-nine row is `K'=71`.
+- **Controls:** The canonical manifest pins 88 public source nodes and has
+  SHA-256 `db44baa6402a1a4914e4ee66862de1cc3e2c248e8e53562b679b9720786d1908`.
+  The primary verifier rejects 159 hostile mutations.  The independent
+  verifier separately checks all 26 mixed-support pairs, all eleven safe
+  rows, the adjacent wall, and `13230140880` represented raw leaves.  The
+  170-page paper builds with SHA-256
+  `d813ea2dab698c533d57ba8f3b33de25ff1eb65af93ddcc3b93d503bee23a40c`.
+- **Nonclaim:** At `K'=71`, the same payment has exact capacity excess
+  `824875968499878215752683873455674299360608616555107905777434`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** Attack the balanced `K'=71` cross-support wall with a
+  valid joint multi-source charge or another shared resource.  Preserve every
+  inherited cap, kernel corank, and rank-nine mark, and do not stack
+  individually valid target caps unless their common resource is priced.

@@ -99,6 +99,20 @@ BRANCH_LATTICE_SOURCES = {
         "tree": "0f81cecda6cd99dc16c8ebeb35d6c48026e1f804",
         "contract_sha256": "3eac696cd20b5468cbfe7565f14fef6964b72b793800ef810d9db72fa17b9922",
     },
+    "sparse_circuit_cross_support_collision_charge": {
+        "id": "rate_half_mca_sparse_circuit_cross_support_collision_charge",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_cross_support_collision_charge",
+        "commit": "b484010bbcf39a7cc7daf7240c4ed1c08c4c9663",
+        "tree": "74c9ec6f3fce88080c5e7a2a11f22763a0db7dca",
+        "contract_sha256": "ad7994569e830ab2d56e58bdb16ca8658e0a2903a28e50e7e0985514e34075c5",
+    },
+    "rank11_k60_k70_cross_support_collision_payment": {
+        "id": "rate_half_mca_rank11_k60_k70_cross_support_collision_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k60_k70_cross_support_collision_payment",
+        "commit": "b484010bbcf39a7cc7daf7240c4ed1c08c4c9663",
+        "tree": "64aca8fbb26848d41a4208640bd51066ce9d9779",
+        "contract_sha256": "edcce8ae674f96b095193af674e42b55a1370c21b32382e2de717c1b5fbd5a09",
+    },
 }
 FIXED_CHART_SOURCES = {
     "component_star_large_owner_uniqueness": {
@@ -2885,6 +2899,248 @@ def independent_collision_payment(kprime: int, records: int) -> dict[str, object
     }
 
 
+def independent_cross_collision_count(
+    kprime: int,
+    mprime: int,
+    source_support: int,
+    target_support: int,
+    defect: int,
+) -> int:
+    quotient = kprime - 10
+    require(
+        2 <= source_support <= 5
+        and 2 <= target_support <= 9
+        and source_support + target_support <= 11
+        and 0 <= defect < quotient,
+        "cross collision domain",
+    )
+    carrier = quotient + source_support - 1 - defect
+    if defect == 0:
+        return comb(carrier, target_support)
+    outside = mprime - carrier
+    total = comb(carrier, target_support)
+    for external in range(1, target_support + 1):
+        deletions = comb(carrier, target_support - external) * comb(
+            outside, external - 1
+        )
+        total += deletions * (defect + target_support - external) // external
+    return total
+
+
+def independent_cross_collision_cap(
+    kprime: int,
+    mprime: int,
+    source_support: int,
+    target_support: int,
+    defect: int,
+) -> int:
+    return independent_cross_collision_count(
+        kprime,
+        mprime,
+        source_support,
+        target_support,
+        defect,
+    ) * comb(mprime - target_support, 11 - target_support)
+
+
+def independent_exact_cross_caps(
+    kprime: int, source_support: int, defect: int, baseline: dict[int, int]
+) -> dict[int, int]:
+    quotient = kprime - 10
+    mprime = 67472 + kprime
+    caps = independent_exact_collision_caps(
+        kprime, source_support, defect, baseline
+    )
+    if defect < quotient:
+        for target_support in range(2, 10):
+            if source_support + target_support <= 11:
+                caps[target_support] = min(
+                    caps[target_support],
+                    independent_cross_collision_cap(
+                        kprime,
+                        mprime,
+                        source_support,
+                        target_support,
+                        defect,
+                    ),
+                )
+    return caps
+
+
+def independent_cross_collision_group(
+    kprime: int,
+    baseline: dict[int, int],
+    left_support: int,
+    right_support: int,
+):
+    quotient = kprime - 10
+    mprime = 67472 + kprime
+    supports = tuple(range(2, 10))
+    rows: dict[tuple[int, ...], str] = {}
+    for left_defect in range(quotient + 1):
+        left_caps = independent_exact_cross_caps(
+            kprime, left_support, left_defect, baseline
+        )
+        for right_defect in range(quotient + 1):
+            right_caps = independent_exact_cross_caps(
+                kprime, right_support, right_defect, baseline
+            )
+            vector = [
+                min(baseline[target], left_caps[target], right_caps[target])
+                for target in supports
+            ]
+            if (
+                (left_support, right_support) == (4, 5)
+                and left_defect + right_defect < quotient
+            ):
+                vector[2] = min(
+                    vector[2],
+                    independent_external_incidence_cap(
+                        kprime,
+                        mprime,
+                        left_defect,
+                        right_defect,
+                    )[0],
+                )
+            rows[tuple(vector)] = (
+                f"s{left_support}={left_defect}/"
+                f"s{right_support}={right_defect}"
+            )
+    return rows, independent_componentwise_maximal(rows)
+
+
+@cache
+def independent_cross_collision_summary(kprime: int) -> dict[str, object]:
+    quotient = kprime - 10
+    mprime = 67472 + kprime
+    supports = tuple(range(2, 10))
+    weights = {support: comb(11 - support, 2) for support in supports}
+    baseline = {
+        support: (
+            independent_defect_cap(
+                quotient,
+                mprime,
+                support,
+                {2: 7, 3: 2, 4: 1, 5: 0}[support],
+            )[0]
+            if support <= 5
+            else independent_completion_cap(
+                quotient, mprime, support, quotient
+            )[0]
+        )
+        for support in supports
+    }
+    raw23, maximal23 = independent_cross_collision_group(
+        kprime, baseline, 2, 3
+    )
+    raw45, maximal45 = independent_cross_collision_group(
+        kprime, baseline, 4, 5
+    )
+    raw69, maximal69 = independent_high_support_group(kprime, baseline)
+    maximum = (-1, "", ())
+    premium_sum = 0
+    stream = hashlib.sha256()
+    for left, middle, right in product(maximal23, maximal45, maximal69):
+        caps = tuple(
+            min(left[1][index], middle[1][index], right[1][index])
+            for index in range(len(supports))
+        )
+        premium = sum(
+            weights[target] * caps[index]
+            for index, target in enumerate(supports)
+        )
+        label = f"{left[0]}/{middle[0]}/{right[0]}"
+        stream.update(f"{label}:{premium}\n".encode())
+        premium_sum += premium
+        if premium > maximum[0]:
+            maximum = (premium, label, caps)
+    parts = maximum[1].split("/")
+    return {
+        "group_raw_choice_counts": {
+            "23": (quotient + 1) ** 2,
+            "45": (quotient + 1) ** 2,
+            "69": 120,
+        },
+        "group_unique_vector_counts": {
+            "23": len(raw23),
+            "45": len(raw45),
+            "69": len(raw69),
+        },
+        "group_maximal_vector_counts": {
+            "23": len(maximal23),
+            "45": len(maximal45),
+            "69": len(maximal69),
+        },
+        "group_maximal_digest_sha256": {
+            "23": independent_vector_digest(maximal23),
+            "45": independent_vector_digest(maximal45),
+            "69": independent_vector_digest(maximal69),
+        },
+        "represented_raw_leaf_count": (quotient + 1) ** 4 * 120,
+        "frontier_leaf_count": len(maximal23) * len(maximal45) * len(maximal69),
+        "frontier_premium_sum": premium_sum,
+        "frontier_digest_sha256": stream.hexdigest(),
+        "active_small_defects": {
+            str(support): int(parts[support - 2].split("=")[1])
+            for support in range(2, 6)
+        },
+        "active_branch": maximum[1],
+        "active_caps": {
+            str(target): maximum[2][index]
+            for index, target in enumerate(supports)
+        },
+        "completion_premium": maximum[0],
+    }
+
+
+@cache
+def independent_cross_collision_payment(
+    kprime: int, records: int
+) -> dict[str, object]:
+    nprime = 1048576 + kprime
+    mprime = 67472 + kprime
+    charts = {
+        core: independent_integral_chart(kprime, core)
+        for core in range(9, kprime)
+    }
+    maximizing_core = max(charts, key=charts.get)
+    chart = charts[maximizing_core]
+    kernel = independent_refined_kernel_capacity(kprime)
+    marks = comb(nprime, 9) * chart
+    summary = independent_cross_collision_summary(kprime)
+    premium = int(summary["completion_premium"])
+    full_rank = (marks + records * premium) // 55
+    total = kernel + full_rank
+    demand = records * comb(mprime, 11) - comb(nprime, 11)
+    coefficient = 55 * comb(mprime, 11) - premium
+    raw = records * coefficient - 55 * comb(nprime, 11) - 55 * kernel - marks
+    ceiling = (
+        records * 55 * comb(mprime, 11)
+        - 55 * comb(nprime, 11)
+        - 55 * kernel
+        - marks
+        - 1
+    ) // records
+    return {
+        "n": nprime,
+        "m": mprime,
+        "q": kprime - 10,
+        "max_core": maximizing_core,
+        "chart": chart,
+        "kernel_capacity": kernel,
+        "rank_nine_marks": marks,
+        **summary,
+        "safe_premium_ceiling": ceiling,
+        "premium_ceiling_margin": ceiling - premium,
+        "full_rank_capacity": full_rank,
+        "total_capacity": total,
+        "required_component_incidence": demand,
+        "gap": demand - total,
+        "record_coefficient_cross": coefficient,
+        "floor_record_raw_cross": raw,
+    }
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -2935,6 +3191,8 @@ def main() -> None:
     deep_payment = data["rank11_k46_k53_deep_joint_completion_payment"]
     collision_charge = data["sparse_circuit_small_support_self_collision_charge"]
     collision_payment = data["rank11_k54_k59_small_support_collision_payment"]
+    cross_collision_charge = data["sparse_circuit_cross_support_collision_charge"]
+    cross_collision_payment = data["rank11_k60_k70_cross_support_collision_payment"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -4317,7 +4575,9 @@ def main() -> None:
         == 53
         and data["claims"]["rank9_k54_k59_small_support_collision_closed_K_prime"]
         == 59
-        and data["claims"]["rank9_remaining_interval"] == [60, 15528],
+        and data["claims"]["rank9_k60_k70_cross_support_collision_closed_K_prime"]
+        == 70
+        and data["claims"]["rank9_remaining_interval"] == [71, 15528],
         "independent K'=46..53 deep payment and K'=54 wall",
     )
     require(
@@ -4387,8 +4647,90 @@ def main() -> None:
         and collision_payment["remaining_rank9_interval"] == [60, 15528]
         and data["claims"]["rank9_k54_k59_small_support_collision_closed_K_prime"]
         == 59
-        and data["claims"]["rank9_remaining_interval"] == [60, 15528],
+        and data["claims"]["rank9_k60_k70_cross_support_collision_closed_K_prime"]
+        == 70
+        and data["claims"]["rank9_remaining_interval"] == [71, 15528],
         "independent K'=54..59 collision payment and K'=60 wall",
+    )
+    require(
+        cross_collision_charge["source_support_range"] == [2, 5]
+        and cross_collision_charge["target_support_range"] == [2, 9]
+        and cross_collision_charge["support_condition"] == "c+d<=11"
+        and cross_collision_charge["intersection_dimension"] == "12-c-d"
+        and cross_collision_charge["target_outside_budget"] == "s+d-1"
+        and cross_collision_charge["empty_source_nonclaim"]
+        == "s=q gives no target cap",
+        "independent cross-collision theorem statement",
+    )
+    cross_collision_checks = 0
+    for source in range(2, 6):
+        for target in range(2, 10):
+            if source + target > 11:
+                continue
+            sample = cross_collision_charge["K60_defect25_samples"][str(source)][str(target)]
+            count = independent_cross_collision_count(
+                60, 67532, source, target, 25
+            )
+            require(
+                sample["intersection_dimension"] == 12 - source - target > 0
+                and sample["source_carrier_size"] == 50 + source - 1 - 25
+                and sample["target_outside_budget"] == 25 + target - 1
+                and sample["target_support_count"] == count
+                and sample["target_incidence_cap"]
+                == count * comb(67532 - target, 11 - target)
+                and independent_cross_collision_count(
+                    60, 67532, source, target, 0
+                ) == comb(50 + source - 1, target),
+                f"independent cross-collision sample c={source},d={target}",
+            )
+            cross_collision_checks += 1
+
+    cross_collision_gaps = []
+    cross_collision_leaves = 0
+    for kprime in range(60, 71):
+        replay = independent_cross_collision_payment(kprime, non_dense)
+        declared = cross_collision_payment["rows"][str(kprime)]
+        active = (kprime - 10 + 1) // 2
+        require(
+            declared == replay,
+            f"independent cross-collision row K'={kprime}",
+        )
+        require(
+            replay["active_small_defects"]
+            == {str(support): active for support in range(2, 6)}
+            and replay["active_branch"].endswith("c6F/c7F/c8F/c9F")
+            and replay["group_maximal_vector_counts"]["69"] == 7
+            and replay["gap"] > 0
+            and replay["premium_ceiling_margin"] > 0
+            and replay["floor_record_raw_cross"] > 0,
+            f"independent cross-collision signs K'={kprime}",
+        )
+        cross_collision_gaps.append(replay["gap"])
+        cross_collision_leaves += replay["represented_raw_leaf_count"]
+    cross_collision71 = independent_cross_collision_payment(71, non_dense)
+    cross_collision71_wall = dict(cross_collision71)
+    cross_collision71_wall["capacity_excess"] = -cross_collision71_wall.pop("gap")
+    require(
+        cross_collision_payment["closed_rows"] == list(range(60, 71))
+        and cross_collision_payment["new_closed_prefix"] == [10, 70]
+        and cross_collision_payment["first_method_wall"] == 71
+        and cross_collision_payment["residual_record_floor"] == non_dense
+        and cross_collision_payment["cross_support_condition"]
+        == "c+d<=11 and s_c<q"
+        and cross_collision_payment["rows"]["71"] == cross_collision71_wall
+        and min(cross_collision_gaps)
+        == 854274172985042754802177028749324962520517760595473749602211
+        and cross_collision71_wall["active_small_defects"]
+        == {str(support): 31 for support in range(2, 6)}
+        and cross_collision71_wall["capacity_excess"]
+        == 824875968499878215752683873455674299360608616555107905777434
+        and cross_collision71_wall["premium_ceiling_margin"] < 0
+        and cross_collision71_wall["floor_record_raw_cross"] < 0
+        and cross_collision_payment["remaining_rank9_interval"] == [71, 15528]
+        and data["claims"]["rank9_k60_k70_cross_support_collision_closed_K_prime"]
+        == 70
+        and data["claims"]["rank9_remaining_interval"] == [71, 15528],
+        "independent K'=60..70 cross-collision payment and K'=71 wall",
     )
     k14_toy = codimension_four_sparse_circuit_toy()
     require(k14_toy == (10, 6, 4, 3), "K'=14 finite-field branches")
@@ -5267,8 +5609,9 @@ def main() -> None:
         "rank9_k45_full_completion_product_closed_K_prime": 45,
         "rank9_k46_k53_deep_joint_completion_closed_K_prime": 53,
         "rank9_k54_k59_small_support_collision_closed_K_prime": 59,
+        "rank9_k60_k70_cross_support_collision_closed_K_prime": 70,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [60, 15528],
+        "rank9_remaining_interval": [71, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -5333,6 +5676,10 @@ def main() -> None:
         f"collision_represented_leaves={collision_leaves} "
         f"k59_collision_gap={min(collision_gaps)} "
         f"k60_collision_excess={collision60_wall['capacity_excess']} "
+        f"cross_collision_checks={cross_collision_checks} "
+        f"cross_collision_represented_leaves={cross_collision_leaves} "
+        f"k70_cross_collision_gap={min(cross_collision_gaps)} "
+        f"k71_cross_collision_excess={cross_collision71_wall['capacity_excess']} "
         f"k14_toy={'/'.join(map(str, k14_toy))} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "
