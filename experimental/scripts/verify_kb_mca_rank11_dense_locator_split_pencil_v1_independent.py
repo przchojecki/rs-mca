@@ -84,6 +84,13 @@ FIXED_CHART_SOURCES = {
         "tree": "c5a753ba2494a92eb0349584ba83a74ffeb95691",
         "contract_sha256": "2980ce37664731e481b65d74ea39f4635ef8e9cba09bd8c22d48cc1493d1a1a8",
     },
+    "rank9_exact_petal_partition_capacity_cut": {
+        "id": "rate_half_mca_rank11_rank9_exact_petal_partition_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_exact_petal_partition_capacity_cut",
+        "commit": "1dac113d38255e1e2f1247a7c7e9ca7d730be47f",
+        "tree": "f0cf373ed6c780a401ad248bd9232322c6b22415",
+        "contract_sha256": "df54f15d0ba1f4e335eb606f8f47c496e240ac7e2fe3beb209e100a3a4a7dd39",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1220,6 +1227,7 @@ def main() -> None:
     weighted_cap = data["rank9_weighted_component_cap"]
     weighted_elimination = data["rank9_weighted_target_elimination"]
     residual_petal = data["rank9_residual_petal_capacity_cut"]
+    exact_petal = data["rank9_exact_petal_partition_capacity_cut"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -1544,6 +1552,91 @@ def main() -> None:
             f"residual-petal terminal factor K'={kprime}",
         )
         residual_petal_factor_checks += 1
+
+    def exact_petal_line(a: int) -> tuple[int, int]:
+        full, remainder = 1 + 981105 // a, 981105 % a
+        slope = 981105 + a
+        intercept = (
+            slope * (67462 - a)
+            + (full * a * (a - 1) + remainder * (remainder - 1)) // 2
+        )
+        return slope, intercept
+
+    def exact_petal_row(kprime: int) -> tuple[int, int, int]:
+        nprime, mprime = 1048576 + kprime, 67472 + kprime
+        numerator = (
+            495405467
+            * non_dense
+            * comb(mprime, 9)
+            * comb(mprime - 9, 2)
+        )
+        denominator = 10**9 * comb(nprime, 9)
+        slope, intercept = exact_petal_line(67472)
+        upper = 981105 * (slope * kprime + intercept)
+        return ceiling(Fraction(numerator, denominator)), upper, numerator - upper * denominator
+
+    exact_endpoints = [67472, 70078, 70079, 75469, 75470, 81758, 81759, 83096]
+    exact_baseline = sum(x * y for x, y in zip(exact_petal_line(67472), (15634, 1)))
+    exact_gaps = [
+        exact_baseline - sum(x * y for x, y in zip(exact_petal_line(a), (15634, 1)))
+        for a in exact_endpoints
+    ]
+    exact_last = exact_petal_row(15528)
+    exact_first = exact_petal_row(15529)
+    require(exact_petal == {
+        "petal_budget_offset": 981105,
+        "a_minimum": 67472,
+        "a_maximum_formula": "67462+K_prime",
+        "partition_formula": "r*q_j(a)+q_j(b)",
+        "full_petals_formula": "1+floor(981105/a)",
+        "remainder_formula": "981105 mod a",
+        "quotient_blocks": [
+            [14, 67472, 70078],
+            [13, 70079, 75469],
+            [12, 75470, 81758],
+            [11, 81759, 83096],
+        ],
+        "convexity_endpoints": exact_endpoints,
+        "endpoint_gaps": exact_gaps,
+        "maximizing_a": 67472,
+        "maximizing_full_petals": 15,
+        "maximizing_remainder": 36497,
+        "packed_charge_slope": 1048577,
+        "packed_charge_intercept": 34798536326,
+        "capacity_formula": "981105*(1048577*K_prime+34798536326)",
+        "last_open_K_prime": 15528,
+        "last_open_demand": exact_last[0],
+        "last_open_cap": exact_last[1],
+        "last_open_gap": exact_last[1] - exact_last[0],
+        "last_open_raw_cross": exact_last[2],
+        "first_closed_K_prime": 15529,
+        "first_closed_demand": exact_first[0],
+        "first_closed_cap": exact_first[1],
+        "first_closed_gap": exact_first[0] - exact_first[1],
+        "first_closed_raw_cross": exact_first[2],
+        "persistence_polynomial": [1048577, 69598121229, -77044697164886],
+        "persistence_shift": 15529,
+        "persistence_shifted_polynomial": [1048577, 102164825695, 1256608704226512],
+        "newly_closed_interval": [15529, 15634],
+        "remaining_rank9_interval": [10, 15528],
+        "combined_rank9_closed_from_Kprime": 15529,
+    }, "exact-petal partition constants")
+    require(exact_last[:2] == (50114371326035640, 50115667510540110), "exact-petal last row")
+    require(exact_first[:2] == (50120589875892136, 50116696274677695), "exact-petal first row")
+    require(exact_last[2] == -6248068483868188405542620968591685205454118996921498723724119393820000, "exact-petal last raw cross")
+    require(exact_first[2] == 18768695900816242246861589677573925951586796317153282240839542295982000, "exact-petal first raw cross")
+    exact_petal_ceiling_checks = 0
+    for a in range(67472, 83097):
+        slope, intercept = exact_petal_line(a)
+        require(slope * 15634 + intercept <= exact_baseline, f"exact-petal ceiling {a}")
+        exact_petal_ceiling_checks += 1
+    exact_petal_row_checks = 0
+    for kprime in range(10, 15635):
+        require((exact_petal_row(kprime)[2] > 0) == (kprime >= 15529), f"exact-petal row {kprime}")
+        exact_petal_row_checks += 1
+    for x in (0, 1, 1000, 1000000):
+        persistence = 1048577 * x * x + 102164825695 * x + 1256608704226512
+        require(persistence > 0, f"exact-petal persistence x={x}")
 
     require(kernel_globalizer == {
         "correction_dimension": 10,
@@ -2403,9 +2496,9 @@ def main() -> None:
         "cross_cell_census": False,
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
-        "rank9_fixed_target_eliminated_from_Kprime": 15635,
+        "rank9_fixed_target_eliminated_from_Kprime": 15529,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [10, 15634],
+        "rank9_remaining_interval": [10, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,

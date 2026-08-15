@@ -116,6 +116,13 @@ SOURCE_NODES = {
         "tree": "c5a753ba2494a92eb0349584ba83a74ffeb95691",
         "contract_sha256": "2980ce37664731e481b65d74ea39f4635ef8e9cba09bd8c22d48cc1493d1a1a8",
     },
+    "rank9_exact_petal_partition_capacity_cut": {
+        "id": "rate_half_mca_rank11_rank9_exact_petal_partition_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_exact_petal_partition_capacity_cut",
+        "commit": "1dac113d38255e1e2f1247a7c7e9ca7d730be47f",
+        "tree": "f0cf373ed6c780a401ad248bd9232322c6b22415",
+        "contract_sha256": "df54f15d0ba1f4e335eb606f8f47c496e240ac7e2fe3beb209e100a3a4a7dd39",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1569,6 +1576,46 @@ def expected() -> dict[str, Any]:
         - residual_petal_boundary_cap_twice
         * residual_petal_boundary_denominator
     )
+    exact_petal_budget = 981105
+
+    def exact_petal_line(a: int) -> tuple[int, int]:
+        full = 1 + exact_petal_budget // a
+        remainder = exact_petal_budget % a
+        slope = exact_petal_budget + a
+        intercept = (
+            slope * (67462 - a)
+            + (full * a * (a - 1) + remainder * (remainder - 1)) // 2
+        )
+        return slope, intercept
+
+    exact_petal_a = 67472
+    exact_petal_slope, exact_petal_intercept = exact_petal_line(exact_petal_a)
+
+    def exact_petal_row(kprime: int) -> tuple[int, int, int]:
+        nprime, mprime = 1048576 + kprime, 67472 + kprime
+        numerator = (
+            lane_ppb
+            * non_dense
+            * comb(mprime, 9)
+            * comb(mprime - 9, 2)
+        )
+        denominator = 10**9 * comb(nprime, 9)
+        upper = owner_cap * (exact_petal_slope * kprime + exact_petal_intercept)
+        return ceil_ratio(numerator, denominator), upper, numerator - upper * denominator
+
+    exact_petal_last_open_k = 15528
+    exact_petal_boundary_k = 15529
+    exact_petal_last_open = exact_petal_row(exact_petal_last_open_k)
+    exact_petal_boundary = exact_petal_row(exact_petal_boundary_k)
+    exact_petal_endpoints = [67472, 70078, 70079, 75469, 75470, 81758, 81759, 83096]
+    exact_petal_endpoint_value = (
+        exact_petal_slope * 15634 + exact_petal_intercept
+    )
+    exact_petal_endpoint_gaps = [
+        exact_petal_endpoint_value
+        - (lambda line: line[0] * 15634 + line[1])(exact_petal_line(a))
+        for a in exact_petal_endpoints
+    ]
     kernel_endpoint = 4598
     kernel_wall = 4599
     kernel_endpoint_demand = kernel_demand_ceiling(kernel_endpoint)
@@ -1882,6 +1929,44 @@ def expected() -> dict[str, Any]:
             "remaining_rank9_interval": [10, residual_petal_last_open_k],
             "combined_rank9_closed_from_Kprime": residual_petal_boundary_k,
             "original_row_common_core_used": False,
+        },
+        "rank9_exact_petal_partition_capacity_cut": {
+            "petal_budget_offset": exact_petal_budget,
+            "a_minimum": exact_petal_a,
+            "a_maximum_formula": "67462+K_prime",
+            "partition_formula": "r*q_j(a)+q_j(b)",
+            "full_petals_formula": "1+floor(981105/a)",
+            "remainder_formula": "981105 mod a",
+            "quotient_blocks": [
+                [14, 67472, 70078],
+                [13, 70079, 75469],
+                [12, 75470, 81758],
+                [11, 81759, 83096],
+            ],
+            "convexity_endpoints": exact_petal_endpoints,
+            "endpoint_gaps": exact_petal_endpoint_gaps,
+            "maximizing_a": exact_petal_a,
+            "maximizing_full_petals": 1 + exact_petal_budget // exact_petal_a,
+            "maximizing_remainder": exact_petal_budget % exact_petal_a,
+            "packed_charge_slope": exact_petal_slope,
+            "packed_charge_intercept": exact_petal_intercept,
+            "capacity_formula": "981105*(1048577*K_prime+34798536326)",
+            "last_open_K_prime": exact_petal_last_open_k,
+            "last_open_demand": exact_petal_last_open[0],
+            "last_open_cap": exact_petal_last_open[1],
+            "last_open_gap": exact_petal_last_open[1] - exact_petal_last_open[0],
+            "last_open_raw_cross": exact_petal_last_open[2],
+            "first_closed_K_prime": exact_petal_boundary_k,
+            "first_closed_demand": exact_petal_boundary[0],
+            "first_closed_cap": exact_petal_boundary[1],
+            "first_closed_gap": exact_petal_boundary[0] - exact_petal_boundary[1],
+            "first_closed_raw_cross": exact_petal_boundary[2],
+            "persistence_polynomial": [1048577, 69598121229, -77044697164886],
+            "persistence_shift": 15529,
+            "persistence_shifted_polynomial": [1048577, 102164825695, 1256608704226512],
+            "newly_closed_interval": [15529, 15634],
+            "remaining_rank9_interval": [10, 15528],
+            "combined_rank9_closed_from_Kprime": 15529,
         },
         "kernel_canonical_basis_globalizer": {
             "correction_dimension": 10,
@@ -2483,9 +2568,9 @@ def expected() -> dict[str, Any]:
             "cross_cell_census": False,
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
-            "rank9_fixed_target_eliminated_from_Kprime": 15635,
+            "rank9_fixed_target_eliminated_from_Kprime": 15529,
             "rank9_low_shortening_reopened": True,
-            "rank9_remaining_interval": [10, 15634],
+            "rank9_remaining_interval": [10, 15528],
             "kernel_dominant_lane_closed_through_Kprime": 1048576,
             "kernel_fixed_lane_closed": True,
             "kernel_uniform_corank2_cap_proved": True,
@@ -2526,17 +2611,18 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
     require(fence["base_prime"] > fence["forbidden_slope_count"] * fence["rich_slope_count"], "forbidden-slope translate")
     weighted_elimination = value["rank9_weighted_target_elimination"]
     residual_petal = value["rank9_residual_petal_capacity_cut"]
+    exact_petal = value["rank9_exact_petal_partition_capacity_cut"]
     require(
         weighted_elimination["first_closed_demand"]
         > weighted_elimination["first_closed_cap"],
         "weighted target gap",
     )
     require(
-        value["claims"]["rank9_fixed_target_eliminated_from_Kprime"] == 15635,
-        "rank-nine residual-petal boundary",
+        value["claims"]["rank9_fixed_target_eliminated_from_Kprime"] == 15529,
+        "rank-nine exact-petal boundary",
     )
     require(value["claims"]["rank9_low_shortening_reopened"] is True, "rank-nine reopened interval")
-    require(value["claims"]["rank9_remaining_interval"] == [10, 15634], "rank-nine remaining interval")
+    require(value["claims"]["rank9_remaining_interval"] == [10, 15528], "rank-nine remaining interval")
     require(residual_petal["last_open_raw_cross"] < 0, "residual-petal last raw cross")
     require(residual_petal["first_closed_raw_cross"] > 0, "residual-petal first raw cross")
     for kprime in range(10, 20618):
@@ -2552,6 +2638,49 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         cap_twice = 981105 * (nprime - j) * (mprime + j - 20)
         raw_cross = 2 * numerator - cap_twice * denominator
         require((raw_cross > 0) == (kprime >= 15635), f"residual-petal crossing K'={kprime}")
+    require(exact_petal["maximizing_a"] == 67472, "exact-petal maximizing ceiling")
+    require(exact_petal["maximizing_full_petals"] == 15, "exact-petal full petals")
+    require(exact_petal["maximizing_remainder"] == 36497, "exact-petal remainder")
+    require(exact_petal["endpoint_gaps"] == [
+        0,
+        676268727,
+        676325879,
+        3265037774,
+        3265407519,
+        6322001175,
+        6322245154,
+        7515065748,
+    ], "exact-petal endpoint gaps")
+    exact_slope = exact_petal["packed_charge_slope"]
+    exact_intercept = exact_petal["packed_charge_intercept"]
+    require((exact_slope, exact_intercept) == (1048577, 34798536326), "exact-petal line")
+    require(exact_petal["last_open_raw_cross"] < 0, "exact-petal last raw cross")
+    require(exact_petal["first_closed_raw_cross"] > 0, "exact-petal first raw cross")
+    baseline = exact_slope * 15634 + exact_intercept
+    for a in range(67472, 83097):
+        full, remainder = 1 + 981105 // a, 981105 % a
+        slope = 981105 + a
+        intercept = (
+            slope * (67462 - a)
+            + (full * a * (a - 1) + remainder * (remainder - 1)) // 2
+        )
+        require(slope * 15634 + intercept <= baseline, f"exact-petal ceiling a={a}")
+    for kprime in range(10, 15635):
+        nprime, mprime = 1048576 + kprime, 67472 + kprime
+        numerator = (
+            495405467
+            * 274980728111260126
+            * comb(mprime, 9)
+            * comb(mprime - 9, 2)
+        )
+        denominator = 10**9 * comb(nprime, 9)
+        upper = 981105 * (exact_slope * kprime + exact_intercept)
+        require((numerator - upper * denominator > 0) == (kprime >= 15529), f"exact-petal row K'={kprime}")
+    require(
+        exact_petal["persistence_shifted_polynomial"]
+        == [1048577, 102164825695, 1256608704226512],
+        "exact-petal persistence",
+    )
     kernel_cut = value["kernel_rankstratified_capacity_cut"]
     for kprime in range(10, kernel_cut["closed_K_prime_maximum"] + 1):
         require(kernel_demand_ceiling(kprime) > kernel_capacity(kprime), f"kernel cut {kprime}")
@@ -3137,6 +3266,7 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["rank9_weighted_component_cap"].__setitem__("boundary_cap", 92395178310909599),
         lambda item: item["rank9_weighted_target_elimination"].__setitem__("first_closed_gap", 2403530864990),
         lambda item: item["rank9_residual_petal_capacity_cut"].__setitem__("first_closed_gap", 3381772318664),
+        lambda item: item["rank9_exact_petal_partition_capacity_cut"]["endpoint_gaps"].__setitem__(1, 676268726),
         lambda item: item["kernel_canonical_basis_globalizer"].__setitem__("extra_common_zero_offset", 9),
         lambda item: item["kernel_rankstratified_capacity_cut"].__setitem__("closed_K_prime_maximum", 4599),
         lambda item: item["kernel_multibasis_decoration_compression"]["basis_multiplicities"].__setitem__(0, 2),

@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages fifty-one proved local results after the fixed
+This certificate packages fifty-two proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -34,6 +34,10 @@ rank-eleven anchor-star reduction:
   `floor(981105*(n'-j)*(m'+j-20)/2)`, with `9<=j<=K'-1`, whose exact first
   crossing at `K'=15635` closes rank nine on `15635..20617` without using
   the original-row common-core floor;
+- exact convex packing of those integer petals, reducing the cap to
+  `981105*(1048577*K'+34798536326)` through `K'=15634`; four quotient
+  blocks and eight endpoint comparisons certify the maximum, and the first
+  crossing at `K'=15529` closes another 106 rows;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings

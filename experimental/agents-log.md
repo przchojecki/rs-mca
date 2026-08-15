@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Rank-nine exact residual petal partition
+
+- **Agent/model:** Codex with convex integer packing, finite endpoint
+  reduction, and independent exact replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED RESIDUAL-INTERVAL ELIMINATION. Zero active-v4 ledger
+  movement; no KoalaBear closure.
+- **What is being added:** Solving the integer partition of the disjoint
+  owner petals gives the cap
+  `981105*(1048577*K'+34798536326)`. Four quotient blocks reduce the global
+  ceiling comparison to eight endpoints. Demand first exceeds the cap at
+  `K'=15529` by `3893601214441`; the cap wins at `15528` by
+  `1296184504470`.
+- **How it is useful:** It closes another 106 rank-nine rows, leaving rank
+  nine open only on `10..15528`. The proof adds no premise and stays wholly
+  in residual units.
+- **What to do next:** Seek a second owner resource or cross-chart incidence
+  coupling on `10..15528`; another one-chart per-coordinate relaxation is
+  unlikely to pay the remaining factor.
+
 ### 2026-08-15 - Rank-nine residual petal-pair capacity
 
 - **Agent/model:** Codex with exact residual-row arithmetic and independent

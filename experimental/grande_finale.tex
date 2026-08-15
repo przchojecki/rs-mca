@@ -11046,6 +11046,125 @@ cross-difference $2(K'-11)>0$.  Thus the contradiction persists through
 $K'=20617$.  No original-row $134944$ core floor is used.
 \end{proof}
 
+\begin{proposition}[Exact residual petal-partition refinement]
+\label{prop:kb-rank11-rank9-exact-petal-partition}
+In the fixed target of
+Proposition~\ref{prop:kb-rank11-component-ninesubset-target}, alternative
+\textup{(N2)} is empty for every
+\[
+ 15529\le K'\le15634.
+\]
+More precisely, exact integer packing of the disjoint residual owner petals
+gives
+\begin{equation}
+ W_B\le981105\bigl(1048577K'+34798536326\bigr).
+ \label{eq:kb-rank11-exact-petal-partition-cap}
+\end{equation}
+The exact adjacent integer bounds at the first crossing are
+\[
+ \begin{array}{c|rr}
+ K'&\text{demand}&\text{cap}\\ \hline
+ 15528&50114371326035640&50115667510540110\\
+ 15529&50120589875892136&50116696274677695.
+ \end{array}
+\]
+Together with Propositions~\ref{prop:kb-rank11-rank9-residual-petal-capacity}
+and~\ref{prop:kb-rank11-rank9-weighted-exclusion}, this removes the
+rank-nine target for every $K'\ge15529$.  It remains open for
+$10\le K'\le15528$.
+\end{proposition}
+
+\begin{proof}
+Retain the notation of
+Proposition~\ref{prop:kb-rank11-rank9-residual-petal-capacity} and put
+\[
+ D_1=981105,\qquad a=m'-j-1.
+\]
+Then $67472\le a\le67462+K'$, every petal size satisfies $0\le s_p\le a$,
+and $\sum_p s_p\le D_1+a$.  For
+$q_j(s)=s(j-9)+\binom{s}{2}$, the two convex transfers are
+\[
+ q_j(x+y)-q_j(x)-q_j(y)=xy\quad(x+y\le a)
+\]
+and
+\[
+ q_j(a)+q_j(x+y-a)-q_j(x)-q_j(y)=(a-x)(a-y)
+ \quad(x,y<a<x+y).
+\]
+Both are nonnegative.  Saturating the relaxed total budget and repeating
+these transfers leaves
+\[
+ r=1+\floor{D_1/a}
+\]
+full petals and one remainder $b=D_1\bmod a$.  Thus
+\[
+ \sum_p q_j(s_p)\le r q_j(a)+q_j(b).                \tag{1}
+\]
+This remains an upper bound if the affine owner plane has fewer petal
+slots, since (1) optimizes over a larger partition class.
+
+Substitute $j=K'+67471-a$.  For fixed $a$, the right side of (1) is the
+line
+\[
+ G_a(K')=(D_1+a)K'+(D_1+a)(67462-a)
+ +\frac{r a(a-1)+b(b-1)}2.                          \tag{2}
+\]
+On $10\le K'\le15634$, the quotient $\floor{D_1/a}$ has four blocks:
+\[
+ \begin{array}{c|c}
+ 14&67472\le a\le70078\\
+ 13&70079\le a\le75469\\
+ 12&75470\le a\le81758\\
+ 11&81759\le a\le83096.
+ \end{array}
+\]
+Within a block of quotient $q$, (2) is a convex quadratic in $a$ with
+leading coefficient $(q^2+q-1)/2$.  It therefore suffices to compare the
+eight block endpoints.  At $K'=15634$, their gaps below $G_{67472}$ are
+\[
+ \begin{array}{c|rrrrr}
+ a&67472&70078&70079&75469&75470\\ \hline
+ G_{67472}-G_a&0&676268727&676325879&3265037774&3265407519
+ \end{array}
+\]
+and
+\[
+ \begin{array}{c|rrr}
+ a&81758&81759&83096\\ \hline
+ G_{67472}-G_a&6322001175&6322245154&7515065748.
+ \end{array}
+\]
+Every competing line has larger slope than $G_{67472}$, so these
+nonnegative comparisons at the largest row imply the same comparisons at
+every earlier admissible row.  For $a=67472$, there are fifteen full
+petals and remainder $36497$, and
+\[
+ G_{67472}(K')=1048577K'+34798536326.
+\]
+Multiplying by the fixed-owner record cap $981105$ proves
+\eqref{eq:kb-rank11-exact-petal-partition-cap}.
+
+Exact cross-multiplication against
+\eqref{eq:kb-rank11-weighted-nine-target} is negative at $K'=15528$ and
+positive at $K'=15529$.  The demand/cap ratio is a positive constant times
+the nine increasing factors $(m'-i)/(n'-i)$, $0\le i\le8$, and
+\[
+ H(K')=\frac{(K'+67463)(K'+67462)}
+              {1048577K'+34798536326}.
+\]
+After clearing positive denominators, the numerator of
+$H(K'+1)-H(K')$ is
+\[
+ 1048577K'^2+69598121229K'-77044697164886.
+\]
+Writing $K'=15529+x$ turns this into
+\[
+ 1048577x^2+102164825695x+1256608704226512>0
+\]
+for $x\ge0$.  The contradiction therefore persists through $K'=15634$;
+the preceding two propositions cover all larger rows.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -12536,7 +12655,9 @@ Proposition~\ref{prop:kb-rank11-rank9-weighted-exclusion}, which eliminates
 the rank-nine alternative from $K'=20618$ onward.
 Proposition~\ref{prop:kb-rank11-rank9-residual-petal-capacity} extends that
 elimination down to $K'=15635$ without transporting the original-row core
-floor. Proposition~\ref{prop:kb-rank11-kernel-basis-capacity}
+floor. Proposition~\ref{prop:kb-rank11-rank9-exact-petal-partition} solves
+the integer petal partition and extends it further to $K'=15529$.
+Proposition~\ref{prop:kb-rank11-kernel-basis-capacity}
 first eliminates kernel-lane domination through $K'=4598$. Retaining every
 basis decoration in Corollary~\ref{cor:kb-rank11-kernel-multibasis-capacity}
 extends that interval through $K'=11641$. The record-support/ambient hybrid
@@ -12592,7 +12713,7 @@ not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Proposition~\ref{prop:kb-rank11-rank8-minimal-shortening-exclusion}
 removes rank eight from the shortest row. Thus the remaining intervals are
 rank nine only at $K'=10$, rank nine or rank eight on
-$11\le K'\le15634$, rank eight only on $15635\le K'\le22525$,
+$11\le K'\le15528$, rank eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
 $37996\le K'\le1048576$.
