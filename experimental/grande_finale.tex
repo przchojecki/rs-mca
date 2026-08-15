@@ -11690,8 +11690,8 @@ shortening, let
 \[
  t=K'-10-z,\qquad 0\le t\le K'-10,
 \]
-where $z$ is the number of global zero normals.  For $d\ge2$ the currently
-proved uniform envelope is
+where $z$ is the number of global zero normals.  For $d\ge2$ the
+support-local endpoint envelope is
 \[
  M_d(K')=\left\lfloor\max\{P_d,F_d(1),F_d(K'-10)\}\right\rfloor,
  \tag{IG}
@@ -11704,7 +11704,9 @@ where, before flooring,
 \]
 At $K'=377674$ this gives $M_2=253238254$ and
 $M_3=3935391907$.  Corank one is exceptional: its projective-pair argument
-proves the uniform cap $M_1=8147918$.
+proves the uniform cap $M_1=8147918$.  This endpoint envelope is a valid
+generic bound, not an obstruction to a stronger multiplicity-aware count;
+the corank-two theorem below supplies such a count.
 \end{proposition}
 
 \begin{proof}
@@ -11729,10 +11731,99 @@ $t=0$, proving the uniform corank-one assertion.  Exact integer evaluation
 at $K'=377674$ gives the displayed audit values.
 \end{proof}
 
-\begin{corollary}[Conditional projective-basis kernel-capacity cut]
+\begin{proposition}[Rank-three bounded-parallel basis floor]
+\label{prop:kb-rank11-rank3-bounded-parallel}
+Let $M$ be a loopless rank-three matroid on $m\ge3$ elements, and suppose
+every parallel class has size at most $a$.  If $b(M)$ is its number of
+unordered bases, then
+\[
+ 2b(M)\ge(m-1)(m-1-a).
+ \tag{BP}\label{eq:kb-rank11-rank3-bounded-parallel}
+\]
+If $a\mid(m-1)$ and $m-1\ge2a$, equality is attained by one coloop over a
+rank-two matroid whose parallel classes all have size $a$.
+\end{proposition}
+
+\begin{proof}
+Induct on $m$.  If $e$ is a coloop, the deletion is a loopless rank-two
+matroid on $q=m-1$ elements.  Writing its parallel-class sizes as $q_i$,
+\[
+ 2b(M)=q^2-\sum_iq_i^2\ge q^2-aq=(m-1)(m-1-a).
+\]
+
+Otherwise choose $e$ in a smallest parallel class $P$, of size $c$.
+Deletion preserves rank three, so induction gives
+\[
+ 2b(M\setminus e)\ge(m-2)(m-2-a).
+\]
+In $M/e$, the other elements of $P$ are loops.  Every nonloop parallel
+class is a union of original parallel classes and hence has size at least
+$c$.  There are at least two such classes and their total size is $m-c$.
+Merging classes decreases the number of independent pairs, so
+\[
+ b(M/e)\ge c(m-2c)\ge m-2.
+\]
+Indeed the simplification of $M$ has at least three points, hence $m\ge3c$,
+and the residual at $m=3c$ is $(c-1)(c-2)\ge0$.  Deletion--contraction now
+gives
+\[
+ 2b(M)\ge(m-2)(m-2-a)+2(m-2)
+ =(m-1)(m-1-a)+(a-1),
+\]
+which proves \textup{(BP)}.  Equal rank-two classes in the stated coloop
+construction give equality.
+\end{proof}
+
+\begin{proposition}[Uniform corank-two projective-normal basis cap]
+\label{prop:kb-rank11-kernel-corank2-uniform-projective-basis}
+After canonical rank-eight basis cancellation and deletion of all global
+zero normals, put $t=K'-10-z$.  Every official corank-two chart has
+\[
+ (n,K,m,s)=(1048578+t,2+t,67474+t,2),
+ \qquad 0\le t\le1048566,
+\]
+and at most
+\[
+ M_2\le84416263
+ \tag{UPB}\label{eq:kb-rank11-kernel-corank2-uniform-projective-basis}
+\]
+records.  The complete chart $t=0$ attains the largest value of the proved
+envelope.
+\end{proposition}
+
+\begin{proof}
+Write $R=1048576$ and $w=67472$.  Support-local transversality leaves at
+least $w+1$ incident normals outside every one-dimensional normal span.
+Thus the loopless rank-three incident normal matroid has maximum parallel
+class size
+\[
+ a\le m-(w+1)=t+1.
+\]
+By Proposition~\ref{prop:kb-rank11-rank3-bounded-parallel}, every record
+owns at least
+\[
+ 6b(M)\ge3w(w+t+1)
+\]
+ordered independent coordinate triples.  Double counting gives
+\[
+ H(t)=\frac{(R+t)(R+t+1)(R+t+2)}{3w(w+t+1)}
+\]
+as a record envelope.  The sign of $H(t+1)/H(t)-1$ is the sign of
+\[
+ 2t+3w+3-R.
+\]
+Hence $H$ has one turn and its maximum on the official integer interval is
+at an endpoint.  Exact division gives
+\[
+ \lfloor H(0)\rfloor=84416263,
+ \qquad
+ \lfloor H(1048566)\rfloor=40828171,
+\]
+with positive next-integer gaps.  This proves \textup{(UPB)} uniformly.
+\end{proof}
+
+\begin{corollary}[Projective-basis kernel-capacity cut]
 \label{cor:kb-rank11-kernel-projective-basis-capacity}
-Assume that every official corank-two shortened chart satisfies the uniform
-record cap $M_2\le84416263$.
 The projective caps for coranks one and two, the other individual
 ambient/record caps, and the 28 inequalities \textup{(MS)} exclude the
 dominant kernel lane for
@@ -11847,9 +11938,8 @@ $1056607358217600$.
 
 \begin{corollary}[Conditional projective-frame kernel-capacity cut]
 \label{cor:kb-rank11-kernel-projective-frame-capacity}
-Assume that every official corank-two and corank-three shortened chart
-satisfies the uniform record caps $M_2\le84416263$ and
-$M_3\le983902549$, respectively.
+Assume that every official corank-three shortened chart satisfies the
+uniform record cap $M_3\le983902549$.
 The projective caps for coranks one, two, and three, the other individual
 ambient/record caps, and the 28 inequalities \textup{(MS)} exclude the
 dominant kernel lane for
@@ -12029,13 +12119,15 @@ Corollary~\ref{cor:kb-rank11-kernel-projective-pair-capacity} extends the
 exact interval through $K'=377673$, but not above the printed $377674$ wall.
 Proposition~\ref{prop:kb-rank11-kernel-corank2-projective-basis} sharpens the
 complete-chart corank-two cap.  Proposition~\ref{prop:kb-rank11-kernel-projective-paving-scope}
-shows that its uniform promotion is not currently proved; conditional on
-that promotion,
+records the weaker support-local shortening envelope, while
+Propositions~\ref{prop:kb-rank11-rank3-bounded-parallel}
+and~\ref{prop:kb-rank11-kernel-corank2-uniform-projective-basis}
+prove the stronger cap uniformly.  Therefore
 Corollary~\ref{cor:kb-rank11-kernel-projective-basis-capacity} extends the
 exact interval through $K'=568338$, but not above the printed $568339$ wall.
 Proposition~\ref{prop:kb-rank11-kernel-corank3-projective-frame} sharpens the
-complete-chart corank-three cap.  Conditional on uniform promotion of both
-the corank-two and corank-three caps,
+complete-chart corank-three cap.  Conditional only on uniform promotion of
+the corank-three cap,
 Corollary~\ref{cor:kb-rank11-kernel-projective-frame-capacity} extends the
 exact interval through $K'=796598$, but not above the printed $796599$ wall.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
@@ -12046,10 +12138,11 @@ not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Thus the remaining intervals are rank eight only on
 $10\le K'\le22525$, dense-owner chronology only on
 $22526\le K'\le37995$, no component target on
-$37996\le K'\le377673$, and kernel only on
-$377674\le K'\le1048576$.  The two conditional capacity replays describe
-what the same ledger would prove if their stated uniform-cap premises were
-established; they do not shrink this unconditional kernel interval.
+$37996\le K'\le568338$, and kernel only on
+$568339\le K'\le1048576$.  The remaining conditional capacity replay
+describes what the same ledger would prove if its corank-three uniform-cap
+premise were established; it does not shrink this unconditional kernel
+interval.
 The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,

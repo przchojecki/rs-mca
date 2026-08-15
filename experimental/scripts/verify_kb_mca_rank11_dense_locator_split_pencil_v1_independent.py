@@ -209,12 +209,26 @@ FIXED_CHART_SOURCES = {
         "tree": "2cccdc7854b55e3f5b2627ca5ee2bf4cb58640cc",
         "contract_sha256": "e1a679080c4efd83af40aa7d969960946b3ca3d7654e46e65be8dcb68a910d6c",
     },
+    "matroid_rank3_bounded_parallel_basis_floor": {
+        "id": "matroid_rank3_bounded_parallel_basis_floor",
+        "path": "background/nodes/matroid_rank3_bounded_parallel_basis_floor",
+        "commit": "543be2bd2eac138a525893d6396fc25c4b839b79",
+        "tree": "3e7f309a80191b0456d6035e6e3cb6e0964e05c3",
+        "contract_sha256": "a765b84a8cff00ae03d2cc33a6ad9be904200612d1628f94f5700cd94e5500fb",
+    },
+    "kernel_corank2_uniform_projective_basis_cap": {
+        "id": "rate_half_mca_rank11_kernel_corank2_uniform_projective_basis_cap",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_corank2_uniform_projective_basis_cap",
+        "commit": "543be2bd2eac138a525893d6396fc25c4b839b79",
+        "tree": "b262c8b126cd317930cfa6a385fc9c82b9344547",
+        "contract_sha256": "0eefc50e8452fb30d8dba4cf94ecfc639ae618dba34a1662ef9decf7de4f2cfd",
+    },
     "kernel_corank2_projective_capacity_cut": {
         "id": "rate_half_mca_rank11_kernel_corank2_projective_capacity_cut",
         "path": "background/nodes/rate_half_mca_rank11_kernel_corank2_projective_capacity_cut",
-        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
-        "tree": "f6d31bc07ff1a50707d1b9b60c73917ad27972b3",
-        "contract_sha256": "0b6d39208cfe5b077bd34537fee90ccb58860578b281bfbad4d240ee4e62b276",
+        "commit": "543be2bd2eac138a525893d6396fc25c4b839b79",
+        "tree": "a88331ca72593d46d4c539693e8b9bdddc588dae",
+        "contract_sha256": "3136181b886366f3b19a6c2ffeb97dff2d924a34d47855b9897117df52951aa9",
     },
     "kernel_corank3_projective_basis_cap": {
         "id": "rate_half_mca_rank11_kernel_corank3_projective_basis_cap",
@@ -226,9 +240,9 @@ FIXED_CHART_SOURCES = {
     "kernel_corank3_projective_capacity_cut": {
         "id": "rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
         "path": "background/nodes/rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
-        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
-        "tree": "505d3bc5a0355e9700c603a88db5636a162d438a",
-        "contract_sha256": "4d6fc8fb23791bd037ee42082bb635098141b0b6185f1f69c94bea2df74aaf83",
+        "commit": "543be2bd2eac138a525893d6396fc25c4b839b79",
+        "tree": "e9a26cdd40dddeab90e308890ef99831ff64354f",
+        "contract_sha256": "2cf4bca5b0dc130a84bbee61c0769a7a700f0f4f9eeac633d9c0b3c0936a2c76",
     },
     "matroid_paving_basis_floor": {
         "id": "matroid_paving_basis_floor",
@@ -247,8 +261,8 @@ FIXED_CHART_SOURCES = {
     "kernel_projective_paving_integer_gap_fence": {
         "id": "rate_half_mca_rank11_kernel_projective_paving_integer_gap_fence",
         "path": "background/nodes/rate_half_mca_rank11_kernel_projective_paving_integer_gap_fence",
-        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
-        "tree": "71a296b1fd6324ac71e616c19b2ec371a038fad1",
+        "commit": "543be2bd2eac138a525893d6396fc25c4b839b79",
+        "tree": "a45a48306ea298efbcec8d4d71f8e468aa05104b",
         "contract_sha256": "f62c32a69299fa026812eebb2490dbf74ffe00676e3a0e32d314fcd0f89d310c",
     },
     "rank8_owner_pair_weight_cap": {
@@ -911,6 +925,8 @@ def main() -> None:
     kernel_projective_cap = data["kernel_corank1_projective_pair_cap"]
     kernel_projective_cut = data["kernel_projective_pair_capacity_cut"]
     kernel_projective_basis_cap = data["kernel_corank2_projective_basis_cap"]
+    matroid_rank3_floor = data["matroid_rank3_bounded_parallel_basis_floor"]
+    kernel_projective_basis_uniform = data["kernel_corank2_uniform_projective_basis_cap"]
     kernel_projective_basis_cut = data["kernel_corank2_projective_capacity_cut"]
     kernel_projective_frame_cap = data["kernel_corank3_projective_basis_cap"]
     kernel_projective_frame_cut = data["kernel_corank3_projective_capacity_cut"]
@@ -1598,8 +1614,49 @@ def main() -> None:
         "capacity_formula": "floor(n*(n-1)*(n-2)/(3*(m-1)*(m-2)))",
     }, "projective basis cap")
     require(projective_bases == 13657614768 and basis_cap == 84416263, "projective basis arithmetic")
-    require(kernel_projective_basis_cut["status"] == "conditional", "projective-basis status")
-    require("uniform corank-two" in kernel_projective_basis_cut["premise"], "projective-basis premise")
+    require(matroid_rank3_floor == {
+        "status": "proved",
+        "rank": 3,
+        "loopless": True,
+        "basis_floor": "2*b(M)>=(m-1)*(m-1-a)",
+        "smallest_class_contraction_floor": "b(M/e)>=c*(m-2*c)>=m-2",
+        "induction_slack": "a-1",
+        "sharp_when": "a divides m-1 and m-1>=2a",
+    }, "rank-three matroid floor")
+    for m_test in range(3, 65):
+        for a_test in range(1, m_test):
+            induction_lhs = (m_test - 2) * (m_test - 2 - a_test) + 2 * (m_test - 2)
+            induction_target = (m_test - 1) * (m_test - 1 - a_test)
+            require(induction_lhs - induction_target == a_test - 1, "matroid induction identity")
+        for c_test in range(1, m_test // 3 + 1):
+            require(c_test * (m_test - 2 * c_test) >= m_test - 2, "matroid contraction floor")
+    def shortened_corank2_cap(t_value: int) -> int:
+        numerator = (1048576 + t_value) * (1048577 + t_value) * (1048578 + t_value)
+        denominator = 3 * 67472 * (67473 + t_value)
+        return numerator // denominator
+    require(kernel_projective_basis_uniform == {
+        "status": "proved",
+        "t_minimum": 0,
+        "t_maximum": 1048566,
+        "parallel_class_ceiling": "t+1",
+        "ordered_basis_floor": "3*67472*(67473+t)",
+        "record_cap_formula": "floor((1048576+t)*(1048577+t)*(1048578+t)/(3*67472*(67473+t)))",
+        "ratio_step_sign": "2*t+3*67472+3-1048576",
+        "turn_left": 423078,
+        "turn_right": 423079,
+        "complete_cap": shortened_corank2_cap(0),
+        "adjacent_cap": shortened_corank2_cap(1),
+        "far_endpoint_cap": shortened_corank2_cap(1048566),
+        "uniform_record_cap": 84416263,
+    }, "uniform projective-basis cap")
+    require(shortened_corank2_cap(0) == 84416263, "uniform projective-basis complete arithmetic")
+    require(shortened_corank2_cap(1) == 84415253, "uniform projective-basis adjacent arithmetic")
+    require(shortened_corank2_cap(1048566) == 40828171, "uniform projective-basis far arithmetic")
+    for t_test in (0, 1, 423078, 423079, 1048565):
+        left = (1048579 + t_test) * (67473 + t_test)
+        right = (1048576 + t_test) * (67474 + t_test)
+        require((left > right) == (2 * t_test + 3 * 67472 + 3 - 1048576 > 0), "uniform projective-basis ratio sign")
+    require(kernel_projective_basis_cut["status"] == "proved", "projective-basis status")
     projective_basis_tree = [[2, 3], [2, 4], [2, 6], [2, 8], [3, 5], [2, 7], [2, 9]]
     projective_basis_tight = [
         [2, 3], [2, 4], [2, 6], [2, 7], [2, 8], [2, 9],
@@ -1679,7 +1736,7 @@ def main() -> None:
     }, "projective frame cap")
     require(projective_frames == 1228711865141376 and frame_cap == 983902549, "projective frame arithmetic")
     require(kernel_projective_frame_cut["status"] == "conditional", "projective-frame status")
-    require(len(kernel_projective_frame_cut["premises"]) == 2, "projective-frame premises")
+    require(kernel_projective_frame_cut["premises"] == ["uniform corank-three record cap M_3<=983902549"], "projective-frame premises")
     projective_frame_forest = [[2, 4], [2, 5], [3, 6], [4, 7], [5, 8], [6, 9]]
     projective_frame_tight = [
         [2, 4], [2, 5], [2, 7], [2, 8], [2, 9],
@@ -1722,13 +1779,14 @@ def main() -> None:
             5542092977392141,
         ],
         "uniform_corank1_cap": 8147918,
-        "uniform_corank2_cap_proved": False,
+        "uniform_corank2_cap": 84416263,
+        "uniform_corank2_cap_proved": True,
         "uniform_corank3_cap_proved": False,
         "integer_gap_formula": "floor(max(P_d,F_d(1),F_d(K_prime-10)))",
         "audit_K_prime": 377674,
         "audit_corank2_cap": 253238254,
         "audit_corank3_cap": 3935391907,
-        "unconditional_kernel_closed_through_K_prime": 377673,
+        "unconditional_kernel_closed_through_K_prime": 568338,
         "conditional_kernel_closed_through_K_prime": 796598,
     }, "projective paving scope")
 
@@ -1800,9 +1858,9 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated": True,
-        "kernel_dominant_lane_closed_through_Kprime": 377673,
+        "kernel_dominant_lane_closed_through_Kprime": 568338,
         "kernel_conditional_lane_closed_through_Kprime": 796598,
-        "kernel_uniform_corank2_cap_proved": False,
+        "kernel_uniform_corank2_cap_proved": True,
         "kernel_uniform_corank3_cap_proved": False,
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,

@@ -1,7 +1,7 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages thirty-nine proved local results and two exact
-conditional capacity replays after the fixed rank-eleven anchor-star reduction:
+This certificate packages forty-two proved local results and one exact
+conditional capacity replay after the fixed rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
   space;
@@ -79,13 +79,17 @@ conditional capacity replays after the fixed rank-eleven anchor-star reduction:
   5542092977392141`;
 - the shortening-scope fence
   `floor(max(P_d,F_d(1),F_d(K'-10)))`, which keeps the corank-one cap
-  uniform but gives `M_2=253238254` and `M_3=3935391907` at `K'=377674`;
+  uniform and gives the generic values `M_2=253238254` and
+  `M_3=3935391907` at `K'=377674`;
 - a corank-two projective-normal basis count: the `67474` incident normals
   are distinct and noncollinear, forcing at least `13657614768` ordered
   independent coordinate triples and lowering the complete shortened record
   cap from `253241283` to `84416263`;
-- conditional on the complete corank-two cap holding uniformly, the exact
-  strengthened two-root hierarchy replay excludes through
+- a loopless rank-three matroid theorem
+  `2b(M)>=(m-1)(m-1-a)` for maximum parallel-class size `a`;
+- its shortening-aware application, which proves the corank-two cap
+  `84416263` uniformly over all official charts;
+- the resulting unconditional strengthened two-root hierarchy replay through
   `K'=568338`, with both shared resources slack and first reversal at
   `K'=568339`;
 - a corank-three projective-normal basis count: the `67475` incident normals
@@ -93,8 +97,8 @@ conditional capacity replays after the fixed rank-eleven anchor-star reduction:
   least `1228711865141376` ordered independent coordinate quadruples and
   lowering the complete shortened record cap from `3935435218` to
   `983902549`;
-- conditional on the complete corank-two and corank-three caps holding
-  uniformly, the exact three-root hierarchy-forest replay excludes through
+- conditional only on the corank-three cap holding uniformly, the exact
+  three-root hierarchy-forest replay excludes through
   `K'=796598`, with both shared resources slack and first reversal at
   `K'=796599`;
 - the rank-eight marked owner-pair cap `981105*C(n'-9,2)`;
@@ -114,9 +118,9 @@ separate method, exhausts all `981104` admissible owner-core sizes, all
 `11763` hybrid rows, all `15436` one-shadow rows, all `15661`
 full-containment rows, all `17599` rank-eight-deficit rows, and all `494`
 two-step boundary rows, all `58` all-step boundary rows, the projective
-partition, line-split, and plane-split extrema and nine exact
-projective-capacity boundary rows, checks the complete-chart scope and
-integer-gap audit, and checks all
+partition, bounded-parallel induction identities, line-split and plane-split
+extrema and nine exact projective-capacity boundary rows, checks the
+complete-chart scope and integer-gap audit, and checks all
 `11` rank-eight monotonicity
 factors and both dense-owner bridge boundary rows, and checks a toy
 affine-plane line design. Both reject
@@ -124,6 +128,6 @@ proof-critical manifest mutations.
 
 The owner key remains recordwise. The local-cap fence does not instantiate the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane, pay the fixed-kernel branch above `K'=377673` or the rank-eight branch
+lane, pay the fixed-kernel branch above `K'=568338` or the rank-eight branch
 below `K'=22526`, assign the bridged dense owner in first-match chronology,
 pay error rank eleven, move an active v4 atom, or close KoalaBear.

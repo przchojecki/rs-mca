@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; the full-rank star owner of deficiency at most 22320 is unique for its record; every rank-nine star is a split-pencil cell carrying at most 45567658 records; every lifted rank-nine plane either carries at most 1434405 records or shares a 134944-coordinate pair core; one fixed nine-subset carries at least 2578110 records and 5868470021012020 marked component extensions at the shortest endpoint; retaining that weight eliminates the rank-nine fixed target uniformly; multistep rank-raising counts and target-coloop multiplicities give all 28 inequalities coupling kernel corank d to d-t for 2<=t<d<=9; projective-normal paving counts give nine exact complete-chart caps and the uniform corank-one cap 8147918 sharpens exact kernel-lane exclusion through K'=377673; the integer-gap envelope shows that uniform corank-two and corank-three caps remain premises, under which exact capacity replays would close through K'=568338 and K'=796598; owner-pair capacity excludes rank eight for every 37996<=K'<=1048576; and every surviving rank-eight chart on 22526<=K'<=37995 contains a delta<=4 owner with at least 200632 records.
+direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; the full-rank star owner of deficiency at most 22320 is unique for its record; every rank-nine star is a split-pencil cell carrying at most 45567658 records; every lifted rank-nine plane either carries at most 1434405 records or shares a 134944-coordinate pair core; one fixed nine-subset carries at least 2578110 records and 5868470021012020 marked component extensions at the shortest endpoint; retaining that weight eliminates the rank-nine fixed target uniformly; multistep rank-raising counts and target-coloop multiplicities give all 28 inequalities coupling kernel corank d to d-t for 2<=t<d<=9; projective-normal paving counts give nine exact complete-chart caps; a rank-three bounded-parallel basis theorem proves the uniform corank-two cap 84416263 and sharpens exact kernel-lane exclusion through K'=568338; only the uniform corank-three cap remains a premise for the conditional replay through K'=796598; owner-pair capacity excludes rank eight for every 37996<=K'<=1048576; and every surviving rank-eight chart on 22526<=K'<=37995 contains a delta<=4 owner with at least 200632 records.
 architecture: POST_NEAR_ERROR_RANK11_DENSE_LOCATOR_COMPONENT_ROUTE_V1
 partition_digest: inherited post-near rank-eleven route of PRs 1168 and 1169; no new first-match atom or partition digest
 atom_or_cell: rank-eleven dense-locator component family, one fixed rank-nine split-pencil cell, its lifted owner plane, and one fixed nine-coordinate component chart
 quantifier: Every survivor satisfying the pinned rank-eleven 32-anchor, 18-dense-root, ten-dimensional correction-space setup, uniformly for 10<=K'<=1048576
 projection_and_unit: Distinct bad finite slopes per received line at record level; record/coordinate-subset incidences only where explicitly stated
-claimed_bound: isolated equivalent <=2526815879272440; component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core rank-nine plane <=1434405 records; one typed fixed nine-subset >=2578110 and weighted endpoint >=5868470021012020; rank-nine weighted boundary demand 6849288576200976639 exceeds cap 147748596828055575; the one-shadow kernel LP closes through K'=15445; full containment closes through K'=15670; the rank-eight extension deficit C(67474,2)=2276336601 sharpens the cutoff to K'=17608; the seven two-step inequalities sharpen it to K'=18101; all 28 multistep inequalities sharpen it to K'=18158; the uniform corank-one projective-pair cap 8147918 sharpens it to K'=377673; complete-chart corank-two and corank-three caps are 84416263 and 983902549, but the valid uniform envelope at K'=377674 gives 253238254 and 3935391907; conditional on uniform promotion, the exact replays close through K'=568338 and K'=796598; rank-eight demand first exceeds owner-pair capacity at K'=37996 by 36370688210984; dense-owner averaging first forces 200632 records at K'=22526
+claimed_bound: isolated equivalent <=2526815879272440; component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core rank-nine plane <=1434405 records; one typed fixed nine-subset >=2578110 and weighted endpoint >=5868470021012020; rank-nine weighted boundary demand 6849288576200976639 exceeds cap 147748596828055575; the one-shadow kernel LP closes through K'=15445; full containment closes through K'=15670; the rank-eight extension deficit C(67474,2)=2276336601 sharpens the cutoff to K'=17608; the seven two-step inequalities sharpen it to K'=18101; all 28 multistep inequalities sharpen it to K'=18158; the uniform corank-one projective-pair cap 8147918 sharpens it to K'=377673; the support-local envelope at K'=377674 gives 253238254 and 3935391907, but a multiplicity-aware rank-three matroid floor improves the first value uniformly to M_2=84416263; the unconditional exact replay closes through K'=568338 and, conditional only on uniform M_3=983902549, the next replay closes through K'=796598; rank-eight demand first exceeds owner-pair capacity at K'=37996 by 36370688210984; dense-owner averaging first forces 200632 records at K'=22526
 status: PROVED LOCAL THEOREM PACKET / GLOBAL ROW OPEN
 impact: ROUTE_CUT / BASE-FIELD-NORMALIZED SPLIT-PENCIL AND FIXED-CHART LEDGER
-falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; a lifted plane above 1434405 records whose shared pair core has size below 134944; failure of the marked 5868470021012020 endpoint; a rank-nine chart exceeding 981105*(m'-10)*n' marked extensions; a kernel chart violating M_d*C(K'-10,d+1); a loopless corank-d eleven-set with fewer than C(d+2,t) spanning (11-t)-subsets for some 2<=t<d; one such shadow with more than C(K'-d-11+t,t) same-rank extensions; one record violating either nine-shadow resource; fewer than C(67472+d,t) rank-raising support t-sets; a rank-(10-d+t) target with more than C(9-d+t,t) source shadows; a complete shortened corank-one record with fewer than 134944 ordered independent coordinate pairs; more than 8147918 such records; a complete shortened corank-two record with fewer than 13657614768 ordered independent coordinate triples; more than 84416263 such records; a complete shortened corank-three record with fewer than 1228711865141376 ordered independent coordinate quadruples; more than 983902549 such records; failure of the integer-gap envelope or of either exact conditional capacity replay; a rank-eight chart exceeding 981105*C(n'-9,2); failure of either owner-capacity crossing; failure of the 22526 dense-owner bridge; or a defect in the 4070408-slope fence.
+falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; a lifted plane above 1434405 records whose shared pair core has size below 134944; failure of the marked 5868470021012020 endpoint; a rank-nine chart exceeding 981105*(m'-10)*n' marked extensions; a kernel chart violating M_d*C(K'-10,d+1); a loopless corank-d eleven-set with fewer than C(d+2,t) spanning (11-t)-subsets for some 2<=t<d; one such shadow with more than C(K'-d-11+t,t) same-rank extensions; one record violating either nine-shadow resource; fewer than C(67472+d,t) rank-raising support t-sets; a rank-(10-d+t) target with more than C(9-d+t,t) source shadows; a loopless rank-three matroid violating 2b(M)>=(m-1)(m-1-a); an official corank-two chart with more than 84416263 records; a complete shortened corank-three record with fewer than 1228711865141376 ordered independent coordinate quadruples; more than 983902549 such records; failure of the integer-gap envelope or either exact capacity replay; a rank-eight chart exceeding 981105*C(n'-9,2); failure of either owner-capacity crossing; failure of the 22526 dense-owner bridge; or a defect in the 4070408-slope fence.
 replay: python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1_independent.py
 ---
 
@@ -25,8 +25,8 @@ Status: **PROVED LOCAL THEOREM PACKET / ZERO DEPLOYED LEDGER MOVEMENT**.
 Exact parent: PR #1169 head
 `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
 
-This packet imports thirty-nine proved public results and two exact conditional
-capacity replays, each commit- and tree-pinned to the prize DAG.
+This packet imports forty-two proved public results and one exact conditional
+capacity replay, each commit- and tree-pinned to the prize DAG.
 They begin after the rank-eleven branch has produced one fixed degree-31
 anchor interpolant, eighteen dense-pair roots, and a ten-dimensional
 relative correction space.  They end with an exact ledger for one fixed
@@ -37,9 +37,10 @@ different targets.  A final local-cap fence shows why that missing coupling
 cannot be replaced by another deduplicated-record inequality on the fixed
 chart alone. Retaining the marked component-extension weight does eliminate
 the rank-nine fixed target. Canonical rank-basis capacities, two coupled
-nine-shadow resources and the uniform corank-one projective cap then remove
-the dominant kernel lane through residual dimension `377673`. The stronger
-corank-two and corank-three replays are conditional on uniform cap premises.
+nine-shadow resources, the uniform corank-one cap, and the bounded-parallel
+corank-two theorem then remove the dominant kernel lane through residual
+dimension `568338`. The corank-three replay is conditional on its one
+remaining uniform-cap premise.
 Owner-pair
 capacity removes rank eight from `K'=37996` through the deployed endpoint.
 On the upper surviving interval, marked averaging reaches the exact dense
@@ -831,7 +832,7 @@ P_d=(R+d)_fall_(d+1)/((d+1)(w+d-1)_fall_d),
 F_d(t)=(R+d+t)_fall_(d+1)/((w+d+t)(w+1)_rise_(d-1)).
 ```
 
-For `d>=2`, the currently proved envelope is
+For `d>=2`, the support-local endpoint envelope is
 
 ```text
 M_d(K')=floor(max(P_d,F_d(1),F_d(K'-10))).
@@ -843,9 +844,10 @@ by its two integer endpoints. At `K'=377674`, this envelope gives
 `M_2=253238254` and `M_3=3935391907`, not the complete values below.
 The analogous rank-two pair count is maximized at complete shortening, so
 `M_1=8147918` is uniform. This is the exact scope boundary behind the
-unconditional `377673` cutoff.
+former `377673` cutoff. It remains a valid generic envelope, but the
+multiplicity-aware corank-two theorem below is stronger.
 
-## 15. Corank-two projective-basis cap
+## 15. Corank-two projective-basis cap and uniformization
 
 The complete shortened corank-two chart has
 
@@ -890,8 +892,56 @@ M_2<=floor(1048578*1048577*1048576/13657614768)=84416263,
 with remainder `2935655472`. This lowers the generic transversality cap
 `253241283` by `168825020`.
 
-Conditional on every official corank-two shortened chart satisfying
-`M_2<=84416263`, the all-step hierarchy LP has cap roots
+The complete-chart argument alone does not survive parallel normals under
+partial shortening. The required multiplicity-aware statement is the
+following abstract theorem. If `M` is a loopless rank-three matroid on `m`
+elements, every parallel class has size at most `a`, and `b(M)` is its
+number of unordered bases, then
+
+```text
+2b(M)>=(m-1)(m-1-a).                              (BP)
+```
+
+Induct at an element in a smallest parallel class `P`, `|P|=c`. If the
+element is a coloop, the rank-two deletion has class sizes `q_i<=a`, and
+`2b=q^2-sum q_i^2>=q(q-a)`. Otherwise deletion retains rank three. In the
+rank-two contraction, every nonloop parallel class is a union of original
+classes and hence has size at least `c`; merging down to two classes gives
+`b(M/e)>=c(m-2c)>=m-2`. The last inequality follows from `m>=3c`, with
+residual `(c-1)(c-2)` at the endpoint. Deletion-contraction exceeds the
+inductive target by `a-1`. The bound is sharp on the divisible one-coloop
+family with at least two rank-two classes.
+
+For an arbitrary official corank-two shortening, delete all global zero
+normals and put `t=K'-10-z`. Then
+
+```text
+(n,K,m,s)=(1048578+t,2+t,67474+t,2),
+0<=t<=1048566.
+```
+
+Support-local transversality leaves `67473` normals outside every
+one-dimensional span, so the maximum parallel class has size `a<=t+1`.
+The theorem gives at least `3*67472*(67473+t)` ordered independent triples
+per record. Therefore
+
+```text
+H(t)=(1048576+t)(1048577+t)(1048578+t)
+     /(3*67472*(67473+t)).
+```
+
+The sign of `H(t+1)/H(t)-1` is the sign of
+`2t+3*67472+3-1048576`, so `H` has one turn and its maximum is at an
+official endpoint. Exact division gives
+
+```text
+floor(H(0))       = 84416263,
+floor(H(1))       = 84415253,
+floor(H(1048566)) = 40828171.
+```
+
+Thus `M_2<=84416263` is uniform. Substitution into the all-step hierarchy
+LP has cap roots
 one and two and tree
 
 ```text
@@ -913,9 +963,10 @@ At `K'=568339`, capacity exceeds demand by
 36180877960369511460476382880286784896208001102094988739728829832800.
 ```
 
-The independent verifier enumerates all `67472` projective line splits and
-reconstructs the replay start, endpoint, and wall from direct path products.
-This proves the conditional replay arithmetic, not its uniform-cap premise.
+The independent verifier enumerates all `67472` projective line splits,
+checks the bounded-parallel induction identities and shortening endpoints,
+and reconstructs the replay start, endpoint, and wall from direct path
+products. This proves the unconditional cutoff through `568338`.
 
 ## 16. Corank-three projective-frame cap
 
@@ -967,8 +1018,8 @@ M_3<=floor((1048579)_fall_4/1228711865141376)=983902549,
 with remainder `1056607358217600`. This lowers the generic transversality
 cap `3935435218` by `2951532669`.
 
-Conditional on every official corank-two and corank-three shortened chart
-satisfying `M_2<=84416263` and `M_3<=983902549`, the all-step hierarchy LP
+Conditional on every official corank-three shortened chart satisfying
+`M_3<=983902549`, the all-step hierarchy LP
 has cap roots one, two, and three and forest
 
 ```text
@@ -992,8 +1043,8 @@ At `K'=796599`, capacity exceeds demand by
 
 The independent verifier enumerates all `67472` projective plane splits and
 reconstructs the replay start, endpoint, and wall from direct forest
-products. This proves the conditional replay arithmetic, not either
-uniform-cap premise.
+products. This proves the conditional replay arithmetic, not its remaining
+uniform corank-three premise.
 
 ## 17. Rank-eight owner-pair capacity
 
@@ -1035,8 +1086,8 @@ assign chronology or coalesce owners.
 
 ## 18. Exact impact on the open route
 
-The packet supplies thirty-nine proved local results and two exact conditional
-capacity replays.
+The packet supplies forty-two proved local results and one exact conditional
+capacity replay.
 
 1. High-core absorption has exactly dimension ten, not a range `2,...,10`.
 2. More than 99 percent of record/eleven-subset incidences enter an affine
@@ -1109,26 +1160,30 @@ capacity replays.
 35. In the complete shortened corank-two chart, distinct noncollinear
     projective normals lower the exact record cap from `253241283` to
     `84416263`.
-36. Conditional on uniform promotion of that corank-two cap, the
-    strengthened two-root hierarchy LP excludes dominant kernel lanes
+36. Every loopless rank-three matroid on `m` elements with parallel classes
+    of size at most `a` has at least `(m-1)(m-1-a)/2` unordered bases.
+37. Applied after deleting global zero normals, that theorem proves the
+    corank-two cap `84416263` uniformly over all official shortenings.
+38. The strengthened two-root hierarchy LP therefore excludes dominant
+    kernel lanes unconditionally
     through `K'=568338`; `K'=568339` is its exact method wall.
-37. In the complete shortened corank-three chart, spanning
+39. In the complete shortened corank-three chart, spanning
     no-three-collinear projective normals lower the exact record cap from
     `3935435218` to `983902549`.
-38. Conditional on uniform promotion of the corank-two and corank-three
-    caps, the resulting three-root hierarchy forest excludes dominant
+40. Conditional only on uniform promotion of the corank-three cap, the
+    resulting three-root hierarchy forest excludes dominant
     kernel lanes through `K'=796598`; `K'=796599` is its exact method wall.
-39. A rank-`r` matroid whose sets of size at most `r-1` are independent has
+41. A rank-`r` matroid whose sets of size at most `r-1` are independent has
     at least `C(m-1,r-1)` bases, by deletion-contraction.
-40. Applying that floor to all nine complete projective-normal charts gives
+42. Applying that floor to all nine complete projective-normal charts gives
     the printed all-corank cap table.
-41. The integer-gap envelope separates complete from noncomplete shortening,
-    proves the corank-one cap uniform, and leaves the corank-two and
-    corank-three uniform caps as explicit open premises.
+43. The integer-gap envelope separates complete from noncomplete shortening
+    and remains the generic fallback; after the stronger rank-three theorem,
+    only the corank-three uniform cap remains an explicit open premise.
 
 It does not select the complete component lane, recursively cover its
 remainder, construct a chronology-correct owner satisfying PR #1169, or pay
-the fixed kernel above `K'=377673`, rank-eight targets below `K'=22526`, or
+the fixed kernel above `K'=568338`, rank-eight targets below `K'=22526`, or
 the dense-owner chronology terminal on `22526..37995`.
 Therefore `U_BC`,
 `U_new`, error rank eleven, and the KoalaBear row remain open.
@@ -1138,14 +1193,14 @@ The exact unresolved intervals are:
 ```text
 10..22525:        rank eight only,
 22526..37995:     dense-owner chronology terminal only,
-37996..377673:    no rank-eleven component target,
-377674..1048576:  kernel only.
+37996..568338:    no rank-eleven component target,
+568339..1048576:  kernel only.
 ```
 
 ## 19. Provenance and replay
 
-The manifest pins all 41 public source nodes by commit, Git tree, and
-source-contract SHA-256, with the two capacity replay nodes typed
+The manifest pins all 43 public source nodes by commit, Git tree, and
+source-contract SHA-256, with the corank-three capacity replay typed
 conditional.  The primary verifier recomputes all displayed
 integer endpoints and a finite-field dense-root saturation model.  The
 independent verifier uses a separate rational-product calculation and an
@@ -1153,9 +1208,9 @@ exhaustive check of all `981104` admissible owner-core sizes, the independent
 nine-subset product endpoint, all `11763` hybrid rows, all `15436`
 one-shadow rows, all `15661` full-containment rows, all `17599`
 rank-eight-deficit rows, all `494` two-step boundary rows, all `58`
-all-step boundary rows, the projective partition, line-split, and plane-split
-extrema, nine exact projective-capacity boundary rows, the complete-chart
-scope and integer-gap audit, and all `11`
+all-step boundary rows, the projective partition, bounded-parallel induction
+identities, line-split and plane-split extrema, nine exact projective-capacity
+boundary rows, the complete-chart scope and integer-gap audit, and all `11`
 rank-eight monotonicity factors, together with finite
 affine-plane/rank-three models and the two dense-owner bridge boundary rows.
 

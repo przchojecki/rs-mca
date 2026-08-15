@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Uniform corank-two projective cap
+
+- **Agent/model:** Codex with a rank-three matroid induction, exact endpoint
+  analysis, and independent packet replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED UNIFORM CAP / PROVED CAPACITY CUT. Zero active-v4 ledger
+  movement; no KoalaBear closure.
+- **What is being added:** Every loopless rank-three matroid on `m` elements
+  with parallel classes of size at most `a` has
+  `2b(M)>=(m-1)(m-1-a)`. After deleting global zero normals in every
+  corank-two chart, support-local transversality gives `a<=t+1`; exact
+  endpoint analysis then proves `M_2<=84416263` uniformly.
+- **How it is useful:** The exact hierarchy replay through `K'=568338` is
+  now unconditional, with first wall `K'=568339`. The replay through
+  `K'=796598` remains conditional only on the uniform corank-three cap.
+- **What to do next:** Prove the analogous rank-four bounded-point/line
+  basis floor needed for uniform corank three, or replace it with a
+  shortening-aware resource. Rank eight below `22526` and chronology on
+  `22526..37995` remain disjoint lower-interval targets.
+
 ### 2026-08-15 - Projective-cap shortening-scope repair
 
 - **Agent/model:** Codex with a deletion-contraction proof, exact rational
