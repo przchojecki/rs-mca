@@ -91,6 +91,20 @@ FIXED_CHART_SOURCES = {
         "tree": "f0cf373ed6c780a401ad248bd9232322c6b22415",
         "contract_sha256": "df54f15d0ba1f4e335eb606f8f47c496e240ac7e2fe3beb209e100a3a4a7dd39",
     },
+    "weighted_split_pencil_selected_support_cap": {
+        "id": "rate_half_mca_weighted_split_pencil_selected_support_cap",
+        "path": "background/nodes/rate_half_mca_weighted_split_pencil_selected_support_cap",
+        "commit": "84d93e9f034008a8057702a4dfb85541ac5b5e06",
+        "tree": "f588d0b5b13a30c6aa6df6c292695024aec7e96b",
+        "contract_sha256": "414e1f902ec6a53abdb7ea789061c6147af9953c841440b963d71d6dfb7be434",
+    },
+    "rank9_minimal_shortening_split_pencil_payment": {
+        "id": "rate_half_mca_rank11_rank9_minimal_shortening_split_pencil_payment",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_minimal_shortening_split_pencil_payment",
+        "commit": "84d93e9f034008a8057702a4dfb85541ac5b5e06",
+        "tree": "aea5f2935d3d8b26c583342f95ea3ce970f5f7de",
+        "contract_sha256": "029b609ad2401fa9c9e689bdff2496fff2b202f2d00acb6010b64eac67acf881",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1228,6 +1242,8 @@ def main() -> None:
     weighted_elimination = data["rank9_weighted_target_elimination"]
     residual_petal = data["rank9_residual_petal_capacity_cut"]
     exact_petal = data["rank9_exact_petal_partition_capacity_cut"]
+    split_pencil_cap = data["weighted_split_pencil_selected_support_cap"]
+    minimal_split_payment = data["rank9_minimal_shortening_split_pencil_payment"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -1637,6 +1653,78 @@ def main() -> None:
     for x in (0, 1, 1000, 1000000):
         persistence = 1048577 * x * x + 102164825695 * x + 1256608704226512
         require(persistence > 0, f"exact-petal persistence x={x}")
+
+    require(split_pencil_cap == {
+        "minimum_A": 3,
+        "owner_weight_ceiling_formula": "A-1",
+        "selected_line_mass_formula": "sum_p x_Lp=A",
+        "line_charge_formula": "sum_p C(x_Lp,2)",
+        "heavy_threshold_formula": "floor(A/2)+1",
+        "clean_dominant_cap_formula": "floor((A-2)*S^2/8)",
+        "balanced_cap_formula": "C(S,2)",
+        "heavy_collision_cap_formula": "C(h,2)*C(A-1,2)",
+        "total_cap_formula": "floor((A-2)*S^2/8)+C(S,2)+C(h,2)*C(A-1,2)",
+        "clean_inequality_slack_factorization": "(d-1)*(d+s)*(s-1)",
+    }, "weighted split-pencil theorem")
+    split_a = 67473
+    split_total = 1048577
+    split_threshold = split_a // 2 + 1
+    split_heavy = split_total // split_threshold
+    split_clean = (split_a - 2) * split_total**2 // 8
+    split_balanced = split_total * (split_total - 1) // 2
+    split_collision = (
+        split_heavy * (split_heavy - 1) // 2
+        * (split_a - 1) * (split_a - 2) // 2
+    )
+    split_capacity = split_clean + split_balanced + split_collision
+    split_demand_numerator = (
+        990810934
+        * non_dense
+        * comb(67482, 9)
+        * comb(67473, 2)
+    )
+    split_demand_denominator = 10**9 * comb(1048586, 9)
+    split_demand = ceiling(Fraction(split_demand_numerator, split_demand_denominator))
+    split_raw_cross = split_demand_numerator - split_capacity * split_demand_denominator
+    require(minimal_split_payment == {
+        "residual_K_prime": 10,
+        "residual_n_prime": 1048586,
+        "residual_m_prime": 67482,
+        "correction_space_dimension": 10,
+        "selector_size": 9,
+        "selector_rank": 9,
+        "kernel_zero_count": 9,
+        "common_core_size": 9,
+        "selected_outside_mass_A": split_a,
+        "petal_total_ceiling_S": split_total,
+        "petal_size_ceiling": split_a - 1,
+        "component_density_numerator": 990810934,
+        "component_density_denominator": 10**9,
+        "heavy_threshold": split_threshold,
+        "heavy_count": split_heavy,
+        "clean_dominant_cap": split_clean,
+        "balanced_cap": split_balanced,
+        "heavy_collision_cap": split_collision,
+        "total_capacity": split_capacity,
+        "weighted_demand": split_demand,
+        "demand_capacity_gap": split_demand - split_capacity,
+        "raw_demand_capacity_cross": split_raw_cross,
+        "newly_closed_rows": [10, 10],
+        "remaining_rank9_interval": [11, 15528],
+    }, "minimal split-pencil payment")
+    require(split_capacity == 9274769506943785, "minimal split-pencil capacity")
+    require(split_demand == 11736940042024039, "minimal split-pencil demand")
+    require(split_raw_cross > 0, "minimal split-pencil strict contradiction")
+    split_clean_checks = 0
+    for size in range(split_threshold, split_a):
+        deficit = split_a - size
+        charge_twice = size * (size - 1) + deficit * (deficit - 1)
+        require(
+            deficit * size * (split_a - 2) - charge_twice
+            == (deficit - 1) * split_a * (size - 1),
+            f"minimal split-pencil clean inequality s={size}",
+        )
+        split_clean_checks += 1
 
     require(kernel_globalizer == {
         "correction_dimension": 10,
@@ -2497,8 +2585,9 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated_from_Kprime": 15529,
+        "rank9_minimal_shortening_closed_K_prime": 10,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [10, 15528],
+        "rank9_remaining_interval": [11, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -2523,6 +2612,8 @@ def main() -> None:
         f"residual_petal_factor_checks={residual_petal_factor_checks} "
         f"uniform_projective_frame_sample_checks={uniform_sample_checks} "
         f"weighted_demand={boundary_demand} weighted_cap={boundary_cap} "
+        f"minimal_split_gap={split_demand-split_capacity} "
+        f"minimal_split_clean_checks={split_clean_checks} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "
         f"kernel_wall_gap={kernel_wall_capacity-kernel_wall_demand} "

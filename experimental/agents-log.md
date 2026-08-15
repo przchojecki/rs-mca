@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Minimal-row weighted split-pencil payment
+
+- **Agent/model:** Codex with an abstract affine-line capacity proof and two
+  independent exact-integer replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED ROW-ROUTE CLOSE. Zero active-v4 ledger movement; no
+  KoalaBear closure.
+- **What is being added:** A weighted selected-support split-pencil theorem
+  gives capacity `floor((A-2)S^2/8)+C(S,2)+C(h,2)C(A-1,2)`. At `K'=10`,
+  its value `9274769506943785` is below full-density demand
+  `11736940042024039` by `2462170535080254`.
+- **How it is useful:** Dimension equality already removes the kernel and
+  rank-eight lanes, so this closes every component target on `K'=10` and
+  leaves rank nine only on `11..15528`.
+- **What to do next:** Attack `K'=11` while retaining owner labels and the
+  fixed-circuit quotient structure; chart-local deduplication is already
+  known to be too weak.
+
 ### 2026-08-15 - Rank-nine exact residual petal partition
 
 - **Agent/model:** Codex with convex integer packing, finite endpoint

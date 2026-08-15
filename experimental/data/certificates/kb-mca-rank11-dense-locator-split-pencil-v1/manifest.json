@@ -109,6 +109,20 @@
         "tree": "f0cf373ed6c780a401ad248bd9232322c6b22415",
         "contract_sha256": "df54f15d0ba1f4e335eb606f8f47c496e240ac7e2fe3beb209e100a3a4a7dd39"
       },
+      "weighted_split_pencil_selected_support_cap": {
+        "id": "rate_half_mca_weighted_split_pencil_selected_support_cap",
+        "path": "background/nodes/rate_half_mca_weighted_split_pencil_selected_support_cap",
+        "commit": "84d93e9f034008a8057702a4dfb85541ac5b5e06",
+        "tree": "f588d0b5b13a30c6aa6df6c292695024aec7e96b",
+        "contract_sha256": "414e1f902ec6a53abdb7ea789061c6147af9953c841440b963d71d6dfb7be434"
+      },
+      "rank9_minimal_shortening_split_pencil_payment": {
+        "id": "rate_half_mca_rank11_rank9_minimal_shortening_split_pencil_payment",
+        "path": "background/nodes/rate_half_mca_rank11_rank9_minimal_shortening_split_pencil_payment",
+        "commit": "84d93e9f034008a8057702a4dfb85541ac5b5e06",
+        "tree": "aea5f2935d3d8b26c583342f95ea3ce970f5f7de",
+        "contract_sha256": "029b609ad2401fa9c9e689bdff2496fff2b202f2d00acb6010b64eac67acf881"
+      },
       "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -633,6 +647,50 @@
       15528
     ],
     "combined_rank9_closed_from_Kprime": 15529
+  },
+  "weighted_split_pencil_selected_support_cap": {
+    "minimum_A": 3,
+    "owner_weight_ceiling_formula": "A-1",
+    "selected_line_mass_formula": "sum_p x_Lp=A",
+    "line_charge_formula": "sum_p C(x_Lp,2)",
+    "heavy_threshold_formula": "floor(A/2)+1",
+    "clean_dominant_cap_formula": "floor((A-2)*S^2/8)",
+    "balanced_cap_formula": "C(S,2)",
+    "heavy_collision_cap_formula": "C(h,2)*C(A-1,2)",
+    "total_cap_formula": "floor((A-2)*S^2/8)+C(S,2)+C(h,2)*C(A-1,2)",
+    "clean_inequality_slack_factorization": "(d-1)*(d+s)*(s-1)"
+  },
+  "rank9_minimal_shortening_split_pencil_payment": {
+    "residual_K_prime": 10,
+    "residual_n_prime": 1048586,
+    "residual_m_prime": 67482,
+    "correction_space_dimension": 10,
+    "selector_size": 9,
+    "selector_rank": 9,
+    "kernel_zero_count": 9,
+    "common_core_size": 9,
+    "selected_outside_mass_A": 67473,
+    "petal_total_ceiling_S": 1048577,
+    "petal_size_ceiling": 67472,
+    "component_density_numerator": 990810934,
+    "component_density_denominator": 1000000000,
+    "heavy_threshold": 33737,
+    "heavy_count": 31,
+    "clean_dominant_cap": 9273161316835569,
+    "balanced_cap": 549756338176,
+    "heavy_collision_cap": 1058433770040,
+    "total_capacity": 9274769506943785,
+    "weighted_demand": 11736940042024039,
+    "demand_capacity_gap": 2462170535080254,
+    "raw_demand_capacity_cross": 10398643318411131997122333957687361195838785918523698945763964238907518400,
+    "newly_closed_rows": [
+      10,
+      10
+    ],
+    "remaining_rank9_interval": [
+      11,
+      15528
+    ]
   },
   "kernel_canonical_basis_globalizer": {
     "correction_dimension": 10,
@@ -2578,9 +2636,10 @@
     "fixed_chart_output_suffices_for_payment": false,
     "full_rank_star_owner_is_record_intrinsic": true,
     "rank9_fixed_target_eliminated_from_Kprime": 15529,
+    "rank9_minimal_shortening_closed_K_prime": 10,
     "rank9_low_shortening_reopened": true,
     "rank9_remaining_interval": [
-      10,
+      11,
       15528
     ],
     "kernel_dominant_lane_closed_through_Kprime": 1048576,

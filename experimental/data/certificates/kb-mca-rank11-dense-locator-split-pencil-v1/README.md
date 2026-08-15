@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages fifty-two proved local results after the fixed
+This certificate packages fifty-four proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -38,6 +38,13 @@ rank-eleven anchor-star reduction:
   `981105*(1048577*K'+34798536326)` through `K'=15634`; four quotient
   blocks and eight endpoint comparisons certify the maximum, and the first
   crossing at `K'=15529` closes another 106 rows;
+- a weighted selected-support split-pencil theorem with capacity
+  `floor((A-2)*S^2/8)+C(S,2)+C(h,2)C(A-1,2)`, proved by separating balanced,
+  heavy-collision, and clean-dominant lines;
+- its minimal-row application at `K'=10`, where full-density demand
+  `11736940042024039` exceeds capacity `9274769506943785` by
+  `2462170535080254`, closing rank nine and hence every component target on
+  that row;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -158,13 +165,14 @@ complete-chart scope and integer-gap audit, and checks all
 `11` rank-eight monotonicity
 factors and both dense-owner bridge boundary rows.  The independent replay
 also checks finite-field rank-eight petal, minimal-shortening, and
-circuit-shadow models, while the primary replay checks the existing
-affine-plane line design. Both reject
+circuit-shadow models, all `33736` clean-dominant split-pencil sizes, and
+the independently derived minimal-row demand. The primary replay checks the
+existing affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `10<=K'<=15634` is open; the
+lane. The low rank-nine interval `11<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not

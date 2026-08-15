@@ -11165,6 +11165,163 @@ for $x\ge0$.  The contradiction therefore persists through $K'=15634$;
 the preceding two propositions cover all larger rows.
 \end{proof}
 
+\begin{proposition}[Weighted selected-support split-pencil capacity]
+\label{prop:kb-rank11-weighted-selected-support-split-pencil}
+Let $A\ge3$, and let finitely many affine owner points $p$ have integral
+weights
+\[
+ 0\le s_p\le A-1,qquad \sum_p s_p\le S.
+\]
+For each line $L$ in a family of distinct affine lines, let integral
+selected masses $x_{L,p}$, supported on the owner points of $L$, satisfy
+\[
+ 0\le x_{L,p}\le s_p,qquad \sum_p x_{L,p}=A.
+\]
+Put
+\[
+ Q_L=\sum_p\binom{x_{L,p}}2,qquad
+ h=\floor{\frac{S}{\floor{A/2}+1}}.
+\]
+Then
+\begin{equation}
+ \sum_L Q_L\le
+ \floor{\frac{(A-2)S^2}{8}}+\binom S2
+       +\binom h2\binom{A-1}2.
+ \label{eq:kb-rank11-weighted-selected-support-cap}
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Write $q(x)=\binom x2$.  For one line abbreviate $x_p=x_{L,p}$ and set
+\[
+ X_L=\sum_{p<r}x_px_r.
+\]
+Since $\sum_p x_p=A$, one has $Q_L+X_L=\binom A2$.
+Call an owner globally heavy when $s_p>A/2$; there are at most $h$ such
+owners.
+
+First suppose $\max_p x_p\le A/2$.  Then
+\[
+ \sum_p x_p^2\le \frac{A^2}{2},qquad
+ 2Q_L=\sum_p x_p^2-A,qquad
+ 2X_L=A^2-\sum_p x_p^2,
+\]
+so $Q_L\le X_L$.  A cross-owner coordinate pair determines its two owner
+points, and those points determine a unique affine line.  Distinct lines
+therefore give
+\begin{equation}
+ \sum_{L\ {m balanced}}Q_L
+ \le\sum_{L\ {m balanced}}X_L
+ \le\sum_{p<r}s_ps_r\le\binom S2.                  \tag{1}
+\end{equation}
+
+Every remaining line has a unique selected dominant owner.  Set aside the
+lines containing at least two globally heavy owners.  Every such line
+contains a pair of heavy points, each pair determines at most one line, and
+convexity under $x_p\le A-1$ gives $Q_L\le\binom{A-1}2$.  These lines
+contribute at most
+\begin{equation}
+ \binom h2\binom{A-1}2.                            \tag{2}
+\end{equation}
+
+It remains to count clean dominant lines.  If $p$ is their unique globally
+heavy point, put $s=s_p$ and $d=A-s$.  Thus $A/2<s\le A-1$ and
+$1\le d<A/2$.  If the selected dominant mass is $x$, superadditivity of
+$q$ on the complementary masses and monotonicity away from $A/2$ give
+\[
+ Q_L\le q(x)+q(A-x)\le q(s)+q(d).                 \tag{3}
+\]
+Distinct lines through $p$ contain disjoint sets of other owner points, and
+each uses at least $A-x\ge d$ light mass.  If $H$ and $L_0$ are the total
+heavy and light masses, respectively, there are at most $L_0/d$ clean lines
+through $p$.  The exact slack identity
+\[
+ ds(A-2)-\{s(s-1)+d(d-1)\}
+ =(d-1)(d+s)(s-1)\ge0
+\]
+shows that
+\[
+ \frac{q(s)+q(d)}d\le\frac{s(A-2)}2.
+\]
+Summing first through each heavy owner and then over heavy owners yields
+\begin{equation}
+ \sum_{L\ {m clean}}Q_L
+ \le\frac{(A-2)H L_0}{2}
+ \le\frac{(A-2)S^2}{8}.                            \tag{4}
+\end{equation}
+The left side is integral.  Taking the floor in (4) and adding (1)--(2)
+proves the claim.
+\end{proof}
+
+\begin{proposition}[Minimal-row rank-nine split-pencil payment]
+\label{prop:kb-rank11-rank9-minimal-split-pencil-payment}
+In the fixed target of
+Proposition~\ref{prop:kb-rank11-component-ninesubset-target}, the rank-nine
+alternative is empty at $K'=10$.  In fact its full-density marked demand
+and selected-support capacity satisfy
+\[
+ 11736940042024039>9274769506943785,
+\]
+with gap $2462170535080254$.  Together with dimension equality, there is no
+rank-eleven component target on this minimal residual row.
+\end{proposition}
+
+\begin{proof}
+At $K'=10$, Proposition~\ref{prop:kb-rank11-dense-root-saturation} places
+the ten-dimensional correction space $V'$ inside the ten-dimensional
+space $\mathbb F[X]_{<10}$, so equality holds.  Vandermonde interpolation
+gives rank ten on every eleven-set and rank nine on every nine-set.  Thus
+every positive-dimensional incidence of
+Proposition~\ref{prop:kb-rank11-component-incidence} is in the full-rank
+owner lane; the kernel and rank-eight lanes are empty.
+
+Write
+\[
+ N_{\min}=274980728111260126,qquad
+ \lambda=\frac{990810934}{10^9},qquad
+ (n',m')=(1048586,67482).
+\]
+Mark all $\binom{11}{9}$ nine-subsets of every component incidence and
+average over the $\binom{n'}9$ nine-sets.  One fixed $B$ has marked weight
+\begin{align*}
+ W_B&\ge\ceil{\lambda N_{\min}
+       \frac{\binom{m'}9\binom{m'-9}2}{\binom{n'}9}}\\
+    &=11736940042024039.                           \tag{1}
+\end{align*}
+There is no half-lane loss because the two competing component lanes are
+already empty.
+
+The evaluation kernel on $B$ is spanned by its degree-nine locator $u$, so
+$Z_D(u)=B$.  Hence the common owner core is exactly $B$.  Off $B$, the
+owner petals have sizes
+\[
+ s_p\le m'-10=67472,qquad \sum_p s_p\le n'-9=1048577.
+\]
+For every retained record line, intersect its selected support with the
+owner petals.  The resulting selected masses obey
+\[
+ 0\le x_{L,p}\le s_p,qquad \sum_p x_{L,p}=m'-9=67473.
+\]
+Both new coordinates in each marked extension lie outside $Z_D(u)=B$ and
+in the same owner petal, so that record contributes at most
+$\sum_p\binom{x_{L,p}}2$.  This uses only its selected support and makes no
+claim about accidental agreements outside it.
+
+Apply Proposition~\ref{prop:kb-rank11-weighted-selected-support-split-pencil}
+with
+\[
+ A=67473,qquad S=1048577,qquad
+ h=\floor{1048577/33737}=31.
+\]
+The clean-dominant, balanced, and heavy-collision terms are respectively
+\[
+ 9273161316835569,qquad 549756338176,qquad 1058433770040.
+\]
+Their sum is $9274769506943785$, contradicting (1).  Rank nine is therefore
+empty.  The initial Vandermonde argument excludes the other component
+lanes.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -12657,6 +12814,11 @@ Proposition~\ref{prop:kb-rank11-rank9-residual-petal-capacity} extends that
 elimination down to $K'=15635$ without transporting the original-row core
 floor. Proposition~\ref{prop:kb-rank11-rank9-exact-petal-partition} solves
 the integer petal partition and extends it further to $K'=15529$.
+Proposition~\ref{prop:kb-rank11-weighted-selected-support-split-pencil}
+adds a base-field-normalized selected-support census which avoids the
+one-chart per-coordinate relaxation.  Its application in
+Proposition~\ref{prop:kb-rank11-rank9-minimal-split-pencil-payment} closes
+the isolated rank-nine row $K'=10$ by retaining the full component density.
 Proposition~\ref{prop:kb-rank11-kernel-basis-capacity}
 first eliminates kernel-lane domination through $K'=4598$. Retaining every
 basis decoration in Corollary~\ref{cor:kb-rank11-kernel-multibasis-capacity}
@@ -12711,8 +12873,9 @@ Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
 surviving rank-eight interval to the guarded dense-owner terminal, but does
 not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Proposition~\ref{prop:kb-rank11-rank8-minimal-shortening-exclusion}
-removes rank eight from the shortest row. Thus the remaining intervals are
-rank nine only at $K'=10$, rank nine or rank eight on
+removes rank eight from the shortest row.  Together with the minimal
+split-pencil payment, there is no component target at $K'=10$.  Thus the
+remaining intervals are rank nine or rank eight on
 $11\le K'\le15528$, rank eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
