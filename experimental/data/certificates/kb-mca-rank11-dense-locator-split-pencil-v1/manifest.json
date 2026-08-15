@@ -151,6 +151,20 @@
         "tree": "f5e9556ee7c6bab9a79885a9feab541f50bb7f67",
         "contract_sha256": "8189f852eb61e3df83bec0d7158a71a8d0b5f6bbe8d38b2b60521ae875956d3c"
       },
+      "codimension_three_sparse_circuit_completion_cap": {
+        "id": "rate_half_mca_codimension_three_sparse_circuit_completion_cap",
+        "path": "background/nodes/rate_half_mca_codimension_three_sparse_circuit_completion_cap",
+        "commit": "8fa0f03b24795b6bf81da0973f7bbb42cb833e43",
+        "tree": "39deb2b2d24bde9b553f43a985cf75d26f6c937f",
+        "contract_sha256": "87d1bd00338c62a01640e593eec40d0cec20c8e8cbde2c138b482958a458c7e5"
+      },
+      "rank11_k13_sparse_circuit_completion_payment": {
+        "id": "rate_half_mca_rank11_k13_sparse_circuit_completion_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k13_sparse_circuit_completion_payment",
+        "commit": "8fa0f03b24795b6bf81da0973f7bbb42cb833e43",
+        "tree": "5e0b2f59feeead4f69ae1365950555d8f30228c3",
+        "contract_sha256": "12473a9dbffe68438eb813e042d666c9ab08b25ac48bc8cdc0c5dcc2d3b4b30b"
+      },
       "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -867,6 +881,88 @@
     ],
     "remaining_rank9_interval": [
       13,
+      15528
+    ]
+  },
+  "codimension_three_sparse_circuit_completion_cap": {
+    "ambient_polynomial_dimension": 13,
+    "correction_dimension": 10,
+    "quotient_dimension": 3,
+    "component_subset_size": 11,
+    "support_minimum": 2,
+    "support_ceiling": 5,
+    "global_common_zero_count": 0,
+    "completion_ceiling": 3,
+    "unstructured_completion_ceiling": 2,
+    "structured_carrier_ceiling": 7,
+    "official_support_size": 67485,
+    "structured_carrier_cap": 1679076702065233864778823429158845084750,
+    "unstructured_support_terms": {
+      "2": 5393914198807035440605292355341273817780750,
+      "3": 16182222183350848211692342371648018241269500,
+      "4": 32365403583203132433414867600240755619377000,
+      "5": 45312907979288667694433653431523789848688770
+    },
+    "unstructured_completion_cap": 99254447944649683780146155758753837527116020,
+    "per_record_sparse_incidence_cap": 99254447944649683780146155758753837527116020
+  },
+  "rank11_k13_sparse_circuit_completion_payment": {
+    "K_prime": 13,
+    "n_prime": 1048589,
+    "m_prime": 67485,
+    "correction_dimension": 10,
+    "ambient_RS_dimension": 13,
+    "component_density_numerator": 990810934,
+    "component_density_denominator": 1000000000,
+    "residual_record_floor": 274980728111260126,
+    "kernel_coranks": [
+      1,
+      2
+    ],
+    "kernel_record_caps": [
+      16295594,
+      253241283
+    ],
+    "kernel_extension_factors": [
+      3,
+      1
+    ],
+    "kernel_incidence_terms": [
+      206472009799384011369805333400773555250476811820012697194,
+      9180044049284473130879609729674582954257039349900629
+    ],
+    "kernel_incidence_cap": 206481189843433295842936213010503229833431068859362597823,
+    "rank9_core_sizes": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "rank9_core_caps": [
+      9275234985700485,
+      9276176591408201,
+      9277118227920090,
+      9278059895199813
+    ],
+    "uniform_rank9_chart_cap": 9278059895199813,
+    "global_rank9_mark_capacity": 39185636591931282842230425296691772390107910022999372047573567671,
+    "high_circuit_threshold": 6,
+    "minimum_high_circuit_rank9_shadows": 45,
+    "high_circuit_incidence_cap": 870791924265139618716231673259817164224620222733319378834968170,
+    "low_circuit_support_ceiling": 5,
+    "low_circuit_per_record_cap": 99254447944649683780146155758753837527116020,
+    "low_circuit_incidence_cap_at_record_floor": 27293060364100936135216546700182740204134660486313016801818520,
+    "total_capacity_at_record_floor": 898085191110430398284744062896212914931984716650701254999384513,
+    "required_incidence_at_record_floor": 901702217989192688449626641411280218028664942551160634607759137,
+    "demand_capacity_gap": 3617026878762290164882578515067303096680225900459379608374624,
+    "raw_demand_capacity_cross": 3617026878762290164882578515067303096680225900459379608374623354883400,
+    "record_coefficient_cross": 3179892509671792384744396543086450191690406044908895900,
+    "newly_closed_rows": [
+      13,
+      13
+    ],
+    "remaining_rank9_interval": [
+      14,
       15528
     ]
   },
@@ -2817,9 +2913,10 @@
     "rank9_minimal_shortening_closed_K_prime": 10,
     "rank9_k11_circuit_split_pencil_closed_K_prime": 11,
     "rank9_k12_quotient_line_circuit_closed_K_prime": 12,
+    "rank9_k13_sparse_circuit_completion_closed_K_prime": 13,
     "rank9_low_shortening_reopened": true,
     "rank9_remaining_interval": [
-      13,
+      14,
       15528
     ],
     "kernel_dominant_lane_closed_through_Kprime": 1048576,

@@ -11621,6 +11621,150 @@ $N_{\min}=274980728111260126$.  Adding the three capacities there gives the
 displayed total, strictly below the displayed demand.
 \end{proof}
 
+\begin{proposition}[Codimension-three sparse-circuit completion]
+\label{prop:kb-rank11-codimension-three-sparse-circuit}
+Let $V\le P_{13}=\mathbb F[X]_{<13}$ have dimension ten and have no common
+zero on a set $S$ of $m$ distinct field points.  Put $\Lambda=V^\perp$.
+For each eleven-set $T\subseteq S$ on which $V$ has evaluation rank ten,
+let $C_T$ be the support of the unique nonzero label in
+\[
+ \Lambda\cap\operatorname{span}\{\operatorname{ev}_x:x\in T\}.
+\]
+For the circuits with $2\le |C_T|\le5$, one of the following holds:
+\begin{enumerate}
+\item every such circuit is contained in one set $U$ with $|U|\le7$;
+\item every independent $(c-1)$-set has at most two completions to a
+support-$c$ circuit, for every $2\le c\le5$.
+\end{enumerate}
+Consequently
+\begin{align*}
+ \#\{T:|C_T|\le5\}\le\max\biggl\{&
+ \sum_{c=2}^5\binom{7}{c}\binom{m-c}{11-c},\\
+ &\sum_{c=2}^5\floor{\frac{2\binom m{c-1}
+              \binom{m-c-1}{11-c}}c}\biggr\}.
+\end{align*}
+At $m=67485$, the two displayed caps are respectively
+\[
+ 1679076702065233864778823429158845084750
+\]
+and
+\[
+ 99254447944649683780146155758753837527116020.
+\]
+\end{proposition}
+
+\begin{proof}
+Write $E_A=\operatorname{span}\{\operatorname{ev}_x:x\in A\}$.  Evaluation
+functionals at any at most thirteen distinct points are independent on
+$P_{13}$.  If $T$ has evaluation rank ten, annihilator duality gives
+\[
+ \dim(\Lambda\cap E_T)=11-\operatorname{rank}(\operatorname{ev}_T|_V)=1.
+\]
+The unique label has a unique representation on $T$, and its nonzero support
+$C_T$ is a circuit of the projected evaluations on $V$.  The common-zero
+hypothesis excludes support one.
+
+Fix $2\le c\le5$ and an independent $(c-1)$-set $A$.  Put
+\[
+ H_A=\{f\in V:f|_A=0\}.
+\]
+Then $\dim H_A=11-c$.  Every point completing $A$ to a circuit is a common
+zero of $H_A$.  If $z$ distinct points are common zeros, then $H_A$ is
+contained in their degree-$z$ locator times $P_{13-z}$, so
+$z\le13-\dim H_A=c+2$.  The points of $A$ account for $c-1$ of these zeros;
+hence $A$ has at most three circuit completions.
+
+Suppose $A$ has three completions $x,y,z$.  Their three circuit labels are
+independent: the evaluation functionals on $A\cup\{x,y,z\}$ are independent,
+and each label has one private nonzero coordinate in that basis.  Put
+\[
+ U=A\cup\{x,y,z\},\qquad |U|=c+2\le7.
+\]
+They span the three-dimensional $\Lambda$, so $\Lambda\le E_U$.  If
+$\mu\in\Lambda$ has another circuit support $D$ of size at most five, its
+representations on $U$ and $D$ agree because $|U\cup D|\le12$ and those
+evaluation functionals are independent.  Thus $D\subseteq U$, proving the
+first alternative and its displayed count.
+
+Otherwise let $b_A\le2$ be the number of completions of $A$.  If $x,y$ are
+distinct completions, their labels are independent.  A rank-ten eleven-set
+containing $A\cup\{x\}$ therefore cannot contain $y$, since its intersection
+with $\Lambda$ is one-dimensional.  The eleven-sets charged to the
+completions of $A$ are at most
+\[
+ b_A\binom{m-c+1-b_A}{11-c}
+ \le2\binom{m-c-1}{11-c}
+\]
+at the stated $m$.  Every support-$c$ circuit is charged exactly $c$ times,
+once after deletion of each point.  Summing over the $\binom m{c-1}$ choices
+of $A$ and dividing by $c$ proves the second count.  Exact integer
+evaluation gives the two printed constants.
+\end{proof}
+
+\begin{proposition}[$K'=13$ sparse-circuit completion payment]
+\label{prop:kb-rank11-k13-sparse-circuit-payment}
+In the fixed target of
+Proposition~\ref{prop:kb-rank11-component-ninesubset-target}, every
+rank-eleven component alternative is empty at $K'=13$.  At the residual
+record floor, complete kernel, high-circuit, and low-circuit capacity is
+\[
+ 898085191110430398284744062896212914931984716650701254999384513,
+\]
+whereas full component demand is
+\[
+ 901702217989192688449626641411280218028664942551160634607759137.
+\]
+The strict gap is
+\[
+ 3617026878762290164882578515067303096680225900459379608374624.
+\]
+\end{proposition}
+
+\begin{proof}
+At shortening excess three, the canonical-basis extension factors are
+$\binom3{d+1}$.  Coranks one and two have record caps $16295594$ and
+$253241283$, so every rank-deficient component incidence has capacity
+\begin{align*}
+ K_{\rm cap}
+ &=3\binom{1048589}{9}16295594
+   +\binom{1048589}{8}253241283\\
+ &=206481189843433295842936213010503229833431068859362597823.
+\end{align*}
+
+For full-rank eleven-sets, apply
+Proposition~\ref{prop:kb-rank11-weighted-selected-support-core-offset} at
+common-core sizes $j=9,10,11,12$.  The four chart caps are
+\[
+ 9275234985700485,\quad9276176591408201,\quad
+ 9277118227920090,\quad9278059895199813.
+\]
+Thus $C_*=9278059895199813$.  A circuit of size at least six creates at
+least 45 rank-nine shadows, giving high-circuit capacity
+\[
+ H_{\rm cap}
+ =870791924265139618716231673259817164224620222733319378834968170.
+\]
+Proposition~\ref{prop:kb-rank11-codimension-three-sparse-circuit} bounds the
+remaining support-at-most-five incidences by
+\[
+ N_{\rm actual}\,
+ 99254447944649683780146155758753837527116020.
+\]
+
+The dense-locator theorem requires at least
+\[
+ \ceil{\frac{990810934}{10^9}N_{\rm actual}\binom{67485}{11}}
+\]
+component incidences.  The demand coefficient minus the sparse coefficient
+has positive cross numerator
+\[
+ 3179892509671792384744396543086450191690406044908895900.
+\]
+The smallest gap is therefore at
+$N_{\min}=274980728111260126$.  Adding the three capacities there gives the
+displayed total, strictly below the displayed demand.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -13185,9 +13329,12 @@ $K'=10$ or $K'=11$.  Proposition~\ref{prop:kb-rank11-quotient-line-sparse-circui
 controls all sparse circuits selected by the codimension-two quotient line,
 and Proposition~\ref{prop:kb-rank11-k12-quotient-line-payment} retains the
 absolute kernel term while paying the complete $K'=12$ component
-population.  Thus the
+population.  Proposition~\ref{prop:kb-rank11-codimension-three-sparse-circuit}
+controls the quotient-plane sparse circuits, and
+Proposition~\ref{prop:kb-rank11-k13-sparse-circuit-payment} retains both
+kernel coranks while paying the complete $K'=13$ component population.  Thus the
 remaining intervals are rank nine or rank eight on
-$13\le K'\le15528$, rank eight only on $15529\le K'\le22525$,
+$14\le K'\le15528$, rank eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
 $37996\le K'\le1048576$.

@@ -133,6 +133,20 @@ FIXED_CHART_SOURCES = {
         "tree": "f5e9556ee7c6bab9a79885a9feab541f50bb7f67",
         "contract_sha256": "8189f852eb61e3df83bec0d7158a71a8d0b5f6bbe8d38b2b60521ae875956d3c",
     },
+    "codimension_three_sparse_circuit_completion_cap": {
+        "id": "rate_half_mca_codimension_three_sparse_circuit_completion_cap",
+        "path": "background/nodes/rate_half_mca_codimension_three_sparse_circuit_completion_cap",
+        "commit": "8fa0f03b24795b6bf81da0973f7bbb42cb833e43",
+        "tree": "39deb2b2d24bde9b553f43a985cf75d26f6c937f",
+        "contract_sha256": "87d1bd00338c62a01640e593eec40d0cec20c8e8cbde2c138b482958a458c7e5",
+    },
+    "rank11_k13_sparse_circuit_completion_payment": {
+        "id": "rate_half_mca_rank11_k13_sparse_circuit_completion_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k13_sparse_circuit_completion_payment",
+        "commit": "8fa0f03b24795b6bf81da0973f7bbb42cb833e43",
+        "tree": "5e0b2f59feeead4f69ae1365950555d8f30228c3",
+        "contract_sha256": "12473a9dbffe68438eb813e042d666c9ab08b25ac48bc8cdc0c5dcc2d3b4b30b",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1296,6 +1310,136 @@ def quotient_line_sparse_circuit_toy() -> tuple[int, int]:
     return vandermonde_checks, branch_checks
 
 
+def rank_mod(matrix: list[list[int]], prime: int) -> int:
+    work = [row[:] for row in matrix]
+    rows = len(work)
+    cols = len(work[0]) if rows else 0
+    rank = 0
+    for col in range(cols):
+        pivot = next((row for row in range(rank, rows) if work[row][col] % prime), None)
+        if pivot is None:
+            continue
+        work[rank], work[pivot] = work[pivot], work[rank]
+        inverse = pow(work[rank][col], -1, prime)
+        work[rank] = [(value * inverse) % prime for value in work[rank]]
+        for row in range(rows):
+            if row == rank:
+                continue
+            factor = work[row][col] % prime
+            if factor:
+                work[row] = [
+                    (left - factor * right) % prime
+                    for left, right in zip(work[row], work[rank])
+                ]
+        rank += 1
+    return rank
+
+
+def nullspace_mod(matrix: list[list[int]], prime: int) -> list[list[int]]:
+    work = [row[:] for row in matrix]
+    rows, cols = len(work), len(work[0])
+    pivots: list[int] = []
+    rank = 0
+    for col in range(cols):
+        pivot = next((row for row in range(rank, rows) if work[row][col] % prime), None)
+        if pivot is None:
+            continue
+        work[rank], work[pivot] = work[pivot], work[rank]
+        inverse = pow(work[rank][col], -1, prime)
+        work[rank] = [(value * inverse) % prime for value in work[rank]]
+        for row in range(rows):
+            if row == rank:
+                continue
+            factor = work[row][col] % prime
+            if factor:
+                work[row] = [
+                    (left - factor * right) % prime
+                    for left, right in zip(work[row], work[rank])
+                ]
+        pivots.append(col)
+        rank += 1
+    basis = []
+    for free_col in (col for col in range(cols) if col not in pivots):
+        vector = [0] * cols
+        vector[free_col] = 1
+        for row, pivot_col in enumerate(pivots):
+            vector[pivot_col] = -work[row][free_col] % prime
+        basis.append(vector)
+    return basis
+
+
+def codimension_three_sparse_circuit_toy() -> tuple[int, int, int]:
+    prime = 17
+    evaluations = [
+        [pow(point, degree, prime) for degree in range(13)]
+        for point in range(13)
+    ]
+
+    def projected_columns(constraints: list[list[int]]) -> list[list[int]]:
+        basis = nullspace_mod(constraints, prime)
+        require(len(basis) == 10, "K'=13 quotient-plane toy dimension")
+        return [
+            [sum(coefficient * pow(point, degree, prime)
+                 for degree, coefficient in enumerate(polynomial)) % prime
+             for polynomial in basis]
+            for point in range(13)
+        ]
+
+    def subset_rank(columns: list[list[int]], subset: tuple[int, ...]) -> int:
+        return rank_mod(
+            [[columns[col][row] for col in subset] for row in range(10)],
+            prime,
+        )
+
+    def sparse_circuits(columns: list[list[int]]) -> set[tuple[int, ...]]:
+        found: set[tuple[int, ...]] = set()
+        for size in range(2, 6):
+            for subset in combinations(range(13), size):
+                if subset_rank(columns, subset) != size - 1:
+                    continue
+                if all(
+                    subset_rank(columns, subset[:index] + subset[index + 1:]) == size - 1
+                    for index in range(size)
+                ):
+                    found.add(subset)
+        return found
+
+    def completion_map(found: set[tuple[int, ...]]) -> dict[tuple[int, ...], set[int]]:
+        result: dict[tuple[int, ...], set[int]] = {}
+        for circuit in found:
+            for index, point in enumerate(circuit):
+                base = circuit[:index] + circuit[index + 1:]
+                result.setdefault(base, set()).add(point)
+        return result
+
+    structured_constraints = [
+        [(left - right) % prime for left, right in zip(evaluations[point], evaluations[0])]
+        for point in (1, 2, 3)
+    ]
+    structured = projected_columns(structured_constraints)
+    require(all(any(column) for column in structured), "K'=13 structured basepoint free")
+    structured_circuits = sparse_circuits(structured)
+    structured_completions = completion_map(structured_circuits)
+    require(structured_completions[(0,)] == {1, 2, 3}, "K'=13 structured three completions")
+    require(
+        all(set(circuit) <= {0, 1, 2, 3} for circuit in structured_circuits),
+        "K'=13 structured carrier",
+    )
+
+    dense_constraint = [
+        sum(weight * evaluations[point][degree]
+            for weight, point in zip((1, 1, 1, 1, 1, -5), range(4, 10))) % prime
+        for degree in range(13)
+    ]
+    unstructured = projected_columns(structured_constraints[:2] + [dense_constraint])
+    require(all(any(column) for column in unstructured), "K'=13 unstructured basepoint free")
+    unstructured_circuits = sparse_circuits(unstructured)
+    unstructured_completions = completion_map(unstructured_circuits)
+    maximum = max(map(len, unstructured_completions.values()))
+    require(maximum == 2, "K'=13 unstructured completion ceiling")
+    return len(structured_circuits), len(unstructured_circuits), maximum
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -1318,6 +1462,8 @@ def main() -> None:
     k11_payment = data["rank11_k11_circuit_split_pencil_payment"]
     quotient_line_cap = data["codimension_two_quotient_line_sparse_circuit_cap"]
     k12_payment = data["rank11_k12_quotient_line_circuit_payment"]
+    completion_cap = data["codimension_three_sparse_circuit_completion_cap"]
+    k13_payment = data["rank11_k13_sparse_circuit_completion_payment"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -1989,6 +2135,103 @@ def main() -> None:
     )
     require(k12_payment["newly_closed_rows"] == [12, 12], "K'=12 closed row")
     require(k12_payment["remaining_rank9_interval"] == [13, 15528], "K'=12 remaining interval")
+
+    k13_n, k13_m = 1048589, 67485
+    structured_cap = sum(
+        comb(7, support) * comb(k13_m - support, 11 - support)
+        for support in range(2, 6)
+    )
+    unstructured_terms = {
+        str(support): (
+            2 * comb(k13_m, support - 1)
+            * comb(k13_m - support - 1, 11 - support) // support
+        )
+        for support in range(2, 6)
+    }
+    sparse_cap = sum(unstructured_terms.values())
+    require(completion_cap["structured_carrier_cap"] == structured_cap, "K'=13 structured cap")
+    require(completion_cap["unstructured_support_terms"] == unstructured_terms, "K'=13 unstructured terms")
+    require(completion_cap["unstructured_completion_cap"] == sparse_cap, "K'=13 unstructured cap")
+    require(completion_cap["per_record_sparse_incidence_cap"] == sparse_cap, "K'=13 sparse cap")
+    require(sparse_cap > structured_cap, "K'=13 active sparse branch")
+    structured_circuits, unstructured_circuits, completion_maximum = codimension_three_sparse_circuit_toy()
+
+    k13_offset_rows = []
+    for core_size in (9, 10, 11, 12):
+        petal_mass = k13_m - core_size
+        offset = core_size - 9
+        total = k13_n - core_size
+        heavy = total // (petal_mass // 2 + 1)
+        cross_floor = petal_mass**2 // 4
+        linear = (petal_mass - 2) * total + 2 * heavy * offset * petal_mass
+        quadratic = petal_mass - 2
+        vertex = Fraction(linear, 2 * quadratic)
+        floor_vertex = vertex.numerator // vertex.denominator
+        clean = max(
+            light * (linear - quadratic * light) // 2
+            for light in {0, total, floor_vertex, floor_vertex + 1}
+            if 0 <= light <= total
+        )
+        balanced = (
+            (cross_floor + offset * petal_mass)
+            * total * (total - 1) // 2 // cross_floor
+        )
+        collision = (
+            heavy * (heavy - 1) // 2
+            * ((petal_mass - 1) * (petal_mass - 2) // 2 + offset * petal_mass)
+        )
+        k13_offset_rows.append(clean + balanced + collision)
+
+    k13_record_caps = []
+    for corank in (1, 2):
+        rank = 10 - corank
+        shortened = 13 - rank
+        zero_endpoint = Fraction(
+            prod(range(1048576 + shortened - corank, 1048576 + shortened + 1)),
+            (67472 + shortened) * prod(range(67473, 67473 + corank - 1)),
+        )
+        maximum_endpoint = Fraction(
+            prod(range(1048576, 1048576 + corank + 1)),
+            prod(range(67473, 67473 + corank)),
+        )
+        winner = max(zero_endpoint, maximum_endpoint)
+        k13_record_caps.append(winner.numerator // winner.denominator)
+    k13_extensions = [comb(3, corank + 1) for corank in (1, 2)]
+    k13_kernel_terms = [
+        comb(k13_n, 10 - corank) * cap * extension
+        for corank, cap, extension in zip((1, 2), k13_record_caps, k13_extensions)
+    ]
+    k13_kernel = sum(k13_kernel_terms)
+    k13_chart = max(k13_offset_rows)
+    k13_marks = comb(k13_n, 9) * k13_chart
+    k13_high = k13_marks // 45
+    k13_low = non_dense * sparse_cap
+    k13_total = k13_kernel + k13_high + k13_low
+    k13_demand = ceiling(Fraction(
+        990810934 * non_dense * comb(k13_m, 11),
+        10**9,
+    ))
+    require((k13_payment["K_prime"], k13_payment["n_prime"], k13_payment["m_prime"]) == (13, k13_n, k13_m), "K'=13 row")
+    require(k13_record_caps == k13_payment["kernel_record_caps"] == [16295594, 253241283], "K'=13 kernel record caps")
+    require(k13_payment["kernel_extension_factors"] == k13_extensions == [3, 1], "K'=13 kernel extensions")
+    require(k13_payment["kernel_incidence_terms"] == k13_kernel_terms, "K'=13 kernel terms")
+    require(k13_payment["kernel_incidence_cap"] == k13_kernel, "K'=13 kernel capacity")
+    require(k13_payment["rank9_core_caps"] == k13_offset_rows, "K'=13 core caps")
+    require(k13_payment["uniform_rank9_chart_cap"] == k13_chart, "K'=13 chart cap")
+    require(k13_payment["global_rank9_mark_capacity"] == k13_marks, "K'=13 marks")
+    require(k13_payment["high_circuit_incidence_cap"] == k13_high, "K'=13 high cap")
+    require(k13_payment["low_circuit_incidence_cap_at_record_floor"] == k13_low, "K'=13 low cap")
+    require(k13_payment["total_capacity_at_record_floor"] == k13_total, "K'=13 total cap")
+    require(k13_payment["required_incidence_at_record_floor"] == k13_demand, "K'=13 demand")
+    require(k13_payment["demand_capacity_gap"] == k13_demand - k13_total > 0, "K'=13 gap")
+    require(
+        k13_payment["record_coefficient_cross"]
+        == 990810934 * comb(k13_m, 11) - 10**9 * sparse_cap
+        > 0,
+        "K'=13 record persistence",
+    )
+    require(k13_payment["newly_closed_rows"] == [13, 13], "K'=13 closed row")
+    require(k13_payment["remaining_rank9_interval"] == [14, 15528], "K'=13 remaining interval")
 
     require(kernel_globalizer == {
         "correction_dimension": 10,
@@ -2852,8 +3095,9 @@ def main() -> None:
         "rank9_minimal_shortening_closed_K_prime": 10,
         "rank9_k11_circuit_split_pencil_closed_K_prime": 11,
         "rank9_k12_quotient_line_circuit_closed_K_prime": 12,
+        "rank9_k13_sparse_circuit_completion_closed_K_prime": 13,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [13, 15528],
+        "rank9_remaining_interval": [14, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -2885,6 +3129,9 @@ def main() -> None:
         f"k12_sparse_cap={quotient_per_record} "
         f"k12_gap={k12_demand-k12_total} "
         f"k12_toy={quotient_vandermonde_checks}/{quotient_branch_checks} "
+        f"k13_sparse_cap={sparse_cap} "
+        f"k13_gap={k13_demand-k13_total} "
+        f"k13_toy={structured_circuits}/{unstructured_circuits}/{completion_maximum} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "
         f"kernel_wall_gap={kernel_wall_capacity-kernel_wall_demand} "

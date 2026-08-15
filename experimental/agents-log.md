@@ -4860,3 +4860,39 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** At `K'=13`, control low-support points on the
   projective quotient plane while retaining both corank-one and corank-two
   kernel capacity and the `j=9,10,11,12` core-offset chart ledger.
+
+### 2026-08-15 - K'=13 sparse-circuit completion payment
+
+- **Agent/model:** Codex, importing two further proved public prize-DAG
+  nodes after proof audit, exact arithmetic, independent finite-field, and
+  hostile-mutation replay.
+- **Exact parent:** this PR's `K'=12` extension at
+  `016ae0e4e05ffc3e9a2c97881bd59f4dbca6b501`.
+- **Status:** PROVED LOCAL ROW CLOSURE / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A codimension-three completion dichotomy which
+  avoids classifying plane sections of secant varieties.  Three circuit
+  completions of one independent deletion span the quotient plane and force
+  every support-at-most-five circuit into a seven-point carrier; otherwise
+  every deletion has at most two completions.  At `m'=67485`, the resulting
+  sparse cap is
+  `99254447944649683780146155758753837527116020` incidences per record.
+  The complete `K'=13` payment retains both kernel coranks, pays high
+  circuits through 45 rank-nine shadows, and pays low circuits through the
+  completion cap.  Total capacity is
+  `898085191110430398284744062896212914931984716650701254999384513`
+  against demand
+  `901702217989192688449626641411280218028664942551160634607759137`.
+- **Impact:** `K'=13` has no rank-eleven component target.  The rank-nine
+  interval contracts from `13..15528` to `14..15528`.
+- **Controls:** Primary replay and all 105 hostile mutations pass.  The
+  independent path reconstructs both kernel record caps and all four chart
+  capacities, enumerates all 605 circuit-shadow omissions, and realizes
+  both completion branches over `GF(17)`.  The 156-page paper compiles with
+  no undefined references or overfull boxes.
+- **Nonclaim:** No quotient-dimension-four theorem, row `K'>=14`, chronology
+  owner, error-rank-eleven payment, active-v4 ledger movement, KoalaBear
+  closure, or prize closure.
+- **What to do next:** At `K'=14`, determine whether a four-completion
+  carrier dichotomy or a sharper deletion count pays the quotient
+  three-space, retaining all nonzero kernel coranks and core offsets through
+  `j=13`.

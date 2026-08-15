@@ -165,6 +165,20 @@ SOURCE_NODES = {
         "tree": "f5e9556ee7c6bab9a79885a9feab541f50bb7f67",
         "contract_sha256": "8189f852eb61e3df83bec0d7158a71a8d0b5f6bbe8d38b2b60521ae875956d3c",
     },
+    "codimension_three_sparse_circuit_completion_cap": {
+        "id": "rate_half_mca_codimension_three_sparse_circuit_completion_cap",
+        "path": "background/nodes/rate_half_mca_codimension_three_sparse_circuit_completion_cap",
+        "commit": "8fa0f03b24795b6bf81da0973f7bbb42cb833e43",
+        "tree": "39deb2b2d24bde9b553f43a985cf75d26f6c937f",
+        "contract_sha256": "87d1bd00338c62a01640e593eec40d0cec20c8e8cbde2c138b482958a458c7e5",
+    },
+    "rank11_k13_sparse_circuit_completion_payment": {
+        "id": "rate_half_mca_rank11_k13_sparse_circuit_completion_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k13_sparse_circuit_completion_payment",
+        "commit": "8fa0f03b24795b6bf81da0973f7bbb42cb833e43",
+        "tree": "5e0b2f59feeead4f69ae1365950555d8f30228c3",
+        "contract_sha256": "12473a9dbffe68438eb813e042d666c9ab08b25ac48bc8cdc0c5dcc2d3b4b30b",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1797,6 +1811,52 @@ def expected() -> dict[str, Any]:
     k12_record_coefficient_cross = (
         990810934 * comb(k12_m, 11) - 10**9 * quotient_line_per_record
     )
+    k13_n, k13_m = 1048589, 67485
+    k13_core_rows = []
+    for core_size in (9, 10, 11, 12):
+        petal_mass = k13_m - core_size
+        offset = core_size - 9
+        total = k13_n - core_size
+        k13_core_rows.append({
+            "j": core_size,
+            "P": petal_mass,
+            "r": offset,
+            "S": total,
+            **core_offset_capacity(petal_mass, total, offset),
+        })
+    k13_structured_cap = sum(
+        comb(7, support) * comb(k13_m - support, 11 - support)
+        for support in range(2, 6)
+    )
+    k13_unstructured_terms = {
+        str(support): (
+            2 * comb(k13_m, support - 1)
+            * comb(k13_m - support - 1, 11 - support) // support
+        )
+        for support in range(2, 6)
+    }
+    k13_sparse_cap = sum(k13_unstructured_terms.values())
+    k13_coranks = [1, 2]
+    k13_kernel_record_caps = [kernel_record_cap(13, corank) for corank in k13_coranks]
+    k13_kernel_extensions = [comb(3, corank + 1) for corank in k13_coranks]
+    k13_kernel_terms = [
+        comb(k13_n, 10 - corank) * record_cap * extension
+        for corank, record_cap, extension in zip(
+            k13_coranks, k13_kernel_record_caps, k13_kernel_extensions
+        )
+    ]
+    k13_kernel_cap = sum(k13_kernel_terms)
+    k13_chart_cap = max(row["total_cap"] for row in k13_core_rows)
+    k13_global_marks = comb(k13_n, 9) * k13_chart_cap
+    k13_high_cap = k13_global_marks // 45
+    k13_low_cap = non_dense * k13_sparse_cap
+    k13_total_cap = k13_kernel_cap + k13_high_cap + k13_low_cap
+    k13_demand_numerator = 990810934 * non_dense * comb(k13_m, 11)
+    k13_demand = ceil_ratio(k13_demand_numerator, 10**9)
+    k13_raw_cross = k13_demand_numerator - 10**9 * k13_total_cap
+    k13_record_coefficient_cross = (
+        990810934 * comb(k13_m, 11) - 10**9 * k13_sparse_cap
+    )
     kernel_endpoint = 4598
     kernel_wall = 4599
     kernel_endpoint_demand = kernel_demand_ceiling(kernel_endpoint)
@@ -2271,6 +2331,55 @@ def expected() -> dict[str, Any]:
             "record_coefficient_cross": k12_record_coefficient_cross,
             "newly_closed_rows": [12, 12],
             "remaining_rank9_interval": [13, 15528],
+        },
+        "codimension_three_sparse_circuit_completion_cap": {
+            "ambient_polynomial_dimension": 13,
+            "correction_dimension": 10,
+            "quotient_dimension": 3,
+            "component_subset_size": 11,
+            "support_minimum": 2,
+            "support_ceiling": 5,
+            "global_common_zero_count": 0,
+            "completion_ceiling": 3,
+            "unstructured_completion_ceiling": 2,
+            "structured_carrier_ceiling": 7,
+            "official_support_size": k13_m,
+            "structured_carrier_cap": k13_structured_cap,
+            "unstructured_support_terms": k13_unstructured_terms,
+            "unstructured_completion_cap": k13_sparse_cap,
+            "per_record_sparse_incidence_cap": k13_sparse_cap,
+        },
+        "rank11_k13_sparse_circuit_completion_payment": {
+            "K_prime": 13,
+            "n_prime": k13_n,
+            "m_prime": k13_m,
+            "correction_dimension": 10,
+            "ambient_RS_dimension": 13,
+            "component_density_numerator": 990810934,
+            "component_density_denominator": 10**9,
+            "residual_record_floor": non_dense,
+            "kernel_coranks": k13_coranks,
+            "kernel_record_caps": k13_kernel_record_caps,
+            "kernel_extension_factors": k13_kernel_extensions,
+            "kernel_incidence_terms": k13_kernel_terms,
+            "kernel_incidence_cap": k13_kernel_cap,
+            "rank9_core_sizes": [9, 10, 11, 12],
+            "rank9_core_caps": [row["total_cap"] for row in k13_core_rows],
+            "uniform_rank9_chart_cap": k13_chart_cap,
+            "global_rank9_mark_capacity": k13_global_marks,
+            "high_circuit_threshold": 6,
+            "minimum_high_circuit_rank9_shadows": 45,
+            "high_circuit_incidence_cap": k13_high_cap,
+            "low_circuit_support_ceiling": 5,
+            "low_circuit_per_record_cap": k13_sparse_cap,
+            "low_circuit_incidence_cap_at_record_floor": k13_low_cap,
+            "total_capacity_at_record_floor": k13_total_cap,
+            "required_incidence_at_record_floor": k13_demand,
+            "demand_capacity_gap": k13_demand - k13_total_cap,
+            "raw_demand_capacity_cross": k13_raw_cross,
+            "record_coefficient_cross": k13_record_coefficient_cross,
+            "newly_closed_rows": [13, 13],
+            "remaining_rank9_interval": [14, 15528],
         },
         "kernel_canonical_basis_globalizer": {
             "correction_dimension": 10,
@@ -2876,8 +2985,9 @@ def expected() -> dict[str, Any]:
             "rank9_minimal_shortening_closed_K_prime": 10,
             "rank9_k11_circuit_split_pencil_closed_K_prime": 11,
             "rank9_k12_quotient_line_circuit_closed_K_prime": 12,
+            "rank9_k13_sparse_circuit_completion_closed_K_prime": 13,
             "rank9_low_shortening_reopened": True,
-            "rank9_remaining_interval": [13, 15528],
+            "rank9_remaining_interval": [14, 15528],
             "kernel_dominant_lane_closed_through_Kprime": 1048576,
             "kernel_fixed_lane_closed": True,
             "kernel_uniform_corank2_cap_proved": True,
@@ -2925,6 +3035,8 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
     k11_payment = value["rank11_k11_circuit_split_pencil_payment"]
     quotient_line_cap = value["codimension_two_quotient_line_sparse_circuit_cap"]
     k12_payment = value["rank11_k12_quotient_line_circuit_payment"]
+    completion_cap = value["codimension_three_sparse_circuit_completion_cap"]
+    k13_payment = value["rank11_k13_sparse_circuit_completion_payment"]
     require(
         weighted_elimination["first_closed_demand"]
         > weighted_elimination["first_closed_cap"],
@@ -2935,7 +3047,7 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         "rank-nine exact-petal boundary",
     )
     require(value["claims"]["rank9_low_shortening_reopened"] is True, "rank-nine reopened interval")
-    require(value["claims"]["rank9_remaining_interval"] == [13, 15528], "rank-nine remaining interval")
+    require(value["claims"]["rank9_remaining_interval"] == [14, 15528], "rank-nine remaining interval")
     require(residual_petal["last_open_raw_cross"] < 0, "residual-petal last raw cross")
     require(residual_petal["first_closed_raw_cross"] > 0, "residual-petal first raw cross")
     for kprime in range(10, 20618):
@@ -3216,6 +3328,104 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
     require(
         value["claims"]["rank9_k12_quotient_line_circuit_closed_K_prime"] == 12,
         "rank-nine K'=12 quotient-line closure",
+    )
+    k13_m = completion_cap["official_support_size"]
+    structured_cap = sum(
+        comb(7, support) * comb(k13_m - support, 11 - support)
+        for support in range(2, 6)
+    )
+    unstructured_terms = {
+        str(support): (
+            2 * comb(k13_m, support - 1)
+            * comb(k13_m - support - 1, 11 - support) // support
+        )
+        for support in range(2, 6)
+    }
+    sparse_cap = sum(unstructured_terms.values())
+    require(completion_cap == {
+        "ambient_polynomial_dimension": 13,
+        "correction_dimension": 10,
+        "quotient_dimension": 3,
+        "component_subset_size": 11,
+        "support_minimum": 2,
+        "support_ceiling": 5,
+        "global_common_zero_count": 0,
+        "completion_ceiling": 3,
+        "unstructured_completion_ceiling": 2,
+        "structured_carrier_ceiling": 7,
+        "official_support_size": 67485,
+        "structured_carrier_cap": structured_cap,
+        "unstructured_support_terms": unstructured_terms,
+        "unstructured_completion_cap": sparse_cap,
+        "per_record_sparse_incidence_cap": sparse_cap,
+    }, "codimension-three sparse-circuit completion cap")
+    require(sparse_cap > structured_cap, "codimension-three active branch")
+    require(all(
+        2 * comb(k13_m - support - 1, 11 - support)
+        >= comb(k13_m - support, 11 - support)
+        for support in range(2, 6)
+    ), "codimension-three two-completion maximizer")
+
+    k13_n = k13_payment["n_prime"]
+    require((k13_payment["K_prime"], k13_n, k13_payment["m_prime"]) == (13, 1048589, 67485), "K'=13 row")
+    k13_core_rows = []
+    for core_size in (9, 10, 11, 12):
+        petal_mass = k13_m - core_size
+        total = k13_n - core_size
+        heavy = total // (petal_mass // 2 + 1)
+        cross_floor = petal_mass * petal_mass // 4
+        balanced = (cross_floor + (core_size - 9) * petal_mass) * comb(total, 2) // cross_floor
+        collision = comb(heavy, 2) * (comb(petal_mass - 1, 2) + (core_size - 9) * petal_mass)
+        vertex_num = (petal_mass - 2) * total + 2 * heavy * (core_size - 9) * petal_mass
+        center = vertex_num // (2 * (petal_mass - 2))
+        clean = max(
+            light * ((petal_mass - 2) * (total - light) + 2 * heavy * (core_size - 9) * petal_mass) // 2
+            for light in range(max(0, center - 3), min(total, center + 3) + 1)
+        )
+        k13_core_rows.append(clean + balanced + collision)
+    k13_coranks = [1, 2]
+    k13_record_caps = [kernel_record_cap(13, corank) for corank in k13_coranks]
+    k13_extensions = [comb(3, corank + 1) for corank in k13_coranks]
+    k13_kernel_terms = [
+        comb(k13_n, 10 - corank) * cap * extension
+        for corank, cap, extension in zip(k13_coranks, k13_record_caps, k13_extensions)
+    ]
+    k13_kernel = sum(k13_kernel_terms)
+    k13_chart = max(k13_core_rows)
+    k13_global = comb(k13_n, 9) * k13_chart
+    k13_high = k13_global // 45
+    k13_low = k13_payment["residual_record_floor"] * sparse_cap
+    k13_total = k13_kernel + k13_high + k13_low
+    k13_numerator = 990810934 * k13_payment["residual_record_floor"] * comb(k13_m, 11)
+    k13_demand = ceil_ratio(k13_numerator, 10**9)
+    require(k13_payment["kernel_coranks"] == k13_coranks, "K'=13 kernel coranks")
+    require(k13_payment["kernel_record_caps"] == k13_record_caps == [16295594, 253241283], "K'=13 kernel record caps")
+    require(k13_payment["kernel_extension_factors"] == k13_extensions == [3, 1], "K'=13 kernel extensions")
+    require(k13_payment["kernel_incidence_terms"] == k13_kernel_terms, "K'=13 kernel terms")
+    require(k13_payment["kernel_incidence_cap"] == k13_kernel, "K'=13 kernel capacity")
+    require(k13_payment["rank9_core_sizes"] == [9, 10, 11, 12], "K'=13 core sizes")
+    require(k13_payment["rank9_core_caps"] == k13_core_rows, "K'=13 core caps")
+    require(k13_payment["uniform_rank9_chart_cap"] == k13_chart, "K'=13 chart cap")
+    require(k13_payment["global_rank9_mark_capacity"] == k13_global, "K'=13 global marks")
+    require(k13_payment["minimum_high_circuit_rank9_shadows"] == 45, "K'=13 high shadow floor")
+    require(k13_payment["high_circuit_incidence_cap"] == k13_high, "K'=13 high capacity")
+    require(k13_payment["low_circuit_per_record_cap"] == sparse_cap, "K'=13 low per record")
+    require(k13_payment["low_circuit_incidence_cap_at_record_floor"] == k13_low, "K'=13 low capacity")
+    require(k13_payment["total_capacity_at_record_floor"] == k13_total, "K'=13 total capacity")
+    require(k13_payment["required_incidence_at_record_floor"] == k13_demand, "K'=13 demand")
+    require(k13_payment["demand_capacity_gap"] == k13_demand - k13_total > 0, "K'=13 gap")
+    require(k13_payment["raw_demand_capacity_cross"] == k13_numerator - 10**9 * k13_total > 0, "K'=13 raw cross")
+    require(
+        k13_payment["record_coefficient_cross"]
+        == 990810934 * comb(k13_m, 11) - 10**9 * sparse_cap
+        > 0,
+        "K'=13 record persistence",
+    )
+    require(k13_payment["newly_closed_rows"] == [13, 13], "K'=13 closed row")
+    require(k13_payment["remaining_rank9_interval"] == [14, 15528], "K'=13 remaining interval")
+    require(
+        value["claims"]["rank9_k13_sparse_circuit_completion_closed_K_prime"] == 13,
+        "rank-nine K'=13 sparse-circuit closure",
     )
     kernel_cut = value["kernel_rankstratified_capacity_cut"]
     for kprime in range(10, kernel_cut["closed_K_prime_maximum"] + 1):
@@ -3750,6 +3960,9 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         "k12_chart_cap": k12_chart,
         "k12_gap": k12_payment["demand_capacity_gap"],
         "k12_sparse_cap": k12_low_per_record,
+        "k13_chart_cap": k13_chart,
+        "k13_gap": k13_payment["demand_capacity_gap"],
+        "k13_sparse_cap": sparse_cap,
         "kernel_endpoint_gap": kernel_cut["endpoint_gap"],
         "kernel_wall_gap": kernel_cut["wall_capacity"] - kernel_cut["wall_demand"],
         "multibasis_endpoint_gap": multibasis_cut["endpoint_gap"],
@@ -3825,6 +4038,13 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["rank11_k12_quotient_line_circuit_payment"].__setitem__("kernel_incidence_cap", 0),
         lambda item: item["rank11_k12_quotient_line_circuit_payment"].__setitem__("minimum_high_circuit_rank9_shadows", 44),
         lambda item: item["rank11_k12_quotient_line_circuit_payment"].__setitem__("record_coefficient_cross", 0),
+        lambda item: item["codimension_three_sparse_circuit_completion_cap"].__setitem__("completion_ceiling", 4),
+        lambda item: item["codimension_three_sparse_circuit_completion_cap"].__setitem__("structured_carrier_cap", 0),
+        lambda item: item["codimension_three_sparse_circuit_completion_cap"]["unstructured_support_terms"].__setitem__("4", 0),
+        lambda item: item["rank11_k13_sparse_circuit_completion_payment"]["kernel_record_caps"].__setitem__(1, 0),
+        lambda item: item["rank11_k13_sparse_circuit_completion_payment"].__setitem__("kernel_incidence_cap", 0),
+        lambda item: item["rank11_k13_sparse_circuit_completion_payment"].__setitem__("minimum_high_circuit_rank9_shadows", 44),
+        lambda item: item["rank11_k13_sparse_circuit_completion_payment"].__setitem__("record_coefficient_cross", 0),
         lambda item: item["kernel_canonical_basis_globalizer"].__setitem__("extra_common_zero_offset", 9),
         lambda item: item["kernel_rankstratified_capacity_cut"].__setitem__("closed_K_prime_maximum", 4599),
         lambda item: item["kernel_multibasis_decoration_compression"]["basis_multiplicities"].__setitem__(0, 2),
@@ -3888,6 +4108,7 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["claims"].__setitem__("rank9_minimal_shortening_closed_K_prime", 11),
         lambda item: item["claims"].__setitem__("rank9_k11_circuit_split_pencil_closed_K_prime", 10),
         lambda item: item["claims"].__setitem__("rank9_k12_quotient_line_circuit_closed_K_prime", 11),
+        lambda item: item["claims"].__setitem__("rank9_k13_sparse_circuit_completion_closed_K_prime", 12),
         lambda item: item["claims"].__setitem__("rank9_remaining_interval", [10, 15528]),
         lambda item: item["claims"].__setitem__("rank9_low_shortening_reopened", False),
         lambda item: item["claims"].__setitem__("incidence_is_record_count", True),
@@ -3947,6 +4168,9 @@ def main() -> None:
         f"k12_chart_cap={result['k12_chart_cap']} "
         f"k12_sparse_cap={result['k12_sparse_cap']} "
         f"k12_gap={result['k12_gap']} "
+        f"k13_chart_cap={result['k13_chart_cap']} "
+        f"k13_sparse_cap={result['k13_sparse_cap']} "
+        f"k13_gap={result['k13_gap']} "
         f"kernel_endpoint_gap={result['kernel_endpoint_gap']} "
         f"kernel_wall_gap={result['kernel_wall_gap']} "
         f"multibasis_endpoint_gap={result['multibasis_endpoint_gap']} "
