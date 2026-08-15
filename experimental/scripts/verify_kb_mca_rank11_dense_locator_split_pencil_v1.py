@@ -231,9 +231,9 @@ SOURCE_NODES = {
     "kernel_projective_pair_capacity_cut": {
         "id": "rate_half_mca_rank11_kernel_projective_pair_capacity_cut",
         "path": "background/nodes/rate_half_mca_rank11_kernel_projective_pair_capacity_cut",
-        "commit": "ce200a0cd7e6db25623bac54121b8ab219fe8e79",
-        "tree": "4aea913141cc4c115644cca0873964b553c0cf42",
-        "contract_sha256": "505c2796e34cf21743ac3465c10f71a0ee90c22b29f839a18ceebd8ab2597ff4",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "458a335697935cd2b36aa07bc71411fc1cfa27e3",
+        "contract_sha256": "05df2ec3f8cb69275a1aa0b4d0295ad82621e9ad6792dd2a70edf27cf6684156",
     },
     "kernel_corank2_projective_basis_cap": {
         "id": "rate_half_mca_rank11_kernel_corank2_projective_basis_cap",
@@ -245,9 +245,9 @@ SOURCE_NODES = {
     "kernel_corank2_projective_capacity_cut": {
         "id": "rate_half_mca_rank11_kernel_corank2_projective_capacity_cut",
         "path": "background/nodes/rate_half_mca_rank11_kernel_corank2_projective_capacity_cut",
-        "commit": "75a424e9656fc44f1de88f40eca97667802e9be1",
-        "tree": "04a835e76a31f02d5463aa24bbef632d7e55a0eb",
-        "contract_sha256": "5dccc97d43ef8bac99b5d2bfc92f26869be4f2e52af5cd8ffff7bd40373555f3",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "f6d31bc07ff1a50707d1b9b60c73917ad27972b3",
+        "contract_sha256": "0b6d39208cfe5b077bd34537fee90ccb58860578b281bfbad4d240ee4e62b276",
     },
     "kernel_corank3_projective_basis_cap": {
         "id": "rate_half_mca_rank11_kernel_corank3_projective_basis_cap",
@@ -259,9 +259,30 @@ SOURCE_NODES = {
     "kernel_corank3_projective_capacity_cut": {
         "id": "rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
         "path": "background/nodes/rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
-        "commit": "005d58f92a743043644926e2daeed5b6f58873a6",
-        "tree": "8f03add8efd2a7ec32f1fa4e9a046d7bfe5a6033",
-        "contract_sha256": "5b94d2e176328ea823e7edcb9378c763cf89f24bf912b7329b6825694a490ff0",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "505d3bc5a0355e9700c603a88db5636a162d438a",
+        "contract_sha256": "4d6fc8fb23791bd037ee42082bb635098141b0b6185f1f69c94bea2df74aaf83",
+    },
+    "matroid_paving_basis_floor": {
+        "id": "matroid_paving_basis_floor",
+        "path": "background/nodes/matroid_paving_basis_floor",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "a47a3474eb9bfa677ecc5efc56b9c472382edfaf",
+        "contract_sha256": "e9090a0719eaabde0fe291fb61237841aae14b51765f5c482ba110632304e648",
+    },
+    "kernel_projective_paving_record_caps": {
+        "id": "rate_half_mca_rank11_kernel_projective_paving_record_caps",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_projective_paving_record_caps",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "27e99b1f3417c5e872b7cf0b27778e09497a488c",
+        "contract_sha256": "2aa863ef930e21cd06b8268dbe12a64571ffbf4ecca42888e77453a9b70d23ea",
+    },
+    "kernel_projective_paving_integer_gap_fence": {
+        "id": "rate_half_mca_rank11_kernel_projective_paving_integer_gap_fence",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_projective_paving_integer_gap_fence",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "71a296b1fd6324ac71e616c19b2ec371a038fad1",
+        "contract_sha256": "f62c32a69299fa026812eebb2490dbf74ffe00676e3a0e32d314fcd0f89d310c",
     },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -1784,6 +1805,8 @@ def expected() -> dict[str, Any]:
             "capacity_formula": "floor(n*(n-1)*(n-2)/(3*(m-1)*(m-2)))",
         },
         "kernel_corank2_projective_capacity_cut": {
+            "status": "conditional",
+            "premise": "uniform corank-two record cap M_2<=84416263",
             "previous_closed_K_prime": projective_pair_endpoint,
             "replay_K_prime_minimum": projective_basis_start,
             "closed_K_prime_maximum": projective_basis_endpoint,
@@ -1844,6 +1867,11 @@ def expected() -> dict[str, Any]:
             "capacity_formula": "floor((n)_fall_4/(4*(m-1)*(m-2)*(m-3)))",
         },
         "kernel_corank3_projective_capacity_cut": {
+            "status": "conditional",
+            "premises": [
+                "uniform corank-two record cap M_2<=84416263",
+                "uniform corank-three record cap M_3<=983902549",
+            ],
             "previous_closed_K_prime": projective_basis_endpoint,
             "replay_K_prime_minimum": projective_frame_start,
             "closed_K_prime_maximum": projective_frame_endpoint,
@@ -1878,6 +1906,29 @@ def expected() -> dict[str, Any]:
             "source_replay_worker_memory_mb": 256,
             "source_replay_peak_mb": 59,
             "capacity_formula": "three strengthened individual caps plus exact all-step hierarchy forest",
+        },
+        "kernel_projective_paving_scope_repair": {
+            "status": "proved",
+            "complete_chart_caps": [
+                8147918,
+                84416263,
+                983902549,
+                12232092309,
+                158406193634,
+                2109949210211,
+                28689347099870,
+                396280526311830,
+                5542092977392141,
+            ],
+            "uniform_corank1_cap": 8147918,
+            "uniform_corank2_cap_proved": False,
+            "uniform_corank3_cap_proved": False,
+            "integer_gap_formula": "floor(max(P_d,F_d(1),F_d(K_prime-10)))",
+            "audit_K_prime": 377674,
+            "audit_corank2_cap": 253238254,
+            "audit_corank3_cap": 3935391907,
+            "unconditional_kernel_closed_through_K_prime": 377673,
+            "conditional_kernel_closed_through_K_prime": 796598,
         },
         "rank8_owner_pair_weight_cap": {
             "kernel_dimension": 2,
@@ -1916,7 +1967,10 @@ def expected() -> dict[str, Any]:
             "fixed_chart_output_suffices_for_payment": False,
             "full_rank_star_owner_is_record_intrinsic": True,
             "rank9_fixed_target_eliminated": True,
-            "kernel_dominant_lane_closed_through_Kprime": 796598,
+            "kernel_dominant_lane_closed_through_Kprime": 377673,
+            "kernel_conditional_lane_closed_through_Kprime": 796598,
+            "kernel_uniform_corank2_cap_proved": False,
+            "kernel_uniform_corank3_cap_proved": False,
             "rank8_owner_flat_closed_from_Kprime": 37996,
             "rank8_dense_owner_terminal_from_Kprime": 22526,
             "chronology_owner": False,
@@ -2139,6 +2193,8 @@ def validate(value: object) -> dict[str, int]:
     require(basis_record_cap == projective_basis_cap["record_cap"] == PROJECTIVE_BASIS_RECORD_CAP, "projective-basis record cap")
     require(basis_remainder == projective_basis_cap["division_remainder"] == 2935655472, "projective-basis remainder")
     projective_basis_cut = value["kernel_corank2_projective_capacity_cut"]
+    require(projective_basis_cut["status"] == "conditional", "projective-basis status")
+    require("uniform corank-two" in projective_basis_cut["premise"], "projective-basis premise")
     require(projective_basis_cut["checked_rows_including_wall"] == projective_basis_cut["first_open_K_prime"] - projective_basis_cut["replay_K_prime_minimum"] + 1, "projective-basis replay count")
     require(projective_basis_cut["active_individual_caps"] == [1, 2], "projective-basis active caps")
     require(projective_basis_cut["active_shared_resources"] == [], "projective-basis active resources")
@@ -2189,6 +2245,8 @@ def validate(value: object) -> dict[str, int]:
     require(frame_record_cap == projective_frame_cap["record_cap"] == PROJECTIVE_FRAME_RECORD_CAP, "projective-frame record cap")
     require(frame_remainder == projective_frame_cap["division_remainder"] == 1056607358217600, "projective-frame remainder")
     projective_frame_cut = value["kernel_corank3_projective_capacity_cut"]
+    require(projective_frame_cut["status"] == "conditional", "projective-frame status")
+    require(len(projective_frame_cut["premises"]) == 2, "projective-frame premises")
     require(projective_frame_cut["checked_rows_including_wall"] == projective_frame_cut["first_open_K_prime"] - projective_frame_cut["replay_K_prime_minimum"] + 1, "projective-frame replay count")
     require(projective_frame_cut["active_individual_caps"] == [1, 2, 3], "projective-frame active caps")
     require(projective_frame_cut["active_shared_resources"] == [], "projective-frame active resources")
@@ -2209,7 +2267,14 @@ def validate(value: object) -> dict[str, int]:
         require(tight == projective_frame_cut["tight_hierarchy_rows"], f"projective-frame {prefix} tight")
     require(projective_frame_cut["endpoint_gap"] == 1063274038253455766288412818872693782800681544679740581002823089126086, "projective-frame endpoint gap")
     require(projective_frame_cut["wall_excess"] == 670721678337441589385303494237372283642375643589068751593971045368244, "projective-frame wall excess")
-    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 796598, "kernel claim")
+    scope = value["kernel_projective_paving_scope_repair"]
+    require(scope["status"] == "proved", "projective scope status")
+    require(scope["audit_corank2_cap"] == 253238254, "integer-gap M2")
+    require(scope["audit_corank3_cap"] == 3935391907, "integer-gap M3")
+    require(scope["uniform_corank2_cap_proved"] is False, "uniform M2 scope")
+    require(scope["uniform_corank3_cap_proved"] is False, "uniform M3 scope")
+    require(value["claims"]["kernel_dominant_lane_closed_through_Kprime"] == 377673, "kernel claim")
+    require(value["claims"]["kernel_conditional_lane_closed_through_Kprime"] == 796598, "conditional kernel claim")
     rank8_cap = value["rank8_owner_pair_weight_cap"]
     require(rank8_cap == {
         "kernel_dimension": 2,
@@ -2333,9 +2398,11 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["kernel_projective_pair_capacity_cut"].__setitem__("wall_excess", 1089804128361045148874283346879615159892995682385275039289561845322),
         lambda item: item["kernel_corank2_projective_basis_cap"].__setitem__("record_cap", 84416264),
         lambda item: item["kernel_corank2_projective_capacity_cut"].__setitem__("closed_K_prime_maximum", 568339),
+        lambda item: item["kernel_corank2_projective_capacity_cut"].__setitem__("status", "proved"),
         lambda item: item["kernel_corank2_projective_capacity_cut"].__setitem__("wall_excess", 36180877960369511460476382880286784896208001102094988739728829832799),
         lambda item: item["kernel_corank3_projective_basis_cap"].__setitem__("record_cap", 983902550),
         lambda item: item["kernel_corank3_projective_capacity_cut"].__setitem__("closed_K_prime_maximum", 796599),
+        lambda item: item["kernel_projective_paving_scope_repair"].__setitem__("audit_corank2_cap", 84416263),
         lambda item: item["kernel_corank3_projective_capacity_cut"].__setitem__("wall_excess", 670721678337441589385303494237372283642375643589068751593971045368243),
         lambda item: item["rank8_owner_pair_weight_cap"].__setitem__("fixed_owner_record_cap", 981104),
         lambda item: item["rank8_weighted_capacity_cut"].__setitem__("first_closed_K_prime", 37995),

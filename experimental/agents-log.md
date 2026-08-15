@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Projective-cap shortening-scope repair
+
+- **Agent/model:** Codex with a deletion-contraction proof, exact rational
+  endpoint analysis, and independent packet replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED SCOPE FENCE / TWO CONDITIONAL REPLAYS. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** The projective-paving cap is proved for all nine
+  completely shortened charts, but complete shortening is the `t=0` chart.
+  For `d>=2`, the valid uniform envelope is
+  `floor(max(P_d,F_d(1),F_d(K'-10)))`. At `K'=377674` it gives
+  `M_2=253238254` and `M_3=3935391907`, so the previous uniform use of the
+  smaller complete-chart caps is retracted. Corank one remains uniform.
+- **How it is useful:** It restores the exact unconditional boundary
+  `K'<=377673`, retains the complete all-corank cap theorem, and preserves
+  the replays through `568338` and `796598` as explicit conditional results.
+- **What to do next:** Prove uniform corank-two and corank-three caps at the
+  stated targets, or replace those premises with a shortening-aware resource
+  that still beats the kernel demand.
+
 ### 2026-08-15 - Corank-three projective-frame kernel cap
 
 - **Agent/model:** Codex with a spanning no-three-collinear projective
@@ -38,22 +60,22 @@ Keep entries concise and link to the relevant files.
 - **Files added or changed:** `experimental/grande_finale.tex`,
   `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
   the rank-eleven packet certificate and both verifiers, and `agents.md`.
-- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
-  ledger movement; no KoalaBear closure.
+- **Status:** COMPLETE-CHART CAP PROVED / CAPACITY REPLAY CONDITIONAL. Zero
+  active-v4 ledger movement; no KoalaBear closure. Superseded in scope by the
+  shortening-scope repair above.
 - **What is being added:** In the complete shortened corank-three chart,
   the projective normals are distinct, no three are collinear, and they span
   `PG(3)`. Every record owns at least `1228711865141376` ordered independent
-  coordinate quadruples, giving the cap `983902549`. Substitution into the
-  all-step hierarchy extends exact kernel exclusion through `K'=796598`,
-  with first reversal at `K'=796599`.
-- **How it is useful:** It removes `228260` further kernel dimensions and
-  leaves the unresolved kernel interval `796599..1048576`. The exact
-  certificate prices the first three individual caps and six hierarchy
-  forest edges; both shared resources remain slack.
-- **What to do next:** Seek a projective-frame strengthening in corank four,
-  strengthen a binding hierarchy edge, or introduce a resource that is not
-  slack at the wall. Rank eight below `22526` and chronology on
-  `22526..37995` remain disjoint lower-interval targets.
+  coordinate quadruples, giving the complete-chart cap `983902549`.
+  Conditional substitution into the all-step hierarchy replays through
+  `K'=796598`, with first reversal at `K'=796599`.
+- **How it is useful:** The exact conditional certificate prices the first
+  three individual caps and six hierarchy forest edges; both shared
+  resources remain slack. It identifies the consequence of a future uniform
+  cap theorem without claiming those dimensions unconditionally.
+- **What to do next:** Prove the uniform corank-three premise or replace it
+  with a shortening-aware resource. Rank eight below `22526` and chronology
+  on `22526..37995` remain disjoint lower-interval targets.
 
 ### 2026-08-15 - Corank-two projective-basis kernel cap
 
@@ -62,21 +84,22 @@ Keep entries concise and link to the relevant files.
 - **Files added or changed:** `experimental/grande_finale.tex`,
   `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
   the rank-eleven packet certificate and both verifiers, and `agents.md`.
-- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
-  ledger movement; no KoalaBear closure.
+- **Status:** COMPLETE-CHART CAP PROVED / CAPACITY REPLAY CONDITIONAL. Zero
+  active-v4 ledger movement; no KoalaBear closure. Superseded in scope by the
+  shortening-scope repair above.
 - **What is being added:** In the complete shortened corank-two chart, the
   incident projective normals are distinct and noncollinear. Every record
   owns at least `13657614768` ordered independent coordinate triples, giving
-  the cap `84416263`. Substitution into the all-step hierarchy extends exact
-  kernel exclusion through `K'=568338`, with first reversal at `K'=568339`.
-- **How it is useful:** It removes `190665` further kernel dimensions and
-  leaves the unresolved kernel interval `568339..1048576`. The active
-  certificate still prices only the first two individual caps and seven
-  hierarchy edges.
-- **What to do next:** Seek a projective-frame strengthening in corank three,
-  strengthen a binding hierarchy edge, or introduce a resource that is not
-  slack at the wall. Rank eight below `22526` and chronology on
-  `22526..37995` remain disjoint lower-interval targets.
+  the complete-chart cap `84416263`. Conditional substitution into the
+  all-step hierarchy replays through `K'=568338`, with first reversal at
+  `K'=568339`.
+- **How it is useful:** The exact conditional certificate prices the first
+  two individual caps and seven hierarchy edges. It identifies the
+  consequence of a future uniform cap theorem without claiming those
+  dimensions unconditionally.
+- **What to do next:** Prove the uniform corank-two premise or replace it
+  with a shortening-aware resource. Rank eight below `22526` and chronology
+  on `22526..37995` remain disjoint lower-interval targets.
 
 ### 2026-08-15 - Corank-one projective-pair kernel cap
 

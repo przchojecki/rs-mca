@@ -198,9 +198,9 @@ FIXED_CHART_SOURCES = {
     "kernel_projective_pair_capacity_cut": {
         "id": "rate_half_mca_rank11_kernel_projective_pair_capacity_cut",
         "path": "background/nodes/rate_half_mca_rank11_kernel_projective_pair_capacity_cut",
-        "commit": "ce200a0cd7e6db25623bac54121b8ab219fe8e79",
-        "tree": "4aea913141cc4c115644cca0873964b553c0cf42",
-        "contract_sha256": "505c2796e34cf21743ac3465c10f71a0ee90c22b29f839a18ceebd8ab2597ff4",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "458a335697935cd2b36aa07bc71411fc1cfa27e3",
+        "contract_sha256": "05df2ec3f8cb69275a1aa0b4d0295ad82621e9ad6792dd2a70edf27cf6684156",
     },
     "kernel_corank2_projective_basis_cap": {
         "id": "rate_half_mca_rank11_kernel_corank2_projective_basis_cap",
@@ -212,9 +212,9 @@ FIXED_CHART_SOURCES = {
     "kernel_corank2_projective_capacity_cut": {
         "id": "rate_half_mca_rank11_kernel_corank2_projective_capacity_cut",
         "path": "background/nodes/rate_half_mca_rank11_kernel_corank2_projective_capacity_cut",
-        "commit": "75a424e9656fc44f1de88f40eca97667802e9be1",
-        "tree": "04a835e76a31f02d5463aa24bbef632d7e55a0eb",
-        "contract_sha256": "5dccc97d43ef8bac99b5d2bfc92f26869be4f2e52af5cd8ffff7bd40373555f3",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "f6d31bc07ff1a50707d1b9b60c73917ad27972b3",
+        "contract_sha256": "0b6d39208cfe5b077bd34537fee90ccb58860578b281bfbad4d240ee4e62b276",
     },
     "kernel_corank3_projective_basis_cap": {
         "id": "rate_half_mca_rank11_kernel_corank3_projective_basis_cap",
@@ -226,9 +226,30 @@ FIXED_CHART_SOURCES = {
     "kernel_corank3_projective_capacity_cut": {
         "id": "rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
         "path": "background/nodes/rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
-        "commit": "005d58f92a743043644926e2daeed5b6f58873a6",
-        "tree": "8f03add8efd2a7ec32f1fa4e9a046d7bfe5a6033",
-        "contract_sha256": "5b94d2e176328ea823e7edcb9378c763cf89f24bf912b7329b6825694a490ff0",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "505d3bc5a0355e9700c603a88db5636a162d438a",
+        "contract_sha256": "4d6fc8fb23791bd037ee42082bb635098141b0b6185f1f69c94bea2df74aaf83",
+    },
+    "matroid_paving_basis_floor": {
+        "id": "matroid_paving_basis_floor",
+        "path": "background/nodes/matroid_paving_basis_floor",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "a47a3474eb9bfa677ecc5efc56b9c472382edfaf",
+        "contract_sha256": "e9090a0719eaabde0fe291fb61237841aae14b51765f5c482ba110632304e648",
+    },
+    "kernel_projective_paving_record_caps": {
+        "id": "rate_half_mca_rank11_kernel_projective_paving_record_caps",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_projective_paving_record_caps",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "27e99b1f3417c5e872b7cf0b27778e09497a488c",
+        "contract_sha256": "2aa863ef930e21cd06b8268dbe12a64571ffbf4ecca42888e77453a9b70d23ea",
+    },
+    "kernel_projective_paving_integer_gap_fence": {
+        "id": "rate_half_mca_rank11_kernel_projective_paving_integer_gap_fence",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_projective_paving_integer_gap_fence",
+        "commit": "10ff16378eb487137819dbb2b48df8e2b50c3309",
+        "tree": "71a296b1fd6324ac71e616c19b2ec371a038fad1",
+        "contract_sha256": "f62c32a69299fa026812eebb2490dbf74ffe00676e3a0e32d314fcd0f89d310c",
     },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -893,6 +914,7 @@ def main() -> None:
     kernel_projective_basis_cut = data["kernel_corank2_projective_capacity_cut"]
     kernel_projective_frame_cap = data["kernel_corank3_projective_basis_cap"]
     kernel_projective_frame_cut = data["kernel_corank3_projective_capacity_cut"]
+    kernel_projective_scope = data["kernel_projective_paving_scope_repair"]
     rank8_owner_cap = data["rank8_owner_pair_weight_cap"]
     rank8_cut = data["rank8_weighted_capacity_cut"]
     dense_owner = data["rank8_dense_owner_terminal_bridge"]
@@ -1576,6 +1598,8 @@ def main() -> None:
         "capacity_formula": "floor(n*(n-1)*(n-2)/(3*(m-1)*(m-2)))",
     }, "projective basis cap")
     require(projective_bases == 13657614768 and basis_cap == 84416263, "projective basis arithmetic")
+    require(kernel_projective_basis_cut["status"] == "conditional", "projective-basis status")
+    require("uniform corank-two" in kernel_projective_basis_cut["premise"], "projective-basis premise")
     projective_basis_tree = [[2, 3], [2, 4], [2, 6], [2, 8], [3, 5], [2, 7], [2, 9]]
     projective_basis_tight = [
         [2, 3], [2, 4], [2, 6], [2, 7], [2, 8], [2, 9],
@@ -1654,6 +1678,8 @@ def main() -> None:
         "capacity_formula": "floor((n)_fall_4/(4*(m-1)*(m-2)*(m-3)))",
     }, "projective frame cap")
     require(projective_frames == 1228711865141376 and frame_cap == 983902549, "projective frame arithmetic")
+    require(kernel_projective_frame_cut["status"] == "conditional", "projective-frame status")
+    require(len(kernel_projective_frame_cut["premises"]) == 2, "projective-frame premises")
     projective_frame_forest = [[2, 4], [2, 5], [3, 6], [4, 7], [5, 8], [6, 9]]
     projective_frame_tight = [
         [2, 4], [2, 5], [2, 7], [2, 8], [2, 9],
@@ -1682,6 +1708,29 @@ def main() -> None:
         projective_frame_checks += 1
     require(kernel_projective_frame_cut["endpoint_gap"] == 1063274038253455766288412818872693782800681544679740581002823089126086, "projective-frame endpoint gap")
     require(kernel_projective_frame_cut["wall_excess"] == 670721678337441589385303494237372283642375643589068751593971045368244, "projective-frame wall excess")
+    require(kernel_projective_scope == {
+        "status": "proved",
+        "complete_chart_caps": [
+            8147918,
+            84416263,
+            983902549,
+            12232092309,
+            158406193634,
+            2109949210211,
+            28689347099870,
+            396280526311830,
+            5542092977392141,
+        ],
+        "uniform_corank1_cap": 8147918,
+        "uniform_corank2_cap_proved": False,
+        "uniform_corank3_cap_proved": False,
+        "integer_gap_formula": "floor(max(P_d,F_d(1),F_d(K_prime-10)))",
+        "audit_K_prime": 377674,
+        "audit_corank2_cap": 253238254,
+        "audit_corank3_cap": 3935391907,
+        "unconditional_kernel_closed_through_K_prime": 377673,
+        "conditional_kernel_closed_through_K_prime": 796598,
+    }, "projective paving scope")
 
     require(rank8_owner_cap == {
         "kernel_dimension": 2,
@@ -1751,7 +1800,10 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated": True,
-        "kernel_dominant_lane_closed_through_Kprime": 796598,
+        "kernel_dominant_lane_closed_through_Kprime": 377673,
+        "kernel_conditional_lane_closed_through_Kprime": 796598,
+        "kernel_uniform_corank2_cap_proved": False,
+        "kernel_uniform_corank3_cap_proved": False,
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,
         "chronology_owner": False,
