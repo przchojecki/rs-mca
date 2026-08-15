@@ -11920,6 +11920,200 @@ and demand
 which proves only the stated method wall.
 \end{proof}
 
+\begin{proposition}[Integral heavy-owner split-pencil cap]
+\label{prop:kb-rank11-integral-heavy-owner-cap}
+In the notation of
+Proposition~\ref{prop:kb-rank11-weighted-selected-support-core-offset},
+put $P=m-j$, $S=n-j$, $r=j-9$,
+$a=\lfloor P/2\rfloor+1$, $b=P-1$, and
+$C_0=\binom P2+rP$.  If the globally heavy owners have selected weights
+$s_i\in[a,b]$ and the selected light mass is $\ell$, then their total
+clean-line charge is at most
+\[
+ \ell\sum_i\left(\frac{C_0}{P-s_i}-s_i\right).
+\]
+For fixed $\ell$ and owner count, the maximum in this bound has all but at most one $s_i$ at
+an endpoint $a$ or $b$.  Hence the exact integer maximum is obtained by a
+finite scan over the owner count, the number of $b$-weights, and one
+residual weight.
+
+At $K'=22$, exact evaluation for every $9\le j\le21$ gives uniform chart
+cap
+\[
+ C_*=9269974099565290,
+\]
+attained at $j=21$.  This improves the preceding uniform cap by
+$17960461975558$.
+\end{proposition}
+
+\begin{proof}
+A clean line through a heavy owner of weight $s$ consumes at least $P-s$
+light mass.  Distinct such lines use disjoint light points, and convexity of
+the selected partition bounds one line by
+$\binom s2+\binom{P-s}2+rP$.  This gives the displayed bound.  Its summand
+\[
+ \phi(s)=\frac{C_0}{P-s}-s
+\]
+is increasing and convex on $[a,b]$.  An exchange toward the endpoints
+therefore cannot decrease the objective, proving the asserted extremal
+shape.  On each residual-weight interval the objective is a rational
+quadratic with second derivative changing sign at most once.  Endpoints and
+the unique possible derivative crossing give an exact finite evaluation.
+The certificate checks 271 intervals for each of the thirteen core offsets;
+all maxima have eight owners of weight $b$, and direct substitution gives
+the displayed cap and saving.
+\end{proof}
+
+\begin{proposition}[Near-saturation carrier and the $K'=22$ payment]
+\label{prop:kb-rank11-k22-near-saturation-payment}
+Let $\Lambda=V^\perp$ have dimension $q$, and let $2\le c\le4$.  If one
+independent $(c-1)$-set has $q-1$ support-$c$ completions, then every
+support-$c$ annihilator label is carried by at most $q+2c-2$ coordinates.
+Otherwise every such deletion has at most $q-2$ completions.
+
+For the fixed component target at $K'=22$, combining this dichotomy with
+Proposition~\ref{prop:kb-rank11-integral-heavy-owner-cap}, the exact
+support-five deletion cap, all nine nonzero kernel coranks, and the uniform
+corank-one record cap $8147918$ gives
+\[
+ \operatorname{Cap}=901793257329000893449088123410358112576738959572328805741503920,
+\]
+whereas required incidence is
+\[
+ 903025989085629081334365478664955214394150391409598064684975031.
+\]
+Thus $K'=22$ has no rank-nine component target; the strict gap is
+\[
+1232731756628187885277355254597101817411431837269258943471111.
+\]
+\end{proposition}
+
+\begin{proof}
+The $q-1$ completion labels have private completion coordinates, so they
+span a hyperplane $\Lambda_0\le\Lambda$ on a carrier of size $q+c-2$.
+Every label in $\Lambda_0$ is supported there by Vandermonde independence.
+If a support-$c$ label lies outside $\Lambda_0$, adjoining its support spans
+$\Lambda$ on at most $q+2c-2$ coordinates.  Comparing this representation
+with any circuit representation uses at most $q+3c-2\le q+10=K$
+coordinates, and Vandermonde independence forces every circuit into the
+same carrier.  The complementary deletion count is the proof of
+Proposition~\ref{prop:kb-rank11-sparse-circuit-completion-ladder} with
+$b\le q-2$.  The exact integer ledger then gives the displayed capacity;
+its cleared record coefficient and its value at the minimum admissible
+record count are both positive.
+\end{proof}
+
+\begin{proposition}[Completion-defect hierarchy and the $K'=23$ payment]
+\label{prop:kb-rank11-completion-defect-hierarchy}
+Suppose an independent $(c-1)$-set has $q-s$ support-$c$ completions.  If
+\begin{equation*}
+ (s+2)c-s-1\le10.                                    \tag{DH}
+\end{equation*}
+then every support-$c$ label is carried by at most
+$q+(s+1)(c-1)$ coordinates.  Consequently the maximal useful defect depths
+for $c=2,3,4,5$ are respectively
+\[
+ d_c=7,2,1,0.
+\]
+If no carrier branch occurs through depth $d_c$, deletion counting may use
+the ceiling $q-d_c-1$.
+
+At $K'=23$, the complete defect ledger has capacity
+\[
+901468921726260997936972918059547622477700558490567171211759513
+\]
+against required incidence
+\[
+903173183767034183579263202870178889744727352679017565288251877.
+\]
+The strict gap is
+\[
+1704262040773185642290284810631267267026794188450394076492364.
+\]
+\end{proposition}
+
+\begin{proof}
+The $q-s$ completion labels span a space on a carrier of size
+$q+c-1-s$.  At most $s$ further support-$c$ labels extend this to the full
+support-$c$ label span, giving a carrier of size at most
+$q+(s+1)(c-1)$.  Comparing an arbitrary circuit representation to a
+carrier representation uses at most $q+(s+2)c-s-1$ coordinates.  Condition
+(DH) and Vandermonde independence force the circuit support into the
+carrier.  Maximizing the complementary deletion count over
+$0\le b\le q-d_c-1$ proves the hierarchy.  Solving (DH), and checking that
+the next depth fails it, gives $7,2,1,0$.  The finite ledger retains all
+kernel and core-offset terms and gives the displayed strict comparison.
+\end{proof}
+
+\begin{proposition}[Universal completion incidence and full shadow deficits]
+\label{prop:kb-rank11-universal-completion-full-deficit}
+For every support $2\le c\le9$, the number $I_c$ of selected eleven-sets
+whose circuit has support $c$ satisfies
+\begin{equation*}
+ I_c\le
+ \floor{\frac{\binom m{c-1}}c
+ \max_{0\le b\le q}b\binom{m-c+1-b}{11-c}}.
+ \tag{UC}
+\end{equation*}
+If $G$ is the single global rank-nine-mark capacity and $R$ records have
+recordwise caps $L_c^{(a)}$ in structural branch $a$, then complete
+full-rank incidence is at most
+\begin{equation*}
+ \floor{\frac{G+R\max_a\sum_{c=2}^9
+     \binom{11-c}{2}L_c^{(a)}}{55}}.
+ \tag{FD}
+\end{equation*}
+The deficit weights in (FD), for supports two through nine, are
+$36,28,21,15,10,6,3,1$; supports ten and eleven have zero deficit.
+\end{proposition}
+
+\begin{proof}
+For an independent deletion $A$, the space of members of $V$ vanishing on
+$A$ has dimension $11-c$.  If $A$ has $b$ completions, locator division
+embeds this space in $P_{K-c+1-b}$, so $b\le K-10=q$.  The completion labels
+have private nonzero coordinates and any two are independent, whereas the
+annihilator of a selected rank-ten eleven-set is a line.  Such a set retains
+at most one completion.  Counting the remaining coordinates, summing over
+deletions, and dividing by the $c$ charges of each circuit proves (UC).
+
+A support-$c$ circuit has exactly
+$55-\binom{11-c}{2}$ rank-nine shadows.  Sum these marks in the one global
+capacity, add the exact missing number of shadows to both sides, apply the
+recordwise caps, and divide by 55.  This proves (FD) without spending any
+rank-nine mark twice.
+\end{proof}
+
+\begin{proposition}[$K'=24$ through $K'=40$ full-deficit payment]
+\label{prop:kb-rank11-k24-k40-full-deficit-payment}
+In the fixed component target, every rank-nine alternative is empty for
+$24\le K'\le40$.  The exact ledger uses
+Proposition~\ref{prop:kb-rank11-completion-defect-hierarchy} on supports two
+through five, Proposition~\ref{prop:kb-rank11-universal-completion-full-deficit}
+on supports six through nine, and the full 55-shadow denominator.  Its
+smallest demand-minus-capacity gap is attained at $K'=40$ and equals
+\[
+2272401814108959137912675549447888006236817090602808413697595.
+\]
+The same ledger first fails at $K'=41$, where capacity exceeds demand by
+\[
+4398836630793080990004182400858693750491819390616783425932508.
+\]
+\end{proposition}
+
+\begin{proof}
+For each row retain every nonzero refined kernel-corank term and evaluate
+the integral chart of
+Proposition~\ref{prop:kb-rank11-integral-heavy-owner-cap} for every
+$9\le j<K'$.  In the full-rank lane maximize the complete weighted sum,
+not each support separately, over the structured-carrier and
+completion-defect branches, then apply (FD).  Exact integer replay checks all
+423 core charts on the seventeen claimed rows and the adjacent wall.  On
+$24\le K'\le40$ both the cleared record coefficient and its minimum-record
+cross-product are positive.  The gaps decrease to the displayed $K'=40$
+value.  At $K'=41$ both the gap and the cross-product are negative, giving
+the stated honest method wall.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -13494,8 +13688,13 @@ Proposition~\ref{prop:kb-rank11-joint-sparse-shadow-ledger} prevents its
 sparse incidences from spending the rank-nine-shadow capacity twice.
 Proposition~\ref{prop:kb-rank11-k14-k21-joint-sparse-shadow-payment}
 retains every kernel corank and core offset and pays the next eight rows.
-Thus the remaining intervals are rank nine or rank eight on
-$22\le K'\le15528$, rank eight only on $15529\le K'\le22525$,
+Proposition~\ref{prop:kb-rank11-k22-near-saturation-payment} passes the old
+$K'=22$ wall, Proposition~\ref{prop:kb-rank11-completion-defect-hierarchy}
+pays $K'=23$, and
+Proposition~\ref{prop:kb-rank11-k24-k40-full-deficit-payment} pays rank nine
+through $K'=40$.  Thus the remaining intervals are rank eight only on
+$22\le K'\le40$, rank nine or rank eight on $41\le K'\le15528$, rank
+eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
 $37996\le K'\le1048576$.
@@ -13504,11 +13703,11 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining row $K'=22$, the joint sparse-shadow formula has the
+At the first remaining rank-nine row $K'=41$, the full-deficit formula has the
 printed capacity excess
-$2859529280846211417198922209345618432657212793529140162369036$.
-This is a method wall: a continuation must lower the sparse completion
-premium or extract another shared resource without omitting a kernel
+$4398836630793080990004182400858693750491819390616783425932508$.
+This is a method wall: a continuation must sharpen the complete weighted
+deficit vector, lower the rank-nine chart, or extract another shared resource without omitting a kernel
 corank or reusing a rank-nine mark.
 Proposition~\ref{prop:kb-rank11-rank8-circuit-shadow-census} gives the exact
 first-row split: the full-circuit case has 54 rank-nine shadows, while every

@@ -168,6 +168,62 @@ FIXED_CHART_SOURCES = {
         "tree": "8d83ef5e484e76301b88e39f8c28998fb5d37edf",
         "contract_sha256": "eb1c5343d7aee27704ff1c9a5a30639e3cb101c51e7b13eb0a3f04be071f56e1",
     },
+    "weighted_split_pencil_integral_heavy_cap": {
+        "id": "rate_half_mca_weighted_split_pencil_integral_heavy_cap",
+        "path": "background/nodes/rate_half_mca_weighted_split_pencil_integral_heavy_cap",
+        "commit": "16bb0595c464c32746961dabe808d0d0f73ad1c6",
+        "tree": "4c3cd3970e804a29b1b0f965c63e4c9f8b65b86d",
+        "contract_sha256": "e701eafd9f64560bbbe67023ff62009028e8ae11e0426f8becb88976cb26878f",
+    },
+    "sparse_circuit_near_saturation_carrier": {
+        "id": "rate_half_mca_sparse_circuit_near_saturation_carrier",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_near_saturation_carrier",
+        "commit": "16bb0595c464c32746961dabe808d0d0f73ad1c6",
+        "tree": "145d35b36773a87cac7d0c63220de9fa2826bfd5",
+        "contract_sha256": "03da7712fdd01435cb12f7d0c2afc96d3fadd39f9270152980cc44c79075f38b",
+    },
+    "rank11_k22_integral_near_saturation_payment": {
+        "id": "rate_half_mca_rank11_k22_integral_near_saturation_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k22_integral_near_saturation_payment",
+        "commit": "16bb0595c464c32746961dabe808d0d0f73ad1c6",
+        "tree": "7b41e28bbd24f6a16e8deec623cb0efb4e287858",
+        "contract_sha256": "4d2031a5d96149bc5cf2d1c20e9b997200f3baf4a98c14b87ab5e7836435f77d",
+    },
+    "sparse_circuit_completion_defect_hierarchy": {
+        "id": "rate_half_mca_sparse_circuit_completion_defect_hierarchy",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_completion_defect_hierarchy",
+        "commit": "523e124ca703d5a9797f175c862a8f5e72535662",
+        "tree": "7dadedbe3e8104bbf93814d614a60eb3f48aff20",
+        "contract_sha256": "c09209dd879b2845e237915ebc9282fb8218e452833b5d810cf52b6813a0b4fa",
+    },
+    "rank11_k23_completion_defect_payment": {
+        "id": "rate_half_mca_rank11_k23_completion_defect_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k23_completion_defect_payment",
+        "commit": "523e124ca703d5a9797f175c862a8f5e72535662",
+        "tree": "5392ceb7c22d2fd22dcd9405a5ffba88da94bb72",
+        "contract_sha256": "37a1bca5a03ec0b007a4ac9901e5e04ecaa40f3d4592a5ef1f080efaa6b1293b",
+    },
+    "sparse_circuit_universal_completion_incidence_cap": {
+        "id": "rate_half_mca_sparse_circuit_universal_completion_incidence_cap",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_universal_completion_incidence_cap",
+        "commit": "ffb120ecd3200489fd6e6464ce0e916dad04596a",
+        "tree": "0f8c84cd5172ecbd88c2884b9cb5e43dbf4260d7",
+        "contract_sha256": "0f60be130825abd28548760bada38246758588fbf19da9c627e168bda5894d2b",
+    },
+    "rank9_full_circuit_deficit_ledger": {
+        "id": "rate_half_mca_rank9_full_circuit_deficit_ledger",
+        "path": "background/nodes/rate_half_mca_rank9_full_circuit_deficit_ledger",
+        "commit": "ffb120ecd3200489fd6e6464ce0e916dad04596a",
+        "tree": "4db4915a49176787967486d1b6b02989414a019c",
+        "contract_sha256": "2a03a7595972ebd3708a681012fbd78799ea7132326d149d41d6534adfc1c69c",
+    },
+    "rank11_k24_k40_full_deficit_shadow_payment": {
+        "id": "rate_half_mca_rank11_k24_k40_full_deficit_shadow_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k24_k40_full_deficit_shadow_payment",
+        "commit": "ffb120ecd3200489fd6e6464ce0e916dad04596a",
+        "tree": "aaeafc666b5880de825572df4dc527aba32a7d97",
+        "contract_sha256": "29303e23b2286b8c6dbd5d496d5ec9dc779f929bf880d20c5c1eb86268e9782a",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1649,6 +1705,113 @@ def independent_joint_sparse_row(kprime: int, records: int) -> dict[str, object]
     }
 
 
+def independent_integral_chart(kprime: int, core: int) -> int:
+    nprime = 1048576 + kprime
+    mprime = 67472 + kprime
+    petal = mprime - core
+    total = nprime - core
+    offset = core - 9
+    light = total - 8 * (petal - 1)
+    clean = 8 * light * (comb(petal - 1, 2) + offset * petal)
+    heavy = total // (petal // 2 + 1)
+    cross = petal * petal // 4
+    balanced = comb(total, 2) * (cross + offset * petal) // cross
+    collision = comb(heavy, 2) * (comb(petal - 1, 2) + offset * petal)
+    return clean + balanced + collision
+
+
+def independent_refined_kernel_record_cap(kprime: int, corank: int) -> int:
+    if corank == 1:
+        return 8147918
+    return independent_kernel_record_cap(kprime, 10 - corank)
+
+
+def independent_refined_kernel_capacity(kprime: int) -> int:
+    nprime = 1048576 + kprime
+    quotient = kprime - 10
+    return sum(
+        comb(nprime, 10 - corank)
+        * independent_refined_kernel_record_cap(kprime, corank)
+        * comb(quotient, corank + 1)
+        for corank in range(1, min(9, quotient - 1) + 1)
+    )
+
+
+def independent_completion_cap(
+    quotient: int,
+    mprime: int,
+    support: int,
+    ceiling: int,
+) -> tuple[int, int]:
+    value, maximizing = analytic_completion_maximum(
+        mprime,
+        support,
+        ceiling,
+    )
+    return comb(mprime, support - 1) * value // support, maximizing
+
+
+def independent_defect_cap(
+    quotient: int,
+    mprime: int,
+    support: int,
+    depth: int,
+) -> tuple[int, int]:
+    deletion, maximizing = independent_completion_cap(
+        quotient,
+        mprime,
+        support,
+        quotient - depth - 1,
+    )
+    carrier = max(
+        (
+            comb(quotient + (defect + 1) * (support - 1), support)
+            * comb(mprime - support, 11 - support)
+            for defect in range(1, depth + 1)
+        ),
+        default=0,
+    )
+    return max(deletion, carrier), maximizing
+
+
+def independent_refined_payment(
+    kprime: int,
+    records: int,
+    baseline: int,
+    caps: dict[int, int],
+    weights: dict[int, int],
+) -> dict[str, int]:
+    nprime = 1048576 + kprime
+    mprime = 67472 + kprime
+    charts = {
+        core: independent_integral_chart(kprime, core)
+        for core in range(9, kprime)
+    }
+    maximizing_core = max(charts, key=charts.get)
+    chart = charts[maximizing_core]
+    kernel = independent_refined_kernel_capacity(kprime)
+    marks = comb(nprime, 9) * chart
+    premium = sum(weights[support] * caps[support] for support in caps)
+    full_rank = (marks + records * premium) // baseline
+    total = kernel + full_rank
+    demand = ceiling(Fraction(990810934 * records * comb(mprime, 11), 10**9))
+    coefficient = baseline * 990810934 * comb(mprime, 11) - 10**9 * premium
+    raw = records * coefficient - 10**9 * (baseline * kernel + marks)
+    return {
+        "maximizing_core": maximizing_core,
+        "chart": chart,
+        "kernel": kernel,
+        "marks": marks,
+        "premium": premium,
+        "full_rank": full_rank,
+        "total": total,
+        "demand": demand,
+        "gap": demand - total,
+        "coefficient": coefficient,
+        "raw": raw,
+    }
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -1676,6 +1839,14 @@ def main() -> None:
     completion_ladder = data["sparse_circuit_completion_dimension_ladder"]
     joint_shadow_ledger = data["rank9_sparse_shadow_joint_ledger"]
     joint_sparse_payment = data["rank11_k14_k21_sparse_shadow_payment"]
+    integral_heavy_cap = data["weighted_split_pencil_integral_heavy_cap"]
+    near_saturation = data["sparse_circuit_near_saturation_carrier"]
+    k22_refined_payment = data["rank11_k22_integral_near_saturation_payment"]
+    defect_hierarchy = data["sparse_circuit_completion_defect_hierarchy"]
+    k23_refined_payment = data["rank11_k23_completion_defect_payment"]
+    universal_completion = data["sparse_circuit_universal_completion_incidence_cap"]
+    full_deficit_ledger = data["rank9_full_circuit_deficit_ledger"]
+    full_deficit_payment = data["rank11_k24_k40_full_deficit_shadow_payment"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -2497,6 +2668,192 @@ def main() -> None:
         "capacity_excess": -joint_wall["demand_capacity_gap"],
     }, "independent K'=22 wall")
     require(joint_wall["demand_capacity_gap"] < 0, "independent K'=22 failure")
+
+    k22_charts = {
+        str(core): independent_integral_chart(22, core)
+        for core in range(9, 22)
+    }
+    require(
+        k22_charts == integral_heavy_cap["chart_caps"]
+        and max(k22_charts, key=k22_charts.get) == "21",
+        "independent integral charts",
+    )
+    require(
+        integral_heavy_cap["uniform_chart_cap"] == 9269974099565290
+        and integral_heavy_cap["chart_saving"] == 17960461975558,
+        "independent integral endpoint",
+    )
+    weights45 = {2: 26, 3: 18, 4: 11, 5: 5}
+    k22_caps = {
+        support: independent_defect_cap(
+            12,
+            67494,
+            support,
+            1 if support <= 4 else 0,
+        )[0]
+        for support in weights45
+    }
+    require(
+        near_saturation["K22"]["active_caps"]
+        == {str(support): k22_caps[support] for support in range(2, 5)},
+        "independent near-saturation caps",
+    )
+    k22_replay = independent_refined_payment(22, non_dense, 45, k22_caps, weights45)
+    require(
+        k22_refined_payment["uniform_rank9_chart_cap"] == k22_replay["chart"]
+        and k22_refined_payment["kernel_capacity"] == k22_replay["kernel"]
+        and k22_refined_payment["active_sparse_premium"] == k22_replay["premium"]
+        and k22_refined_payment["total_capacity"] == k22_replay["total"]
+        and k22_refined_payment["required_incidence"] == k22_replay["demand"]
+        and k22_refined_payment["demand_capacity_gap"] == k22_replay["gap"] > 0
+        and k22_replay["coefficient"] > 0
+        and k22_replay["raw"] > 0,
+        "independent K'=22 payment",
+    )
+
+    depths = {2: 7, 3: 2, 4: 1, 5: 0}
+    require(
+        defect_hierarchy["depths"]
+        == {str(support): depth for support, depth in depths.items()},
+        "independent defect depths",
+    )
+    k23_caps_and_maximizers = {
+        support: independent_defect_cap(13, 67495, support, depths[support])
+        for support in weights45
+    }
+    require(
+        defect_hierarchy["K23"]["active_caps"]
+        == {
+            str(support): value[0]
+            for support, value in k23_caps_and_maximizers.items()
+        }
+        and defect_hierarchy["K23"]["completion_maximizers"]
+        == {
+            str(support): value[1]
+            for support, value in k23_caps_and_maximizers.items()
+        },
+        "independent completion-defect rows",
+    )
+    k23_caps = {
+        support: value[0]
+        for support, value in k23_caps_and_maximizers.items()
+    }
+    k23_replay = independent_refined_payment(23, non_dense, 45, k23_caps, weights45)
+    require(
+        k23_refined_payment["uniform_rank9_chart_cap"] == k23_replay["chart"]
+        and k23_refined_payment["kernel_capacity"] == k23_replay["kernel"]
+        and k23_refined_payment["active_sparse_premium"] == k23_replay["premium"]
+        and k23_refined_payment["total_capacity"] == k23_replay["total"]
+        and k23_refined_payment["required_incidence"] == k23_replay["demand"]
+        and k23_refined_payment["demand_capacity_gap"] == k23_replay["gap"] > 0
+        and k23_replay["coefficient"] > 0
+        and k23_replay["raw"] > 0,
+        "independent K'=23 payment",
+    )
+
+    universal_k24 = {
+        support: independent_completion_cap(14, 67496, support, 14)
+        for support in range(6, 10)
+    }
+    require(
+        universal_completion["K24_example"]["completion_maximizers"]
+        == {str(support): value[1] for support, value in universal_k24.items()}
+        and universal_completion["K24_example"]["incidence_caps"]
+        == {str(support): value[0] for support, value in universal_k24.items()},
+        "independent universal completion caps",
+    )
+    supports = list(range(2, 12))
+    require(
+        full_deficit_ledger["rank9_shadow_counts"]
+        == [55 - comb(11 - support, 2) for support in supports]
+        and full_deficit_ledger["deficit_weights"]
+        == [comb(11 - support, 2) for support in supports],
+        "independent full-deficit identity",
+    )
+
+    full_weights = {
+        support: comb(11 - support, 2)
+        for support in range(2, 10)
+    }
+    independent_full_rows: dict[str, dict[str, int]] = {}
+    for kprime in range(24, 42):
+        quotient = kprime - 10
+        mprime = 67472 + kprime
+        structured = {
+            support: (
+                comb(quotient + 4, support)
+                * comb(mprime - support, 11 - support)
+            )
+            for support in range(2, 6)
+        }
+        defect = {
+            support: independent_defect_cap(
+                quotient,
+                mprime,
+                support,
+                depths[support],
+            )[0]
+            for support in range(2, 6)
+        }
+        universal = {
+            support: independent_completion_cap(
+                quotient,
+                mprime,
+                support,
+                quotient,
+            )[0]
+            for support in range(6, 10)
+        }
+        structured_premium = sum(
+            full_weights[support] * structured[support]
+            for support in structured
+        ) + sum(
+            full_weights[support] * universal[support]
+            for support in universal
+        )
+        defect_premium = sum(
+            full_weights[support] * defect[support]
+            for support in defect
+        ) + sum(
+            full_weights[support] * universal[support]
+            for support in universal
+        )
+        active = ({**defect, **universal}
+                  if defect_premium >= structured_premium
+                  else {**structured, **universal})
+        replay = independent_refined_payment(
+            kprime,
+            non_dense,
+            55,
+            active,
+            full_weights,
+        )
+        declared = full_deficit_payment["rows"][str(kprime)]
+        require(
+            declared["maximizing_core"] == replay["maximizing_core"] == kprime - 1
+            and declared["uniform_rank9_chart_cap"] == replay["chart"]
+            and declared["active_sparse_premium"] == replay["premium"]
+            and declared["demand_capacity_gap"] == replay["gap"],
+            f"independent full-deficit row {kprime}",
+        )
+        require(replay["coefficient"] > 0, f"full-deficit coefficient {kprime}")
+        if kprime <= 40:
+            require(replay["gap"] > 0 and replay["raw"] > 0, f"closed row {kprime}")
+        else:
+            require(replay["gap"] < 0 and replay["raw"] < 0, "K'=41 wall")
+        independent_full_rows[str(kprime)] = replay
+    require(
+        min(independent_full_rows[str(k)]["gap"] for k in range(24, 41))
+        == independent_full_rows["40"]["gap"]
+        == 2272401814108959137912675549447888006236817090602808413697595,
+        "independent full-deficit minimum",
+    )
+    require(
+        full_deficit_payment["K41_method_wall"]["capacity_excess"]
+        == -independent_full_rows["41"]["gap"]
+        == 4398836630793080990004182400858693750491819390616783425932508,
+        "independent full-deficit wall",
+    )
     k14_toy = codimension_four_sparse_circuit_toy()
     require(k14_toy == (10, 6, 4, 3), "K'=14 finite-field branches")
 
@@ -3364,8 +3721,11 @@ def main() -> None:
         "rank9_k12_quotient_line_circuit_closed_K_prime": 12,
         "rank9_k13_sparse_circuit_completion_closed_K_prime": 13,
         "rank9_k14_k21_sparse_shadow_closed_K_prime": 21,
+        "rank9_k22_integral_near_saturation_closed_K_prime": 22,
+        "rank9_k23_completion_defect_closed_K_prime": 23,
+        "rank9_k24_k40_full_deficit_shadow_closed_K_prime": 40,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [22, 15528],
+        "rank9_remaining_interval": [41, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -3403,6 +3763,11 @@ def main() -> None:
         f"joint_sparse_rows={len(joint_rows)} "
         f"k21_joint_gap={joint_rows[-1]['demand_capacity_gap']} "
         f"k22_joint_excess={-joint_wall['demand_capacity_gap']} "
+        f"k22_refined_gap={k22_replay['gap']} "
+        f"k23_refined_gap={k23_replay['gap']} "
+        f"full_deficit_rows=17 "
+        f"k40_full_deficit_gap={independent_full_rows['40']['gap']} "
+        f"k41_full_deficit_excess={-independent_full_rows['41']['gap']} "
         f"k14_toy={'/'.join(map(str, k14_toy))} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "

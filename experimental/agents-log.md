@@ -4934,3 +4934,45 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Lower the `K'=22` sparse premium or add a genuinely
   shared shadow resource without omitting a kernel corank or reusing a
   rank-nine mark.
+
+### 2026-08-15 - Integral and full-deficit payment through K'=40
+
+- **Agent/model:** Codex, importing eight further proved public prize-DAG
+  nodes after proof audit, exact arithmetic, independent replay, and hostile
+  mutation testing.
+- **Exact parent:** this PR's `K'=14..21` extension at
+  `03fa65aa9277d407fe586780f681ebb81a3f6560`.
+- **Research sources:** prize-DAG commits
+  `16bb0595c464c32746961dabe808d0d0f73ad1c6`,
+  `523e124ca703d5a9797f175c862a8f5e72535662`, and
+  `ffb120ecd3200489fd6e6464ce0e916dad04596a`, with all eight source
+  contracts pinned in the manifest.
+- **Status:** PROVED NINETEEN-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** Exact integral optimization of the heavy-owner
+  split-pencil chart; a near-saturation carrier/fallback dichotomy; the
+  completion-defect hierarchy with support depths `7,2,1,0`; a universal
+  deletion/completion incidence cap for supports `2..9`; and the full
+  55-shadow deficit ledger with weights `36,28,21,15,10,6,3,1`.  The
+  payment retains every nonzero kernel corank, every core offset, and the
+  complete weighted branch maximum.
+- **Impact:** `K'=22` closes with gap
+  `1232731756628187885277355254597101817411431837269258943471111`;
+  `K'=23` closes with gap
+  `1704262040773185642290284810631267267026794188450394076492364`;
+  and every row `K'=24..40` closes, with minimum gap
+  `2272401814108959137912675549447888006236817090602808413697595`
+  at `K'=40`.  The first remaining rank-nine row is `K'=41`.
+- **Controls:** The primary verifier regenerates the canonical manifest,
+  recomputes all integral core charts and exact payments, and rejects 123
+  hostile mutations.  The independent verifier uses the closed-form
+  eight-extreme-owner chart, analytic completion pivots, and a separately
+  implemented payment ledger; it reconstructs all 17 closed full-deficit
+  rows and the adjacent wall.
+- **Nonclaim:** At `K'=41` the refined payment has exact capacity excess
+  `4398836630793080990004182400858693750491819390616783425932508`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** At `K'=41`, sharpen the complete weighted deficit
+  vector or introduce another genuinely shared incidence resource.  Do not
+  maximize support strata independently, omit a kernel corank, or reuse a
+  rank-nine mark.

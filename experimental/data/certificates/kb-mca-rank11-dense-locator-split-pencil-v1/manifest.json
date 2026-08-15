@@ -186,6 +186,62 @@
         "tree": "8d83ef5e484e76301b88e39f8c28998fb5d37edf",
         "contract_sha256": "eb1c5343d7aee27704ff1c9a5a30639e3cb101c51e7b13eb0a3f04be071f56e1"
       },
+      "weighted_split_pencil_integral_heavy_cap": {
+        "id": "rate_half_mca_weighted_split_pencil_integral_heavy_cap",
+        "path": "background/nodes/rate_half_mca_weighted_split_pencil_integral_heavy_cap",
+        "commit": "16bb0595c464c32746961dabe808d0d0f73ad1c6",
+        "tree": "4c3cd3970e804a29b1b0f965c63e4c9f8b65b86d",
+        "contract_sha256": "e701eafd9f64560bbbe67023ff62009028e8ae11e0426f8becb88976cb26878f"
+      },
+      "sparse_circuit_near_saturation_carrier": {
+        "id": "rate_half_mca_sparse_circuit_near_saturation_carrier",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_near_saturation_carrier",
+        "commit": "16bb0595c464c32746961dabe808d0d0f73ad1c6",
+        "tree": "145d35b36773a87cac7d0c63220de9fa2826bfd5",
+        "contract_sha256": "03da7712fdd01435cb12f7d0c2afc96d3fadd39f9270152980cc44c79075f38b"
+      },
+      "rank11_k22_integral_near_saturation_payment": {
+        "id": "rate_half_mca_rank11_k22_integral_near_saturation_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k22_integral_near_saturation_payment",
+        "commit": "16bb0595c464c32746961dabe808d0d0f73ad1c6",
+        "tree": "7b41e28bbd24f6a16e8deec623cb0efb4e287858",
+        "contract_sha256": "4d2031a5d96149bc5cf2d1c20e9b997200f3baf4a98c14b87ab5e7836435f77d"
+      },
+      "sparse_circuit_completion_defect_hierarchy": {
+        "id": "rate_half_mca_sparse_circuit_completion_defect_hierarchy",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_completion_defect_hierarchy",
+        "commit": "523e124ca703d5a9797f175c862a8f5e72535662",
+        "tree": "7dadedbe3e8104bbf93814d614a60eb3f48aff20",
+        "contract_sha256": "c09209dd879b2845e237915ebc9282fb8218e452833b5d810cf52b6813a0b4fa"
+      },
+      "rank11_k23_completion_defect_payment": {
+        "id": "rate_half_mca_rank11_k23_completion_defect_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k23_completion_defect_payment",
+        "commit": "523e124ca703d5a9797f175c862a8f5e72535662",
+        "tree": "5392ceb7c22d2fd22dcd9405a5ffba88da94bb72",
+        "contract_sha256": "37a1bca5a03ec0b007a4ac9901e5e04ecaa40f3d4592a5ef1f080efaa6b1293b"
+      },
+      "sparse_circuit_universal_completion_incidence_cap": {
+        "id": "rate_half_mca_sparse_circuit_universal_completion_incidence_cap",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_universal_completion_incidence_cap",
+        "commit": "ffb120ecd3200489fd6e6464ce0e916dad04596a",
+        "tree": "0f8c84cd5172ecbd88c2884b9cb5e43dbf4260d7",
+        "contract_sha256": "0f60be130825abd28548760bada38246758588fbf19da9c627e168bda5894d2b"
+      },
+      "rank9_full_circuit_deficit_ledger": {
+        "id": "rate_half_mca_rank9_full_circuit_deficit_ledger",
+        "path": "background/nodes/rate_half_mca_rank9_full_circuit_deficit_ledger",
+        "commit": "ffb120ecd3200489fd6e6464ce0e916dad04596a",
+        "tree": "4db4915a49176787967486d1b6b02989414a019c",
+        "contract_sha256": "2a03a7595972ebd3708a681012fbd78799ea7132326d149d41d6534adfc1c69c"
+      },
+      "rank11_k24_k40_full_deficit_shadow_payment": {
+        "id": "rate_half_mca_rank11_k24_k40_full_deficit_shadow_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k24_k40_full_deficit_shadow_payment",
+        "commit": "ffb120ecd3200489fd6e6464ce0e916dad04596a",
+        "tree": "aaeafc666b5880de825572df4dc527aba32a7d97",
+        "contract_sha256": "29303e23b2286b8c6dbd5d496d5ec9dc779f929bf880d20c5c1eb86268e9782a"
+      },
       "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1898,6 +1954,494 @@
       "required_incidence_at_record_floor": 903025989085629081334365478664955214394150391409598064684975031,
       "capacity_excess": 2859529280846211417198922209345618432657212793529140162369036
     }
+  },
+  "weighted_split_pencil_integral_heavy_cap": {
+    "K_prime": 22,
+    "core_interval": [
+      9,
+      21
+    ],
+    "petal_mass_formula": "67494-core",
+    "total_mass_formula": "1048598-core",
+    "offset_formula": "core-9",
+    "extreme_owner_count": 8,
+    "clean_caps": {
+      "9": 9266835210014096,
+      "10": 9266962726721504,
+      "11": 9267090239359176,
+      "12": 9267217747926944,
+      "13": 9267345252424640,
+      "14": 9267472752852096,
+      "15": 9267600249209144,
+      "16": 9267727741495616,
+      "17": 9267855229711344,
+      "18": 9267982713856160,
+      "19": 9268110193929896,
+      "20": 9268237669932384,
+      "21": 9268365141863456
+    },
+    "chart_caps": {
+      "9": 9268443789229752,
+      "10": 9268571337475598,
+      "11": 9268698881652085,
+      "12": 9268826421759046,
+      "13": 9268953957796313,
+      "14": 9269081489763717,
+      "15": 9269209017661091,
+      "16": 9269336541488266,
+      "17": 9269464061245076,
+      "18": 9269591576931350,
+      "19": 9269719088546923,
+      "20": 9269846596091625,
+      "21": 9269974099565290
+    },
+    "light_mass_maximizers": {
+      "9": 508717,
+      "10": 508724,
+      "11": 508731,
+      "12": 508738,
+      "13": 508745,
+      "14": 508752,
+      "15": 508759,
+      "16": 508766,
+      "17": 508773,
+      "18": 508780,
+      "19": 508787,
+      "20": 508794,
+      "21": 508801
+    },
+    "uniform_chart_cap": 9269974099565290,
+    "maximizing_core": 21,
+    "old_uniform_chart_cap": 9287934561540848,
+    "chart_saving": 17960461975558
+  },
+  "sparse_circuit_near_saturation_carrier": {
+    "correction_dimension": 10,
+    "component_size": 11,
+    "support_interval": [
+      2,
+      4
+    ],
+    "near_completion_count_formula": "q-1",
+    "fallback_completion_count_formula": "max_(0<=b<=q-2) b*C(m-c+1-b,11-c)",
+    "carrier_size_formula": "q+2c-2",
+    "vandermonde_union_formula": "q+3c-2",
+    "K22": {
+      "q": 12,
+      "m": 67494,
+      "active_caps": {
+        "2": 26976765544297626187032777583778108529876750,
+        "3": 80942289326850303820580142737960784746097750,
+        "4": 161908567951387946577119676170547680391323000
+      },
+      "old_q_minus_1_caps": {
+        "2": 29670484509721438470107058046569187861230150,
+        "3": 89025962968552905070816025106121374425091425,
+        "4": 178080949976247319068760544937459249350136200
+      },
+      "premium_weights": {
+        "2": 26,
+        "3": 18,
+        "4": 11
+      },
+      "weighted_premium_saving": 393439020925119039272226731095485935384019750
+    }
+  },
+  "rank11_k22_integral_near_saturation_payment": {
+    "K_prime": 22,
+    "n_prime": 1048598,
+    "m_prime": 67494,
+    "maximizing_core": 21,
+    "uniform_rank9_chart_cap": 9269974099565290,
+    "kernel_capacity": 2273421575008467450492290640797843465217921029627020608340,
+    "global_rank9_mark_capacity": 39154510888407363352144142841152217924627132772903654230071396600,
+    "active_sparse_premium": 5186121213737542262735731342426145095192647655,
+    "full_rank_capacity": 901790983907425884981637631119717314733273741651299178720895580,
+    "total_capacity": 901793257329000893449088123410358112576738959572328805741503920,
+    "required_incidence": 903025989085629081334365478664955214394150391409598064684975031,
+    "demand_capacity_gap": 1232731756628187885277355254597101817411431837269258943471111,
+    "record_coefficient_cross": 142592124149011960898547706352746409135803204672329212960,
+    "floor_record_raw_cross": 55472929048268454837480986456869581783514432677116652456199927410432960,
+    "quotient_dimension": 12,
+    "residual_record_floor": 274980728111260126,
+    "component_density_numerator": 990810934,
+    "component_density_denominator": 1000000000,
+    "uniform_corank_one_record_cap": 8147918,
+    "structured_sparse_caps": {
+      "2": 9604112372197883710208795452464250627200,
+      "3": 5976600480535635569086253318963707200,
+      "4": 2302404950199678843049333782179200,
+      "5": 573127917667130012790469810944
+    },
+    "refined_unstructured_sparse_caps": {
+      "2": 26976765544297626187032777583778108529876750,
+      "3": 80942289326850303820580142737960784746097750,
+      "4": 161908567951387946577119676170547680391323000,
+      "5": 249353970847446220150824023617719132736307931
+    },
+    "premium_weights": {
+      "2": 26,
+      "3": 18,
+      "4": 11,
+      "5": 5
+    },
+    "structured_sparse_premium": 249814525815114709690475157930435816062720,
+    "new_closed_prefix": [
+      10,
+      22
+    ],
+    "remaining_rank9_interval": [
+      23,
+      15528
+    ]
+  },
+  "sparse_circuit_completion_defect_hierarchy": {
+    "correction_dimension": 10,
+    "component_size": 11,
+    "depths": {
+      "2": 7,
+      "3": 2,
+      "4": 1,
+      "5": 0
+    },
+    "carrier_size_formula": "q+(s+1)(c-1)",
+    "vandermonde_condition": "(s+2)c-s-1<=10",
+    "K23": {
+      "q": 13,
+      "m": 67495,
+      "completion_maximizers": {
+        "2": 5,
+        "3": 10,
+        "4": 11,
+        "5": 12
+      },
+      "active_caps": {
+        "2": 13499380682056402471079171597596039264932850,
+        "3": 80954284864573617465451381534661879298586050,
+        "4": 178107341214763563083698242716829065027167375,
+        "5": 272038635654020659386178641581753573026498140
+      },
+      "premium_weights": {
+        "2": 26,
+        "3": 18,
+        "4": 11,
+        "5": 5
+      },
+      "weighted_premium": 5127534956928294069477757206955298428694134825
+    }
+  },
+  "rank11_k23_completion_defect_payment": {
+    "K_prime": 23,
+    "n_prime": 1048599,
+    "m_prime": 67495,
+    "maximizing_core": 22,
+    "uniform_rank9_chart_cap": 9270248806170409,
+    "kernel_capacity": 2687032851334722261272934004839799478137477137273891980682,
+    "global_rank9_mark_capacity": 39156007265331353712261701202938462574097185082551581323299559446,
+    "active_sparse_premium": 5127534956928294069477757206955298428694134825,
+    "full_rank_capacity": 901466234693409663214711645125542782678222421013429897319778831,
+    "total_capacity": 901468921726260997936972918059547622477700558490567171211759513,
+    "required_incidence": 903173183767034183579263202870178889744727352679017565288251877,
+    "demand_capacity_gap": 1704262040773185642290284810631267267026794188450394076492364,
+    "record_coefficient_cross": 142674798496316589397282150730269399986056992150773297800,
+    "floor_record_raw_cross": 76691791834793353903062816478407027016205738480267733442156374663522800,
+    "quotient_dimension": 13,
+    "residual_record_floor": 274980728111260126,
+    "component_density_numerator": 990810934,
+    "component_density_denominator": 1000000000,
+    "core_chart_caps": {
+      "9": 9268590947305905,
+      "10": 9268718499330377,
+      "11": 9268846047285547,
+      "12": 9268973591171246,
+      "13": 9269101130987307,
+      "14": 9269228666733561,
+      "15": 9269356198409841,
+      "16": 9269483726015979,
+      "17": 9269611249551806,
+      "18": 9269738769017155,
+      "19": 9269866284411858,
+      "20": 9269993795735746,
+      "21": 9270121302988652,
+      "22": 9270248806170409
+    },
+    "structured_sparse_caps": {
+      "2": 10886112320673325044260444880805212444320,
+      "3": 7258160911950863452383506728642000800,
+      "4": 3011149551570914725696944651247200,
+      "5": 812003405470220444321233833440
+    },
+    "refined_sparse_caps": {
+      "2": 13499380682056402471079171597596039264932850,
+      "3": 80954284864573617465451381534661879298586050,
+      "4": 178107341214763563083698242716829065027167375,
+      "5": 272038635654020659386178641581753573026498140
+    },
+    "completion_maximizers": {
+      "2": 5,
+      "3": 10,
+      "4": 11,
+      "5": 12
+    },
+    "premium_weights": {
+      "2": 26,
+      "3": 18,
+      "4": 11,
+      "5": 5
+    },
+    "structured_sparse_premium": 283169600360626651000327554910048412453120,
+    "new_closed_prefix": [
+      10,
+      23
+    ],
+    "remaining_rank9_interval": [
+      24,
+      15528
+    ],
+    "K24_method_wall": {
+      "uniform_rank9_chart_cap": 9270523512775527,
+      "active_sparse_premium": 5635142291374718746227339509486717904088849946,
+      "kernel_capacity": 3135177229760128314731156656989690726550124828625366859420,
+      "total_capacity": 904604450622338081479210439192437596804883291978729811399376486,
+      "required_incidence": 903320400259905745793375552210500027298067976534384968314378732,
+      "capacity_excess": 1284050362432335685834886981937569506815315444344843084997754
+    }
+  },
+  "sparse_circuit_universal_completion_incidence_cap": {
+    "correction_dimension": 10,
+    "component_subset_size": 11,
+    "supported_circuit_sizes": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "quotient_dimension_formula": "q=K_prime-10",
+    "completion_ceiling": "b<=q",
+    "incidence_formula": "floor(C(m,c-1)*max_(0<=b<=q)(b*C(m-c+1-b,11-c))/c)",
+    "K24_example": {
+      "q": 14,
+      "m": 67496,
+      "completion_maximizers": {
+        "6": 14,
+        "7": 14,
+        "8": 14,
+        "9": 14
+      },
+      "incidence_caps": {
+        "6": 317434842377192626690262248775565072882909720,
+        "7": 226786216540229660984509953996088215602993400,
+        "8": 113416635205851708902754881700130369842951750,
+        "9": 37813389123911206531495735265209823541217590
+      }
+    }
+  },
+  "rank9_full_circuit_deficit_ledger": {
+    "component_subset_size": 11,
+    "shadow_subset_size": 9,
+    "total_shadow_count": 55,
+    "circuit_supports": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "rank9_shadow_counts": [
+      19,
+      27,
+      34,
+      40,
+      45,
+      49,
+      52,
+      54,
+      55,
+      55
+    ],
+    "deficit_weights": [
+      36,
+      28,
+      21,
+      15,
+      10,
+      6,
+      3,
+      1,
+      0,
+      0
+    ],
+    "joint_capacity_formula": "floor((G+R*max_a(sum_(c=2)^9(C(11-c,2)*L_a_c)))/55)"
+  },
+  "rank11_k24_k40_full_deficit_shadow_payment": {
+    "closed_K_prime_interval": [
+      24,
+      40
+    ],
+    "new_closed_prefix": [
+      10,
+      40
+    ],
+    "first_method_wall": 41,
+    "residual_record_floor": 274980728111260126,
+    "component_density_numerator": 990810934,
+    "component_density_denominator": 1000000000,
+    "shadow_baseline": 55,
+    "deficit_weights": {
+      "2": 36,
+      "3": 28,
+      "4": 21,
+      "5": 15,
+      "6": 10,
+      "7": 6,
+      "8": 3,
+      "9": 1
+    },
+    "rows": {
+      "24": {
+        "maximizing_core": 23,
+        "uniform_rank9_chart_cap": 9270523512775527,
+        "active_sparse_premium": 16491125221630173862216510774641495692305875246,
+        "demand_capacity_gap": 108912805345313608151780734424545420177961411707138173462311025
+      },
+      "25": {
+        "maximizing_core": 24,
+        "uniform_rank9_chart_cap": 9270798219380646,
+        "active_sparse_premium": 17847038884172391124739019057677595366215746932,
+        "demand_capacity_gap": 102253260091004105996724881066682299126992285626242068837170543
+      },
+      "26": {
+        "maximizing_core": 25,
+        "uniform_rank9_chart_cap": 9271072925985765,
+        "active_sparse_premium": 19203096006828520801044347827229739033192561474,
+        "demand_capacity_gap": 95592984441640470395998993272694881610914164949350039522772078
+      },
+      "27": {
+        "maximizing_core": 26,
+        "uniform_rank9_chart_cap": 9271347632590884,
+        "active_sparse_premium": 20559296599609227258627878465138291743669743576,
+        "demand_capacity_gap": 88931978339992428958448390683737389016098317719806949412353281
+      },
+      "28": {
+        "maximizing_core": 27,
+        "uniform_rank9_chart_cap": 9271622339196003,
+        "active_sparse_premium": 21915640672525714627482023791033731842036214375,
+        "demand_capacity_gap": 82270241728825971272984997864776325198698567782536443442453724
+      },
+      "29": {
+        "maximizing_core": 28,
+        "uniform_rank9_chart_cap": 9271897045801122,
+        "active_sparse_premium": 23272128235589726823065157934312702536023077462,
+        "demand_capacity_gap": 75607774550903348675249028654235376596117663238584881381835127
+      },
+      "30": {
+        "maximizing_core": 29,
+        "uniform_rank9_chart_cap": 9272171752406241,
+        "active_sparse_premium": 24628759298813547569271302780084853708661693311,
+        "demand_capacity_gap": 68944576748983074014255456806785663892857784950500479246687163
+      },
+      "31": {
+        "maximizing_core": 30,
+        "uniform_rank9_chart_cap": 9272446459011359,
+        "active_sparse_premium": 25985533872210000421400571007377312391981842961,
+        "demand_capacity_gap": 62280648265819998221310139592715745342727740210459838199142196
+      },
+      "32": {
+        "maximizing_core": 31,
+        "uniform_rank9_chart_cap": 9272721165616478,
+        "active_sparse_premium": 27342451965792448789130365737883910495097631860,
+        "demand_capacity_gap": 55615989044165002868145572156861370144057643374090703394575050
+      },
+      "33": {
+        "maximizing_core": 32,
+        "uniform_rank9_chart_cap": 9272995872221597,
+        "active_sparse_premium": 28699513589574795959487336813546588555084070275,
+        "demand_capacity_gap": 48950599026765460745253367530921975831025522568460965333767375
+      },
+      "34": {
+        "maximizing_core": 33,
+        "uniform_rank9_chart_cap": 9273270578826716,
+        "active_sparse_premium": 30056718753571485119820093721256684457078890256,
+        "demand_capacity_gap": 42284478156364928421307936143468103484981962019248731517250173
+      },
+      "35": {
+        "maximizing_core": 34,
+        "uniform_rank9_chart_cap": 9273545285431835,
+        "active_sparse_premium": 31414067467797499380772675182964106250352117812,
+        "demand_capacity_gap": 35617626375703222811362560667673447957982489664486606144492967
+      },
+      "36": {
+        "maximizing_core": 35,
+        "uniform_rank9_chart_cap": 9273819992036954,
+        "active_sparse_premium": 32771559742268361799258775429482678369670215437,
+        "demand_capacity_gap": 28950043627516420943404563252469331572911669789517273349390494
+      },
+      "37": {
+        "maximizing_core": 36,
+        "uniform_rank9_chart_cap": 9274094698642073,
+        "active_sparse_premium": 34129195587000135401436727176280240756142242447,
+        "demand_capacity_gap": 22281729854536859724895251989446943244769457579769040927370902
+      },
+      "38": {
+        "maximizing_core": 37,
+        "uniform_rank9_chart_cap": 9274369405247191,
+        "active_sparse_premium": 35486975012009423205685241319542370558872449965,
+        "demand_capacity_gap": 15612684999493212516193912768547589867719536407691254919997904
+      },
+      "39": {
+        "maximizing_core": 38,
+        "uniform_rank9_chart_cap": 9274644111852310,
+        "active_sparse_premium": 36844898027313368245579903370798886288157032925,
+        "demand_capacity_gap": 8942909005110181670129462589105018272493677075868734289711013
+      },
+      "40": {
+        "maximizing_core": 39,
+        "uniform_rank9_chart_cap": 9274918818457429,
+        "active_sparse_premium": 38202964642929653592870426648402584482652404266,
+        "demand_capacity_gap": 2272401814108959137912675549447888006236817090602808413697595
+      },
+      "41": {
+        "maximizing_core": 40,
+        "uniform_rank9_chart_cap": 9275193525062548,
+        "active_sparse_premium": 39561174868876502380458662244149949146908334937,
+        "demand_capacity_gap": -4398836630793080990004182400858693750491819390616783425932508
+      }
+    },
+    "K24_endpoint": {
+      "kernel_capacity": 3135177229760128314731156656989690726550124828625366859420,
+      "full_rank_capacity": 794404459737362377513280086629297617429380014702418169485208287,
+      "total_capacity": 794407594914592137641594817785954607120106564827246794852067707,
+      "required_incidence": 903320400259905745793375552210500027298067976534384968314378732
+    },
+    "K40_endpoint": {
+      "kernel_capacity": 15010220908293913470474114237227396404378812346209441122772,
+      "full_rank_capacity": 903391420844907326946701329594671203523020108984594825699366314,
+      "total_capacity": 903406431065815620860171803708908430919424487796941035140489086,
+      "required_incidence": 905678832879924579998084479258356318925661304887543843554186681,
+      "record_coefficient_cross": 142945496743939797350198632728489148700688778998588601440,
+      "floor_record_raw_cross": 124982099775992752585197155219633840343024939983154462753367718378181440
+    },
+    "K41_method_wall": {
+      "kernel_capacity": 16046971808807649741426607721480807522683424615973152263500,
+      "full_rank_capacity": 910209210272037933519378596037417532927979530870933219830034826,
+      "total_capacity": 910225257243846741169120022645139013735502214295549192982298326,
+      "required_incidence": 905826420613053660179115840244280319985010394904932409556365818,
+      "capacity_excess": 4398836630793080990004182400858693750491819390616783425932508,
+      "floor_record_raw_cross": -241936014693619454450230032047228156277050066483923088426287995221620640
+    },
+    "remaining_rank9_interval": [
+      41,
+      15528
+    ]
   },
   "kernel_canonical_basis_globalizer": {
     "correction_dimension": 10,
@@ -3848,9 +4392,12 @@
     "rank9_k12_quotient_line_circuit_closed_K_prime": 12,
     "rank9_k13_sparse_circuit_completion_closed_K_prime": 13,
     "rank9_k14_k21_sparse_shadow_closed_K_prime": 21,
+    "rank9_k22_integral_near_saturation_closed_K_prime": 22,
+    "rank9_k23_completion_defect_closed_K_prime": 23,
+    "rank9_k24_k40_full_deficit_shadow_closed_K_prime": 40,
     "rank9_low_shortening_reopened": true,
     "rank9_remaining_interval": [
-      22,
+      41,
       15528
     ],
     "kernel_dominant_lane_closed_through_Kprime": 1048576,

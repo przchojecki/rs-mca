@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages sixty-three proved local results after the fixed
+This certificate packages seventy-one proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -85,6 +85,33 @@ rank-eleven anchor-star reduction:
   `205305519860193617784849691734671763401656917434567909452790` at
   `K'=21`, while the same method first fails at `K'=22` by capacity excess
   `2859529280846211417198922209345618432657212793529140162369036`;
+- an integral heavy-owner split-pencil cap which optimizes every residual
+  heavy weight, not only a continuous relaxation; on the thirteen `K'=22`
+  core offsets the exact maximum is `9269974099565290` at core `21`, saving
+  `17960461975558` marks over the preceding chart cap;
+- a near-saturation carrier dichotomy: for support `2<=c<=4`, a deletion
+  with `q-1` completions confines all support-`c` labels to at most
+  `q+2c-2` coordinates, while the other branch has at most `q-2`
+  completions per deletion;
+- the resulting complete `K'=22` payment, including the sharpened uniform
+  corank-one cap `8147918`, with demand exceeding capacity by
+  `1232731756628187885277355254597101817411431837269258943471111`;
+- the completion-defect hierarchy: a deletion with `q-s` completions gives
+  a carrier of size `q+(s+1)(c-1)` whenever
+  `(s+2)c-s-1<=10`; the maximal depths for supports `2,3,4,5` are
+  `7,2,1,0`;
+- the complete `K'=23` completion-defect payment, whose strict gap is
+  `1704262040773185642290284810631267267026794188450394076492364`;
+- a universal completion-incidence cap for every support `2<=c<=9`, using
+  the exact ceiling `b<=q` and the deletion count
+  `floor(C(m,c-1)*max_b b*C(m-c+1-b,11-c)/c)`;
+- the full circuit-deficit identity on all 55 rank-nine shadows, assigning
+  exact deficit weights `36,28,21,15,10,6,3,1` to supports `2..9` and zero
+  deficit to supports ten and eleven;
+- the resulting complete `K'=24..40` payments.  The smallest positive gap
+  is `2272401814108959137912675549447888006236817090602808413697595`
+  at `K'=40`; the refined method first fails at `K'=41` by capacity excess
+  `4398836630793080990004182400858693750491819390616783425932508`;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -209,14 +236,15 @@ circuit-shadow models, all `33736` clean-dominant split-pencil sizes, the
 independently derived minimal-row demand, 2,046 sparse-support Vandermonde
 tests, all 605 circuit-shadow omissions, structured/unstructured
 codimension-three circuit models, and a codimension-four completion-ladder
-model over `GF(17)`.  It also independently reconstructs all eight joint
-payment rows and the `K'=22` method wall. The primary replay checks the
+model over `GF(17)`.  It also independently reconstructs all eight old joint
+payment rows, every exact integral chart, the `K'=22` and `K'=23` payments,
+all seventeen full-deficit rows, and the `K'=41` method wall. The primary replay checks the
 existing affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `22<=K'<=15528` is open; the
+lane. The low rank-nine interval `41<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not
