@@ -12949,6 +12949,154 @@ $K'=71$, exact replay again selects (XC3), now with all four defects equal
 to $31$, and gives the displayed capacity excess.
 \end{proof}
 
+\begin{proposition}[Fixed-union multicarrier collision charge]
+\label{prop:kb-rank11-multicarrier-collision-charge}
+Let $D$ be a fixed set of $u$ domain points and let $W\le V'$ have
+dimension $g$, with every polynomial in $W$ vanishing on $D$.  For target
+support $2\le d\le9$, put
+\[
+ r_d=g+1-d,\qquad R_d=K'-r_d-u.
+\]
+Whenever $r_d>0$, every independent target $(d-1)$-deletion carrier has at
+most $R_d$ points outside $D$.  Consequently the number of target
+support-$d$ circuit supports is at most
+\begin{equation}
+ \binom ud+\sum_{j=1}^{d}\left\lfloor
+ \frac{\binom u{d-j}\binom{m'-u}{j-1}
+       \max\{0,R_d-j+1\}}{j}
+ \right\rfloor .                                    \tag{MC1}
+\end{equation}
+Their selected eleven-set incidence is at most (MC1) multiplied by
+$\binom{m'-d}{11-d}$.
+\end{proposition}
+
+\begin{proof}
+For an independent target deletion $A$, let
+$H_A=\{f\in V':f|_A=0\}$.  Then $\dim H_A=11-d$, so Grassmann gives
+\[
+ \dim(W\cap H_A)\ge g+(11-d)-10=r_d.
+\]
+This intersection vanishes on $D$ and on the complete target carrier.
+The common-root bound therefore leaves at most $K'-r_d-u=R_d$ carrier
+points outside $D$.
+
+There are at most $\binom ud$ target circuits wholly inside $D$.  A circuit
+with exactly $j\ge1$ points outside $D$ is exposed by each of its $j$
+outside deletions.  Such a deletion already contains $j-1$ outside points,
+leaving at most $\max\{0,R_d-j+1\}$ outside completions.  There are at most
+$\binom u{d-j}\binom{m'-u}{j-1}$ such deletions.  Division by the exact
+exposure multiplicity $j$, flooring, and summation prove (MC1).  The final
+selected-set multiplier is immediate.
+\end{proof}
+
+\begin{proposition}[Support-two/three/four carrier-position trichotomy]
+\label{prop:kb-rank11-k71-carrier-position-trichotomy}
+Let $M_c=q-s_c>0$ be exact support-$c$ completion maxima, with attaining
+carriers $B_c$.  The support-two carrier is one full nonzero parallel class
+of size $b_2=M_2+1$.
+
+For an attaining support-$c$ deletion, $c=3,4$, the projective point of
+$B_2$ is either transverse to the deletion span, contained in the span of a
+proper deletion subset, or contained only in the full deletion span.  In the
+last case every point of $B_2$ is an exact support-$c$ completion, so
+$M_c\ge M_2+1$.
+
+Hence, when $M_3\le M_2$, only the transverse and proper-span positions
+occur.  Their fixed unions have respectively
+\[
+ (u,g)=(b_2+b_3,7),\qquad (b_2+b_3-1,8),             \tag{PT1}
+\]
+and $s_2+s_3<q$ is impossible.  When
+$M_3=M_4=M_2+1$, the remaining completion position is exhausted by
+\[
+\begin{array}{c|cc}
+ &u&g\\ \hline
+T23&2M_2+4&7\\ A23&2M_2+3&8\\
+T24&2M_2+5&6\\ A24&2M_2+4&7\\
+N34&M_2+6&6\\ N34A&M_2+5&7.
+\end{array}                                           \tag{PT2}
+\]
+Every row of (PT1) and (PT2) feeds
+Proposition~\ref{prop:kb-rank11-multicarrier-collision-charge}.
+\end{proposition}
+
+\begin{proof}
+Write $v_x$ for evaluation at a domain point as a functional on $V'$.  The
+empty common-zero hypothesis makes every $v_x$ nonzero.  An attaining
+support-two deletion is one point $a$, and its completions are exactly the
+domain evaluations parallel to $v_a$.  Thus $B_2$ is a full projective
+parallel class.
+
+Let $A_c$ be an attaining independent deletion and
+$F_c=\langle v_x:x\in A_c\rangle$.  If the projective point of $B_2$ is
+outside $F_c$, then $B_2\cap B_c=\varnothing$ and the two vanishing spaces
+intersect in dimension at least $10-c$.  If it lies in a proper deletion
+span, then $H_c\le H_2$; the carriers share one anchor in rank one and are
+otherwise disjoint.  If it lies in no proper deletion span, every point of
+$B_2$ completes $A_c$ minimally, forcing $M_c\ge|B_2|=M_2+1$.  This proves
+the three positions and (PT1).  Applying the common-root bound to either
+fixed union in (PT1) also gives $s_2+s_3\ge q$.
+
+Suppose $M_3=M_4=M_2+1$.  If support three is transverse or anchored, its
+two alternatives are $T23$ and $A23$.  Otherwise
+$B_3=B_2\cup A_3$.  Applying the same analysis to support four gives $T24$
+and $A24$, unless $B_4=B_2\cup A_4$.  In that final case $H_3,H_4\le H_2$
+and $\dim(H_3\cap H_4)\ge6$.  The anchor sets cannot share both points of
+$A_3$, since that would put the support-two projective point in a proper
+span of $A_4$.  Disjoint anchors give $N34$; one shared anchor gives
+$H_4\le H_3$ and $N34A$.  The six alternatives are exhaustive.
+\end{proof}
+
+\begin{proposition}[$K'=71$ carrier-trichotomy payment]
+\label{prop:kb-rank11-k71-carrier-trichotomy-payment}
+In the fixed component target, every rank-nine alternative is empty at
+$K'=71$.  Refine every exact support-two/support-three defect pair by
+Proposition~\ref{prop:kb-rank11-k71-carrier-position-trichotomy}; retain all
+six cases in (PT2) when $M_3=M_4=M_2+1$, together with every inherited cap
+and support-six through support-nine branch.  Exact replay selects
+\[
+ s_2=33,\qquad s_3=s_4=s_5=31,\qquad c6F/c7F/c8F/c9F,
+\]
+with completion premium
+\[
+41052480732722315950912559282994987357541498029.
+\]
+Demand exceeds complete capacity by
+\[
+118872281099445772155993127155914865045379156488810154591370.
+\]
+The same complete replay first fails at $K'=72$, where capacity exceeds
+demand by
+\[
+4821537739796415753639473905341364357966460110033651367468100.
+\]
+\end{proposition}
+
+\begin{proof}
+For $M_3\le M_2$, retain both cases in (PT1) and remove the impossible
+pairs $s_2+s_3<q$; at $K'=71$ this excludes exactly $961$ defect pairs.
+Pairs with $M_3=M_2+1$ retain their position provenance until support four
+is fixed.  When also $M_4=M_2+1$, replace the formerly uncharged leaf by all
+six alternatives in (PT2).  Supports four and five retain every exact
+defect pair and the joint support-four charge when $s_4+s_5<q$.  All 120
+support-six through support-nine terminal/fallback choices remain explicit.
+Componentwise dominated vectors may be removed because every deficit weight
+is nonnegative and all later operations take componentwise minima.
+
+For each surviving leaf, form
+\[
+ P=\sum_{d=2}^{9}\binom{11-d}{2}\operatorname{cap}_d,
+ \qquad
+ \operatorname{Cap}_{\rm full}=\left\lfloor\frac{G+RP}{55}\right\rfloor,
+\]
+and add every kernel-corank capacity.  The displayed $K'=71$ branch is the
+exact maximum.  Its premium lies below the safe ceiling by
+$23776122440930417094576446937038395558574009$, yielding the stated
+positive integral gap.  At $K'=72$ the exact maximizer has
+$M_3=M_2+2$, outside this one-step trichotomy, and gives the stated capacity
+excess.  This is a method wall, not a counterexample.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -14559,9 +14707,16 @@ nonempty source carrier of support two through five to every target support
 whose two support sizes sum to at most eleven, and
 Proposition~\ref{prop:kb-rank11-k60-k70-cross-support-collision-payment}
 pays $60\le K'\le70$ after retaining every inherited cap and higher-support
-branch.
+branch.  Proposition~\ref{prop:kb-rank11-multicarrier-collision-charge}
+prices target circuits relative to any fixed union carrying a positive
+vanishing space,
+Proposition~\ref{prop:kb-rank11-k71-carrier-position-trichotomy} exhausts
+the relative positions of the attaining support-two, support-three, and
+support-four carriers, and
+Proposition~\ref{prop:kb-rank11-k71-carrier-trichotomy-payment} pays
+$K'=71$.
 Thus the remaining intervals are rank eight only on
-$22\le K'\le70$, rank nine or rank eight on $71\le K'\le15528$, rank
+$22\le K'\le71$, rank nine or rank eight on $72\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -14571,10 +14726,11 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=71$, the exact cross-support
-collision payment has the printed capacity excess
-$824875968499878215752683873455674299360608616555107905777434$.
-This is a method wall: a continuation must sharpen the complete weighted
+At the first remaining rank-nine row $K'=72$, the exact carrier-trichotomy
+payment has the printed capacity excess
+$4821537739796415753639473905341364357966460110033651367468100$.
+Here the active defects have $M_3=M_2+2$, beyond the one-step carrier
+trichotomy.  This is a method wall: a continuation must sharpen the complete weighted
 deficit vector, lower the rank-nine chart, or extract another shared resource without omitting a kernel
 corank or reusing a rank-nine mark.
 Proposition~\ref{prop:kb-rank11-rank8-circuit-shadow-census} gives the exact

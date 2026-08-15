@@ -361,6 +361,27 @@
         "tree": "64aca8fbb26848d41a4208640bd51066ce9d9779",
         "contract_sha256": "edcce8ae674f96b095193af674e42b55a1370c21b32382e2de717c1b5fbd5a09"
       },
+      "sparse_circuit_multicarrier_collision_charge": {
+        "id": "rate_half_mca_sparse_circuit_multicarrier_collision_charge",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_multicarrier_collision_charge",
+        "commit": "90178b01dba1b5fdd0c3e955e060ad41c8e7a21a",
+        "tree": "1ad5e978859deeb6ae6a3e6ce80758e3d10c896c",
+        "contract_sha256": "5c635f5606250742ee39155a55eb6cbf33ea3546ce8599bfaf2b2a9d8c642b32"
+      },
+      "sparse_circuit_k71_carrier_position_trichotomy": {
+        "id": "rate_half_mca_sparse_circuit_k71_carrier_position_trichotomy",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_k71_carrier_position_trichotomy",
+        "commit": "90178b01dba1b5fdd0c3e955e060ad41c8e7a21a",
+        "tree": "c4f935e44e0ecc4f303a55c41605e721a6a7ae57",
+        "contract_sha256": "45df072823fad4f85ce8ed08bd32b1a1f03202b6b397f9644078593a75071c4e"
+      },
+      "rank11_k71_carrier_trichotomy_payment": {
+        "id": "rate_half_mca_rank11_k71_carrier_trichotomy_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k71_carrier_trichotomy_payment",
+        "commit": "90178b01dba1b5fdd0c3e955e060ad41c8e7a21a",
+        "tree": "e44caf8db170118d90156777b782f7fe528eb339",
+        "contract_sha256": "3c56c182cdb219df31cc4e98913b8e52ce625ec94c21d1fe48deab534ba6c0fc"
+      },
       "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -5297,6 +5318,421 @@
       15528
     ]
   },
+  "sparse_circuit_multicarrier_collision_charge": {
+    "correction_dimension": 10,
+    "intersection_dimension": "r_d=g+1-d",
+    "outside_budget": "R_d=K-r_d-u",
+    "inside_count": "C(u,d)",
+    "outside_stratum_count": "floor(C(u,d-j)C(m-u,j-1)max(0,R_d-j+1)/j)",
+    "incidence_multiplier": "C(m-d,11-d)",
+    "K71_samples": {
+      "K71_T23": {
+        "K": 71,
+        "m": 67543,
+        "union_size": 62,
+        "fixed_dimension": 7,
+        "targets": {
+          "2": {
+            "intersection_dimension": 6,
+            "outside_budget": 3,
+            "target_support_count": 69558,
+            "target_incidence_cap": 5603507253477844277094336673911040351663020
+          },
+          "3": {
+            "intersection_dimension": 5,
+            "outside_budget": 4,
+            "target_support_count": 1524193743,
+            "target_incidence_cap": 16361685844810710602662061277506494173907830
+          },
+          "4": {
+            "intersection_dimension": 4,
+            "outside_budget": 5,
+            "target_support_count": 25747549858077,
+            "target_incidence_cap": 32738042916846294032666894078750827740289524
+          },
+          "5": {
+            "intersection_dimension": 3,
+            "outside_budget": 6,
+            "target_support_count": 347957228796998381,
+            "target_incidence_cap": 45854935110745383367928817260868815062324836
+          },
+          "6": {
+            "intersection_dimension": 2,
+            "outside_budget": 7,
+            "target_support_count": 3918574076020262884697,
+            "target_incidence_cap": 45876611771024975054270023101290935908477084
+          },
+          "7": {
+            "intersection_dimension": 1,
+            "outside_budget": 8,
+            "target_support_count": 37824826769260312216433365,
+            "target_incidence_cap": 32784492195768130841127425084077717937324700
+          }
+        }
+      },
+      "K71_A23": {
+        "K": 71,
+        "m": 67543,
+        "union_size": 61,
+        "fixed_dimension": 8,
+        "targets": {
+          "2": {
+            "intersection_dimension": 7,
+            "outside_budget": 3,
+            "target_support_count": 69495,
+            "target_incidence_cap": 5598432050669121999434585916119608804721550
+          },
+          "3": {
+            "intersection_dimension": 6,
+            "outside_budget": 4,
+            "target_support_count": 1524135527,
+            "target_incidence_cap": 16361060916446113910882803281589546417440870
+          },
+          "4": {
+            "intersection_dimension": 5,
+            "outside_budget": 5,
+            "target_support_count": 25746407295786,
+            "target_incidence_cap": 32736590147416810077108191408395930634936232
+          },
+          "5": {
+            "intersection_dimension": 4,
+            "outside_budget": 6,
+            "target_support_count": 347939223343606581,
+            "target_incidence_cap": 45852562293546628675280869680445154921484036
+          },
+          "6": {
+            "intersection_dimension": 3,
+            "outside_budget": 7,
+            "target_support_count": 3918342443585707051579,
+            "target_incidence_cap": 45873899939867124982205057775503941690355988
+          },
+          "7": {
+            "intersection_dimension": 2,
+            "outside_budget": 8,
+            "target_support_count": 37822312556362425178735725,
+            "target_incidence_cap": 32782313013464610959643350411703605108365500
+          },
+          "8": {
+            "intersection_dimension": 1,
+            "outside_budget": 9,
+            "target_support_count": 319444418701239897844342325916,
+            "target_incidence_cap": 16398777546336685752947139645556164894305220
+          }
+        }
+      },
+      "K71_T24": {
+        "K": 71,
+        "m": 67543,
+        "union_size": 63,
+        "fixed_dimension": 6,
+        "targets": {
+          "2": {
+            "intersection_dimension": 5,
+            "outside_budget": 3,
+            "target_support_count": 69622,
+            "target_incidence_cap": 5608663015061308178209004110397573986651180
+          },
+          "3": {
+            "intersection_dimension": 4,
+            "outside_budget": 4,
+            "target_support_count": 1524252023,
+            "target_incidence_cap": 16362311460192885523592650050387484198074630
+          },
+          "4": {
+            "intersection_dimension": 3,
+            "outside_budget": 5,
+            "target_support_count": 25748692456060,
+            "target_incidence_cap": 32739495731658202111254300661771183456500720
+          },
+          "5": {
+            "intersection_dimension": 2,
+            "outside_budget": 6,
+            "target_support_count": 347975234784071279,
+            "target_incidence_cap": 45857307998274368598475715801336811815906124
+          },
+          "6": {
+            "intersection_dimension": 1,
+            "outside_budget": 7,
+            "target_support_count": 3918805715319934888456,
+            "target_incidence_cap": 45879323682556007619122502426484197754456032
+          }
+        }
+      },
+      "K71_N34": {
+        "K": 71,
+        "m": 67543,
+        "union_size": 35,
+        "fixed_dimension": 6,
+        "targets": {
+          "2": {
+            "intersection_dimension": 5,
+            "outside_budget": 31,
+            "target_support_count": 1014300,
+            "target_incidence_cap": 81710765220428670321987200442047905757667000
+          },
+          "3": {
+            "intersection_dimension": 4,
+            "outside_budget": 32,
+            "target_support_count": 22822961455,
+            "target_incidence_cap": 244996495419240124682571961540573503747338550
+          },
+          "4": {
+            "intersection_dimension": 3,
+            "outside_budget": 33,
+            "target_support_count": 385377955555051,
+            "target_incidence_cap": 490008568493360703016774576208070024277754412
+          },
+          "5": {
+            "intersection_dimension": 2,
+            "outside_budget": 34,
+            "target_support_count": 5205775332916829003,
+            "target_incidence_cap": 686034001699922010656068943420499804399100668
+          },
+          "6": {
+            "intersection_dimension": 1,
+            "outside_budget": 35,
+            "target_support_count": 58599822106729672177255,
+            "target_incidence_cap": 686056008253871415870721676180286648623605860
+          }
+        }
+      },
+      "K71_N34A": {
+        "K": 71,
+        "m": 67543,
+        "union_size": 34,
+        "fixed_dimension": 7,
+        "targets": {
+          "2": {
+            "intersection_dimension": 6,
+            "outside_budget": 31,
+            "target_support_count": 1014250,
+            "target_incidence_cap": 81706737281691589149241366507292801355332500
+          },
+          "3": {
+            "intersection_dimension": 5,
+            "outside_budget": 32,
+            "target_support_count": 22822589039,
+            "target_incidence_cap": 244992497663952409250978170386811548001969590
+          },
+          "4": {
+            "intersection_dimension": 4,
+            "outside_budget": 33,
+            "target_support_count": 385371486411035,
+            "target_incidence_cap": 490000342968384600103300608497149304590365420
+          },
+          "5": {
+            "intersection_dimension": 3,
+            "outside_budget": 34,
+            "target_support_count": 5205685377649708853,
+            "target_incidence_cap": 686022147102301132520805177242313583021547268
+          },
+          "6": {
+            "intersection_dimension": 2,
+            "outside_budget": 35,
+            "target_support_count": 58598780594366889506363,
+            "target_incidence_cap": 686043814772927799165569943814548573762601236
+          },
+          "7": {
+            "intersection_dimension": 1,
+            "outside_budget": 36,
+            "target_support_count": 565387263307069745356985559,
+            "target_incidence_cap": 490046773632317443153635687948161695823116020
+          }
+        }
+      }
+    }
+  },
+  "sparse_circuit_k71_carrier_position_trichotomy": {
+    "correction_dimension": 10,
+    "support2_carrier": "full nonzero parallel class of size M2+1",
+    "positions": [
+      "transverse",
+      "proper_span",
+      "full_completion"
+    ],
+    "transverse_fixed_dimension": "10-c",
+    "proper_span_fixed_dimension": "11-c",
+    "full_completion_necessary_condition": "Mc>=M2+1",
+    "support23_pruning_condition": "M3<=M2",
+    "support23_impossible_condition": "s2+s3<q",
+    "K71_impossible_defect_pair_count": 961,
+    "K71_impossible_defect_pair_digest_sha256": "07931c53bb2dd546e5a671fa59592ede3f153a422dbb1b033d38ffb00668edab",
+    "one_step_condition": "M3=M4=M2+1",
+    "K71_active_completions": {
+      "M2": 29,
+      "M3": 30,
+      "M4": 30
+    },
+    "K71_cases": {
+      "T23": {
+        "union_size": 62,
+        "fixed_dimension": 7
+      },
+      "A23": {
+        "union_size": 61,
+        "fixed_dimension": 8
+      },
+      "T24": {
+        "union_size": 63,
+        "fixed_dimension": 6
+      },
+      "A24": {
+        "union_size": 62,
+        "fixed_dimension": 7
+      },
+      "N34": {
+        "union_size": 35,
+        "fixed_dimension": 6
+      },
+      "N34A": {
+        "union_size": 34,
+        "fixed_dimension": 7
+      }
+    },
+    "nested_anchor_intersection_sizes": [
+      0,
+      1
+    ]
+  },
+  "rank11_k71_carrier_trichotomy_payment": {
+    "closed_rows": [
+      71
+    ],
+    "new_closed_prefix": [
+      10,
+      71
+    ],
+    "first_method_wall": 72,
+    "residual_record_floor": 274980728111260126,
+    "deficit_weights": {
+      "2": 36,
+      "3": 28,
+      "4": 21,
+      "5": 15,
+      "6": 10,
+      "7": 6,
+      "8": 3,
+      "9": 1
+    },
+    "rows": {
+      "71": {
+        "n": 1048647,
+        "m": 67543,
+        "q": 61,
+        "max_core": 70,
+        "chart": 9283434723216114,
+        "kernel_capacity": 63337359791453410834554806955213555043839871654170037143258,
+        "rank_nine_marks": 39227859800747579999412584083605636219739847403131754481149008880,
+        "raw_defect_leaf_count": 1773160320,
+        "support23_unique_vector_count": 3613,
+        "support23_maximal_vector_count": 819,
+        "support23_one_step_pair_count": 60,
+        "support23_impossible_pair_count": 961,
+        "support23_position_case_count": 3813,
+        "support45_unique_vector_count": 2914,
+        "support45_maximal_vector_count": 528,
+        "support69_unique_vector_count": 120,
+        "support69_maximal_vector_count": 7,
+        "ordinary_frontier_leaf_count": 3027024,
+        "one_step_plain_leaf_count": 1588440,
+        "trichotomy_leaf_count": 156240,
+        "trichotomy_case_max_premium": {
+          "T23": 31911297476905872520990878359901283835987977758,
+          "A23": 31543740546910501542607036628667144608503597743,
+          "T24": 33380357448470997070349057544146314368704259318,
+          "A24": 31911297476905872520990878359901283835987977758,
+          "N34": 40951375604723471615395039854441088015789951851,
+          "N34A": 40853188325193164326844479476743039491930004091
+        },
+        "active_small_defects": {
+          "2": 33,
+          "3": 31,
+          "4": 31,
+          "5": 31
+        },
+        "active_branch": "s2=33/s3=31/U23/s4=31/s5=31/c6F/c7F/c8F/c9F/plain",
+        "active_caps": {
+          "2": 75902891101151167277631212170235562710222204,
+          "3": 244016920788897772263516356086685152275008700,
+          "4": 488250710165837994888245121726853457060519400,
+          "5": 683854749673248073539518674714921574371418640,
+          "6": 708884576648718038023981503823913721755893428,
+          "7": 506361361258410434731983448176140771587549440,
+          "8": 253188298395167156082366629495864834582860380,
+          "9": 89837883187272852914634381668000271598256025
+        },
+        "completion_premium": 41052480732722315950912559282994987357541498029,
+        "safe_premium_ceiling": 41076256855163246368007135729932025753100072038,
+        "premium_ceiling_margin": 23776122440930417094576446937038395558574009,
+        "full_rank_capacity": 918481833516455273461377983550856309535925395856822067528805464,
+        "total_capacity": 918545170876246726872212538357811523090969235728476237565948722,
+        "required_component_incidence": 918664043157346172644368531484967437956014614884965047720540092,
+        "gap": 118872281099445772155993127155914865045379156488810154591370,
+        "record_coefficient_cross": 142701653705152241253418104763885136277562850541,
+        "floor_record_raw_cross": 6537975460469517468579621993575317577495853606884558502525336
+      },
+      "72": {
+        "n": 1048648,
+        "m": 67544,
+        "q": 62,
+        "max_core": 71,
+        "chart": 9283709429821233,
+        "kernel_capacity": 65454975883358251134075536608664707751021313354419751397380,
+        "rank_nine_marks": 39229357279566017725826989784351192461174359875843815026454163520,
+        "raw_defect_leaf_count": 1890355320,
+        "support23_unique_vector_count": 3730,
+        "support23_maximal_vector_count": 830,
+        "support23_one_step_pair_count": 61,
+        "support23_impossible_pair_count": 992,
+        "support23_position_case_count": 3938,
+        "support45_unique_vector_count": 3008,
+        "support45_maximal_vector_count": 528,
+        "support69_unique_vector_count": 120,
+        "support69_maximal_vector_count": 7,
+        "ordinary_frontier_leaf_count": 3067680,
+        "one_step_plain_leaf_count": 1667862,
+        "trichotomy_leaf_count": 161406,
+        "trichotomy_case_max_premium": {
+          "T23": 32578467370894784323740039093741117951673031769,
+          "A23": 32211034459956198121836988754450176669534125489,
+          "T24": 34047547196781712815422515842887963761195103529,
+          "A24": 32578467370894784323740039093741117951673031769,
+          "N34": 41619713089247131742062884857750857163790198061,
+          "N34A": 41521688632869363953880206690119900563203540701
+        },
+        "active_small_defects": {
+          "2": 33,
+          "3": 31,
+          "4": 31,
+          "5": 31
+        },
+        "active_branch": "s2=33/s3=31/U23/s4=31/s5=31/c6F/c7F/c8F/c9F/plain",
+        "active_caps": {
+          "2": 78614872546562125944852779102606241623472776,
+          "3": 252158284638064535164675516183061857650626680,
+          "4": 504548143592130314588511908104941831388621920,
+          "5": 706691758745348881775614811130828421379743420,
+          "6": 709002071669337401213075965245785041463122560,
+          "7": 506445530391531238749041116741323034783226580,
+          "8": 253230505024535149946867008654791318760027200,
+          "9": 89852878704047225232192613171992034421538445
+        },
+        "completion_premium": 42064693070977227471316386730027916106551983721,
+        "safe_premium_ceiling": 41100317939998934447573065780978817075733675000,
+        "premium_ceiling_margin": -964375130978293023743320949049099030818308721,
+        "full_rank_capacity": 923569767418182081064353130859875106653174251978562673614592224,
+        "total_capacity": 923635222394065439315487206396483771360925273291917093365989604,
+        "required_component_incidence": 918813684654269023561847732491142407002958813181883441998521504,
+        "record_coefficient_cross": 141719371852420209216070674001502906910483956039,
+        "floor_record_raw_cross": -265184575688802866450171064793775039688155306051850825210745546,
+        "capacity_excess": 4821537739796415753639473905341364357966460110033651367468100
+      }
+    },
+    "remaining_rank9_interval": [
+      72,
+      15528
+    ]
+  },
   "kernel_canonical_basis_globalizer": {
     "correction_dimension": 10,
     "component_subset_size": 11,
@@ -7257,9 +7693,10 @@
     "rank9_k46_k53_deep_joint_completion_closed_K_prime": 53,
     "rank9_k54_k59_small_support_collision_closed_K_prime": 59,
     "rank9_k60_k70_cross_support_collision_closed_K_prime": 70,
+    "rank9_k71_carrier_trichotomy_closed_K_prime": 71,
     "rank9_low_shortening_reopened": true,
     "rank9_remaining_interval": [
-      71,
+      72,
       15528
     ],
     "kernel_dominant_lane_closed_through_Kprime": 1048576,

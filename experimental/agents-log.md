@@ -5248,3 +5248,46 @@ Keep entries concise and link to the relevant files.
   valid joint multi-source charge or another shared resource.  Preserve every
   inherited cap, kernel corank, and rank-nine mark, and do not stack
   individually valid target caps unless their common resource is priced.
+
+### 2026-08-15 - Carrier trichotomy closes K'=71
+
+- **Agent/model:** Codex, importing three proved public prize-DAG nodes after
+  proof audit, exact arithmetic, primary replay, independent reimplementation,
+  and hostile mutation testing.
+- **Exact parent:** this PR's `K'=60..70` extension at
+  `6ea448fbb6fca01998a1915cb8450cd968a94587`.
+- **Research source:** prize-DAG commit
+  `90178b01dba1b5fdd0c3e955e060ad41c8e7a21a`; source trees
+  `1ad5e978859deeb6ae6a3e6ce80758e3d10c896c`,
+  `c4f935e44e0ecc4f303a55c41605e721a6a7ae57`, and
+  `e44caf8db170118d90156777b782f7fe528eb339`; source-contract SHA-256 values
+  `5c635f5606250742ee39155a55eb6cbf33ea3546ce8599bfaf2b2a9d8c642b32`,
+  `45df072823fad4f85ce8ed08bd32b1a1f03202b6b397f9644078593a75071c4e`,
+  and `3c56c182cdb219df31cc4e98913b8e52ce625ec94c21d1fe48deab534ba6c0fc`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A fixed-union multicarrier collision theorem, the
+  full-projective-class description of a support-two attaining carrier, and
+  the transverse/proper-span/full-completion trichotomy relative to
+  support-three and support-four carriers.  The one-step completion regime
+  has six exhaustive fixed-union geometries.  At `K'=71` the trichotomy
+  excludes 961 impossible support-two/support-three defect pairs and prices
+  every surviving geometry without stacking unrelated target caps.
+- **Impact:** Exact replay selects
+  `s_2=33,s_3=s_4=s_5=31,c6F/c7F/c8F/c9F` and closes `K'=71` by
+  `118872281099445772155993127155914865045379156488810154591370`.
+  The first remaining rank-nine row is `K'=72`.
+- **Controls:** The canonical manifest pins 91 public source nodes and has
+  SHA-256 `0e6d4a1a3093cd123ddb40894662745cd13353f8dc3bf5474cdf73fc46fedd65`.
+  The primary verifier rejects 164 hostile mutations.  The independent
+  verifier separately checks 29 fixed-union samples, the digest of all 961
+  impossible pairs, all six geometry cases, the safe row, and the adjacent
+  wall.  The 172-page paper builds with SHA-256
+  `a7829ee79ff84a73b24004da93e006f7d7941357e4671f9d48416c1816f53bdb`.
+- **Nonclaim:** At `K'=72`, the same complete payment has exact capacity
+  excess
+  `4821537739796415753639473905341364357966460110033651367468100`.
+  Its active defects have `M_3=M_2+2`, outside the proved one-step
+  trichotomy.  Rank eight, chronology, error rank eleven, active-v4 movement,
+  KoalaBear, and both prize problems remain open.
+- **What to do next:** Analyze the two-step separation `M_3=M_2+2` at
+  `K'=72`, preserving every inherited cap, kernel corank, and rank-nine mark.

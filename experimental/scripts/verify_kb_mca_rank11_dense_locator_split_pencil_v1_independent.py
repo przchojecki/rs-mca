@@ -113,6 +113,27 @@ BRANCH_LATTICE_SOURCES = {
         "tree": "64aca8fbb26848d41a4208640bd51066ce9d9779",
         "contract_sha256": "edcce8ae674f96b095193af674e42b55a1370c21b32382e2de717c1b5fbd5a09",
     },
+    "sparse_circuit_multicarrier_collision_charge": {
+        "id": "rate_half_mca_sparse_circuit_multicarrier_collision_charge",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_multicarrier_collision_charge",
+        "commit": "90178b01dba1b5fdd0c3e955e060ad41c8e7a21a",
+        "tree": "1ad5e978859deeb6ae6a3e6ce80758e3d10c896c",
+        "contract_sha256": "5c635f5606250742ee39155a55eb6cbf33ea3546ce8599bfaf2b2a9d8c642b32",
+    },
+    "sparse_circuit_k71_carrier_position_trichotomy": {
+        "id": "rate_half_mca_sparse_circuit_k71_carrier_position_trichotomy",
+        "path": "background/nodes/rate_half_mca_sparse_circuit_k71_carrier_position_trichotomy",
+        "commit": "90178b01dba1b5fdd0c3e955e060ad41c8e7a21a",
+        "tree": "c4f935e44e0ecc4f303a55c41605e721a6a7ae57",
+        "contract_sha256": "45df072823fad4f85ce8ed08bd32b1a1f03202b6b397f9644078593a75071c4e",
+    },
+    "rank11_k71_carrier_trichotomy_payment": {
+        "id": "rate_half_mca_rank11_k71_carrier_trichotomy_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k71_carrier_trichotomy_payment",
+        "commit": "90178b01dba1b5fdd0c3e955e060ad41c8e7a21a",
+        "tree": "e44caf8db170118d90156777b782f7fe528eb339",
+        "contract_sha256": "3c56c182cdb219df31cc4e98913b8e52ce625ec94c21d1fe48deab534ba6c0fc",
+    },
 }
 FIXED_CHART_SOURCES = {
     "component_star_large_owner_uniqueness": {
@@ -3141,6 +3162,343 @@ def independent_cross_collision_payment(
     }
 
 
+def independent_multicarrier_count(
+    kprime: int,
+    mprime: int,
+    union_size: int,
+    fixed_dimension: int,
+    target_support: int,
+) -> int:
+    intersection = fixed_dimension + 1 - target_support
+    require(intersection > 0, "independent multicarrier intersection")
+    outside_budget = kprime - intersection - union_size
+    outside = mprime - union_size
+    total = comb(union_size, target_support)
+    for external in range(1, target_support + 1):
+        deletion_count = comb(
+            union_size, target_support - external
+        ) * comb(outside, external - 1)
+        completions = max(0, outside_budget - external + 1)
+        total += deletion_count * completions // external
+    return total
+
+
+def independent_multicarrier_cap(
+    kprime: int,
+    mprime: int,
+    union_size: int,
+    fixed_dimension: int,
+    target_support: int,
+) -> int:
+    return independent_multicarrier_count(
+        kprime,
+        mprime,
+        union_size,
+        fixed_dimension,
+        target_support,
+    ) * comb(mprime - target_support, 11 - target_support)
+
+
+def independent_carrier_cases(completion2: int):
+    carrier2 = completion2 + 1
+    carrier3 = completion2 + 3
+    carrier4 = completion2 + 4
+    return {
+        "T23": (carrier2 + carrier3, 7),
+        "A23": (carrier2 + carrier3 - 1, 8),
+        "T24": (carrier2 + carrier4, 6),
+        "A24": (carrier2 + carrier4 - 1, 7),
+        "N34": (carrier2 + 5, 6),
+        "N34A": (carrier2 + 4, 7),
+    }
+
+
+def independent_carrier_charge(
+    kprime: int,
+    vector: tuple[int, ...] | list[int],
+    union_size: int,
+    fixed_dimension: int,
+):
+    mprime = 67472 + kprime
+    result = list(vector)
+    for target_support in range(2, 10):
+        if target_support > fixed_dimension:
+            continue
+        result[target_support - 2] = min(
+            result[target_support - 2],
+            independent_multicarrier_cap(
+                kprime,
+                mprime,
+                union_size,
+                fixed_dimension,
+                target_support,
+            ),
+        )
+    return tuple(result)
+
+
+def independent_carrier_base23(
+    kprime: int,
+    baseline: dict[int, int],
+    defect2: int,
+    defect3: int,
+):
+    caps2 = independent_exact_cross_caps(kprime, 2, defect2, baseline)
+    caps3 = independent_exact_cross_caps(kprime, 3, defect3, baseline)
+    return tuple(
+        min(baseline[target], caps2[target], caps3[target])
+        for target in range(2, 10)
+    )
+
+
+def independent_carrier_group23(kprime: int, baseline: dict[int, int]):
+    quotient = kprime - 10
+    ordinary = {}
+    one_step = []
+    impossible = 0
+    position_cases = 0
+    for defect2 in range(quotient + 1):
+        for defect3 in range(quotient + 1):
+            vector = independent_carrier_base23(
+                kprime, baseline, defect2, defect3
+            )
+            completion2 = quotient - defect2
+            completion3 = quotient - defect3
+            if (
+                completion2 > 0
+                and completion3 > 0
+                and completion3 <= completion2
+            ):
+                if defect2 + defect3 < quotient:
+                    impossible += 1
+                    continue
+                carrier2 = completion2 + 1
+                carrier3 = completion3 + 2
+                transverse = independent_carrier_charge(
+                    kprime, vector, carrier2 + carrier3, 7
+                )
+                anchor = independent_carrier_charge(
+                    kprime, vector, carrier2 + carrier3 - 1, 8
+                )
+                ordinary[transverse] = f"s2={defect2}/s3={defect3}/T23"
+                ordinary[anchor] = f"s2={defect2}/s3={defect3}/A23"
+                position_cases += 2
+            elif completion2 > 0 and completion3 == completion2 + 1:
+                one_step.append((defect2, defect3, vector))
+                position_cases += 1
+            else:
+                ordinary[vector] = f"s2={defect2}/s3={defect3}/U23"
+                position_cases += 1
+    return (
+        ordinary,
+        independent_componentwise_maximal(ordinary),
+        one_step,
+        impossible,
+        position_cases,
+    )
+
+
+def independent_carrier_rows45(kprime: int, baseline: dict[int, int]):
+    quotient = kprime - 10
+    mprime = 67472 + kprime
+    exact = []
+    unique = {}
+    for defect4 in range(quotient + 1):
+        caps4 = independent_exact_cross_caps(kprime, 4, defect4, baseline)
+        for defect5 in range(quotient + 1):
+            caps5 = independent_exact_cross_caps(
+                kprime, 5, defect5, baseline
+            )
+            vector = [
+                min(baseline[target], caps4[target], caps5[target])
+                for target in range(2, 10)
+            ]
+            if defect4 + defect5 < quotient:
+                vector[2] = min(
+                    vector[2],
+                    independent_external_incidence_cap(
+                        kprime, mprime, defect4, defect5
+                    )[0],
+                )
+            item = tuple(vector)
+            exact.append((defect4, defect5, item))
+            unique[item] = f"s4={defect4}/s5={defect5}"
+    return exact, unique, independent_componentwise_maximal(unique)
+
+
+def independent_carrier_defect(label: str, support: int) -> int:
+    prefix = f"s{support}="
+    for part in label.split("/"):
+        if part.startswith(prefix):
+            return int(part.split("=", 1)[1])
+    raise AssertionError(f"missing defect {support}")
+
+
+def independent_carrier_combine(*vectors):
+    return tuple(min(values) for values in zip(*vectors))
+
+
+def independent_carrier_premium(vector):
+    return sum(
+        comb(11 - target, 2) * vector[target - 2]
+        for target in range(2, 10)
+    )
+
+
+@cache
+def independent_carrier_summary(kprime: int):
+    quotient = kprime - 10
+    mprime = 67472 + kprime
+    baseline = {
+        support: (
+            independent_defect_cap(
+                quotient,
+                mprime,
+                support,
+                {2: 7, 3: 2, 4: 1, 5: 0}[support],
+            )[0]
+            if support <= 5
+            else independent_completion_cap(
+                quotient, mprime, support, quotient
+            )[0]
+        )
+        for support in range(2, 10)
+    }
+    raw23, front23, one_step, impossible, position_cases = (
+        independent_carrier_group23(kprime, baseline)
+    )
+    exact45, raw45, front45 = independent_carrier_rows45(
+        kprime, baseline
+    )
+    raw69, front69 = independent_high_support_group(kprime, baseline)
+    best = (-1, "", ())
+    ordinary_leaves = 0
+    one_step_leaves = 0
+    trichotomy_leaves = 0
+    geometry_max = {name: -1 for name in independent_carrier_cases(1)}
+
+    for left, middle, right in product(front23, front45, front69):
+        vector = independent_carrier_combine(
+            left[1], middle[1], right[1]
+        )
+        value = independent_carrier_premium(vector)
+        ordinary_leaves += 1
+        if value > best[0]:
+            best = (
+                value,
+                f"{left[0]}/{middle[0]}/{right[0]}/plain",
+                vector,
+            )
+
+    for defect2, defect3, left in one_step:
+        completion2 = quotient - defect2
+        cases = independent_carrier_cases(completion2)
+        for defect4, defect5, middle in exact45:
+            completion4 = quotient - defect4
+            for right in front69:
+                vector = independent_carrier_combine(
+                    left, middle, right[1]
+                )
+                prefix = (
+                    f"s2={defect2}/s3={defect3}/"
+                    f"s4={defect4}/s5={defect5}/{right[0]}"
+                )
+                if completion4 == completion2 + 1:
+                    for geometry, (union_size, dimension) in cases.items():
+                        candidate = independent_carrier_charge(
+                            kprime, vector, union_size, dimension
+                        )
+                        value = independent_carrier_premium(candidate)
+                        geometry_max[geometry] = max(
+                            geometry_max[geometry], value
+                        )
+                        trichotomy_leaves += 1
+                        if value > best[0]:
+                            best = (
+                                value,
+                                f"{prefix}/{geometry}",
+                                candidate,
+                            )
+                else:
+                    value = independent_carrier_premium(vector)
+                    one_step_leaves += 1
+                    if value > best[0]:
+                        best = (value, f"{prefix}/plain", vector)
+
+    return {
+        "raw_defect_leaf_count": (quotient + 1) ** 4 * 120,
+        "support23_unique_vector_count": len(raw23),
+        "support23_maximal_vector_count": len(front23),
+        "support23_one_step_pair_count": len(one_step),
+        "support23_impossible_pair_count": impossible,
+        "support23_position_case_count": position_cases,
+        "support45_unique_vector_count": len(raw45),
+        "support45_maximal_vector_count": len(front45),
+        "support69_unique_vector_count": len(raw69),
+        "support69_maximal_vector_count": len(front69),
+        "ordinary_frontier_leaf_count": ordinary_leaves,
+        "one_step_plain_leaf_count": one_step_leaves,
+        "trichotomy_leaf_count": trichotomy_leaves,
+        "trichotomy_case_max_premium": geometry_max,
+        "active_small_defects": {
+            str(support): independent_carrier_defect(best[1], support)
+            for support in range(2, 6)
+        },
+        "active_branch": best[1],
+        "active_caps": {
+            str(target): best[2][target - 2]
+            for target in range(2, 10)
+        },
+        "completion_premium": best[0],
+    }
+
+
+@cache
+def independent_carrier_payment(kprime: int, records: int):
+    nprime = 1048576 + kprime
+    mprime = 67472 + kprime
+    charts = {
+        core: independent_integral_chart(kprime, core)
+        for core in range(9, kprime)
+    }
+    maximizing_core = max(charts, key=charts.get)
+    chart = charts[maximizing_core]
+    kernel = independent_refined_kernel_capacity(kprime)
+    marks = comb(nprime, 9) * chart
+    summary = independent_carrier_summary(kprime)
+    premium = summary["completion_premium"]
+    full_rank = (marks + records * premium) // 55
+    total = kernel + full_rank
+    demand = records * comb(mprime, 11) - comb(nprime, 11)
+    coefficient = 55 * comb(mprime, 11) - premium
+    raw = records * coefficient - 55 * comb(nprime, 11) - 55 * kernel - marks
+    ceiling = (
+        records * 55 * comb(mprime, 11)
+        - 55 * comb(nprime, 11)
+        - 55 * kernel
+        - marks
+        - 1
+    ) // records
+    return {
+        "n": nprime,
+        "m": mprime,
+        "q": kprime - 10,
+        "max_core": maximizing_core,
+        "chart": chart,
+        "kernel_capacity": kernel,
+        "rank_nine_marks": marks,
+        **summary,
+        "safe_premium_ceiling": ceiling,
+        "premium_ceiling_margin": ceiling - premium,
+        "full_rank_capacity": full_rank,
+        "total_capacity": total,
+        "required_component_incidence": demand,
+        "gap": demand - total,
+        "record_coefficient_cross": coefficient,
+        "floor_record_raw_cross": raw,
+    }
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -3193,6 +3551,9 @@ def main() -> None:
     collision_payment = data["rank11_k54_k59_small_support_collision_payment"]
     cross_collision_charge = data["sparse_circuit_cross_support_collision_charge"]
     cross_collision_payment = data["rank11_k60_k70_cross_support_collision_payment"]
+    multicarrier_charge = data["sparse_circuit_multicarrier_collision_charge"]
+    carrier_trichotomy = data["sparse_circuit_k71_carrier_position_trichotomy"]
+    carrier_payment = data["rank11_k71_carrier_trichotomy_payment"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -4577,7 +4938,9 @@ def main() -> None:
         == 59
         and data["claims"]["rank9_k60_k70_cross_support_collision_closed_K_prime"]
         == 70
-        and data["claims"]["rank9_remaining_interval"] == [71, 15528],
+        and data["claims"]["rank9_k71_carrier_trichotomy_closed_K_prime"]
+        == 71
+        and data["claims"]["rank9_remaining_interval"] == [72, 15528],
         "independent K'=46..53 deep payment and K'=54 wall",
     )
     require(
@@ -4649,7 +5012,9 @@ def main() -> None:
         == 59
         and data["claims"]["rank9_k60_k70_cross_support_collision_closed_K_prime"]
         == 70
-        and data["claims"]["rank9_remaining_interval"] == [71, 15528],
+        and data["claims"]["rank9_k71_carrier_trichotomy_closed_K_prime"]
+        == 71
+        and data["claims"]["rank9_remaining_interval"] == [72, 15528],
         "independent K'=54..59 collision payment and K'=60 wall",
     )
     require(
@@ -4729,8 +5094,112 @@ def main() -> None:
         and cross_collision_payment["remaining_rank9_interval"] == [71, 15528]
         and data["claims"]["rank9_k60_k70_cross_support_collision_closed_K_prime"]
         == 70
-        and data["claims"]["rank9_remaining_interval"] == [71, 15528],
+        and data["claims"]["rank9_k71_carrier_trichotomy_closed_K_prime"]
+        == 71
+        and data["claims"]["rank9_remaining_interval"] == [72, 15528],
         "independent K'=60..70 cross-collision payment and K'=71 wall",
+    )
+    require(
+        multicarrier_charge == {
+            **multicarrier_charge,
+            "correction_dimension": 10,
+            "intersection_dimension": "r_d=g+1-d",
+            "outside_budget": "R_d=K-r_d-u",
+            "inside_count": "C(u,d)",
+            "outside_stratum_count": (
+                "floor(C(u,d-j)C(m-u,j-1)max(0,R_d-j+1)/j)"
+            ),
+            "incidence_multiplier": "C(m-d,11-d)",
+        },
+        "independent multicarrier theorem statement",
+    )
+    multicarrier_checks = 0
+    for sample in multicarrier_charge["K71_samples"].values():
+        union_size = sample["union_size"]
+        dimension = sample["fixed_dimension"]
+        for target_text, declared in sample["targets"].items():
+            target = int(target_text)
+            count = independent_multicarrier_count(
+                71, 67543, union_size, dimension, target
+            )
+            require(
+                declared["intersection_dimension"]
+                == dimension + 1 - target > 0
+                and declared["outside_budget"]
+                == 71 - (dimension + 1 - target) - union_size
+                and declared["target_support_count"] == count
+                and declared["target_incidence_cap"]
+                == count * comb(67543 - target, 11 - target),
+                f"independent multicarrier sample {union_size}/{dimension}/{target}",
+            )
+            multicarrier_checks += 1
+
+    impossible_pairs = [
+        (defect2, defect3)
+        for defect2 in range(61)
+        for defect3 in range(61)
+        if 61 - defect3 <= 61 - defect2
+        and defect2 + defect3 < 61
+    ]
+    impossible_digest = hashlib.sha256(
+        "".join(
+            f"{defect2},{defect3}\n"
+            for defect2, defect3 in impossible_pairs
+        ).encode()
+    ).hexdigest()
+    expected_cases = {
+        name: {"union_size": union_size, "fixed_dimension": dimension}
+        for name, (union_size, dimension) in independent_carrier_cases(29).items()
+    }
+    require(
+        carrier_trichotomy["correction_dimension"] == 10
+        and carrier_trichotomy["support2_carrier"]
+        == "full nonzero parallel class of size M2+1"
+        and carrier_trichotomy["positions"]
+        == ["transverse", "proper_span", "full_completion"]
+        and carrier_trichotomy["full_completion_necessary_condition"]
+        == "Mc>=M2+1"
+        and carrier_trichotomy["support23_pruning_condition"] == "M3<=M2"
+        and carrier_trichotomy["support23_impossible_condition"]
+        == "s2+s3<q"
+        and carrier_trichotomy["K71_impossible_defect_pair_count"]
+        == len(impossible_pairs)
+        == 961
+        and carrier_trichotomy["K71_impossible_defect_pair_digest_sha256"]
+        == impossible_digest
+        and carrier_trichotomy["one_step_condition"] == "M3=M4=M2+1"
+        and carrier_trichotomy["K71_active_completions"]
+        == {"M2": 29, "M3": 30, "M4": 30}
+        and carrier_trichotomy["K71_cases"] == expected_cases
+        and carrier_trichotomy["nested_anchor_intersection_sizes"] == [0, 1],
+        "independent carrier-position trichotomy",
+    )
+
+    carrier71 = independent_carrier_payment(71, non_dense)
+    carrier72 = independent_carrier_payment(72, non_dense)
+    carrier72_wall = dict(carrier72)
+    carrier72_wall["capacity_excess"] = -carrier72_wall.pop("gap")
+    require(
+        carrier_payment["closed_rows"] == [71]
+        and carrier_payment["new_closed_prefix"] == [10, 71]
+        and carrier_payment["first_method_wall"] == 72
+        and carrier_payment["residual_record_floor"] == non_dense
+        and carrier_payment["rows"]["71"] == carrier71
+        and carrier_payment["rows"]["72"] == carrier72_wall
+        and carrier71["gap"]
+        == 118872281099445772155993127155914865045379156488810154591370
+        and carrier71["premium_ceiling_margin"]
+        == 23776122440930417094576446937038395558574009
+        and carrier71["active_small_defects"]
+        == {"2": 33, "3": 31, "4": 31, "5": 31}
+        and carrier71["support23_impossible_pair_count"] == 961
+        and carrier72_wall["capacity_excess"]
+        == 4821537739796415753639473905341364357966460110033651367468100
+        and carrier72_wall["premium_ceiling_margin"] < 0
+        and carrier72_wall["active_small_defects"]
+        == {"2": 33, "3": 31, "4": 31, "5": 31}
+        and carrier_payment["remaining_rank9_interval"] == [72, 15528],
+        "independent carrier-trichotomy K'=71 payment and K'=72 wall",
     )
     k14_toy = codimension_four_sparse_circuit_toy()
     require(k14_toy == (10, 6, 4, 3), "K'=14 finite-field branches")
@@ -5610,8 +6079,9 @@ def main() -> None:
         "rank9_k46_k53_deep_joint_completion_closed_K_prime": 53,
         "rank9_k54_k59_small_support_collision_closed_K_prime": 59,
         "rank9_k60_k70_cross_support_collision_closed_K_prime": 70,
+        "rank9_k71_carrier_trichotomy_closed_K_prime": 71,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [71, 15528],
+        "rank9_remaining_interval": [72, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -5680,6 +6150,11 @@ def main() -> None:
         f"cross_collision_represented_leaves={cross_collision_leaves} "
         f"k70_cross_collision_gap={min(cross_collision_gaps)} "
         f"k71_cross_collision_excess={cross_collision71_wall['capacity_excess']} "
+        f"multicarrier_checks={multicarrier_checks} "
+        f"carrier_impossible_pairs={len(impossible_pairs)} "
+        f"carrier_trichotomy_leaves={carrier71['trichotomy_leaf_count']} "
+        f"k71_carrier_gap={carrier71['gap']} "
+        f"k72_carrier_excess={carrier72_wall['capacity_excess']} "
         f"k14_toy={'/'.join(map(str, k14_toy))} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "

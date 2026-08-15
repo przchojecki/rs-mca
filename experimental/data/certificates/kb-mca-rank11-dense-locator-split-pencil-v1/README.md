@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages eighty-eight proved local results after the fixed
+This certificate packages ninety-one proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -203,6 +203,19 @@ rank-eleven anchor-star reduction:
   `854274172985042754802177028749324962520517760595473749602211` at
   `K'=70`.  The payment first fails at `K'=71` by capacity excess
   `824875968499878215752683873455674299360608616555107905777434`;
+- a fixed-union multicarrier collision theorem.  If a `g`-dimensional
+  vanishing space is fixed on `u` points, Grassmann and the common-root bound
+  give the exact outside-count cap for every target support with
+  `g+1-d>0`;
+- the support-two/three/four carrier-position trichotomy.  The support-two
+  carrier is a full projective parallel class; transverse, proper-span, and
+  full-completion positions are exhaustive, and the one-step completion
+  case reduces to six fixed-union geometries;
+- the resulting `K'=71` payment.  It excludes 961 impossible defect pairs,
+  prices all six one-step geometries, and closes the row by
+  `118872281099445772155993127155914865045379156488810154591370`.
+  The first new wall is `K'=72`, with capacity excess
+  `4821537739796415753639473905341364357966460110033651367468100`;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -341,14 +354,17 @@ deep-defect wall without calling the primary implementation.  It separately
 checks the same-source collision theorem, the grouped `1,1,7` Pareto
 frontiers, all six new safe rows, and the `K'=60` collision wall.  It also
 checks all 26 admissible mixed-support pairs, `13230140880` represented raw
-leaves, all eleven new safe rows, and the `K'=71` wall. The
+leaves, all eleven new safe rows, and the old `K'=71` wall.  It then
+independently reconstructs 29 fixed-union samples, the digest of all 961
+impossible defect pairs, all six carrier positions, the `K'=71` payment,
+and the `K'=72` wall. The
 primary replay checks the
 existing affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `71<=K'<=15528` is open; the
+lane. The low rank-nine interval `72<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not
