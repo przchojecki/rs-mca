@@ -88,7 +88,7 @@ At this snapshot:
 - The rank-ten margin/interleaving split now pays the complete direct post-near KoalaBear affine-error-rank-10 branch.  At threshold T=667, the support-transverse high part costs 5143522968716559, the common-support interleaved low part costs 56727790457914040, and the disjoint near add-back costs 134944, for total 61871313426765543 and slack 213109414684629544.  The projection-collapse guard uses the actual sextic line field |F|=2130706433^6.  The same exact one-threshold formula first fails at error rank 11, whose minimum is 1040506078215897711 at T=876; an exact post-near constant-code star proves the per-pair multiplicity factor n-A is sharp.  This moves no active-v4 atom and does not close KoalaBear.
 - The rank-eleven successor now sums the record-local support margins before taking a minimum and compiles low-margin records into actual fixed minimizing pairs.  Every over-budget post-near error-rank-11 line forces one pair of deficiency at most 8 with weighted load at least 743449148, and independently a possibly different pair of deficiency at most 4 owning at least 200632 distinct slopes.  The complete printed-theorem core-deficiency cutoff has minimum 813929118931913384, while the stronger summed-margin relaxation has minimum 811958533186703629; both exceed the row budget.  A finite parallel-star control rules out distinct-neighbor promotion and a smaller one-pair multiplier.  Thus the next missing theorem couples different pair cores or routes dense parallel groups to a chronology owner.  This is a route cut with zero active-v4 ledger movement, not a rank-eleven payment or KoalaBear closure.
 - The dense-core owner substrate now has a guarded acceptance contract.  Any reuse of the active S/A/E large-owner chronology must charge the proved `2w` near-rational set separately from the 31-slope exception set, replacing the contained-owner target by `B*-(2w+31)-(n-g)`.  Any certificate computed in the effective `K=k+1` lattice envelope must also impose the exact degree-`<k` quotient guard and same-support pair-noncontainment test.  An explicit `(1_E,X^k)` record refutes silent dimension transport, while the deployed pole-line record passes the repaired guard with all frozen owner fields unassigned.  These results make the #1168 owner interface witness-sound and honestly priced; they do not construct the missing chronology owner, pay rank eleven, or move an active-v4 atom.
-- The post-near rank-eleven dense-locator packet now proves seventy-three local
+- The post-near rank-eleven dense-locator packet now proves seventy-five local
   results under its pinned 32-anchor/18-dense-root/ten-space setup.  High-core
   absorption is exactly ten-dimensional; at least `990810934` parts per
   billion of record/eleven-subset incidences enter positive-dimensional owner
@@ -158,6 +158,16 @@ At this snapshot:
   component capacities unchanged, exact demand `R*C(m',11)-C(n',11)` closes
   `K'=41` by
   `3959829848992990899082071934034620604165114037293042026746826`.
+  A cross-support completion-defect theorem then prices the common
+  annihilator span instead of maximizing sparse support strata independently.
+  A support-`c` deletion with `q-s` completions confines target support `d`
+  to a carrier of size `q+c-1+s(d-1)` whenever
+  `c+(s+1)d-s-1<=10`.  For source support five, defects zero through four
+  and the complementary all-at-most-`q-5` branch are exhaustive.  Their
+  worst weighted premium closes `K'=42` by
+  `4081031051590194485758587836050845115467905186032497191061176`;
+  the same payment first fails at `K'=43` by
+  `2590504432899371163130658487199612335023802688487478696166262`.
   These refinements stay
   in residual units and do not use the original-row core floor.
   Canonical-basis, nine-shadow, projective-paving, bounded-parallel,
@@ -169,14 +179,14 @@ At this snapshot:
   at `K'=10`; at `K'=11` the chart-local fence remains above both selector
   demands, but its full-circuit witness creates 54 neighboring rank-nine
   shadows and is paid globally.  Thus the exact component boundary is: no
-  component target at `K'=10..21`; rank eight only on `22..41`; rank nine
-  or rank eight on `42..15528`; rank eight only on `15529..22525`;
+  component target at `K'=10..21`; rank eight only on `22..42`; rank nine
+  or rank eight on `43..15528`; rank eight only on `15529..22525`;
   chronology on `22526..37995`; and no
   component target from `K'=37996` onward.  No active-v4 atom moves, and
   error rank eleven is not paid.
-- At the first open rank-nine row `K'=42`, the sharp-isolated full-deficit
+- At the first open rank-nine row `K'=43`, the cross-support completion-defect
   payment has capacity excess
-  `2710771376158610722953158157862051010402433288229120154217278`.
+  `2590504432899371163130658487199612335023802688487478696166262`.
   This is an exact method wall, not a counterexample.  The next proof must
   sharpen the complete weighted deficit vector, lower the rank-nine chart,
   or add a genuinely shared resource without omitting a kernel corank or

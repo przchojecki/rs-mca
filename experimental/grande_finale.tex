@@ -12205,6 +12205,121 @@ Thus the contradiction persists for every $N\ge N_{\min}$.  Exact replay
 at $K'=42$ gives the displayed capacity excess, so no later row is claimed.
 \end{proof}
 
+\begin{proposition}[Cross-support completion-defect carrier]
+\label{prop:kb-rank11-cross-support-defect-carrier}
+Use the ten-dimensional sparse-circuit setup, put $q=K'-10$, and let
+$2\le c,d\le9$.  Suppose one independent $(c-1)$-deletion has exactly
+$q-s$ circuit completions, where $0\le s\le q$.  If
+\[
+ c+(s+1)d-s-1\le10,\qquad\text{(XC)}
+\]
+then every support-$d$ circuit lies in one carrier of size at most
+\[
+ q+c-1+s(d-1).
+\]
+Consequently its selected eleven-set incidence is at most
+\[
+ \binom{q+c-1+s(d-1)}d\binom{m'-d}{11-d}.
+\]
+For source support $c=5$ and defects $s=0,1,2,3,4$, the controlled target
+supports are respectively
+\[
+ \{2,3,4,5,6\},\quad\{2,3\},\quad\{2\},\quad\{2\},\quad\{2\}.
+\]
+\end{proposition}
+
+\begin{proof}
+Let $A$ be the source deletion.  Normalize each of its $q-s$ completion
+labels at its private completion coordinate.  These labels are linearly
+independent and span a space $\Lambda_0$ of dimension $q-s$ on a set $U$
+of size
+\[
+ |U|=q+c-1-s.
+\]
+Let $W_d$ be the span of all support-$d$ circuit labels.  Since the full
+annihilator has dimension $q$, at most $s$ support-$d$ labels span
+$(W_d+\Lambda_0)/\Lambda_0$.  Adjoining their supports to $U$ gives a
+carrier $B$ with
+\[
+ |B|\le q+c-1-s+sd=q+c-1+s(d-1).
+\]
+Every support-$d$ label now has one representation on $B$ and its minimal
+representation on its circuit support $D$.  Their union has size at most
+\[
+ q+c-1+s(d-1)+d\le q+10=K'
+\]
+by (XC).  Vandermonde independence through $K'$ points forces the two
+representations to agree coordinatewise, hence $D\subseteq B$.  Counting
+the possible $d$-subsets of $B$ and their eleven-set extensions gives the
+incidence cap.  Substitution of $c=5$ gives the displayed target sets.
+\end{proof}
+
+\begin{proposition}[$K'=42$ cross-support completion-defect payment]
+\label{prop:kb-rank11-k42-cross-support-payment}
+In the fixed component target, every rank-nine alternative is empty at
+$K'=42$.  Partition by the maximum number of completions of a support-five
+deletion.  Maxima $q-s$ for $0\le s\le4$ give the five carrier branches of
+Proposition~\ref{prop:kb-rank11-cross-support-defect-carrier}; the
+complementary branch has at most $q-5$ completions on every deletion.  The
+six exact weighted premiums are
+\[
+\begin{array}{c|r}
+s&\text{premium}\\ \hline
+0&3982795567806168516229316108688140450163630384\\
+1&32010916243694499800320717073630461749362242674\\
+2&38248686795246707324552098975684990817633239548\\
+3&37909212899522784820182461169606692027883637848\\
+4&37569681406601825198675563099275312923276993433\\
+\text{fallback}&39561073029598078809344868550502487135515187669.
+\end{array}
+\]
+The fallback is worst.  Exact component demand exceeds complete capacity by
+\[
+4081031051590194485758587836050845115467905186032497191061176.
+\]
+The same six-branch payment first fails at $K'=43$, where capacity exceeds
+demand by
+\[
+2590504432899371163130658487199612335023802688487478696166262.
+\]
+\end{proposition}
+
+\begin{proof}
+For each branch, intersect the new source and cross-support caps with every
+preceding supportwise completion cap, then weight support $d$ by its exact
+55-shadow deficit $\binom{11-d}{2}$.  This gives the displayed exhaustive
+premiums.  At $K'=42$, the all-core chart is maximized at core 41 with value
+$9275468231667667$.  The kernel capacity, rank-nine marks, full-rank
+capacity, and total capacity are
+\[
+\begin{split}
+K_{\rm cap}&=17118437512304869669174162767031044097864380317587792249408,\\
+G&=39184442698700870613155525220929985265240350768921233121073054790,\\
+F_{\rm cap}&=910235915731681560754887897376310981744678105658368636509811656,\\
+\operatorname{Cap}&=910253034169193865624557071539078012788775970038686224302061064.
+\end{split}
+\]
+The sharp isolated-incidence demand is
+\[
+D_{42}=N_{\min}\binom{67514}{11}-\binom{1048618}{11},
+\]
+with exact value
+\[
+914334065220784060110315659375128857904243875224718721493122240.
+\]
+Subtraction gives the positive gap.  The coefficient of the record count
+after clearing the 55-shadow denominator is
+\[
+143327002558240027109345932105933013269257449851>0,
+\]
+and the exact minimum-record cross-product is
+\[
+224456707837460696716722330982796481350734785231787345508364676>0.
+\]
+Thus the contradiction persists above the record floor.  Independent exact
+replay of all six branches at $K'=43$ gives the displayed wall.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -13785,8 +13900,11 @@ pays $K'=23$, and
 Proposition~\ref{prop:kb-rank11-k24-k40-full-deficit-payment} pays rank nine
 through $K'=40$, and
 Proposition~\ref{prop:kb-rank11-k41-sharp-isolated-payment} pays $K'=41$.
+Proposition~\ref{prop:kb-rank11-cross-support-defect-carrier} couples the
+sparse support strata, and
+Proposition~\ref{prop:kb-rank11-k42-cross-support-payment} pays $K'=42$.
 Thus the remaining intervals are rank eight only on
-$22\le K'\le41$, rank nine or rank eight on $42\le K'\le15528$, rank
+$22\le K'\le42$, rank nine or rank eight on $43\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -13796,9 +13914,9 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=42$, the sharp-isolated
-full-deficit formula has the printed capacity excess
-$2710771376158610722953158157862051010402433288229120154217278$.
+At the first remaining rank-nine row $K'=43$, the cross-support
+completion-defect formula has the printed capacity excess
+$2590504432899371163130658487199612335023802688487478696166262$.
 This is a method wall: a continuation must sharpen the complete weighted
 deficit vector, lower the rank-nine chart, or extract another shared resource without omitting a kernel
 corank or reusing a rank-nine mark.

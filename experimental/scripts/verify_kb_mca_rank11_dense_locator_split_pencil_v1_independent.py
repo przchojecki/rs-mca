@@ -1452,6 +1452,41 @@ def rank_mod(matrix: list[list[int]], prime: int) -> int:
     return rank
 
 
+def cross_support_carrier_model() -> tuple[int, int]:
+    prime = 101
+    field_checks = 0
+    for dimension in (11, 12, 17, 42):
+        points = list(range(1, dimension + 1))
+        vandermonde = [
+            [pow(point, degree, prime) for point in points]
+            for degree in range(dimension)
+        ]
+        require(
+            rank_mod(vandermonde, prime) == dimension,
+            f"cross-support Vandermonde dimension={dimension}",
+        )
+        field_checks += 1
+    for quotient, defect in ((5, 0), (8, 3), (32, 4)):
+        count = quotient - defect
+        private = [
+            [int(row == column) for column in range(count)]
+            for row in range(count)
+        ]
+        require(
+            rank_mod(private, prime) == count,
+            f"cross-support private coordinates q={quotient} s={defect}",
+        )
+        field_checks += 1
+    arithmetic_checks = 0
+    for defect in range(5):
+        for target in range(2, 10):
+            carrier = 32 + 4 + defect * (target - 1)
+            condition = 5 + (defect + 1) * target - defect - 1 <= 10
+            require(condition == (carrier + target <= 42), "cross-support union")
+            arithmetic_checks += 1
+    return field_checks, arithmetic_checks
+
+
 def nullspace_mod(matrix: list[list[int]], prime: int) -> list[list[int]]:
     work = [row[:] for row in matrix]
     rows, cols = len(work), len(work[0])
@@ -1852,6 +1887,93 @@ def independent_refined_payment(
     }
 
 
+def independent_cross_support_branches(kprime: int) -> tuple[int, dict[str, int]]:
+    quotient = kprime - 10
+    mprime = 67472 + kprime
+    weights = {support: comb(11 - support, 2) for support in range(2, 10)}
+    caps = {
+        support: (
+            independent_defect_cap(
+                quotient,
+                mprime,
+                support,
+                {2: 7, 3: 2, 4: 1, 5: 0}[support],
+            )[0]
+            if support <= 5
+            else independent_completion_cap(quotient, mprime, support, quotient)[0]
+        )
+        for support in range(2, 10)
+    }
+    uncoupled = sum(weights[support] * caps[support] for support in caps)
+    branches = {}
+    for defect in range(5):
+        branch = dict(caps)
+        branch[5] = min(
+            branch[5],
+            independent_completion_cap(quotient, mprime, 5, quotient - defect)[0],
+        )
+        for target in range(2, 10):
+            if 5 + (defect + 1) * target - defect - 1 <= 10:
+                carrier = quotient + 4 + defect * (target - 1)
+                branch[target] = min(
+                    branch[target],
+                    comb(carrier, target) * comb(mprime - target, 11 - target),
+                )
+        branches[f"defect_{defect}"] = sum(
+            weights[support] * branch[support] for support in branch
+        )
+    fallback = dict(caps)
+    fallback[5] = min(
+        fallback[5],
+        independent_completion_cap(quotient, mprime, 5, quotient - 5)[0],
+    )
+    branches["fallback"] = sum(
+        weights[support] * fallback[support] for support in fallback
+    )
+    return uncoupled, branches
+
+
+def independent_cross_support_payment(kprime: int, records: int) -> dict[str, object]:
+    nprime = 1048576 + kprime
+    mprime = 67472 + kprime
+    quotient = kprime - 10
+    charts = {
+        core: independent_integral_chart(kprime, core)
+        for core in range(9, kprime)
+    }
+    maximizing_core = max(charts, key=charts.get)
+    chart = charts[maximizing_core]
+    kernel = independent_refined_kernel_capacity(kprime)
+    marks = comb(nprime, 9) * chart
+    uncoupled, branches = independent_cross_support_branches(kprime)
+    premium = max(branches.values())
+    full_rank = (marks + records * premium) // 55
+    total = kernel + full_rank
+    demand = records * comb(mprime, 11) - comb(nprime, 11)
+    coefficient = 55 * comb(mprime, 11) - premium
+    raw = records * coefficient - 55 * comb(nprime, 11) - 55 * kernel - marks
+    return {
+        "n": nprime,
+        "m": mprime,
+        "q": quotient,
+        "isolated_global_cap": comb(nprime, 11),
+        "max_core": maximizing_core,
+        "chart": chart,
+        "kernel_capacity": kernel,
+        "rank_nine_marks": marks,
+        "uncoupled_completion_premium": uncoupled,
+        "branch_premiums": branches,
+        "completion_premium": premium,
+        "premium_saving": uncoupled - premium,
+        "full_rank_capacity": full_rank,
+        "total_capacity": total,
+        "required_component_incidence": demand,
+        "gap": demand - total,
+        "record_coefficient_cross": coefficient,
+        "floor_record_raw_cross": raw,
+    }
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -1889,6 +2011,8 @@ def main() -> None:
     full_deficit_payment = data["rank11_k24_k40_full_deficit_shadow_payment"]
     sharp_isolated = data["rank_stratified_isolated_incidence_cap"]
     k41_sharp = data["rank11_k41_sharp_isolated_payment"]
+    cross_support_carrier = data["sparse_circuit_cross_support_defect_carrier"]
+    k42_cross_support = data["rank11_k42_cross_support_defect_payment"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -2947,6 +3071,64 @@ def main() -> None:
         and k41_sharp["remaining_rank9_interval"] == [42, 15528],
         "independent K'=41 sharp payment",
     )
+    target_supports = {
+        str(defect): [
+            target
+            for target in range(2, 10)
+            if 5 + (defect + 1) * target - defect - 1 <= 10
+        ]
+        for defect in range(5)
+    }
+    require(cross_support_carrier == {
+        "correction_dimension": 10,
+        "component_size": 11,
+        "source_support_symbol": "c",
+        "target_support_symbol": "d",
+        "support_range": [2, 9],
+        "defect_range": "0<=s<=q",
+        "completion_count": "q-s",
+        "carrier_size": "q+c-1+s(d-1)",
+        "vandermonde_condition": "c+(s+1)d-s-1<=10",
+        "incidence_cap": "C(q+c-1+s(d-1),d)C(m-d,11-d)",
+        "support5_target_supports": target_supports,
+        "fallback_completion_ceiling": "q-5",
+    }, "independent cross-support carrier constants")
+    carrier_field_checks, carrier_arithmetic_checks = cross_support_carrier_model()
+    cross42 = independent_cross_support_payment(42, non_dense)
+    cross43 = independent_cross_support_payment(43, non_dense)
+    require(
+        k42_cross_support["closed_row"] == 42
+        and k42_cross_support["new_closed_prefix"] == [10, 42]
+        and k42_cross_support["first_method_wall"] == 43
+        and k42_cross_support["residual_record_floor"] == non_dense
+        and k42_cross_support["source_support"] == 5
+        and k42_cross_support["carrier_defects"] == list(range(5))
+        and k42_cross_support["branch_partition"]
+        == "s=q-max_A b_A for s=0..4, otherwise max_A b_A<=q-5"
+        and k42_cross_support["fallback_completion_ceiling"] == "q-5"
+        and all(k42_cross_support[key] == cross42[key] for key in cross42)
+        and cross42["completion_premium"] == cross42["branch_premiums"]["fallback"]
+        and cross42["gap"]
+        == 4081031051590194485758587836050845115467905186032497191061176
+        and cross42["record_coefficient_cross"] > 0
+        and cross42["floor_record_raw_cross"] > 0
+        and all(
+            k42_cross_support["K43_method_wall"][key] == cross43[key]
+            for key in cross43
+            if key not in {
+                "isolated_global_cap",
+                "uncoupled_completion_premium",
+                "premium_saving",
+                "gap",
+            }
+        )
+        and k42_cross_support["K43_method_wall"]["capacity_excess"]
+        == -cross43["gap"]
+        == 2590504432899371163130658487199612335023802688487478696166262
+        and cross43["floor_record_raw_cross"] < 0
+        and k42_cross_support["remaining_rank9_interval"] == [43, 15528],
+        "independent K'=42 cross-support payment",
+    )
     k14_toy = codimension_four_sparse_circuit_toy()
     require(k14_toy == (10, 6, 4, 3), "K'=14 finite-field branches")
 
@@ -3818,8 +4000,9 @@ def main() -> None:
         "rank9_k23_completion_defect_closed_K_prime": 23,
         "rank9_k24_k40_full_deficit_shadow_closed_K_prime": 40,
         "rank9_k41_sharp_isolated_closed_K_prime": 41,
+        "rank9_k42_cross_support_defect_closed_K_prime": 42,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [42, 15528],
+        "rank9_remaining_interval": [43, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -3865,6 +4048,9 @@ def main() -> None:
         f"k41_sharp_gap={k41_sharp['gap']} "
         f"k42_sharp_excess={k42_excess} "
         f"isolated_model=GF({isolated_field})/{isolated_root} "
+        f"k42_cross_support_gap={cross42['gap']} "
+        f"k43_cross_support_excess={-cross43['gap']} "
+        f"cross_support_model={carrier_field_checks}/{carrier_arithmetic_checks} "
         f"k14_toy={'/'.join(map(str, k14_toy))} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "

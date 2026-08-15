@@ -5011,3 +5011,42 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** At `K'=42`, sharpen the rank-nine chart or the complete
   weighted deficit premium, or identify another shared resource.  Preserve
   every kernel corank and do not reuse a rank-nine mark.
+
+### 2026-08-15 - Cross-support completion-defect payment closes K'=42
+
+- **Agent/model:** Codex, importing two further proved public prize-DAG nodes
+  after proof audit, exact arithmetic, finite-field replay, and hostile
+  mutation testing.
+- **Exact parent:** this PR's `K'=41` extension at
+  `16ee6cfb2fe6f33630f5b4adf50a25eedea69d99`.
+- **Research source:** prize-DAG commit
+  `291986739177a8511ba46d969e93056d8cc321a3`; source-contract SHA-256 values
+  `f51f62b2198f3477091f4966b76473aa21f49607535b189b75e87c28ecf2ab9c`
+  and `db90a48687728e7e6490e5ee976b54b3eda5b35b7184be7fc4a98e82c3a635b8`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** If one source support-`c` deletion has `q-s`
+  completions, their private coordinates span `q-s` dimensions of the
+  common annihilator.  At most `s` target support-`d` labels complete that
+  span, confining all support-`d` circuits to
+  `q+c-1+s(d-1)` coordinates whenever
+  `c+(s+1)d-s-1<=10`.  For source support five, defects zero through four
+  control target sets `{2,3,4,5,6}`, `{2,3}`, `{2}`, `{2}`, `{2}`.
+- **Impact:** Partitioning by the maximum support-five completion count gives
+  those five carrier branches and the complementary all-at-most-`q-5`
+  deletion branch.  The worst weighted premium is
+  `39561073029598078809344868550502487135515187669`.  Exact component demand
+  exceeds complete capacity at `K'=42` by
+  `4081031051590194485758587836050845115467905186032497191061176`.
+  The first remaining rank-nine row is `K'=43`.
+- **Controls:** The primary verifier regenerates the 75-source manifest and
+  recomputes all six branches.  The independent verifier reconstructs every
+  support cap, all core charts, all kernel coranks, both endpoint floor
+  comparisons, and a separate `GF(101)` Vandermonde/private-coordinate model.
+- **Nonclaim:** At `K'=43` the same payment has exact capacity excess
+  `2590504432899371163130658487199612335023802688487478696166262`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** At `K'=43`, strengthen the cross-support hierarchy or
+  extract another shared resource.  Preserve every kernel corank, intersect
+  every new cap with its prior supportwise cap, and do not reuse a rank-nine
+  mark.
