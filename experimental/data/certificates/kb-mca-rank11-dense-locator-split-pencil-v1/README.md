@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages fifty-four proved local results after the fixed
+This certificate packages fifty-six proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -45,6 +45,13 @@ rank-eleven anchor-star reduction:
   `11736940042024039` exceeds capacity `9274769506943785` by
   `2462170535080254`, closing rank nine and hence every component target on
   that row;
+- a common-core-offset split-pencil theorem, covering core sizes nine and
+  ten at `K'=11` with uniform rank-nine chart cap `9275866238180030`;
+- the `K'=11` circuit-shadow payment: circuits of size at least six carry at
+  least 45 rank-nine shadows, while all supports of size at most five
+  coalesce by Vandermonde independence; total capacity is below full
+  component demand by
+  `30688896124707489315310500375861176301757493788368353875455912`;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -165,19 +172,21 @@ complete-chart scope and integer-gap audit, and checks all
 `11` rank-eight monotonicity
 factors and both dense-owner bridge boundary rows.  The independent replay
 also checks finite-field rank-eight petal, minimal-shortening, and
-circuit-shadow models, all `33736` clean-dominant split-pencil sizes, and
-the independently derived minimal-row demand. The primary replay checks the
+circuit-shadow models, all `33736` clean-dominant split-pencil sizes, the
+independently derived minimal-row demand, 2,046 sparse-support Vandermonde
+tests, and all 605 circuit-shadow omissions. The primary replay checks the
 existing affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `11<=K'<=15528` is open; the
+lane. The low rank-nine interval `12<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not
-pay the rank-eight branch on `11<=K'<22526`. The circuit census partitions
-its first row but does not itself bound records or owners. The packet does
+pay the rank-eight branch on `12<=K'<22526`. The fixed-chart eight-petal
+witness at `K'=11` survives, but its full circuit creates 54 neighboring
+rank-nine shadows and is paid by the global circuit census. The packet does
 not assign the bridged dense
 owner in first-match chronology,
 pay error rank eleven, move an active v4 atom, or close KoalaBear.

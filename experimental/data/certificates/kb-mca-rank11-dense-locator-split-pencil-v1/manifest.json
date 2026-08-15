@@ -123,6 +123,20 @@
         "tree": "aea5f2935d3d8b26c583342f95ea3ce970f5f7de",
         "contract_sha256": "029b609ad2401fa9c9e689bdff2496fff2b202f2d00acb6010b64eac67acf881"
       },
+      "weighted_split_pencil_core_offset_cap": {
+        "id": "rate_half_mca_weighted_split_pencil_core_offset_cap",
+        "path": "background/nodes/rate_half_mca_weighted_split_pencil_core_offset_cap",
+        "commit": "635d38a2b8bccb113065c0007da31360b6c68769",
+        "tree": "e6c43c22b639c42e216929b437ad61d46b4e43b1",
+        "contract_sha256": "c16ddeb5b7e492a6ababe1f558ba7f7b049ac4f1116149191d7065dbed163159"
+      },
+      "rank11_k11_circuit_split_pencil_payment": {
+        "id": "rate_half_mca_rank11_k11_circuit_split_pencil_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k11_circuit_split_pencil_payment",
+        "commit": "635d38a2b8bccb113065c0007da31360b6c68769",
+        "tree": "aca673faaa3ed10ab4ae758789de84688af83548",
+        "contract_sha256": "72c6d95b858551bceea1467d6832b9a0e1daf73edac9c9ae54dc9af3e11b692a"
+      },
       "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -689,6 +703,87 @@
     ],
     "remaining_rank9_interval": [
       11,
+      15528
+    ]
+  },
+  "weighted_split_pencil_core_offset_cap": {
+    "minimum_P": 3,
+    "minimum_r": 0,
+    "owner_weight_ceiling_formula": "P-1",
+    "selected_line_mass_formula": "sum_p x_Lp=P",
+    "line_charge_formula": "sum_p C(x_Lp,2)+rP",
+    "heavy_threshold_formula": "floor(P/2)+1",
+    "balanced_cross_floor_formula": "floor(P^2/4)",
+    "clean_cap_formula": "max_0<=ell<=S floor(ell*((P-2)*(S-ell)/2+h*r*P))",
+    "balanced_cap_formula": "floor((M+rP)*C(S,2)/M)",
+    "collision_cap_formula": "C(h,2)*(C(P-1,2)+rP)",
+    "clean_inequality_slack_factorization": "(d-1)*(d+s)*(s-1)",
+    "K11_specializations": [
+      {
+        "j": 9,
+        "P": 67474,
+        "r": 0,
+        "S": 1048578,
+        "heavy_count": 31,
+        "balanced_cross_floor": 1138185169,
+        "maximizing_light_mass": 524289,
+        "clean_cap": 9273316443456456,
+        "balanced_cap": 549757386753,
+        "collision_cap": 1058465144520,
+        "total_cap": 9274924665987729
+      },
+      {
+        "j": 10,
+        "P": 67473,
+        "r": 1,
+        "S": 1048577,
+        "heavy_count": 31,
+        "balanced_cross_floor": 1138151432,
+        "maximizing_light_mass": 524320,
+        "clean_cap": 9274257984105680,
+        "balanced_cap": 549788929365,
+        "collision_cap": 1058465144985,
+        "total_cap": 9275866238180030
+      }
+    ]
+  },
+  "rank11_k11_circuit_split_pencil_payment": {
+    "K_prime": 11,
+    "n_prime": 1048587,
+    "m_prime": 67483,
+    "correction_dimension": 10,
+    "ambient_RS_dimension": 11,
+    "component_density_numerator": 990810934,
+    "component_density_denominator": 1000000000,
+    "residual_record_floor": 274980728111260126,
+    "rank9_core_sizes": [
+      9,
+      10
+    ],
+    "rank9_core_caps": [
+      9274924665987729,
+      9275866238180030
+    ],
+    "uniform_rank9_chart_cap": 9275866238180030,
+    "global_rank9_mark_capacity": 39175699244380414710274828706724897216747022733515052264273968850,
+    "high_circuit_threshold": 6,
+    "minimum_high_circuit_rank9_shadows": 45,
+    "high_circuit_incidence_cap": 870571094319564771339440637927219938149933838522556716983865974,
+    "low_circuit_support_ceiling": 5,
+    "low_circuit_support_coalesces": true,
+    "low_circuit_per_record_cap_formula": "C(m_prime-1,10)",
+    "low_circuit_incidence_cap_at_record_floor": 148295871115637683383749676973548549906884572431836136187410,
+    "total_capacity_at_record_floor": 870719390190680409022824387604193486699840723094988553120053384,
+    "required_incidence_at_record_floor": 901408286315387898338134887980054663001598216883356906995509296,
+    "demand_capacity_gap": 30688896124707489315310500375861176301757493788368353875455912,
+    "raw_demand_capacity_cross": 30688896124707489315310500375861176301757493788368353875455911063095820,
+    "record_coefficient_cross": 3277538744750188045701745970410737654908675596614324570,
+    "newly_closed_rows": [
+      11,
+      11
+    ],
+    "remaining_rank9_interval": [
+      12,
       15528
     ]
   },
@@ -2637,9 +2732,10 @@
     "full_rank_star_owner_is_record_intrinsic": true,
     "rank9_fixed_target_eliminated_from_Kprime": 15529,
     "rank9_minimal_shortening_closed_K_prime": 10,
+    "rank9_k11_circuit_split_pencil_closed_K_prime": 11,
     "rank9_low_shortening_reopened": true,
     "rank9_remaining_interval": [
-      11,
+      12,
       15528
     ],
     "kernel_dominant_lane_closed_through_Kprime": 1048576,

@@ -11322,6 +11322,166 @@ empty.  The initial Vandermonde argument excludes the other component
 lanes.
 \end{proof}
 
+\begin{proposition}[Selected-support split-pencil with a common-core offset]
+\label{prop:kb-rank11-weighted-selected-support-core-offset}
+Let distinct affine lines carry selected masses $x_{L,p}$ at owner points
+$p$, where
+\[
+ \sum_p x_{L,p}=P,\qquad x_{L,p}\le s_p\le P-1,
+ \qquad \sum_p s_p\le S.
+\]
+For an integer $r\ge0$, put
+\[
+ R_L=\sum_p\binom{x_{L,p}}2+rP,
+ \quad h=\floor{\frac{S}{\floor{P/2}+1}},
+ \quad M=\floor{\frac{P^2}{4}}.
+\]
+Then
+\begin{align}
+ \sum_LR_L\le{}&
+ \max_{0\le\ell\le S}
+ \floor{\ell\left(\frac{(P-2)(S-\ell)}2+hrP\right)}
+ \notag\\
+ &+\floor{\frac{M+rP}{M}\binom S2}
+ +\binom h2\left(\binom{P-1}2+rP\right).       \tag{SPO}
+\end{align}
+\end{proposition}
+
+\begin{proof}
+Write $Q_L=\sum_p\binom{x_{L,p}}2$ and
+$X_L=\sum_{p<a}x_{L,p}x_{L,a}$, so
+$Q_L+X_L=\binom P2$.  If no selected owner exceeds $P/2$, convexity gives
+$Q_L\le X_L$ and $X_L\ge M$.  Cross-owner pairs inject globally because
+two owner points determine one affine line.  Thus the balanced lines have
+total charge at most
+\[
+ \floor{\frac{M+rP}{M}\binom S2}.
+\]
+
+There are at most $h$ globally heavy owners.  A line containing two of them
+is determined by that pair, and convexity gives $Q_L\le\binom{P-1}2$.
+These collision lines contribute at most the third term of (SPO).
+
+Every remaining nonbalanced line has one dominant globally heavy owner of
+weight $s$.  Put $d=P-s$.  Its selected dominant mass is at most $s$, so
+\[
+ Q_L\le\binom s2+\binom d2.
+\]
+Distinct clean lines through this owner use disjoint light mass and each
+uses at least $d$ of it.  The exact identity
+\[
+ ds(P-2)-\{s(s-1)+d(d-1)\}
+ =(d-1)(d+s)(s-1)\ge0
+\]
+therefore gives
+\[
+ \frac{\binom s2+\binom d2+rP}{d}
+ \le \frac{s(P-2)}2+rP.
+\]
+If the total light mass is $\ell$, summing over the at most $h$ heavy
+owners bounds all clean lines by
+\[
+ \ell\left(\frac{(P-2)(S-\ell)}2+hrP\right).
+\]
+Maximizing over integral $\ell$ and adding the three classes proves (SPO).
+\end{proof}
+
+\begin{proposition}[$K'=11$ circuit-shadow split-pencil payment]
+\label{prop:kb-rank11-k11-circuit-split-pencil-payment}
+In the fixed target of
+Proposition~\ref{prop:kb-rank11-component-ninesubset-target}, every
+rank-eleven component alternative is empty at $K'=11$.  At the residual
+record floor, full component demand is
+\[
+ 901408286315387898338134887980054663001598216883356906995509296,
+\]
+whereas the combined high- and low-circuit capacity is
+\[
+ 870719390190680409022824387604193486699840723094988553120053384.
+\]
+The strict gap is
+\[
+ 30688896124707489315310500375861176301757493788368353875455912.
+\]
+\end{proposition}
+
+\begin{proof}
+At $K'=11$, the correction space $V'$ is a ten-dimensional hyperplane in
+$P_{11}=\mathbb F[X]_{<11}$.  Evaluation of $P_{11}$ on every eleven-set is
+an isomorphism, so every component incidence has affine-owner rank ten.
+Fix the nonzero global functional $\lambda$ with $V'=\ker\lambda$.
+
+For a rank-nine nine-shadow $B$, let $J$ be the common core of its owner
+plane.  The residual root bound gives $j=|J|\in\{9,10\}$.  Outside $J$,
+the selected petal mass and total owner mass are
+\[
+ P=m'-j,\qquad S=n'-j,
+\]
+and a marked extension contributes at most
+\[
+ \sum_p\binom{x_{L,p}}2+(j-9)P.
+\]
+Proposition~\ref{prop:kb-rank11-weighted-selected-support-core-offset}
+gives the exact capacities
+\[
+ \begin{array}{c|c|c|c|r}
+ j&P&S&r&\text{capacity}\\ \hline
+ 9&67474&1048578&0&9274924665987729\\
+ 10&67473&1048577&1&9275866238180030.
+ \end{array}
+\]
+Thus every rank-nine shadow has marked load at most
+$C_*=9275866238180030$, and all such shadows together have capacity
+\[
+ G=\binom{1048587}{9}C_*.                          \tag{1}
+\]
+
+For one component eleven-set $T$, the hyperplane
+$\operatorname{ev}_T(V')$ has one circuit support $C_T$, equivalently the
+unique representation
+\[
+ \lambda=\sum_{a\in C_T}\mu_a\operatorname{ev}_a,
+ \qquad \mu_a\ne0.                                \tag{2}
+\]
+If $c=|C_T|$, exactly
+\[
+ 55-\binom{11-c}{2}                                \tag{3}
+\]
+of its nine-shadows have rank nine.  Hence every $c\ge6$ incidence uses at
+least 45 marks, and (1) bounds all such incidences by
+\[
+ \floor{G/45}
+ =870571094319564771339440637927219938149933838522556716983865974.
+                                                               \tag{4}
+\]
+
+Now suppose $c\le5$.  Subtracting two representations (2) gives a relation
+among evaluation functionals on at most ten distinct points.  These are
+Vandermonde-independent on $P_{11}$, so the representations are identical.
+All low-circuit incidences therefore contain one fixed support $C_*'$ of
+size at most five.  One record supplies at most
+\[
+ \binom{m'-|C_*'|}{11-|C_*'|}\le\binom{m'-1}{10}
+\]
+such eleven-sets.  At
+$N_{\min}=274980728111260126$, the low-circuit capacity is
+\[
+ 148295871115637683383749676973548549906884572431836136187410.
+                                                               \tag{5}
+\]
+Adding (4)--(5) gives the asserted capacity.  The dense-locator theorem
+requires
+\[
+ \ceil{\frac{990810934}{10^9}N_{\min}\binom{67483}{11}},
+\]
+which is the displayed demand.  Moreover the demand coefficient minus
+$\binom{67482}{10}$ has positive cross numerator
+\[
+ 3277538744750188045701745970410737654908675596614324570,
+\]
+so the contradiction persists for every allowed larger record count.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -12819,6 +12979,13 @@ adds a base-field-normalized selected-support census which avoids the
 one-chart per-coordinate relaxation.  Its application in
 Proposition~\ref{prop:kb-rank11-rank9-minimal-split-pencil-payment} closes
 the isolated rank-nine row $K'=10$ by retaining the full component density.
+Proposition~\ref{prop:kb-rank11-weighted-selected-support-core-offset}
+prices the extra common-core coordinate at $K'=11$, and
+Proposition~\ref{prop:kb-rank11-k11-circuit-split-pencil-payment} couples all
+rank-nine shadows of each eleven-set.  Large circuits consume at least 45
+shadows, while sparse representations of the global hyperplane functional
+coalesce by Vandermonde independence.  This closes $K'=11$ despite the
+surviving fixed-chart witness.
 Proposition~\ref{prop:kb-rank11-kernel-basis-capacity}
 first eliminates kernel-lane domination through $K'=4598$. Retaining every
 basis decoration in Corollary~\ref{cor:kb-rank11-kernel-multibasis-capacity}
@@ -12874,9 +13041,10 @@ surviving rank-eight interval to the guarded dense-owner terminal, but does
 not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Proposition~\ref{prop:kb-rank11-rank8-minimal-shortening-exclusion}
 removes rank eight from the shortest row.  Together with the minimal
-split-pencil payment, there is no component target at $K'=10$.  Thus the
+split-pencil and circuit-shadow payments, there is no component target at
+$K'=10$ or $K'=11$.  Thus the
 remaining intervals are rank nine or rank eight on
-$11\le K'\le15528$, rank eight only on $15529\le K'\le22525$,
+$12\le K'\le15528$, rank eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
 $37996\le K'\le1048576$.
@@ -12888,8 +13056,8 @@ chronology-correct global incidence argument.
 Proposition~\ref{prop:kb-rank11-rank8-circuit-shadow-census} gives the exact
 first-row split: the full-circuit case has 54 rank-nine shadows, while every
 proper circuit gives additional rank-eight shadows and a locator ideal of
-dimension at least three.  Summing fixed-chart caps without retaining owner
-labels is not asserted.
+dimension at least three.  The circuit-shadow payment retains precisely
+those neighboring marks; it does not assert a smaller fixed-chart cap.
 The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,

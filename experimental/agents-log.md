@@ -4796,3 +4796,32 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Preserve weighted component incidences through the
   fixed-kernel and rank-eight branches, then construct a guarded
   chronology-owner assignment.
+
+### 2026-08-15 - K'=11 circuit-shadow split-pencil payment
+
+- **Agent/model:** Codex, importing two further proved public prize-DAG
+  nodes after exact arithmetic, independent finite-field, and hostile-
+  mutation replay.
+- **Exact parent:** this PR's K'=10 extension at
+  `78a34909ba97a0d2baeb2395a9f704e0a97e292d`.
+- **Status:** PROVED LOCAL ROW CLOSURE / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A common-core-offset split-pencil cap for the
+  `j=9,10` rank-nine charts, and a global circuit split.  Circuits of size
+  at least six consume at least 45 rank-nine shadows; all representations of
+  the global hyperplane functional with support at most five coalesce by
+  Vandermonde independence.  At the residual record floor, capacity is
+  `870719390190680409022824387604193486699840723094988553120053384`
+  against demand
+  `901408286315387898338134887980054663001598216883356906995509296`.
+- **Impact:** `K'=11` has no rank-eleven component target.  The rank-nine
+  interval contracts from `11..15528` to `12..15528`.
+- **Controls:** Primary replay, 91 hostile mutations, and the independent
+  replay all passed in Modal app `ap-tjpVABDxc1r6rqlSJOZuJP` at 56,620 KiB
+  peak RSS.  The independent path checked 2,046 sparse-support Vandermonde
+  minors and all 605 circuit-shadow omissions.  The 153-page paper compiled
+  with zero unresolved references.
+- **Nonclaim:** Error rank eleven, active-v4 ledger movement, KoalaBear, and
+  either prize problem remain open.
+- **What to do next:** At `K'=12`, classify sparse supports in the
+  two-dimensional quotient dual and extend the core-offset ledger to
+  `j=9,10,11`.

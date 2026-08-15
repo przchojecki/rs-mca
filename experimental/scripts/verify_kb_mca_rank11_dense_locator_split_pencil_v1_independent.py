@@ -105,6 +105,20 @@ FIXED_CHART_SOURCES = {
         "tree": "aea5f2935d3d8b26c583342f95ea3ce970f5f7de",
         "contract_sha256": "029b609ad2401fa9c9e689bdff2496fff2b202f2d00acb6010b64eac67acf881",
     },
+    "weighted_split_pencil_core_offset_cap": {
+        "id": "rate_half_mca_weighted_split_pencil_core_offset_cap",
+        "path": "background/nodes/rate_half_mca_weighted_split_pencil_core_offset_cap",
+        "commit": "635d38a2b8bccb113065c0007da31360b6c68769",
+        "tree": "e6c43c22b639c42e216929b437ad61d46b4e43b1",
+        "contract_sha256": "c16ddeb5b7e492a6ababe1f558ba7f7b049ac4f1116149191d7065dbed163159",
+    },
+    "rank11_k11_circuit_split_pencil_payment": {
+        "id": "rate_half_mca_rank11_k11_circuit_split_pencil_payment",
+        "path": "background/nodes/rate_half_mca_rank11_k11_circuit_split_pencil_payment",
+        "commit": "635d38a2b8bccb113065c0007da31360b6c68769",
+        "tree": "aca673faaa3ed10ab4ae758789de84688af83548",
+        "contract_sha256": "72c6d95b858551bceea1467d6832b9a0e1daf73edac9c9ae54dc9af3e11b692a",
+    },
     "kernel_canonical_basis_globalizer": {
         "id": "rate_half_mca_rank11_kernel_canonical_basis_globalizer",
         "path": "background/nodes/rate_half_mca_rank11_kernel_canonical_basis_globalizer",
@@ -1226,6 +1240,32 @@ def rank8_circuit_shadow_toy() -> tuple[int, int, int]:
     return field, checks, len(range(2, 10))
 
 
+def k11_circuit_payment_toy() -> tuple[int, int, int]:
+    field = 127
+    points = list(range(2, 13))
+    vandermonde_checks = 0
+    for size in range(1, 11):
+        for support in combinations(points, size):
+            determinant = prod(
+                (support[j] - support[i]) % field
+                for i in range(size) for j in range(i + 1, size)
+            ) % field
+            require(determinant != 0, f"K'=11 sparse-support independence size={size}")
+            vandermonde_checks += 1
+    shadow_checks = 0
+    for circuit_size in range(1, 12):
+        observed = sum(
+            not set(omitted).isdisjoint(range(circuit_size))
+            for omitted in combinations(range(11), 2)
+        )
+        require(
+            observed == 55 - comb(11 - circuit_size, 2),
+            f"K'=11 rank-nine shadows c={circuit_size}",
+        )
+        shadow_checks += 55
+    return field, vandermonde_checks, shadow_checks
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -1244,6 +1284,8 @@ def main() -> None:
     exact_petal = data["rank9_exact_petal_partition_capacity_cut"]
     split_pencil_cap = data["weighted_split_pencil_selected_support_cap"]
     minimal_split_payment = data["rank9_minimal_shortening_split_pencil_payment"]
+    offset_split_cap = data["weighted_split_pencil_core_offset_cap"]
+    k11_payment = data["rank11_k11_circuit_split_pencil_payment"]
     kernel_globalizer = data["kernel_canonical_basis_globalizer"]
     kernel_cut = data["kernel_rankstratified_capacity_cut"]
     kernel_multibasis = data["kernel_multibasis_decoration_compression"]
@@ -1725,6 +1767,87 @@ def main() -> None:
             f"minimal split-pencil clean inequality s={size}",
         )
         split_clean_checks += 1
+
+    require(offset_split_cap["minimum_P"] == 3, "core-offset minimum P")
+    require(offset_split_cap["minimum_r"] == 0, "core-offset minimum r")
+    require(
+        offset_split_cap["line_charge_formula"] == "sum_p C(x_Lp,2)+rP",
+        "core-offset charge",
+    )
+    independent_offset_rows = []
+    for core_size in (9, 10):
+        petal_mass = 67483 - core_size
+        offset = core_size - 9
+        total = 1048587 - core_size
+        heavy = total // (petal_mass // 2 + 1)
+        cross_floor = petal_mass**2 // 4
+        linear = (petal_mass - 2) * total + 2 * heavy * offset * petal_mass
+        quadratic = petal_mass - 2
+        center = linear // (2 * quadratic)
+        candidates = range(max(0, center - 1), min(total, center + 2) + 1)
+        clean, light = max(
+            (
+                ell * (linear - quadratic * ell) // 2,
+                ell,
+            )
+            for ell in candidates
+        )
+        balanced = (
+            (cross_floor + offset * petal_mass)
+            * total * (total - 1) // 2 // cross_floor
+        )
+        collision = (
+            heavy * (heavy - 1) // 2
+            * ((petal_mass - 1) * (petal_mass - 2) // 2 + offset * petal_mass)
+        )
+        independent_offset_rows.append({
+            "j": core_size,
+            "P": petal_mass,
+            "r": offset,
+            "S": total,
+            "heavy_count": heavy,
+            "balanced_cross_floor": cross_floor,
+            "maximizing_light_mass": light,
+            "clean_cap": clean,
+            "balanced_cap": balanced,
+            "collision_cap": collision,
+            "total_cap": clean + balanced + collision,
+        })
+    require(
+        offset_split_cap["K11_specializations"] == independent_offset_rows,
+        "independent core-offset capacities",
+    )
+
+    k11_n, k11_m = 1048587, 67483
+    k11_chart_cap = max(row["total_cap"] for row in independent_offset_rows)
+    k11_global_marks = comb(k11_n, 9) * k11_chart_cap
+    k11_high_cap = k11_global_marks // 45
+    k11_low_per_record = comb(k11_m - 1, 10)
+    k11_low_cap = non_dense * k11_low_per_record
+    k11_total_cap = k11_high_cap + k11_low_cap
+    k11_demand = ceiling(Fraction(
+        990810934 * non_dense * comb(k11_m, 11),
+        10**9,
+    ))
+    require(k11_payment["K_prime"] == 11, "K'=11 row")
+    require(k11_payment["rank9_core_sizes"] == [9, 10], "K'=11 core sizes")
+    require(k11_payment["rank9_core_caps"] == [
+        row["total_cap"] for row in independent_offset_rows
+    ], "K'=11 core caps")
+    require(k11_payment["uniform_rank9_chart_cap"] == k11_chart_cap, "K'=11 chart cap")
+    require(k11_payment["global_rank9_mark_capacity"] == k11_global_marks, "K'=11 marks")
+    require(k11_payment["high_circuit_incidence_cap"] == k11_high_cap, "K'=11 high cap")
+    require(k11_payment["low_circuit_incidence_cap_at_record_floor"] == k11_low_cap, "K'=11 low cap")
+    require(k11_payment["total_capacity_at_record_floor"] == k11_total_cap, "K'=11 total cap")
+    require(k11_payment["required_incidence_at_record_floor"] == k11_demand, "K'=11 demand")
+    require(k11_payment["demand_capacity_gap"] == k11_demand - k11_total_cap > 0, "K'=11 gap")
+    require(
+        k11_payment["record_coefficient_cross"]
+        == 990810934 * comb(k11_m, 11) - 10**9 * k11_low_per_record
+        > 0,
+        "K'=11 record persistence",
+    )
+    k11_field, k11_vandermonde_checks, k11_shadow_checks = k11_circuit_payment_toy()
 
     require(kernel_globalizer == {
         "correction_dimension": 10,
@@ -2586,8 +2709,9 @@ def main() -> None:
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated_from_Kprime": 15529,
         "rank9_minimal_shortening_closed_K_prime": 10,
+        "rank9_k11_circuit_split_pencil_closed_K_prime": 11,
         "rank9_low_shortening_reopened": True,
-        "rank9_remaining_interval": [11, 15528],
+        "rank9_remaining_interval": [12, 15528],
         "kernel_dominant_lane_closed_through_Kprime": 1048576,
         "kernel_fixed_lane_closed": True,
         "kernel_uniform_corank2_cap_proved": True,
@@ -2614,6 +2738,8 @@ def main() -> None:
         f"weighted_demand={boundary_demand} weighted_cap={boundary_cap} "
         f"minimal_split_gap={split_demand-split_capacity} "
         f"minimal_split_clean_checks={split_clean_checks} "
+        f"k11_gap={k11_demand-k11_total_cap} "
+        f"k11_toy=GF({k11_field})/{k11_vandermonde_checks}/{k11_shadow_checks} "
         f"kernel_checks={kernel_checks} "
         f"kernel_endpoint_gap={kernel_endpoint_demand-kernel_endpoint_capacity} "
         f"kernel_wall_gap={kernel_wall_capacity-kernel_wall_demand} "

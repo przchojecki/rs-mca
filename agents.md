@@ -88,7 +88,7 @@ At this snapshot:
 - The rank-ten margin/interleaving split now pays the complete direct post-near KoalaBear affine-error-rank-10 branch.  At threshold T=667, the support-transverse high part costs 5143522968716559, the common-support interleaved low part costs 56727790457914040, and the disjoint near add-back costs 134944, for total 61871313426765543 and slack 213109414684629544.  The projection-collapse guard uses the actual sextic line field |F|=2130706433^6.  The same exact one-threshold formula first fails at error rank 11, whose minimum is 1040506078215897711 at T=876; an exact post-near constant-code star proves the per-pair multiplicity factor n-A is sharp.  This moves no active-v4 atom and does not close KoalaBear.
 - The rank-eleven successor now sums the record-local support margins before taking a minimum and compiles low-margin records into actual fixed minimizing pairs.  Every over-budget post-near error-rank-11 line forces one pair of deficiency at most 8 with weighted load at least 743449148, and independently a possibly different pair of deficiency at most 4 owning at least 200632 distinct slopes.  The complete printed-theorem core-deficiency cutoff has minimum 813929118931913384, while the stronger summed-margin relaxation has minimum 811958533186703629; both exceed the row budget.  A finite parallel-star control rules out distinct-neighbor promotion and a smaller one-pair multiplier.  Thus the next missing theorem couples different pair cores or routes dense parallel groups to a chronology owner.  This is a route cut with zero active-v4 ledger movement, not a rank-eleven payment or KoalaBear closure.
 - The dense-core owner substrate now has a guarded acceptance contract.  Any reuse of the active S/A/E large-owner chronology must charge the proved `2w` near-rational set separately from the 31-slope exception set, replacing the contained-owner target by `B*-(2w+31)-(n-g)`.  Any certificate computed in the effective `K=k+1` lattice envelope must also impose the exact degree-`<k` quotient guard and same-support pair-noncontainment test.  An explicit `(1_E,X^k)` record refutes silent dimension transport, while the deployed pole-line record passes the repaired guard with all frozen owner fields unassigned.  These results make the #1168 owner interface witness-sound and honestly priced; they do not construct the missing chronology owner, pay rank eleven, or move an active-v4 atom.
-- The post-near rank-eleven dense-locator packet now proves fifty-four local
+- The post-near rank-eleven dense-locator packet now proves fifty-six local
   results under its pinned 32-anchor/18-dense-root/ten-space setup.  High-core
   absorption is exactly ten-dimensional; at least `990810934` parts per
   billion of record/eleven-subset incidences enter positive-dimensional owner
@@ -102,7 +102,13 @@ At this snapshot:
   `K'=20618`; residual petal-pair and exact convex-packing caps move that
   crossing to `K'=15529`.  The weighted selected-support split-pencil theorem
   then closes `K'=10`: full-density demand `11736940042024039` exceeds
-  capacity `9274769506943785` by `2462170535080254`.  These refinements stay
+  capacity `9274769506943785` by `2462170535080254`.  Its common-core-offset
+  extension and global circuit-shadow census close `K'=11`: circuits of size
+  at least six contribute at least 45 rank-nine shadows, while supports of
+  size at most five coalesce by Vandermonde independence.  Full component
+  demand exceeds their combined capacity by
+  `30688896124707489315310500375861176301757493788368353875455912`.
+  These refinements stay
   in residual units and do not use the original-row core floor.
   Canonical-basis, nine-shadow, projective-paving, bounded-parallel,
   bounded-point/line, and shortening-weighted arguments remove the
@@ -110,13 +116,14 @@ At this snapshot:
   closes `K'>=37996`; on `22526..37995`, one owner has at least `200632`
   records and deficiency at most four, matching the chronology terminal
   guarded in #1169.  Dimension equality excludes every other component lane
-  at `K'=10`, while at `K'=11` the chart-local fence remains above both
-  selector demands.  Thus the exact component boundary is: no component
-  target at `K'=10`; rank nine or rank eight on `11..15528`; rank eight only
-  on `15529..22525`; chronology on `22526..37995`; and no component target
-  from `K'=37996` onward.  No active-v4 atom moves, and rank eleven is not
-  paid.
-- At the first open residual row `K'=11`, every fixed rank-eight nine-chart has one circuit `C_B subset B`, independent of extension pair, with `2<=c<=9`.  Its exact census is `C(11-c,2)` rank-eight shadows, `55-C(11-c,2)` rank-nine shadows, `c` rank-ten bases, and locator-ideal dimension `11-c`.  All circuit sizes occur at the correction-space and chart-rank level; this partitions but does not pay the row.  The next proof must retain owner-labelled overlap or exploit the proper-circuit locator ideal.
+  at `K'=10`; at `K'=11` the chart-local fence remains above both selector
+  demands, but its full-circuit witness creates 54 neighboring rank-nine
+  shadows and is paid globally.  Thus the exact component boundary is: no
+  component target at `K'=10..11`; rank nine or rank eight on `12..15528`;
+  rank eight only on `15529..22525`; chronology on `22526..37995`; and no
+  component target from `K'=37996` onward.  No active-v4 atom moves, and
+  error rank eleven is not paid.
+- At the first open residual row `K'=12`, the correction space has codimension two in `RS_{<12}`.  The `K'=11` single-functional circuit split no longer suffices verbatim: the next proof must classify sparse supports in the two-dimensional quotient dual, retain a global quotient label across charts, and extend the core-offset ledger to `j=9,10,11`.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.
