@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages eighty-two proved local results after the fixed
+This certificate packages eighty-six proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -182,6 +182,18 @@ rank-eleven anchor-star reduction:
   `2503373059664320603163477388007627909210651834842589498907998` at
   `K'=53`.  The refined payment first fails at `K'=54` by capacity excess
   `2477882110233058360154706764229180240778698202487636349407165`;
+- a same-source collision theorem for every support `2<=c<=5`.  If the
+  exact completion defect is `s`, an arbitrary deletion carrier has at most
+  `s+c-1` points outside one attaining carrier; splitting circuits by their
+  exact outside count gives the collision cap recorded in the manifest;
+- exact defects at supports `2,3,4,5`, the support-four/support-five joint
+  charge, and every support-`6..9` terminal/fallback branch.  Pareto
+  compression leaves `1`, `1`, and `7` maximal vectors in the groups
+  `(2,3)`, `(4,5)`, and `(6,7,8,9)`.  This closes `K'=54..59`; the minimum
+  gap is
+  `2662571195028360324230500777441238424043251068116179184680206` at
+  `K'=59`.  The collision payment first fails at `K'=60` by capacity excess
+  `3672733965923291717387950853821894967875078243379846951201638`;
 - canonical rank-basis globalization of every kernel chart, with fixed-basis
   capacity `M_d*C(K'-10,d+1)` in evaluation corank `d`;
 - exact exclusion of kernel-lane domination on all 4,589 shortenings
@@ -316,14 +328,16 @@ completion product at `K'=45,46`.  It independently checks all 30 admissible
 joint zero-carrier parameter rows and the support-four external charge.  It
 also reconstructs all `15189` exact support-four/support-five defect pairs,
 the nine-row Pareto frontiers, and the eight safe rows plus the `K'=54`
-wall without calling the primary implementation. The
+deep-defect wall without calling the primary implementation.  It separately
+checks the same-source collision theorem, the grouped `1,1,7` Pareto
+frontiers, all six new safe rows, and the `K'=60` collision wall. The
 primary replay checks the
 existing affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `54<=K'<=15528` is open; the
+lane. The low rank-nine interval `60<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not

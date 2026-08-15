@@ -5165,3 +5165,44 @@ Keep entries concise and link to the relevant files.
   `s_4=s_5=21` without dropping inherited caps, kernel coranks, or rank-nine
   marks.  A valid support-five external charge or another shared resource is
   the most direct next candidate.
+
+### 2026-08-15 - Same-source collisions close K'=54..59
+
+- **Agent/model:** Codex, importing two proved public prize-DAG nodes after
+  proof audit, exact arithmetic, primary replay, independent reimplementation,
+  and hostile mutation testing.
+- **Exact parent:** this PR's `K'=46..53` extension at
+  `c8b610fa48fda07c961d1b04cb20e3f87f910838`.
+- **Research source:** prize-DAG commit
+  `b8ce7859cfa0f40b26ba69b5c90148e295af45de`; source trees
+  `134f283bbe1ede60877526a588093b18a8d043ea` and
+  `0f81cecda6cd99dc16c8ebeb35d6c48026e1f804`; source-contract SHA-256 values
+  `fc8bb1a5b4a91ac455f1613dc997879cc352af7910873b56666a2ec5c1f74177`
+  and `3eac696cd20b5468cbfe7565f14fef6964b72b793800ef810d9db72fa17b9922`.
+- **Status:** PROVED SIX-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** For each support `2<=c<=5`, the vanishing spaces
+  of an attaining deletion and any other independent deletion intersect in
+  dimension at least `12-2c>0`.  The common-root bound therefore leaves at
+  most `s+c-1` points of the second carrier outside the first.  Exact
+  outside-point incidence gives a same-source circuit cap.  Exact defects at
+  supports `2..5`, the existing joint support-four charge, and all
+  support-`6..9` branches compress to Pareto-frontier sizes `1,1,7`.
+- **Impact:** The active branch has
+  `s_2=s_3=s_4=s_5=floor(q/2)` and all higher supports fallback.  It closes
+  `K'=54..59`; the minimum gap is
+  `2662571195028360324230500777441238424043251068116179184680206` at
+  `K'=59`.  The first remaining rank-nine row is `K'=60`.
+- **Controls:** The canonical manifest pins 86 public source nodes and has
+  SHA-256 `b33ee35c101d3d3300d7268c253f69e2eb6244bd8f072cce96f017b213bd5e66`.
+  The primary verifier rejects 154 hostile mutations.  The independent
+  verifier separately checks the structural theorem, all six safe rows, the
+  adjacent wall, and `3693717480` represented raw leaves.  The 168-page
+  paper builds with SHA-256
+  `06dd17a2357651cb109556896ab6a1bf6ea9bbebe0a74e940a2702955eb5b8e9`.
+- **Nonclaim:** At `K'=60`, the same payment has exact capacity excess
+  `3672733965923291717387950853821894967875078243379846951201638`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** Couple the exact low-support carriers to support six,
+  seven, and eight before adding another branch layer.  Preserve every
+  inherited cap, kernel corank, and rank-nine mark.

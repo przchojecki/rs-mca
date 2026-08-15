@@ -12728,6 +12728,124 @@ ceiling by
 The resulting exact capacity excess is the one displayed above.
 \end{proof}
 
+\begin{proposition}[Small-support same-source collision charge]
+\label{prop:kb-rank11-small-support-self-collision-charge}
+Fix a support $2\le c\le5$.  Let $M_c=q-s$ be the maximum number of
+support-$c$ circuit completions of an independent $(c-1)$-deletion, with
+$M_c=0$ and $s=q$ when the circuit stratum is empty.  If the stratum is
+nonempty, choose an attaining deletion and let $B$ be its completion
+carrier.  Then
+\[
+ b=|B|=q+c-1-s,
+\]
+and the carrier $U_A$ of every independent $(c-1)$-deletion $A$ satisfies
+\[
+ |U_A\setminus B|\le s+c-1.                         \tag{SC1}
+\]
+Writing $N=m'-b$, the number of support-$c$ circuit supports is at most
+\[
+ \begin{cases}
+ \binom bc,&s=0,\\[2mm]
+ \displaystyle \binom bc+
+ \sum_{j=1}^{c}\left\lfloor
+ \frac{\binom b{c-j}\binom N{j-1}(s+c-j)}{j}
+ \right\rfloor,&0<s<q,\\[4mm]
+ 0,&s=q.
+ \end{cases}                                        \tag{SC2}
+\]
+Its selected eleven-set incidence is at most (SC2) multiplied by
+$\binom{m'-c}{11-c}$.
+\end{proposition}
+
+\begin{proof}
+If a support-$c$ circuit exists, deleting one point gives an independent
+set with at least that point as a completion.  Thus $M_c=0$ is equivalent
+to an empty stratum.  In the nonempty case, for every independent deletion
+$A$ put
+\[
+ H_A=\{f\in V':f|_A=0\}.
+\]
+Independent evaluation gives $\dim H_A=11-c$, and $H_A$ vanishes on the
+complete carrier $U_A$.  For the attaining deletion $A_0$, Grassmann's
+inequality gives
+\[
+ \dim(H_A\cap H_{A_0})\ge2(11-c)-10=12-2c>0.
+\]
+This intersection vanishes on $U_A\cup B$.  The common-root bound and
+$|B|=q+c-1-s$ therefore give
+\[
+ |U_A\setminus B|
+ \le K'-(12-2c)-|B|=s+c-1,
+\]
+proving (SC1).
+
+If $s=0$, the attaining completion labels span the full $q$-dimensional
+annihilator.  Every support-$c$ circuit label has a representation on $B$.
+Comparing it with the minimal circuit support uses at most
+$|B|+c=q+2c-1\le q+9<K'+1$ coordinates, so Vandermonde independence forces
+that circuit into $B$.
+
+Now suppose $0<s<q$.  A circuit with exactly $j$ points outside $B$ is
+exposed by deleting each of those $j$ points.  The remaining deletion has
+$j-1$ outside points, and (SC1) permits at most $s+c-j$ outside
+completions.  There are at most
+$\binom b{c-j}\binom N{j-1}$ such deletions.  Dividing by the exact
+multiplicity $j$, flooring, and summing proves (SC2).  Finally, each circuit
+extends to at most $\binom{m'-c}{11-c}$ selected eleven-sets.
+\end{proof}
+
+\begin{proposition}[$K'=54$ through $K'=59$ small-support collision payment]
+\label{prop:kb-rank11-k54-k59-small-support-collision-payment}
+In the fixed component target, every rank-nine alternative is empty for
+\[
+ 54\le K'\le59.
+\]
+Refine the completion maxima at supports $2,3,4,5$ to every exact defect,
+apply Proposition~\ref{prop:kb-rank11-small-support-self-collision-charge},
+retain the joint support-four charge when $s_4+s_5<q$, and retain every
+support-$6$ through support-$9$ terminal/fallback branch.  Pareto compression
+of the groups
+\[
+ (2,3),\qquad(4,5),\qquad(6,7,8,9)
+\]
+leaves respectively $1$, $1$, and $7$ maximal vectors.  The active branch
+on every row $54\le K'\le60$ is
+\[
+ s_2=s_3=s_4=s_5=\left\lfloor\frac q2\right\rfloor,
+ \qquad c6F/c7F/c8F/c9F.                             \tag{SC3}
+\]
+The minimum demand-capacity gap is attained at $K'=59$ and equals
+\[
+2662571195028360324230500777441238424043251068116179184680206.
+\]
+The same payment first fails at $K'=60$, where capacity exceeds demand by
+\[
+3672733965923291717387950853821894967875078243379846951201638.
+\]
+\end{proposition}
+
+\begin{proof}
+The first two groups contain $(q+1)^2$ exact choices each; the final group
+contains $5\cdot4\cdot3\cdot2=120$ terminal/fallback choices.  Duplicate
+cap vectors may be identified, and a componentwise dominated vector may be
+discarded because every deficit weight is nonnegative and every later
+operation only intersects caps.  Exact enumeration leaves the three
+frontiers stated above and selects (SC3).
+
+For each row, combine the resulting premium $P$ with the unchanged
+rank-nine marks $G$ and residual record floor $R$ as
+\[
+ \operatorname{Cap}_{\rm full}=\left\lfloor\frac{G+RP}{55}\right\rfloor.
+\]
+Adding every kernel-corank capacity and comparing with
+$R\binom{m'}{11}-\binom{n'}{11}$ gives positive gaps on $54\le K'\le59$,
+with the displayed minimum at the last row.  The cleared record coefficient
+and floor-record cross are positive on all six rows, so the contradiction
+persists above the record floor.  At $K'=60$, exact replay again selects
+(SC3), now with all four defects equal to $25$, and gives the displayed
+capacity excess.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -14328,8 +14446,13 @@ refines the former simultaneous fallback to every exact support-four and
 support-five defect pair, and
 Proposition~\ref{prop:kb-rank11-k46-k53-deep-joint-payment} pays
 $46\le K'\le53$ after exact Pareto compression of the other supports.
+Proposition~\ref{prop:kb-rank11-small-support-self-collision-charge}
+uses the positive intersection of any two same-support deletion-vanishing
+spaces for supports two through five, and
+Proposition~\ref{prop:kb-rank11-k54-k59-small-support-collision-payment}
+pays $54\le K'\le59$ after exact defects and grouped Pareto compression.
 Thus the remaining intervals are rank eight only on
-$22\le K'\le53$, rank nine or rank eight on $54\le K'\le15528$, rank
+$22\le K'\le59$, rank nine or rank eight on $60\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -14339,9 +14462,9 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=54$, the deep exact-defect payment
-has the printed capacity excess
-$2477882110233058360154706764229180240778698202487636349407165$.
+At the first remaining rank-nine row $K'=60$, the exact small-support
+collision payment has the printed capacity excess
+$3672733965923291717387950853821894967875078243379846951201638$.
 This is a method wall: a continuation must sharpen the complete weighted
 deficit vector, lower the rank-nine chart, or extract another shared resource without omitting a kernel
 corank or reusing a rank-nine mark.
