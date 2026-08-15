@@ -1,0 +1,109 @@
+{
+  "claims": {
+    "active_v4_ledger_movement": 0,
+    "koalabear_closed": false,
+    "rank11_paid": false,
+    "rank_one_low_pair_anticode_paid": true
+  },
+  "continuous_maximizer": {
+    "g": 2001826,
+    "outside": 95326,
+    "x": 953250
+  },
+  "cutoff_scan": {
+    "after_minimum": {
+      "A": 1112439,
+      "d": 63863,
+      "forced_common_core": 127726,
+      "high": 29534229400841059,
+      "low": 52292259273914047,
+      "near": 134944,
+      "signed_slack": 193154239436505037,
+      "tau": 3609,
+      "total": 81826488674890050
+    },
+    "first_paying": {
+      "A": 1115609,
+      "d": 67033,
+      "forced_common_core": 134066,
+      "high": 242314927584173240,
+      "low": 32215263489919749,
+      "near": 134944,
+      "signed_slack": 450537037167154,
+      "tau": 439,
+      "total": 274530191074227933
+    },
+    "minimum": {
+      "A": 1112440,
+      "d": 63864,
+      "forced_common_core": 127728,
+      "high": 29542412894717712,
+      "low": 52284072490672992,
+      "near": 134944,
+      "signed_slack": 193154242725869439,
+      "tau": 3608,
+      "total": 81826485385525648
+    },
+    "minimum_unique": true,
+    "preceding": {
+      "A": 1115610,
+      "d": 67034,
+      "forced_common_core": 134068,
+      "high": 242866897806460650,
+      "low": 32210458397220937,
+      "near": 134944,
+      "signed_slack": -96628092421444,
+      "tau": 438,
+      "total": 275077356203816531
+    }
+  },
+  "exact_low_calibrations": {
+    "tau_3608": {
+      "pair_cap": 548476517326,
+      "value": 52284072490618276,
+      "with_exception": 52284072490618277,
+      "x": 953250
+    },
+    "tau_439": {
+      "pair_cap": 337948340326,
+      "value": 32215263489916276,
+      "with_exception": 32215263489916277,
+      "x": 953250
+    }
+  },
+  "fixed_right_at_first_cutoff": {
+    "high": 242314927584173240,
+    "near": 134944,
+    "ray_cap": 8147918,
+    "signed_slack": 32665800518938985,
+    "tau": 439,
+    "total": 242314927592456102
+  },
+  "max_affine_dimension": 10,
+  "parent": "a3fc2d5aea86577cd50d8b95b6eb2155d4d940f6",
+  "projective_control": {
+    "gl2_matrices": 480,
+    "max_projective_exceptional_slopes": 1,
+    "max_roots": 1,
+    "outside_vector_cases": 9600,
+    "prime": 5
+  },
+  "rank_two_terminal": {
+    "minimum_common_evaluation_factor_degree": 134066,
+    "minimum_pair_core_size": 1115609,
+    "minimum_shared_core_size": 134066,
+    "tau": 439
+  },
+  "row": {
+    "K": 1048576,
+    "budget": 274980728111395087,
+    "extension_degree": 6,
+    "m": 1116048,
+    "n": 2097152,
+    "near": 134944,
+    "p": 2130706433,
+    "w": 67472
+  },
+  "schema": "kb-mca-rank11-fixed-endpoint-router-v1",
+  "theta_resource": 106618568137036225644
+}
