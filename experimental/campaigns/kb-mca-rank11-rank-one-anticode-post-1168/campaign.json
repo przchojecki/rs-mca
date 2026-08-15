@@ -1,0 +1,50 @@
+{
+  "B_star": 274980728111395087,
+  "active_v4_ledger_movement": 0,
+  "agreement": 1116048,
+  "artifacts": [
+    "00_contract.md",
+    "01_frontier_map.md",
+    "02_controls.md",
+    "03_idea_ledger.csv",
+    "04_dependency_ledger.csv",
+    "05_claim_registry.csv",
+    "06_review_registry.csv",
+    "proofs/rank_one_pair_anticode_router.md",
+    "reviews/independent_math_review.md",
+    "reviews/independent_certificate_review.md",
+    "reviews/source_scope_review.md",
+    "reviews/literature_sweep.md",
+    "source_integration_fragment.tex"
+  ],
+  "campaign": "kb-mca-rank11-rank-one-anticode-post-1168",
+  "claims": {
+    "koalabear_closed": false,
+    "rank11_paid": false,
+    "rank_one_router_proved": true,
+    "sum_over_unrelated_anticodes": false
+  },
+  "object": "MCA",
+  "parent": "6a5dcdae1591fc7f044eda6a942bfe178521a48c",
+  "results": {
+    "fixed_right_affine_ray_bound": 8147918,
+    "fixed_right_slack": 274980728103247169,
+    "maximal_core_overlap_threshold": 1048575,
+    "nonproper_terminal": "positive-dimensional affine-linear correction component",
+    "proper_fixed_left_bound": 1031,
+    "proper_fixed_left_slack": 274980728111394056
+  },
+  "row": "KoalaBear MCA",
+  "schema": "rs-mca-campaign-v1",
+  "status": "PROVED_STRUCTURAL_ROUTER",
+  "target_epsilon": "2^-128",
+  "title": "KoalaBear rank-eleven rank-one minimizing-pair anticode router",
+  "verification": {
+    "canonical_output": "KB_MCA_RANK11_RANK_ONE_ROUTER_PASS affine_ray=8147918 proper_r10=1031 gf3_cliques=8 gf5_common_roots=1 sha256=7190997f4e6e464ce41aa3c8389968985686604ad81e9b272ca7c07130d323a5",
+    "canonical_payload_sha256": "7190997f4e6e464ce41aa3c8389968985686604ad81e9b272ca7c07130d323a5",
+    "independent_output": "KB_MCA_RANK11_RANK_ONE_ROUTER_INDEPENDENT_PASS affine_ray=8147918 core=1048575 proper_r10=1031 sha256=27db198f8668a019651e446ec49774b9dbf12ee068c0c908b76c0e898b3bc758",
+    "tamper_output": "KB_MCA_RANK11_RANK_ONE_ROUTER_TAMPER_PASS mutations=5/5",
+    "wolfram_output": "KB_MCA_RANK11_RANK_ONE_ROUTER_WOLFRAM_PASS affine_ray=8147918 core=1048575 proper_r10=1031"
+  },
+  "workboard_item": "K4"
+}

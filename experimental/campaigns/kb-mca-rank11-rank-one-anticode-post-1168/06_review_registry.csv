@@ -1,0 +1,7 @@
+review_id,review,reviewer,status,artifact
+R-001,independent mathematics review,independent derivation,GREEN,reviews/independent_math_review.md
+R-002,targeted literature review,Exa primary-source sweep,GREEN,reviews/literature_sweep.md
+R-003,canonical verifier,Python,GREEN,experimental/scripts/verify_kb_mca_rank11_rank_one_pair_anticode_router_v1.py
+R-004,independent verifier,Python independent implementation,GREEN,experimental/scripts/verify_kb_mca_rank11_rank_one_pair_anticode_router_v1_independent.py
+R-005,integer replay,Wolfram Language,GREEN,experimental/scripts/verify_kb_mca_rank11_rank_one_pair_anticode_router_v1.wl
+R-006,source-scope audit,hostile theorem-scope review,GREEN,reviews/source_scope_review.md

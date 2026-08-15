@@ -1,0 +1,97 @@
+% Candidate source fragment for review.  This file is not automatically
+% included by experimental/grande_finale.tex.
+\begin{theorem}[Rank-one minimizing-pair anticode router]
+\label{thm:mca-rank-one-pair-anticode-router}
+Retain the post-near affine-explanation hypotheses of
+\cref{thm:mca-weighted-pair-core-route-cut}, and let the explanation
+direction code \(C'=\langle P_1,\ldots,P_s\rangle\) have \(s\le10\).
+For each selected minimizing pair \(e=(a_e,b_e)\), write its two direction
+coefficient rows as a matrix \(M_e\in\F^{2\times s}\).
+
+Suppose
+\[
+ \rank(M_e-M_f)\le1\qquad(e,f\in\mathcal E).
+\]
+Then the selected records from \(\mathcal E\) have one of the following
+forms.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item There is one nonzero \(P\in C'\) such that every explanation is
+\[
+ H_0(X,\gamma)+cP(X).
+\]
+Keeping the possible universal core
+\[
+ U=\{x:P(x)=0,\ r_0(x)+\gamma r_1(x)-H_0(x,\gamma)\equiv0\}
+\]
+and optimizing over \(0\le |U|\le K-1\), the number of selected KoalaBear
+slopes is at most \(8{,}147{,}918\).
+\item There are a fixed \((\alpha,\beta)\in\F^2\) and a correction space
+\(W\le C'\), \(\dim W=r\le10\), such that every explanation is
+\[
+ H_0(X,\gamma)+(\alpha+\gamma\beta)P_e(X),
+ \qquad P_e\in W.
+\]
+If every \(r+1\) coordinate agreement hyperplanes in the affine parameter
+space \(\F^{r+1}\) have empty or zero-dimensional intersection, then the
+number of selected slopes is at most
+\[
+ \left\lfloor\frac{\binom n{r+1}}{\binom m{r+1}}\right\rfloor
+ \le 1031.
+\]
+Otherwise \(r+1\) coordinate hyperplanes have a nonempty
+positive-dimensional affine intersection.
+\end{enumerate}
+Moreover, if the complete pair cores \(H_e\) satisfy
+\[
+ |H_e\cap H_f|=K-1\qquad(e\ne f),
+\]
+then the displayed rank-one hypothesis holds.
+\end{theorem}
+
+\begin{proof}
+Translate one matrix to zero and fix a nonzero member \(uv^T\).
+Every other member is \(xy^T\).  The difference \(xy^T-uv^T\) has rank at
+most one only when \(x\parallel u\) or \(y\parallel v\).  A strict member
+of each kind would have rank-two difference, so all members share one
+factor.  A shared right factor gives \textup{(i)} and a shared left factor
+gives \textup{(ii)}.
+
+For the core assertion, \(K-1\) common core coordinates are common zeros of
+the two endpoint-difference polynomials.  Two independent degree-\(<K\)
+polynomials have at most \(K-2\) common roots, whereas rank zero would make
+the pair types equal.  Thus their coefficient difference has rank one.
+
+In case \textup{(i)}, put \(u=|U|\),
+\(n_u=n-u\), \(m_u=m-u\), and
+\[
+ q_u=\min\{K-1,m_u-1\},\qquad
+ L_u=\begin{cases}
+ \lfloor n_u/K\rfloor,&m_u>K-1,\\
+ 0,&m_u\le K-1.
+ \end{cases}
+\]
+After the at most \(L_u\) large affine clone classes are charged by
+\(n-m+1\) slopes each, every exact support has at least
+\(q_u(m_u-q_u)\) heterogeneous coordinate pairs.  Each such pair
+determines at most one selected affine-ray point.  Hence
+\[
+ |Z|\le
+ L_u(n-m+1)+
+ \left\lfloor
+ \frac{\binom{n-u}{2}}{q_u(m-u-q_u)}
+ \right\rfloor.
+\]
+The exact scan for \(0\le u\le K-1\) has maximum \(8{,}147{,}918\) at
+\(u=K-1\).
+
+In case \textup{(ii)}, parameterize by the actual correction
+\(Q=(\alpha+\gamma\beta)P_e\in W\).  The coordinate equations are affine
+linear in \((\gamma,Q)\).  Under properness, each \((r+1)\)-coordinate
+subset owns at most one parameter point, so
+\[
+ |Z|\binom m{r+1}\le\binom n{r+1}.
+\]
+The exact KoalaBear scan for \(0\le r\le10\) has maximum \(1031\).
+Failure of properness is precisely a nonempty positive-dimensional affine
+intersection.
+\end{proof}
