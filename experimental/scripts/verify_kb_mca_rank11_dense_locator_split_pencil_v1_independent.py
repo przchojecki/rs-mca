@@ -216,6 +216,20 @@ FIXED_CHART_SOURCES = {
         "tree": "04a835e76a31f02d5463aa24bbef632d7e55a0eb",
         "contract_sha256": "5dccc97d43ef8bac99b5d2bfc92f26869be4f2e52af5cd8ffff7bd40373555f3",
     },
+    "kernel_corank3_projective_basis_cap": {
+        "id": "rate_half_mca_rank11_kernel_corank3_projective_basis_cap",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_corank3_projective_basis_cap",
+        "commit": "005d58f92a743043644926e2daeed5b6f58873a6",
+        "tree": "214797e76ee997373f9e6d769dc106dfa28c859f",
+        "contract_sha256": "1df3954f0b52dc475f5212be64af83530645e3b1b035b2178185f422671e6b8a",
+    },
+    "kernel_corank3_projective_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
+        "commit": "005d58f92a743043644926e2daeed5b6f58873a6",
+        "tree": "8f03add8efd2a7ec32f1fa4e9a046d7bfe5a6033",
+        "contract_sha256": "5b94d2e176328ea823e7edcb9378c763cf89f24bf912b7329b6825694a490ff0",
+    },
     "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -739,6 +753,50 @@ def independent_projective_basis_optimum(
     return sum(allocation, Fraction(0)), allocation
 
 
+def independent_projective_frame_optimum(
+    kprime: int,
+) -> tuple[Fraction, list[Fraction]]:
+    rows = independent_kernel_hybrid_terms(kprime)
+    nprime = 1048576 + kprime
+    record_caps = (8147918, 84416263, 983902549)
+    for index, record_cap in enumerate(record_caps):
+        ambient = (
+            comb(nprime, 9 - index)
+            * record_cap
+            * comb(kprime - 10, index + 2)
+            // (index + 3)
+        )
+        rows[index] = (
+            ambient,
+            rows[index][1],
+            "ambient" if ambient <= rows[index][1] else "record",
+        )
+    caps = [Fraction(min(left, right), 274980728111260126) for left, right, _ in rows]
+
+    def ratio(step: int, source: int) -> Fraction:
+        raising = Fraction(
+            comb(source + 2, step) * comb(67472 + source, step),
+            comb(kprime - source - 11 + step, step),
+        )
+        return Fraction(comb(9 - source + step, step), 1) / raising
+
+    factor = {dimension: Fraction(1) for dimension in (1, 2, 3)}
+    factor[4] = ratio(2, 4)
+    for source in range(5, 10):
+        factor[source] = ratio(source - 3, source)
+    allocation = [
+        caps[0]
+        if dimension == 1
+        else caps[1] * factor[dimension]
+        if dimension in (2, 4)
+        else caps[2] * factor[dimension]
+        for dimension in range(1, 10)
+    ]
+    require(all(0 < number <= cap for number, cap in zip(allocation, caps)), f"projective-frame direct caps K={kprime}")
+    require(allocation[:3] == caps[:3], f"projective-frame direct roots K={kprime}")
+    return sum(allocation, Fraction(0)), allocation
+
+
 def independent_kernel_demand(kprime: int) -> int:
     return ceiling(
         Fraction(
@@ -833,6 +891,8 @@ def main() -> None:
     kernel_projective_cut = data["kernel_projective_pair_capacity_cut"]
     kernel_projective_basis_cap = data["kernel_corank2_projective_basis_cap"]
     kernel_projective_basis_cut = data["kernel_corank2_projective_capacity_cut"]
+    kernel_projective_frame_cap = data["kernel_corank3_projective_basis_cap"]
+    kernel_projective_frame_cut = data["kernel_corank3_projective_capacity_cut"]
     rank8_owner_cap = data["rank8_owner_pair_weight_cap"]
     rank8_cut = data["rank8_weighted_capacity_cut"]
     dense_owner = data["rank8_dense_owner_terminal_bridge"]
@@ -1546,6 +1606,83 @@ def main() -> None:
     require(kernel_projective_basis_cut["endpoint_gap"] == 38432453444617070485037263551626410396462586389410416394578520596038, "projective-basis endpoint gap")
     require(kernel_projective_basis_cut["wall_excess"] == 36180877960369511460476382880286784896208001102094988739728829832800, "projective-basis wall excess")
 
+    frame_n, frame_m = 1048579, 67475
+    plane_bounds = []
+    for q in range(3, frame_m):
+        r = frame_m - q
+        plane_bounds.append(
+            comb(q, 4)
+            + (q // 2) * comb(r, 2)
+            + 2 * comb(r, 3)
+            + comb(r, 4)
+        )
+    coplanar_maximum = max(plane_bounds)
+    plane_maximizers = [q for q, bound in zip(range(3, frame_m), plane_bounds) if bound == coplanar_maximum]
+    projective_frames = (
+        frame_m * (frame_m - 1) * (frame_m - 2) * (frame_m - 3)
+        - 24 * coplanar_maximum
+    )
+    frame_resource = frame_n * (frame_n - 1) * (frame_n - 2) * (frame_n - 3)
+    frame_cap, frame_remainder = divmod(frame_resource, projective_frames)
+    previous_frame_cap, previous_frame_remainder = divmod(
+        frame_resource,
+        frame_m * 67473 * 67474,
+    )
+    require(plane_maximizers == [3, frame_m - 1], "projective-frame split maximizers")
+    require(kernel_projective_frame_cap == {
+        "domain_size": frame_n,
+        "code_dimension": 3,
+        "support_size": frame_m,
+        "explanation_dimension": 3,
+        "support_excess": 67472,
+        "normal_space_dimension": 4,
+        "zero_normal_upper_bound": 0,
+        "minimum_normals_outside_projective_class": 67474,
+        "maximum_projective_class_size": 1,
+        "minimum_normals_outside_projective_line": 67473,
+        "maximum_projective_line_size": 2,
+        "minimum_projective_points": frame_m,
+        "spans_projective_space": True,
+        "maximum_coplanar_unordered_quadruples": coplanar_maximum,
+        "minimum_independent_ordered_quadruples_per_record": projective_frames,
+        "coordinate_ordered_quadruple_resource": frame_resource,
+        "record_cap": frame_cap,
+        "division_remainder": frame_remainder,
+        "previous_transversality_record_cap": previous_frame_cap,
+        "previous_division_remainder": previous_frame_remainder,
+        "record_cap_improvement": previous_frame_cap - frame_cap,
+        "capacity_formula": "floor((n)_fall_4/(4*(m-1)*(m-2)*(m-3)))",
+    }, "projective frame cap")
+    require(projective_frames == 1228711865141376 and frame_cap == 983902549, "projective frame arithmetic")
+    projective_frame_forest = [[2, 4], [2, 5], [3, 6], [4, 7], [5, 8], [6, 9]]
+    projective_frame_tight = [
+        [2, 4], [2, 5], [2, 7], [2, 8], [2, 9],
+        [3, 6], [3, 8], [3, 9],
+        [4, 7], [4, 9], [5, 8], [6, 9],
+    ]
+    require(kernel_projective_frame_cut["dual_forest"] == projective_frame_forest, "projective-frame forest")
+    require(kernel_projective_frame_cut["tight_hierarchy_rows"] == projective_frame_tight, "projective-frame tight rows")
+    require(kernel_projective_frame_cut["checked_rows_including_wall"] == 228261, "projective-frame replay rows")
+    require(kernel_projective_frame_cut["source_replay_chunks"] == 64, "projective-frame replay chunks")
+    projective_frame_checks = 0
+    for prefix, kprime, closed in (
+        ("replay_start", 568339, True),
+        ("endpoint", 796598, True),
+        ("wall", 796599, False),
+    ):
+        optimum, allocation = independent_projective_frame_optimum(kprime)
+        require(optimum == Fraction(kernel_projective_frame_cut[f"{prefix}_optimum_numerator"], kernel_projective_frame_cut[f"{prefix}_optimum_denominator"]), f"projective-frame {prefix} optimum")
+        require((independent_kernel_demand_ratio(kprime) > optimum) is closed, f"projective-frame {prefix} sign")
+        scaled = 274980728111260126 * optimum
+        capacity = scaled.numerator // scaled.denominator
+        demand = independent_kernel_demand(kprime)
+        require(capacity == kernel_projective_frame_cut[f"{prefix}_capacity"], f"projective-frame {prefix} capacity")
+        require(demand == kernel_projective_frame_cut[f"{prefix}_demand"], f"projective-frame {prefix} demand")
+        require(all(number > 0 for number in allocation), f"projective-frame {prefix} allocation")
+        projective_frame_checks += 1
+    require(kernel_projective_frame_cut["endpoint_gap"] == 1063274038253455766288412818872693782800681544679740581002823089126086, "projective-frame endpoint gap")
+    require(kernel_projective_frame_cut["wall_excess"] == 670721678337441589385303494237372283642375643589068751593971045368244, "projective-frame wall excess")
+
     require(rank8_owner_cap == {
         "kernel_dimension": 2,
         "owner_flat_dimension": 4,
@@ -1614,7 +1751,7 @@ def main() -> None:
         "fixed_chart_output_suffices_for_payment": False,
         "full_rank_star_owner_is_record_intrinsic": True,
         "rank9_fixed_target_eliminated": True,
-        "kernel_dominant_lane_closed_through_Kprime": 568338,
+        "kernel_dominant_lane_closed_through_Kprime": 796598,
         "rank8_owner_flat_closed_from_Kprime": 37996,
         "rank8_dense_owner_terminal_from_Kprime": 22526,
         "chronology_owner": False,
@@ -1663,6 +1800,11 @@ def main() -> None:
         f"projective_basis_checks={projective_basis_checks} "
         f"projective_basis_endpoint_gap={kernel_projective_basis_cut['endpoint_gap']} "
         f"projective_basis_wall_excess={kernel_projective_basis_cut['wall_excess']} "
+        f"projective_frame_cap={frame_cap} "
+        f"projective_frame_checks={projective_frame_checks} "
+        f"projective_frame_splits={len(plane_bounds)} "
+        f"projective_frame_endpoint_gap={kernel_projective_frame_cut['endpoint_gap']} "
+        f"projective_frame_wall_excess={kernel_projective_frame_cut['wall_excess']} "
         f"rank8_last_gap={rank8_last_cap-rank8_last_demand} "
         f"rank8_first_gap={rank8_first_demand-rank8_first_cap} "
         f"rank8_monotone_factors={monotone_factors} "

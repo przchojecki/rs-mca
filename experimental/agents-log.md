@@ -30,6 +30,31 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Corank-three projective-frame kernel cap
+
+- **Agent/model:** Codex with a spanning no-three-collinear projective
+  quadruple count, bounded 64-worker all-row replay, and independent
+  plane-split/direct-forest audit.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** In the complete shortened corank-three chart,
+  the projective normals are distinct, no three are collinear, and they span
+  `PG(3)`. Every record owns at least `1228711865141376` ordered independent
+  coordinate quadruples, giving the cap `983902549`. Substitution into the
+  all-step hierarchy extends exact kernel exclusion through `K'=796598`,
+  with first reversal at `K'=796599`.
+- **How it is useful:** It removes `228260` further kernel dimensions and
+  leaves the unresolved kernel interval `796599..1048576`. The exact
+  certificate prices the first three individual caps and six hierarchy
+  forest edges; both shared resources remain slack.
+- **What to do next:** Seek a projective-frame strengthening in corank four,
+  strengthen a binding hierarchy edge, or introduce a resource that is not
+  slack at the wall. Rank eight below `22526` and chronology on
+  `22526..37995` remain disjoint lower-interval targets.
+
 ### 2026-08-15 - Corank-two projective-basis kernel cap
 
 - **Agent/model:** Codex with a noncollinear projective triple count, bounded

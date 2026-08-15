@@ -235,6 +235,20 @@
         "tree": "04a835e76a31f02d5463aa24bbef632d7e55a0eb",
         "contract_sha256": "5dccc97d43ef8bac99b5d2bfc92f26869be4f2e52af5cd8ffff7bd40373555f3"
       },
+      "kernel_corank3_projective_basis_cap": {
+        "id": "rate_half_mca_rank11_kernel_corank3_projective_basis_cap",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_corank3_projective_basis_cap",
+        "commit": "005d58f92a743043644926e2daeed5b6f58873a6",
+        "tree": "214797e76ee997373f9e6d769dc106dfa28c859f",
+        "contract_sha256": "1df3954f0b52dc475f5212be64af83530645e3b1b035b2178185f422671e6b8a"
+      },
+      "kernel_corank3_projective_capacity_cut": {
+        "id": "rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
+        "path": "background/nodes/rate_half_mca_rank11_kernel_corank3_projective_capacity_cut",
+        "commit": "005d58f92a743043644926e2daeed5b6f58873a6",
+        "tree": "8f03add8efd2a7ec32f1fa4e9a046d7bfe5a6033",
+        "contract_sha256": "5b94d2e176328ea823e7edcb9378c763cf89f24bf912b7329b6825694a490ff0"
+      },
       "rank8_owner_pair_weight_cap": {
         "id": "rate_half_mca_rank11_rank8_owner_pair_weight_cap",
         "path": "background/nodes/rate_half_mca_rank11_rank8_owner_pair_weight_cap",
@@ -1848,6 +1862,161 @@
     "source_replay_peak_mb": 57,
     "capacity_formula": "two strengthened individual caps plus exact all-step hierarchy tree"
   },
+  "kernel_corank3_projective_basis_cap": {
+    "domain_size": 1048579,
+    "code_dimension": 3,
+    "support_size": 67475,
+    "explanation_dimension": 3,
+    "support_excess": 67472,
+    "normal_space_dimension": 4,
+    "zero_normal_upper_bound": 0,
+    "minimum_normals_outside_projective_class": 67474,
+    "maximum_projective_class_size": 1,
+    "minimum_normals_outside_projective_line": 67473,
+    "maximum_projective_line_size": 2,
+    "minimum_projective_points": 67475,
+    "spans_projective_space": true,
+    "maximum_coplanar_unordered_quadruples": 863566856801601876,
+    "minimum_independent_ordered_quadruples_per_record": 1228711865141376,
+    "coordinate_ordered_quadruple_resource": 1208932737155751449985024,
+    "record_cap": 983902549,
+    "division_remainder": 1056607358217600,
+    "previous_transversality_record_cap": 3935435218,
+    "previous_division_remainder": 191426448255924,
+    "record_cap_improvement": 2951532669,
+    "capacity_formula": "floor((n)_fall_4/(4*(m-1)*(m-2)*(m-3)))"
+  },
+  "kernel_corank3_projective_capacity_cut": {
+    "previous_closed_K_prime": 568338,
+    "replay_K_prime_minimum": 568339,
+    "closed_K_prime_maximum": 796598,
+    "first_open_K_prime": 796599,
+    "checked_rows_including_wall": 228261,
+    "active_individual_caps": [
+      1,
+      2,
+      3
+    ],
+    "active_individual_cap_branches": [
+      "ambient",
+      "ambient",
+      "ambient"
+    ],
+    "active_shared_resources": [],
+    "slack_shared_resources": [
+      "rank_preserving_nine_shadow",
+      "full_containment_nine_shadow"
+    ],
+    "positive_coranks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "dual_forest": [
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        6,
+        9
+      ]
+    ],
+    "tight_hierarchy_rows": [
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        3,
+        9
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        4,
+        9
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        6,
+        9
+      ]
+    ],
+    "replay_start_optimum_numerator": 329859174148878749650008630207366758927154057017437330393519922064314037986723191338239189274396970667,
+    "replay_start_optimum_denominator": 6950837395577975217504539559226840421844702436,
+    "replay_start_demand": 23424923216379863002959985542381548955758170078345238093714957525162112989,
+    "replay_start_capacity": 13049494718340386049613837350495687656028448350090188926246015092741021373,
+    "replay_start_gap": 10375428498039476953346148191885861299729721728255049167468942432421091616,
+    "endpoint_optimum_numerator": 1302128991011420813137898673416492083149519489161602788641556953975300020799565008247189219620680307849,
+    "endpoint_optimum_denominator": 523406430389907772402450268014069308873848075,
+    "endpoint_demand": 684097316689126296683007111690726030176297624037269549740723823053118902431,
+    "endpoint_capacity": 684096253415088043227240823277907157482514823355724870000142820230029776345,
+    "endpoint_gap": 1063274038253455766288412818872693782800681544679740581002823089126086,
+    "wall_optimum_numerator": 2500125827435045049631627660599040685938813348087376860523768725566376154790608682504425717793976853699,
+    "wall_optimum_denominator": 1004940346348622923012704514587013073037788304,
+    "wall_demand": 684106025656655843692779017667427414323616027011443114036081955546294821127,
+    "wall_capacity": 684106696378334181134368402970921651695899669387086703104833549517340189371,
+    "wall_excess": 670721678337441589385303494237372283642375643589068751593971045368244,
+    "source_replay_script_sha256": "24a6072a384b07ce56729d6e390694d78df90975034cf32e0ca20dab754f73ba",
+    "source_replay_result_sha256": "ae609e8b948f0cd4df77448f91b102385ec4334e7bd2260aa12ec8ab38d27daa",
+    "source_replay_chunks": 64,
+    "source_replay_worker_timeout_seconds": 60,
+    "source_replay_worker_memory_mb": 256,
+    "source_replay_peak_mb": 59,
+    "capacity_formula": "three strengthened individual caps plus exact all-step hierarchy forest"
+  },
   "rank8_owner_pair_weight_cap": {
     "kernel_dimension": 2,
     "owner_flat_dimension": 4,
@@ -1885,7 +2054,7 @@
     "fixed_chart_output_suffices_for_payment": false,
     "full_rank_star_owner_is_record_intrinsic": true,
     "rank9_fixed_target_eliminated": true,
-    "kernel_dominant_lane_closed_through_Kprime": 568338,
+    "kernel_dominant_lane_closed_through_Kprime": 796598,
     "rank8_owner_flat_closed_from_Kprime": 37996,
     "rank8_dense_owner_terminal_from_Kprime": 22526,
     "chronology_owner": false,

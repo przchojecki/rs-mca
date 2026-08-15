@@ -11706,6 +11706,119 @@ the replay start, endpoint, and adjacent wall from exact tree-path products.
 These give the displayed opposite integer signs.
 \end{proof}
 
+\begin{proposition}[Corank-three projective-frame basis cap]
+\label{prop:kb-rank11-kernel-corank3-projective-frame}
+After canonical rank-seven basis cancellation, the complete shortened
+corank-three chart has
+\[
+ (n,K,m,s)=(1048579,3,67475,3).
+\]
+Every selected record owns at least
+$4(m-1)(m-2)(m-3)=1228711865141376$ ordered coordinate quadruples
+whose agreement normals are linearly independent. Consequently the number
+of records in the chart is at most
+\[
+ M_3\le\left\lfloor
+ \frac{n(n-1)(n-2)(n-3)}{4(m-1)(m-2)(m-3)}
+ \right\rfloor=983902549.
+ \tag{PF}\label{eq:kb-rank11-kernel-corank3-projective-frame}
+\]
+This improves the support-local transversality cap $3935435218$ by
+$2951532669$.
+\end{proposition}
+
+\begin{proof}
+Represent the affine explanation family by parameter points in $\F^4$.
+The common-zero bound gives $z\le K-s=0$. For every one-dimensional normal
+span, the support-local MDS step leaves at least
+\[
+ w+s-1=67472+3-1=67474=m-1
+\]
+incident normals outside it, so the incident projective points are distinct.
+For every two-dimensional normal span, the same step leaves at least
+\[
+ w+s-2=67473=m-2
+\]
+normals outside it. Thus no three incident points are collinear.
+Same-support pair noncontainment gives full incident rank, so these points
+span $\operatorname{PG}(3)$.
+
+Choose three incident points and let $H$ be their projective plane. Put
+$q=|S\cap H|\ge3$ and $r=m-q\ge1$. Partition coplanar unordered
+quadruples by the number of points in $H$. Four points in $H$ contribute
+$\binom q4$, while three in $H$ and one outside contribute none. For a
+fixed outside pair, its line meets $H$ at a point $x\notin S$, since
+$x\in S$ would give three collinear selected points. Secants of $S\cap H$
+through $x$ use disjoint point pairs, giving at most
+$\lfloor q/2\rfloor\binom r2$ quadruples with two points in $H$. Every
+outside triple spans a plane meeting $H$ in a line with at most two selected
+points, giving at most $2\binom r3$ quadruples with one point in $H$.
+All-outside quadruples contribute at most $\binom r4$. Hence the dependent
+quadruple count is at most
+\[
+ B(q,r)=\binom q4+\left\lfloor\frac q2\right\rfloor\binom r2
+        +2\binom r3+\binom r4.
+\]
+Vandermonde expansion gives
+\[
+ \binom{m-1}4-B(q,r)
+ =(q-3)\binom r3
+ +\left(\binom{q-1}2-\left\lfloor\frac q2\right\rfloor\right)\binom r2
+ +(r-1)\binom{q-1}3\ge0.
+\]
+Therefore the number of ordered independent quadruples is at least
+\[
+ (m)_4-24\binom{m-1}4=4(m-1)(m-2)(m-3).
+\]
+Four independent affine hyperplanes in $\F^4$ meet in at most one
+parameter point. Double counting the $(n)_4$ ordered coordinate quadruples
+proves \textup{(PF)}; the integer division has remainder
+$1056607358217600$.
+\end{proof}
+
+\begin{corollary}[Projective-frame kernel-capacity cut]
+\label{cor:kb-rank11-kernel-projective-frame-capacity}
+The projective caps for coranks one, two, and three, the other individual
+ambient/record caps, and the 28 inequalities \textup{(MS)} exclude the
+dominant kernel lane for
+\[
+ 10\le K'\le796598.
+\]
+At $K'=796598$, integer demand exceeds floored capacity by
+\[
+1063274038253455766288412818872693782800681544679740581002823089126086.
+\]
+At $K'=796599$, capacity exceeds demand by
+\[
+670721678337441589385303494237372283642375643589068751593971045368244,
+\]
+so no larger interval is claimed by this resource system.
+\end{corollary}
+
+\begin{proof}
+The predecessor handles $K'\le568338$. On the remaining exact replay the
+corank-one, corank-two, and corank-three individual caps bind, both shared
+nine-shadow resources are strict, every nonroot individual cap is strict,
+and every corank is positive. The six hierarchy forest edges are
+\[
+ (t,d)=(2,4),(2,5),(3,6),(4,7),(5,8),(6,9).
+\]
+They give the components
+\[
+ 1,\qquad 2\longrightarrow4,\qquad
+ 3\longrightarrow5,6,7,8,9.
+\]
+Twelve of the 28 hierarchy rows are equalities. Backward forest recurrence
+gives positive edge prices and positive prices for all three root caps,
+with dual objective equal to the primal sum.
+
+The source-pinned exact replay checks all $228261$ rows
+$568339\le K'\le796599$ in 64 bounded workers. The independent verifier
+enumerates every projective plane split in the frame bound and reconstructs
+the replay start, endpoint, and adjacent wall from direct forest products.
+These give the displayed opposite integer signs.
+\end{proof}
+
 \begin{proposition}[Rank-eight owner-pair capacity]
 \label{prop:kb-rank11-rank8-owner-pair-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -11846,6 +11959,10 @@ Proposition~\ref{prop:kb-rank11-kernel-corank2-projective-basis} sharpens the
 active corank-two cap, and
 Corollary~\ref{cor:kb-rank11-kernel-projective-basis-capacity} extends the
 exact interval through $K'=568338$, but not above the printed $568339$ wall.
+Proposition~\ref{prop:kb-rank11-kernel-corank3-projective-frame} sharpens the
+active corank-three cap, and
+Corollary~\ref{cor:kb-rank11-kernel-projective-frame-capacity} extends the
+exact interval through $K'=796598$, but not above the printed $796599$ wall.
 Proposition~\ref{prop:kb-rank11-rank8-owner-pair-capacity} eliminates the
 rank-eight target from $K'=37996$ onward, but not below its printed wall.
 Corollary~\ref{cor:kb-rank11-rank8-dense-owner-bridge} routes the upper
@@ -11854,7 +11971,7 @@ not assign chronology or coalesce the multiple owners allowed by the
 explicit fence. Thus the remaining intervals are rank eight only on
 $10\le K'\le22525$, dense-owner chronology only on
 $22526\le K'\le37995$, no component target on
-$37996\le K'\le568338$, and kernel only above.
+$37996\le K'\le796598$, and kernel only above.
 The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,
