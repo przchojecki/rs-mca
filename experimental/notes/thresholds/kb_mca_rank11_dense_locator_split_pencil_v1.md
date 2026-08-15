@@ -5,16 +5,16 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; the full-rank star owner of deficiency at most 22320 is unique for its record; every rank-nine star is a split-pencil cell carrying at most 45567658 records; every lifted rank-nine plane either carries at most 1434405 records or shares a 134944-coordinate pair core; one fixed nine-subset carries at least 2578110 records and 5868470021012020 marked component extensions at the shortest endpoint; retaining that weight eliminates the rank-nine fixed target uniformly; multistep rank-raising counts and target-coloop multiplicities give all 28 inequalities coupling kernel corank d to d-t for 2<=t<d<=9; projective-normal paving counts give nine exact complete-chart caps; multiplicity-aware rank-three and rank-four matroid floors prove the uniform caps M_2=84416263 and M_3=983902549; coupling each shortening's record cap to its extension count eliminates the fixed-kernel lane on every official K'; at K'=10 dimension equality forces every nine-set to have rank nine and excludes rank eight; at K'=11 the printed rank-eight chart-local output admits 4070352 records and 9265216597693056 marked extensions, exceeding both selector demands; owner-pair capacity excludes rank eight for every 37996<=K'<=1048576; and every surviving rank-eight chart on 22526<=K'<=37995 contains a delta<=4 owner with at least 200632 records.
+direct_statement: In the pinned post-near rank-eleven anchor-star setup, dense-locator normalization forces at least 990810934 parts per billion of record/eleven-subset incidences onto positive-dimensional owner or kernel components; at least 540546700 parts per billion of records have a 98-percent component star; the full-rank star owner of deficiency at most 22320 is unique for its record; every rank-nine star is a split-pencil cell carrying at most 45567658 records; every lifted rank-nine plane either carries at most 1434405 records or shares a 134944-coordinate pair core; one fixed nine-subset carries at least 2578110 records and 5868470021012020 marked component extensions at the shortest endpoint; retaining that weight eliminates the rank-nine fixed target uniformly; multistep rank-raising counts and target-coloop multiplicities give all 28 inequalities coupling kernel corank d to d-t for 2<=t<d<=9; projective-normal paving counts give nine exact complete-chart caps; multiplicity-aware rank-three and rank-four matroid floors prove the uniform caps M_2=84416263 and M_3=983902549; coupling each shortening's record cap to its extension count eliminates the fixed-kernel lane on every official K'; at K'=10 dimension equality forces every nine-set to have rank nine and excludes rank eight; at K'=11 one fixed circuit of size 2<=c<=9 controls every extension, with C(11-c,2) rank-eight shadows, 55-C(11-c,2) rank-nine shadows, c rank-ten bases, and locator-ideal dimension 11-c; the printed rank-eight chart-local output admits 4070352 records and 9265216597693056 marked extensions, exceeding both selector demands; owner-pair capacity excludes rank eight for every 37996<=K'<=1048576; and every surviving rank-eight chart on 22526<=K'<=37995 contains a delta<=4 owner with at least 200632 records.
 architecture: POST_NEAR_ERROR_RANK11_DENSE_LOCATOR_COMPONENT_ROUTE_V1
 partition_digest: inherited post-near rank-eleven route of PRs 1168 and 1169; no new first-match atom or partition digest
 atom_or_cell: rank-eleven dense-locator component family, one fixed rank-nine split-pencil cell, its lifted owner plane, and one fixed nine-coordinate component chart
 quantifier: Every survivor satisfying the pinned rank-eleven 32-anchor, 18-dense-root, ten-dimensional correction-space setup, uniformly for 10<=K'<=1048576
 projection_and_unit: Distinct bad finite slopes per received line at record level; record/coordinate-subset incidences only where explicitly stated
-claimed_bound: isolated equivalent <=2526815879272440; component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core rank-nine plane <=1434405 records; one typed fixed nine-subset >=2578110 and weighted endpoint >=5868470021012020; rank-nine weighted boundary demand 6849288576200976639 exceeds cap 147748596828055575; the one-shadow kernel LP closes through K'=15445; full containment closes through K'=15670; the rank-eight extension deficit C(67474,2)=2276336601 sharpens the cutoff to K'=17608; the seven two-step inequalities sharpen it to K'=18101; all 28 multistep inequalities sharpen it to K'=18158; the uniform corank-one projective-pair cap 8147918 sharpens it to K'=377673; the support-local envelope at K'=377674 gives 253238254 and 3935391907, but multiplicity-aware rank-three and rank-four matroid floors improve these uniformly to M_2=84416263 and M_3=983902549; the shortening-weighted terminal polynomial has twelve positive Newton coefficients and closes the fixed-kernel lane through K'=1048576; the K'=10 minimal-shortening rank exclusion has selector rank 9 against excluded rank 8; the K'=11 rank-eight fixed-chart witness has 4070352 records and marked weight 9265216597693056 against demand 5869376383979174; rank-eight demand first exceeds owner-pair capacity at K'=37996 by 36370688210984; dense-owner averaging first forces 200632 records at K'=22526
+claimed_bound: isolated equivalent <=2526815879272440; component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core rank-nine plane <=1434405 records; one typed fixed nine-subset >=2578110 and weighted endpoint >=5868470021012020; rank-nine weighted boundary demand 6849288576200976639 exceeds cap 147748596828055575; the one-shadow kernel LP closes through K'=15445; full containment closes through K'=15670; the rank-eight extension deficit C(67474,2)=2276336601 sharpens the cutoff to K'=17608; the seven two-step inequalities sharpen it to K'=18101; all 28 multistep inequalities sharpen it to K'=18158; the uniform corank-one projective-pair cap 8147918 sharpens it to K'=377673; the support-local envelope at K'=377674 gives 253238254 and 3935391907, but multiplicity-aware rank-three and rank-four matroid floors improve these uniformly to M_2=84416263 and M_3=983902549; the shortening-weighted terminal polynomial has twelve positive Newton coefficients and closes the fixed-kernel lane through K'=1048576; the K'=10 minimal-shortening rank exclusion has selector rank 9 against excluded rank 8; the K'=11 fixed-circuit shadow table is 36/28/21/15/10/6/3/1 at rank eight and 19/27/34/40/45/49/52/54 at rank nine for c=2..9; the K'=11 rank-eight fixed-chart witness has 4070352 records and marked weight 9265216597693056 against demand 5869376383979174; rank-eight demand first exceeds owner-pair capacity at K'=37996 by 36370688210984; dense-owner averaging first forces 200632 records at K'=22526
 status: PROVED LOCAL THEOREM PACKET / GLOBAL ROW OPEN
 impact: ROUTE_CUT / BASE-FIELD-NORMALIZED SPLIT-PENCIL AND FIXED-CHART LEDGER
-falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; a lifted plane above 1434405 records whose shared pair core has size below 134944; failure of the marked 5868470021012020 endpoint; a rank-nine chart exceeding 981105*(m'-10)*n' marked extensions; a kernel chart violating M_d*C(K'-10,d+1); a loopless corank-d eleven-set with fewer than C(d+2,t) spanning (11-t)-subsets for some 2<=t<d; one such shadow with more than C(K'-d-11+t,t) same-rank extensions; one record violating either nine-shadow resource; fewer than C(67472+d,t) rank-raising support t-sets; a rank-(10-d+t) target with more than C(9-d+t,t) source shadows; a loopless rank-three matroid violating 2b(M)>=(m-1)(m-1-a); a loopless rank-four matroid violating the printed bounded-point/line recurrence; an official corank-two chart with more than 84416263 records; an official corank-three chart with more than 983902549 records; a shortening-weighted ratio at least one, a failed t=1 dominance comparison, or a nonpositive terminal polynomial coefficient; failure of the integer-gap envelope or any exact capacity replay; a rank-eight chart exceeding 981105*C(n'-9,2); failure of either owner-capacity crossing; failure of the 22526 dense-owner bridge; a rank-eight nine-set at K'=10; a defect in the 4070408-slope rank-nine fence; or a defect in the 4070352-slope rank-eight weighted fence.
+falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; a lifted plane above 1434405 records whose shared pair core has size below 134944; failure of the marked 5868470021012020 endpoint; a rank-nine chart exceeding 981105*(m'-10)*n' marked extensions; a kernel chart violating M_d*C(K'-10,d+1); a loopless corank-d eleven-set with fewer than C(d+2,t) spanning (11-t)-subsets for some 2<=t<d; one such shadow with more than C(K'-d-11+t,t) same-rank extensions; one record violating either nine-shadow resource; fewer than C(67472+d,t) rank-raising support t-sets; a rank-(10-d+t) target with more than C(9-d+t,t) source shadows; a loopless rank-three matroid violating 2b(M)>=(m-1)(m-1-a); a loopless rank-four matroid violating the printed bounded-point/line recurrence; an official corank-two chart with more than 84416263 records; an official corank-three chart with more than 983902549 records; a shortening-weighted ratio at least one, a failed t=1 dominance comparison, or a nonpositive terminal polynomial coefficient; failure of the integer-gap envelope or any exact capacity replay; a rank-eight chart exceeding 981105*C(n'-9,2); failure of either owner-capacity crossing; failure of the 22526 dense-owner bridge; a rank-eight nine-set at K'=10; a K'=11 rank-eight extension whose circuit depends on the extension pair or violates the printed 55-shadow table; a defect in the 4070408-slope rank-nine fence; or a defect in the 4070352-slope rank-eight weighted fence.
 replay: python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1_independent.py
 ---
 
@@ -25,7 +25,7 @@ Status: **PROVED LOCAL THEOREM PACKET / ZERO DEPLOYED LEDGER MOVEMENT**.
 Exact parent: PR #1169 head
 `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
 
-This packet imports forty-nine proved public results, each commit- and
+This packet imports fifty proved public results, each commit- and
 tree-pinned to the prize DAG.
 They begin after the rank-eleven branch has produced one fixed degree-31
 anchor interpolant, eighteen dense-pair roots, and a ten-dimensional
@@ -54,6 +54,11 @@ the live alternatives are normalized-span ancestry or cross-chart chronology.
 At `K'=10`, the correction space equals the complete residual
 degree-below-ten RS space, so every nine-set has evaluation rank nine and
 the rank-eight target is empty.  Hence `K'=11` is the sharp lower endpoint.
+At `K'=11`, one fixed circuit `C_B subset B` of size `2<=c<=9` controls
+every extension pair.  The exact shadow census is `C(11-c,2)` at rank eight
+and `55-C(11-c,2)` at rank nine, with `c` rank-ten bases and locator-ideal
+dimension `11-c`.  Every circuit size is possible at the correction-space
+and chart-rank level, so local linear algebra alone removes no branch.
 
 Throughout, write
 
@@ -1185,7 +1190,7 @@ adjacent-row extension.
 
 ## 19. Exact impact on the open route
 
-The packet supplies forty-nine proved local results.
+The packet supplies fifty proved local results.
 
 1. High-core absorption has exactly dimension ten, not a range `2,...,10`.
 2. More than 99 percent of record/eleven-subset incidences enter an affine
@@ -1298,6 +1303,12 @@ The packet supplies forty-nine proved local results.
 49. At `K'=10`, dimension equality identifies the correction space with
     `RS_{<10}`.  Every nine-set has evaluation rank nine, so the rank-eight
     target is empty and the exact lower endpoint advances to `K'=11`.
+50. At `K'=11`, the hyperplane functional factors through the fixed
+    nine-set and has one circuit `C_B` of size `2<=c<=9`, independent of
+    every extension pair.  The exact 55-shadow, basis, and locator-ideal
+    census gives the first honest split: `c=9` has 54 rank-nine shadows,
+    while `c<=8` has extra rank-eight shadows and ideal dimension at least
+    three.  All sizes remain live at the local linear-algebra level.
 
 It does not select the complete component lane, recursively cover its
 remainder, construct a chronology-correct owner satisfying PR #1169, or pay
@@ -1317,7 +1328,7 @@ The exact unresolved intervals are:
 
 ## 20. Provenance and replay
 
-The manifest pins all 49 public source nodes by commit, Git tree, and
+The manifest pins all 50 public source nodes by commit, Git tree, and
 source-contract SHA-256.  The primary verifier recomputes all displayed
 integer endpoints and a finite-field dense-root saturation model.  The
 independent verifier uses a separate rational-product calculation and an
@@ -1330,7 +1341,8 @@ identities, line-split and plane-split extrema, the rank-four recurrence at
 five separated corank-three rows, nine exact projective-capacity boundary
 rows, the complete-chart scope and integer-gap audit, and all `11`
 rank-eight monotonicity factors, the finite-field rank-eight petal fence,
-the minimal-shortening Vandermonde check, the six shortening-weighted branch
+the minimal-shortening Vandermonde check, the eight-row circuit-shadow
+census, the six shortening-weighted branch
 comparisons, and twelve positive shifted-power coefficients, together with finite
 affine-plane/rank-three models and the two dense-owner bridge boundary rows.
 The primary verifier separately exhausts all `1048567` corank-three rows.

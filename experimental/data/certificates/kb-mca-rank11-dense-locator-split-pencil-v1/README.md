@@ -1,6 +1,6 @@
 # KoalaBear rank-eleven dense-locator/split-pencil v1
 
-This certificate packages forty-nine proved local results after the fixed
+This certificate packages fifty proved local results after the fixed
 rank-eleven anchor-star reduction:
 
 - dense-root high-coefficient saturation of the ten-dimensional correction
@@ -119,6 +119,11 @@ rank-eleven anchor-star reduction:
 - exact exclusion of the rank-eight chart at `K'=10`: the ten-dimensional
   correction space equals the complete residual `RS_{<10}` space, whose
   restriction to any nine-set has rank nine;
+- the exact `K'=11` codimension-one circuit census: for fixed circuit size
+  `2<=c<=9`, every extending eleven-set has `C(11-c,2)` rank-eight
+  nine-shadows, `55-C(11-c,2)` rank-nine shadows, `c` rank-ten bases, and
+  locator-ideal dimension `11-c`; all eight sizes occur at the local
+  linear-algebra level;
 - exact exclusion of the rank-eight owner-flat target for
   `37996<=K'<=1048576`, with the last failed row `K'=37995` printed;
 - a marked-weight bridge placing one `delta<=4` owner with at least
@@ -143,14 +148,17 @@ separately exhausts all `1048567` corank-three rows, checks the
 complete-chart scope and integer-gap audit, and checks all
 `11` rank-eight monotonicity
 factors and both dense-owner bridge boundary rows.  The independent replay
-also checks finite-field rank-eight petal and minimal-shortening models, while the primary replay
-checks the existing affine-plane line design. Both reject
+also checks finite-field rank-eight petal, minimal-shortening, and
+circuit-shadow models, while the primary replay checks the existing
+affine-plane line design. Both reject
 proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
 lane.  In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not
-pay the rank-eight branch on `11<=K'<22526`.  The packet does not assign the bridged dense
+pay the rank-eight branch on `11<=K'<22526`. The circuit census partitions
+its first row but does not itself bound records or owners. The packet does
+not assign the bridged dense
 owner in first-match chronology,
 pay error rank eleven, move an active v4 atom, or close KoalaBear.

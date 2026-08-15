@@ -12185,6 +12185,65 @@ $\langle1,X,\ldots,X^7,L_B,XL_B\rangle$ from the next proposition has
 rank eight on $B$, so no adjacent-row propagation is claimed.
 \end{proof}
 
+\begin{proposition}[Rank-eight codimension-one circuit-shadow census]
+\label{prop:kb-rank11-rank8-circuit-shadow-census}
+At $K'=11$, fix a nine-set $B$ in the rank-eight affine-owner target.
+There is one circuit $C_B\subset B$, independent of every extension pair,
+with $2\le c:=|C_B|\le9$.  Every eleven-set
+$T=B\cup\{x,y\}$ has exactly
+\[
+ \binom{11-c}{2}
+\]
+rank-eight nine-shadows, $55-\binom{11-c}{2}$ rank-nine nine-shadows,
+and $c$ rank-ten bases.  Moreover
+\[
+ L_{C_B}\{f:\deg f<11-c\}\subset V'.
+\]
+Every $c\in\{2,\ldots,9\}$ occurs at the correction-space and chart-rank
+level.  Thus no circuit-size branch is removed by local linear algebra.
+\end{proposition}
+
+\begin{proof}
+Put $P=\{f:\deg f<11\}$.  It has dimension eleven, while $V'$ is a
+ten-dimensional hyperplane.  Since evaluation of $V'$ on $B$ has rank
+eight,
+\[
+ \ker(\operatorname{ev}_B|_{V'})
+ =L_B\{a+bX:a,b\in\F\};
+\]
+both sides have dimension two.  A functional $\lambda$ cutting out $V'$
+therefore annihilates the complete kernel of
+$\operatorname{ev}_B:P\to\F^B$ and factors uniquely as
+\[
+ \lambda(f)=\sum_{b\in B}\mu_b f(b).
+\]
+Let $C_B$ be the support of $(\mu_b)_{b\in B}$.  If $|C_B|=1$, that
+coordinate is an evaluation loop of $V'$.  For every one of the at least
+$2578110$ distinct fixed-chart slopes, the normalized rich equation there
+reduces to $E_b(\gamma)=0$.  Since $E_b(Z)$ is affine, two slopes make it
+identically zero, producing a coordinate in the complete residual common
+support, contrary to maximal shortening.  Hence $2\le |C_B|\le9$.
+
+Evaluation of $P$ on the eleven distinct points of $T$ is an isomorphism.
+The unique relation on the rank-ten image of $V'$ is consequently
+$(\mu_b)_{b\in B}$, extended by zero at $x,y$.  Its support is the fixed
+circuit $C_B$.  A nine-subset of $T$ has rank eight exactly when its omitted
+pair misses this circuit; otherwise its nine columns are independent.
+This gives the two shadow counts.  A ten-subset is a basis exactly when its
+omitted point lies in $C_B$, giving $c$ bases.  The factorization of
+$\lambda$ also places every polynomial vanishing on $C_B$ in $V'$, proving
+the locator-ideal inclusion.
+
+For sharpness, choose any $c$ points of $B$, nonzero weights on them, and
+take $V'$ to be the kernel of the corresponding weighted evaluation
+functional.  Its restriction to $B$ has rank eight, and no coordinate is a
+loop because evaluation functionals at at most eleven distinct points are
+Vandermonde-independent.  This realizes every $c=2,\ldots,9$ at the stated
+linear-algebra level.  The eight-petal space in
+Proposition~\ref{prop:kb-rank11-rank8-fixed-chart-local-cap-fence} is the
+$c=9$ endpoint, with one rank-eight and 54 rank-nine shadows.
+\end{proof}
+
 \begin{proposition}[Rank-eight fixed-chart local-payment fence]
 \label{prop:kb-rank11-rank8-fixed-chart-local-cap-fence}
 At residual dimension $K'=11$, the local rank-eight output of
@@ -12450,6 +12509,11 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
+Proposition~\ref{prop:kb-rank11-rank8-circuit-shadow-census} gives the exact
+first-row split: the full-circuit case has 54 rank-nine shadows, while every
+proper circuit gives additional rank-eight shadows and a locator ideal of
+dimension at least three.  Summing fixed-chart caps without retaining owner
+labels is not asserted.
 The fence does not instantiate the fixed
 dense-anchor ancestors or an unsafe line.  The packet does not recursively
 cover the remaining records,

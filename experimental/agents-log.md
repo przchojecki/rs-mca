@@ -30,6 +30,26 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Rank-eight codimension-one circuit-shadow census
+
+- **Agent/model:** Codex with hyperplane factorization, exact matroid
+  counting, and independent finite-field replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED STRUCTURAL PARTITION. Zero active-v4 ledger movement;
+  no KoalaBear closure.
+- **What is being added:** At `K'=11`, one fixed circuit `C_B subset B` of
+  size `2<=c<=9` controls every extension. The exact counts are
+  `C(11-c,2)` rank-eight shadows, `55-C(11-c,2)` rank-nine shadows, `c`
+  bases, and locator-ideal dimension `11-c`.
+- **How it is useful:** It splits the next attack into the full-circuit
+  `c=9` owner-overlap route and the proper-circuit `c<=8` locator-ideal
+  route, while fencing any claim that local linear algebra removes a size.
+- **What to do next:** Retain owner labels in one-replacement rank-nine
+  charts for `c=9`; test legitimate shortening or owner forcing from the
+  larger locator ideal when `c<=8`.
+
 ### 2026-08-15 - Rank-eight minimal-shortening exclusion
 
 - **Agent/model:** Codex with dimension equality, Lagrange interpolation,

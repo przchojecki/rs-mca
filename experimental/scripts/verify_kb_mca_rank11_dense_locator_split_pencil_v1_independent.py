@@ -329,6 +329,13 @@ FIXED_CHART_SOURCES = {
         "tree": "cfeeaeda449d3527d14218bb2519ab25e3803518",
         "contract_sha256": "d03271ea09234ab73dad72b6509a136b07427a479bba822c7db55adf8c4c868e",
     },
+    "rank8_codimension_one_circuit_shadow_census": {
+        "id": "rate_half_mca_rank11_rank8_codimension_one_circuit_shadow_census",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_codimension_one_circuit_shadow_census",
+        "commit": "ebdeb497f575cb7cf2a22565200c748e794cf02b",
+        "tree": "24448f28d742304c6e437256c0c7311601de81f5",
+        "contract_sha256": "c6e5d380725fb05eee4fe901c8884eaae9806545c70024ef1a58af18e56e3e7f",
+    },
 }
 
 
@@ -1140,6 +1147,57 @@ def rank8_minimal_shortening_toy() -> int:
     return determinant
 
 
+def rank8_circuit_shadow_toy() -> tuple[int, int, int]:
+    field = 107
+    points = list(range(2, 13))
+    checks = 0
+    for circuit_size in range(2, 10):
+        weights = list(range(1, circuit_size + 1))
+        moments = [
+            sum(
+                weight * pow(point, degree, field)
+                for weight, point in zip(weights, points[:circuit_size])
+            ) % field
+            for degree in range(11)
+        ]
+        require(any(moments), f"rank-eight circuit functional c={circuit_size}")
+        pivot = next(degree for degree, value in enumerate(moments) if value)
+        pivot_inverse = pow(moments[pivot], -1, field)
+        for degree in range(11):
+            if degree == pivot:
+                continue
+            pivot_coefficient = -moments[degree] * pivot_inverse % field
+            relation = sum(
+                weight * (
+                    pow(point, degree, field)
+                    + pivot_coefficient * pow(point, pivot, field)
+                )
+                for weight, point in zip(weights, points[:circuit_size])
+            ) % field
+            require(relation == 0, f"rank-eight hyperplane basis c={circuit_size}")
+            checks += 1
+        for point in points:
+            require(
+                any(
+                    moments[degree] != moments[0] * pow(point, degree, field) % field
+                    for degree in range(11)
+                ),
+                f"rank-eight loopless toy c={circuit_size}",
+            )
+            checks += 1
+        rank8 = sum(
+            set(omitted).isdisjoint(range(circuit_size))
+            for omitted in combinations(range(11), 2)
+        )
+        rank9 = comb(11, 2) - rank8
+        bases = sum(omitted < circuit_size for omitted in range(11))
+        require(rank8 == comb(11 - circuit_size, 2), f"rank-eight shadows c={circuit_size}")
+        require(rank9 == 55 - rank8, f"rank-nine shadows c={circuit_size}")
+        require(bases == circuit_size, f"rank-ten bases c={circuit_size}")
+        checks += 3
+    return field, checks, len(range(2, 10))
+
+
 def main() -> None:
     data = json.loads(MANIFEST.read_text())
     component = data["component_incidence"]
@@ -1188,6 +1246,7 @@ def main() -> None:
     dense_owner = data["rank8_dense_owner_terminal_bridge"]
     rank8_fence = data["rank8_fixed_chart_local_cap_fence"]
     rank8_minimal = data["rank8_minimal_shortening_exclusion"]
+    rank8_circuit = data["rank8_codimension_one_circuit_shadow_census"]
     require(
         data["source_prize_dag"]["nodes"]["rank9_split_pencil_paircore"]
         == PAIRCORE_SOURCE,
@@ -2212,6 +2271,25 @@ def main() -> None:
         "rank-eight minimal rank exclusion",
     )
     rank8_minimal_determinant = rank8_minimal_shortening_toy()
+    circuit_sizes = list(range(2, 10))
+    require(rank8_circuit == {
+        "residual_K_prime": 11,
+        "ambient_RS_dimension": 11,
+        "correction_space_dimension": 10,
+        "selector_size": 9,
+        "selector_rank": 8,
+        "selector_kernel_dimension": 2,
+        "empty_global_common_support": True,
+        "fixed_chart_record_floor": 2578110,
+        "minimum_distinct_slopes_for_loop_exclusion": 2,
+        "circuit_sizes": circuit_sizes,
+        "rank8_shadow_counts": [comb(11 - c, 2) for c in circuit_sizes],
+        "rank9_shadow_counts": [55 - comb(11 - c, 2) for c in circuit_sizes],
+        "rank10_basis_counts": circuit_sizes,
+        "locator_ideal_dimensions": [11 - c for c in circuit_sizes],
+        "eight_petal_circuit_size": 9,
+    }, "rank-eight circuit-shadow census")
+    circuit_field, circuit_checks, circuit_rows = rank8_circuit_shadow_toy()
 
     core_checks = 0
     for owner_core in range(2 * m - n, m):
@@ -2239,6 +2317,7 @@ def main() -> None:
         "rank8_dense_owner_terminal_from_Kprime": 22526,
         "rank8_fixed_chart_output_suffices_for_payment": False,
         "rank8_minimal_shortening_closed_K_prime": 10,
+        "rank8_Kprime11_fixed_circuit_census_proved": True,
         "chronology_owner": False,
         "rank11_paid": False,
         "active_v4_ledger_movement": 0,
@@ -2302,6 +2381,7 @@ def main() -> None:
         f"rank8_toy={toy_rank8_records}/{toy_rank8_slopes}/{toy_rank8_components} "
         f"rank8_minimal_kprime={rank8_minimal['residual_K_prime']} "
         f"rank8_minimal_det={rank8_minimal_determinant} "
+        f"rank8_circuit_toy=GF({circuit_field})/{circuit_rows}/{circuit_checks} "
         f"toy_points={points} toy_slopes={slopes} design_pairs={design_pairs}"
     )
 

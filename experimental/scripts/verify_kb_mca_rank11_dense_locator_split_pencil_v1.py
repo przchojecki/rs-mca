@@ -361,6 +361,13 @@ SOURCE_NODES = {
         "tree": "cfeeaeda449d3527d14218bb2519ab25e3803518",
         "contract_sha256": "d03271ea09234ab73dad72b6509a136b07427a479bba822c7db55adf8c4c868e",
     },
+    "rank8_codimension_one_circuit_shadow_census": {
+        "id": "rate_half_mca_rank11_rank8_codimension_one_circuit_shadow_census",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_codimension_one_circuit_shadow_census",
+        "commit": "ebdeb497f575cb7cf2a22565200c748e794cf02b",
+        "tree": "24448f28d742304c6e437256c0c7311601de81f5",
+        "contract_sha256": "c6e5d380725fb05eee4fe901c8884eaae9806545c70024ef1a58af18e56e3e7f",
+    },
 }
 
 
@@ -2347,6 +2354,23 @@ def expected() -> dict[str, Any]:
             "interpolation_degree_ceiling": 8,
             "first_uncovered_K_prime": 11,
         },
+        "rank8_codimension_one_circuit_shadow_census": {
+            "residual_K_prime": 11,
+            "ambient_RS_dimension": 11,
+            "correction_space_dimension": 10,
+            "selector_size": 9,
+            "selector_rank": 8,
+            "selector_kernel_dimension": 2,
+            "empty_global_common_support": True,
+            "fixed_chart_record_floor": 2578110,
+            "minimum_distinct_slopes_for_loop_exclusion": 2,
+            "circuit_sizes": list(range(2, 10)),
+            "rank8_shadow_counts": [comb(11 - c, 2) for c in range(2, 10)],
+            "rank9_shadow_counts": [55 - comb(11 - c, 2) for c in range(2, 10)],
+            "rank10_basis_counts": list(range(2, 10)),
+            "locator_ideal_dimensions": [11 - c for c in range(2, 10)],
+            "eight_petal_circuit_size": 9,
+        },
         "claims": {
             "local_theorem_packet": True,
             "incidence_is_record_count": False,
@@ -2362,6 +2386,7 @@ def expected() -> dict[str, Any]:
             "rank8_dense_owner_terminal_from_Kprime": 22526,
             "rank8_fixed_chart_output_suffices_for_payment": False,
             "rank8_minimal_shortening_closed_K_prime": 10,
+            "rank8_Kprime11_fixed_circuit_census_proved": True,
             "chronology_owner": False,
             "rank11_paid": False,
             "active_v4_ledger_movement": 0,
@@ -2872,6 +2897,35 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
         value["claims"]["rank8_minimal_shortening_closed_K_prime"] == 10,
         "rank-eight minimal closure claim",
     )
+    circuit = value["rank8_codimension_one_circuit_shadow_census"]
+    circuit_sizes = list(range(2, 10))
+    require(circuit == {
+        "residual_K_prime": 11,
+        "ambient_RS_dimension": 11,
+        "correction_space_dimension": 10,
+        "selector_size": 9,
+        "selector_rank": 8,
+        "selector_kernel_dimension": 2,
+        "empty_global_common_support": True,
+        "fixed_chart_record_floor": 2578110,
+        "minimum_distinct_slopes_for_loop_exclusion": 2,
+        "circuit_sizes": circuit_sizes,
+        "rank8_shadow_counts": [comb(11 - c, 2) for c in circuit_sizes],
+        "rank9_shadow_counts": [55 - comb(11 - c, 2) for c in circuit_sizes],
+        "rank10_basis_counts": circuit_sizes,
+        "locator_ideal_dimensions": [11 - c for c in circuit_sizes],
+        "eight_petal_circuit_size": 9,
+    }, "rank-eight codimension-one circuit-shadow census")
+    require(
+        all(left + right == 55 for left, right in zip(
+            circuit["rank8_shadow_counts"], circuit["rank9_shadow_counts"]
+        )),
+        "rank-eight 55-shadow partition",
+    )
+    require(
+        value["claims"]["rank8_Kprime11_fixed_circuit_census_proved"] is True,
+        "rank-eight fixed-circuit claim",
+    )
     return {
         **dense,
         "component_ppb": component["component_incidence_ppb_floor"],
@@ -2885,6 +2939,7 @@ def validate(value: object, wanted: dict[str, Any] | None = None) -> dict[str, i
             - rank8_fence["weighted_selector_demand"]
         ),
         "rank8_minimal_closed_kprime": rank8_minimal["residual_K_prime"],
+        "rank8_circuit_sizes": len(circuit_sizes),
         "weighted_demand": weighted_elimination["boundary_demand"],
         "weighted_cap": weighted_elimination["boundary_cap"],
         "kernel_endpoint_gap": kernel_cut["endpoint_gap"],
@@ -3001,6 +3056,10 @@ def tamper_selftest(reference: dict[str, Any]) -> int:
         lambda item: item["rank8_minimal_shortening_exclusion"].__setitem__("correction_space_dimension", 9),
         lambda item: item["rank8_minimal_shortening_exclusion"].__setitem__("selector_rank", 8),
         lambda item: item["claims"].__setitem__("rank8_minimal_shortening_closed_K_prime", 11),
+        lambda item: item["rank8_codimension_one_circuit_shadow_census"].__setitem__("selector_kernel_dimension", 3),
+        lambda item: item["rank8_codimension_one_circuit_shadow_census"]["rank8_shadow_counts"].__setitem__(0, 35),
+        lambda item: item["rank8_codimension_one_circuit_shadow_census"]["locator_ideal_dimensions"].__setitem__(7, 1),
+        lambda item: item["claims"].__setitem__("rank8_Kprime11_fixed_circuit_census_proved", False),
         lambda item: item["claims"].__setitem__("fixed_chart_output_suffices_for_payment", True),
         lambda item: item["claims"].__setitem__("full_rank_star_owner_is_record_intrinsic", False),
         lambda item: item["claims"].__setitem__("rank9_fixed_target_eliminated", False),
@@ -3048,6 +3107,7 @@ def main() -> None:
         f"rank8_local_fence_slopes={result['rank8_local_fence_slopes']} "
         f"rank8_local_fence_weighted_excess={result['rank8_local_fence_weighted_excess']} "
         f"rank8_minimal_closed_kprime={result['rank8_minimal_closed_kprime']} "
+        f"rank8_circuit_sizes={result['rank8_circuit_sizes']} "
         f"weighted_demand={result['weighted_demand']} "
         f"weighted_cap={result['weighted_cap']} "
         f"kernel_endpoint_gap={result['kernel_endpoint_gap']} "

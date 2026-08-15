@@ -346,6 +346,13 @@
         "commit": "d7d09fd437080a63d4571ce84abb6220698528a1",
         "tree": "cfeeaeda449d3527d14218bb2519ab25e3803518",
         "contract_sha256": "d03271ea09234ab73dad72b6509a136b07427a479bba822c7db55adf8c4c868e"
+      },
+      "rank8_codimension_one_circuit_shadow_census": {
+        "id": "rate_half_mca_rank11_rank8_codimension_one_circuit_shadow_census",
+        "path": "background/nodes/rate_half_mca_rank11_rank8_codimension_one_circuit_shadow_census",
+        "commit": "ebdeb497f575cb7cf2a22565200c748e794cf02b",
+        "tree": "24448f28d742304c6e437256c0c7311601de81f5",
+        "contract_sha256": "c6e5d380725fb05eee4fe901c8884eaae9806545c70024ef1a58af18e56e3e7f"
       }
     }
   },
@@ -2364,6 +2371,68 @@
     "interpolation_degree_ceiling": 8,
     "first_uncovered_K_prime": 11
   },
+  "rank8_codimension_one_circuit_shadow_census": {
+    "residual_K_prime": 11,
+    "ambient_RS_dimension": 11,
+    "correction_space_dimension": 10,
+    "selector_size": 9,
+    "selector_rank": 8,
+    "selector_kernel_dimension": 2,
+    "empty_global_common_support": true,
+    "fixed_chart_record_floor": 2578110,
+    "minimum_distinct_slopes_for_loop_exclusion": 2,
+    "circuit_sizes": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "rank8_shadow_counts": [
+      36,
+      28,
+      21,
+      15,
+      10,
+      6,
+      3,
+      1
+    ],
+    "rank9_shadow_counts": [
+      19,
+      27,
+      34,
+      40,
+      45,
+      49,
+      52,
+      54
+    ],
+    "rank10_basis_counts": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "locator_ideal_dimensions": [
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2
+    ],
+    "eight_petal_circuit_size": 9
+  },
   "claims": {
     "local_theorem_packet": true,
     "incidence_is_record_count": false,
@@ -2379,6 +2448,7 @@
     "rank8_dense_owner_terminal_from_Kprime": 22526,
     "rank8_fixed_chart_output_suffices_for_payment": false,
     "rank8_minimal_shortening_closed_K_prime": 10,
+    "rank8_Kprime11_fixed_circuit_census_proved": true,
     "chronology_owner": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
