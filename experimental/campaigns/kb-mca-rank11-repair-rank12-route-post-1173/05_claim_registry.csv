@@ -1,0 +1,11 @@
+claim_id,claim,status,unit,exact_value,nonclaim
+C-001,uniform rank-one cap,PROVED,distinct slopes,4070947,all shortened dimensions
+C-002,complete affine error rank eleven branch,PROVED,branch payment,1,no active-v4 movement
+C-003,rank-twelve descendant load,PROVED,distinct slopes,8681730,dimension at most two
+C-004,rank-two endpoint low load,PROVED,distinct slopes,8550040,conditional on full rank two reaching K=2
+C-005,rank-two pair-type count,PROVED,pair types,9..15,not a classification
+C-006,minimum deficiency-one types,PROVED,pair types,3,capacity statement
+C-007,remaining capacity excess,PROVED,distinct slopes,279911,not an extremizer
+C-008,affine error rank twelve paid,NOT_CLAIMED,branch payment,0,open
+C-009,KoalaBear closed,NOT_CLAIMED,row closure,0,open
+C-010,active-v4 ledger movement,PROVED,ledger units,0,none
