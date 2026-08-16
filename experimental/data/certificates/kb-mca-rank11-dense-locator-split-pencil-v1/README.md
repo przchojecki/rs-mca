@@ -364,7 +364,8 @@ proof-critical manifest mutations.
 
 The owner key remains recordwise. Neither local-cap fence instantiates the dense-anchor ancestors or an
 unsafe KoalaBear line.  The packet does not select the complete component
-lane. The low rank-nine interval `72<=K'<=15528` is open; the
+lane. After the supplemental full-carrier-atlas payment, the low rank-nine
+interval `74<=K'<=15528` is open; the
 original-row `134944` pair-core floor is not a residual-core floor after
 reverse shortening. In particular, the rank-eight fence requires the next proof to retain
 normalized-span ancestry or a cross-chart chronology coupling; it does not
@@ -374,3 +375,10 @@ rank-nine shadows and is paid by the global circuit census. The packet does
 not assign the bridged dense
 owner in first-match chronology,
 pay error rank eleven, move an active v4 atom, or close KoalaBear.
+
+The supplemental certificate
+`kb-mca-rank11-full-carrier-atlas-k72-k73-v1` imports four later proved
+source nodes and closes the adjacent rank-nine rows `K'=72,73`. Accordingly,
+the low rank-nine interval quoted above now begins at `K'=74`; the original
+91-node manifest remains unchanged and the supplement carries the new
+frontier lists and replay custody.

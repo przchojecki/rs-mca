@@ -5291,3 +5291,45 @@ Keep entries concise and link to the relevant files.
   KoalaBear, and both prize problems remain open.
 - **What to do next:** Analyze the two-step separation `M_3=M_2+2` at
   `K'=72`, preserving every inherited cap, kernel corank, and rank-nine mark.
+
+### 2026-08-16 - Full carrier atlas closes K'=72,73
+
+- **Agent/model:** Codex, importing four proved public prize-DAG nodes after
+  proof audit, exact bounded replay, independent reimplementation, and
+  hostile mutation testing.
+- **Exact parent:** this PR's `K'=71` extension at
+  `1ca90d4c570e3630b62c4cca084549282f1d7418`.
+- **Research source:** prize-DAG commits
+  `9adad693ff760f1f4498b2c2c6990c834aba7ed4` and
+  `fdef16d4bf491271f63df874d69faa632d1f9785`; source trees
+  `26c6e8da9f6c9cd7eb30d6b0c1e94b7572275e25`,
+  `ccdd8ccebae24a3795679a9a86a30578e20525b5`,
+  `62633e1095c2e097129cdb5dae0cad8b103cdbae`, and
+  `d5903f4a70f2be839018fb65d575999fd4127d40`; source-contract SHA-256
+  values `18a8f0af39e118d2d8c4554b03b142c57f6f01ea9db8f1b43d4ea570e85fdab9`,
+  `295d82f01e6a8cb9f9ef1d9dd4a0966e14d729cfde5a8259bb0df07ca9a66cd4`,
+  `3f3d1903b9ba5063f370ce8acad984d0d740a722b3c17ead912c6faa7c98a258`,
+  and `dbc22b8c504a950b10be711ac8348617b4bef5cab40dc06a1a87a04f46d28bf8`.
+- **Status:** PROVED TWO-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The full-completion pairwise carrier atlas for
+  arbitrary positive support-three offset, and a base-field-normalized
+  flat-coupled support-four/support-five census in the original outside
+  evaluation matroid. The atlas exhausts transverse, proper-anchor, and
+  full-completion positions without synchronizing unrelated residuals.
+- **Impact:** Exact replay reroutes all 36 conservative failures at `K'=72`
+  and all 218 at `K'=73`. The resulting positive component-payment gaps are
+  `52200017935756118667066163970702686810349690944821612538425` and
+  `2120784774514292837614781442321448802184060878375874298355`.
+  The first remaining rank-nine row is `K'=74`.
+- **Controls:** Supplemental manifest SHA-256
+  `4978f7b692bdee734e302b55c9c5597d1dc0d21674ab219b5a440b8718a41725`.
+  Focused primary and independent verifiers reconstruct all 254 exceptional
+  cells and 79,863 exact reroute evaluations; six hostile mutations are
+  rejected. Grande Finale builds in three passes at 174 pages with PDF
+  SHA-256 `621a21e9561e1a7e92a167f5828c34c97252c7a0b97d3bea4d3c3551528adeb5`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Replay the full carrier atlas at `K'=74`, retaining
+  every inherited cap, kernel corank, and rank-nine mark; do not extrapolate
+  from the two adjacent payments.
