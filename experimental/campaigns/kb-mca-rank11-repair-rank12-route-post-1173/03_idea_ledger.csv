@@ -1,0 +1,6 @@
+idea_id,title,track,status,forecast,first_unjustified_step,control_result,dependency_status,artifact,last_updated
+I-001,uniform weighted-line rank-one theorem,structural,proved,pays rank-one uniformly,none,full residual scan,self-contained,proofs/uniform_rank_one_repair_and_rank12_route.md,2026-08-16
+I-002,history-uniform rank-eleven induction,structural,proved,pays affine error rank eleven,none,all-dimension scan,parent shortening interface,proofs/uniform_rank_one_repair_and_rank12_route.md,2026-08-16
+I-003,dense-core pair-type bound,combinatorial,proved,forces finite pair-type barriers,none,small set-system controls,self-contained,proofs/uniform_rank_one_repair_and_rank12_route.md,2026-08-16
+I-004,rank-twelve barrier descent,structural,proved,forces 8681730-slope rank-at-most-two descendant,none,exact barrier replay,I-002/I-003,proofs/uniform_rank_one_repair_and_rank12_route.md,2026-08-16
+I-005,simultaneous ratio-fiber saving,algebraic,open,needs 279912-slope saving,couple different fixed pairs,pending,I-004,pending,2026-08-16
