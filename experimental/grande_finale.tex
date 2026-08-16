@@ -13357,6 +13357,98 @@ each below $P_{K'}$.  Finally, applying the same floor identity as in the
 preceding proposition gives $G_{K'}>0$ row by row.
 \end{proof}
 
+\begin{proposition}[$K'=79,\ldots,82$ full-carrier-atlas payment and the
+$K'=83$ pairwise wall]
+\label{prop:kb-rank11-k79-k82-full-carrier-atlas-payment}
+In the fixed component target, every rank-nine alternative is empty for
+$79\le K'\le82$.  The exact global completion premiums are
+\[
+\begin{aligned}
+P_{79}&=41268581039515451359223235239395447056496741638,\\
+P_{80}&=41292698225299493655203544545324133071167827372,\\
+P_{81}&=41316738803727121977844753592626079710298860916,\\
+P_{82}&=41340768193812712537232048213849077199458005267.
+\end{aligned}
+\]
+Their exact positive margins below the safe premium ceilings are
+\[
+\begin{aligned}
+M_{79}&=90041821230008310313867459260514662563833,\\
+M_{80}&=12651432337345356124303501333284331916464,\\
+M_{81}&=9200732869233857603364615518182428928433,\\
+M_{82}&=14269266235451710755032134164017670137549.
+\end{aligned}
+\]
+After unchanged kernel capacity is added, demand exceeds complete capacity
+by
+\[
+\begin{aligned}
+G_{79}&=450177555678029181663225127809721029656401221977920938493,\\
+G_{80}&=63252728650428501280250074863279553490282355009311230439,\\
+G_{81}&=46000440427984175715360686273569212546246763017890480411,\\
+G_{82}&=71341331255235112573601253115194194916813205966998398786.
+\end{aligned}
+\]
+
+The same pairwise atlas first fails at $K'=83$.  Its active cell has defects
+$(50,49,49,48)$, completion maxima $(23,24,24,25)$, and premium
+\[
+41411584407693108041789796771180703922717609427,
+\]
+which exceeds the safe ceiling by
+\[
+46770156546844646871611081711174519620031307.
+\]
+The two active $(29,6)$ fixed-union charges force a four-dimensional
+intersection on a union of size $29,30,31$, or $32$, but every corresponding
+ordinary fixed-union cap leaves the displayed premium unchanged.
+\end{proposition}
+
+\begin{proof}
+Every closed row uses the same complete pairwise carrier atlas and
+base-field-normalized support-four/support-five charge as
+Proposition~\ref{prop:kb-rank11-k74-k78-full-carrier-atlas-payment}.  The
+exact coverage ledger is
+\[
+\begin{array}{c|r|r|r|r}
+K'&\text{plain leaves}&\text{exceptional tuples}&\text{reroute leaves}&
+\text{geometry leaves}\\ \hline
+79&11{,}546{,}087&19{,}406&19{,}114{,}557&157{,}671{,}136\\
+80&11{,}929{,}729&26{,}104&24{,}962{,}791&164{,}858{,}603\\
+81&12{,}695{,}949&39{,}570&40{,}569{,}326&172{,}265{,}121\\
+82&13{,}101{,}284&49{,}900&48{,}822{,}291&179{,}887{,}680
+\end{array}
+\]
+All exceptional-tuple digests, reroute maxima, and seven geometry-lane
+maxima are pinned in the supplemental certificate.  The largest geometry
+premiums are respectively
+\[
+\begin{aligned}
+&39155883271390100828809596211624350117737071281,\\
+&39668547314355452559959739197487065940915191238,\\
+&40287409045971746658167168137122038667039311900,\\
+&40891353398864895345494242236029970259845626460,
+\end{aligned}
+\]
+each below $P_{K'}$.  Applying the same floor identity as in the preceding
+proposition gives $G_{K'}>0$ row by row.
+
+For the wall, write
+\[
+B_3=B_2\cup A,\qquad B_4=B_2\cup C,\qquad
+B_5=B_2\cup A\cup D,
+\]
+where $|B_2|=24$, $|A|=2$, $|C|=|D|=3$, and $A\cap C=\varnothing$.
+The pairwise atlas gives two six-dimensional vanishing spaces inside the
+same eight-dimensional $H_3$, each on a $29$-point union.  Their
+intersection has dimension at least four on
+$B_2\cup A\cup C\cup D$, whose size is $32-|C\cap D|\in\{29,30,31,32\}$.
+Exact replay of all four resulting caps gives the same premium and negative
+margin displayed in the proposition.  The branch-free baseline is larger
+still.  This proves only a method wall: a stronger nonseparable
+triple-carrier census may close $K'=83$.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -14981,9 +15073,11 @@ base-field-normalized joint support-four/support-five census, and
 Proposition~\ref{prop:kb-rank11-k72-k73-full-carrier-atlas-payment} pays
 $K'=72,73$, and
 Proposition~\ref{prop:kb-rank11-k74-k78-full-carrier-atlas-payment} pays
-$K'=74,\ldots,78$.
+$K'=74,\ldots,78$, and
+Proposition~\ref{prop:kb-rank11-k79-k82-full-carrier-atlas-payment} pays
+$K'=79,\ldots,82$ and isolates the first pairwise-atlas wall at $K'=83$.
 Thus the remaining intervals are rank eight only on
-$22\le K'\le78$, rank nine or rank eight on $79\le K'\le15528$, rank
+$22\le K'\le82$, rank nine or rank eight on $83\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -14993,11 +15087,12 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=79$, no closure is asserted here.
-A continuation must replay the full carrier atlas with every inherited cap,
-kernel corank, and rank-nine mark, and either obtain a positive integral
-payment or isolate the first surviving carrier geometry.  No extrapolation
-from the preceding exact rows is used.
+At the first remaining rank-nine row $K'=83$, no closure is asserted here.
+The surviving $(23,24,24,25)$ cell requires a nonseparable triple-carrier
+support-three/support-four/support-five census.  The complete pairwise
+atlas, its forced four-dimensional Grassmann intersection, and the
+branch-free baseline have all been replayed and fail.  No extrapolation from
+the preceding exact rows is used.
 Proposition~\ref{prop:kb-rank11-rank8-circuit-shadow-census} gives the exact
 first-row split: the full-circuit case has 54 rank-nine shadows, while every
 proper circuit gives additional rank-eight shadows and a locator ideal of

@@ -5375,3 +5375,59 @@ Keep entries concise and link to the relevant files.
   problems remain open.
 - **What to do next:** Replay the complete atlas at `K'=79`; do not
   extrapolate from the five exact rows.
+
+### 2026-08-16 - Full carrier atlas closes `K'=79..82` and isolates the `K'=83` wall
+
+- **Agent/model:** Codex, importing four proved public prize-DAG row nodes
+  and one proved method-wall node after exact arithmetic reconstruction,
+  independent reimplementation, hostile mutation testing, and a fresh
+  full-frontier replay at the last closed row.
+- **Exact parent:** this PR's `K'=74..78` extension at
+  `0b6cb72c025ddaafbddd92e3daf398e5993ef320`.
+- **Research source:** prize-DAG commit
+  `42ad09faf86b9a3624a361b2cc8d1a57f201501c`; source trees
+  `ce03af23683142272324ff89626d72ef4f876e40`,
+  `58fc3109875e1acbe9032cb2b1d614dac7e03374`,
+  `0f2b7a1c4e5dc58a2c18a7aec71e816b0aae2145`,
+  `583733740a63d106039b638e5c001e4287d40e79`, and
+  `60862e5d5feeecb0fd8717e1a7ac027791e726d3`; source-contract SHA-256
+  values `29f26c362ce70c3f2f7bd5a8e911baa2d6f3a72fb30bcd066fbe60a1c16eb4cb`,
+  `90a2e102c402a5323aad41fba6f99f9965defd593f690b429993c459ee1ebba3`,
+  `0f55a47938c6ad528b68a212f7cb51237be84ad1309594a8c8c39dbcf9464525`,
+  `bef30d74e322c5ae37ad22c09fe8d7bf657b8a6f037cc1b6d9c2e14f5727c926`,
+  and `2df88cbc5fdbe8cffde25d064cf3e00e0a339857d34c0917ae2e5a58d3402c08`.
+- **Status:** PROVED FOUR-ROW EXTENSION plus PROVED METHOD WALL / ZERO
+  DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The digest-pinned full carrier atlas closes
+  `K'=79,80,81,82`. At `K'=83`, the packet reconstructs the exact
+  `(23,24,24,25)` active completion cell, both `(29,6)` pairwise carrier
+  charges, every forced dimension-four intersection on union sizes
+  `29..32`, and the branch-free baseline.
+- **Impact:** The four rows contain `19406`, `26104`, `39570`, and
+  `49900` exceptional cells. Their exact positive component-payment gaps
+  are
+  `450177555678029181663225127809721029656401221977920938493`,
+  `63252728650428501280250074863279553490282355009311230439`,
+  `46000440427984175715360686273569212546246763017890480411`, and
+  `71341331255235112573601253115194194916813205966998398786`.
+  The closed rank-nine prefix is now `K'=10..82`.
+- **Wall:** At `K'=83`, the pairwise premium exceeds the safe ceiling by
+  `46770156546844646871611081711174519620031307`; forced pairwise
+  intersection makes no improvement, and the branch-free baseline is worse.
+  This proves a route cut, not a counterexample to MCA.
+- **Controls:** Supplemental manifest SHA-256
+  `b5ef760938b36d09877fcda1d87c597de4f553a193af0050c05ddf24bfda2523`.
+  Primary, independent, and full-frontier verifier SHA-256 values are
+  `6e94e506748b85619e5bda9b00b28ee1213551a2ef9dabcef5b73a210e4f2ab3`,
+  `16e43612118b943cab9c81909373ce75a81412c4e413ee19fd203a1e5c45127b`,
+  and `69abfde48959c4d78196723cbfea683baee66ee8c943468a782607959f8cc755`.
+  The primary rejects eight hostile mutations. A fresh full replay at
+  `K'=82` passes at 67 MB peak RSS. Grande Finale builds in three passes
+  at 176 pages with PDF SHA-256
+  `455d961a1ebd13f7d3ba58c3d36d7d2ef21ad55084783169ed499304cfeaf5bc`.
+- **Nonclaim:** Rank eight on `22..22525`, rank nine on `83..15528`,
+  chronology on `22526..37995`, aggregate error rank eleven, active-v4
+  movement, KoalaBear, and both prize problems remain open.
+- **What to do next:** Derive a genuinely nonseparable support-`3/4/5`
+  triple-carrier census in the explicit `K'=83` active cell. Do not add
+  another pairwise correction or infer a row closure from the route cut.

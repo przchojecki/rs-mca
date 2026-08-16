@@ -5,13 +5,13 @@ object: MCA
 target_epsilon: 2^-128
 agreement: 1116048
 B_star: 274980728111395087
-direct_statement: In the pinned post-near rank-eleven anchor-star setup, the dense-locator, split-pencil, kernel, circuit-shadow, rank-stratified isolated-incidence, completion-defect, collision, and full-carrier-atlas theorems eliminate every rank-nine component target for K'=10..78. Exact integral heavy-owner optimization and a near-saturation carrier close K'=22; the completion-defect hierarchy closes K'=23; the universal completion cap plus the full 55-shadow deficit ledger close K'=24..40; the sharp actual-record isolated cap closes K'=41; the support-five cross-support payment closes K'=42; the descending support ladder closes K'=43; the refined completion branch lattice closes K'=44; the joint support-four/support-five zero carrier plus the full completion product close K'=45; the exact deep defect partition plus Pareto-compressed joint payment close K'=46..53; the same-support collision payment closes K'=54..59; the mixed-support collision payment closes K'=60..70; the fixed-union carrier-position trichotomy closes K'=71; and the full-completion pairwise carrier atlas plus flat-coupled support-four/support-five charge close K'=72..78. The first remaining rank-nine row is K'=79. Rank eight remains open on K'=22..22525, with K'=22526..37995 routed to the guarded dense-owner chronology terminal; no active-v4 atom moves.
+direct_statement: In the pinned post-near rank-eleven anchor-star setup, the dense-locator, split-pencil, kernel, circuit-shadow, rank-stratified isolated-incidence, completion-defect, collision, and full-carrier-atlas theorems eliminate every rank-nine component target for K'=10..82. Exact integral heavy-owner optimization and a near-saturation carrier close K'=22; the completion-defect hierarchy closes K'=23; the universal completion cap plus the full 55-shadow deficit ledger close K'=24..40; the sharp actual-record isolated cap closes K'=41; the support-five cross-support payment closes K'=42; the descending support ladder closes K'=43; the refined completion branch lattice closes K'=44; the joint support-four/support-five zero carrier plus the full completion product close K'=45; the exact deep defect partition plus Pareto-compressed joint payment close K'=46..53; the same-support collision payment closes K'=54..59; the mixed-support collision payment closes K'=60..70; the fixed-union carrier-position trichotomy closes K'=71; and the full-completion pairwise carrier atlas plus flat-coupled support-four/support-five charge close K'=72..82. The first remaining rank-nine row is K'=83. Rank eight remains open on K'=22..22525, with K'=22526..37995 routed to the guarded dense-owner chronology terminal; no active-v4 atom moves.
 architecture: POST_NEAR_ERROR_RANK11_DENSE_LOCATOR_COMPONENT_ROUTE_V1
 partition_digest: inherited post-near rank-eleven route of PRs 1168 and 1169; no new first-match atom or partition digest
 atom_or_cell: rank-eleven dense-locator component family, one fixed rank-nine split-pencil cell, its lifted owner plane, and one fixed nine-coordinate component chart
 quantifier: Every survivor satisfying the pinned rank-eleven 32-anchor, 18-dense-root, ten-dimensional correction-space setup, uniformly for 10<=K'<=1048576
 projection_and_unit: Distinct bad finite slopes per received line at record level; record/coordinate-subset incidences only where explicitly stated
-claimed_bound: generic isolated equivalent <=2526815879272440; actual retained-record isolated incidences <=C(n',11); component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core original-row plane <=1434405 records; fixed kernel lane closed through K'=1048576; rank-nine rows K'=10..78 closed; exact K'=22 gap 1232731756628187885277355254597101817411431837269258943471111; exact K'=23 gap 1704262040773185642290284810631267267026794188450394076492364; minimum K'=24..40 gap 2272401814108959137912675549447888006236817090602808413697595 at K'=40; exact K'=41 sharp-isolated gap 3959829848992990899082071934034620604165114037293042026746826; exact K'=42 cross-support gap 4081031051590194485758587836050845115467905186032497191061176; exact K'=43 descending-ladder gap 4456829341030748859349785682161828589177837723939653522311506; exact K'=44 branch-lattice gap 535634409944931896502583174279429171539133692200964798538249; exact K'=45 full-product gap 1616971801308361526826641488053709685917408248376428345137933; minimum K'=46..53 deep-joint gap 2503373059664320603163477388007627909210651834842589498907998 at K'=53; deep-joint method wall K'=54 with capacity excess 2477882110233058360154706764229180240778698202487636349407165; minimum K'=54..59 same-support collision gap 2662571195028360324230500777441238424043251068116179184680206 at K'=59; same-support collision wall K'=60 with capacity excess 3672733965923291717387950853821894967875078243379846951201638; minimum K'=60..70 cross-support collision gap 854274172985042754802177028749324962520517760595473749602211 at K'=70; first cross-support collision wall K'=71 with capacity excess 824875968499878215752683873455674299360608616555107905777434; exact K'=71 carrier-trichotomy gap 118872281099445772155993127155914865045379156488810154591370; first carrier-trichotomy wall K'=72 with capacity excess 4821537739796415753639473905341364357966460110033651367468100; exact K'=72 full-atlas gap 52200017935756118667066163970702686810349690944821612538425; exact K'=73 full-atlas gap 2120784774514292837614781442321448802184060878375874298355; exact K'=74 full-atlas gap 755986378881174710705888877305550381612101047062792678211; exact K'=75 full-atlas gap 211531709609936637728192389252911579074455707755248457894; exact K'=76 full-atlas gap 16716320840480454509867840664707020900684182599020170034; exact K'=77 full-atlas gap 79474840980250192811328546134901531018600026108436267508; exact K'=78 full-atlas gap 69324931221842548818784073274469783546449231843657033123; first remaining full-atlas row K'=79; rank-eight owner-pair capacity closes from K'=37996; dense-owner averaging first forces 200632 records at K'=22526
+claimed_bound: generic isolated equivalent <=2526815879272440; actual retained-record isolated incidences <=C(n',11); component incidence >=990810934 ppb; 98-percent records >=148639925144138894; one fixed rank-nine cell <=45567658 records; low-common-core original-row plane <=1434405 records; fixed kernel lane closed through K'=1048576; rank-nine rows K'=10..82 closed; exact K'=22 gap 1232731756628187885277355254597101817411431837269258943471111; exact K'=23 gap 1704262040773185642290284810631267267026794188450394076492364; minimum K'=24..40 gap 2272401814108959137912675549447888006236817090602808413697595 at K'=40; exact K'=41 sharp-isolated gap 3959829848992990899082071934034620604165114037293042026746826; exact K'=42 cross-support gap 4081031051590194485758587836050845115467905186032497191061176; exact K'=43 descending-ladder gap 4456829341030748859349785682161828589177837723939653522311506; exact K'=44 branch-lattice gap 535634409944931896502583174279429171539133692200964798538249; exact K'=45 full-product gap 1616971801308361526826641488053709685917408248376428345137933; minimum K'=46..53 deep-joint gap 2503373059664320603163477388007627909210651834842589498907998 at K'=53; deep-joint method wall K'=54 with capacity excess 2477882110233058360154706764229180240778698202487636349407165; minimum K'=54..59 same-support collision gap 2662571195028360324230500777441238424043251068116179184680206 at K'=59; same-support collision wall K'=60 with capacity excess 3672733965923291717387950853821894967875078243379846951201638; minimum K'=60..70 cross-support collision gap 854274172985042754802177028749324962520517760595473749602211 at K'=70; first cross-support collision wall K'=71 with capacity excess 824875968499878215752683873455674299360608616555107905777434; exact K'=71 carrier-trichotomy gap 118872281099445772155993127155914865045379156488810154591370; first carrier-trichotomy wall K'=72 with capacity excess 4821537739796415753639473905341364357966460110033651367468100; exact K'=72 full-atlas gap 52200017935756118667066163970702686810349690944821612538425; exact K'=73 full-atlas gap 2120784774514292837614781442321448802184060878375874298355; exact K'=74 full-atlas gap 755986378881174710705888877305550381612101047062792678211; exact K'=75 full-atlas gap 211531709609936637728192389252911579074455707755248457894; exact K'=76 full-atlas gap 16716320840480454509867840664707020900684182599020170034; exact K'=77 full-atlas gap 79474840980250192811328546134901531018600026108436267508; exact K'=78 full-atlas gap 69324931221842548818784073274469783546449231843657033123; exact K'=79 full-atlas gap 450177555678029181663225127809721029656401221977920938493; exact K'=80 full-atlas gap 63252728650428501280250074863279553490282355009311230439; exact K'=81 full-atlas gap 46000440427984175715360686273569212546246763017890480411; exact K'=82 full-atlas gap 71341331255235112573601253115194194916813205966998398786; first pairwise-atlas wall K'=83; rank-eight owner-pair capacity closes from K'=37996; dense-owner averaging first forces 200632 records at K'=22526
 minimal_row_split_pencil_bound: At K'=10, the weighted selected-support capacity is 9274769506943785, the full-density demand is 11736940042024039, and the strict gap is 2462170535080254
 k11_circuit_split_pencil_bound: At K'=11, the uniform rank-nine chart cap is 9275866238180030; high-circuit plus coalesced low-circuit capacity is 870719390190680409022824387604193486699840723094988553120053384 against demand 901408286315387898338134887980054663001598216883356906995509296.
 k11_falsifier: A rank-nine shadow above the common-core-offset cap; a circuit of size at least six with fewer than 45 rank-nine shadows; two distinct supports of size at most five representing the same global functional; or failure of the exact demand/capacity gap or its positive record coefficient.
@@ -45,11 +45,13 @@ k71_carrier_position_trichotomy: The support-two carrier is a full projective pa
 k71_carrier_trichotomy_payment: At K'=71 the trichotomy excludes 961 impossible support-two/support-three defect pairs and prices all six one-step geometries. The active branch has s_2=33 and s_3=s_4=s_5=31; exact demand exceeds complete capacity by 118872281099445772155993127155914865045379156488810154591370. K'=72 is the first wall, with capacity excess 4821537739796415753639473905341364357966460110033651367468100.
 k72_k73_full_carrier_atlas_payment: Refining every exact support-two through support-five defect tuple by all source full-completion subsets and then applying the flat-coupled support-four/support-five charge reroutes all 36 conservative failures at K'=72 and all 218 at K'=73. Exact demand exceeds complete capacity by 52200017935756118667066163970702686810349690944821612538425 and 2120784774514292837614781442321448802184060878375874298355, respectively.
 k74_k78_full_carrier_atlas_payment: Compact digest-pinned continuation reroutes all 729, 1995, 3800, 7657, and 11552 exceptional defect tuples at K'=74,75,76,77,78, respectively, while retaining all seven geometry lanes. The exact positive gaps are 755986378881174710705888877305550381612101047062792678211, 211531709609936637728192389252911579074455707755248457894, 16716320840480454509867840664707020900684182599020170034, 79474840980250192811328546134901531018600026108436267508, and 69324931221842548818784073274469783546449231843657033123. K'=79 is the first remaining rank-nine row.
+k79_k82_full_carrier_atlas_payment: The next digest-pinned continuation reroutes 19406, 26104, 39570, and 49900 exceptional defect tuples at K'=79,80,81,82. The exact positive gaps are 450177555678029181663225127809721029656401221977920938493, 63252728650428501280250074863279553490282355009311230439, 46000440427984175715360686273569212546246763017890480411, and 71341331255235112573601253115194194916813205966998398786.
+k83_pairwise_atlas_wall: At K'=83 the active F23__N4_t0__N5_t2 cell has completion maxima (23,24,24,25), two (29,6) charges, and premium excess 46770156546844646871611081711174519620031307. Their forced dimension-four intersection on union size 29..32 is inactive at the maximum, and the branch-free baseline also fails. The next target is a nonseparable triple-carrier support-3/4/5 census.
 status: PROVED LOCAL THEOREM PACKET / GLOBAL ROW OPEN
 impact: ROUTE_CUT / BASE-FIELD-NORMALIZED SPLIT-PENCIL AND FIXED-CHART LEDGER
 falsifier: A proper eleven-coordinate intersection with isolated multiplicity above 198; a record-star violating the rank trichotomy; a fixed rank-nine cell with more than 45567658 assigned records; a lifted plane above 1434405 records whose shared pair core has size below 134944; failure of the marked 5868470021012020 endpoint; a rank-nine chart exceeding 981105*(m'-10)*n' marked extensions; a residual rank-nine chart exceeding floor(981105*(n'-j)*(m'+j-20)/2) marked extensions; an admissible exact petal partition above 981105*(1048577*K'+34798536326); a kernel chart violating M_d*C(K'-10,d+1); a loopless corank-d eleven-set with fewer than C(d+2,t) spanning (11-t)-subsets for some 2<=t<d; one such shadow with more than C(K'-d-11+t,t) same-rank extensions; one record violating either nine-shadow resource; fewer than C(67472+d,t) rank-raising support t-sets; a rank-(10-d+t) target with more than C(9-d+t,t) source shadows; a loopless rank-three matroid violating 2b(M)>=(m-1)(m-1-a); a loopless rank-four matroid violating the printed bounded-point/line recurrence; an official corank-two chart with more than 84416263 records; an official corank-three chart with more than 983902549 records; a shortening-weighted ratio at least one, a failed t=1 dominance comparison, or a nonpositive terminal polynomial coefficient; failure of the integer-gap envelope or any exact capacity replay; a rank-eight chart exceeding 981105*C(n'-9,2); failure of either owner-capacity crossing; failure of the 22526 dense-owner bridge; a rank-eight nine-set at K'=10; a K'=11 rank-eight extension whose circuit depends on the extension pair or violates the printed 55-shadow table; a defect in the 4070408-slope rank-nine fence; a defect in the 4070352-slope rank-eight weighted fence; an independent support-c deletion carrier with more than s+c-1 points outside an attaining same-support carrier for 2<=c<=5; a target-support deletion carrier with more than s+d-1 points outside a nonempty source carrier when c+d<=11; a fixed-union target carrier above the multicarrier outside budget; a support-two carrier that is not one full projective parallel class; an omitted carrier-position case or impossible defect pair; or a missing circuit in any exact outside-count charge.
 minimal_row_falsifier: A selected-support split-pencil family above floor((A-2)*S^2/8)+C(S,2)+C(h,2)C(A-1,2), a repeated cross-petal pair on distinct affine lines, a marked K'=10 extension not charged to one owner petal, or a defect in the exact full-density demand
-replay: python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1_independent.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k72_k73_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k72_k73_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k72_k73_v1_independent.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1_independent.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1_full.py --row 78
+replay: python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_dense_locator_split_pencil_v1_independent.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k72_k73_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k72_k73_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k72_k73_v1_independent.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1_independent.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1_full.py --row 78; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83_wall_v1.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83_wall_v1.py --tamper-selftest; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83_wall_v1_independent.py; python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83_wall_v1_full.py --row 82
 ---
 
 # KoalaBear rank-eleven dense-locator and split-pencil route
@@ -90,7 +92,7 @@ support-`2..9` completion product close `K'=45`.  Exact deep defects close
 mixed-support collisions close `K'=60..70`, and the fixed-union
 carrier-position trichotomy closes `K'=71`. The full-completion pairwise
 carrier atlas and flat-coupled support-four/support-five census close
-`K'=72..78`. The residual rank-nine rows are now `79..15528`.
+`K'=72..82`. The residual rank-nine rows are now `83..15528`.
 Canonical rank-basis capacities, two coupled
 nine-shadow resources, the uniform corank-one cap, and the bounded-parallel
 corank-two theorem and the bounded-point/line corank-three theorem remove
@@ -1511,7 +1513,7 @@ K'=77:  79474840980250192811328546134901531018600026108436267508
 K'=78:  69324931221842548818784073274469783546449231843657033123
 ```
 
-Thus the remaining rank-nine interval is `79<=K'<=15528`.
+Thus the remaining rank-nine interval is `83<=K'<=15528`.
 
 ## 9. Canonical kernel bases and the finite capacity cut
 
@@ -2537,10 +2539,22 @@ The packet supplies ninety-one proved local results.
 96. The compact digest-pinned continuation reroutes every exceptional cell
     and closes `K'=74..78`; the minimum positive gap in the block is
     `16716320840480454509867840664707020900684182599020170034` at `K'=76`.
+97. The next compact continuation closes `K'=79..82`; the minimum positive
+    gap in the block is
+    `46000440427984175715360686273569212546246763017890480411` at
+    `K'=81`.
+98. At `K'=83`, the exact pairwise atlas first fails in the
+    `F23__N4_t0__N5_t2` cell, with completion maxima
+    `(23,24,24,25)` and premium excess
+    `46770156546844646871611081711174519620031307`.
+99. The two active `(29,6)` charges force a dimension-four intersection
+    on a union of size `29..32`, but every resulting ordinary fixed-union
+    cap is inactive at the maximum. The branch-free baseline also fails, so
+    a nonseparable triple-carrier support-`3/4/5` census is the next target.
 
 It does not select the complete component lane, recursively cover its
 remainder, construct a chronology-correct owner satisfying PR #1169, or pay
-rank-nine targets on `79<=K'<=15528`, rank-eight targets on
+rank-nine targets on `83<=K'<=15528`, rank-eight targets on
 `22<=K'<22526`, or the dense-owner chronology terminal on `22526..37995`.
 Therefore `U_BC`,
 `U_new`, error rank eleven, and the KoalaBear row remain open.
@@ -2553,8 +2567,8 @@ The exact unresolved intervals are:
 12:                no rank-eleven component target,
 13:                no rank-eleven component target,
 14..21:            no rank-eleven component target,
-22..78:            rank eight only,
-79..15528:         rank nine or rank eight,
+22..82:            rank eight only,
+83..15528:         rank nine or rank eight,
 15529..22525:     rank eight only,
 22526..37995:     dense-owner chronology terminal only,
 37996..1048576:   no rank-eleven component target.
@@ -2567,6 +2581,9 @@ source-contract SHA-256. The supplemental full-carrier-atlas manifest pins
 four additional nodes and the complete 36-cell and 218-cell reroute lists.
 The compact `K'=74..78` supplement pins five further row nodes and stores
 canonical tuple digests instead of embedding its 25,733 exceptional tuples.
+The compact `K'=79..82` supplement pins four further row nodes and the
+first exact pairwise-atlas wall at `K'=83`; it also records the ineffective
+forced intersection and branch-free routes.
 The primary verifier recomputes all displayed
 integer endpoints and a finite-field dense-root saturation model.  The
 independent verifier uses a separate rational-product calculation and an
@@ -2606,6 +2623,10 @@ five payments and reject eight hostile mutations. Its optional one-row full
 replay reconstructs the conservative frontier, tuple digest, and complete
 pairwise-atlas reroute; the source contracts pin the seven sharded geometry
 lanes.
+The next compact continuation's primary and independent verifiers recompute
+all four payments, reconstruct the `K'=83` active cell and its four forced
+intersection cases, and reject eight hostile mutations. Its optional
+one-row replay uses the same full-frontier engine.
 The audit includes the six shortening-weighted branch
 comparisons, twelve positive shifted-power coefficients, finite
 affine-plane/rank-three models, and the two dense-owner bridge boundary rows.
@@ -2622,6 +2643,10 @@ python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1.
 python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1.py --tamper-selftest
 python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1_independent.py
 python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k74_k78_v1_full.py --row 78
+python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83_wall_v1.py
+python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83_wall_v1.py --tamper-selftest
+python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83_wall_v1_independent.py
+python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83_wall_v1_full.py --row 82
 ```
 
 No deployed v4 atom moves, and neither prize problem is closed.

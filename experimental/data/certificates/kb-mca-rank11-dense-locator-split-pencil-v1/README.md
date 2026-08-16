@@ -387,3 +387,12 @@ The compact certificate
 `kb-mca-rank11-full-carrier-atlas-k74-k78-v1` imports five further row
 closures. It stores canonical exceptional-tuple digests rather than expanded
 payload lists and moves the first open rank-nine row to `K'=79`.
+
+The certificate
+`kb-mca-rank11-full-carrier-atlas-k79-k82-k83-wall-v1` closes the next
+four rows by the same exact full-frontier replay. It also records the first
+pairwise-atlas method wall at `K'=83`: neither the two `(29,6)` carrier
+charges, their forced dimension-four Grassmann intersection, nor the
+branch-free baseline reaches the safe ceiling. Thus `K'=83` is the first
+open rank-nine row, with a nonseparable support-`3/4/5` triple-carrier
+census as the next explicit target.

@@ -247,6 +247,23 @@ At this snapshot:
   all seven geometry lanes are safe.  The smallest payment gap in this block
   is
   `16716320840480454509867840664707020900684182599020170034` at `K'=76`.
+  The same digest-pinned atlas closes `K'=79..82`.  Their exceptional
+  frontiers contain respectively `19406`, `26104`, `39570`, and
+  `49900` defect tuples; all `133468965` reroute leaves and all
+  `674682540` geometry leaves are safe.  The smallest payment gap in this
+  block is
+  `46000440427984175715360686273569212546246763017890480411` at
+  `K'=81`.
+  The pairwise atlas first stalls at `K'=83`.  Its active completion
+  maxima are `(23,24,24,25)`, with two `(29,6)` carrier charges.  Their
+  forced dimension-four intersection on every union size `29..32` leaves
+  premium
+  `41411584407693108041789796771180703922717609427`, above the exact safe
+  ceiling by
+  `46770156546844646871611081711174519620031307`.  The uncoupled
+  branch-free baseline is also above the ceiling.  This is a proved method
+  wall, not a counterexample to MCA; the next structural target is a
+  nonseparable triple-carrier support-`3/4/5` census.
   These refinements stay
   in residual units and do not use the original-row core floor.
   Canonical-basis, nine-shadow, projective-paving, bounded-parallel,
@@ -258,15 +275,16 @@ At this snapshot:
   at `K'=10`; at `K'=11` the chart-local fence remains above both selector
   demands, but its full-circuit witness creates 54 neighboring rank-nine
   shadows and is paid globally.  Thus the exact component boundary is: no
-  component target at `K'=10..21`; rank eight only on `22..78`; rank nine
-  or rank eight on `79..15528`; rank eight only on `15529..22525`;
+  component target at `K'=10..21`; rank eight only on `22..82`; rank nine
+  or rank eight on `83..15528`; rank eight only on `15529..22525`;
   chronology on `22526..37995`; and no
   component target from `K'=37996` onward.  No active-v4 atom moves, and
   error rank eleven is not paid.
-- The first open rank-nine row is now `K'=79`. No adjacent extrapolation is
-  claimed: replay the complete carrier atlas with every inherited cap,
-  kernel corank, and rank-nine mark, and either obtain a positive integral
-  payment or isolate the first surviving carrier geometry.
+- The first open rank-nine row is now `K'=83`. No adjacent extrapolation is
+  claimed. Work in the explicit `(23,24,24,25)` completion cell and derive
+  a genuinely joint support-`3/4/5` carrier census; ordinary pairwise
+  charges, their automatic Grassmann intersection, and the branch-free
+  baseline have all been replayed and fail.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.
