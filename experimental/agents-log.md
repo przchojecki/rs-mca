@@ -5497,3 +5497,40 @@ Keep entries concise and link to the relevant files.
   problems remain open.
 - **What to do next:** Seek a symbolic continuation of the adjacent-support
   payment and use an exact `K'=85` replay only to locate its first obstruction.
+
+### 2026-08-17 - Best-single adjacent-support envelope closes `K'=85`
+
+- **Agent/model:** Codex, extending PR #1170 after a paired route pilot, a
+  complete paired raw-threshold wave, adversarial falsification of stronger
+  candidate payments, and a complete paired residual wave.
+- **Exact parent:** this PR's `K'=84` packet at
+  `cba05d4ca6c8cb08fd3444a72a55f298fe47b0bc`.
+- **Research source:** prize-DAG commit
+  `c4fdef465aabc8abae7a18b9694bed9cf34e362b`; source-node tree
+  `fc59f079d87a20f6c71f9b0b78345c2b518a0c44`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The exact ordinary-plus-74-offset partition at
+  `K'=85`, its complete raw-safe split, and the residual best-single theorem.
+  Every residual profile may use its best individually valid single adjacent
+  edge; no simultaneous composition of overlapping edges is asserted.
+- **Impact:** All 148 raw-wave jobs agree on 16,028,400 source units per
+  implementation and isolate 331,533 unsafe units. All 82 residual-wave jobs
+  agree on 49,090,656 carrier profiles per implementation. The global premium
+  is `41412868016209776721228891386909879523306833354`, below the exact
+  ceiling by `1793645398692419426975603430807602228515`; the component gap is
+  `8967598503742781003071510733325918643075973211834024001`. The closed
+  rank-nine prefix is `K'=10..85`, and the first open row is `K'=86`.
+- **Controls:** Supplemental manifest SHA-256
+  `ae598632a204181a0ef0cc8895c077af22d16587f2ab209b7cebb3e26c2cb5ee`.
+  Primary and independent verifier SHA-256 values are
+  `527b5f8be7863d67e59d338fa95871aa087a38513585efc89f4f87db80db50e7`
+  and `15b58870dbaff03768c4d8bfa196cede8302bfc9ac7c3ac5e06f65f5813e4e6c`.
+  The primary rejects seven hostile mutations. Grande Finale builds in three
+  passes at 179 pages with PDF SHA-256
+  `55965d8b6c26e5e7d0c85649d5e672ea50a5c1da7a46dba0ba7142770794bf19`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Test the best-single envelope at `K'=86` and seek a
+  symbolic adjacent-support continuation. Do not infer an interval from the
+  exact rows.
