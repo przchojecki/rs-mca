@@ -5464,3 +5464,36 @@ Keep entries concise and link to the relevant files.
   problems remain open.
 - **What to do next:** Test `K'=84` and seek a symbolic continuation of the
   adjacent-support payment before further row-by-row enumeration.
+
+### 2026-08-16 - Adjacent-support carrier census closes `K'=84`
+
+- **Agent/model:** Codex, extending PR #1170 by one exact row after complete
+  primary and independent checkpointed replay.
+- **Exact parent:** this PR's `K'=83` adjacent-support packet at
+  `e356ef800479d3e3c4c00218b63b1ae898b58362`.
+- **Research source:** prize-DAG commit
+  `9a0baa42b35790f1e0d383e18dd721bcb7d9a86c`; source-node tree
+  `354e3859f7654bcec417f2dcd92b506a9984a7b2`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The existing adjacent-support theorem is
+  specialized to the exact `ordinary + offsets 1..73` partition at
+  `K'=84`. Only support-disjoint adjacent pairs are composed; no new
+  analytic premise is introduced.
+- **Impact:** All 148 implementation/lane jobs agree. The global premium is
+  `41388798786059119503097492734939028640066114130`, below the exact ceiling
+  by `44581160171407926086602515730765812413619`; the component gap is
+  `222890179708699305421112332292209416493280153112001413582`. The closed
+  rank-nine prefix is `K'=10..84`, and the first open row is `K'=85`.
+- **Controls:** Supplemental manifest SHA-256
+  `4317c574e73626e2491e3dcfc777ab7e09c98333493f9161eb432a5ecfa355e3`.
+  Primary and independent verifier SHA-256 values are
+  `55c2586177919e5d9141a5f42e89d6f94e7a8692c8f197c009a5349e1b663b3d`
+  and `73d3b364336197b403dcfa13fc2f8c37bdd8ccb8499a387e062f9642220f4c51`.
+  The primary rejects six hostile mutations. Grande Finale builds in three
+  passes at 178 pages with PDF SHA-256
+  `3a508a300cd6e5e726a4e5b342339113a34d0988680c7f5b80e3eb0c4dbece80`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Seek a symbolic continuation of the adjacent-support
+  payment and use an exact `K'=85` replay only to locate its first obstruction.

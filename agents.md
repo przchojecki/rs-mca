@@ -273,6 +273,11 @@ At this snapshot:
   `41364793335621487128860475977676014245181683050`, below the safe ceiling
   by `20915524776266057709711793515157915895070`.  The exact component gap is
   `104570295123758938048546273477992878508577141441163332394`.
+  The next exact partition `ordinary + offsets 1..73` has 74 independently
+  replayed lanes and closes `K'=84` at premium
+  `41388798786059119503097492734939028640066114130`, below its safe ceiling
+  by `44581160171407926086602515730765812413619`; the exact component gap is
+  `222890179708699305421112332292209416493280153112001413582`.
   These refinements stay
   in residual units and do not use the original-row core floor.
   Canonical-basis, nine-shadow, projective-paving, bounded-parallel,
@@ -284,14 +289,14 @@ At this snapshot:
   at `K'=10`; at `K'=11` the chart-local fence remains above both selector
   demands, but its full-circuit witness creates 54 neighboring rank-nine
   shadows and is paid globally.  Thus the exact component boundary is: no
-  component target at `K'=10..21`; rank eight only on `22..83`; rank nine
-  or rank eight on `84..15528`; rank eight only on `15529..22525`;
+  component target at `K'=10..21`; rank eight only on `22..84`; rank nine
+  or rank eight on `85..15528`; rank eight only on `15529..22525`;
   chronology on `22526..37995`; and no
   component target from `K'=37996` onward.  No active-v4 atom moves, and
   error rank eleven is not paid.
-- The first open rank-nine row is now `K'=84`. No adjacent extrapolation is
+- The first open rank-nine row is now `K'=85`. No adjacent extrapolation is
   claimed. First test whether the fixed-union adjacent-support payment has a
-  symbolic continuation in `K'`; use an exact `K'=84` replay only to locate
+  symbolic continuation in `K'`; use an exact `K'=85` replay only to locate
   the next obstruction, not as a substitute for that continuation theorem.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
