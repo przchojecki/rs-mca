@@ -13277,6 +13277,86 @@ Subtracting $K_{\rm ern}+\operatorname{Cap}_{\rm full}$ gives the two
 positive gaps displayed above.
 \end{proof}
 
+\begin{proposition}[$K'=74,\ldots,78$ full-carrier-atlas payment]
+\label{prop:kb-rank11-k74-k78-full-carrier-atlas-payment}
+In the fixed component target, every rank-nine alternative is empty for
+$74\le K'\le78$.  The exact global completion premiums are
+\[
+\begin{aligned}
+P_{74}&=41148280931947468743645570894078252803553423792,\\
+P_{75}&=41172442942616752083301734067206968949181736144,\\
+P_{76}&=41196532360070121067065901849561255059392646057,\\
+P_{77}&=41220567597231178491653121647453619450645179178,\\
+P_{78}&=41244614753758628801860143341643171244170576450.
+\end{aligned}
+\]
+Their exact positive margins below the safe premium ceilings are
+\[
+\begin{aligned}
+M_{74}&=151207872362754098743792508682842947287405,\\
+M_{75}&=42309306941100164131542711491454099991233,\\
+M_{76}&=3343498479116787180719767118068070898738,\\
+M_{77}&=15896082187058434500851976235556574069096,\\
+M_{78}&=13865957965092782628483685711822437366639.
+\end{aligned}
+\]
+After unchanged kernel capacity is added, demand exceeds complete capacity
+by
+\[
+\begin{aligned}
+G_{74}&=755986378881174710705888877305550381612101047062792678211,\\
+G_{75}&=211531709609936637728192389252911579074455707755248457894,\\
+G_{76}&=16716320840480454509867840664707020900684182599020170034,\\
+G_{77}&=79474840980250192811328546134901531018600026108436267508,\\
+G_{78}&=69324931221842548818784073274469783546449231843657033123.
+\end{aligned}
+\]
+\end{proposition}
+
+\begin{proof}
+Every row uses the complete pairwise carrier atlas of
+Proposition~\ref{prop:kb-rank11-full-completion-pairwise-carrier-atlas}, the
+base-field-normalized support-four/support-five charge of
+Proposition~\ref{prop:kb-rank11-flat-coupled-support45-charge}, every
+inherited cap, and every support-six through support-nine branch.  The exact
+coverage ledger is
+\[
+\begin{array}{c|r|r|r|r}
+K'&\text{plain leaves}&\text{exceptional tuples}&\text{reroute leaves}&
+\text{geometry leaves}\\ \hline
+74& 8{,}869{,}588&   729&   338{,}149&124{,}851{,}888\\
+75& 9{,}479{,}358& 1{,}995& 1{,}228{,}878&131{,}010{,}586\\
+76& 9{,}817{,}234& 3{,}800& 2{,}689{,}092&137{,}366{,}383\\
+77&10{,}475{,}101& 7{,}657& 6{,}623{,}568&143{,}928{,}183\\
+78&10{,}837{,}645&11{,}552&10{,}115{,}441&150{,}693{,}396
+\end{array}
+\]
+The exceptional tuples are canonically sorted and SHA-256 pinned in the
+supplemental manifest.  Their complete reroute maxima are respectively
+\[
+\begin{aligned}
+&32837046420997427924790365894433685328482435320,\\
+&33540409167198343349228340842477255779539196790,\\
+&34322333430853669387933267678391560032676518774,\\
+&35026060643237953572770728698158639005273906176,\\
+&36102481454819719165765129089266727844130971230,
+\end{aligned}
+\]
+all below the corresponding safe ceiling.  The largest geometry premiums
+are respectively
+\[
+\begin{aligned}
+&36187398164184684606907419896584782044225756904,\\
+&36818718942605286540367916391174777496642019789,\\
+&37421755192298946544884408866447573734456950687,\\
+&37927152249618150254202496789638286615058058210,\\
+&38552393090078383126619984181387841064702317594,
+\end{aligned}
+\]
+each below $P_{K'}$.  Finally, applying the same floor identity as in the
+preceding proposition gives $G_{K'}>0$ row by row.
+\end{proof}
+
 \begin{proposition}[Canonical kernel-basis capacity]
 \label{prop:kb-rank11-kernel-basis-capacity}
 In the setup of Proposition~\ref{prop:kb-rank11-component-incidence}, the
@@ -14899,9 +14979,11 @@ extends the carrier classification to every full-completion overlap,
 Proposition~\ref{prop:kb-rank11-flat-coupled-support45-charge} gives the
 base-field-normalized joint support-four/support-five census, and
 Proposition~\ref{prop:kb-rank11-k72-k73-full-carrier-atlas-payment} pays
-$K'=72,73$.
+$K'=72,73$, and
+Proposition~\ref{prop:kb-rank11-k74-k78-full-carrier-atlas-payment} pays
+$K'=74,\ldots,78$.
 Thus the remaining intervals are rank eight only on
-$22\le K'\le73$, rank nine or rank eight on $74\le K'\le15528$, rank
+$22\le K'\le78$, rank nine or rank eight on $79\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -14911,11 +14993,11 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=74$, no closure is asserted here.
+At the first remaining rank-nine row $K'=79$, no closure is asserted here.
 A continuation must replay the full carrier atlas with every inherited cap,
 kernel corank, and rank-nine mark, and either obtain a positive integral
 payment or isolate the first surviving carrier geometry.  No extrapolation
-from the two adjacent rows is used.
+from the preceding exact rows is used.
 Proposition~\ref{prop:kb-rank11-rank8-circuit-shadow-census} gives the exact
 first-row split: the full-circuit case has 54 rank-nine shadows, while every
 proper circuit gives additional rank-eight shadows and a locator ideal of

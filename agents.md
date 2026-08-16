@@ -241,6 +241,12 @@ At this snapshot:
   gaps
   `52200017935756118667066163970702686810349690944821612538425` and
   `2120784774514292837614781442321448802184060878375874298355`.
+  Compact digest-pinned continuation then closes `K'=74..78`.  The five
+  exceptional frontiers contain respectively `729`, `1995`, `3800`, `7657`,
+  and `11552` exact defect tuples; every complete pairwise-atlas reroute and
+  all seven geometry lanes are safe.  The smallest payment gap in this block
+  is
+  `16716320840480454509867840664707020900684182599020170034` at `K'=76`.
   These refinements stay
   in residual units and do not use the original-row core floor.
   Canonical-basis, nine-shadow, projective-paving, bounded-parallel,
@@ -252,12 +258,12 @@ At this snapshot:
   at `K'=10`; at `K'=11` the chart-local fence remains above both selector
   demands, but its full-circuit witness creates 54 neighboring rank-nine
   shadows and is paid globally.  Thus the exact component boundary is: no
-  component target at `K'=10..21`; rank eight only on `22..73`; rank nine
-  or rank eight on `74..15528`; rank eight only on `15529..22525`;
+  component target at `K'=10..21`; rank eight only on `22..78`; rank nine
+  or rank eight on `79..15528`; rank eight only on `15529..22525`;
   chronology on `22526..37995`; and no
   component target from `K'=37996` onward.  No active-v4 atom moves, and
   error rank eleven is not paid.
-- The first open rank-nine row is now `K'=74`. No adjacent extrapolation is
+- The first open rank-nine row is now `K'=79`. No adjacent extrapolation is
   claimed: replay the complete carrier atlas with every inherited cap,
   kernel corank, and rank-nine mark, and either obtain a positive integral
   payment or isolate the first surviving carrier geometry.

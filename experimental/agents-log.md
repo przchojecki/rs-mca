@@ -5333,3 +5333,45 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Replay the full carrier atlas at `K'=74`, retaining
   every inherited cap, kernel corank, and rank-nine mark; do not extrapolate
   from the two adjacent payments.
+
+### 2026-08-16 - Compact full carrier atlas closes K'=74..78
+
+- **Agent/model:** Codex, importing five proved public prize-DAG row nodes
+  after exact bounded replay, independent payment reconstruction, hostile
+  mutation testing, and five fresh full-frontier replays.
+- **Exact parent:** this PR's `K'=72,73` extension at
+  `5d3cda9475b03777c488e35ab152231bd338da71`.
+- **Research source:** prize-DAG commit
+  `9526b45dccc343a8070c86aaa45a23f1f499e7e0`; source trees
+  `7147009ffc0bc3ef5a5f0acbb794d019a8571baf`,
+  `fcfbf1f1676728ffe32babd351f2c58923c70cb3`,
+  `92be39613893dfe29f4592bfc145274226b4b1b4`,
+  `411e6daf6822ad5138346a41d48aab19870d5b00`, and
+  `0c3e8fc8ffe6ef478c1b0548c39440890efe6663`; source-contract SHA-256
+  values `7800a9e860586e1d05ab283c76405c6f53f1c4dd8a84275f451f058df6132e43`,
+  `ebab9ef2d31d53d4f826e88bd65107b8b0ea8b495285037a9ec3db94fbbf2231`,
+  `73e786205127e30c03437231c90b89c9192bcfa4820204a36ad97e465e5f1b1a`,
+  `f7d35e9aae271f6b8a885148b04a73e29b7a7f3074cce5641fd6e64b627e906b`,
+  and `cfc78701bda81ac3928a6750e39b2b3c7baceb59ec05a2de35e58f0debd9ad9b`.
+- **Status:** PROVED FIVE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A compact continuation of the
+  base-field-normalized split-pencil census. Canonical SHA-256 digests replace
+  an expanded 25,733-tuple payload while preserving exact one-row replay.
+- **Impact:** Full replay reroutes `729`, `1995`, `3800`, `7657`, and `11552`
+  exceptional cells at `K'=74,75,76,77,78`. All 20,995,128 reroute leaves and
+  every sharded geometry lane are safe. The closed rank-nine prefix is now
+  `K'=10..78`; the first remaining row is `K'=79`.
+- **Controls:** Manifest SHA-256
+  `20dff5ce1c9634f9cd99e2cbacd4809fc860894f4549265a6f8b69176c0843c4`.
+  Primary, independent, and full-frontier verifier SHA-256 values are
+  `b3be282aa7ecc1696c53bc46a1a96702a03f7892db672ff1292090981480157a`,
+  `55717ab77ccae0fdb7b774867ab95d1bb7b02b55a2979ad016114f01a36196a1`,
+  and `4da8cfa98aa22cfde6cf14ebfda687371cff28a35c7e8c04ffca10c8bebcdbe5`.
+  The primary rejects eight hostile mutations. Five full replays pass at
+  57--58 MB peak RSS. Grande Finale builds in three passes at 175 pages with
+  PDF SHA-256 `ff4837ec8438f469f7d8d9b872e341c216fb61e6029062e36afc508191e1ec2d`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Replay the complete atlas at `K'=79`; do not
+  extrapolate from the five exact rows.
