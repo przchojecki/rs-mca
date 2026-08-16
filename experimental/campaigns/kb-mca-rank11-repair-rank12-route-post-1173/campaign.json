@@ -1,0 +1,10 @@
+{
+  "active_v4_ledger_movement": 0,
+  "parent": "2788d5ec3fb4b1d6f9c43a58a86ec2381e5f6804",
+  "rank11_paid": true,
+  "rank12_paid": false,
+  "row": "KoalaBear MCA",
+  "schema": "kb-mca-rank11-repair-rank12-route-campaign-v1",
+  "status": "PROVED_RANK11_REPAIR_AND_RANK12_ROUTE_CUT",
+  "supersedes_unsubmitted_candidate": "d01c546f4dca70e256c18c142873821b3bb48ab5"
+}
