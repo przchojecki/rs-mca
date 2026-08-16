@@ -2550,11 +2550,19 @@ The packet supplies ninety-one proved local results.
 99. The two active `(29,6)` charges force a dimension-four intersection
     on a union of size `29..32`, but every resulting ordinary fixed-union
     cap is inactive at the maximum. The branch-free baseline also fails, so
-    a nonseparable triple-carrier support-`3/4/5` census is the next target.
+    this is a genuine limitation of the pairwise atlas.
+100. The adjacent-flat circuit inequality and its fixed-union specialization
+    couple support pairs `d/(d+1)` for `d<=g-1`; support-disjoint pairs may
+    be charged simultaneously.  The exact 73-lane payment at `K'=83` has
+    premium
+    `41364793335621487128860475977676014245181683050`, lies below the safe
+    ceiling by `20915524776266057709711793515157915895070`, and leaves total
+    positive gap
+    `104570295123758938048546273477992878508577141441163332394`.
 
 It does not select the complete component lane, recursively cover its
 remainder, construct a chronology-correct owner satisfying PR #1169, or pay
-rank-nine targets on `83<=K'<=15528`, rank-eight targets on
+rank-nine targets on `84<=K'<=15528`, rank-eight targets on
 `22<=K'<22526`, or the dense-owner chronology terminal on `22526..37995`.
 Therefore `U_BC`,
 `U_new`, error rank eleven, and the KoalaBear row remain open.
@@ -2567,8 +2575,8 @@ The exact unresolved intervals are:
 12:                no rank-eleven component target,
 13:                no rank-eleven component target,
 14..21:            no rank-eleven component target,
-22..82:            rank eight only,
-83..15528:         rank nine or rank eight,
+22..83:            rank eight only,
+84..15528:         rank nine or rank eight,
 15529..22525:     rank eight only,
 22526..37995:     dense-owner chronology terminal only,
 37996..1048576:   no rank-eleven component target.
@@ -2584,6 +2592,9 @@ canonical tuple digests instead of embedding its 25,733 exceptional tuples.
 The compact `K'=79..82` supplement pins four further row nodes and the
 first exact pairwise-atlas wall at `K'=83`; it also records the ineffective
 forced intersection and branch-free routes.
+The adjacent-support supplement pins four proved source nodes and the
+narrowed pairwise wall.  Its primary and independent implementations
+reconstruct all 73 exact lanes and certify the strict `K'=83` payment.
 The primary verifier recomputes all displayed
 integer endpoints and a finite-field dense-root saturation model.  The
 independent verifier uses a separate rational-product calculation and an
@@ -2647,6 +2658,9 @@ python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83
 python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83_wall_v1.py --tamper-selftest
 python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83_wall_v1_independent.py
 python3 experimental/scripts/verify_kb_mca_rank11_full_carrier_atlas_k79_k82_k83_wall_v1_full.py --row 82
+python3 experimental/scripts/verify_kb_mca_rank11_k83_adjacent_support_payment_v1.py
+python3 experimental/scripts/verify_kb_mca_rank11_k83_adjacent_support_payment_v1.py --tamper-selftest
+python3 experimental/scripts/verify_kb_mca_rank11_k83_adjacent_support_payment_v1_independent.py
 ```
 
 No deployed v4 atom moves, and neither prize problem is closed.

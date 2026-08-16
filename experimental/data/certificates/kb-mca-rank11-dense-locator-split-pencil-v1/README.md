@@ -396,3 +396,10 @@ charges, their forced dimension-four Grassmann intersection, nor the
 branch-free baseline reaches the safe ceiling. Thus `K'=83` is the first
 open rank-nine row, with a nonseparable support-`3/4/5` triple-carrier
 census as the next explicit target.
+
+The subsequent certificate
+`kb-mca-rank11-k83-adjacent-support-payment-v1` preserves that conclusion
+only as a limitation of the pairwise atlas.  Its adjacent-flat and
+fixed-union adjacent-support inequalities couple the support pairs `2/3`,
+`4/5`, and `6/7`; the resulting exact payment closes `K'=83`.  The first
+open rank-nine row is therefore `K'=84`.

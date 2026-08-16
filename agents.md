@@ -262,8 +262,17 @@ At this snapshot:
   ceiling by
   `46770156546844646871611081711174519620031307`.  The uncoupled
   branch-free baseline is also above the ceiling.  This is a proved method
-  wall, not a counterexample to MCA; the next structural target is a
-  nonseparable triple-carrier support-`3/4/5` census.
+  wall, not a counterexample to MCA; under that restricted route the next
+  structural target was a nonseparable triple-carrier support-`3/4/5`
+  census.  A subsequent adjacent-flat circuit inequality supersedes this as
+  the active frontier.  A fixed `g`-dimensional vanishing space couples every
+  adjacent support pair `d/(d+1)` with `d<=g-1`; support-disjoint pairs may be
+  charged simultaneously.  With the single-carrier endpoint and exact
+  support-`2/3` partition `ordinary + offsets 1..72`, independent replay
+  closes `K'=83` at premium
+  `41364793335621487128860475977676014245181683050`, below the safe ceiling
+  by `20915524776266057709711793515157915895070`.  The exact component gap is
+  `104570295123758938048546273477992878508577141441163332394`.
   These refinements stay
   in residual units and do not use the original-row core floor.
   Canonical-basis, nine-shadow, projective-paving, bounded-parallel,
@@ -275,16 +284,15 @@ At this snapshot:
   at `K'=10`; at `K'=11` the chart-local fence remains above both selector
   demands, but its full-circuit witness creates 54 neighboring rank-nine
   shadows and is paid globally.  Thus the exact component boundary is: no
-  component target at `K'=10..21`; rank eight only on `22..82`; rank nine
-  or rank eight on `83..15528`; rank eight only on `15529..22525`;
+  component target at `K'=10..21`; rank eight only on `22..83`; rank nine
+  or rank eight on `84..15528`; rank eight only on `15529..22525`;
   chronology on `22526..37995`; and no
   component target from `K'=37996` onward.  No active-v4 atom moves, and
   error rank eleven is not paid.
-- The first open rank-nine row is now `K'=83`. No adjacent extrapolation is
-  claimed. Work in the explicit `(23,24,24,25)` completion cell and derive
-  a genuinely joint support-`3/4/5` carrier census; ordinary pairwise
-  charges, their automatic Grassmann intersection, and the branch-free
-  baseline have all been replayed and fail.
+- The first open rank-nine row is now `K'=84`. No adjacent extrapolation is
+  claimed. First test whether the fixed-union adjacent-support payment has a
+  symbolic continuation in `K'`; use an exact `K'=84` replay only to locate
+  the next obstruction, not as a substitute for that continuation theorem.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.

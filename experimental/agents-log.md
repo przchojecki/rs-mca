@@ -5431,3 +5431,36 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Derive a genuinely nonseparable support-`3/4/5`
   triple-carrier census in the explicit `K'=83` active cell. Do not add
   another pairwise correction or infer a row closure from the route cut.
+
+### 2026-08-16 - Adjacent-support carrier census closes `K'=83`
+
+- **Agent/model:** Codex, extending the exact PR #1170 packet after a generic
+  theorem proof, two independent arithmetic implementations, and a complete
+  checkpointed frontier replay.
+- **Exact parent:** this PR's `K'=79..82` plus `K'=83` method-wall packet at
+  `6b4902ccc5b4df02dddaea4969f3278dfc829953`.
+- **Research source:** prize-DAG commit
+  `f6849a90abfa9c8fe2e7b62dfbd2e510165957d1`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A finite-matroid adjacent-flat circuit inequality,
+  its base-field-normalized fixed-union adjacent-support census, the
+  single-carrier endpoint, and the exact `ordinary + offsets 1..72` router.
+  Only support-disjoint adjacent pairs are composed.
+- **Impact:** All 146 implementation/lane jobs agree. The global premium is
+  `41364793335621487128860475977676014245181683050`, below the exact ceiling
+  by `20915524776266057709711793515157915895070`; the component gap is
+  `104570295123758938048546273477992878508577141441163332394`. The closed
+  rank-nine prefix is `K'=10..83`, and the first open row is `K'=84`.
+- **Controls:** Supplemental manifest SHA-256
+  `99e01210543223ae45aa8e1f88a49c11951a0b37fd2f3496c1ce1e886d04a3fd`.
+  Primary and independent verifier SHA-256 values are
+  `628e94a8327964c7530e22608d7ea551c1d959beabafe7d829dc7071608ee81b`
+  and `4e2d46a39ea5e711db59f29d65f137c55d266f56970dbf4d7a37669cc601d8e1`.
+  The primary rejects five hostile mutations. Grande Finale builds in three
+  passes at 178 pages with PDF SHA-256
+  `0e3173cc5ea50b50943e12038eabc3ddf8fcb13be6baf267332c348d93f76ead`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Test `K'=84` and seek a symbolic continuation of the
+  adjacent-support payment before further row-by-row enumeration.

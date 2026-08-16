@@ -13445,8 +13445,180 @@ intersection has dimension at least four on
 $B_2\cup A\cup C\cup D$, whose size is $32-|C\cap D|\in\{29,30,31,32\}$.
 Exact replay of all four resulting caps gives the same premium and negative
 margin displayed in the proposition.  The branch-free baseline is larger
-still.  This proves only a method wall: a stronger nonseparable
-triple-carrier census may close $K'=83$.
+still.  This proves only a method wall.  The next proposition supersedes its
+frontier conclusion by a different adjacent-support coupling.
+\end{proof}
+
+\begin{proposition}[Adjacent-flat circuit coupling]
+\label{prop:kb-rank11-adjacent-flat-circuit-coupling}
+Let $M$ be a finite matroid on $N$ labelled elements.  Fix $r\ge1$ and
+$B\ge r$, with $N\ge B$.  Suppose every rank-$r$ flat has at most $B$
+elements and every rank-$(r+1)$ flat has at most $B+1$ elements.  If $C_j$
+is the number of $j$-element circuit supports, then
+\[
+ (r+2)C_{r+2}\le (B-r)\binom{N}{r+1}-(N-B)C_{r+1}.
+ \tag{AFC}\label{eq:kb-rank11-adjacent-flat-circuit-coupling}
+\]
+\end{proposition}
+
+\begin{proof}
+For a rank-$r$ flat $F$, put $b=|F|$ and let $t_F$ count its independent
+$r$-set bases.  Every $(r+1)$-circuit contributes $r+1$ such bases, so
+\[
+ \sum_F t_F(b-r)\ge (r+1)C_{r+1}.                 \tag{1}
+\]
+For each basis $A$ of $F$ and $x\notin F$, the independent set
+$Q=A\cup\{x\}$ has at most $B-b$ exact $(r+2)$-circuit completions.  Relative
+to the unrestricted cap $B-r$, this witness saves at least $b-r$.  Each
+independent $(r+1)$-set has only $r+1$ rank-$r$ subsets.  Hence, writing
+$c(Q)$ for its exact completion count,
+\[
+ \sum_F t_F(N-b)(b-r)
+ \le (r+1)\sum_Q\bigl((B-r)-c(Q)\bigr).           \tag{2}
+\]
+Since $b\le B$, (1)--(2) imply
+\[
+ \sum_Q\bigl((B-r)-c(Q)\bigr)\ge (N-B)C_{r+1}.
+\]
+There are at most $\binom{N}{r+1}$ independent sets $Q$, while every
+$(r+2)$-circuit is exposed by its $r+2$ such subsets.  Substitution gives
+\eqref{eq:kb-rank11-adjacent-flat-circuit-coupling}.
+\end{proof}
+
+\begin{proposition}[Single-completion carrier]
+\label{prop:kb-rank11-single-completion-carrier}
+Let the ten-dimensional correction space $V$ have empty common zero set.
+Fix $2\le c\le9$.  Suppose an independent $(c-1)$-set $A$ attains exactly
+$M_c>0$ support-$c$ circuit completions, and let $X_A$ be that completion
+set.  Then
+\[
+ D_A=A\cup X_A,\qquad |D_A|=M_c+c-1,
+ \qquad W_A=\{f\in V:f|_A=0\},\qquad \dim W_A=11-c,
+\]
+and every polynomial in $W_A$ vanishes on $D_A$.  Thus $(D_A,W_A)$ is a
+fixed union and vanishing space for every fixed-union collision theorem;
+no second positive support stratum is required.
+\end{proposition}
+
+\begin{proof}
+Independence of the evaluation functionals on $A$ gives
+$\dim W_A=10-(c-1)=11-c$.  A completion $x$ makes $A\cup\{x\}$ dependent,
+so evaluation at $x$ lies in the span of the evaluations at $A$.
+Consequently every polynomial vanishing on $A$ also vanishes on $x$.
+Completion points are distinct domain points outside $A$, whence
+$|D_A|=(c-1)+M_c$.
+\end{proof}
+
+\begin{proposition}[Base-field-normalized fixed-union adjacent-support census]
+\label{prop:kb-rank11-fixed-union-adjacent-support-coupling}
+Let the ten-dimensional correction space $V$ have empty common zero set.
+Let a fixed $g$-dimensional subspace vanish on a fixed $u$-point set $D$.
+Fix $2\le d\le g-1$, and put
+\[
+ R=K'-u-g\ge0,\qquad N=m'-u\ge R+d-1.
+\]
+If $C_{e,i}$ counts support-$e$ circuits meeting $D$ in exactly $i$ points,
+then, for $0\le i\le d-2$,
+\[
+ (d+1-i)C_{d+1,i}+(N-R-d+1+i)C_{d,i}
+ \le \binom{u}{i}R\binom{N}{d-i},                 \tag{FAS1}
+\]
+and
+\[
+ C_{d,i}\le
+ \left\lfloor\frac{\binom{u}{i}R\binom{N}{d-1-i}}{d-i}\right\rfloor.
+ \tag{FAS2}
+\]
+For nonnegative integer weights $w_d,w_{d+1}$, put
+\[
+\begin{aligned}
+ L_i&=\left\lfloor
+       \frac{\binom{u}{i}R\binom{N}{d-1-i}}{d-i}\right\rfloor,\\
+ A_i&=\binom{u}{i}R\binom{N}{d-i},\\
+ \lambda_i&=(d+1-i)w_d-(N-R-d+1+i)w_{d+1},\\
+ J_i&=\left\lfloor
+ \frac{w_{d+1}A_i+\max(\lambda_i,0)L_i}{d+1-i}
+ \right\rfloor.
+\end{aligned}
+\]
+Then the complete weighted census obeys
+\begin{equation}
+\tag{FAS3}
+\begin{aligned}
+ w_dC_d+w_{d+1}C_{d+1}\le{}&\sum_{i=0}^{d-2}J_i
+ +w_d\left(\binom{u}{d-1}R+\binom{u}{d}\right)\\
+ &+w_{d+1}\left(
+ \left\lfloor\frac{\binom{u}{d-1}RN}{2}\right\rfloor
+ +\binom{u}{d}R+\binom{u}{d+1}\right).
+\end{aligned}
+\end{equation}
+Envelopes for support-disjoint adjacent pairs may be added.
+\end{proposition}
+
+\begin{proof}
+Fix an independent $i$-set $S\subset D$, contract $S$, and restrict to the
+$N$ points outside $D$.  A rank-$a$ flat with basis $A$ leaves at least
+$g-a$ vanishing dimensions, so the common-root bound gives flat size at most
+$R+a$.  Take $a=d-1-i$ and apply
+Proposition~\ref{prop:kb-rank11-adjacent-flat-circuit-coupling} with
+$B=R+a$; summing over $S$ proves (FAS1).  Exposing a support-$d$ circuit by
+one of its $d-i$ outside points leaves exactly the residual completion budget
+$R$, proving (FAS2).  Linear optimization has only the two endpoints from
+(FAS2): after multiplying (FAS1) by $w_{d+1}$, the coefficient of
+$C_{d,i}$ has numerator $\lambda_i$, giving $J_i$.  The remaining strata
+follow by direct exposure:
+\[
+\begin{array}{ll}
+C_{d,d-1}\le\binom{u}{d-1}R,&C_{d,d}\le\binom{u}{d},\\
+C_{d+1,d-1}\le\left\lfloor\binom{u}{d-1}RN/2\right\rfloor,
+&C_{d+1,d}\le\binom{u}{d}R,\quad C_{d+1,d+1}\le\binom{u}{d+1}.
+\end{array}
+\]
+This proves (FAS3).  Finally, support-disjoint pairs contain disjoint census
+terms.
+\end{proof}
+
+\begin{proposition}[$K'=83$ adjacent-support carrier payment]
+\label{prop:kb-rank11-k83-adjacent-support-payment}
+In the fixed component target, every rank-nine alternative is empty at
+$K'=83$.  The exact global completion premium is
+\[
+ P_{83}=41364793335621487128860475977676014245181683050,
+\]
+below the safe premium ceiling by
+\[
+ M_{83}=20915524776266057709711793515157915895070>0.
+\]
+After unchanged kernel capacity is added, demand exceeds complete capacity
+by
+\[
+ G_{83}=104570295123758938048546273477992878508577141441163332394>0.
+\]
+Thus the closed rank-nine prefix is $10\le K'\le83$.
+\end{proposition}
+
+\begin{proof}
+The exact support-two/support-three partition is one ordinary lane and the
+72 positive offsets $M_3-M_2=1,\ldots,72$.  Every offset retains every exact
+defect pair before the support-four/support-five carrier alternatives are
+expanded.  Positive ordinary pairs use the exhaustive $T_{23}/A_{23}$
+positions, and a lone positive stratum uses its single completion carrier.
+The latter carrier is supplied by
+Proposition~\ref{prop:kb-rank11-single-completion-carrier}.
+
+Apply Proposition~\ref{prop:kb-rank11-fixed-union-adjacent-support-coupling}
+to every fixed union.  The former ordinary wall
+$(M_2,M_3,M_4,M_5)=(18,18,36,36)$ is paid in both
+$T_{23}=(39,7)$ and $A_{23}=(38,8)$ by the support-disjoint pairs $4/5$ and
+$6/7$.  A primary router and an independent implementation agree on all 73
+lane maxima and coverage counts.  Across 146 implementation/lane jobs, the
+global maximum is the raw-safe offset-two branch
+\[
+ s_2=56,\quad s_3=54,\quad s_4=41,\quad s_5=33,
+\]
+with premium $P_{83}$.  The supplemental manifest pins all source and raw
+capture hashes.  Exact substitution in the component floor identity gives
+$M_{83}$ and $G_{83}$.
 \end{proof}
 
 \begin{proposition}[Canonical kernel-basis capacity]
@@ -15076,8 +15248,12 @@ Proposition~\ref{prop:kb-rank11-k74-k78-full-carrier-atlas-payment} pays
 $K'=74,\ldots,78$, and
 Proposition~\ref{prop:kb-rank11-k79-k82-full-carrier-atlas-payment} pays
 $K'=79,\ldots,82$ and isolates the first pairwise-atlas wall at $K'=83$.
+Proposition~\ref{prop:kb-rank11-adjacent-flat-circuit-coupling} and
+Proposition~\ref{prop:kb-rank11-fixed-union-adjacent-support-coupling}
+convert that method wall into support-disjoint adjacent-pair payments, and
+Proposition~\ref{prop:kb-rank11-k83-adjacent-support-payment} pays $K'=83$.
 Thus the remaining intervals are rank eight only on
-$22\le K'\le82$, rank nine or rank eight on $83\le K'\le15528$, rank
+$22\le K'\le83$, rank nine or rank eight on $84\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -15087,12 +15263,10 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=83$, no closure is asserted here.
-The surviving $(23,24,24,25)$ cell requires a nonseparable triple-carrier
-support-three/support-four/support-five census.  The complete pairwise
-atlas, its forced four-dimensional Grassmann intersection, and the
-branch-free baseline have all been replayed and fail.  No extrapolation from
-the preceding exact rows is used.
+At the first remaining rank-nine row $K'=84$, no closure is asserted here.
+The $K'=83$ pairwise wall remains a valid limitation of that restricted
+method, but its frontier conclusion is superseded by the adjacent-support
+payment.  No extrapolation from the exact $K'=83$ row is used.
 Proposition~\ref{prop:kb-rank11-rank8-circuit-shadow-census} gives the exact
 first-row split: the full-circuit case has 54 rank-nine shadows, while every
 proper circuit gives additional rank-eight shadows and a locator ideal of

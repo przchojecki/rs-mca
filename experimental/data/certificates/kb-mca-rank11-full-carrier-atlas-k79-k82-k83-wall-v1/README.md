@@ -29,3 +29,8 @@ and
 This closes only rank-nine component rows `K'=79..82`. It moves no deployed
 v4 atom, pays no rank-eight or chronology branch, and does not close error
 rank eleven, KoalaBear, or either prize problem.
+
+**Supersession note.** The pairwise-atlas wall recorded here remains valid as
+a method limitation. The adjacent-support extension in
+`kb-mca-rank11-k83-adjacent-support-payment-v1` subsequently closes `K'=83`
+and moves the first open rank-nine row to `K'=84`.
