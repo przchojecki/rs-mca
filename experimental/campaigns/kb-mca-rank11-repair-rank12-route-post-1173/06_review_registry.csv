@@ -1,0 +1,5 @@
+review_id,review,status,artifact
+R-001,adversarial mathematics audit,GREEN_FOR_STATED_REPAIR_AND_ROUTE,reviews/mathematics_audit.md
+R-002,certificate and custody audit,GREEN,reviews/certificate_review.md
+R-003,targeted primary-literature sweep,GREEN_NO_EXTERNAL_DEPENDENCY,reviews/literature_sweep.md
+R-004,Wolfram exact replay,GREEN,reviews/wolfram_replay.md
