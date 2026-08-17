@@ -5534,3 +5534,42 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Test the best-single envelope at `K'=86` and seek a
   symbolic adjacent-support continuation. Do not infer an interval from the
   exact rows.
+
+### 2026-08-17 - Best-single adjacent-support envelope closes `K'=86`
+
+- **Agent/model:** Codex, extending PR #1170 after a paired raw-threshold
+  wave, an adversarial four-offset stress wave, a complete paired residual
+  wave, and an exact component payment.
+- **Exact parent:** this PR's `K'=85` packet at
+  `7356a104a4ec2d21f6c0fc32a3fb3c394cf5e8cf`.
+- **Research source:** prize-DAG commit
+  `a0f03f3af3b8bffb303dfe8e0b338b40e49da5ee`; source-node tree
+  `5d5e1503591ec1ebca92847538f3b1a7d6ef6dfb`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The exact ordinary-plus-75-offset partition at
+  `K'=86`, its complete raw-safe split, and the residual best-single theorem.
+  A dedicated checker accepts only the two completed ordinary jobs retained
+  from a broader incomplete pilot; it does not promote the missing pilot job.
+  Every residual profile may use its best individually valid single adjacent
+  edge; no simultaneous composition of overlapping edges is asserted.
+- **Impact:** All 150 raw-wave jobs agree on 16,897,650 source units per
+  implementation and isolate 415,413 unsafe units. All 84 residual-wave jobs
+  agree on 62,159,220 carrier profiles per implementation. The global premium
+  is `41436891148468120556440841127823744176664445997`, below the exact
+  ceiling by `2429142732593969226237923721701123878841`; the component gap is
+  `12144862496270285686198005257330878943217549361781518735`. The closed
+  rank-nine prefix is `K'=10..86`, and the first open row is `K'=87`.
+- **Controls:** Supplemental manifest SHA-256
+  `d0869e5755252d08a59bfe763fd33c5032796ebc67ca410c7432d98d05762072`.
+  Primary and independent verifier SHA-256 values are
+  `a1078fb15349df3cf40000d90da98dfb5dcf8cf149b7f9a333b72121afd2b68a`
+  and `fabb09251f7d0b453ed4f2110dee233cefe4294c9b1f473a44e5911f61ad1de3`.
+  The primary rejects eight hostile mutations. Grande Finale builds in three
+  passes at 180 pages with PDF SHA-256
+  `4c3fa80a89397d0b131aae52a6f15b5f7a687ac0f5cf556464610094548566f0`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Test the best-single envelope at `K'=87` and seek a
+  symbolic adjacent-support continuation. Do not infer an interval from the
+  exact rows.

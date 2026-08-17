@@ -286,6 +286,15 @@ At this snapshot:
   `41412868016209776721228891386909879523306833354`, below the safe ceiling
   by `1793645398692419426975603430807602228515`; the exact component gap is
   `8967598503742781003071510733325918643075973211834024001`.
+  At `K'=86`, a dedicated checker accepts the two completed ordinary jobs
+  retained from a broader incomplete pilot, while paired raw traversals
+  exhaust all 75 positive offsets and isolate exactly `415413` unsafe units
+  in offsets `1..42`; offsets `43..75` are entirely raw-safe. Paired
+  exhaustive carrier traversals price `62159220` residual profiles per
+  implementation by the same best-single rule. The offset-32 premium is
+  `41436891148468120556440841127823744176664445997`, below the safe ceiling
+  by `2429142732593969226237923721701123878841`; the exact component gap is
+  `12144862496270285686198005257330878943217549361781518735`.
   These refinements stay
   in residual units and do not use the original-row core floor.
   Canonical-basis, nine-shadow, projective-paving, bounded-parallel,
@@ -297,14 +306,14 @@ At this snapshot:
   at `K'=10`; at `K'=11` the chart-local fence remains above both selector
   demands, but its full-circuit witness creates 54 neighboring rank-nine
   shadows and is paid globally.  Thus the exact component boundary is: no
-  component target at `K'=10..21`; rank eight only on `22..85`; rank nine
-  or rank eight on `86..15528`; rank eight only on `15529..22525`;
+  component target at `K'=10..21`; rank eight only on `22..86`; rank nine
+  or rank eight on `87..15528`; rank eight only on `15529..22525`;
   chronology on `22526..37995`; and no
   component target from `K'=37996` onward.  No active-v4 atom moves, and
   error rank eleven is not paid.
-- The first open rank-nine row is now `K'=86`. No adjacent extrapolation is
+- The first open rank-nine row is now `K'=87`. No adjacent extrapolation is
   claimed. Test whether the best-single adjacent-support payment survives at
-  `K'=86` while seeking a symbolic continuation in `K'`; an exact-row replay
+  `K'=87` while seeking a symbolic continuation in `K'`; an exact-row replay
   locates the obstruction but is not a substitute for an interval theorem.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
