@@ -295,6 +295,19 @@ At this snapshot:
   `41436891148468120556440841127823744176664445997`, below the safe ceiling
   by `2429142732593969226237923721701123878841`; the exact component gap is
   `12144862496270285686198005257330878943217549361781518735`.
+  A raw-clipped fixed-union theorem now also permits independent selected-
+  incidence caps to be divided by their exact eleven-set extension factors,
+  floored to circuit caps, and imposed before the adjacent-support weighted
+  optimization. Its two fractional-knapsack allocation orders agree, and
+  only support-disjoint adjacent pairs compose. At `K'=87`, fresh paired
+  ordinary traversals and paired raw traversals exhaust the ordinary lane
+  and all 76 positive offsets, isolating exactly `511677` unsafe units in
+  offsets `1..43`; offsets `44..76` are entirely raw-safe. Paired exhaustive
+  raw-clipped traversals price `77179660` residual profiles per
+  implementation. The offset-9 premium is
+  `41460899125475443837881046685022762331499044695`, below the safe ceiling
+  by `15543567623247423995536789673894577398694`; the exact component gap is
+  `77712391681585193939443710876895639001790676368706144901`.
   These refinements stay
   in residual units and do not use the original-row core floor.
   Canonical-basis, nine-shadow, projective-paving, bounded-parallel,
@@ -306,14 +319,14 @@ At this snapshot:
   at `K'=10`; at `K'=11` the chart-local fence remains above both selector
   demands, but its full-circuit witness creates 54 neighboring rank-nine
   shadows and is paid globally.  Thus the exact component boundary is: no
-  component target at `K'=10..21`; rank eight only on `22..86`; rank nine
-  or rank eight on `87..15528`; rank eight only on `15529..22525`;
+  component target at `K'=10..21`; rank eight only on `22..87`; rank nine
+  or rank eight on `88..15528`; rank eight only on `15529..22525`;
   chronology on `22526..37995`; and no
   component target from `K'=37996` onward.  No active-v4 atom moves, and
   error rank eleven is not paid.
-- The first open rank-nine row is now `K'=87`. No adjacent extrapolation is
-  claimed. Test whether the best-single adjacent-support payment survives at
-  `K'=87` while seeking a symbolic continuation in `K'`; an exact-row replay
+- The first open rank-nine row is now `K'=88`. No adjacent extrapolation is
+  claimed. Test whether the raw-clipped adjacent-support payment survives at
+  `K'=88` while seeking a symbolic continuation in `K'`; an exact-row replay
   locates the obstruction but is not a substitute for an interval theorem.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.

@@ -5573,3 +5573,48 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Test the best-single envelope at `K'=87` and seek a
   symbolic adjacent-support continuation. Do not infer an interval from the
   exact rows.
+
+### 2026-08-17 - Raw-clipped adjacent-support envelope closes `K'=87`
+
+- **Agent/model:** Codex, extending PR #1170 after proving the raw-clipped
+  fixed-union theorem, completing a paired raw-threshold wave, completing a
+  six-shard paired residual wave, and replaying the exact component payment.
+- **Exact parent:** this PR's `K'=86` packet at
+  `7214947e5f7bd2b350f056ee2bbf75c5c4effd06`.
+- **Research source:** prize-DAG commit
+  `b869fb9dd2e740e323bee74e7ee72475905901f5`; raw-clipped theorem-node tree
+  `f1e826876806f3e30287f4e64d86f655714af081`; row-node tree
+  `1c00acd2b2293b97623bbbec695d98aa8689d218`.
+- **Status:** PROVED REUSABLE COUPLING AND ONE-ROW EXTENSION / ZERO DEPLOYED
+  LEDGER MOVEMENT.
+- **What is being added:** A raw-clipped fixed-union theorem that converts
+  independent selected-incidence caps to circuit caps using exact extension-
+  factor floors, then intersects those caps with the adjacent-support
+  polytope. Dual fractional-knapsack orders evaluate the same rational
+  optimum. Only support-disjoint adjacent pairs compose. The finite packet
+  applies this theorem to the exact ordinary-plus-76-offset partition at
+  `K'=87`.
+- **Impact:** Fresh paired ordinary traversals agree on 542,840 source units.
+  All 152 raw-wave jobs agree on 17,801,784 source units per implementation
+  and isolate 511,677 unsafe units in offsets 1 through 43. All 86 residual-
+  wave jobs agree on 77,179,660 carrier profiles per implementation. The
+  offset-9 premium
+  `41460899125475443837881046685022762331499044695` is below the exact
+  ceiling by `15543567623247423995536789673894577398694`; the component gap
+  is `77712391681585193939443710876895639001790676368706144901`. The closed
+  rank-nine prefix is `K'=10..87`, and the first open row is `K'=88`.
+- **Controls:** Supplemental manifest SHA-256
+  `ec81aa702181ba7a683e9f2a1afeb942a968c7d0232d6e3e7f3e44669d3f0f8a`.
+  Primary and independent verifier SHA-256 values are
+  `da8e97ab5a3b8778acd4415b598e5086f8bd5942c275ad4644c45843cfbc0b40`
+  and `4f0c45d41bd6282fb167fe577e2428ecc9df11aab03ec81f37d1156bff9ad9be`.
+  The primary rejects ten hostile mutations; the two verifiers evaluate the
+  raw-clipped LP in opposite orientations and agree on its denominator-three
+  optimum. Grande Finale builds in three memory-capped passes at 181 pages
+  with PDF SHA-256
+  `0686647b70fb2155b28591ea381d6a9683947591dda1fb4a5a9a56859797b207`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, LIST, MCA, and
+  both prize problems remain open.
+- **What to do next:** Test the raw-clipped envelope at `K'=88` and seek a
+  symbolic continuation. Do not infer an interval from the exact row.

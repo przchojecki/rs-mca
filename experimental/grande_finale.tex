@@ -13578,6 +13578,87 @@ This proves (FAS3).  Finally, support-disjoint pairs contain disjoint census
 terms.
 \end{proof}
 
+\begin{proposition}[Raw-clipped fixed-union adjacent-support census]
+\label{prop:kb-rank11-raw-clipped-adjacent-support-coupling}
+Retain the hypotheses and notation of
+Proposition~\ref{prop:kb-rank11-fixed-union-adjacent-support-coupling}.
+Suppose independent arguments bound the selected eleven-set incidences from
+support-$d$ and support-$(d+1)$ circuits by $U_d$ and $U_{d+1}$.  Put
+\[
+ s_d=\binom{m'-d}{11-d},\qquad
+ s_{d+1}=\binom{m'-d-1}{10-d},
+ \qquad X=\left\lfloor\frac{U_d}{s_d}\right\rfloor,
+ \qquad Y=\left\lfloor\frac{U_{d+1}}{s_{d+1}}\right\rfloor.
+ \tag{RCA1}
+\]
+For $0\le i\le d-2$, define
+\[
+\begin{aligned}
+ a_i&=d+1-i,& b_i&=N-R-d+1+i,\\
+ A_i&=\binom ui R\binom N{d-i},&
+ L_i&=\left\lfloor
+       \frac{\binom ui R\binom N{d-1-i}}{d-i}\right\rfloor .
+\end{aligned}                                                   \tag{RCA2}
+\]
+Let nonnegative rational variables $x_i,y_i$ satisfy
+\[
+ b_ix_i+a_iy_i\le A_i,\qquad x_i\le L_i,            \tag{RCA3}
+\]
+and put
+\[
+ X_0=\binom u{d-1}R+\binom ud,
+ \qquad
+ Y_0=\left\lfloor\frac{\binom u{d-1}RN}{2}\right\rfloor
+      +\binom udR+\binom u{d+1}.                    \tag{RCA4}
+\]
+Then the actual circuit strata embed in the rational polytope
+\[
+ \sum_i x_i+x_0\le X,quad 0\le x_0\le X_0,
+ \qquad
+ \sum_i y_i+y_0\le Y,quad 0\le y_0\le Y_0.        \tag{RCA5}
+\]
+Consequently, for nonnegative incidence weights $\Delta_d,\Delta_{d+1}$,
+their selected-incidence contribution is at most the floor of
+\[
+ \max\left\{
+  \Delta_ds_d\left(x_0+\sum_i x_i\right)
+  +\Delta_{d+1}s_{d+1}\left(y_0+\sum_i y_i\right)
+ \right\}                                           \tag{RCA6}
+\]
+over \emph{(RCA3)--(RCA5)}.  This rational maximum is exact for the
+relaxation: fix the total support-$d$ count, fill $x_0$ first, and then fill
+the coupled strata in increasing order of $b_i/a_i$.  Equivalently, fix the
+support-$(d+1)$ count, fill its uncoupled capacity first, and traverse the
+coupled strata in increasing order of $a_i/b_i$.  Both orders give the same
+piecewise-linear optimum.  Replacements for support-disjoint adjacent pairs
+may be added; overlapping adjacent pairs are not composed.
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{prop:kb-rank11-fixed-union-adjacent-support-coupling}
+gives (RCA3) in every fixed-union stratum and gives (RCA4) by direct
+completion exposure.  Every support-$e$ circuit contributes exactly
+$s_e=\binom{m'-e}{11-e}$ selected eleven-set incidences.  The independent
+incidence caps therefore imply (RCA1), and the actual integer stratum vector
+is feasible for (RCA3)--(RCA5).  Relaxing integrality can only increase the
+maximum, so the floor in (RCA6) is a valid integer upper bound.
+
+For the evaluation rule, fix the total support-$d$ count.  Uncoupled mass
+uses no support-$(d+1)$ capacity and is filled first.  Increasing $x_i$ by
+one reduces the available $y_i$ by $b_i/a_i$, so the usual fractional-
+knapsack exchange places the remaining mass in increasing order of that
+ratio.  The resulting support-$(d+1)$ envelope is continuous and piecewise
+linear.  The weighted objective is linear on each segment, hence is maximal
+at a segment endpoint or where the cap $Y$ first becomes active.
+
+In the reverse orientation, the support-$(d+1)$ capacity left when
+$x_i=L_i$ is $(A_i-b_iL_i)/a_i$.  Beyond these free capacities, one unit of
+support-$(d+1)$ consumes $a_i/b_i$ units of support-$d$, giving the reverse
+order.  This describes the same polytope and therefore the same optimum.
+Finally, support-disjoint pairs concern disjoint census terms; no such
+argument permits overlapping-pair addition.
+\end{proof}
+
 \begin{proposition}[$K'=83$ adjacent-support carrier payment]
 \label{prop:kb-rank11-k83-adjacent-support-payment}
 In the fixed component target, every rank-nine alternative is empty at
@@ -13754,6 +13835,60 @@ The supplemental manifest pins the ordinary-slice custody, the two complete
 paired waves, all mathematical sources, and the component-payment output.
 Exact substitution in the component floor identity gives $M_{86}$ and
 $G_{86}$.
+\end{proof}
+
+\begin{proposition}[$K'=87$ raw-clipped adjacent-support payment]
+\label{prop:kb-rank11-k87-raw-clipped-adjacent-payment}
+In the fixed component target, every rank-nine alternative is empty at
+$K'=87$.  The exact global completion premium is
+\[
+ P_{87}=41460899125475443837881046685022762331499044695,
+\]
+below the safe premium ceiling by
+\[
+ M_{87}=15543567623247423995536789673894577398694>0.
+\]
+After unchanged kernel capacity is added, demand exceeds complete capacity
+by
+\[
+ G_{87}=77712391681585193939443710876895639001790676368706144901>0.
+\]
+Thus the closed rank-nine prefix is $10\le K'\le87$.
+\end{proposition}
+
+\begin{proof}
+The exact support-two/support-three partition is one ordinary lane and the
+76 positive offsets $M_3-M_2=1,\ldots,76$.  Fresh primary and independently
+ordered ordinary traversals agree on all $542840$ source units, $3799880$
+raw rows, and $2940875$ geometry rows, and give premium strictly below
+$P_{87}$.
+
+For the offsets, primary and independently written raw traversals agree on
+all $17801784$ source units and $124612488$ raw rows per implementation.
+Exactly $17290107$ units are raw-safe.  The remaining $511677$ units occur
+in offsets $1$ through $43$; offsets $44$ through $76$ are entirely
+raw-safe.  The largest raw-safe value is $P_{87}$, at the offset-nine branch
+\[
+ s_2=55,\quad s_3=46,\quad s_4=37,\quad s_5=30.
+\]
+
+Expand every residual unit through the exhaustive full-completion pairwise
+carrier atlas.  Before optimizing each fixed-union support-$5/6$ stratum,
+divide its independent selected-incidence caps by the exact eleven-set
+extension factors and floor.  Apply
+Proposition~\ref{prop:kb-rank11-raw-clipped-adjacent-support-coupling} to
+intersect those circuit caps with the fixed-union polytope.  Only
+support-disjoint adjacent pairs are composed.  Paired exhaustive traversals
+agree on all 43 unsafe offsets, all $14388660$ source units, all $511677$
+unsafe units, and $77179660$ carrier profiles per implementation.  Every
+raw-clipped value is at most $P_{87}$.
+
+The supplemental manifest pins the fresh ordinary wave, the complete paired
+raw wave, six contiguous paired raw-clipped shards, both source nodes, and
+the component-payment output.  Its primary and independent verifiers also
+evaluate the rational raw-clipped polytope in opposite allocation orders;
+both obtain denominator three in the pinned specialization.  Exact
+substitution in the component floor identity gives $M_{87}$ and $G_{87}$.
 \end{proof}
 
 \begin{proposition}[Canonical kernel-basis capacity]
@@ -15393,8 +15528,13 @@ Proposition~\ref{prop:kb-rank11-k85-best-single-adjacent-payment} pays
 $K'=85$ after the exact raw-threshold split and residual best-single census,
 and Proposition~\ref{prop:kb-rank11-k86-best-single-adjacent-payment} pays
 $K'=86$ by the same proved charge after a new exact finite census.
+Proposition~\ref{prop:kb-rank11-raw-clipped-adjacent-support-coupling}
+intersects independently normalized incidence caps with the fixed-union
+polytope, and
+Proposition~\ref{prop:kb-rank11-k87-raw-clipped-adjacent-payment} uses that
+coupling to pay $K'=87$ after a complete paired finite census.
 Thus the remaining intervals are rank eight only on
-$22\le K'\le86$, rank nine or rank eight on $87\le K'\le15528$, rank
+$22\le K'\le87$, rank nine or rank eight on $88\le K'\le15528$, rank
 eight only on $15529\le K'\le22525$,
 dense-owner chronology only on
 $22526\le K'\le37995$, and no rank-eleven component target on
@@ -15404,10 +15544,10 @@ that neither the distinct nor the weighted fixed-chart output alone can
 pay the lower rank-eight interval.  Any continuation must retain the
 normalized full-span/anchor ancestry or couple charts and owners through a
 chronology-correct global incidence argument.
-At the first remaining rank-nine row $K'=87$, no closure is asserted here.
+At the first remaining rank-nine row $K'=88$, no closure is asserted here.
 The $K'=83$ pairwise wall remains a valid limitation of that restricted
 method, but its frontier conclusion is superseded by the adjacent-support
-payments.  No extrapolation from any exact row is used.
+payments.  No extrapolation from the exact $K'=87$ row is used.
 Proposition~\ref{prop:kb-rank11-rank8-circuit-shadow-census} gives the exact
 first-row split: the full-circuit case has 54 rank-nine shadows, while every
 proper circuit gives additional rank-eight shadows and a locator ideal of

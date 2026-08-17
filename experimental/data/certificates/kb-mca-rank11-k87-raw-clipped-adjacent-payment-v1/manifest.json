@@ -1,0 +1,153 @@
+{
+  "schema": "kb-mca-rank11-k87-raw-clipped-adjacent-payment-v1",
+  "exact_parent": "7214947e5f7bd2b350f056ee2bbf75c5c4effd06",
+  "previous_packet_sha256": "d0869e5755252d08a59bfe763fd33c5032796ebc67ca410c7432d98d05762072",
+  "source_prize_dag": {
+    "repository": "AllenGrahamHart/rs-mca-prize-dag",
+    "commit": "b869fb9dd2e740e323bee74e7ee72475905901f5",
+    "row_node": {
+      "id": "rate_half_mca_rank11_k87_raw_clipped_adjacent_payment",
+      "tree": "1c00acd2b2293b97623bbbec695d98aa8689d218",
+      "contract_sha256": "fc0699db0b33a5ff6a6fe04b918e5cbd5eefe3e9b29b9acd7816880b31cf7c88"
+    },
+    "theorem_node": {
+      "id": "rate_half_mca_sparse_circuit_raw_clipped_adjacent_support_coupling",
+      "tree": "f1e826876806f3e30287f4e64d86f655714af081"
+    }
+  },
+  "dependencies": [
+    "kb-mca-rank11-k86-best-single-adjacent-payment-v1",
+    "single completion carrier",
+    "full-completion pairwise carrier atlas",
+    "base-field-normalized fixed-union adjacent-support census",
+    "raw-clipped adjacent-support circuit coupling"
+  ],
+  "record_floor": 274980728111260126,
+  "raw_clipped_theorem": {
+    "claim": "independent selected-incidence caps are divided by exact eleven-set extension factors, floored to circuit caps, and intersected with the fixed-union adjacent-support polytope before exact rational weighted optimization",
+    "composition_rule": "only support-disjoint adjacent pairs compose; overlapping pair bounds are never added",
+    "k87_specialization": {
+      "kprime": 87,
+      "m": 67559,
+      "union": 34,
+      "vanishing_dimension": 6,
+      "lower_support": 5,
+      "lower_circuit_cap": 5194160756685726492,
+      "upper_circuit_cap": 91910188382798260682360,
+      "weighted_optimum_numerator": 42623778408284696740784253522991572305773969600,
+      "weighted_optimum_denominator": 3,
+      "weighted_optimum_floor": 14207926136094898913594751174330524101924656533
+    }
+  },
+  "coverage": {
+    "partition": "ordinary plus offsets 1..76",
+    "ordinary": {
+      "jobs": 2,
+      "source_units": 542840,
+      "raw_rows": 3799880,
+      "raw_safe_units": 121895,
+      "expanded_units": 4385,
+      "primary_geometry_rows": 2940875,
+      "audit_geometry_rows": 2940875,
+      "premium": 41460244206367810395288131753780101229368111530,
+      "custody_scope": "fresh complete primary and independently ordered audit traversals"
+    },
+    "raw_offsets": {
+      "lanes": 76,
+      "jobs": 152,
+      "offset_units_formula": "(77-offset)*6084",
+      "source_units_per_implementation": 17801784,
+      "raw_rows_per_implementation": 124612488,
+      "raw_safe_units_per_implementation": 17290107,
+      "raw_unsafe_units_per_implementation": 511677,
+      "unsafe_offset_interval": [1, 43],
+      "fully_safe_offset_interval": [44, 76]
+    },
+    "raw_clipped_residual": {
+      "lanes": 43,
+      "jobs": 86,
+      "source_units_per_implementation": 14388660,
+      "unsafe_units_per_implementation": 511677,
+      "profiles_per_implementation": 77179660,
+      "rule": "intersect extension-normalized raw circuit caps with each fixed-union adjacent-support polytope; compose only support-disjoint adjacent pairs"
+    }
+  },
+  "frontier": {
+    "global_lane": "offset9",
+    "global_branch": "s2=55/s3=46/s4=37/s5=30/offset9/c6F/c7F/c8F/c9F",
+    "completion_premium": 41460899125475443837881046685022762331499044695,
+    "safe_premium_ceiling": 41460914669043067085305042221812436226076443389,
+    "premium_ceiling_margin": 15543567623247423995536789673894577398694
+  },
+  "k87": {
+    "q": 77,
+    "m": 67559,
+    "n": 1048663,
+    "rank_nine_marks": 39251822161232243278275316442674108186111685491076612666319890850,
+    "kernel_capacity": 101428358503090898644576011950562401247281266078921010827210,
+    "full_rank_capacity": 920959461652781618758411787796949507196105181499688874690276771,
+    "total_capacity": 921060890011284709657056363808900069597352462765767795701103981,
+    "required_component_incidence": 921060967723676391242250303252610946492991464556444164407248882,
+    "gap": 77712391681585193939443710876895639001790676368706144901,
+    "ceiling_remainder": 255238951391294095
+  },
+  "captures": [
+    {
+      "role": "ordinary",
+      "app_id": "ap-t1IWAsyDidGwq0ZwwYO6yI",
+      "sha256": "06a550c1f65be3c2a7c4d96590188f5de6ca792c1f87e638f2fa7d5163b43519"
+    },
+    {
+      "role": "raw_threshold_wave",
+      "app_id": "ap-xwOdMdTBRKtC2aIHtpRSw0",
+      "sha256": "2722d7811cf29e425bd67fd49a46f586efe2f21c0dda698e369dcfe4fd48b449"
+    },
+    {
+      "role": "component_payment",
+      "app_id": "ap-JAw6W5GHktZA9TXLxcpMUY",
+      "sha256": "883f659486162495750adbc80c97d3224cdae6b3bdebf3429492a33189d95312"
+    }
+  ],
+  "raw_clipped_captures": [
+    {"offsets": [1, 4], "app_id": "ap-iXONaPwRxMHjwZR515sOyi", "sha256": "544b603dac9fd1ea858c36e530bb0263f6e11392a6d3b284d3baa1c266b9f7ca"},
+    {"offsets": [5, 12], "app_id": "ap-dJ2eUU9a0u0jcJjXZiefIU", "sha256": "4f3f1d9e5f81aa3f8afdb3727d266eaa9f557ad2140b9d8b1c469919785918dd"},
+    {"offsets": [13, 20], "app_id": "ap-xr0f01RFscUvWkrGvn7VGk", "sha256": "1406c04aef22bfa96037221ebb6c47a94258fb3e54014e117a5b9a6090dba2fb"},
+    {"offsets": [21, 28], "app_id": "ap-qFATW8MSFF0dzBoqm4ekA9", "sha256": "ee4c260ba13112abd17f02d37957c5eae131c713cc1f51254a9e2387b65cfc0c"},
+    {"offsets": [29, 36], "app_id": "ap-KzzGy55iKSUXT04uVv7UOh", "sha256": "28bbc2311b0845e7deba6b8e5f4cacdafb32ed65d5b9057871ac043aab98b55b"},
+    {"offsets": [37, 43], "app_id": "ap-TLGJytlHAZRLOm0pn0e8Oh", "sha256": "e9d41feff81a9e2e809b54bcb80c2c802c6d2c140d9481bc8f527a5f5b9df784"}
+  ],
+  "raw_clipped_merged_sha256": "6f8064320850e0009c18c967e2b61ec5b4d77c51e1c2afb4bee6fc41921e5cd8",
+  "source_hashes": {
+    "ordinary_primary": "a9382db987ce51906dedd510d028ebf688a141455c147f617bda60a7c9b334c9",
+    "ordinary_independent": "338d35ca79a5a54e6c869f913bf4a25f52e1cd0351b20ce3df3142494c735af3",
+    "ordinary_checker": "60fde0ea89ffccb94f61c9fd824faa5656ad2689af4c532d6aaea62a7131cdff",
+    "raw_primary": "d85f91f5cfbfbaa4550377cc0096b194108bbc8bdd660b9e3f680ef6a83e08c5",
+    "raw_independent": "b968b55cd98d04224ed3ef36bc8e14b83614f8e60257a76546fdfe87200a41d8",
+    "raw_checker": "e7dbbd4145bc9924806f9fc1e85d1593ec77c67d898e69633fe0c56e5b51ca38",
+    "best_single_primary": "f2ef06960e42febe620dcfa7ecddf2d7207532462e764e0b767a98416f45de53",
+    "best_single_independent": "d4c6baed6e30a3acea25b808a6320589fc1b7aadd401da1a4fac0566b17df627",
+    "best_single_shared_core": "53b1d80cabff9cf1995043195b91e8b1e96013ffcb8aaacf5642591a88cd3e0a",
+    "best_single_k85_primary": "2c94b7432cd4c9d37a49288298761cbff9227a07f694fe80ec259ef19e724505",
+    "best_single_k85_independent": "f9a01624b5a11fbc30f58a4f4afca2aa75d9af96b35c69edddcdc7eef5e1fa1f",
+    "best_single_k85_base": "cd1e9d2706c48be390387953c4abeea46958af258f132700809cf2393a5e4a90",
+    "raw_clipped_primary": "27e0eaa88d6238de3d86205ab907d2caa1f997212ad0ea2b9ea4533f7924f8d8",
+    "raw_clipped_independent": "289ade06dfcb706efb8dcb020f20afe1ec9ccf25061d450438867ef2f59deb72",
+    "raw_clipped_primary_cached": "dd652f005ee31ed3229bd16039f16a8961306fbfe21a45d95737406a3e716f31",
+    "raw_clipped_independent_cached": "9e4240355e5d5b1d59faf301d8087b63cf2fb2a1856d74f1551dc42e399f2296",
+    "raw_clipped_shared_core": "ea0cc3fc67e7079a34a0bbabbe8c5953b0791944f05bc64659d80c9470036c13",
+    "raw_clipped_optimizer": "514cbeabc44f04ea4e153415dcddab1878069cefeaa12dea931f60edf9c0e18a",
+    "raw_clipped_merger": "2fc0c0408227dd3cfdf175304bfad6e7b13a77782d33a4a4041b8ff1f8fd12dd",
+    "raw_clipped_checker": "92caef3cb3872b2c75ffa91bad21e0a745f281c1b2a8590005b7632368bd3f5e",
+    "component_payment": "1e154be116c33854af85a5a01fd03e4a3c4e0b66d1e24bc1fe58c9f2f9c62713"
+  },
+  "claims": {
+    "rank9_closed_prefix": [10, 87],
+    "rank9_remaining_interval": [88, 15528],
+    "first_open_rank9_row": 88,
+    "rank11_paid": false,
+    "KoalaBear_closed": false,
+    "LIST_closed": false,
+    "MCA_closed": false,
+    "prize_problems_closed": false
+  }
+}
