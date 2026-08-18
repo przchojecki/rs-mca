@@ -11,7 +11,9 @@
     "dimension_three_rich_plane_commit": "d79701f94add274e6c7fbf2f4744980d77817f4b",
     "dimension_three_rich_plane_node_tree": "40b4d860ac0cd50dbe2c43e883ede75b0b85ac84",
     "dimension_three_pair_moment_commit": "473f41afc6b76d747e534cb8e509a0353dcde3aa",
-    "dimension_three_pair_moment_node_tree": "43fc63b7c2f721ec79c4c2b451aef9a2eb17eb01"
+    "dimension_three_pair_moment_node_tree": "43fc63b7c2f721ec79c4c2b451aef9a2eb17eb01",
+    "dimension_three_type_population_commit": "1d52ff3013b6ab4e94f39cf9d6627f7562d65cf8",
+    "dimension_three_type_population_node_tree": "1bef7e27ed86ed76d5391e616bcb0a39e1681336"
   },
   "result": {
     "affine_plane_occupancy_ceiling": 218,
@@ -24,6 +26,10 @@
     "dimension_three_first_feasible_slack": 115260,
     "dimension_three_common_core_ceiling": 1043740,
     "shared_payment_numerical_overlap_rows": 87,
+    "dimension_three_type_population_ceiling": 3170,
+    "dimension_three_dense_type_record_floor": 80446,
+    "dimension_three_population_endpoint_K_interval": [4960, 4982],
+    "dimension_three_population_endpoint_full_owner_floor": 985788,
     "endpoint_shortened_K_interval": [2044, 5025],
     "endpoint_projective_direction_floor": 210,
     "endpoint_aggregate_degree_deficit_ceiling": 41736,
@@ -37,8 +43,9 @@
   "verification": {
     "endpoint_states": 2982,
     "pair_moment_excluded_states": 4833,
+    "type_population_factor_states": 2868,
     "pure_power_states": 142,
-    "hostile_mutations_rejected": 26,
+    "hostile_mutations_rejected": 32,
     "normal_python": "PASS",
     "optimized_python": "PASS",
     "independent_python": "PASS",
@@ -51,17 +58,18 @@
     "endpoint_pure_power_proved": false,
     "pure_power_survivors_paid": false,
     "shared_pair_core_payment_transported": false,
+    "dense_quotient_type_paid": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
     "KoalaBear_closed": false
   },
   "packet_file_sha256": {
-    "experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md": "ab8f5a5faab429dc9bb5859b27cecefb7b2024c3f783c505aaca48fcfe6f0f55",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/README.md": "502eaa3670750b03de75007f61d9df64b0639c005a69263df3fa7e34a537a103",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json": "6f667f2e0dee061cea4a166fdca08b908f3f7e291adc5367c43c4e48bc28a525",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/primary_output.txt": "34d3239c9a222f8a14c68ab1337aebe5d00c653fe54706eeb38a6a34d46f54a8",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/independent_output.txt": "87ef7724dcede8c118ebff11d75800ad26006e2b64fd3223d443bd74eefc00b6",
-    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1.py": "15797d3642aff49b8fadd7c011e731b1c0b3e76a1307523a16ec8c439914f750",
-    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.py": "8d4f1c0bac27a895c9f5606806e4025536b5ff78b25437179ad82287f0e756fe"
+    "experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md": "b87152176f3a4c382c97688bb812eb2655439a25cce730ab1c23f3d97797b11f",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/README.md": "7bd1f01b7659befb3799d2564c1c9b831938fab05edde8a73d74552151a6907a",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json": "9a78e5173938af68998f31da1014b779fc822aec7108ab9968e6a4f50854a538",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/primary_output.txt": "92e124a783c252e21b55063d99f27f63289283d646452dd98b6d6b61a098426b",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/independent_output.txt": "9e116e83b250021bb0cabe2794ef4887091087721be1fe0146f4a52596088059",
+    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1.py": "87215b1cd33a5ab2f53ff708804c72a88574a8872da7284cbae473c0b99969ff",
+    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.py": "16a73ae2636c5d208088b5718ffd16479e933a1793b7836855ce64cef2e043c9"
   }
 }

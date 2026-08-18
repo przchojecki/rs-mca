@@ -16,6 +16,9 @@ node tree `40b4d860ac0cd50dbe2c43e883ede75b0b85ac84`.
 The dimension-three pair-overlap extension is sourced separately from
 `AllenGrahamHart/rs-mca-prize-dag@473f41afc6b76d747e534cb8e509a0353dcde3aa`,
 node tree `43fc63b7c2f721ec79c4c2b451aef9a2eb17eb01`.
+The complete type-population extension is sourced separately from
+`AllenGrahamHart/rs-mca-prize-dag@1d52ff3013b6ab4e94f39cf9d6627f7562d65cf8`,
+node tree `1bef7e27ed86ed76d5391e616bcb0a39e1681336`.
 
 This note is a finite, base-field-normalized split-pencil theorem.  Its
 source interface is printed in full below.  In particular, this packet does
@@ -212,6 +215,46 @@ post-near rank-eleven family, while this packet controls the retained
 synchronized quotient-type source interface.  The current dependency chain
 does not supply the missing inclusion or a disjoint complementary charge.
 
+If the selected scalar family is the complete retained quotient-type family,
+let `q` be its cardinality and assume the chronology-disjoint retained mass
+is the proved value `M=255011043`.  The same two ledgers then bound `q`
+itself. Plane incidence gives
+
+```text
+(q-218)k'<=218*1048576-q*67470.                     (3.9)
+```
+
+For `0<=d<=218`, the exact identity
+
+```text
+C(d,2)=217d-C(218,2)+C(218-d,2)
+```
+
+and pair intersections at most `k'-1` give a second linear inequality in
+`k'`.  The doubled compatibility cross-product factors as
+
+```text
+-109q(q-218)(619q-1962831).                        (3.10)
+```
+
+It is positive at `q=3170` and negative at `q=3171`. Consequently
+
+```text
+520<=q<=3170,
+max_p records(p)>=ceil(255011043/3170)=80446.       (3.11)
+```
+
+At the adjacent population endpoint,
+
+```text
+q=3170 => 4960<=k'<=4982,
+          #{x:d_x=218}>=985788.                    (3.12)
+```
+
+The first excluded population has doubled cross-product deficit
+18,372,095,406. This is a dense-owner and saturated-plane router, not a
+payment for that owner or the retained family.
+
 In scalar dimension four, either the original `407,831` common-core floor
 from (3.1) holds or one actual noncommon coordinate has at least 219 owners.
 Those owners lie in an
@@ -367,6 +410,7 @@ experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.
 ```
 
 They recompute every displayed integer, scan all 4,833 excluded pair-moment
-rows, all 2,982 endpoint values of `k'`, and every power-of-two pure-power
-degree, and verify the frozen source hashes when a prize-DAG checkout is
-provided.  The primary also rejects twenty-six hostile contract mutations.
+rows, all 2,868 population-factor rows, all 2,982 endpoint values of `k'`,
+and every power-of-two pure-power degree, and verify the frozen source hashes
+when a prize-DAG checkout is provided.  The primary also rejects thirty-two
+hostile contract mutations.

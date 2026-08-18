@@ -11,12 +11,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json"
-CONTRACT_SHA256 = "6f667f2e0dee061cea4a166fdca08b908f3f7e291adc5367c43c4e48bc28a525"
+CONTRACT_SHA256 = "9a78e5173938af68998f31da1014b779fc822aec7108ab9968e6a4f50854a538"
 
 
 def check(condition: bool, message: str) -> None:
     if not condition:
         raise ValueError(message)
+
+
+def c2(value: int) -> int:
+    return value * (value - 1) // 2
 
 
 def first_integer_at_least(numerator: int, denominator: int) -> int:
@@ -35,6 +39,7 @@ def main() -> None:
     cap = data["plane_cap"]
     router = data["dimension_router"]
     moment = data["pair_overlap_moment"]
+    population = data["type_population_router"]
     bank = data["endpoint_bank"]
     power = data["pure_power_router"]
 
@@ -117,6 +122,41 @@ def main() -> None:
     check(moment["shared_payment_transport_proved"] is False,
           "pair-moment payment nonclaim")
 
+    def population_cross(types: int) -> int:
+        coefficient = c2(types) - 217 * types + c2(218)
+        lower = 217 * types * 67470 - c2(218) * 1048576 + c2(types)
+        upper = 218 * 1048576 - types * 67470
+        return 2 * (coefficient * upper - lower * (types - 218))
+
+    population_rows = 0
+    for types in range(520, 3388):
+        factored = -109 * types * (types - 218) * (619 * types - 1962831)
+        check(population_cross(types) == factored,
+              f"type-population factor {types}")
+        population_rows += 1
+    check(population_cross(3170) ==
+          population["last_feasible_cross_product_twice"] == 613022740560,
+          "type-population last cross")
+    check(population_cross(3171) ==
+          -population["first_excluded_cross_product_deficit_twice"] == -18372095406,
+          "type-population first cross")
+    types = 3170
+    coefficient = c2(types) - 217 * types + c2(218)
+    lower = 217 * types * 67470 - c2(218) * 1048576 + c2(types)
+    upper = 218 * 1048576 - types * 67470
+    check(divmod(lower, coefficient) == (4959, 556785),
+          "type-population lower division")
+    check(divmod(upper, types - 218) == (4982, 2804),
+          "type-population upper division")
+    check(1048576 + 4960 - (upper - (types - 218) * 4960) ==
+          population["endpoint_full_owner_coordinate_floor"] == 985788,
+          "type-population full-owner floor")
+    check((255011043 + 3169) // 3170 ==
+          population["dense_type_record_floor"] == 80446,
+          "type-population dense type")
+    check(population["dense_type_paid"] is False,
+          "type-population payment nonclaim")
+
     bank_rhs = 218 * core_size - line_cap * n
     c218 = bank["common_core_floor"]
     check((218 - line_cap) * (c218 - 1) < bank_rhs <= (218 - line_cap) * c218,
@@ -186,10 +226,13 @@ def main() -> None:
           "pure-power nonclaim")
     check("No transport is claimed" in note,
           "shared-core transport nonclaim")
+    check("dense-owner and saturated-plane router, not a payment" in note,
+          "dense-type payment nonclaim")
     print(
         "KB_RANK11_QUOTIENT_PAIR_PLANE218_INDEPENDENT_PASS "
         f"states={scanned} core=452813 directions={direction_minimum} "
-        f"pairs=1603 moment_rows={moment_rows} moment_first=4836 power=2048,4096"
+        f"pairs=1603 moment_rows={moment_rows} moment_first=4836 "
+        f"population_rows={population_rows} qmax=3170 dense=80446 power=2048,4096"
     )
 
 

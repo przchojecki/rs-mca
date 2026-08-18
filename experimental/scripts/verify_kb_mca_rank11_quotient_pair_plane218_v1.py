@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CERT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1"
 CONTRACT = CERT / "contract.json"
 MANIFEST = CERT / "manifest.json"
-CONTRACT_SHA256 = "6f667f2e0dee061cea4a166fdca08b908f3f7e291adc5367c43c4e48bc28a525"
+CONTRACT_SHA256 = "9a78e5173938af68998f31da1014b779fc822aec7108ab9968e6a4f50854a538"
 SOURCE_FILES = {
     "background/nodes/rate_half_mca_rank11_pair_pencil_affine_plane_cap_218_sharpening/statement.md":
         "f17a18c39f68994c689f484a0d50f4b800f3187b615f4f09b5b4b27751cd52bf",
@@ -48,6 +48,13 @@ PAIR_MOMENT_SOURCE_FILES = {
         "0e7fbd7184ade032eab32ffd96e803ca56195b827d26bcb1cfd61e161b6461f5",
     "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_pair_overlap_moment_floor/proof.md":
         "171af5028580e011cfa7c30b6900fed5b30f3f2d6ebb2ea90ba276a74d7fcf7b",
+}
+TYPE_POPULATION_SOURCE_COMMIT = "1d52ff3013b6ab4e94f39cf9d6627f7562d65cf8"
+TYPE_POPULATION_SOURCE_FILES = {
+    "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_type_population_ceiling/statement.md":
+        "41cb9d67473a9e7cab38d75db9cee8dc55f01fb4e227ef177fb7c6ff0a0e5dac",
+    "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_type_population_ceiling/proof.md":
+        "ab41ece43cb0df6023f87b516e02900f58229289b62bcbd67fff7e00925805bf",
 }
 
 
@@ -207,6 +214,38 @@ def check_source(source_root: Path, data: dict[str, Any]) -> None:
     require(moment_tree == provenance["dimension_three_pair_moment_node_tree"],
             "pair-moment source tree")
 
+    population_commit = provenance["dimension_three_type_population_commit"]
+    require(population_commit == TYPE_POPULATION_SOURCE_COMMIT,
+            "type-population source commit")
+    population_head = subprocess.run(
+        ["git", "rev-parse", population_commit],
+        cwd=source_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    require(population_head == population_commit,
+            "type-population source commit resolution")
+    for path, expected in TYPE_POPULATION_SOURCE_FILES.items():
+        payload = subprocess.run(
+            ["git", "show", f"{population_commit}:{path}"],
+            cwd=source_root,
+            check=True,
+            capture_output=True,
+        ).stdout
+        require(hashlib.sha256(payload).hexdigest() == expected,
+                f"type-population source hash {path}")
+    population_tree = subprocess.run(
+        ["git", "rev-parse",
+         f"{population_commit}:background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_type_population_ceiling"],
+        cwd=source_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    require(population_tree == provenance["dimension_three_type_population_node_tree"],
+            "type-population source tree")
+
 
 def validate(raw: object) -> dict[str, int]:
     require(isinstance(raw, dict), "contract object")
@@ -218,11 +257,13 @@ def validate(raw: object) -> dict[str, int]:
     cap = data.get("plane_cap")
     router = data.get("dimension_router")
     moment = data.get("pair_overlap_moment")
+    population = data.get("type_population_router")
     bank = data.get("endpoint_bank")
     power = data.get("pure_power_router")
     claims = data.get("claims")
     require(all(isinstance(x, dict) for x in
-                (row, source, cap, router, moment, bank, power, claims)), "sections")
+                (row, source, cap, router, moment, population, bank, power, claims)),
+            "sections")
 
     n, K, m, s = row["n"], row["K"], row["m"], row["pair_core_size"]
     q, line = source["selected_types"], source["affine_line_cap"]
@@ -334,6 +375,60 @@ def validate(raw: object) -> dict[str, int]:
     require(moment["shared_payment_transport_proved"] is False,
             "pair-moment transport nonclaim")
 
+    require(population["additional_hypothesis"] ==
+            "COMPLETE_RETAINED_QUOTIENT_TYPE_FAMILY", "population hypothesis")
+    require((population["retained_record_mass"], population["population_floor"],
+             population["population_ceiling"]) == (255011043, 520, 3170),
+            "population pins")
+
+    def population_terms(types: int) -> tuple[int, int, int]:
+        pair_cap = comb(plane, 2)
+        coefficient = comb(types, 2) - (plane - 1) * types + pair_cap
+        lower = ((plane - 1) * types * 67470 - pair_cap * 1048576
+                 + comb(types, 2))
+        upper = plane * 1048576 - types * 67470
+        return coefficient, lower, upper
+
+    def population_cross(types: int) -> int:
+        coefficient, lower, upper = population_terms(types)
+        return 2 * (coefficient * upper - lower * (types - plane))
+
+    for types in range(520, 3388):
+        factored = (-population["factor_constant"] * types * (types - plane)
+                    * (population["factor_slope"] * types
+                       - population["factor_intercept"]))
+        require(population_cross(types) == factored,
+                f"population factor {types}")
+    require((population["factor_constant"], population["factor_slope"],
+             population["factor_intercept"]) == (109, 619, 1962831),
+            "population factor pins")
+    qmax = population["population_ceiling"]
+    last_cross = population_cross(qmax)
+    first_cross = population_cross(qmax + 1)
+    require(last_cross == population["last_feasible_cross_product_twice"] ==
+            613022740560, "population last cross")
+    require(first_cross == -population["first_excluded_cross_product_deficit_twice"] ==
+            -18372095406, "population first cross")
+    coefficient, lower, upper = population_terms(qmax)
+    low_q, low_r = divmod(lower, coefficient)
+    high_q, high_r = divmod(upper, qmax - plane)
+    require((low_q, low_r, high_q, high_r) == (4959, 556785, 4982, 2804),
+            "population endpoint divisions")
+    require(population["endpoint_residual_dimension_floor"] == low_q + 1 == 4960,
+            "population residual floor")
+    require(population["endpoint_residual_dimension_ceiling"] == high_q == 4982,
+            "population residual ceiling")
+    full_floor = 1048576 + 4960 - (upper - (qmax - plane) * 4960)
+    full_upper = 1048576 + 4982 - (upper - (qmax - plane) * 4982)
+    require(population["endpoint_full_owner_coordinate_floor"] ==
+            full_floor == 985788, "population full-owner floor")
+    require(population["endpoint_upper_row_full_owner_coordinate_floor"] ==
+            full_upper == 1050754, "population full-owner upper")
+    dense = ceil_div(population["retained_record_mass"], qmax)
+    require(population["dense_type_record_floor"] == dense == 80446,
+            "population dense type")
+    require(population["dense_type_paid"] is False, "population payment nonclaim")
+
     endpoint = bank["plane_occupancy"]
     endpoint_core = ceil_div(endpoint * s - line * n, endpoint - line)
     require((endpoint, endpoint_core, bank["common_core_floor"]) == (218, 1043551, 1043551), "bank core")
@@ -416,13 +511,16 @@ def validate(raw: object) -> dict[str, int]:
     require(claims["pure_power_survivors_paid"] is False, "power-payment nonclaim")
     require(claims["shared_pair_core_payment_transported"] is False,
             "shared-core transport nonclaim")
+    require(claims["dense_quotient_type_paid"] is False,
+            "dense-type payment nonclaim")
     require(claims["rank11_paid"] is False, "rank11 nonclaim")
     require(claims["active_v4_ledger_movement"] == 0, "ledger nonclaim")
     require(claims["KoalaBear_closed"] is False, "row nonclaim")
     return {"plane": plane, "core": sharp_common, "margin": margin,
             "directions": min_directions, "deficit": max_deficit,
             "power_degrees": len(feasible), "moment_first": first,
-            "moment_rows": excluded_rows}
+            "moment_rows": excluded_rows, "population_max": qmax,
+            "dense": dense}
 
 
 def tamper_selftest(data: dict[str, Any]) -> int:
@@ -444,6 +542,12 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["pair_overlap_moment"].__setitem__("common_core_ceiling", 1043739),
         lambda x: x["pair_overlap_moment"].__setitem__("shared_payment_overlap_row_count", 86),
         lambda x: x["pair_overlap_moment"].__setitem__("shared_payment_transport_proved", True),
+        lambda x: x["type_population_router"].__setitem__("population_ceiling", 3171),
+        lambda x: x["type_population_router"].__setitem__("dense_type_record_floor", 80445),
+        lambda x: x["type_population_router"].__setitem__("endpoint_residual_dimension_floor", 4959),
+        lambda x: x["type_population_router"].__setitem__("endpoint_full_owner_coordinate_floor", 985787),
+        lambda x: x["type_population_router"].__setitem__("first_excluded_cross_product_deficit_twice", 18372095405),
+        lambda x: x["type_population_router"].__setitem__("dense_type_paid", True),
         lambda x: x["endpoint_bank"].__setitem__("shortened_K_floor", 2043),
         lambda x: x["endpoint_bank"].__setitem__("projective_direction_floor", 209),
         lambda x: x["endpoint_bank"].__setitem__("aggregate_degree_deficit_ceiling", 41735),
@@ -479,7 +583,7 @@ def main() -> None:
     if args.source_root is not None:
         check_source(args.source_root, data)
     if args.tamper_selftest:
-        print(f"KB_RANK11_QUOTIENT_PAIR_PLANE218_TAMPER_PASS mutations={tamper_selftest(data)}/26")
+        print(f"KB_RANK11_QUOTIENT_PAIR_PLANE218_TAMPER_PASS mutations={tamper_selftest(data)}/32")
         return
     source = " checked" if args.source_root is not None else " skipped"
     print(
@@ -487,6 +591,7 @@ def main() -> None:
         f"cap={result['plane']} core={result['core']} margin={result['margin']} "
         f"directions={result['directions']} deficit={result['deficit']} "
         f"moment_first={result['moment_first']} moment_rows={result['moment_rows']} "
+        f"qmax={result['population_max']} dense={result['dense']} "
         f"power_degrees={result['power_degrees']} source={source.strip()}"
     )
 

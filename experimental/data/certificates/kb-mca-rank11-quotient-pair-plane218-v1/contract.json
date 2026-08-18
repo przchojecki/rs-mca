@@ -61,6 +61,23 @@
     "shared_payment_overlap_row_count": 87,
     "shared_payment_transport_proved": false
   },
+  "type_population_router": {
+    "additional_hypothesis": "COMPLETE_RETAINED_QUOTIENT_TYPE_FAMILY",
+    "retained_record_mass": 255011043,
+    "population_floor": 520,
+    "population_ceiling": 3170,
+    "dense_type_record_floor": 80446,
+    "endpoint_residual_dimension_floor": 4960,
+    "endpoint_residual_dimension_ceiling": 4982,
+    "endpoint_full_owner_coordinate_floor": 985788,
+    "endpoint_upper_row_full_owner_coordinate_floor": 1050754,
+    "last_feasible_cross_product_twice": 613022740560,
+    "first_excluded_cross_product_deficit_twice": 18372095406,
+    "factor_constant": 109,
+    "factor_slope": 619,
+    "factor_intercept": 1962831,
+    "dense_type_paid": false
+  },
   "endpoint_bank": {
     "plane_occupancy": 218,
     "common_core_floor": 1043551,
@@ -104,6 +121,7 @@
     "endpoint_pure_power_proved": false,
     "pure_power_survivors_paid": false,
     "shared_pair_core_payment_transported": false,
+    "dense_quotient_type_paid": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
     "KoalaBear_closed": false,
@@ -120,6 +138,8 @@
     "dimension_three_rich_plane_node_tree": "40b4d860ac0cd50dbe2c43e883ede75b0b85ac84",
     "dimension_three_pair_moment_commit": "473f41afc6b76d747e534cb8e509a0353dcde3aa",
     "dimension_three_pair_moment_node_tree": "43fc63b7c2f721ec79c4c2b451aef9a2eb17eb01",
+    "dimension_three_type_population_commit": "1d52ff3013b6ab4e94f39cf9d6627f7562d65cf8",
+    "dimension_three_type_population_node_tree": "1bef7e27ed86ed76d5391e616bcb0a39e1681336",
     "load_bearing_external_lemma": false
   }
 }

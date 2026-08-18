@@ -11,6 +11,9 @@ It also verifies the exact balanced pair-overlap moment floor `k'=4836`,
 including the adjacent deficit/slack pair.  Numerical overlap with the
 separate shared-core payment threshold is explicitly not treated as a
 source-interface transport.
+When the source family is additionally the complete retained quotient-type
+population carrying 255,011,043 records, the packet verifies `q<=3170`, an
+80,446-record dense type, and the saturated `q=3170` endpoint.
 
 Replay from the repository root:
 
