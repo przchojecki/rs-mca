@@ -32,6 +32,16 @@
     "shortened_m": 708217,
     "shortened_pair_core": 708215,
     "incidence_slack": 178,
+    "rich_plane_threshold": 189,
+    "rich_plane_count_ceiling": 2,
+    "rich_plane_recurrence_offset": 2,
+    "sharpened_dimension_three_core_floor": 452813,
+    "sharpened_shortened_n": 1644339,
+    "sharpened_shortened_K": 595763,
+    "sharpened_shortened_m": 663235,
+    "sharpened_shortened_pair_core": 663233,
+    "sharpened_incidence_slack": 232,
+    "adjacent_incidence_deficit": 40,
     "dimension_four_heavy_type_floor": 219,
     "dimension_four_heavy_record_floor": 6351
   },
@@ -89,6 +99,8 @@
     "direction_bank_node_tree": "3d2ecbdee129e5422c6cb7e7686384446977a34b",
     "pure_power_router_commit": "b5e3a90d8415ea7de6c144d1fcd56c0e5c50b7d2",
     "pure_power_router_node_tree": "d47d9281c12e629b3c700f70b5ba30da711d9e10",
+    "dimension_three_rich_plane_commit": "d79701f94add274e6c7fbf2f4744980d77817f4b",
+    "dimension_three_rich_plane_node_tree": "40b4d860ac0cd50dbe2c43e883ede75b0b85ac84",
     "load_bearing_external_lemma": false
   }
 }

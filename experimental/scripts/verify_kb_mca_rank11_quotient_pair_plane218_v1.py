@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CERT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1"
 CONTRACT = CERT / "contract.json"
 MANIFEST = CERT / "manifest.json"
-CONTRACT_SHA256 = "9dc5e54a2017307619ffbe91cc7101d404fa5061a7c0ea8cc247659598289c77"
+CONTRACT_SHA256 = "29eb6fcd3368331b419b2fcbde05f18baef61162f1852300ff584cbe1f6348ea"
 SOURCE_FILES = {
     "background/nodes/rate_half_mca_rank11_pair_pencil_affine_plane_cap_218_sharpening/statement.md":
         "f17a18c39f68994c689f484a0d50f4b800f3187b615f4f09b5b4b27751cd52bf",
@@ -34,6 +34,13 @@ PURE_POWER_SOURCE_FILES = {
         "4a35eb89713755612d897b8217941a6edb71029a2e92b5d14dd5d8bd978cef31",
     "background/nodes/rate_half_mca_rank11_pair_pencil_plane218_pure_power_router/proof.md":
         "5985806e56c45b0730998d0a8703e238788b1de05ffbb7297270bb926d146a85",
+}
+RICH_PLANE_SOURCE_COMMIT = "d79701f94add274e6c7fbf2f4744980d77817f4b"
+RICH_PLANE_SOURCE_FILES = {
+    "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_rich_plane_recurrence_sharpening/statement.md":
+        "58f549e620b401d1fedcd64c3c14a85dfcd1829657016c8080e14517cc2204a4",
+    "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_rich_plane_recurrence_sharpening/proof.md":
+        "aa783aad6da1ff43f013d0bdedc3ea8c2259f50da18109309d92559f3c393a35",
 }
 
 
@@ -133,6 +140,36 @@ def check_source(source_root: Path, data: dict[str, Any]) -> None:
     require(extension_tree == provenance["pure_power_router_node_tree"],
             "extension source tree")
 
+    rich_commit = provenance["dimension_three_rich_plane_commit"]
+    require(rich_commit == RICH_PLANE_SOURCE_COMMIT, "rich-plane source commit")
+    rich_head = subprocess.run(
+        ["git", "rev-parse", rich_commit],
+        cwd=source_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    require(rich_head == rich_commit, "rich-plane source commit resolution")
+    for path, expected in RICH_PLANE_SOURCE_FILES.items():
+        payload = subprocess.run(
+            ["git", "show", f"{rich_commit}:{path}"],
+            cwd=source_root,
+            check=True,
+            capture_output=True,
+        ).stdout
+        require(hashlib.sha256(payload).hexdigest() == expected,
+                f"rich-plane source hash {path}")
+    rich_tree = subprocess.run(
+        ["git", "rev-parse",
+         f"{rich_commit}:background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_rich_plane_recurrence_sharpening"],
+        cwd=source_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    require(rich_tree == provenance["dimension_three_rich_plane_node_tree"],
+            "rich-plane source tree")
+
 
 def validate(raw: object) -> dict[str, int]:
     require(isinstance(raw, dict), "contract object")
@@ -179,6 +216,37 @@ def validate(raw: object) -> dict[str, int]:
             (1689321, 640745, 708217, 708215), "dimension-three shortening")
     slack = plane * shortened[0] - q * shortened[3]
     require(router["incidence_slack"] == slack == 178, "dimension-three slack")
+    rich_threshold = router["rich_plane_threshold"]
+    require(rich_threshold == 189, "rich-plane threshold")
+    require(3 * rich_threshold - 3 * line > q, "rich-plane obstruction")
+    require(3 * (rich_threshold - 1) - 3 * line <= q,
+            "rich-plane threshold adjacency")
+    require(router["rich_plane_count_ceiling"] == 2, "rich-plane count")
+    recurrence_offset = router["rich_plane_recurrence_offset"]
+    require(recurrence_offset == 2, "rich-plane recurrence")
+    low = rich_threshold - 1
+    excess = plane - low
+    n0, s0 = n - K, s - K
+    rich_coefficient = excess * router["rich_plane_count_ceiling"]
+    denominator = q - low - rich_coefficient
+    numerator = low * n0 - q * s0 - rich_coefficient * recurrence_offset
+    sharp_kmax, sharp_slack = divmod(numerator, denominator)
+    require((denominator, numerator, sharp_kmax, sharp_slack) ==
+            (272, 162047768, 595763, 232), "rich-plane ledger")
+    sharp_common = K - sharp_kmax
+    require(router["sharpened_dimension_three_core_floor"] ==
+            sharp_common == 452813, "sharpened core")
+    sharp_shortened = (n - sharp_common, K - sharp_common,
+                       m - sharp_common, s - sharp_common)
+    require(sharp_shortened ==
+            (router["sharpened_shortened_n"], router["sharpened_shortened_K"],
+             router["sharpened_shortened_m"],
+             router["sharpened_shortened_pair_core"]) ==
+            (1644339, 595763, 663235, 663233), "sharpened shortening")
+    require(router["sharpened_incidence_slack"] == sharp_slack,
+            "sharpened slack")
+    require(router["adjacent_incidence_deficit"] ==
+            denominator - sharp_slack == 40, "sharpened adjacency")
     require(router["dimension_four_heavy_type_floor"] == plane + 1 == 219, "heavy types")
     heavy_records = (plane + 1) * source["selected_type_record_floor"]
     require(router["dimension_four_heavy_record_floor"] == heavy_records == 6351, "heavy records")
@@ -266,7 +334,7 @@ def validate(raw: object) -> dict[str, int]:
     require(claims["rank11_paid"] is False, "rank11 nonclaim")
     require(claims["active_v4_ledger_movement"] == 0, "ledger nonclaim")
     require(claims["KoalaBear_closed"] is False, "row nonclaim")
-    return {"plane": plane, "core": common, "margin": margin,
+    return {"plane": plane, "core": sharp_common, "margin": margin,
             "directions": min_directions, "deficit": max_deficit,
             "power_degrees": len(feasible)}
 
@@ -279,6 +347,10 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["plane_cap"].__setitem__("full_line_ceiling", 220),
         lambda x: x["plane_cap"].__setitem__("contradiction_margin_floor", 30704),
         lambda x: x["dimension_router"].__setitem__("dimension_three_core_floor", 407830),
+        lambda x: x["dimension_router"].__setitem__("rich_plane_threshold", 188),
+        lambda x: x["dimension_router"].__setitem__("rich_plane_count_ceiling", 3),
+        lambda x: x["dimension_router"].__setitem__("sharpened_dimension_three_core_floor", 452812),
+        lambda x: x["dimension_router"].__setitem__("adjacent_incidence_deficit", 39),
         lambda x: x["dimension_router"].__setitem__("dimension_four_heavy_record_floor", 6350),
         lambda x: x["endpoint_bank"].__setitem__("shortened_K_floor", 2043),
         lambda x: x["endpoint_bank"].__setitem__("projective_direction_floor", 209),
@@ -315,7 +387,7 @@ def main() -> None:
     if args.source_root is not None:
         check_source(args.source_root, data)
     if args.tamper_selftest:
-        print(f"KB_RANK11_QUOTIENT_PAIR_PLANE218_TAMPER_PASS mutations={tamper_selftest(data)}/16")
+        print(f"KB_RANK11_QUOTIENT_PAIR_PLANE218_TAMPER_PASS mutations={tamper_selftest(data)}/20")
         return
     source = " checked" if args.source_root is not None else " skipped"
     print(

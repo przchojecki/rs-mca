@@ -5,6 +5,8 @@ source interface is part of `contract.json`; the packet does not claim that
 the current rank-eleven route already reaches that interface.
 The endpoint extension also verifies an exact router under the additional
 hypothesis that the residual direction pencil is pure-power.
+The dimension-three extension verifies the rich-plane recurrence sharpening
+from common-core floor 407,831 to 452,813 under the same source interface.
 
 Replay from the repository root:
 

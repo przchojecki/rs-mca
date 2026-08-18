@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json"
-CONTRACT_SHA256 = "9dc5e54a2017307619ffbe91cc7101d404fa5061a7c0ea8cc247659598289c77"
+CONTRACT_SHA256 = "29eb6fcd3368331b419b2fcbde05f18baef61162f1852300ff584cbe1f6348ea"
 
 
 def check(condition: bool, message: str) -> None:
@@ -60,6 +60,23 @@ def main() -> None:
           "dimension-three incidence slack")
     check(router["dimension_four_heavy_record_floor"] == 219 * 29,
           "dimension-four record floor")
+    check(3 * 188 - 3 * 15 <= 520 < 3 * 189 - 3 * 15,
+          "rich-plane threshold")
+    sharp_k = router["sharpened_shortened_K"]
+
+    def rich_capacity(kprime: int) -> int:
+        return 188 * (1048576 + kprime) + 60 * (kprime - 2)
+
+    def rich_demand(kprime: int) -> int:
+        return 520 * (67470 + kprime)
+
+    check(sharp_k == 595763, "sharpened K")
+    check(rich_capacity(sharp_k) - rich_demand(sharp_k) ==
+          router["sharpened_incidence_slack"] == 232, "sharpened slack")
+    check(rich_demand(sharp_k + 1) - rich_capacity(sharp_k + 1) ==
+          router["adjacent_incidence_deficit"] == 40, "sharpened adjacency")
+    check(degree - sharp_k == router["sharpened_dimension_three_core_floor"] == 452813,
+          "sharpened common core")
 
     bank_rhs = 218 * core_size - line_cap * n
     c218 = bank["common_core_floor"]
@@ -124,12 +141,14 @@ def main() -> None:
           "source-interface nonclaim")
     check("positive-characteristic line arrangements need" in note,
           "characteristic boundary")
-    check("Neither output is paid" in note, "payment nonclaim")
+    check("Neither dimension-three output nor the dimension-four output is paid" in note,
+          "payment nonclaim")
     check("neither proves that the endpoint pencil is pure-power" in note,
           "pure-power nonclaim")
     print(
         "KB_RANK11_QUOTIENT_PAIR_PLANE218_INDEPENDENT_PASS "
-        f"states={scanned} directions={direction_minimum} pairs=1603 power=2048,4096"
+        f"states={scanned} core=452813 directions={direction_minimum} "
+        "pairs=1603 power=2048,4096"
     )
 
 

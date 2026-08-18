@@ -10,6 +10,9 @@ The two source-node trees are
 The pure-power extension is sourced separately from
 `AllenGrahamHart/rs-mca-prize-dag@b5e3a90d8415ea7de6c144d1fcd56c0e5c50b7d2`,
 node tree `d47d9281c12e629b3c700f70b5ba30da711d9e10`.
+The dimension-three rich-plane extension is sourced separately from
+`AllenGrahamHart/rs-mca-prize-dag@d79701f94add274e6c7fbf2f4744980d77817f4b`,
+node tree `40b4d860ac0cd50dbe2c43e883ede75b0b85ac84`.
 
 This note is a finite, base-field-normalized split-pencil theorem.  Its
 source interface is printed in full below.  In particular, this packet does
@@ -133,8 +136,38 @@ At the minimum floor, shortening gives
 218n'-520s'=178.                                     (3.2)
 ```
 
-In scalar dimension four, either the same common-core floor holds or one
-actual noncommon coordinate has at least 219 owners.  Those owners lie in an
+This common-core floor sharpens without changing the source interface.
+After shortening by the complete common core, three distinct affine owner
+planes containing at least 189 selected types would have pairwise selected
+overlap at most 15 and therefore union size at least
+
+```text
+3*189-3*15=522>520.
+```
+
+Thus at most two 189-rich planes occur.  Each spans a two-dimensional
+direction space.  Two independent direction polynomials have gcd degree at
+most `k'-2`, so one rich plane recurs at most `k'-2` times.  If `N_189`
+counts coordinates of multiplicity at least 189, then
+
+```text
+N_189<=2(k'-2),
+520(67470+k')<=188(1048576+k')+60(k'-2).             (3.3)
+```
+
+Consequently
+
+```text
+k'<=595763,       |J|>=452813.                       (3.4)
+```
+
+The capacity slack at `k'=595763` is 232; at `k'=595764` the same ledger
+has deficit 40.  This is adjacency for the conditional incidence formula,
+not an MCA safe/unsafe certificate.
+
+In scalar dimension four, either the original `407,831` common-core floor
+from (3.1) holds or one actual noncommon coordinate has at least 219 owners.
+Those owners lie in an
 affine three-space but, by the plane cap, not in an affine plane.  They thus
 have exact affine dimension three and own at least
 
@@ -144,7 +177,8 @@ have exact affine dimension three and own at least
 
 chronology-disjoint records whose exact supports all contain that coordinate.
 
-Neither output is paid by this packet.
+Neither dimension-three output nor the dimension-four output is paid by this
+packet.
 
 ## 4. Equality forces a projective direction bank
 

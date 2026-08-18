@@ -7,11 +7,16 @@
     "plane_cap_node_tree": "2b2e264afd74e65cbde43b4c79e1702c04c7db4d",
     "direction_bank_node_tree": "3d2ecbdee129e5422c6cb7e7686384446977a34b",
     "pure_power_router_commit": "b5e3a90d8415ea7de6c144d1fcd56c0e5c50b7d2",
-    "pure_power_router_node_tree": "d47d9281c12e629b3c700f70b5ba30da711d9e10"
+    "pure_power_router_node_tree": "d47d9281c12e629b3c700f70b5ba30da711d9e10",
+    "dimension_three_rich_plane_commit": "d79701f94add274e6c7fbf2f4744980d77817f4b",
+    "dimension_three_rich_plane_node_tree": "40b4d860ac0cd50dbe2c43e883ede75b0b85ac84"
   },
   "result": {
     "affine_plane_occupancy_ceiling": 218,
-    "dimension_three_common_core_floor": 407831,
+    "dimension_three_common_core_floor": 452813,
+    "dimension_three_residual_dimension_ceiling": 595763,
+    "dimension_three_endpoint_capacity_slack": 232,
+    "dimension_three_adjacent_capacity_deficit": 40,
     "endpoint_shortened_K_interval": [2044, 5025],
     "endpoint_projective_direction_floor": 210,
     "endpoint_aggregate_degree_deficit_ceiling": 41736,
@@ -25,7 +30,7 @@
   "verification": {
     "endpoint_states": 2982,
     "pure_power_states": 142,
-    "hostile_mutations_rejected": 16,
+    "hostile_mutations_rejected": 20,
     "normal_python": "PASS",
     "optimized_python": "PASS",
     "independent_python": "PASS",
@@ -42,12 +47,12 @@
     "KoalaBear_closed": false
   },
   "packet_file_sha256": {
-    "experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md": "a19b5b97bf75f1b7801b342c63b2e3089ea051fde738617c207b813f15ec3eea",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/README.md": "f95628f5f8e568c86078ab92e814d886855fcaf2f2a78fc45d8c834268358190",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json": "9dc5e54a2017307619ffbe91cc7101d404fa5061a7c0ea8cc247659598289c77",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/primary_output.txt": "677fc0c2b5dda8614d5c26918c670445d1c78db85e6f449262a51cacb3af53d7",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/independent_output.txt": "f7da4542dd3f41d30d66c478712484aca033e4bc6d210a37186c127ac571dec7",
-    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1.py": "7f34b6f176490ef4c0f53d65a3a94249c775847d7614c6b4086d2df8045d9fac",
-    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.py": "f096414ab0d7fc3a1b1b093245c75bb33f81702ccb4b72310ea32311f342ba24"
+    "experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md": "e1c2fa14c4ee9dc3ce50a6ba492a31b0a1125a46b747dde237238376423c6198",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/README.md": "942a04bde6bdfcac5b89ff53403457df3f2cfe02444e5e5933d2a0c2c4568a8f",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json": "29eb6fcd3368331b419b2fcbde05f18baef61162f1852300ff584cbe1f6348ea",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/primary_output.txt": "d9cdf377c9b38d5f9eff059922a823684524e1338398b6e82426aadb91755326",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/independent_output.txt": "506349837ed6782831e0bc61d92da0b5305869ff78052ef7c54bdaf6c20aacf1",
+    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1.py": "8ca19822f54349ce8cfcfbcc907fe895ff8ae159b2fea1e27e5b9a287c0e49ec",
+    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.py": "77ddc65b34b45ea767c25a83b5a6057c5297b7a1dbbe86207d1ff0258ef1ddd5"
   }
 }
