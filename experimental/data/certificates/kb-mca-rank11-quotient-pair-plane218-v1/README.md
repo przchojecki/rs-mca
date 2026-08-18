@@ -7,6 +7,10 @@ The endpoint extension also verifies an exact router under the additional
 hypothesis that the residual direction pencil is pure-power.
 The dimension-three extension verifies the rich-plane recurrence sharpening
 from common-core floor 407,831 to 452,813 under the same source interface.
+It also verifies the exact balanced pair-overlap moment floor `k'=4836`,
+including the adjacent deficit/slack pair.  Numerical overlap with the
+separate shared-core payment threshold is explicitly not treated as a
+source-interface transport.
 
 Replay from the repository root:
 

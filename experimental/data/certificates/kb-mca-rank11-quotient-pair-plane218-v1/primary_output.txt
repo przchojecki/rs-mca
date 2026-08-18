@@ -1,1 +1,1 @@
-KB_RANK11_QUOTIENT_PAIR_PLANE218_PASS cap=218 core=452813 margin=30705 directions=210 deficit=41736 power_degrees=2 source=skipped
+KB_RANK11_QUOTIENT_PAIR_PLANE218_PASS cap=218 core=452813 margin=30705 directions=210 deficit=41736 moment_first=4836 moment_rows=4833 power_degrees=2 source=skipped

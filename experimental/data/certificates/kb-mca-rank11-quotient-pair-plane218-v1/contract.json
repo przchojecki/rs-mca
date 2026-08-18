@@ -45,6 +45,22 @@
     "dimension_four_heavy_type_floor": 219,
     "dimension_four_heavy_record_floor": 6351
   },
+  "pair_overlap_moment": {
+    "residual_length_offset": 1048576,
+    "residual_core_offset": 67470,
+    "pair_overlap_offset": 1,
+    "average_floor_intervals": [[3, 1167, 33], [1168, 3331, 34], [3332, 4835, 35]],
+    "last_excluded_residual_dimension": 4835,
+    "last_excluded_deficit": 2110,
+    "first_feasible_residual_dimension": 4836,
+    "first_feasible_slack": 115260,
+    "residual_dimension_ceiling": 595763,
+    "common_core_floor": 452813,
+    "common_core_ceiling": 1043740,
+    "shared_payment_residual_ceiling": 4922,
+    "shared_payment_overlap_row_count": 87,
+    "shared_payment_transport_proved": false
+  },
   "endpoint_bank": {
     "plane_occupancy": 218,
     "common_core_floor": 1043551,
@@ -87,6 +103,7 @@
     "endpoint_excluded": false,
     "endpoint_pure_power_proved": false,
     "pure_power_survivors_paid": false,
+    "shared_pair_core_payment_transported": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
     "KoalaBear_closed": false,
@@ -101,6 +118,8 @@
     "pure_power_router_node_tree": "d47d9281c12e629b3c700f70b5ba30da711d9e10",
     "dimension_three_rich_plane_commit": "d79701f94add274e6c7fbf2f4744980d77817f4b",
     "dimension_three_rich_plane_node_tree": "40b4d860ac0cd50dbe2c43e883ede75b0b85ac84",
+    "dimension_three_pair_moment_commit": "473f41afc6b76d747e534cb8e509a0353dcde3aa",
+    "dimension_three_pair_moment_node_tree": "43fc63b7c2f721ec79c4c2b451aef9a2eb17eb01",
     "load_bearing_external_lemma": false
   }
 }

@@ -9,7 +9,9 @@
     "pure_power_router_commit": "b5e3a90d8415ea7de6c144d1fcd56c0e5c50b7d2",
     "pure_power_router_node_tree": "d47d9281c12e629b3c700f70b5ba30da711d9e10",
     "dimension_three_rich_plane_commit": "d79701f94add274e6c7fbf2f4744980d77817f4b",
-    "dimension_three_rich_plane_node_tree": "40b4d860ac0cd50dbe2c43e883ede75b0b85ac84"
+    "dimension_three_rich_plane_node_tree": "40b4d860ac0cd50dbe2c43e883ede75b0b85ac84",
+    "dimension_three_pair_moment_commit": "473f41afc6b76d747e534cb8e509a0353dcde3aa",
+    "dimension_three_pair_moment_node_tree": "43fc63b7c2f721ec79c4c2b451aef9a2eb17eb01"
   },
   "result": {
     "affine_plane_occupancy_ceiling": 218,
@@ -17,6 +19,11 @@
     "dimension_three_residual_dimension_ceiling": 595763,
     "dimension_three_endpoint_capacity_slack": 232,
     "dimension_three_adjacent_capacity_deficit": 40,
+    "dimension_three_residual_dimension_floor": 4836,
+    "dimension_three_last_excluded_deficit": 2110,
+    "dimension_three_first_feasible_slack": 115260,
+    "dimension_three_common_core_ceiling": 1043740,
+    "shared_payment_numerical_overlap_rows": 87,
     "endpoint_shortened_K_interval": [2044, 5025],
     "endpoint_projective_direction_floor": 210,
     "endpoint_aggregate_degree_deficit_ceiling": 41736,
@@ -29,8 +36,9 @@
   },
   "verification": {
     "endpoint_states": 2982,
+    "pair_moment_excluded_states": 4833,
     "pure_power_states": 142,
-    "hostile_mutations_rejected": 20,
+    "hostile_mutations_rejected": 26,
     "normal_python": "PASS",
     "optimized_python": "PASS",
     "independent_python": "PASS",
@@ -42,17 +50,18 @@
     "endpoint_excluded": false,
     "endpoint_pure_power_proved": false,
     "pure_power_survivors_paid": false,
+    "shared_pair_core_payment_transported": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
     "KoalaBear_closed": false
   },
   "packet_file_sha256": {
-    "experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md": "e1c2fa14c4ee9dc3ce50a6ba492a31b0a1125a46b747dde237238376423c6198",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/README.md": "942a04bde6bdfcac5b89ff53403457df3f2cfe02444e5e5933d2a0c2c4568a8f",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json": "29eb6fcd3368331b419b2fcbde05f18baef61162f1852300ff584cbe1f6348ea",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/primary_output.txt": "d9cdf377c9b38d5f9eff059922a823684524e1338398b6e82426aadb91755326",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/independent_output.txt": "506349837ed6782831e0bc61d92da0b5305869ff78052ef7c54bdaf6c20aacf1",
-    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1.py": "8ca19822f54349ce8cfcfbcc907fe895ff8ae159b2fea1e27e5b9a287c0e49ec",
-    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.py": "77ddc65b34b45ea767c25a83b5a6057c5297b7a1dbbe86207d1ff0258ef1ddd5"
+    "experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md": "ab8f5a5faab429dc9bb5859b27cecefb7b2024c3f783c505aaca48fcfe6f0f55",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/README.md": "502eaa3670750b03de75007f61d9df64b0639c005a69263df3fa7e34a537a103",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json": "6f667f2e0dee061cea4a166fdca08b908f3f7e291adc5367c43c4e48bc28a525",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/primary_output.txt": "34d3239c9a222f8a14c68ab1337aebe5d00c653fe54706eeb38a6a34d46f54a8",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/independent_output.txt": "87ef7724dcede8c118ebff11d75800ad26006e2b64fd3223d443bd74eefc00b6",
+    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1.py": "15797d3642aff49b8fadd7c011e731b1c0b3e76a1307523a16ec8c439914f750",
+    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.py": "8d4f1c0bac27a895c9f5606806e4025536b5ff78b25437179ad82287f0e756fe"
   }
 }

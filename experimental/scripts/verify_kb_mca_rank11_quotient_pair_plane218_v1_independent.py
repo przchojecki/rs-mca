@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json"
-CONTRACT_SHA256 = "29eb6fcd3368331b419b2fcbde05f18baef61162f1852300ff584cbe1f6348ea"
+CONTRACT_SHA256 = "6f667f2e0dee061cea4a166fdca08b908f3f7e291adc5367c43c4e48bc28a525"
 
 
 def check(condition: bool, message: str) -> None:
@@ -34,6 +34,7 @@ def main() -> None:
     source = data["source_interface"]
     cap = data["plane_cap"]
     router = data["dimension_router"]
+    moment = data["pair_overlap_moment"]
     bank = data["endpoint_bank"]
     power = data["pure_power_router"]
 
@@ -77,6 +78,44 @@ def main() -> None:
           router["adjacent_incidence_deficit"] == 40, "sharpened adjacency")
     check(degree - sharp_k == router["sharpened_dimension_three_core_floor"] == 452813,
           "sharpened common core")
+
+    def pair_moment_gap(kprime: int) -> tuple[int, int]:
+        slots = 1048576 + kprime
+        marks = 520 * (67470 + kprime)
+        low = marks // slots
+        high_slots = marks - low * slots
+        low_slots = slots - high_slots
+        required = low_slots * low * (low - 1) // 2
+        required += high_slots * (low + 1) * low // 2
+        available = 520 * 519 // 2 * (kprime - 1)
+        return available - required, low
+
+    moment_rows = 0
+    for kprime in range(3, 4836):
+        gap, _ = pair_moment_gap(kprime)
+        check(gap < 0, f"pair-moment excluded row {kprime}")
+        moment_rows += 1
+    boundaries = ((3, 33), (1167, 33), (1168, 34), (3331, 34),
+                  (3332, 35), (4835, 35), (4836, 35), (5505, 36))
+    for kprime, expected_floor in boundaries:
+        _, actual_floor = pair_moment_gap(kprime)
+        check(actual_floor == expected_floor, f"pair-moment floor {kprime}")
+    check(pair_moment_gap(4835)[0] == -moment["last_excluded_deficit"] == -2110,
+          "pair-moment last deficit")
+    check(pair_moment_gap(4836)[0] == moment["first_feasible_slack"] == 115260,
+          "pair-moment first slack")
+    check(moment_rows == 4833, "pair-moment scan size")
+    check(moment["first_feasible_residual_dimension"] == 4836,
+          "pair-moment first feasible")
+    check(moment["residual_dimension_ceiling"] == sharp_k == 595763,
+          "pair-moment upper endpoint")
+    check(moment["common_core_floor"] == 452813 and
+          moment["common_core_ceiling"] == 1043740,
+          "pair-moment core interval")
+    check(moment["shared_payment_overlap_row_count"] == 4922 - 4836 + 1 == 87,
+          "pair-moment payment overlap")
+    check(moment["shared_payment_transport_proved"] is False,
+          "pair-moment payment nonclaim")
 
     bank_rhs = 218 * core_size - line_cap * n
     c218 = bank["common_core_floor"]
@@ -145,10 +184,12 @@ def main() -> None:
           "payment nonclaim")
     check("neither proves that the endpoint pencil is pure-power" in note,
           "pure-power nonclaim")
+    check("No transport is claimed" in note,
+          "shared-core transport nonclaim")
     print(
         "KB_RANK11_QUOTIENT_PAIR_PLANE218_INDEPENDENT_PASS "
         f"states={scanned} core=452813 directions={direction_minimum} "
-        "pairs=1603 power=2048,4096"
+        f"pairs=1603 moment_rows={moment_rows} moment_first=4836 power=2048,4096"
     )
 
 

@@ -13,6 +13,9 @@ node tree `d47d9281c12e629b3c700f70b5ba30da711d9e10`.
 The dimension-three rich-plane extension is sourced separately from
 `AllenGrahamHart/rs-mca-prize-dag@d79701f94add274e6c7fbf2f4744980d77817f4b`,
 node tree `40b4d860ac0cd50dbe2c43e883ede75b0b85ac84`.
+The dimension-three pair-overlap extension is sourced separately from
+`AllenGrahamHart/rs-mca-prize-dag@473f41afc6b76d747e534cb8e509a0353dcde3aa`,
+node tree `43fc63b7c2f721ec79c4c2b451aef9a2eb17eb01`.
 
 This note is a finite, base-field-normalized split-pencil theorem.  Its
 source interface is printed in full below.  In particular, this packet does
@@ -164,6 +167,50 @@ k'<=595763,       |J|>=452813.                       (3.4)
 The capacity slack at `k'=595763` is 232; at `k'=595764` the same ledger
 has deficit 40.  This is adjacency for the conditional incidence formula,
 not an MCA safe/unsafe certificate.
+
+There is also an exact lower endpoint for the shortened dimension-three
+family.  Distinct residual pair cores meet in at most `k'-1` coordinates.
+Writing `d_x` for residual core multiplicity gives
+
+```text
+I=sum_x d_x=520(67470+k'),
+sum_x C(d_x,2)<=C(520,2)(k'-1).                     (3.5)
+```
+
+For fixed `I` on `1048576+k'` coordinates, the left side is minimized by
+balanced integer multiplicities.  If
+
+```text
+I=a(1048576+k')+r,       0<=r<1048576+k',
+```
+
+that minimum is
+
+```text
+aI-C(a+1,2)(1048576+k').                            (3.6)
+```
+
+Exact division gives `a=33` on `3..1167`, `a=34` on `1168..3331`, and
+`a=35` on `3332..4835`.  Pair capacity minus (3.6) is increasing on each
+interval but remains negative through
+
+```text
+gap(4835)=-2110,       gap(4836)=115260.             (3.7)
+```
+
+Together with (3.4), the complete conditional interval is therefore
+
+```text
+4836<=k'<=595763,
+452813<=|J|<=1043740.                               (3.8)
+```
+
+The 87 rows `k'=4836..4922` overlap numerically with a separate
+large-shared-pair-core payment threshold.  No transport is claimed: that
+payment quantifies over every low-margin minimizing pair in the complete
+post-near rank-eleven family, while this packet controls the retained
+synchronized quotient-type source interface.  The current dependency chain
+does not supply the missing inclusion or a disjoint complementary charge.
 
 In scalar dimension four, either the original `407,831` common-core floor
 from (3.1) holds or one actual noncommon coordinate has at least 219 owners.
@@ -319,7 +366,7 @@ experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1.py
 experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.py
 ```
 
-They recompute every displayed integer, scan all 2,982 endpoint values of
-`k'` and every power-of-two pure-power degree, and verify the frozen source
-hashes when a prize-DAG checkout is provided.  The primary also rejects
-sixteen hostile contract mutations.
+They recompute every displayed integer, scan all 4,833 excluded pair-moment
+rows, all 2,982 endpoint values of `k'`, and every power-of-two pure-power
+degree, and verify the frozen source hashes when a prize-DAG checkout is
+provided.  The primary also rejects twenty-six hostile contract mutations.

@@ -8,7 +8,7 @@ import copy
 import hashlib
 import json
 import subprocess
-from math import gcd
+from math import comb, gcd
 from pathlib import Path
 from typing import Any
 
@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CERT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1"
 CONTRACT = CERT / "contract.json"
 MANIFEST = CERT / "manifest.json"
-CONTRACT_SHA256 = "29eb6fcd3368331b419b2fcbde05f18baef61162f1852300ff584cbe1f6348ea"
+CONTRACT_SHA256 = "6f667f2e0dee061cea4a166fdca08b908f3f7e291adc5367c43c4e48bc28a525"
 SOURCE_FILES = {
     "background/nodes/rate_half_mca_rank11_pair_pencil_affine_plane_cap_218_sharpening/statement.md":
         "f17a18c39f68994c689f484a0d50f4b800f3187b615f4f09b5b4b27751cd52bf",
@@ -41,6 +41,13 @@ RICH_PLANE_SOURCE_FILES = {
         "58f549e620b401d1fedcd64c3c14a85dfcd1829657016c8080e14517cc2204a4",
     "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_rich_plane_recurrence_sharpening/proof.md":
         "aa783aad6da1ff43f013d0bdedc3ea8c2259f50da18109309d92559f3c393a35",
+}
+PAIR_MOMENT_SOURCE_COMMIT = "473f41afc6b76d747e534cb8e509a0353dcde3aa"
+PAIR_MOMENT_SOURCE_FILES = {
+    "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_pair_overlap_moment_floor/statement.md":
+        "0e7fbd7184ade032eab32ffd96e803ca56195b827d26bcb1cfd61e161b6461f5",
+    "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_pair_overlap_moment_floor/proof.md":
+        "171af5028580e011cfa7c30b6900fed5b30f3f2d6ebb2ea90ba276a74d7fcf7b",
 }
 
 
@@ -170,6 +177,36 @@ def check_source(source_root: Path, data: dict[str, Any]) -> None:
     require(rich_tree == provenance["dimension_three_rich_plane_node_tree"],
             "rich-plane source tree")
 
+    moment_commit = provenance["dimension_three_pair_moment_commit"]
+    require(moment_commit == PAIR_MOMENT_SOURCE_COMMIT, "pair-moment source commit")
+    moment_head = subprocess.run(
+        ["git", "rev-parse", moment_commit],
+        cwd=source_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    require(moment_head == moment_commit, "pair-moment source commit resolution")
+    for path, expected in PAIR_MOMENT_SOURCE_FILES.items():
+        payload = subprocess.run(
+            ["git", "show", f"{moment_commit}:{path}"],
+            cwd=source_root,
+            check=True,
+            capture_output=True,
+        ).stdout
+        require(hashlib.sha256(payload).hexdigest() == expected,
+                f"pair-moment source hash {path}")
+    moment_tree = subprocess.run(
+        ["git", "rev-parse",
+         f"{moment_commit}:background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_pair_overlap_moment_floor"],
+        cwd=source_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    require(moment_tree == provenance["dimension_three_pair_moment_node_tree"],
+            "pair-moment source tree")
+
 
 def validate(raw: object) -> dict[str, int]:
     require(isinstance(raw, dict), "contract object")
@@ -180,11 +217,12 @@ def validate(raw: object) -> dict[str, int]:
     source = data.get("source_interface")
     cap = data.get("plane_cap")
     router = data.get("dimension_router")
+    moment = data.get("pair_overlap_moment")
     bank = data.get("endpoint_bank")
     power = data.get("pure_power_router")
     claims = data.get("claims")
     require(all(isinstance(x, dict) for x in
-                (row, source, cap, router, bank, power, claims)), "sections")
+                (row, source, cap, router, moment, bank, power, claims)), "sections")
 
     n, K, m, s = row["n"], row["K"], row["m"], row["pair_core_size"]
     q, line = source["selected_types"], source["affine_line_cap"]
@@ -250,6 +288,51 @@ def validate(raw: object) -> dict[str, int]:
     require(router["dimension_four_heavy_type_floor"] == plane + 1 == 219, "heavy types")
     heavy_records = (plane + 1) * source["selected_type_record_floor"]
     require(router["dimension_four_heavy_record_floor"] == heavy_records == 6351, "heavy records")
+
+    require((moment["residual_length_offset"], moment["residual_core_offset"],
+             moment["pair_overlap_offset"]) == (1048576, 67470, 1),
+            "pair-moment offsets")
+
+    def pair_moment_gap(kprime: int) -> tuple[int, int]:
+        residual_n = moment["residual_length_offset"] + kprime
+        incidence = q * (moment["residual_core_offset"] + kprime)
+        average, _ = divmod(incidence, residual_n)
+        minimum = average * incidence - comb(average + 1, 2) * residual_n
+        capacity = comb(q, 2) * (kprime - moment["pair_overlap_offset"])
+        return capacity - minimum, average
+
+    intervals = moment["average_floor_intervals"]
+    require(intervals == [[3, 1167, 33], [1168, 3331, 34],
+                          [3332, 4835, 35]], "pair-moment intervals")
+    excluded_rows = 0
+    for start, stop, expected_average in intervals:
+        for kprime in range(start, stop + 1):
+            gap, average = pair_moment_gap(kprime)
+            require(average == expected_average, f"pair-moment average {kprime}")
+            require(gap < 0, f"pair-moment excluded row {kprime}")
+            excluded_rows += 1
+    last = moment["last_excluded_residual_dimension"]
+    first = moment["first_feasible_residual_dimension"]
+    require((last, first, excluded_rows) == (4835, 4836, 4833),
+            "pair-moment adjacent rows")
+    last_gap, _ = pair_moment_gap(last)
+    first_gap, _ = pair_moment_gap(first)
+    require(last_gap == -moment["last_excluded_deficit"] == -2110,
+            "pair-moment endpoint deficit")
+    require(first_gap == moment["first_feasible_slack"] == 115260,
+            "pair-moment adjacent slack")
+    require(moment["residual_dimension_ceiling"] == sharp_kmax == 595763,
+            "pair-moment ceiling")
+    require(moment["common_core_floor"] == sharp_common == 452813,
+            "pair-moment core floor")
+    require(moment["common_core_ceiling"] == K - first == 1043740,
+            "pair-moment core ceiling")
+    payment_max = moment["shared_payment_residual_ceiling"]
+    require(payment_max == 4922, "pair-moment payment threshold")
+    require(moment["shared_payment_overlap_row_count"] ==
+            payment_max - first + 1 == 87, "pair-moment payment overlap")
+    require(moment["shared_payment_transport_proved"] is False,
+            "pair-moment transport nonclaim")
 
     endpoint = bank["plane_occupancy"]
     endpoint_core = ceil_div(endpoint * s - line * n, endpoint - line)
@@ -331,12 +414,15 @@ def validate(raw: object) -> dict[str, int]:
     require(claims["endpoint_excluded"] is False, "endpoint nonclaim")
     require(claims["endpoint_pure_power_proved"] is False, "power-form nonclaim")
     require(claims["pure_power_survivors_paid"] is False, "power-payment nonclaim")
+    require(claims["shared_pair_core_payment_transported"] is False,
+            "shared-core transport nonclaim")
     require(claims["rank11_paid"] is False, "rank11 nonclaim")
     require(claims["active_v4_ledger_movement"] == 0, "ledger nonclaim")
     require(claims["KoalaBear_closed"] is False, "row nonclaim")
     return {"plane": plane, "core": sharp_common, "margin": margin,
             "directions": min_directions, "deficit": max_deficit,
-            "power_degrees": len(feasible)}
+            "power_degrees": len(feasible), "moment_first": first,
+            "moment_rows": excluded_rows}
 
 
 def tamper_selftest(data: dict[str, Any]) -> int:
@@ -352,6 +438,12 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["dimension_router"].__setitem__("sharpened_dimension_three_core_floor", 452812),
         lambda x: x["dimension_router"].__setitem__("adjacent_incidence_deficit", 39),
         lambda x: x["dimension_router"].__setitem__("dimension_four_heavy_record_floor", 6350),
+        lambda x: x["pair_overlap_moment"].__setitem__("last_excluded_deficit", 2109),
+        lambda x: x["pair_overlap_moment"].__setitem__("first_feasible_residual_dimension", 4835),
+        lambda x: x["pair_overlap_moment"].__setitem__("average_floor_intervals", [[3, 1167, 33]]),
+        lambda x: x["pair_overlap_moment"].__setitem__("common_core_ceiling", 1043739),
+        lambda x: x["pair_overlap_moment"].__setitem__("shared_payment_overlap_row_count", 86),
+        lambda x: x["pair_overlap_moment"].__setitem__("shared_payment_transport_proved", True),
         lambda x: x["endpoint_bank"].__setitem__("shortened_K_floor", 2043),
         lambda x: x["endpoint_bank"].__setitem__("projective_direction_floor", 209),
         lambda x: x["endpoint_bank"].__setitem__("aggregate_degree_deficit_ceiling", 41735),
@@ -387,13 +479,14 @@ def main() -> None:
     if args.source_root is not None:
         check_source(args.source_root, data)
     if args.tamper_selftest:
-        print(f"KB_RANK11_QUOTIENT_PAIR_PLANE218_TAMPER_PASS mutations={tamper_selftest(data)}/20")
+        print(f"KB_RANK11_QUOTIENT_PAIR_PLANE218_TAMPER_PASS mutations={tamper_selftest(data)}/26")
         return
     source = " checked" if args.source_root is not None else " skipped"
     print(
         "KB_RANK11_QUOTIENT_PAIR_PLANE218_PASS "
         f"cap={result['plane']} core={result['core']} margin={result['margin']} "
         f"directions={result['directions']} deficit={result['deficit']} "
+        f"moment_first={result['moment_first']} moment_rows={result['moment_rows']} "
         f"power_degrees={result['power_degrees']} source={source.strip()}"
     )
 
