@@ -1,0 +1,1 @@
+KB_RANK11_QUOTIENT_PAIR_PLANE218_PASS cap=218 core=407831 margin=30705 directions=210 deficit=41736 source=skipped

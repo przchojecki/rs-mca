@@ -328,6 +328,16 @@ At this snapshot:
   claimed. Test whether the raw-clipped adjacent-support payment survives at
   `K'=88` while seeking a symbolic continuation in `K'`; an exact-row replay
   locates the obstruction but is not a substitute for an interval theorem.
+- A separate conditional quotient-pair split-pencil theorem is now frozen at
+  `experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md`.
+  Under its fully printed 520-type coprime-direction interface, every affine
+  scalar plane contains at most 218 selected types.  Equality forces
+  `2044<=K'<=5025`, at least 210 projective directions, aggregate unused
+  degree at most `41736`, and root saturation above `0.9618`.  This does not
+  claim that the present rank-eleven compiler reaches the interface, exclude
+  the equality branch, pay rank eleven, or move an active-v4 atom.  The next
+  theorem is quotient-periodic rational-fiber classification/payment or a
+  finite-characteristic arrangement theorem for the represented pencil.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.

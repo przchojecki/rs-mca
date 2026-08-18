@@ -5618,3 +5618,43 @@ Keep entries concise and link to the relevant files.
   both prize problems remain open.
 - **What to do next:** Test the raw-clipped envelope at `K'=88` and seek a
   symbolic continuation. Do not infer an interval from the exact row.
+
+### 2026-08-18 - Quotient-pair affine-plane cap and endpoint direction bank
+
+- **Agent/model:** Codex, exporting two proved prize-DAG nodes as one compact
+  base-field-normalized split-pencil packet.
+- **Exact parent:** this PR at
+  `d296510e806d2bafbb08cb0c2fc25be6a3b03a50`.
+- **Research source:** `AllenGrahamHart/rs-mca-prize-dag` commit
+  `f557775d53192f027730b15c2f70330e1a56c116`; source-node trees
+  `2b2e264afd74e65cbde43b4c79e1702c04c7db4d` and
+  `3d2ecbdee129e5422c6cb7e7686384446977a34b`.
+- **Status:** PROVED CONDITIONAL ROUTE CUT / ZERO DEPLOYED LEDGER MOVEMENT.
+- **Source boundary:** The packet consumes a fully printed 520-type
+  coprime-direction quotient-pair interface, scalar span at most four,
+  affine-line occupancy at most 15, and a 29-record floor used only by the
+  dimension-four router. It does not claim that PR #1170 already derives
+  this interface.
+- **Result:** Affine scalar planes have occupancy at most 218. In dimension
+  three, the common received-pair core is at least 407831 and the minimum
+  shortened incidence slack is 178. In dimension four, either the same core
+  floor holds or one exact affine-three coordinate fiber contains at least
+  219 types and 6351 first-owned records. If plane occupancy 218 occurs, then
+  `2044<=K'<=5025`, at least 210 projective directions are represented,
+  aggregate unused direction degree is at most 41736, aggregate root
+  saturation exceeds 0.9618, and the dual 218-line arrangement has at least
+  210 multiplicity-15 points with at most 1603 other line pairs.
+- **Controls:** Two independently implemented standard-library verifiers
+  scan all 2982 endpoint values. Normal and optimized Python agree; the
+  primary rejects 12/12 hostile mutations and replays all frozen source
+  hashes when given the prize-DAG checkout. Manifest SHA-256 is
+  `d5889a949f95970b5d47b2acce1d9f3ac5a95f037e67e28c58a176e797b81e6d`;
+  primary and independent verifier SHA-256 values are
+  `5b0dcb31f69f31868d05123c1faf796020cef3f7999248b9d731f75ea50d7268`
+  and `314e80b0d322200a470bb365cafc39f615bf935747784b8c1669dbc784eff7a7`.
+- **Nonclaim:** The 218-plane is not excluded over the official field; no
+  shortened branch, rank-eleven family, active-v4 atom, KoalaBear row, LIST
+  row, MCA row, or prize problem is paid.
+- **What to do next:** Classify and price the near-saturated rational fibers,
+  or prove a finite-characteristic arrangement inequality with hypotheses
+  actually satisfied by this represented polynomial pencil.

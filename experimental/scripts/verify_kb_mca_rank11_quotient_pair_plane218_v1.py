@@ -1,0 +1,241 @@
+#!/usr/bin/env python3
+"""Verify the KoalaBear quotient-pair affine-plane cap and endpoint bank."""
+
+from __future__ import annotations
+
+import argparse
+import copy
+import hashlib
+import json
+import subprocess
+from math import gcd
+from pathlib import Path
+from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[2]
+CERT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1"
+CONTRACT = CERT / "contract.json"
+MANIFEST = CERT / "manifest.json"
+CONTRACT_SHA256 = "0d72cc299765c6b30b2fd517379b4ae4384d0f9ba3058b1028b9d433bff24656"
+SOURCE_FILES = {
+    "background/nodes/rate_half_mca_rank11_pair_pencil_affine_plane_cap_218_sharpening/statement.md":
+        "f17a18c39f68994c689f484a0d50f4b800f3187b615f4f09b5b4b27751cd52bf",
+    "background/nodes/rate_half_mca_rank11_pair_pencil_affine_plane_cap_218_sharpening/proof.md":
+        "d8a22ea247fa7e13dfba7c3bd2faa4f8dd537bcf340b2628599f8454777c7984",
+    "background/nodes/rate_half_mca_rank11_pair_pencil_plane218_projective_direction_bank/statement.md":
+        "aa62abc6626c36f03e81aa0e4a5497d7e19a08ebff079d7f4c4d02b4f7aef020",
+    "background/nodes/rate_half_mca_rank11_pair_pencil_plane218_projective_direction_bank/proof.md":
+        "44fc736822cdb6077c86a47f67a762840d211e2e05d643a969626aece784af90",
+}
+
+
+class Reject(ValueError):
+    """A contract or provenance check failed."""
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise Reject(message)
+
+
+def ceil_div(a: int, b: int) -> int:
+    return -(-a // b)
+
+
+def choose2(x: int) -> int:
+    return x * (x - 1) // 2
+
+
+def check_manifest() -> None:
+    manifest = json.loads(MANIFEST.read_text())
+    require(manifest.get("schema") == "kb-mca-rank11-quotient-pair-plane218-manifest-v1",
+            "manifest schema")
+    hashes = manifest.get("packet_file_sha256")
+    require(isinstance(hashes, dict), "manifest hashes")
+    for relative, expected in hashes.items():
+        path = ROOT / relative
+        require(path.is_file(), f"packet file {relative}")
+        require(hashlib.sha256(path.read_bytes()).hexdigest() == expected,
+                f"packet hash {relative}")
+
+
+def check_source(source_root: Path, data: dict[str, Any]) -> None:
+    source_root = source_root.resolve()
+    provenance = data["provenance"]
+    commit = provenance["commit"]
+    head = subprocess.run(
+        ["git", "rev-parse", commit],
+        cwd=source_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    require(head == commit, "source commit")
+    for path, expected in SOURCE_FILES.items():
+        payload = subprocess.run(
+            ["git", "show", f"{commit}:{path}"],
+            cwd=source_root,
+            check=True,
+            capture_output=True,
+        ).stdout
+        require(hashlib.sha256(payload).hexdigest() == expected, f"source hash {path}")
+    trees = {
+        "plane_cap_node_tree":
+            "background/nodes/rate_half_mca_rank11_pair_pencil_affine_plane_cap_218_sharpening",
+        "direction_bank_node_tree":
+            "background/nodes/rate_half_mca_rank11_pair_pencil_plane218_projective_direction_bank",
+    }
+    for key, path in trees.items():
+        tree = subprocess.run(
+            ["git", "rev-parse", f"{commit}:{path}"],
+            cwd=source_root,
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+        require(tree == provenance[key], f"source tree {key}")
+
+
+def validate(raw: object) -> dict[str, int]:
+    require(isinstance(raw, dict), "contract object")
+    data: dict[str, Any] = raw
+    require(data.get("schema") == "kb-mca-rank11-quotient-pair-plane218-v1", "schema")
+
+    row = data.get("row")
+    source = data.get("source_interface")
+    cap = data.get("plane_cap")
+    router = data.get("dimension_router")
+    bank = data.get("endpoint_bank")
+    claims = data.get("claims")
+    require(all(isinstance(x, dict) for x in (row, source, cap, router, bank, claims)), "sections")
+
+    n, K, m, s = row["n"], row["K"], row["m"], row["pair_core_size"]
+    q, line = source["selected_types"], source["affine_line_cap"]
+    require((row["p"], row["extension_degree"], n, K, m, s) ==
+            (2130706433, 6, 2097152, 1048576, 1116048, m - 2), "row pins")
+    require((q, source["scalar_span_dimension_ceiling"], line,
+             source["selected_type_record_floor"], source["coprime_direction_normal_form"]) ==
+            (520, 4, 15, 29, True), "source pins")
+
+    excluded = cap["excluded_occupancy"]
+    core = ceil_div(excluded * s - line * n, excluded - line)
+    require((excluded, core, cap["common_core_floor"]) == (219, 1043906, 1043906), "cap core")
+    kmax = K - core
+    require(cap["shortened_K_ceiling"] == kmax == 4670, "cap K")
+    f0, f1 = cap["full_coordinate_floor_constant"], cap["full_coordinate_floor_slope"]
+    require((f0, f1) == (95866, 205), "cap full floor")
+    line_ceiling = excluded * ((excluded - 1) // (line - 1)) // line
+    require(cap["full_line_ceiling"] == line_ceiling == 219, "cap lines")
+    margin = f0 + f1 * kmax - line_ceiling * (kmax - 1)
+    require(cap["contradiction_margin_floor"] == margin == 30705, "cap margin")
+    plane = excluded - 1
+    require(cap["proved_occupancy_ceiling"] == plane == 218, "plane cap")
+
+    common = ceil_div(q * s - plane * n, q - plane)
+    require(router["dimension_three_core_floor"] == common == 407831, "dimension-three core")
+    shortened = (n - common, K - common, m - common, s - common)
+    require(shortened == (router["shortened_n"], router["shortened_K"],
+                          router["shortened_m"], router["shortened_pair_core"]) ==
+            (1689321, 640745, 708217, 708215), "dimension-three shortening")
+    slack = plane * shortened[0] - q * shortened[3]
+    require(router["incidence_slack"] == slack == 178, "dimension-three slack")
+    require(router["dimension_four_heavy_type_floor"] == plane + 1 == 219, "heavy types")
+    heavy_records = (plane + 1) * source["selected_type_record_floor"]
+    require(router["dimension_four_heavy_record_floor"] == heavy_records == 6351, "heavy records")
+
+    endpoint = bank["plane_occupancy"]
+    endpoint_core = ceil_div(endpoint * s - line * n, endpoint - line)
+    require((endpoint, endpoint_core, bank["common_core_floor"]) == (218, 1043551, 1043551), "bank core")
+    bank_kmax = K - endpoint_core
+    require(bank["shortened_K_ceiling"] == bank_kmax == 5025, "bank K max")
+    b0, b1 = bank["full_coordinate_floor_constant"], bank["full_coordinate_floor_slope"]
+    require((b0, b1) == (28396, 204), "bank full floor")
+    bank_lines = endpoint * ((endpoint - 1) // (line - 1)) // line
+    require(bank["full_line_ceiling"] == bank_lines == 218, "bank lines")
+    bank_kmin = ceil_div(b0 + bank_lines, bank_lines - b1)
+    require(bank["shortened_K_floor"] == bank_kmin == 2044, "bank K min")
+    require(bank["common_core_ceiling"] == K - bank_kmin == 1046532, "bank core max")
+
+    max_deficit = 0
+    min_directions = bank_lines
+    for kprime in range(bank_kmin, bank_kmax + 1):
+        full = b0 + b1 * kprime
+        require(full <= bank_lines * (kprime - 1), f"endpoint feasibility {kprime}")
+        directions = ceil_div(full, kprime - 1)
+        require(directions >= 210, f"direction floor {kprime}")
+        min_directions = min(min_directions, directions)
+        max_deficit = max(max_deficit, bank_lines * (kprime - 1) - full)
+    require(bank["projective_direction_floor"] == min_directions == 210, "direction floor")
+    require(bank["aggregate_degree_deficit_ceiling"] == max_deficit == 41736, "degree deficit")
+
+    full = b0 + b1 * bank_kmax
+    total = bank_lines * (bank_kmax - 1)
+    divisor = gcd(full, total)
+    require((bank["saturation_numerator"], bank["saturation_denominator"]) ==
+            (full // divisor, total // divisor) == (131687, 136904), "saturation")
+    remaining_pairs = choose2(endpoint) - bank["dual_rich_point_floor"] * choose2(line)
+    require(bank["dual_rich_point_floor"] == 210, "dual rich points")
+    require(bank["dual_remaining_pair_ceiling"] == remaining_pairs == 1603, "dual pair budget")
+
+    require(claims["source_interface_proved_here"] is False, "source nonclaim")
+    require(claims["endpoint_excluded"] is False, "endpoint nonclaim")
+    require(claims["rank11_paid"] is False, "rank11 nonclaim")
+    require(claims["active_v4_ledger_movement"] == 0, "ledger nonclaim")
+    require(claims["KoalaBear_closed"] is False, "row nonclaim")
+    return {"plane": plane, "core": common, "margin": margin,
+            "directions": min_directions, "deficit": max_deficit}
+
+
+def tamper_selftest(data: dict[str, Any]) -> int:
+    mutations = (
+        lambda x: x["row"].__setitem__("pair_core_size", 1116045),
+        lambda x: x["source_interface"].__setitem__("affine_line_cap", 16),
+        lambda x: x["plane_cap"].__setitem__("common_core_floor", 1043905),
+        lambda x: x["plane_cap"].__setitem__("full_line_ceiling", 220),
+        lambda x: x["plane_cap"].__setitem__("contradiction_margin_floor", 30704),
+        lambda x: x["dimension_router"].__setitem__("dimension_three_core_floor", 407830),
+        lambda x: x["dimension_router"].__setitem__("dimension_four_heavy_record_floor", 6350),
+        lambda x: x["endpoint_bank"].__setitem__("shortened_K_floor", 2043),
+        lambda x: x["endpoint_bank"].__setitem__("projective_direction_floor", 209),
+        lambda x: x["endpoint_bank"].__setitem__("aggregate_degree_deficit_ceiling", 41735),
+        lambda x: x["endpoint_bank"].__setitem__("dual_remaining_pair_ceiling", 1604),
+        lambda x: x["claims"].__setitem__("rank11_paid", True),
+    )
+    caught = 0
+    for mutate in mutations:
+        altered = copy.deepcopy(data)
+        mutate(altered)
+        try:
+            validate(altered)
+        except (Reject, KeyError, TypeError, ValueError):
+            caught += 1
+    require(caught == len(mutations), "hostile mutations")
+    return caught
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--tamper-selftest", action="store_true")
+    parser.add_argument("--source-root", type=Path)
+    args = parser.parse_args()
+    payload = CONTRACT.read_bytes()
+    require(hashlib.sha256(payload).hexdigest() == CONTRACT_SHA256, "contract hash")
+    check_manifest()
+    data = json.loads(payload)
+    result = validate(data)
+    if args.source_root is not None:
+        check_source(args.source_root, data)
+    if args.tamper_selftest:
+        print(f"KB_RANK11_QUOTIENT_PAIR_PLANE218_TAMPER_PASS mutations={tamper_selftest(data)}/12")
+        return
+    source = " checked" if args.source_root is not None else " skipped"
+    print(
+        "KB_RANK11_QUOTIENT_PAIR_PLANE218_PASS "
+        f"cap={result['plane']} core={result['core']} margin={result['margin']} "
+        f"directions={result['directions']} deficit={result['deficit']} source={source.strip()}"
+    )
+
+
+if __name__ == "__main__":
+    main()
