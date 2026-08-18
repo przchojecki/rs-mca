@@ -25,6 +25,9 @@ node tree `1763c945b9e4031424099486ecf7d44a9bc021a2`.
 Its direction-saturation extension is sourced separately from
 `AllenGrahamHart/rs-mca-prize-dag@1db90bbbef8c8e31b881de04dc9cedb387728c0f`,
 node tree `ddcb65d9d490042a6215457db9c1214246d2b456`.
+The projective-image extension is sourced separately from
+`AllenGrahamHart/rs-mca-prize-dag@121e75fa14d2b58968ca398f352437e1357b16fb`,
+node tree `0537b44d0ff8240f47d08942467febeb6ca57cd6`.
 
 This note is a finite, base-field-normalized split-pencil theorem.  Its
 source interface is printed in full below.  In particular, this packet does
@@ -292,6 +295,37 @@ Thus `q=3170` is a calibrated finite `(Q)`/split-pencil direction bank.  The
 packet does not classify it as quotient-periodic, force a further common
 factor, or pay the endpoint.
 
+There is now an exact projective-image refinement. Let `W_0` be the residual
+three-dimensional scalar direction space and `G=gcd(W_0)`. A residual
+official-domain root of `G` has owner multiplicity zero, so the exact
+218-fold occupancy deficit gives
+
+```text
+|D' intersection Z(G)|<=310.                        (3.16)
+```
+
+After dividing by `G`, homogenization defines a basepoint-free map
+`phi:P^1->P^2`. If `d` is its polynomial degree, `c` its image-curve degree,
+and `e` its map degree, pullback of a projective line gives
+
+```text
+d=ec,       c>=2.                                   (3.17)
+```
+
+The primitive member of every represented direction retains at least 2,041
+official roots. If `c=2`, the image is a base-field rational conic and a
+base-field projective change gives
+
+```text
+W_hom=span(A^2,AB,B^2),       1021<=deg(A/B)<=2490. (3.18)
+```
+
+Thus all 41,746 or more represented directions are binary quadratics in one
+rational function. If `c>=3`, one evaluation normal has at most
+`floor((K'-1)/3)` full preimages, so the 23 rows force 597 through 633
+distinct full evaluation normals. Neither branch is excluded or paid; in
+particular `(3.18)` is not yet a quotient-periodic classification of `A/B`.
+
 In scalar dimension four, either the original `407,831` common-core floor
 from (3.1) holds or one actual noncommon coordinate has at least 219 owners.
 Those owners lie in an
@@ -447,8 +481,8 @@ experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.
 ```
 
 They recompute every displayed integer, scan all 4,833 excluded pair-moment
-rows, all 2,868 population-factor rows, both endpoint-design ledgers on all
+rows, all 2,868 population-factor rows, all three endpoint ledgers on all
 23 population-endpoint rows, all 2,982 plane-endpoint values of `k'`, and
 every power-of-two pure-power degree. They verify the frozen source hashes
-when a prize-DAG checkout is provided. The primary also rejects forty hostile
+when a prize-DAG checkout is provided. The primary also rejects forty-seven hostile
 contract mutations.

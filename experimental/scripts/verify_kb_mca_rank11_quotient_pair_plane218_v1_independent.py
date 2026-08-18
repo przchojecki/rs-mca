@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json"
-CONTRACT_SHA256 = "0a8ac27dd3b25d7a280af7d04253f15b14a34ef5430328e5df17315f1b26829a"
+CONTRACT_SHA256 = "86febeab22df67fdd0c55d92b4ac1503f8f33104f0e1615c8c84753bdcb81c6b"
 
 
 def check(condition: bool, message: str) -> None:
@@ -41,6 +41,7 @@ def main() -> None:
     moment = data["pair_overlap_moment"]
     population = data["type_population_router"]
     endpoint = data["population_endpoint_design"]
+    image = data["projective_image_router"]
     bank = data["endpoint_bank"]
     power = data["pure_power_router"]
 
@@ -193,6 +194,36 @@ def main() -> None:
           "endpoint aggregate saturation")
     check(endpoint["endpoint_paid"] is False, "endpoint payment nonclaim")
 
+    image_rows = []
+    for kprime in range(4960, 4983):
+        full = 2953 * kprime - 13661092
+        occupancy_deficit = 14709668 - 2952 * kprime
+        gcd_roots = occupancy_deficit // 218
+        primitive_roots = kprime - 2609 - gcd_roots
+        conic_normals = first_integer_at_least(full, (kprime - 1) // 2)
+        higher_normals = first_integer_at_least(full, (kprime - 1) // 3)
+        image_rows.append((gcd_roots, primitive_roots,
+                           first_integer_at_least(primitive_roots, 2),
+                           conic_normals, higher_normals))
+    check(image_rows[0] == (310, 2041, 1021, 398, 597),
+          "projective-image first row")
+    check(image_rows[-1] == (12, 2361, 1181, 422, 633),
+          "projective-image last row")
+    check(image["common_gcd_domain_root_ceiling_first_row"] == 310 and
+          image["common_gcd_domain_root_ceiling_last_row"] == 12,
+          "projective-image gcd roots")
+    check(image["primitive_direction_root_floor_first_row"] == 2041 and
+          image["primitive_direction_root_floor_last_row"] == 2361,
+          "projective-image primitive roots")
+    check(image["conic_map_degree_floor"] == 1021 and
+          image["conic_map_degree_ceiling"] == 2490,
+          "projective-image conic degrees")
+    check(image["higher_image_normal_floor_first_row"] == 597 and
+          image["higher_image_normal_floor_last_row"] == 633,
+          "projective-image higher normals")
+    check(image["branches_paid"] is False,
+          "projective-image payment nonclaim")
+
     bank_rhs = 218 * core_size - line_cap * n
     c218 = bank["common_core_floor"]
     check((218 - line_cap) * (c218 - 1) < bank_rhs <= (218 - line_cap) * c218,
@@ -266,12 +297,15 @@ def main() -> None:
           "dense-type payment nonclaim")
     check("calibrated finite `(Q)`/split-pencil direction bank" in note,
           "endpoint direction-bank scope")
+    check("exact projective-image refinement" in note,
+          "projective-image scope")
     print(
         "KB_RANK11_QUOTIENT_PAIR_PLANE218_INDEPENDENT_PASS "
         f"states={scanned} core=452813 directions={direction_minimum} "
         f"pairs=1603 moment_rows={moment_rows} moment_first=4836 "
         f"population_rows={population_rows} qmax=3170 dense=80446 "
-        f"endpoint_directions=41746..47836 power=2048,4096"
+        f"endpoint_directions=41746..47836 primitive_roots=2041 "
+        f"higher_normals=597..633 power=2048,4096"
     )
 
 

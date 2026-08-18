@@ -100,6 +100,30 @@
     "aggregate_saturation_denominator": 6589409,
     "endpoint_paid": false
   },
+  "projective_image_router": {
+    "residual_dimension_floor": 4960,
+    "residual_dimension_ceiling": 4982,
+    "full_owner_floor_constant": -13661092,
+    "full_owner_floor_slope": 2953,
+    "owner_multiplicity_ceiling": 218,
+    "occupancy_deficit_constant": 14709668,
+    "occupancy_deficit_slope": -2952,
+    "raw_direction_root_offset": 2609,
+    "common_gcd_domain_root_ceiling_first_row": 310,
+    "common_gcd_domain_root_ceiling_last_row": 12,
+    "primitive_direction_root_floor_first_row": 2041,
+    "primitive_direction_root_floor_last_row": 2361,
+    "projective_image_degree_floor": 2,
+    "conic_map_degree_floor": 1021,
+    "conic_map_degree_ceiling": 2490,
+    "conic_normal_floor_first_row": 398,
+    "conic_normal_floor_last_row": 422,
+    "higher_image_degree_floor": 3,
+    "higher_image_map_degree_ceiling": 1660,
+    "higher_image_normal_floor_first_row": 597,
+    "higher_image_normal_floor_last_row": 633,
+    "branches_paid": false
+  },
   "endpoint_bank": {
     "plane_occupancy": 218,
     "common_core_floor": 1043551,
@@ -145,6 +169,7 @@
     "shared_pair_core_payment_transported": false,
     "dense_quotient_type_paid": false,
     "population_endpoint_paid": false,
+    "projective_image_branches_paid": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
     "KoalaBear_closed": false,
@@ -167,6 +192,8 @@
     "dimension_three_endpoint_plane_line_node_tree": "1763c945b9e4031424099486ecf7d44a9bc021a2",
     "dimension_three_endpoint_direction_commit": "1db90bbbef8c8e31b881de04dc9cedb387728c0f",
     "dimension_three_endpoint_direction_node_tree": "ddcb65d9d490042a6215457db9c1214246d2b456",
+    "dimension_three_projective_image_commit": "121e75fa14d2b58968ca398f352437e1357b16fb",
+    "dimension_three_projective_image_node_tree": "0537b44d0ff8240f47d08942467febeb6ca57cd6",
     "load_bearing_external_lemma": false
   }
 }

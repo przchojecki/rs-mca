@@ -17,6 +17,11 @@ population carrying 255,011,043 records, the packet verifies `q<=3170`, an
 That endpoint is further reduced to 339--358 rich planes, at least 217
 saturated lines, and a global bank of 41,746--47,836 projective directions
 with aggregate root saturation above 87.26 percent.
+After charging at most 310 residual common-gcd roots, the primitive
+three-space is further routed by projective image degree: image degree two
+is exactly `span(A^2,AB,B^2)` for one rational map of degree 1,021--2,490,
+while image degree at least three forces 597--633 distinct full evaluation
+normals.
 
 Replay from the repository root:
 

@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CERT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1"
 CONTRACT = CERT / "contract.json"
 MANIFEST = CERT / "manifest.json"
-CONTRACT_SHA256 = "0a8ac27dd3b25d7a280af7d04253f15b14a34ef5430328e5df17315f1b26829a"
+CONTRACT_SHA256 = "86febeab22df67fdd0c55d92b4ac1503f8f33104f0e1615c8c84753bdcb81c6b"
 SOURCE_FILES = {
     "background/nodes/rate_half_mca_rank11_pair_pencil_affine_plane_cap_218_sharpening/statement.md":
         "f17a18c39f68994c689f484a0d50f4b800f3187b615f4f09b5b4b27751cd52bf",
@@ -69,6 +69,13 @@ ENDPOINT_DIRECTION_SOURCE_FILES = {
         "8bdec6b57c712da9f595f233bdf9ce2b06a09cf406fe86641d05da463ea59e3e",
     "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_population_endpoint_direction_saturation/proof.md":
         "65d46ff0e58d738c988d88fd3369272425deeb49e2b2db87a38d3f142e182805",
+}
+PROJECTIVE_IMAGE_SOURCE_COMMIT = "121e75fa14d2b58968ca398f352437e1357b16fb"
+PROJECTIVE_IMAGE_SOURCE_FILES = {
+    "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_projective_image_degree_router/statement.md":
+        "be0921587aac16e2342dd1bdbce9edcb027733744426531e8bb5dad180e4fc01",
+    "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_projective_image_degree_router/proof.md":
+        "8e3a9c40daea14f95ca8f7254c89ee673a53f7794fd718fe0adf5b77aced9cb0",
 }
 
 
@@ -273,6 +280,12 @@ def check_source(source_root: Path, data: dict[str, Any]) -> None:
          ENDPOINT_DIRECTION_SOURCE_FILES,
          "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_population_endpoint_direction_saturation",
          "endpoint-direction"),
+        ("dimension_three_projective_image_commit",
+         "dimension_three_projective_image_node_tree",
+         PROJECTIVE_IMAGE_SOURCE_COMMIT,
+         PROJECTIVE_IMAGE_SOURCE_FILES,
+         "background/nodes/rate_half_mca_rank11_pair_pencil_dimension_three_projective_image_degree_router",
+         "projective-image"),
     )
     for commit_key, tree_key, expected_commit, files, directory, label in endpoint_sources:
         commit = provenance[commit_key]
@@ -308,11 +321,12 @@ def validate(raw: object) -> dict[str, int]:
     moment = data.get("pair_overlap_moment")
     population = data.get("type_population_router")
     endpoint = data.get("population_endpoint_design")
+    image = data.get("projective_image_router")
     bank = data.get("endpoint_bank")
     power = data.get("pure_power_router")
     claims = data.get("claims")
     require(all(isinstance(x, dict) for x in
-                (row, source, cap, router, moment, population, endpoint,
+                (row, source, cap, router, moment, population, endpoint, image,
                  bank, power, claims)),
             "sections")
 
@@ -536,6 +550,51 @@ def validate(raw: object) -> dict[str, int]:
             (5750430, 6589409), "endpoint saturation")
     require(endpoint["endpoint_paid"] is False, "endpoint payment nonclaim")
 
+    require((image["residual_dimension_floor"],
+             image["residual_dimension_ceiling"],
+             image["full_owner_floor_constant"],
+             image["full_owner_floor_slope"],
+             image["owner_multiplicity_ceiling"],
+             image["occupancy_deficit_constant"],
+             image["occupancy_deficit_slope"],
+             image["raw_direction_root_offset"]) ==
+            (4960, 4982, -13661092, 2953, 218, 14709668, -2952, 2609),
+            "projective-image pins")
+    image_rows = []
+    for kprime in range(4960, 4983):
+        full = -13661092 + 2953 * kprime
+        occupancy_deficit = 14709668 - 2952 * kprime
+        gcd_roots = occupancy_deficit // 218
+        primitive_roots = kprime - 2609 - gcd_roots
+        conic_e_max = (kprime - 1) // 2
+        higher_e_max = (kprime - 1) // 3
+        image_rows.append((gcd_roots, primitive_roots,
+                           ceil_div(primitive_roots, 2),
+                           ceil_div(full, conic_e_max),
+                           higher_e_max,
+                           ceil_div(full, higher_e_max)))
+    require(image_rows[0] == (310, 2041, 1021, 398, 1653, 597),
+            "projective-image first row")
+    require(image_rows[-1] == (12, 2361, 1181, 422, 1660, 633),
+            "projective-image last row")
+    require((image["common_gcd_domain_root_ceiling_first_row"],
+             image["common_gcd_domain_root_ceiling_last_row"],
+             image["primitive_direction_root_floor_first_row"],
+             image["primitive_direction_root_floor_last_row"]) ==
+            (310, 12, 2041, 2361), "projective-image gcd/root rows")
+    require((image["projective_image_degree_floor"],
+             image["conic_map_degree_floor"],
+             image["conic_map_degree_ceiling"],
+             image["conic_normal_floor_first_row"],
+             image["conic_normal_floor_last_row"]) ==
+            (2, 1021, 2490, 398, 422), "projective-image conic branch")
+    require((image["higher_image_degree_floor"],
+             image["higher_image_map_degree_ceiling"],
+             image["higher_image_normal_floor_first_row"],
+             image["higher_image_normal_floor_last_row"]) ==
+            (3, 1660, 597, 633), "projective-image higher branch")
+    require(image["branches_paid"] is False, "projective-image payment nonclaim")
+
     endpoint = bank["plane_occupancy"]
     endpoint_core = ceil_div(endpoint * s - line * n, endpoint - line)
     require((endpoint, endpoint_core, bank["common_core_floor"]) == (218, 1043551, 1043551), "bank core")
@@ -622,6 +681,8 @@ def validate(raw: object) -> dict[str, int]:
             "dense-type payment nonclaim")
     require(claims["population_endpoint_paid"] is False,
             "population-endpoint payment nonclaim")
+    require(claims["projective_image_branches_paid"] is False,
+            "projective-image payment nonclaim")
     require(claims["rank11_paid"] is False, "rank11 nonclaim")
     require(claims["active_v4_ledger_movement"] == 0, "ledger nonclaim")
     require(claims["KoalaBear_closed"] is False, "row nonclaim")
@@ -629,7 +690,9 @@ def validate(raw: object) -> dict[str, int]:
             "directions": min_directions, "deficit": max_deficit,
             "power_degrees": len(feasible), "moment_first": first,
             "moment_rows": excluded_rows, "population_max": qmax,
-            "dense": dense, "endpoint_directions": endpoint_rows[0][2]}
+            "dense": dense, "endpoint_directions": endpoint_rows[0][2],
+            "primitive_roots": image_rows[0][1],
+            "higher_normals": image_rows[0][5]}
 
 
 def tamper_selftest(data: dict[str, Any]) -> int:
@@ -665,6 +728,13 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["population_endpoint_design"].__setitem__("direction_population_ceiling", 47837),
         lambda x: x["population_endpoint_design"].__setitem__("aggregate_direction_degree_deficit_ceiling", 30203243),
         lambda x: x["population_endpoint_design"].__setitem__("endpoint_paid", True),
+        lambda x: x["projective_image_router"].__setitem__("owner_multiplicity_ceiling", 217),
+        lambda x: x["projective_image_router"].__setitem__("occupancy_deficit_constant", 14709667),
+        lambda x: x["projective_image_router"].__setitem__("common_gcd_domain_root_ceiling_first_row", 309),
+        lambda x: x["projective_image_router"].__setitem__("primitive_direction_root_floor_first_row", 2040),
+        lambda x: x["projective_image_router"].__setitem__("conic_map_degree_floor", 1020),
+        lambda x: x["projective_image_router"].__setitem__("higher_image_normal_floor_first_row", 596),
+        lambda x: x["projective_image_router"].__setitem__("branches_paid", True),
         lambda x: x["endpoint_bank"].__setitem__("shortened_K_floor", 2043),
         lambda x: x["endpoint_bank"].__setitem__("projective_direction_floor", 209),
         lambda x: x["endpoint_bank"].__setitem__("aggregate_degree_deficit_ceiling", 41735),
@@ -700,7 +770,7 @@ def main() -> None:
     if args.source_root is not None:
         check_source(args.source_root, data)
     if args.tamper_selftest:
-        print(f"KB_RANK11_QUOTIENT_PAIR_PLANE218_TAMPER_PASS mutations={tamper_selftest(data)}/40")
+        print(f"KB_RANK11_QUOTIENT_PAIR_PLANE218_TAMPER_PASS mutations={tamper_selftest(data)}/47")
         return
     source = " checked" if args.source_root is not None else " skipped"
     print(
@@ -710,6 +780,8 @@ def main() -> None:
         f"moment_first={result['moment_first']} moment_rows={result['moment_rows']} "
         f"qmax={result['population_max']} dense={result['dense']} "
         f"endpoint_directions={result['endpoint_directions']} "
+        f"primitive_roots={result['primitive_roots']} "
+        f"higher_normals={result['higher_normals']} "
         f"power_degrees={result['power_degrees']} source={source.strip()}"
     )
 
