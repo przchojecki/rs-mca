@@ -1,0 +1,121 @@
+{
+  "schema": "kb-mca-rank11-k86-best-single-adjacent-payment-v1",
+  "exact_parent": "7356a104a4ec2d21f6c0fc32a3fb3c394cf5e8cf",
+  "previous_packet_sha256": "ae598632a204181a0ef0cc8895c077af22d16587f2ab209b7cebb3e26c2cb5ee",
+  "source_prize_dag": {
+    "repository": "AllenGrahamHart/rs-mca-prize-dag",
+    "commit": "a0f03f3af3b8bffb303dfe8e0b338b40e49da5ee",
+    "node": {
+      "id": "rate_half_mca_rank11_k86_best_single_adjacent_payment",
+      "tree": "5d5e1503591ec1ebca92847538f3b1a7d6ef6dfb",
+      "contract_sha256": "b318de9938264a3306372b473513b1975e6941204a39c03d07a5ff16b62e896f"
+    }
+  },
+  "dependencies": [
+    "kb-mca-rank11-k85-best-single-adjacent-payment-v1",
+    "single completion carrier",
+    "full-completion pairwise carrier atlas",
+    "fixed-union support-4/5 coupling",
+    "fixed-union support-5/6 coupling",
+    "fixed-union adjacent-support coupling"
+  ],
+  "record_floor": 274980728111260126,
+  "coverage": {
+    "partition": "ordinary plus offsets 1..75",
+    "ordinary": {
+      "jobs": 2,
+      "source_units": 504660,
+      "raw_rows": 3532620,
+      "raw_safe_units": 115523,
+      "expanded_units": 3037,
+      "primary_geometry_rows": 2718499,
+      "audit_geometry_rows": 2718499,
+      "premium": 41436497718685364991538520386265961874369213524,
+      "custody_scope": "two completed ordinary jobs retained from a broader incomplete pilot and accepted by the dedicated ordinary-slice checker"
+    },
+    "raw_offsets": {
+      "lanes": 75,
+      "jobs": 150,
+      "offset_units_formula": "(76-offset)*5929",
+      "source_units_per_implementation": 16897650,
+      "raw_rows_per_implementation": 118283550,
+      "raw_safe_units_per_implementation": 16482237,
+      "raw_unsafe_units_per_implementation": 415413,
+      "unsafe_offset_interval": [1, 42],
+      "fully_safe_offset_interval": [43, 75]
+    },
+    "best_single_residual": {
+      "lanes": 42,
+      "jobs": 84,
+      "source_units_per_implementation": 13571481,
+      "unsafe_units_per_implementation": 415413,
+      "profiles_per_implementation": 62159220,
+      "rule": "minimum of the uncharged bound and one individually valid adjacent-edge bound; no simultaneous overlapping-edge composition"
+    }
+  },
+  "frontier": {
+    "global_lane": "offset32",
+    "global_branch": "s2=73/s3=41/s4=39/s5=57/offset32/c6F/c7F/c8F/c9F",
+    "completion_premium": 41436891148468120556440841127823744176664445997,
+    "safe_premium_ceiling": 41436893577610853150410067365747465877788324838,
+    "premium_ceiling_margin": 2429142732593969226237923721701123878841
+  },
+  "k86": {
+    "q": 76,
+    "m": 67558,
+    "n": 1048662,
+    "rank_nine_marks": 39250324344981519717154227865483278080507199252491221499389958140,
+    "kernel_capacity": 98784244164231183941571246118630207080247785964961447528340,
+    "full_rank_capacity": 920812197157351151323326240869770734642178201951825815213388613,
+    "total_capacity": 920910981401515382507267812115889364849258449737790776660916953,
+    "required_component_incidence": 920910993546377878777553498313894622180137392955340138442435688,
+    "gap": 12144862496270285686198005257330878943217549361781518735,
+    "ceiling_remainder": 227261548525136411
+  },
+  "captures": [
+    {
+      "role": "ordinary_slice",
+      "app_id": "ap-OP9ryrK2YdHRg463E43ktv",
+      "sha256": "d343b18cfef00d6a1dff8634a2ffe8b8574d25a59cf44f43d4c3862e47c8a4d8"
+    },
+    {
+      "role": "raw_threshold_wave",
+      "app_id": "ap-kjz4PvurdW9cunGO3pse1N",
+      "sha256": "7aa3c934e610aa717ba25b8b7acf424c0f59ad068ec294eac5b448d9abb81612"
+    },
+    {
+      "role": "best_single_wave",
+      "app_id": "ap-HSdSkI0KYmWfnz0jL0Bron",
+      "sha256": "bc67b9fa9ffa6b386d5d5f9e053e2d5a99a8451f2e9ae8d03c0095cc6f867349"
+    },
+    {
+      "role": "component_payment",
+      "app_id": "ap-3mwC5dZ9yYxOTcOJx9JygE",
+      "sha256": "252d9dfa3f4c6e819a706a54e437aae1337907473e3dd3113bff460764007f3e"
+    }
+  ],
+  "source_hashes": {
+    "ordinary_primary": "ca6ffd6766d1e4aac72d98ea09fa30c5d1b100a01c2e51e5e7673bfc92f33106",
+    "ordinary_independent": "ceab00de841839ee0c76eb440e847f27aeb524d11dc6646742f774991817a2ef",
+    "ordinary_slice_checker": "1e1320d542a8187749cbd83a5cb7f174fb79f3cc0e208f4bc57bbae9b37686c8",
+    "raw_primary": "e37b36fec4eab6286e353e54027b87235f0369947c814e795bcbff7a7aa8a68d",
+    "raw_independent": "429336fefdf47623184b2d2f2e21953f50be7fe07dda2c1e8ba054e4af637d74",
+    "raw_merger": "2a32a19df70f098fee290c96545d704f1de1479a995876c50876d8fc79d25f86",
+    "best_single_primary": "8a2ec9877e317798e615e14d0e23b2f0c65d927a109985c7aec160c1cc65db97",
+    "best_single_independent": "ad37ddbfa7920e57ad912b523751d9415944f8e16459c49bb7973a86e386cd10",
+    "best_single_shared_core": "2eb7f85cf6fb4311874f453c75fc868796dbc726599462e12b640e98fe2a9939",
+    "best_single_k85_primary": "2c94b7432cd4c9d37a49288298761cbff9227a07f694fe80ec259ef19e724505",
+    "best_single_k85_independent": "f9a01624b5a11fbc30f58a4f4afca2aa75d9af96b35c69edddcdc7eef5e1fa1f",
+    "best_single_k85_base": "cd1e9d2706c48be390387953c4abeea46958af258f132700809cf2393a5e4a90",
+    "best_single_merger": "d7e83244e5b674c05c710d4930b85616115616d9ac53bd068328a8db7dd1e932",
+    "component_payment": "fc2f9a1c6f406063ca305a6744852680fdf363c422fa6a9586db9b071752cc65"
+  },
+  "claims": {
+    "rank9_closed_prefix": [10, 86],
+    "rank9_remaining_interval": [87, 15528],
+    "first_open_rank9_row": 87,
+    "rank11_paid": false,
+    "KoalaBear_closed": false,
+    "prize_problems_closed": false
+  }
+}

@@ -1,0 +1,463 @@
+{
+  "schema": "kb-mca-rank11-full-carrier-atlas-k79-k82-k83-wall-v1",
+  "exact_parent": "0b6cb72c025ddaafbddd92e3daf398e5993ef320",
+  "previous_packet_sha256": "20dff5ce1c9634f9cd99e2cbacd4809fc860894f4549265a6f8b69176c0843c4",
+  "source_prize_dag": {
+    "repository": "AllenGrahamHart/rs-mca-prize-dag",
+    "commit": "42ad09faf86b9a3624a361b2cc8d1a57f201501c",
+    "nodes": {
+      "79": {
+        "id": "rate_half_mca_rank11_k79_full_carrier_atlas_payment",
+        "tree": "ce03af23683142272324ff89626d72ef4f876e40",
+        "contract_sha256": "29f26c362ce70c3f2f7bd5a8e911baa2d6f3a72fb30bcd066fbe60a1c16eb4cb"
+      },
+      "80": {
+        "id": "rate_half_mca_rank11_k80_full_carrier_atlas_payment",
+        "tree": "58fc3109875e1acbe9032cb2b1d614dac7e03374",
+        "contract_sha256": "90a2e102c402a5323aad41fba6f99f9965defd593f690b429993c459ee1ebba3"
+      },
+      "81": {
+        "id": "rate_half_mca_rank11_k81_full_carrier_atlas_payment",
+        "tree": "0f2b7a1c4e5dc58a2c18a7aec71e816b0aae2145",
+        "contract_sha256": "0f55a47938c6ad528b68a212f7cb51237be84ad1309594a8c8c39dbcf9464525"
+      },
+      "82": {
+        "id": "rate_half_mca_rank11_k82_full_carrier_atlas_payment",
+        "tree": "583733740a63d106039b638e5c001e4287d40e79",
+        "contract_sha256": "bef30d74e322c5ae37ad22c09fe8d7bf657b8a6f037cc1b6d9c2e14f5727c926"
+      },
+      "83_wall": {
+        "id": "rate_half_mca_rank11_k83_pairwise_atlas_triple_carrier_wall",
+        "tree": "60862e5d5feeecb0fd8717e1a7ac027791e726d3",
+        "contract_sha256": "2df88cbc5fdbe8cffde25d064cf3e00e0a339857d34c0917ae2e5a58d3402c08"
+      }
+    }
+  },
+  "record_floor": 274980728111260126,
+  "rows": {
+    "79": {
+      "q": 69,
+      "m": 67551,
+      "n": 1048655,
+      "plain_evaluations": 11546087,
+      "plain_unsafe_cells": 19406,
+      "unsafe_tuple_sha256": "10faebceb497f80e1a7ec6240c304ced8f7999bd15d185eb87d926df0fb6c76a",
+      "unsafe_maximum": 46459910370291986272957168481182441212563668200,
+      "unsafe_maximum_defects": [
+        35,
+        34,
+        35,
+        34
+      ],
+      "unsafe_minimum": 41268944562687152995570355627666107337827982337,
+      "unsafe_minimum_defects": [
+        39,
+        38,
+        48,
+        38
+      ],
+      "safe_maximum_label": "s2=59/s3=43/U23/s4=41/s5=36/c6F/c7F/c8F/c9F/ordinary",
+      "completion_premium": 41268581039515451359223235239395447056496741638,
+      "safe_premium_ceiling": 41268671081336681367533549106854707571159305471,
+      "premium_ceiling_margin": 90041821230008310313867459260514662563833,
+      "reroute_evaluations": 19114557,
+      "reroute_maximum": 36806673610575733210712437632598364987616830139,
+      "reroute_active_defects": [
+        49,
+        42,
+        43,
+        41
+      ],
+      "reroute_active_geometry": "F23__N4_t6__N5_t8/c6F/c7F/c8F/c9F",
+      "reroute_minimum_margin": 4461997470760948156821111474256342583542475332,
+      "geometry_lanes": [
+        {
+          "lane": "carrier32_geom",
+          "evaluations": 40754,
+          "maximum": 36256749712854213688632716991523482919561106229
+        },
+        {
+          "lane": "one_geom",
+          "evaluations": 21005222,
+          "maximum": 39155883271390100828809596211624350117737071281
+        },
+        {
+          "lane": "two_geom",
+          "evaluations": 17169327,
+          "maximum": 39061070288031296496076745000232701334566841597
+        },
+        {
+          "lane": "three_geom",
+          "evaluations": 21820911,
+          "maximum": 38966231182471923571545047130160379246693375829
+        },
+        {
+          "lane": "four_geom",
+          "evaluations": 26912242,
+          "maximum": 38871365950085127234889728098761878965883214905
+        },
+        {
+          "lane": "five_geom",
+          "evaluations": 32415019,
+          "maximum": 38776474586243412257296110756531546450421037529
+        },
+        {
+          "lane": "six_geom",
+          "evaluations": 38307661,
+          "maximum": 38681557086318642930357670819182556292266205313
+        }
+      ],
+      "geometry_total_evaluations": 157671136,
+      "rank_nine_marks": 39239840261134361900222129393259496866419123085680326546743694125,
+      "kernel_capacity": 81259663069047123771510930548273498328033049064749938786634,
+      "full_rank_capacity": 919780085881797545609593167837777447141142396986502465526854918,
+      "total_capacity": 919861345544866592733364678768325720639470430035567215465641552,
+      "required_component_incidence": 919861795722422270762546341993453530360500086436789193386580045,
+      "gap": 450177555678029181663225127809721029656401221977920938493
+    },
+    "80": {
+      "q": 70,
+      "m": 67552,
+      "n": 1048656,
+      "plain_evaluations": 11929729,
+      "plain_unsafe_cells": 26104,
+      "unsafe_tuple_sha256": "911406bd5364eea9ad69c2d82d6263db31f43f5e9d3d04f0cfdedd9a36eb47bc",
+      "unsafe_maximum": 47312844271067754629286443243427795391066666515,
+      "unsafe_maximum_defects": [
+        36,
+        35,
+        36,
+        35
+      ],
+      "unsafe_minimum": 41293044318338497535265903817702585719723414702,
+      "unsafe_minimum_defects": [
+        62,
+        53,
+        36,
+        35
+      ],
+      "safe_maximum_label": "s2=66/s3=40/s4=40/s5=41/c6d3/c7d2/c8d1/c9d0/carrier32_plain",
+      "completion_premium": 41292698225299493655203544545324133071167827372,
+      "safe_premium_ceiling": 41292710876731831000559668848825466355499743836,
+      "premium_ceiling_margin": 12651432337345356124303501333284331916464,
+      "reroute_evaluations": 24962791,
+      "reroute_maximum": 37883477302563580100728788160734085033920217692,
+      "reroute_active_defects": [
+        51,
+        44,
+        44,
+        43
+      ],
+      "reroute_active_geometry": "F23__N4_t7__N5_t8/c6F/c7F/c8F/c9F",
+      "reroute_minimum_margin": 3409233574168250899830880688091381321579526144,
+      "geometry_lanes": [
+        {
+          "lane": "carrier32_geom",
+          "evaluations": 40754,
+          "maximum": 36961155255004357410659372255010067303232457270
+        },
+        {
+          "lane": "one_geom",
+          "evaluations": 21944279,
+          "maximum": 39668547314355452559959739197487065940915191238
+        },
+        {
+          "lane": "two_geom",
+          "evaluations": 17942561,
+          "maximum": 39490631995301623484902652392462210512873218676
+        },
+        {
+          "lane": "three_geom",
+          "evaluations": 22809262,
+          "maximum": 39379380312631097856527485773946602378257133459
+        },
+        {
+          "lane": "four_geom",
+          "evaluations": 28138943,
+          "maximum": 39284527117719259814884223489042265827316201996
+        },
+        {
+          "lane": "five_geom",
+          "evaluations": 33903450,
+          "maximum": 39189647792498508126689336385123495111263062836
+        },
+        {
+          "lane": "six_geom",
+          "evaluations": 40079354,
+          "maximum": 39094742332340799240973238347648071421419923376
+        }
+      ],
+      "geometry_total_evaluations": 164858603,
+      "rank_nine_marks": 39241337919909818607990013617538906608515182056737833296671667600,
+      "kernel_capacity": 83657793746052526782865588462104112007133720670814986354680,
+      "full_rank_capacity": 919927893519658403613746606120122047966421141709229446422302481,
+      "total_capacity": 920011551313404456140529471708584152078428275429900261408657161,
+      "required_component_incidence": 920011614566133106569030751958659015357981765712255270719887600,
+      "gap": 63252728650428501280250074863279553490282355009311230439
+    },
+    "81": {
+      "q": 71,
+      "m": 67553,
+      "n": 1048657,
+      "plain_evaluations": 12695949,
+      "plain_unsafe_cells": 39570,
+      "unsafe_tuple_sha256": "5e8c37955cd9842170149c8021e77d6072be9a769df01e8d82bd11d4caaa5c20",
+      "unsafe_maximum": 47839239704590372131857155872990922224456160352,
+      "unsafe_maximum_defects": [
+        36,
+        35,
+        36,
+        35
+      ],
+      "unsafe_minimum": 41316794447802485021929420203624088412615889916,
+      "unsafe_minimum_defects": [
+        50,
+        41,
+        37,
+        49
+      ],
+      "safe_maximum_label": "s2=55/s3=41/s4=44/s5=35/c6d3/c7d2/c8d1/c9d0/carrier32_plain",
+      "completion_premium": 41316738803727121977844753592626079710298860916,
+      "safe_premium_ceiling": 41316748004459991211702356957241597892727789349,
+      "premium_ceiling_margin": 9200732869233857603364615518182428928433,
+      "reroute_evaluations": 40569326,
+      "reroute_maximum": 38588134569160005322410296957739069270917018036,
+      "reroute_active_defects": [
+        52,
+        45,
+        46,
+        44
+      ],
+      "reroute_active_geometry": "F23__N4_t6__N5_t8/c6F/c7F/c8F/c9F",
+      "reroute_minimum_margin": 2728613435299985889292059999502528621810771313,
+      "geometry_lanes": [
+        {
+          "lane": "carrier32_geom",
+          "evaluations": 40754,
+          "maximum": 37665778606592433241731628025545917471782616876
+        },
+        {
+          "lane": "one_geom",
+          "evaluations": 22911273,
+          "maximum": 40287409045971746658167168137122038667039311900
+        },
+        {
+          "lane": "two_geom",
+          "evaluations": 18739539,
+          "maximum": 40179023674135538620727055854234955378217394440
+        },
+        {
+          "lane": "three_geom",
+          "evaluations": 23827370,
+          "maximum": 40084182517150340115811311496816374604091014484
+        },
+        {
+          "lane": "four_geom",
+          "evaluations": 29403262,
+          "maximum": 39989315231002276750758313350450282700834324796
+        },
+        {
+          "lane": "five_geom",
+          "evaluations": 35437122,
+          "maximum": 39894421811063397136863019553418602931480329476
+        },
+        {
+          "lane": "six_geom",
+          "evaluations": 41905801,
+          "maximum": 39799502252705109344151365145908081622218913232
+        }
+      ],
+      "geometry_total_evaluations": 172265121,
+      "rank_nine_marks": 39242835601181010698866885568808560144335990154054797457368742100,
+      "kernel_capacity": 86091034453653535709156210621921357279293652193211487525478,
+      "full_rank_capacity": 920075318556593625070749175337488572145718733195656710337079591,
+      "total_capacity": 920161409591047278606458331548110493502998026847849921824605069,
+      "required_component_incidence": 920161455591487706590634046908796767072210573094612939715085480,
+      "gap": 46000440427984175715360686273569212546246763017890480411
+    },
+    "82": {
+      "q": 72,
+      "m": 67554,
+      "n": 1048658,
+      "plain_evaluations": 13101284,
+      "plain_unsafe_cells": 49900,
+      "unsafe_tuple_sha256": "d8e7a8286cffeeb8af99e9ea283d9ff2c0cc6c86730c84062ec01ec85c6fa0c5",
+      "unsafe_maximum": 48687966000912198522883947438948522241218625935,
+      "unsafe_maximum_defects": [
+        37,
+        36,
+        37,
+        36
+      ],
+      "unsafe_minimum": 41340796199658698619237761252589872639016057405,
+      "unsafe_minimum_defects": [
+        33,
+        32,
+        41,
+        46
+      ],
+      "safe_maximum_label": "s2=46/s3=38/U23/s4=48/s5=36/c6d3/c7d2/c8d1/c9d0/ordinary",
+      "completion_premium": 41340768193812712537232048213849077199458005267,
+      "safe_premium_ceiling": 41340782463078947988942803245983241217128142816,
+      "premium_ceiling_margin": 14269266235451710755032134164017670137549,
+      "reroute_evaluations": 48822291,
+      "reroute_maximum": 39665321226453960140094333058326997487100975540,
+      "reroute_active_defects": [
+        54,
+        47,
+        47,
+        46
+      ],
+      "reroute_active_geometry": "F23__N4_t7__N5_t8/c6F/c7F/c8F/c9F",
+      "reroute_minimum_margin": 1675461236624987848848470187656243730027167276,
+      "geometry_lanes": [
+        {
+          "lane": "carrier32_geom",
+          "evaluations": 40754,
+          "maximum": 38370619813113848716464281982257001406100108472
+        },
+        {
+          "lane": "one_geom",
+          "evaluations": 23906008,
+          "maximum": 40891353398864895345494242236029970259845626460
+        },
+        {
+          "lane": "two_geom",
+          "evaluations": 19559057,
+          "maximum": 40796524280258026366096527076550995102481839020
+        },
+        {
+          "lane": "three_geom",
+          "evaluations": 24875158,
+          "maximum": 40701669033634385104744584582836276886853308780
+        },
+        {
+          "lane": "four_geom",
+          "evaluations": 30704205,
+          "maximum": 40606787654366112339825534736087640775435306948
+        },
+        {
+          "lane": "five_geom",
+          "evaluations": 37016252,
+          "maximum": 40511880137824708313173643524549118723430561660
+        },
+        {
+          "lane": "six_geom",
+          "evaluations": 43786246,
+          "maximum": 40416946479381032658955745240064374133655236540
+        }
+      ],
+      "geometry_total_evaluations": 179887680,
+      "rank_nine_marks": 39244333304948179122152071277176281881562864630884817760623521100,
+      "kernel_capacity": 88559395353704123113625825506235370038769141613268234370416,
+      "full_rank_capacity": 920222688064756781626822942131742148863799116342322489715247358,
+      "total_capacity": 920311247460110485749936567957248384233837885483935757949617774,
+      "required_component_incidence": 920311318801441740985049141558501499428032802297141724948016560,
+      "gap": 71341331255235112573601253115194194916813205966998398786
+    }
+  },
+  "wall83": {
+    "defects": [
+      50,
+      49,
+      49,
+      48
+    ],
+    "completion_maxima": [
+      23,
+      24,
+      24,
+      25
+    ],
+    "label": "F23__N4_t0__N5_t2",
+    "pairwise_charges": [
+      [
+        29,
+        6
+      ],
+      [
+        29,
+        6
+      ]
+    ],
+    "pairwise_maximum": 41411584407693108041789796771180703922717609427,
+    "safe_premium_ceiling": 41364814251146263394918185689469529403097578120,
+    "pairwise_margin": -46770156546844646871611081711174519620031307,
+    "forced_intersection_rows": [
+      {
+        "overlap45": 0,
+        "triple_union": 32,
+        "triple_dimension": 4,
+        "maximum": 41411584407693108041789796771180703922717609427,
+        "margin": -46770156546844646871611081711174519620031307
+      },
+      {
+        "overlap45": 1,
+        "triple_union": 31,
+        "triple_dimension": 4,
+        "maximum": 41411584407693108041789796771180703922717609427,
+        "margin": -46770156546844646871611081711174519620031307
+      },
+      {
+        "overlap45": 2,
+        "triple_union": 30,
+        "triple_dimension": 4,
+        "maximum": 41411584407693108041789796771180703922717609427,
+        "margin": -46770156546844646871611081711174519620031307
+      },
+      {
+        "overlap45": 3,
+        "triple_union": 29,
+        "triple_dimension": 4,
+        "maximum": 41411584407693108041789796771180703922717609427,
+        "margin": -46770156546844646871611081711174519620031307
+      }
+    ],
+    "branch_free_baseline": [
+      {
+        "kprime": 81,
+        "baseline_premium": 94007459453687947894291152913097240382686737518,
+        "safe_premium_ceiling": 41316748004459991211702356957241597892727789349,
+        "margin": -52690711449227956682588795955855642489958948169
+      },
+      {
+        "kprime": 83,
+        "baseline_premium": 96735817248988026889231098745064402053450607850,
+        "safe_premium_ceiling": 41364814251146263394918185689469529403097578120,
+        "margin": -55371002997841763494312913055594872650353029730
+      },
+      {
+        "kprime": 100,
+        "baseline_premium": 119950129342120402394925036907883382746668804221,
+        "safe_premium_ceiling": 41772944655156220291402012818446891138694189577,
+        "margin": -78177184686964182103523024089436491607974614644
+      }
+    ]
+  },
+  "claims": {
+    "rank9_closed_rows": [
+      79,
+      80,
+      81,
+      82
+    ],
+    "rank9_closed_prefix": [
+      10,
+      82
+    ],
+    "rank9_remaining_interval": [
+      83,
+      15528
+    ],
+    "rank8_remaining_interval": [
+      22,
+      22525
+    ],
+    "first_pairwise_atlas_wall": 83,
+    "next_structural_target": "nonseparable triple-carrier support-3/4/5 census",
+    "chronology_owner": false,
+    "rank11_paid": false,
+    "active_v4_ledger_movement": 0,
+    "KoalaBear_closed": false
+  }
+}

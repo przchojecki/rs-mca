@@ -1,0 +1,199 @@
+{
+  "schema": "kb-mca-dense-core-owner-substrate-v1",
+  "exact_parent": "6a5dcdae1591fc7f044eda6a942bfe178521a48c",
+  "source_prize_dag": {
+    "repository": "AllenGrahamHart/rs-mca-prize-dag",
+    "nodes": {
+      "reserve_repricing": {
+        "id": "rate_half_mca_two_anchor_reserve_repricing",
+        "path": "background/nodes/rate_half_mca_two_anchor_reserve_repricing",
+        "commit": "2607c6fa7957eac4883547f9af3bbcaf9495e572",
+        "tree": "f64dcacc0bb3b7a94a2fba1e3713f0172a7e3e5d",
+        "contract_sha256": "172934ca92647c61e054f30b8ec25be83844f2859f32245a20c5234eda11f56e"
+      },
+      "unguarded_transport_counterexample": {
+        "id": "rate_half_mca_kplus1_badness_transport_counterexample",
+        "path": "background/nodes/rate_half_mca_kplus1_badness_transport_counterexample",
+        "commit": "80d430a681ee1f823ec1941e8a57a204a73843a0",
+        "tree": "05070eb518cd275cf194d55357f99c45c1cce464",
+        "contract_sha256": "391421a32ad5f40bb1be20754760065ea31490f226e13151e79a3ad61a837365"
+      },
+      "guarded_lattice_adapter": {
+        "id": "rate_half_mca_degree_guarded_shifted_lattice_witness_adapter",
+        "path": "background/nodes/rate_half_mca_degree_guarded_shifted_lattice_witness_adapter",
+        "commit": "3f626c84d1f6d76fff77a26e7d3d1586ebc869f8",
+        "tree": "ba43f74f8deb085889b8d5d5c6d605436f7bafc5",
+        "contract_sha256": "94935311eaf6f4292add51fe8be92c08d66a17362babc07510b2b5b6a9532517"
+      },
+      "typed_pole_line_witness": {
+        "id": "rate_half_mca_pole_line_typed_witness_certificate",
+        "path": "background/nodes/rate_half_mca_pole_line_typed_witness_certificate",
+        "commit": "d888aff329548ad92691e5f6c192ba037da13cc6",
+        "tree": "e035a3feb580244957e2c258191c401714426395",
+        "contract_sha256": "9423f8ab7c0444205ba7eb9a78fdf16a818d58d1dc0e17c6a81c74a78eb2edc4"
+      }
+    }
+  },
+  "upstream_source_pins": {
+    "pr1159_head": "e603e0cedc5220ec2f29bd53836e732e3ec14934",
+    "pr1160_head": "c5f4ea7a0c78828c901ae5f3428894a8b2e2806b",
+    "pr1163_head": "e26c15b2d2c2f98ae12dda17b97c40981f76e1ff"
+  },
+  "reserve_repricing": {
+    "exception_cap": 31,
+    "owner_target": "B*-(2w+31)-(n-g)",
+    "rows": [
+      {
+        "name": "KoalaBear MCA",
+        "n": 2097152,
+        "K": 1048576,
+        "m": 1116048,
+        "budget": 274980728111395087,
+        "average_ceiling": 57198030366,
+        "w": 67472,
+        "two_w": 134944,
+        "combined_reserve": 134975,
+        "g_min": 1183521,
+        "target_g_min": 274980728110346481,
+        "target_full": 274980728111260112,
+        "full_average_quotient": 4807520,
+        "full_average_remainder": 53166107792
+      },
+      {
+        "name": "Mersenne-31 MCA stress row",
+        "n": 2097152,
+        "K": 1048576,
+        "m": 1116024,
+        "budget": 16777215,
+        "average_ceiling": 1752700,
+        "w": 67448,
+        "two_w": 134896,
+        "combined_reserve": 134927,
+        "g_min": 1183473,
+        "target_g_min": 15728609,
+        "target_full": 16642288,
+        "full_average_quotient": 9,
+        "full_average_remainder": 867988
+      }
+    ]
+  },
+  "unguarded_transport_counterexample": {
+    "p": 2130706433,
+    "p_minus_1_factorization": "127*2^24",
+    "pocklington_witnesses": {
+      "2": 3,
+      "127": 2
+    },
+    "n": 2097152,
+    "k": 1048576,
+    "m": 1116048,
+    "zeta": 1213133211,
+    "error_prefix_size": 67473,
+    "support_end_exclusive": 1183521,
+    "slope": 0,
+    "direction_degree": 1048576,
+    "in_code_k": false,
+    "in_code_kplus1": true,
+    "root_surplus": 67472
+  },
+  "guarded_lattice_adapter": {
+    "shift_formulas": {
+      "code": "max(deg W,deg N-(k-1))",
+      "effective": "max(deg W,deg N-k)",
+      "maximum_gap": 1
+    },
+    "official_row": {
+      "n": 2097152,
+      "k": 1048576,
+      "effective_k": 1048577,
+      "m": 1116048,
+      "omega": 981104,
+      "effective_numerator_degree_cap": 2029680,
+      "actual_numerator_degree_cap": 2029679
+    },
+    "guards": {
+      "quotient": "deg(N/W)<k",
+      "numerator": "deg N<=omega+k-1",
+      "code_shift": "s_k(W,N)<=omega",
+      "pair_noncontainment": "at least one degree-below-m support interpolant has degree at least k"
+    },
+    "toy_exhaustion": {
+      "field": 7,
+      "domain_size": 6,
+      "k": 3,
+      "m": 4,
+      "supports": 15,
+      "records": 36015,
+      "actual_records_per_support": 343,
+      "shift_checks": 108
+    }
+  },
+  "typed_pole_line_witness": {
+    "id": "KB_SPARSE_BOUNDARY_ACTUAL_RECORD_V1",
+    "extension_modulus_low_to_high": [
+      6,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    "error_prefix_size": 67473,
+    "support_start": 67473,
+    "support_end_exclusive": 1183521,
+    "slope": "alpha",
+    "r0": "indicator_E + alpha/(x-alpha)",
+    "r1": "-1/(x-alpha)",
+    "slope_word": "indicator_E",
+    "explanation": "0",
+    "guarded_quotient_degree": -1,
+    "d1_code_shift": 67473,
+    "d1_effective_shift": 67473,
+    "actual_root_margin": 67472,
+    "effective_root_margin": 67471,
+    "frozen_Q_owner": "UNASSIGNED",
+    "frozen_BC_owner": "UNASSIGNED",
+    "frozen_U_new_owner": "UNASSIGNED"
+  },
+  "dense_core_bridge": {
+    "source": "PR #1168 rank-eleven pair-core terminal",
+    "core_deficiency_at_most": 4,
+    "owned_slopes_at_least": 200632,
+    "requirements": [
+      "separate 2w and 31 first-match charges",
+      "repriced large-owner target when the S/A/E assembly is reused",
+      "degree-below-k quotient guard",
+      "same-support pair-noncontainment test",
+      "actual-line and owner-chronology preservation",
+      "typed pole-line acceptance and unguarded-transport rejection"
+    ]
+  },
+  "claims": {
+    "witness_adapter_sound": true,
+    "reserve_arithmetic_viable": true,
+    "dense_core_owner_theorem": false,
+    "rank11_paid": false,
+    "active_v4_ledger_movement": 0,
+    "KoalaBear_closed": false
+  },
+  "packet_files": [
+    "agents.md",
+    "experimental/agents-log.md",
+    "experimental/grande_finale.tex",
+    "experimental/notes/thresholds/kb_mca_dense_core_owner_substrate_v1.md",
+    "experimental/data/certificates/kb-mca-dense-core-owner-substrate-v1/README.md",
+    "experimental/scripts/verify_kb_mca_dense_core_owner_substrate_v1.py",
+    "experimental/scripts/verify_kb_mca_dense_core_owner_substrate_v1_independent.py"
+  ],
+  "packet_file_sha256": {
+    "agents.md": "34bb6971fb3f3844974c202cdb1b1492d569d4b1bc226c57a1f93d9d39cd5c0f",
+    "experimental/agents-log.md": "0ae2d9909460563455f0d47940e041730fb8cf4bd439d81b54c8b363782d14b2",
+    "experimental/grande_finale.tex": "bf7f8369d22d3b08a8ec861c2f60c4c80f9067202922bff7ad4cb053925167ac",
+    "experimental/notes/thresholds/kb_mca_dense_core_owner_substrate_v1.md": "9d760277542ee125c1f44d61a694e04b859b25ffe56912763159cedb4afe8567",
+    "experimental/data/certificates/kb-mca-dense-core-owner-substrate-v1/README.md": "44e6cd274578ff9d6c8da3e1022c908b91132bebff3af931caca0fc6a3a6e6a5",
+    "experimental/scripts/verify_kb_mca_dense_core_owner_substrate_v1.py": "d76ea235023f57ef4859d8478d3087d67d056d5a8ba1a7141084c5c25f44ea1e",
+    "experimental/scripts/verify_kb_mca_dense_core_owner_substrate_v1_independent.py": "fd0e758be539fa14ffea77b83c458f3cdf3090a5177c02811ef189513d0ae949"
+  },
+  "payload_sha256": "32869d00c901b0dea98074eb653c6899566dee75b65764db90d2b6d89c83c5de"
+}

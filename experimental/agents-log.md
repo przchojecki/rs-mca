@@ -30,6 +30,1015 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-15 - Minimal-row weighted split-pencil payment
+
+- **Agent/model:** Codex with an abstract affine-line capacity proof and two
+  independent exact-integer replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED ROW-ROUTE CLOSE. Zero active-v4 ledger movement; no
+  KoalaBear closure.
+- **What is being added:** A weighted selected-support split-pencil theorem
+  gives capacity `floor((A-2)S^2/8)+C(S,2)+C(h,2)C(A-1,2)`. At `K'=10`,
+  its value `9274769506943785` is below full-density demand
+  `11736940042024039` by `2462170535080254`.
+- **How it is useful:** Dimension equality already removes the kernel and
+  rank-eight lanes, so this closes every component target on `K'=10` and
+  leaves rank nine only on `11..15528`.
+- **What to do next:** Attack `K'=11` while retaining owner labels and the
+  fixed-circuit quotient structure; chart-local deduplication is already
+  known to be too weak.
+
+### 2026-08-15 - Rank-nine exact residual petal partition
+
+- **Agent/model:** Codex with convex integer packing, finite endpoint
+  reduction, and independent exact replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED RESIDUAL-INTERVAL ELIMINATION. Zero active-v4 ledger
+  movement; no KoalaBear closure.
+- **What is being added:** Solving the integer partition of the disjoint
+  owner petals gives the cap
+  `981105*(1048577*K'+34798536326)`. Four quotient blocks reduce the global
+  ceiling comparison to eight endpoints. Demand first exceeds the cap at
+  `K'=15529` by `3893601214441`; the cap wins at `15528` by
+  `1296184504470`.
+- **How it is useful:** It closes another 106 rank-nine rows, leaving rank
+  nine open only on `10..15528`. The proof adds no premise and stays wholly
+  in residual units.
+- **What to do next:** Seek a second owner resource or cross-chart incidence
+  coupling on `10..15528`; another one-chart per-coordinate relaxation is
+  unlikely to pay the remaining factor.
+
+### 2026-08-15 - Rank-nine residual petal-pair capacity
+
+- **Agent/model:** Codex with exact residual-row arithmetic and independent
+  factor replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED RESIDUAL-INTERVAL ELIMINATION. Zero active-v4 ledger
+  movement; no KoalaBear closure.
+- **What is being added:** In a fixed rank-nine residual chart, owner petals
+  give the marked capacity
+  `floor(981105*(n'-j)*(m'+j-20)/2)` for `9<=j<=K'-1`. Demand first exceeds
+  this cap at `K'=15635` by `3381772318665`; the cap still wins at `15634`
+  by `1881744358235`.
+- **How it is useful:** It closes rank nine on `15635..20617`; together with
+  the repaired high-row cut, rank nine now survives only on `10..15634`.
+  The proof remains wholly in residual units and uses no original-row
+  `134944` core floor.
+- **What to do next:** Couple owner-labelled line incidence with the same
+  petal budget on `10..15634`; do not sum chart-local caps after
+  deduplication.
+
+### 2026-08-15 - Rank-nine reverse-shortening scope repair
+
+- **Agent/model:** Codex with exact adjacent-row arithmetic and independent
+  row-unit audit.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED HIGH-ROW ELIMINATION / RETRACTED LOW-ROW ARGUMENT. Zero
+  active-v4 ledger movement.
+- **What is being added:** The weighted rank-nine demand first exceeds its
+  cap at `K'=20618`, by `2403530864991`; the cap wins at `20617` by
+  `7221289203362`. The old low-row proof compared an original-row
+  `134944` common core with residual `m'` after a lift that already inserts
+  `1048576-K'` common coordinates, so that argument is removed.
+- **How it is useful:** It preserves the valid weighted closure on
+  `20618..1048576` while reopening the exact rank-nine interval
+  `10..20617` before the packet is reviewed or merged.
+- **What to do next:** Seek a residual-unit owner-plane or chronology bound
+  on the now-refined interval `10..15634`; never transport the original-row
+  pair-core floor without subtracting the deleted locator core.
+
+### 2026-08-15 - Rank-eight codimension-one circuit-shadow census
+
+- **Agent/model:** Codex with hyperplane factorization, exact matroid
+  counting, and independent finite-field replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED STRUCTURAL PARTITION. Zero active-v4 ledger movement;
+  no KoalaBear closure.
+- **What is being added:** At `K'=11`, one fixed circuit `C_B subset B` of
+  size `2<=c<=9` controls every extension. The exact counts are
+  `C(11-c,2)` rank-eight shadows, `55-C(11-c,2)` rank-nine shadows, `c`
+  bases, and locator-ideal dimension `11-c`.
+- **How it is useful:** It splits the next attack into the full-circuit
+  `c=9` owner-overlap route and the proper-circuit `c<=8` locator-ideal
+  route, while fencing any claim that local linear algebra removes a size.
+- **What to do next:** Retain owner labels in one-replacement rank-nine
+  charts for `c=9`; test legitimate shortening or owner forcing from the
+  larger locator ideal when `c<=8`.
+
+### 2026-08-15 - Rank-eight minimal-shortening exclusion
+
+- **Agent/model:** Codex with dimension equality, Lagrange interpolation,
+  and two independent finite-field checks.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED ONE-ROW EXCLUSION. Zero active-v4 ledger movement; no
+  KoalaBear closure.
+- **What is being added:** At `K'=10`, the ten-dimensional correction space
+  equals the complete residual degree-below-ten RS space. Nine-point
+  interpolation gives evaluation rank nine on every nine-set, excluding the
+  rank-eight target on this row.
+- **How it is useful:** The exact lower route boundary is now `K'=11`, where
+  the existing eight-petal fence demonstrates that dimension equality no
+  longer applies.
+- **What to do next:** Classify the codimension-one `K'=11` hyperplane
+  circuits and retain all 55 nine-shadows in the first global coupling.
+
+### 2026-08-15 - Rank-eight fixed-chart local-payment fence
+
+- **Agent/model:** Codex with an exact eight-petal construction and an
+  independent prime-field replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED ROUTE FENCE. Zero active-v4 ledger movement; no
+  KoalaBear closure.
+- **What is being added:** At `K'=11`, one rank-eight nine-coordinate chart
+  admits `4070352` pair-noncontained exact-support records. Each has
+  `C(67473,2)` rank-ten affine-owner component extensions, giving marked
+  weight `9265216597693056`, above the exact weighted selector demand
+  `5869376383979174`. Error affine rank is at most two, and locator
+  multiplication lifts the family to the official row.
+- **How it is useful:** This proves that neither the deduplicated nor the
+  weighted rank-eight fixed-chart output is a payable terminal by itself.
+  The remaining lower-interval proof must retain normalized full-span/anchor
+  ancestry or couple charts and owners through global chronology/incidence.
+- **What to do next:** Formulate the first global coupling identity which
+  excludes the eight-petal model from the actual dense-anchor family; do not
+  spend another cycle sharpening a cap from the same chart-local hypotheses.
+
+### 2026-08-15 - Shortening-weighted terminal kernel cut
+
+- **Agent/model:** Codex with an exact record/extension coupling, Newton
+  forward-difference certificate, and independent shifted-power replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED CAPACITY CUT. Zero active-v4 ledger movement; no
+  KoalaBear closure.
+- **What is being added:** For each fixed corank basis, the number of common
+  zero normals simultaneously controls its record cap and its extension
+  count. The weighted noncomplete cap decreases from `t=1`; exact endpoint
+  comparisons select the complete branch for coranks one through three and
+  `t=1` for coranks four through nine. The resulting degree-eleven demand
+  gap has twelve positive Newton coefficients at `K'=796599`; an independent
+  ordinary-power expansion also has twelve positive coefficients.
+- **How it is useful:** Together with the previous cutoff through
+  `K'=796598`, this removes the fixed-kernel branch on every official
+  residual dimension through `K'=1048576`.
+- **What to do next:** Attack rank eight on `10..22525` and the guarded
+  dense-owner chronology terminal on `22526..37995`. No fixed-kernel
+  interval remains.
+
+### 2026-08-15 - Uniform corank-three projective cap
+
+- **Agent/model:** Codex with a rank-four matroid deletion-contraction
+  theorem, exact residue-class recurrence evaluation, and independent direct
+  recurrence replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED UNIFORM CAP / PROVED CAPACITY CUT. Zero active-v4 ledger
+  movement; no KoalaBear closure.
+- **What is being added:** Every loopless rank-four matroid on `m=a+r`
+  elements with parallel classes of size at most `a` and rank-two flats of
+  size at most `a+1` satisfies the printed recurrence `6b(M)>=Q_a(r)`.
+  After deleting global zero normals in every corank-three chart,
+  support-local transversality supplies exactly those ceilings with
+  `a=t+1` and `r=67474`. The resulting exact cap is at most `983902549`
+  on all `1048567` official shortenings, with its maximum at `t=0`.
+- **How it is useful:** The exact hierarchy replay through `K'=796598` is
+  now unconditional, with first wall `K'=796599`. The fixed-kernel branch is
+  reduced to `796599..1048576`.
+- **What to do next:** Select a scaling-compatible capacity mechanism for
+  the remaining kernel interval instead of extending corank by rote. Rank
+  eight below `22526` and chronology on `22526..37995` remain disjoint
+  lower-interval targets.
+
+### 2026-08-15 - Uniform corank-two projective cap
+
+- **Agent/model:** Codex with a rank-three matroid induction, exact endpoint
+  analysis, and independent packet replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED UNIFORM CAP / PROVED CAPACITY CUT. Zero active-v4 ledger
+  movement; no KoalaBear closure.
+- **What is being added:** Every loopless rank-three matroid on `m` elements
+  with parallel classes of size at most `a` has
+  `2b(M)>=(m-1)(m-1-a)`. After deleting global zero normals in every
+  corank-two chart, support-local transversality gives `a<=t+1`; exact
+  endpoint analysis then proves `M_2<=84416263` uniformly.
+- **How it is useful:** The exact hierarchy replay through `K'=568338` is
+  now unconditional, with first wall `K'=568339`. The replay through
+  `K'=796598` remains conditional only on the uniform corank-three cap.
+- **What to do next:** Prove the analogous rank-four bounded-point/line
+  basis floor needed for uniform corank three, or replace it with a
+  shortening-aware resource. Rank eight below `22526` and chronology on
+  `22526..37995` remain disjoint lower-interval targets.
+
+### 2026-08-15 - Projective-cap shortening-scope repair
+
+- **Agent/model:** Codex with a deletion-contraction proof, exact rational
+  endpoint analysis, and independent packet replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED SCOPE FENCE / TWO CONDITIONAL REPLAYS. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** The projective-paving cap is proved for all nine
+  completely shortened charts, but complete shortening is the `t=0` chart.
+  For `d>=2`, the valid uniform envelope is
+  `floor(max(P_d,F_d(1),F_d(K'-10)))`. At `K'=377674` it gives
+  `M_2=253238254` and `M_3=3935391907`, so the previous uniform use of the
+  smaller complete-chart caps is retracted. Corank one remains uniform.
+- **How it is useful:** It restores the exact unconditional boundary
+  `K'<=377673`, retains the complete all-corank cap theorem, and preserves
+  the replays through `568338` and `796598` as explicit conditional results.
+- **What to do next:** Prove uniform corank-two and corank-three caps at the
+  stated targets, or replace those premises with a shortening-aware resource
+  that still beats the kernel demand.
+
+### 2026-08-15 - Corank-three projective-frame kernel cap
+
+- **Agent/model:** Codex with a spanning no-three-collinear projective
+  quadruple count, bounded 64-worker all-row replay, and independent
+  plane-split/direct-forest audit.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** COMPLETE-CHART CAP PROVED / CAPACITY REPLAY CONDITIONAL. Zero
+  active-v4 ledger movement; no KoalaBear closure. Superseded in scope by the
+  shortening-scope repair above.
+- **What is being added:** In the complete shortened corank-three chart,
+  the projective normals are distinct, no three are collinear, and they span
+  `PG(3)`. Every record owns at least `1228711865141376` ordered independent
+  coordinate quadruples, giving the complete-chart cap `983902549`.
+  Conditional substitution into the all-step hierarchy replays through
+  `K'=796598`, with first reversal at `K'=796599`.
+- **How it is useful:** The exact conditional certificate prices the first
+  three individual caps and six hierarchy forest edges; both shared
+  resources remain slack. It identifies the consequence of a future uniform
+  cap theorem without claiming those dimensions unconditionally.
+- **What to do next:** Prove the uniform corank-three premise or replace it
+  with a shortening-aware resource. Rank eight below `22526` and chronology
+  on `22526..37995` remain disjoint lower-interval targets.
+
+### 2026-08-15 - Corank-two projective-basis kernel cap
+
+- **Agent/model:** Codex with a noncollinear projective triple count, bounded
+  64-worker all-row replay, and independent line-split/direct-path audit.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** COMPLETE-CHART CAP PROVED / CAPACITY REPLAY CONDITIONAL. Zero
+  active-v4 ledger movement; no KoalaBear closure. Superseded in scope by the
+  shortening-scope repair above.
+- **What is being added:** In the complete shortened corank-two chart, the
+  incident projective normals are distinct and noncollinear. Every record
+  owns at least `13657614768` ordered independent coordinate triples, giving
+  the complete-chart cap `84416263`. Conditional substitution into the
+  all-step hierarchy replays through `K'=568338`, with first reversal at
+  `K'=568339`.
+- **How it is useful:** The exact conditional certificate prices the first
+  two individual caps and seven hierarchy edges. It identifies the
+  consequence of a future uniform cap theorem without claiming those
+  dimensions unconditionally.
+- **What to do next:** Prove the uniform corank-two premise or replace it
+  with a shortening-aware resource. Rank eight below `22526` and chronology
+  on `22526..37995` remain disjoint lower-interval targets.
+
+### 2026-08-15 - Corank-one projective-pair kernel cap
+
+- **Agent/model:** Codex with an exact projective partition count, bounded
+  64-worker all-row replay, and independent direct-path audit.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** In the complete shortened corank-one chart,
+  zero normals are absent and pair noncontainment forces at least two
+  projective classes. Every record therefore owns at least `134944` ordered
+  independent coordinate pairs, giving the cap `8147918`. Substitution into
+  the all-step hierarchy extends exact kernel exclusion through `K'=377673`,
+  with first reversal at `K'=377674`.
+- **How it is useful:** It removes `359515` further kernel dimensions. The
+  exact optimizer prices only the corank-one and corank-two individual caps;
+  both shared resources are slack, exposing the corank-two cap as the next
+  local census target.
+- **What to do next:** Seek a projective-incidence strengthening of the
+  corank-two complete shortened chart, or prove a stronger binding hierarchy
+  edge. Rank eight below `22526` and chronology on `22526..37995` are now
+  disjoint lower-interval targets.
+
+### 2026-08-15 - All-step kernel-shadow hierarchy
+
+- **Agent/model:** Codex with an exact primal/Gaussian-dual replay and an
+  independent forward/backward tree recurrence.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** For every `2<=t<d<=9`, coloopless-dual shadow
+  counts, rank-raising support `t`-sets, and target-coloop multiplicities
+  prove
+  `C(d+2,t)C(67472+d,t)I_d/C(K'-d-11+t,t)<=C(9-d+t,t)I_(d-t)`.
+  The 28 inequalities extend exact kernel exclusion through `K'=18158`,
+  with first reversal at `K'=18159`.
+- **How it is useful:** It removes 57 further kernel dimensions. The exact
+  optimizer has all nine coranks positive and a seven-edge hierarchy tree;
+  ten additional tight rows are independently checked cycle identities.
+- **What to do next:** Attack the `K'=18159` optimizer through a stronger
+  corank-one cap, full-containment coefficient, or a genuinely new shared
+  resource; further step sizes are already exhausted by this hierarchy.
+
+### 2026-08-15 - Two-step nine-shadow hierarchy
+
+- **Agent/model:** Codex with an exact primal/Gaussian-dual replay and an
+  independently derived odd/even dual recurrence.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** For every kernel corank `3<=d<=9`, rank-raising
+  support pairs and loopless target-coloop multiplicities prove
+  `C(d+2,2)C(67472+d,2)I_d/C(K'-d-9,2)<=C(11-d,2)I_(d-2)`. The seven
+  inequalities extend the exact kernel exclusion through `K'=18101`, with
+  first reversal at `K'=18102`.
+- **How it is useful:** It couples both parity chains across all kernel
+  coranks and removes 493 further dimensions. The stable wall has every
+  corank positive, with the corank-one cap, full containment, and every
+  hierarchy row tight.
+- **What to do next:** Strengthen the corank-one cap, the full-containment
+  coefficient, or one hierarchy row, or identify an independent resource
+  violated by the `K'=18102` optimizer.
+
+### 2026-08-14 - Rank-eight nine-shadow extension deficit
+
+- **Agent/model:** Codex with an all-vertex dual replay and an independent
+  primal active-set replay.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** Contracting a rank-eight nine-shadow leaves rank
+  two and forces at least `C(67474,2)=2276336601` support pairs outside its
+  parallel classes. Charging those rank-raising pairs in the full-containment
+  resource extends the exact kernel exclusion through `K'=17608`, with first
+  reversal at `K'=17609`.
+- **How it is useful:** It removes 1,938 more kernel dimensions and exposes
+  the next exact optimizer: coranks one and three capped, coranks two and
+  four resource-tight, and all higher coranks zero.
+- **What to do next:** Couple the corank-two and corank-four flat families;
+  a standalone rank-six pair-extension deficit cannot help because two new
+  points reach rank at most eight.
+
+### 2026-08-14 - Rank-eleven coupled nine-shadow capacities
+
+- **Agent/model:** Codex with primal and independent dual exact replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** Spanning nine-subsets give one shared resource
+  across all kernel coranks; all 55 contained nine-subsets give a second,
+  independent resource. Their exact two-resource LP excludes dominant
+  kernel lanes through `K'=15670`, with first reversal at `K'=15671`.
+- **How it is useful:** It extends the kernel interval by 3,898 dimensions
+  beyond the record/ambient hybrid and identifies simultaneous corank-one
+  and corank-two shadow saturation as the next obstruction.
+- **What to do next:** Couple the rank-nine and rank-eight flat families;
+  additional uncoupled total-shadow inequalities are slack at the wall.
+
+### 2026-08-14 - Rank-eleven record/ambient kernel hybrid
+
+- **Agent/model:** Codex with primary and independent exact replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** A support-internal per-record capacity is combined
+  stratumwise with the ambient all-bases cap. Normalization in the unknown
+  actual record count is monotone, and exact replay excludes dominant
+  kernel lanes through `K'=11772`.
+- **How it is useful:** The exact branch pattern `AARRRRRRR` identifies
+  simultaneous cross-stratum saturation as the next obstruction.
+- **What to do next:** Couple the ambient `d=1,2` flat profile to the
+  record-support `d>=3` profile; both separate estimates are sharp.
+
+### 2026-08-14 - Rank-eleven kernel multi-basis compression
+
+- **Agent/model:** Codex with primary and independent exact replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** Every loopless corank-`d` evaluation matroid on
+  an eleven-set has at least `d+2` bases. Counting all basis decorations
+  divides each kernel capacity stratum by `d+2` and excludes dominant
+  kernel lanes for every `10<=K'<=11641`.
+- **How it is useful:** It removes another 7,043 residual dimensions from
+  the kernel frontier and prints the first refined wall at `K'=11642`.
+- **What to do next:** Classify or couple the sharp low-basis flats above
+  the wall; looplessness alone cannot improve the divisor.
+
+### 2026-08-14 - Rank-eight dense-owner terminal bridge
+
+- **Agent/model:** Codex with primary and independent exact replays.
+- **Status:** PROVED LOCAL ROUTE CUT / ZERO LEDGER MOVEMENT.
+- **What is being added:** For `22526<=K'<=37995`, weighted owner-pair
+  averaging forces one owner with at least `200632` records; the
+  deficiency-sensitive multiplicity bound forces core deficiency at most
+  four.
+- **How it is useful:** The rank-eight chart itself now reaches #1169's
+  guarded chronology terminal with marked weight retained.
+- **Nonclaim:** The owner is not chronology-assigned or globally unique;
+  the twelve-owner fence remains compatible.
+
+### 2026-08-14 - Rank-eleven rank-eight owner-pair capacity
+
+- **Agent/model:** Codex with primary and independent exact replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  the rank-eleven packet certificate and both verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** An independent coordinate pair determines at most
+  one owner in the rank-eight affine `U^2` flat, so marked load is at most
+  `981105*C(n'-9,2)`. Exact comparison closes rank eight for
+  `37996<=K'<=1048576`.
+- **How it is useful:** It leaves only the kernel lane above `K'=37995` and
+  prints the exact rank-eight/kernel frontier on all residual dimensions.
+- **What to do next:** Couple rank-eight owner cores below the wall and
+  compress kernel bases above `K'=4598`.
+
+### 2026-08-14 - Rank-eleven kernel canonical-basis capacity
+
+- **Agent/model:** Codex with primary and independent exact replays.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_dense_locator_split_pencil_v1.md`,
+  `experimental/data/certificates/kb-mca-rank11-dense-locator-split-pencil-v1/`,
+  both packet verifiers, and `agents.md`.
+- **Status:** PROVED LOCAL ROUTE CUT / EXACT METHOD WALL. Zero active-v4
+  ledger movement; no KoalaBear closure.
+- **What is being added:** Canonical rank bases turn all records over one
+  kernel chart into one shortened rank-`d` explanation family and cap its
+  incidence load by `M_d*C(K'-10,d+1)`. Summing all nine ranks excludes a
+  dominant kernel lane for every `10<=K'<=4598`.
+- **How it is useful:** Together with the weighted rank-nine exclusion, this
+  leaves only the rank-eight owner flat on the first 4,589 shortenings.
+- **What to do next:** Improve cross-basis overlap above the exact
+  `K'=4599` capacity wall and derive the weighted rank-eight owner-pair cap.
+
+### 2026-08-13 - KoalaBear rank-ten margin/interleaving payment
+
+- **Agent/model:** Codex with two isolated mathematical audits.
+- **Files added or changed:** experimental/grande_finale.tex,
+  experimental/notes/thresholds/kb_mca_rank10_margin_interleaving_split_v1.md,
+  experimental/data/certificates/kb-mca-rank10-margin-interleaving-v1/,
+  experimental/scripts/verify_kb_mca_rank10_margin_interleaving_v1.py,
+  its Sage replay, and
+  experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/.
+- **Status:** PROVED DIRECT BRANCH PAYMENT / EXACT METHOD WALL.  Zero
+  active-v4 ledger movement; no KoalaBear closure.
+- **What is being added:** A self-contained sub-square-root interleaving
+  theorem and a uniform high/low margin split.  On the actual sextic line
+  field, error rank ten is paid at T=667 by
+  61871313426765543, with slack 213109414684629544.
+- **How it is useful:** It removes the first direction-exception terminal
+  left by the support-local theta router and proves the same scalar family
+  cannot pay rank eleven.
+- **What to do next:** Attack the aggregate common-core/collision structure
+  among distinct minimizing pairs at rank eleven; the fixed-pair factor is
+  sharp and cannot be reduced from current hypotheses.
+
+### 2026-08-13 - Support-local theta and error-rank router
+
+- **Agent/model:** Codex with isolated mathematics and custody review.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_support_local_theta_and_error_rank_router_v1.md`,
+  `experimental/data/certificates/kb-mca-support-local-theta-router-v1/`,
+  `experimental/scripts/verify_kb_mca_support_local_theta_router_v1.py`,
+  its Sage, FLINT, and Wolfram replays,
+  `experimental/campaigns/kb-mca-support-local-theta-post-1165/`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED LOCAL / CONDITIONAL DIRECT PAYMENT / ROUTE CUT.  Zero
+  active-v4 ledger movement; no KoalaBear closure.
+- **What is being added:** A strict support-local refinement of PR #1165's
+  proper-subspace compiler, with exact final factor `theta>=L`, plus an
+  arbitrary-rank reversible codeword gauge.  Conditional on the separately
+  pinned intrinsic near-rational charge `2w=134944`, every selected
+  KoalaBear error family of affine rank at most 9 is paid by
+  `110390969172308040`; ranks 10--12 either pay or emit exact same-support
+  direction-exception ceilings `12`, `387`, and `12049` on the original
+  record after inverse gauge.
+- **How it is useful:** It strengthens the safe post-#1165 compiler without
+  duplicating that PR's independent full-lift support-profile branch.  It
+  converts the first unpaid ranks into concrete actual-support terminals.
+- **What to do next:** Use the per-slope margin/interleaving split to pay
+  rank 10; ranks 11 and 12 remain separate terminals.
+
+### 2026-08-13 - Mersenne base-field component descent
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_common_factor_base_field_descent_v1.md`,
+  `experimental/verify_mca_full_lift_common_factor_base_field_descent_v1.py`,
+  `experimental/audit_mca_full_lift_common_factor_base_field_descent_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / BASE-FIELD NORMALIZATION.
+- **What is being added:** Characteristic-guarded conjugation and Bezout
+  bound the total selected mass living only on non-base-field geometric
+  components by `d^2`.
+- **How it is useful:** At least 5,079 selected pairs now lie on
+  `F(X)`-defined components, one such component carries at least 132, and
+  their union leaves at most 3,974 inside exceptions.
+- **What to do next:** Classify the base-field components, retaining the
+  possibility of a reducible union.
+
+### 2026-08-13 - Mersenne common-factor weighted-degree bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_common_factor_weighted_degree_bound_v1.md`,
+  `experimental/verify_mca_full_lift_common_factor_weighted_degree_bound_v1.py`,
+  `experimental/audit_mca_full_lift_common_factor_weighted_degree_bound_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / WEIGHTED-DEGREE BOUND.
+- **What is being added:** Kernel quotient dimension and the exact
+  `M(46)<938<=M(47)` threshold force full-gcd weighted degree at most
+  217 and `(Y,Z)` degree at most 43.
+- **How it is useful:** The higher-degree branch now carries at least 5,083
+  sections and 126,266 inside factor points, leaving at most 3,971
+  exceptions.
+- **What to do next:** Classify the possibly reducible degree-2--43 gcd or
+  pay the separate MCA projective-star population.
+
+### 2026-08-13 - Mersenne linear-factor projective-star router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_linear_factor_projective_star_router_v1.md`,
+  `experimental/verify_mca_full_lift_linear_factor_projective_star_router_v1.py`,
+  `experimental/audit_mca_full_lift_linear_factor_projective_star_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / LINEAR-FACTOR CLASSIFICATION.
+- **What is being added:** Polynomial-section parameterization and an exact
+  ordinary-Johnson cap of 802 exclude every nonconstant-coefficient linear
+  factor against the 4,982 captured sections.
+- **How it is useful:** The only degree-one survivor is an `F`-rational
+  projective star; the complementary factor branch has degree at least two.
+- **What to do next:** Prove the primitive-star population bound or classify
+  and charge the higher-degree factor branch.
+
+### 2026-08-13 - Mersenne common-factor mass router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_common_factor_mass_router_v1.md`,
+  `experimental/verify_mca_full_lift_common_factor_mass_router_v1.py`,
+  `experimental/audit_mca_full_lift_common_factor_mass_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / FACTOR CONCENTRATION.
+- **What is being added:** Cofactor Bezout captures at least 4,982 of the
+  7,583 selected pairs on the full interpolation factor; core incidence
+  puts the received pair on it at least 126,188 times.
+- **How it is useful:** The first Mersenne residual now has at most 4,049
+  inside exceptions to one degree-at-most-52 factor relation.
+- **What to do next:** Classify or charge that near-total factor without
+  assuming irreducibility, rationality, or split-pencil form.
+
+### 2026-08-13 - Mersenne interpolation common-factor router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_interpolation_common_factor_router_v1.md`,
+  `experimental/verify_mca_full_lift_interpolation_common_factor_router_v1.py`,
+  `experimental/audit_mca_full_lift_interpolation_common_factor_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / COPRIME BRANCH PAYMENT.
+- **What is being added:** A 938-dimensional weight-264 interpolation
+  kernel and a `2705>52^2` Bezout contradiction pay the coprime branch at
+  Mersenne support `e=130237`.
+- **How it is useful:** Every unsafe survivor now forces a common factor of
+  positive `(Y,Z)` degree over the algebraic closure of `F(X)`.
+- **What to do next:** Classify and charge that factor; do not assume without
+  proof that it is a split pencil.
+
+### 2026-08-13 - Mersenne exact-layer slot-core packing
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_exact_layer_slot_core_packing_v1.md`,
+  `experimental/verify_mca_full_lift_exact_layer_slot_core_packing_v1.py`,
+  `experimental/audit_mca_full_lift_exact_layer_slot_core_packing_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / ELEVEN-SUPPORT PAYMENT.
+- **What is being added:** Exact-layer incidence forces a selected
+  `lambda`-member affine explanation slot to have inside core at least
+  `ceil((lambda*h-e)/(lambda-1))`.
+- **How it is useful:** Combined with the capped-core dichotomy, three lines
+  pay every Mersenne support `130226<=e<=130236`.
+- **What to do next:** Control the size-two primitive shift-pair bank at
+  `e=130237`, or bridge to the high-support interval.
+
+### 2026-08-13 - Mersenne core-dichotomy capped charge
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_core_dichotomy_capped_charge_v1.md`,
+  `experimental/verify_mca_full_lift_core_dichotomy_capped_charge_v1.py`,
+  `experimental/audit_mca_full_lift_core_dichotomy_capped_charge_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / FOUR-SUPPORT PAYMENT.
+- **What is being added:** A selected line either has enough actual core for
+  weighted-prefix absorption of the original family or belongs to a
+  complementary capped convex envelope.
+- **How it is useful:** It pays Mersenne supports `130222<=e<=130225`; the
+  low-core branch closes by 14-line or 70-line inside-core packing.
+- **What to do next:** Replace the threshold-14 zero-core wall at `e=130226`
+  or bridge to the high-support interval.
+
+### 2026-08-13 - Mersenne lower-aware joint-core charge
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_lower_aware_joint_core_charge_v1.md`,
+  `experimental/verify_mca_full_lift_lower_aware_joint_core_charge_v1.py`,
+  `experimental/audit_mca_full_lift_lower_aware_joint_core_charge_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / TWO-SUPPORT PAYMENT.
+- **What is being added:** A majorization envelope retains every forced
+  total-core lower bound when maximizing the convex charge of previously
+  peeled parameterized lines.
+- **How it is useful:** It pays Mersenne supports `e=130220,130221`; both
+  terminate after 38 lines with packing lower bound `142893`.
+- **What to do next:** Add structure beyond first-order pairwise core
+  intersections at the adjacent residual-base wall `e=130222`, or bridge to
+  the high-support interval.
+
+### 2026-08-13 - Mersenne joint-core charge peeling
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_joint_core_charge_peeling_v1.md`,
+  `experimental/verify_mca_full_lift_joint_core_charge_peeling_v1.py`,
+  `experimental/audit_mca_full_lift_joint_core_charge_peeling_v1.py`,
+  `experimental/verify_mca_full_lift_joint_core_charge_peeling_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** Pairwise core geometry bounds the sum of the
+  actual cores of all peeled parameterized lines. Convex concentration then
+  gives a joint line charge that replaces the independent worst-case charge.
+- **How it is useful:** It pays all 21 Mersenne supports
+  `130199<=e<=130219`; the endpoint uses 13 lines and packing lower bound
+  `134835>130219`.
+- **What to do next:** Add structure for the zero-core line population at
+  the adjacent method wall `e=130220` or bridge to the high-support interval.
+
+### 2026-08-13 - Mersenne recursive line-peeling core-packing interval
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_recursive_line_peeling_core_packing_v1.md`,
+  `experimental/verify_mca_full_lift_recursive_line_peeling_core_packing_v1.py`,
+  `experimental/audit_mca_full_lift_recursive_line_peeling_core_packing_v1.py`,
+  `experimental/verify_mca_full_lift_recursive_line_peeling_core_packing_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** Repeatedly remove a forced parameterized affine
+  explanation line. The residual either enters the exact weighted prefix or
+  produces distinct inside cores whose pairwise intersections are at most
+  `K-1`, contradicting support-size packing.
+- **How it is useful:** It pays all `5,393` Mersenne supports
+  `124806<=e<=130198`; `3,837` terminate by prefix and `1,556` by core
+  packing, with at most five lines.
+- **What to do next:** Replace the residual-base obstruction at the adjacent
+  method wall `e=130199` or bridge toward the high-support interval.
+
+### 2026-08-13 - Mersenne boundary-line-bank absorption interval
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_boundary_line_bank_absorption_v1.md`,
+  `experimental/verify_mca_full_lift_boundary_line_bank_absorption_v1.py`,
+  `experimental/audit_mca_full_lift_boundary_line_bank_absorption_v1.py`,
+  `experimental/verify_mca_full_lift_boundary_line_bank_absorption_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** Every exact-layer direction class is retained as
+  an affine-line slot. Unsafe pigeonhole forces one large line, and
+  total-core absorption pays the remaining explanations.
+- **How it is useful:** It pays all `23,649` Mersenne supports
+  `101157<=e<=124805`; the endpoint bound is `16706559<16777215`.
+- **What to do next:** Sharpen the low-list payment at the adjacent method
+  wall `e=124806` or bridge toward the high-support interval.
+
+### 2026-08-13 - Mersenne fixed-cutoff residue-two anchor repair
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.md`,
+  `experimental/verify_mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.py`,
+  `experimental/audit_mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / SUPPORT PAYMENT.
+- **What is being added:** At the first fixed-cutoff wall, residue two lets
+  two top anchors absorb both boundary layers. The zero/one-top cases use
+  an outside-core line cap or pairwise-disjoint missed-set cap.
+- **How it is useful:** The largest of five exhaustive bounds is
+  `16705799<16777215`, paying Mersenne support `e=101156`.
+- **What to do next:** Treat the residue-zero support `e=101157`; no unsafe
+  certificate is claimed there.
+
+### 2026-08-13 - Mersenne fixed-cutoff boundary-stack interval
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_fixed_cutoff_boundary_stack_v1.md`,
+  `experimental/verify_mca_full_lift_fixed_cutoff_boundary_stack_v1.py`,
+  `experimental/verify_mca_full_lift_fixed_cutoff_boundary_stack_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** A fixed deficit cutoff combines an independently
+  truncated prefix, normalized-direction class caps for every intermediate
+  exact layer, and the synchronized top line; unsafe-core absorption handles
+  the final six supports.
+- **How it is useful:** It pays all 2,924 Mersenne full-lift supports
+  `98232<=e<=101155`; the endpoint bound is `3813469<16777215`.
+- **What to do next:** Replace the fixed-cutoff forcing wall at `e=101156`,
+  where the same charge exceeds budget by `174008`.
+
+### 2026-08-13 - Mersenne residue-zero common-core absorption
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_residue_zero_core_absorption_v1.md`,
+  `experimental/verify_mca_full_lift_residue_zero_core_absorption_v1.py`,
+  `experimental/audit_mca_full_lift_residue_zero_core_absorption_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / SUPPORT PAYMENT.
+- **What is being added:** The near-maximal core forced by the residue-zero
+  router synchronizes every assigned explanation of deficit at least
+  `30791` onto the same line. One punctured Johnson cap bounds the lower
+  explanations by `26`.
+- **How it is useful:** The contradiction bound
+  `98232*26+981129=3535161<16777215` pays Mersenne full-lift support
+  `e=98232` and moves the residual floor to `e=98233`.
+- **What to do next:** Test the same unsafe-core absorption compiler at
+  `e=98233` and locate its exact interval wall.
+
+### 2026-08-13 - Mersenne residue-zero direction-class router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_residue_zero_direction_router_v1.md`,
+  `experimental/verify_mca_full_lift_residue_zero_direction_router_v1.py`,
+  `experimental/audit_mca_full_lift_residue_zero_direction_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / STRUCTURAL ROUTER.
+- **What is being added:** A constant-block Johnson count permits at most
+  three normalized direction classes in the first residue-zero boundary
+  layer; outside-core line packing then caps that layer at `1450`.
+- **How it is useful:** Any unsafe Mersenne family at `e=98232` must put at
+  least `343071` slopes on the synchronized top line, forcing its common
+  core to have size at least `m-2`.
+- **What to do next:** Apply the successor common-core absorption theorem.
+  The router itself makes no safety or unsafety claim at this support.
+
+### 2026-08-13 - Mersenne residue-two boundary continuation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_two_boundary_layer_continuation_v1.md`,
+  `experimental/verify_mca_full_lift_two_boundary_layer_continuation_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A residue-two case split synchronizes two boundary
+  layers when two top anchors exist and otherwise prices the first boundary
+  by an outside-core line or a pairwise-disjoint missed-set cap.
+- **How it is useful:** It pays Mersenne-31 at `e=98231` by `16486411`,
+  leaving slack `290804`, and moves the residual floor to `e=98232`.
+- **What to do next:** Treat the residue-zero boundary defect or replace the
+  KoalaBear mean-centered endpoint chord.
+
+### 2026-08-13 - Mersenne boundary-anchor continuation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_boundary_anchor_continuation_v1.md`,
+  `experimental/verify_mca_full_lift_boundary_anchor_continuation_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A two-anchor case split absorbs the first exact
+  boundary layer beyond the synchronized top-third union when
+  `e-K mod 3` is nonzero.
+- **How it is useful:** It pays Mersenne-31 at `e=98230` by `16487313`,
+  leaving slack `289902`, and moves the residual floor to `e=98231`.
+- **What to do next:** Replace the rapidly growing boundary prefix at
+  `e=98231` or discharge the support-local rank-10 exception forest.
+
+### 2026-08-13 - Full-lift mean-centered global-line profile
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_mean_centered_global_line_profile_v1.md`,
+  `experimental/verify_mca_full_lift_mean_centered_global_line_profile_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** The full suffix-minimum Johnson/mean-centered
+  prefix is composed with the one-time cross-layer global-line charge,
+  including the explicit `A_H>K-1` full-lift scope guard.
+- **How it is useful:** It moves the residual floors to `e=96151` on
+  KoalaBear and `e=98230` on Mersenne-31.
+- **What to do next:** Replace the failed KoalaBear endpoint chord or save
+  `638658` at the first unpaid Mersenne support.
+
+### 2026-08-13 - Full-lift cross-layer global-line synchronization
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_top_third_global_line_payment_v1.md`,
+  `experimental/verify_mca_full_lift_top_third_global_line_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** The top-third triple-overlap argument synchronizes
+  all exact high-deficit layers onto one affine explanation line, so the
+  pair-noncontained total-core cap `N-m+1` is charged once rather than once
+  per layer.
+- **How it is useful:** It moves the Mersenne-31 full-lift residual floor
+  from `e=67453` to `e=97909`; the KoalaBear floor remains `e=95944`, but
+  its endpoint profile drops to `6336049`.
+- **What to do next:** Replace the common low-agreement Johnson prefix at
+  `H`; both rows now stop at an adjacent nonpositive prefix denominator.
+
+### 2026-08-13 - Full-lift top-third common-core continuation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_top_third_common_core_payment_v1.md`,
+  `experimental/verify_mca_full_lift_top_third_common_core_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A pair-noncontained total-core cap for affine
+  explanation lines whose outside agreement is at most `K-1`, followed by
+  the full-lift top-third profile.
+- **How it is useful:** It moves the residual floors to `e=95944` on
+  KoalaBear and `e=67453` on Mersenne-31.
+- **What to do next:** Replace the failed low-agreement Johnson prefix on
+  KoalaBear and save `470852` at the first unpaid Mersenne support.
+
+### 2026-08-13 - Top-third affine-line sparse-direction branch close
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_top_third_affine_line_payment_v1.md`,
+  `experimental/verify_mca_sparse_direction_top_third_affine_line_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A triple-overlap theorem putting every exact
+  high-deficit layer on one affine codeword line, plus a top-third
+  exact-layer/profile compiler.
+- **How it is useful:** It pays every sparse-direction support `e<d` on
+  both deployed rows.  The residual intervals now begin at `e=67472` and
+  `e=67448`, the actual minimum-distance boundaries.
+- **What to do next:** Use the full-lift near-MDS extension structure for
+  `e>=d`.  Support-only ordinary-list bounds have now completed their
+  natural branch.
+
+### 2026-08-13 - Terminal-deficit affine-line payment
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_terminal_deficit_line_payment_v1.md`,
+  `experimental/verify_mca_sparse_direction_terminal_deficit_line_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** An affine-codeword-line theorem for the exact
+  terminal deficit layer of the sparse-direction compiler, plus a
+  prefix-plus-terminal slope profile.
+- **How it is useful:** It pays one further support in each deployed row,
+  moving the low-support walls to `e=64048` on KoalaBear and `e=65455` on
+  Mersenne-31, with profile bounds `181326343` and `16100647`.
+- **What to do next:** Control the last several high-deficit layers jointly
+  or retain the full-lift near-MDS extension structure.  KoalaBear
+  `e=64049` lacks the penultimate cumulative cap; Mersenne `e=65456` remains
+  valid but over budget by `342292`.
+
+### 2026-08-13 - Mean-centered Gram profile
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_mean_centered_gram_profile_v1.md`,
+  `experimental/verify_mca_sparse_direction_mean_centered_gram_profile_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A PSD incidence Gram theorem centered at the
+  block mean, plus the suffix-minimum closure needed to combine its raw
+  cumulative caps with the positive-Johnson caps.
+- **How it is useful:** It strengthens the preceding centered-Gram rung and
+  extends the low-support walls to `e=64047` on KoalaBear and `e=65454` on
+  Mersenne-31.  The endpoint profiles are `181731868` and `16101127`.
+- **What to do next:** KoalaBear `e=64048` lies beyond the positive PSD
+  chord denominator.  Mersenne `e=65455` remains theorem-legal but misses
+  budget by `342908`.  Neither failure is an unsafe certificate.
+
+### 2026-08-13 - Near-Johnson centered-Gram payment
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_near_johnson_gram_rank_v1.md`,
+  `experimental/verify_mca_sparse_direction_near_johnson_gram_rank_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A centered incidence-Gram rank bound for
+  equal-size ordinary-list agreement blocks in the first post-Johnson
+  regime, followed by a two-threshold sparse-direction slope compiler.
+- **How it is useful:** It extends the low-support payments from `63908` to
+  `64037` on KoalaBear and from `65236` to `65418` on Mersenne-31.  The
+  endpoint slope bounds are `198047217` and `16759641`.
+- **What to do next:** A stronger post-Johnson list theorem is needed at
+  KoalaBear `e=64038`; at Mersenne `e=65419`, the Gram theorem remains valid
+  but misses budget by `1434789`.  Neither failure is an unsafe certificate.
+
+### 2026-08-13 - Sparse-direction punctured Johnson profile
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_punctured_johnson_profile_v1.md`,
+  `experimental/verify_mca_sparse_direction_punctured_johnson_profile_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A field-general ordinary-list Johnson incidence
+  cap after puncturing the codeword-gauged direction support, combined with
+  the deficit-dependent `floor(e/h)` slope-owner profile.  Exact arithmetic
+  pays `e<=63908` on KoalaBear and `e<=65236` on Mersenne-31, against the
+  previous top-rank low-support walls `e<=5` and `e<=1`.
+- **How it is useful:** It removes over sixty thousand support values from
+  each top-rank MCA residual without using the refuted affine-incidence
+  denominator.  The full-lift middle intervals are now exactly
+  `63909<=e<=1044238` and `65237<=e<=1044241`.
+- **What to do next:** Attack the adjacent nonpositive-Johnson strip using
+  the codimension-one near-MDS extension structure or a row-sharp
+  post-Johnson list theorem.  Denominator failure is not an unsafe-row
+  certificate.
+
+### 2026-08-13 - Affine-span MCA compiler repair and top-rank split
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_affine_span_incidence_counterexample_v1.md`,
+  `experimental/verify_mca_affine_span_incidence_counterexample_v1.py`,
+  `experimental/verify_mca_affine_span_incidence_counterexample_v1_independent.py`,
+  `experimental/verify_mca_proper_subspace_occupancy_compiler_v1.py`,
+  `experimental/verify_mca_full_explanation_lifted_rank_gauge_dichotomy_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED COUNTEREXAMPLE / PROVED REPLACEMENT / ROUTE CUT.
+- **What is being added:** An exact `GF(1009)` Reed--Solomon received line
+  with 31 direction-separated MCA-bad slopes against the affine-span
+  compiler's claimed bound 23.  Two independently structured verifiers
+  reconstruct every maximal support and same-support pair-noncontainment
+  check.
+- **How it is useful:** It retracts `thm:affine-span-mca` and the dependent
+  active-row MCA rank payments while identifying the precise missing input:
+  local full incident rank does not bound proper-subspace occupancy of the
+  incident normals.  The corrected `thm:proper-subspace-mca` proves the
+  valid bound with final factor `max(1,e-(n-m))`, fully paying the first
+  KoalaBear ranks through nine and Mersenne rank one and printing the exact
+  remaining support walls.  The full-explanation lifted-rank dichotomy then
+  proves that each top cell has only two branches: lifted rank `K`, where an
+  affine hyperplane of codeword gauges drops explanation rank to `K-1`, and
+  lifted rank `K+1`, where no gauge drops rank.  This pays the rank-drop
+  suffixes at `e>=992852` and `e>=1037876` while isolating the full-lift
+  middle intervals as the true remaining top-rank residuals.  The additional
+  near-MDS extension theorem proves that `W=C+<r_1>` has first generalized
+  weight `e` and every higher weight MDS-sharp.  Its generic endpoint bound
+  still exceeds both budgets, ruling out another weight-hierarchy replay as
+  a closure route.
+- **What to do next:** Replace the false ordered-basis denominator by a
+  sharper aggregate theorem, or route the remaining top-rank K3 cells
+  through a different slope compiler.  The common-core cancellation and
+  ordinary affine-span LIST results are unaffected.  The selector-free
+  all-LineRay error-affine-core set-pair theorem is also unaffected: it uses
+  a zero-mask/Bollobas argument, not the rejected incidence denominator.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from
@@ -3682,3 +4691,1003 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-08-13 - KoalaBear rank-eleven pair/core route cut
+
+- **Agent/model:** Codex with isolated exploration, adversarial, upstream, and
+  review lanes.
+- **Exact parent:** PR #1167 head
+  `491ccdf53d54846f5a013b808960645275c64ed3`.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_pair_core_route_cut_v1.md`,
+  exact Python/Sage verifiers, canonical certificate packet, research
+  campaign, `agents.md`, and this log.
+- **Status:** PROVED LOCAL ROUTE CUT / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A nonuniform support-margin resource theorem, an
+  actual fixed minimizing-pair compiler, exact rank-eleven terminals
+  `weight >= 743449148, deficiency <= 8` and
+  `slopes >= 200632, deficiency <= 4`, and two exact core-deficiency method
+  ceilings.  Neither ceiling fits the KoalaBear budget.
+- **Controls:** normal and optimized Python, hostile mutations, exact Sage
+  parallel-star sharpness, Wolfram integer replay, full TeX compilation, and
+  a targeted 55-result Exa literature sweep with no imported lemma.
+- **Nonclaim:** Error rank eleven remains unpaid; no active-v4 atom moves and
+  KoalaBear is not closed.
+- **What to do next:** Prove a same-line cross-pair collision theorem or a
+  chronology-correct owner for dense parallel pair cores.  Another scalar
+  threshold or smaller per-pair multiplier is ruled out.
+
+### 2026-08-14 - Dense-core owner substrate and reserve repricing
+
+- **Agent/model:** Codex, importing four public prize-DAG nodes after a
+  source, arithmetic, and claim-boundary replay.
+- **Exact parent:** PR #1168 head
+  `6a5dcdae1591fc7f044eda6a942bfe178521a48c`.
+- **Files added or changed:** `agents.md`, `experimental/grande_finale.tex`,
+  the dense-core owner threshold note, canonical manifest, primary and
+  independent Python verifiers, certificate README, and this log.
+- **Status:** PROVED INTERFACE PACKET / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The separate-`2w` reserve repricing, an explicit
+  counterexample to silent `k -> k+1` badness transport, the exact
+  degree/same-support guarded lattice adapter, and one typed deployed
+  pole-line witness with all owner fields unassigned.
+- **Bridge to #1168:** A chronology owner for the `delta<=4`, `200632`-slope
+  terminal must meet the repriced owner target when reusing S/A/E, preserve
+  the actual line/support/chronology, pass the degree and pair-noncontainment
+  guards, accept the typed pole line, and reject the unguarded mutation.
+- **Nonclaim:** No dense-core owner theorem, rank-eleven payment, active-v4
+  movement, KoalaBear closure, or prize closure.
+- **What to do next:** Prove the same-line cross-pair/chronology theorem
+  against this acceptance contract rather than introducing another
+  unguarded profile transport.
+
+### 2026-08-14 - Rank-eleven dense-locator and split-pencil route
+
+- **Agent/model:** Codex, importing thirteen public prize-DAG theorems after
+  source, proof-boundary, arithmetic, and independent finite-model replay.
+- **Exact parent:** PR #1169 head
+  `b4bad860750f91955dbaead8f2b5a0fdef1f1343`.
+- **Files added or changed:** `agents.md`, `experimental/grande_finale.tex`,
+  the rank-eleven dense-locator threshold note, canonical manifest, primary
+  and independent Python verifiers, certificate README, and this log.
+- **Status:** PROVED LOCAL THEOREM PACKET / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** Dense-root saturation fixes the absorbing
+  correction dimension at ten; exact multihomogeneous Bezout gives a
+  `990810934`-ppb component-incidence floor; record-star averaging routes at
+  least `148639925144138894` records to a large owner, rank-nine owner
+  pencil, or kernel plane; and the affine-plane/petal ledger caps one fixed
+  rank-nine split-pencil cell at `45567658` records.  The last integer
+  repairs the source node's valid but nonsharp ceiling by flooring its proved
+  weighted inequality.  A plane-level pair-core theorem then caps the
+  low-common-core branch at `1434405` records and forces a shared
+  `134944`-coordinate received-pair core in every larger rank-nine plane.
+  A typed nine-subset selector further puts at least `2578110` records on
+  one fixed chart.  It routes to a fixed kernel, a shared-core rank-nine
+  plane, or a rank-eight owner flat with error rank at most three.  An
+  explicit weighted-plane realization then gives `4070408` exact-support,
+  pair-noncontained slopes under the local rank-nine target conclusions,
+  fencing any attempt to pay `2578110` from those conclusions alone. The
+  repaired continuation keeps the pre-deduplication marked weight: at the
+  shortest endpoint it is `5868470021012020`. A rank-nine chart carries at
+  most `981105*(m'-10)*n'` such incidences. The later scope audit places the
+  exact first coarse weighted crossing at `K'=20618`; it retracts this
+  entry's former all-row elimination claim.  The residual-petal refinement
+  then closes `15635..20617`, leaving `10<=K'<=15634` open.
+- **Owner key:** In the full-rank star branch, deficiency at most `22320`
+  makes the owner unique for its record.  Two candidates force an
+  intersection `22833` above the RS root cap, so weighted aggregation no
+  longer depends on the exposing ten-subset.
+- **Unit guard:** The first abundance result counts record/eleven-subset
+  incidences.  Only the separately proved threshold argument converts it to
+  a record floor.  Neither number is a distinct component count.
+- **Bridge to #1169:** The rank-nine lane is now a concrete
+  base-field-normalized split-pencil cell ledger satisfying the deployed
+  slope unit, followed by a low-core/large-shared-core plane dichotomy.  It
+  now supplies one overlap-correct fixed chart and eliminates its rank-nine
+  alternative by retaining pre-deduplication weight and exact residual
+  petal pairs from `K'=15635`.
+  Below that row the rank-nine, fixed-kernel, and rank-eight alternatives
+  still need payment before entering the
+  chronology-correct owner required by the #1169 acceptance contract.
+- **Nonclaim:** No complete-lane, fixed-kernel, or rank-eight target payment;
+  no large-owner or kernel-plane
+  payment, rank-eleven payment, active-v4 movement, KoalaBear closure, or
+  prize closure.
+- **What to do next:** Preserve weighted component incidences through the
+  fixed-kernel and rank-eight branches, then construct a guarded
+  chronology-owner assignment.
+
+### 2026-08-15 - K'=11 circuit-shadow split-pencil payment
+
+- **Agent/model:** Codex, importing two further proved public prize-DAG
+  nodes after exact arithmetic, independent finite-field, and hostile-
+  mutation replay.
+- **Exact parent:** this PR's K'=10 extension at
+  `78a34909ba97a0d2baeb2395a9f704e0a97e292d`.
+- **Status:** PROVED LOCAL ROW CLOSURE / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A common-core-offset split-pencil cap for the
+  `j=9,10` rank-nine charts, and a global circuit split.  Circuits of size
+  at least six consume at least 45 rank-nine shadows; all representations of
+  the global hyperplane functional with support at most five coalesce by
+  Vandermonde independence.  At the residual record floor, capacity is
+  `870719390190680409022824387604193486699840723094988553120053384`
+  against demand
+  `901408286315387898338134887980054663001598216883356906995509296`.
+- **Impact:** `K'=11` has no rank-eleven component target.  The rank-nine
+  interval contracts from `11..15528` to `12..15528`.
+- **Controls:** Primary replay, 91 hostile mutations, and the independent
+  replay all passed in Modal app `ap-tjpVABDxc1r6rqlSJOZuJP` at 56,620 KiB
+  peak RSS.  The independent path checked 2,046 sparse-support Vandermonde
+  minors and all 605 circuit-shadow omissions.  The 153-page paper compiled
+  with zero unresolved references.
+- **Nonclaim:** Error rank eleven, active-v4 ledger movement, KoalaBear, and
+  either prize problem remain open.
+- **What to do next:** At `K'=12`, classify sparse supports in the
+  two-dimensional quotient dual and extend the core-offset ledger to
+  `j=9,10,11`.
+
+### 2026-08-15 - K'=12 quotient-line circuit payment
+
+- **Agent/model:** Codex, importing two further proved public prize-DAG
+  nodes after proof audit, exact arithmetic, independent finite-field, and
+  hostile-mutation replay.
+- **Exact parent:** this PR's `K'=11` extension at
+  `cf9301daab617a1493f235497164b3b53ab1aded`.
+- **Status:** PROVED LOCAL ROW CLOSURE / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A characteristic-free sparse-circuit theorem for
+  a projective quotient line.  Catalecticant minors handle the transverse
+  case; primitive cofactor kernels and root-fiber incidence handle lines
+  lying in the determinantal locus without assuming a secant-line
+  classification.  At `m'=67484`, supports of size at most five contribute
+  at most
+  `11868577829520852215896202871552159662636920` incidences per record.
+  The complete `K'=12` payment retains the absolute corank-one kernel term,
+  pays circuits of size at least six through 45 rank-nine shadows, and pays
+  the remaining circuits through that quotient-line cap.  Total capacity is
+  `873945204333998831582903951502910514268526233054054867526472861`
+  against demand
+  `901555241262544083284435178226046105523688795046262319915891531`.
+- **Impact:** `K'=12` has no rank-eleven component target.  The rank-nine
+  interval contracts from `12..15528` to `13..15528`.
+- **Controls:** Primary replay and all 97 hostile mutations passed under the
+  local RAM guard.  The independent replay reconstructed the kernel cap and
+  all three core-offset capacities, and checked 8,190 Vandermonde subsets,
+  54 cofactor-fiber branches, and the exact positive gap.  The 154-page paper
+  compiled with no undefined references or overfull boxes.
+- **Nonclaim:** No quotient-plane theorem, row `K'>=13`, chronology owner,
+  error-rank-eleven payment, active-v4 ledger movement, KoalaBear closure,
+  or prize closure.
+- **What to do next:** At `K'=13`, control low-support points on the
+  projective quotient plane while retaining both corank-one and corank-two
+  kernel capacity and the `j=9,10,11,12` core-offset chart ledger.
+
+### 2026-08-15 - K'=13 sparse-circuit completion payment
+
+- **Agent/model:** Codex, importing two further proved public prize-DAG
+  nodes after proof audit, exact arithmetic, independent finite-field, and
+  hostile-mutation replay.
+- **Exact parent:** this PR's `K'=12` extension at
+  `016ae0e4e05ffc3e9a2c97881bd59f4dbca6b501`.
+- **Status:** PROVED LOCAL ROW CLOSURE / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A codimension-three completion dichotomy which
+  avoids classifying plane sections of secant varieties.  Three circuit
+  completions of one independent deletion span the quotient plane and force
+  every support-at-most-five circuit into a seven-point carrier; otherwise
+  every deletion has at most two completions.  At `m'=67485`, the resulting
+  sparse cap is
+  `99254447944649683780146155758753837527116020` incidences per record.
+  The complete `K'=13` payment retains both kernel coranks, pays high
+  circuits through 45 rank-nine shadows, and pays low circuits through the
+  completion cap.  Total capacity is
+  `898085191110430398284744062896212914931984716650701254999384513`
+  against demand
+  `901702217989192688449626641411280218028664942551160634607759137`.
+- **Impact:** `K'=13` has no rank-eleven component target.  The rank-nine
+  interval contracts from `13..15528` to `14..15528`.
+- **Controls:** Primary replay and all 105 hostile mutations pass.  The
+  independent path reconstructs both kernel record caps and all four chart
+  capacities, enumerates all 605 circuit-shadow omissions, and realizes
+  both completion branches over `GF(17)`.  The 156-page paper compiles with
+  no undefined references or overfull boxes.
+- **Nonclaim:** No quotient-dimension-four theorem, row `K'>=14`, chronology
+  owner, error-rank-eleven payment, active-v4 ledger movement, KoalaBear
+  closure, or prize closure.
+- **What to do next:** At `K'=14`, determine whether a four-completion
+  carrier dichotomy or a sharper deletion count pays the quotient
+  three-space, retaining all nonzero kernel coranks and core offsets through
+  `j=13`.
+
+### 2026-08-15 - K'=14..21 joint sparse-shadow payment
+
+- **Agent/model:** Codex, importing three proved public prize-DAG nodes after
+  proof audit, exact arithmetic, an independent finite-field model, and
+  hostile-mutation replay.
+- **Exact parent:** this PR's `K'=13` extension at
+  `8cf7c8f97fcaf61d3e13ca8d43c87345e865d6e1`.
+- **Research source:** prize-DAG commit
+  `e9a8a76800cd05dbe8382a3ac253d83a52d71d2c`; source-contract SHA-256 values
+  `25bbeb3c2124f34399659550c214400bc6afe4ce9d5ee615939241e2e94c298b`,
+  `2f9446f4efd0a3cbb393a74f78f77384dee26f2f3d5fdddb53ba1b4b71762013`,
+  and `eb1c5343d7aee27704ff1c9a5a30639e3cb101c51e7b13eb0a3f04be071f56e1`.
+- **Status:** PROVED EIGHT-ROW CLOSURE / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** For quotient dimension `q=K'-10`, every
+  independent deletion has at most `q` sparse-circuit completions. Equality
+  spans the quotient and confines every support-at-most-five circuit to a
+  carrier of size at most `q+4`; otherwise deletion counting uses at most
+  `q-1` completions.  A joint ledger charges support sizes `2,3,4,5` their
+  exact `19,27,34,40` rank-nine shadows and grants only premiums
+  `26,18,11,5`.  Retaining every kernel corank, core offset, and completion
+  branch closes `K'=14..21`.
+- **Impact:** The smallest strict gap is
+  `205305519860193617784849691734671763401656917434567909452790` at
+  `K'=21`.  The rank-nine interval contracts from `14..15528` to
+  `22..15528`.
+- **Controls:** Primary replay and all 113 hostile mutations pass.  The
+  independent replay reconstructs 68 core-offset charts, all eight row
+  payments, the exact `K'=22` wall, and structured/unstructured
+  codimension-four completion models over `GF(17)`.
+- **Nonclaim:** The identical payment fails at `K'=22`, where capacity
+  exceeds demand by
+  `2859529280846211417198922209345618432657212793529140162369036`.
+  There is no chronology owner, error-rank-eleven payment, active-v4
+  movement, KoalaBear closure, or prize closure.
+- **What to do next:** Lower the `K'=22` sparse premium or add a genuinely
+  shared shadow resource without omitting a kernel corank or reusing a
+  rank-nine mark.
+
+### 2026-08-15 - Integral and full-deficit payment through K'=40
+
+- **Agent/model:** Codex, importing eight further proved public prize-DAG
+  nodes after proof audit, exact arithmetic, independent replay, and hostile
+  mutation testing.
+- **Exact parent:** this PR's `K'=14..21` extension at
+  `03fa65aa9277d407fe586780f681ebb81a3f6560`.
+- **Research sources:** prize-DAG commits
+  `16bb0595c464c32746961dabe808d0d0f73ad1c6`,
+  `523e124ca703d5a9797f175c862a8f5e72535662`, and
+  `ffb120ecd3200489fd6e6464ce0e916dad04596a`, with all eight source
+  contracts pinned in the manifest.
+- **Status:** PROVED NINETEEN-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** Exact integral optimization of the heavy-owner
+  split-pencil chart; a near-saturation carrier/fallback dichotomy; the
+  completion-defect hierarchy with support depths `7,2,1,0`; a universal
+  deletion/completion incidence cap for supports `2..9`; and the full
+  55-shadow deficit ledger with weights `36,28,21,15,10,6,3,1`.  The
+  payment retains every nonzero kernel corank, every core offset, and the
+  complete weighted branch maximum.
+- **Impact:** `K'=22` closes with gap
+  `1232731756628187885277355254597101817411431837269258943471111`;
+  `K'=23` closes with gap
+  `1704262040773185642290284810631267267026794188450394076492364`;
+  and every row `K'=24..40` closes, with minimum gap
+  `2272401814108959137912675549447888006236817090602808413697595`
+  at `K'=40`.  The first remaining rank-nine row is `K'=41`.
+- **Controls:** The primary verifier regenerates the canonical manifest,
+  recomputes all integral core charts and exact payments, and rejects 123
+  hostile mutations.  The independent verifier uses the closed-form
+  eight-extreme-owner chart, analytic completion pivots, and a separately
+  implemented payment ledger; it reconstructs all 17 closed full-deficit
+  rows and the adjacent wall.
+- **Nonclaim:** At `K'=41` the refined payment has exact capacity excess
+  `4398836630793080990004182400858693750491819390616783425932508`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** At `K'=41`, sharpen the complete weighted deficit
+  vector or introduce another genuinely shared incidence resource.  Do not
+  maximize support strata independently, omit a kernel corank, or reuse a
+  rank-nine mark.
+
+### 2026-08-15 - Sharp isolated-incidence payment closes K'=41
+
+- **Agent/model:** Codex, importing two further proved public prize-DAG nodes
+  after proof audit, exact arithmetic, finite-field replay, and hostile
+  mutation testing.
+- **Exact parent:** this PR's `K'=24..40` extension at
+  `768e95bb74fec99e40cad8144ac8ce4568263f9f`.
+- **Research source:** prize-DAG commit
+  `ad44a0555d5f085cc90e7c96b28248d9e244f647`; source-contract SHA-256 values
+  `25def3f3f47dedd1d7aeb704c24dd28c00b507fda019bd72e9240ed6bcbd123c`
+  and `0b926a50e1d5ab12e56bdb1db2cdd143e7de60bf371862501d3853beb86ded69`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** For one fixed eleven-set, evaluation rank at most
+  nine places every compatible retained record on an affine kernel line.  At
+  rank ten, ten-coordinate interpolation leaves one linear equation in the
+  slope; its identity branch is positive-dimensional and its nonidentity
+  branch retains at most one slope.  Therefore actual retained records have
+  at most one isolated incidence per eleven-set, rather than the generic
+  multiplicity allowance 198 used by the older density bound.
+- **Impact:** With every component-capacity term unchanged, exact demand
+  `R*C(m',11)-C(n',11)` closes `K'=41` by
+  `3959829848992990899082071934034620604165114037293042026746826`.
+  The first remaining rank-nine row is `K'=42`.
+- **Controls:** The primary verifier regenerates the 73-source manifest and
+  rejects 127 hostile mutations.  The independent verifier reconstructs the
+  weighted component capacity, sharp demand, positive record coefficient,
+  and a `GF(101)` rank-nine/rank-ten elimination model.
+- **Nonclaim:** At `K'=42` the sharp payment has exact capacity excess
+  `2710771376158610722953158157862051010402433288229120154217278`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** At `K'=42`, sharpen the rank-nine chart or the complete
+  weighted deficit premium, or identify another shared resource.  Preserve
+  every kernel corank and do not reuse a rank-nine mark.
+
+### 2026-08-15 - Cross-support completion-defect payment closes K'=42
+
+- **Agent/model:** Codex, importing two further proved public prize-DAG nodes
+  after proof audit, exact arithmetic, finite-field replay, and hostile
+  mutation testing.
+- **Exact parent:** this PR's `K'=41` extension at
+  `16ee6cfb2fe6f33630f5b4adf50a25eedea69d99`.
+- **Research source:** prize-DAG commit
+  `291986739177a8511ba46d969e93056d8cc321a3`; source-contract SHA-256 values
+  `f51f62b2198f3477091f4966b76473aa21f49607535b189b75e87c28ecf2ab9c`
+  and `db90a48687728e7e6490e5ee976b54b3eda5b35b7184be7fc4a98e82c3a635b8`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** If one source support-`c` deletion has `q-s`
+  completions, their private coordinates span `q-s` dimensions of the
+  common annihilator.  At most `s` target support-`d` labels complete that
+  span, confining all support-`d` circuits to
+  `q+c-1+s(d-1)` coordinates whenever
+  `c+(s+1)d-s-1<=10`.  For source support five, defects zero through four
+  control target sets `{2,3,4,5,6}`, `{2,3}`, `{2}`, `{2}`, `{2}`.
+- **Impact:** Partitioning by the maximum support-five completion count gives
+  those five carrier branches and the complementary all-at-most-`q-5`
+  deletion branch.  The worst weighted premium is
+  `39561073029598078809344868550502487135515187669`.  Exact component demand
+  exceeds complete capacity at `K'=42` by
+  `4081031051590194485758587836050845115467905186032497191061176`.
+  The first remaining rank-nine row is `K'=43`.
+- **Controls:** The primary verifier regenerates the 75-source manifest and
+  recomputes all six branches.  The independent verifier reconstructs every
+  support cap, all core charts, all kernel coranks, both endpoint floor
+  comparisons, and a separate `GF(101)` Vandermonde/private-coordinate model.
+- **Nonclaim:** At `K'=43` the same payment has exact capacity excess
+  `2590504432899371163130658487199612335023802688487478696166262`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** At `K'=43`, strengthen the cross-support hierarchy or
+  extract another shared resource.  Preserve every kernel corank, intersect
+  every new cap with its prior supportwise cap, and do not reuse a rank-nine
+  mark.
+
+### 2026-08-15 - Descending-support and branch-lattice payments close K'=43..44
+
+- **Agent/model:** Codex, importing four proved public prize-DAG nodes after
+  proof audit, exact arithmetic, independent replay, and hostile mutation
+  testing.
+- **Exact parent:** this PR's `K'=42` extension at
+  `6e8e563dde5956320b78f8486cbe2bd958615d32`.
+- **Research sources:** prize-DAG commits
+  `9c5cf1b564c405558538a6c325a61be1fefbeba5` and
+  `ba9dc04e52505f6c42639f8692ab1abcf78b9b77`; the four source-contract
+  SHA-256 values are
+  `b2a9f966a819fbc77724775722e7a35695dadc14daae67c6271e9eec5809ac7b`,
+  `3e72a2ed68c9f14fc09a96c1448e93e178b1d1dc5684b23c32e429c32858a91b`,
+  `af8bfd54a653a1fe0c0d4bb05a5dde740d6a365924f4240de79fb59616b605be`,
+  and `fb48b423a9f8b9aa11be869b91ed7edb21332feb48cfb4f9eec7070264661cc2`.
+- **Status:** PROVED TWO-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** An exhaustive descending-support ladder applies
+  terminal/fallback completion partitions successively at supports
+  `5,4,3,2`, producing 27 leaves.  A reusable branch-lattice theorem then
+  refines selected parent leaves while inheriting every old cap; refining
+  `c5_defect_2` and `c5_defect_3` at support six produces 35 leaves.
+- **Impact:** The 27-leaf ledger closes `K'=43` by
+  `4456829341030748859349785682161828589177837723939653522311506`.
+  The 35-leaf ledger closes `K'=44` by
+  `535634409944931896502583174279429171539133692200964798538249`.
+  The first remaining rank-nine row is `K'=45`.
+- **Controls:** The canonical manifest now pins 79 public source nodes.  The
+  primary verifier recomputes every branch and rejects 139 hostile
+  mutations.  The independent verifier separately reconstructs all 27- and
+  35-leaf ledgers, active branches, exact payments, and adjacent walls.
+- **Nonclaim:** At `K'=45` the 35-leaf payment has exact capacity excess
+  `5651502053446174523626296867091469400380654135040887972894842`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** Refine the active support-five/support-six leaves at
+  support seven and audit all competing leaves at `K'=45`.  Preserve every
+  inherited cap, kernel corank, and rank-nine mark.
+
+### 2026-08-15 - Joint zero carrier and full completion product close K'=45
+
+- **Agent/model:** Codex, importing three proved public prize-DAG nodes after
+  proof audit, exact arithmetic, independent replay, and hostile mutation
+  testing.
+- **Exact parent:** this PR's `K'=43..44` extension at
+  `62b63a52a3e01d6086ba3e2333d4fdb21350a180`.
+- **Research source:** prize-DAG commit
+  `e95151ead0a4afa7bc0cede3de887442cc2b3204`; the three source-contract
+  SHA-256 values are
+  `dae4d0f7200653bb1e9f7f3f1c73b1ca1d83f3040d915a98952a92fd49eedae8`,
+  `9b4f391a6f919caed461b33ad7a911cfaf6bbbd1a1355223f730158039ae55ae`,
+  and `f935bbbc6266e4df746a0b9f4d4d53a0afef01a5fa5a384199f682bee8018c6f`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** Terminal support-four/support-five completion
+  carriers force a common zero closure of dimension `4..6` and defect
+  `0<=delta<=min(s_4,s_5)`.  This gives an external support-four circuit
+  charge on every joint-terminal leaf.  The complete Cartesian
+  terminal/fallback product over supports `2..9` then has `9!=362880`
+  exhaustive leaves, `259200` of which use the joint charge.
+- **Impact:** At `K'=45` the unique worst leaf is all-fallback, with premium
+  `40126324034612056409620566967689123241580103372`.  Exact demand exceeds
+  complete capacity by
+  `1616971801308361526826641488053709685917408248376428345137933`.
+  The first remaining rank-nine row is `K'=46`.
+- **Controls:** The canonical manifest pins 82 public source nodes and has
+  SHA-256 `6d526aa3bb5b7e36ea1338f62cf34a7caea1ab9f39a53b0844b2c55a736c0b1d`.
+  The primary verifier rejects 144 hostile mutations.  The independent
+  verifier separately reconstructs all joint carrier rows, external-charge
+  caps, and 725760 completion leaves across `K'=45,46`.
+- **Nonclaim:** At `K'=46` the same full-product payment has exact capacity
+  excess
+  `5057508862309072579343840146913199075599800084788396842011438`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** The `K'=46` wall is the all-fallback leaf, so another
+  terminal-only refinement cannot move it.  Seek a valid cap or shared
+  resource that prices the simultaneous fallback regime while preserving
+  every inherited cap, kernel corank, and rank-nine mark.
+
+### 2026-08-15 - Exact deep defects close K'=46..53
+
+- **Agent/model:** Codex, importing two proved public prize-DAG nodes after
+  proof audit, exact arithmetic, primary replay, and an independently coded
+  replay.
+- **Exact parent:** this PR's `K'=45` extension at
+  `f2080254b669749eb15f9fd8fec0dd5e6e915433`.
+- **Research source:** prize-DAG commit
+  `8c3a30f9a0d2a29289226431c810a5a74cd200c6`; source-contract SHA-256 values
+  `53267e8271a57e087c39ce77a696d93729588d57cd108ffdd279c51bf3192c4b`
+  and `9c1f1aa7bfe20879f792cac64748da44436f8db6ed4996bfcc36da79527121a5`.
+- **Status:** PROVED EIGHT-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** Exact support-four/support-five completion defects
+  form `(q+1)^2` disjoint pairs.  Every pair retains the inherited caps, and
+  `s_4+s_5<q` retains the joint external support-four charge.  Of `8640`
+  raw other-support branches, `1182` cap vectors are distinct and exactly
+  nine are componentwise maximal.
+- **Impact:** Exhausting all exact pairs against those nine vectors closes
+  `K'=46..53`.  The minimum gap is
+  `2503373059664320603163477388007627909210651834842589498907998` at
+  `K'=53`; the first remaining rank-nine row is `K'=54`.
+- **Controls:** The canonical manifest pins 84 public source nodes and has
+  SHA-256 `cd0f42c108679f9b41f8ec5af2f8dc136a6a5d4112db7cd5932832041e4b002c`.
+  The primary verifier rejects 149 hostile mutations.  Primary and
+  independent verifiers agree on all `15189` defect pairs, nine Pareto
+  frontiers, eight safe rows, and the adjacent wall.  The 167-page paper
+  builds with SHA-256
+  `f34ec9214b0d04995130a22056cf6c665adcf6fb426b92340784ad98d625ec81`.
+- **Nonclaim:** At `K'=54`, the same payment has exact capacity excess
+  `2477882110233058360154706764229180240778698202487636349407165`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** Attack the balanced deep-joint wall
+  `s_4=s_5=21` without dropping inherited caps, kernel coranks, or rank-nine
+  marks.  A valid support-five external charge or another shared resource is
+  the most direct next candidate.
+
+### 2026-08-15 - Same-source collisions close K'=54..59
+
+- **Agent/model:** Codex, importing two proved public prize-DAG nodes after
+  proof audit, exact arithmetic, primary replay, independent reimplementation,
+  and hostile mutation testing.
+- **Exact parent:** this PR's `K'=46..53` extension at
+  `c8b610fa48fda07c961d1b04cb20e3f87f910838`.
+- **Research source:** prize-DAG commit
+  `b8ce7859cfa0f40b26ba69b5c90148e295af45de`; source trees
+  `134f283bbe1ede60877526a588093b18a8d043ea` and
+  `0f81cecda6cd99dc16c8ebeb35d6c48026e1f804`; source-contract SHA-256 values
+  `fc8bb1a5b4a91ac455f1613dc997879cc352af7910873b56666a2ec5c1f74177`
+  and `3eac696cd20b5468cbfe7565f14fef6964b72b793800ef810d9db72fa17b9922`.
+- **Status:** PROVED SIX-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** For each support `2<=c<=5`, the vanishing spaces
+  of an attaining deletion and any other independent deletion intersect in
+  dimension at least `12-2c>0`.  The common-root bound therefore leaves at
+  most `s+c-1` points of the second carrier outside the first.  Exact
+  outside-point incidence gives a same-source circuit cap.  Exact defects at
+  supports `2..5`, the existing joint support-four charge, and all
+  support-`6..9` branches compress to Pareto-frontier sizes `1,1,7`.
+- **Impact:** The active branch has
+  `s_2=s_3=s_4=s_5=floor(q/2)` and all higher supports fallback.  It closes
+  `K'=54..59`; the minimum gap is
+  `2662571195028360324230500777441238424043251068116179184680206` at
+  `K'=59`.  The first remaining rank-nine row is `K'=60`.
+- **Controls:** The canonical manifest pins 86 public source nodes and has
+  SHA-256 `b33ee35c101d3d3300d7268c253f69e2eb6244bd8f072cce96f017b213bd5e66`.
+  The primary verifier rejects 154 hostile mutations.  The independent
+  verifier separately checks the structural theorem, all six safe rows, the
+  adjacent wall, and `3693717480` represented raw leaves.  The 168-page
+  paper builds with SHA-256
+  `06dd17a2357651cb109556896ab6a1bf6ea9bbebe0a74e940a2702955eb5b8e9`.
+- **Nonclaim:** At `K'=60`, the same payment has exact capacity excess
+  `3672733965923291717387950853821894967875078243379846951201638`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** Couple the exact low-support carriers to support six,
+  seven, and eight before adding another branch layer.  Preserve every
+  inherited cap, kernel corank, and rank-nine mark.
+
+### 2026-08-15 - Cross-support collisions close K'=60..70
+
+- **Agent/model:** Codex, importing two proved public prize-DAG nodes after
+  proof audit, exact arithmetic, primary replay, independent reimplementation,
+  and hostile mutation testing.
+- **Exact parent:** this PR's `K'=54..59` extension at
+  `0d7998d1b66d165a7eafc819371a26bc32572919`.
+- **Research source:** prize-DAG commit
+  `b484010bbcf39a7cc7daf7240c4ed1c08c4c9663`; source trees
+  `74c9ec6f3fce88080c5e7a2a11f22763a0db7dca` and
+  `64aca8fbb26848d41a4208640bd51066ce9d9779`; source-contract SHA-256 values
+  `ad7994569e830ab2d56e58bdb16ca8658e0a2903a28e50e7e0985514e34075c5`
+  and `edcce8ae674f96b095193af674e42b55a1370c21b32382e2de717c1b5fbd5a09`.
+- **Status:** PROVED ELEVEN-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** An attaining nonempty carrier at source support
+  `2<=c<=5` intersects every target deletion-vanishing space with
+  `2<=d<=9` and `c+d<=11`.  The common-root bound leaves at most
+  `s+d-1` target-carrier points outside the source carrier.  Exact
+  outside-deletion exposure therefore gives a target-circuit cap.  The 26
+  admissible mixed-support pairs are combined with exact low-support defects,
+  all inherited same-support and joint caps, and every higher-support branch.
+- **Impact:** Grouped Pareto compression selects
+  `s_2=s_3=s_4=s_5=ceil(q/2)` and all higher supports fallback.  It closes
+  `K'=60..70`; the minimum gap is
+  `854274172985042754802177028749324962520517760595473749602211` at
+  `K'=70`.  The first remaining rank-nine row is `K'=71`.
+- **Controls:** The canonical manifest pins 88 public source nodes and has
+  SHA-256 `db44baa6402a1a4914e4ee66862de1cc3e2c248e8e53562b679b9720786d1908`.
+  The primary verifier rejects 159 hostile mutations.  The independent
+  verifier separately checks all 26 mixed-support pairs, all eleven safe
+  rows, the adjacent wall, and `13230140880` represented raw leaves.  The
+  170-page paper builds with SHA-256
+  `d813ea2dab698c533d57ba8f3b33de25ff1eb65af93ddcc3b93d503bee23a40c`.
+- **Nonclaim:** At `K'=71`, the same payment has exact capacity excess
+  `824875968499878215752683873455674299360608616555107905777434`.
+  Rank eight, chronology, error rank eleven, active-v4 movement, KoalaBear,
+  and both prize problems remain open.
+- **What to do next:** Attack the balanced `K'=71` cross-support wall with a
+  valid joint multi-source charge or another shared resource.  Preserve every
+  inherited cap, kernel corank, and rank-nine mark, and do not stack
+  individually valid target caps unless their common resource is priced.
+
+### 2026-08-15 - Carrier trichotomy closes K'=71
+
+- **Agent/model:** Codex, importing three proved public prize-DAG nodes after
+  proof audit, exact arithmetic, primary replay, independent reimplementation,
+  and hostile mutation testing.
+- **Exact parent:** this PR's `K'=60..70` extension at
+  `6ea448fbb6fca01998a1915cb8450cd968a94587`.
+- **Research source:** prize-DAG commit
+  `90178b01dba1b5fdd0c3e955e060ad41c8e7a21a`; source trees
+  `1ad5e978859deeb6ae6a3e6ce80758e3d10c896c`,
+  `c4f935e44e0ecc4f303a55c41605e721a6a7ae57`, and
+  `e44caf8db170118d90156777b782f7fe528eb339`; source-contract SHA-256 values
+  `5c635f5606250742ee39155a55eb6cbf33ea3546ce8599bfaf2b2a9d8c642b32`,
+  `45df072823fad4f85ce8ed08bd32b1a1f03202b6b397f9644078593a75071c4e`,
+  and `3c56c182cdb219df31cc4e98913b8e52ce625ec94c21d1fe48deab534ba6c0fc`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A fixed-union multicarrier collision theorem, the
+  full-projective-class description of a support-two attaining carrier, and
+  the transverse/proper-span/full-completion trichotomy relative to
+  support-three and support-four carriers.  The one-step completion regime
+  has six exhaustive fixed-union geometries.  At `K'=71` the trichotomy
+  excludes 961 impossible support-two/support-three defect pairs and prices
+  every surviving geometry without stacking unrelated target caps.
+- **Impact:** Exact replay selects
+  `s_2=33,s_3=s_4=s_5=31,c6F/c7F/c8F/c9F` and closes `K'=71` by
+  `118872281099445772155993127155914865045379156488810154591370`.
+  The first remaining rank-nine row is `K'=72`.
+- **Controls:** The canonical manifest pins 91 public source nodes and has
+  SHA-256 `0e6d4a1a3093cd123ddb40894662745cd13353f8dc3bf5474cdf73fc46fedd65`.
+  The primary verifier rejects 164 hostile mutations.  The independent
+  verifier separately checks 29 fixed-union samples, the digest of all 961
+  impossible pairs, all six geometry cases, the safe row, and the adjacent
+  wall.  The 172-page paper builds with SHA-256
+  `a7829ee79ff84a73b24004da93e006f7d7941357e4671f9d48416c1816f53bdb`.
+- **Nonclaim:** At `K'=72`, the same complete payment has exact capacity
+  excess
+  `4821537739796415753639473905341364357966460110033651367468100`.
+  Its active defects have `M_3=M_2+2`, outside the proved one-step
+  trichotomy.  Rank eight, chronology, error rank eleven, active-v4 movement,
+  KoalaBear, and both prize problems remain open.
+- **What to do next:** Analyze the two-step separation `M_3=M_2+2` at
+  `K'=72`, preserving every inherited cap, kernel corank, and rank-nine mark.
+
+### 2026-08-16 - Full carrier atlas closes K'=72,73
+
+- **Agent/model:** Codex, importing four proved public prize-DAG nodes after
+  proof audit, exact bounded replay, independent reimplementation, and
+  hostile mutation testing.
+- **Exact parent:** this PR's `K'=71` extension at
+  `1ca90d4c570e3630b62c4cca084549282f1d7418`.
+- **Research source:** prize-DAG commits
+  `9adad693ff760f1f4498b2c2c6990c834aba7ed4` and
+  `fdef16d4bf491271f63df874d69faa632d1f9785`; source trees
+  `26c6e8da9f6c9cd7eb30d6b0c1e94b7572275e25`,
+  `ccdd8ccebae24a3795679a9a86a30578e20525b5`,
+  `62633e1095c2e097129cdb5dae0cad8b103cdbae`, and
+  `d5903f4a70f2be839018fb65d575999fd4127d40`; source-contract SHA-256
+  values `18a8f0af39e118d2d8c4554b03b142c57f6f01ea9db8f1b43d4ea570e85fdab9`,
+  `295d82f01e6a8cb9f9ef1d9dd4a0966e14d729cfde5a8259bb0df07ca9a66cd4`,
+  `3f3d1903b9ba5063f370ce8acad984d0d740a722b3c17ead912c6faa7c98a258`,
+  and `dbc22b8c504a950b10be711ac8348617b4bef5cab40dc06a1a87a04f46d28bf8`.
+- **Status:** PROVED TWO-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The full-completion pairwise carrier atlas for
+  arbitrary positive support-three offset, and a base-field-normalized
+  flat-coupled support-four/support-five census in the original outside
+  evaluation matroid. The atlas exhausts transverse, proper-anchor, and
+  full-completion positions without synchronizing unrelated residuals.
+- **Impact:** Exact replay reroutes all 36 conservative failures at `K'=72`
+  and all 218 at `K'=73`. The resulting positive component-payment gaps are
+  `52200017935756118667066163970702686810349690944821612538425` and
+  `2120784774514292837614781442321448802184060878375874298355`.
+  The first remaining rank-nine row is `K'=74`.
+- **Controls:** Supplemental manifest SHA-256
+  `4978f7b692bdee734e302b55c9c5597d1dc0d21674ab219b5a440b8718a41725`.
+  Focused primary and independent verifiers reconstruct all 254 exceptional
+  cells and 79,863 exact reroute evaluations; six hostile mutations are
+  rejected. Grande Finale builds in three passes at 174 pages with PDF
+  SHA-256 `621a21e9561e1a7e92a167f5828c34c97252c7a0b97d3bea4d3c3551528adeb5`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Replay the full carrier atlas at `K'=74`, retaining
+  every inherited cap, kernel corank, and rank-nine mark; do not extrapolate
+  from the two adjacent payments.
+
+### 2026-08-16 - Compact full carrier atlas closes K'=74..78
+
+- **Agent/model:** Codex, importing five proved public prize-DAG row nodes
+  after exact bounded replay, independent payment reconstruction, hostile
+  mutation testing, and five fresh full-frontier replays.
+- **Exact parent:** this PR's `K'=72,73` extension at
+  `5d3cda9475b03777c488e35ab152231bd338da71`.
+- **Research source:** prize-DAG commit
+  `9526b45dccc343a8070c86aaa45a23f1f499e7e0`; source trees
+  `7147009ffc0bc3ef5a5f0acbb794d019a8571baf`,
+  `fcfbf1f1676728ffe32babd351f2c58923c70cb3`,
+  `92be39613893dfe29f4592bfc145274226b4b1b4`,
+  `411e6daf6822ad5138346a41d48aab19870d5b00`, and
+  `0c3e8fc8ffe6ef478c1b0548c39440890efe6663`; source-contract SHA-256
+  values `7800a9e860586e1d05ab283c76405c6f53f1c4dd8a84275f451f058df6132e43`,
+  `ebab9ef2d31d53d4f826e88bd65107b8b0ea8b495285037a9ec3db94fbbf2231`,
+  `73e786205127e30c03437231c90b89c9192bcfa4820204a36ad97e465e5f1b1a`,
+  `f7d35e9aae271f6b8a885148b04a73e29b7a7f3074cce5641fd6e64b627e906b`,
+  and `cfc78701bda81ac3928a6750e39b2b3c7baceb59ec05a2de35e58f0debd9ad9b`.
+- **Status:** PROVED FIVE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A compact continuation of the
+  base-field-normalized split-pencil census. Canonical SHA-256 digests replace
+  an expanded 25,733-tuple payload while preserving exact one-row replay.
+- **Impact:** Full replay reroutes `729`, `1995`, `3800`, `7657`, and `11552`
+  exceptional cells at `K'=74,75,76,77,78`. All 20,995,128 reroute leaves and
+  every sharded geometry lane are safe. The closed rank-nine prefix is now
+  `K'=10..78`; the first remaining row is `K'=79`.
+- **Controls:** Manifest SHA-256
+  `20dff5ce1c9634f9cd99e2cbacd4809fc860894f4549265a6f8b69176c0843c4`.
+  Primary, independent, and full-frontier verifier SHA-256 values are
+  `b3be282aa7ecc1696c53bc46a1a96702a03f7892db672ff1292090981480157a`,
+  `55717ab77ccae0fdb7b774867ab95d1bb7b02b55a2979ad016114f01a36196a1`,
+  and `4da8cfa98aa22cfde6cf14ebfda687371cff28a35c7e8c04ffca10c8bebcdbe5`.
+  The primary rejects eight hostile mutations. Five full replays pass at
+  57--58 MB peak RSS. Grande Finale builds in three passes at 175 pages with
+  PDF SHA-256 `ff4837ec8438f469f7d8d9b872e341c216fb61e6029062e36afc508191e1ec2d`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Replay the complete atlas at `K'=79`; do not
+  extrapolate from the five exact rows.
+
+### 2026-08-16 - Full carrier atlas closes `K'=79..82` and isolates the `K'=83` wall
+
+- **Agent/model:** Codex, importing four proved public prize-DAG row nodes
+  and one proved method-wall node after exact arithmetic reconstruction,
+  independent reimplementation, hostile mutation testing, and a fresh
+  full-frontier replay at the last closed row.
+- **Exact parent:** this PR's `K'=74..78` extension at
+  `0b6cb72c025ddaafbddd92e3daf398e5993ef320`.
+- **Research source:** prize-DAG commit
+  `42ad09faf86b9a3624a361b2cc8d1a57f201501c`; source trees
+  `ce03af23683142272324ff89626d72ef4f876e40`,
+  `58fc3109875e1acbe9032cb2b1d614dac7e03374`,
+  `0f2b7a1c4e5dc58a2c18a7aec71e816b0aae2145`,
+  `583733740a63d106039b638e5c001e4287d40e79`, and
+  `60862e5d5feeecb0fd8717e1a7ac027791e726d3`; source-contract SHA-256
+  values `29f26c362ce70c3f2f7bd5a8e911baa2d6f3a72fb30bcd066fbe60a1c16eb4cb`,
+  `90a2e102c402a5323aad41fba6f99f9965defd593f690b429993c459ee1ebba3`,
+  `0f55a47938c6ad528b68a212f7cb51237be84ad1309594a8c8c39dbcf9464525`,
+  `bef30d74e322c5ae37ad22c09fe8d7bf657b8a6f037cc1b6d9c2e14f5727c926`,
+  and `2df88cbc5fdbe8cffde25d064cf3e00e0a339857d34c0917ae2e5a58d3402c08`.
+- **Status:** PROVED FOUR-ROW EXTENSION plus PROVED METHOD WALL / ZERO
+  DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The digest-pinned full carrier atlas closes
+  `K'=79,80,81,82`. At `K'=83`, the packet reconstructs the exact
+  `(23,24,24,25)` active completion cell, both `(29,6)` pairwise carrier
+  charges, every forced dimension-four intersection on union sizes
+  `29..32`, and the branch-free baseline.
+- **Impact:** The four rows contain `19406`, `26104`, `39570`, and
+  `49900` exceptional cells. Their exact positive component-payment gaps
+  are
+  `450177555678029181663225127809721029656401221977920938493`,
+  `63252728650428501280250074863279553490282355009311230439`,
+  `46000440427984175715360686273569212546246763017890480411`, and
+  `71341331255235112573601253115194194916813205966998398786`.
+  The closed rank-nine prefix is now `K'=10..82`.
+- **Wall:** At `K'=83`, the pairwise premium exceeds the safe ceiling by
+  `46770156546844646871611081711174519620031307`; forced pairwise
+  intersection makes no improvement, and the branch-free baseline is worse.
+  This proves a route cut, not a counterexample to MCA.
+- **Controls:** Supplemental manifest SHA-256
+  `b5ef760938b36d09877fcda1d87c597de4f553a193af0050c05ddf24bfda2523`.
+  Primary, independent, and full-frontier verifier SHA-256 values are
+  `6e94e506748b85619e5bda9b00b28ee1213551a2ef9dabcef5b73a210e4f2ab3`,
+  `16e43612118b943cab9c81909373ce75a81412c4e413ee19fd203a1e5c45127b`,
+  and `69abfde48959c4d78196723cbfea683baee66ee8c943468a782607959f8cc755`.
+  The primary rejects eight hostile mutations. A fresh full replay at
+  `K'=82` passes at 67 MB peak RSS. Grande Finale builds in three passes
+  at 176 pages with PDF SHA-256
+  `455d961a1ebd13f7d3ba58c3d36d7d2ef21ad55084783169ed499304cfeaf5bc`.
+- **Nonclaim:** Rank eight on `22..22525`, rank nine on `83..15528`,
+  chronology on `22526..37995`, aggregate error rank eleven, active-v4
+  movement, KoalaBear, and both prize problems remain open.
+- **What to do next:** Derive a genuinely nonseparable support-`3/4/5`
+  triple-carrier census in the explicit `K'=83` active cell. Do not add
+  another pairwise correction or infer a row closure from the route cut.
+
+### 2026-08-16 - Adjacent-support carrier census closes `K'=83`
+
+- **Agent/model:** Codex, extending the exact PR #1170 packet after a generic
+  theorem proof, two independent arithmetic implementations, and a complete
+  checkpointed frontier replay.
+- **Exact parent:** this PR's `K'=79..82` plus `K'=83` method-wall packet at
+  `6b4902ccc5b4df02dddaea4969f3278dfc829953`.
+- **Research source:** prize-DAG commit
+  `f6849a90abfa9c8fe2e7b62dfbd2e510165957d1`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A finite-matroid adjacent-flat circuit inequality,
+  its base-field-normalized fixed-union adjacent-support census, the
+  single-carrier endpoint, and the exact `ordinary + offsets 1..72` router.
+  Only support-disjoint adjacent pairs are composed.
+- **Impact:** All 146 implementation/lane jobs agree. The global premium is
+  `41364793335621487128860475977676014245181683050`, below the exact ceiling
+  by `20915524776266057709711793515157915895070`; the component gap is
+  `104570295123758938048546273477992878508577141441163332394`. The closed
+  rank-nine prefix is `K'=10..83`, and the first open row is `K'=84`.
+- **Controls:** Supplemental manifest SHA-256
+  `99e01210543223ae45aa8e1f88a49c11951a0b37fd2f3496c1ce1e886d04a3fd`.
+  Primary and independent verifier SHA-256 values are
+  `628e94a8327964c7530e22608d7ea551c1d959beabafe7d829dc7071608ee81b`
+  and `4e2d46a39ea5e711db59f29d65f137c55d266f56970dbf4d7a37669cc601d8e1`.
+  The primary rejects five hostile mutations. Grande Finale builds in three
+  passes at 178 pages with PDF SHA-256
+  `0e3173cc5ea50b50943e12038eabc3ddf8fcb13be6baf267332c348d93f76ead`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Test `K'=84` and seek a symbolic continuation of the
+  adjacent-support payment before further row-by-row enumeration.
+
+### 2026-08-16 - Adjacent-support carrier census closes `K'=84`
+
+- **Agent/model:** Codex, extending PR #1170 by one exact row after complete
+  primary and independent checkpointed replay.
+- **Exact parent:** this PR's `K'=83` adjacent-support packet at
+  `e356ef800479d3e3c4c00218b63b1ae898b58362`.
+- **Research source:** prize-DAG commit
+  `9a0baa42b35790f1e0d383e18dd721bcb7d9a86c`; source-node tree
+  `354e3859f7654bcec417f2dcd92b506a9984a7b2`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The existing adjacent-support theorem is
+  specialized to the exact `ordinary + offsets 1..73` partition at
+  `K'=84`. Only support-disjoint adjacent pairs are composed; no new
+  analytic premise is introduced.
+- **Impact:** All 148 implementation/lane jobs agree. The global premium is
+  `41388798786059119503097492734939028640066114130`, below the exact ceiling
+  by `44581160171407926086602515730765812413619`; the component gap is
+  `222890179708699305421112332292209416493280153112001413582`. The closed
+  rank-nine prefix is `K'=10..84`, and the first open row is `K'=85`.
+- **Controls:** Supplemental manifest SHA-256
+  `4317c574e73626e2491e3dcfc777ab7e09c98333493f9161eb432a5ecfa355e3`.
+  Primary and independent verifier SHA-256 values are
+  `55c2586177919e5d9141a5f42e89d6f94e7a8692c8f197c009a5349e1b663b3d`
+  and `73d3b364336197b403dcfa13fc2f8c37bdd8ccb8499a387e062f9642220f4c51`.
+  The primary rejects six hostile mutations. Grande Finale builds in three
+  passes at 178 pages with PDF SHA-256
+  `3a508a300cd6e5e726a4e5b342339113a34d0988680c7f5b80e3eb0c4dbece80`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Seek a symbolic continuation of the adjacent-support
+  payment and use an exact `K'=85` replay only to locate its first obstruction.
+
+### 2026-08-17 - Best-single adjacent-support envelope closes `K'=85`
+
+- **Agent/model:** Codex, extending PR #1170 after a paired route pilot, a
+  complete paired raw-threshold wave, adversarial falsification of stronger
+  candidate payments, and a complete paired residual wave.
+- **Exact parent:** this PR's `K'=84` packet at
+  `cba05d4ca6c8cb08fd3444a72a55f298fe47b0bc`.
+- **Research source:** prize-DAG commit
+  `c4fdef465aabc8abae7a18b9694bed9cf34e362b`; source-node tree
+  `fc59f079d87a20f6c71f9b0b78345c2b518a0c44`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The exact ordinary-plus-74-offset partition at
+  `K'=85`, its complete raw-safe split, and the residual best-single theorem.
+  Every residual profile may use its best individually valid single adjacent
+  edge; no simultaneous composition of overlapping edges is asserted.
+- **Impact:** All 148 raw-wave jobs agree on 16,028,400 source units per
+  implementation and isolate 331,533 unsafe units. All 82 residual-wave jobs
+  agree on 49,090,656 carrier profiles per implementation. The global premium
+  is `41412868016209776721228891386909879523306833354`, below the exact
+  ceiling by `1793645398692419426975603430807602228515`; the component gap is
+  `8967598503742781003071510733325918643075973211834024001`. The closed
+  rank-nine prefix is `K'=10..85`, and the first open row is `K'=86`.
+- **Controls:** Supplemental manifest SHA-256
+  `ae598632a204181a0ef0cc8895c077af22d16587f2ab209b7cebb3e26c2cb5ee`.
+  Primary and independent verifier SHA-256 values are
+  `527b5f8be7863d67e59d338fa95871aa087a38513585efc89f4f87db80db50e7`
+  and `15b58870dbaff03768c4d8bfa196cede8302bfc9ac7c3ac5e06f65f5813e4e6c`.
+  The primary rejects seven hostile mutations. Grande Finale builds in three
+  passes at 179 pages with PDF SHA-256
+  `55965d8b6c26e5e7d0c85649d5e672ea50a5c1da7a46dba0ba7142770794bf19`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Test the best-single envelope at `K'=86` and seek a
+  symbolic adjacent-support continuation. Do not infer an interval from the
+  exact rows.
+
+### 2026-08-17 - Best-single adjacent-support envelope closes `K'=86`
+
+- **Agent/model:** Codex, extending PR #1170 after a paired raw-threshold
+  wave, an adversarial four-offset stress wave, a complete paired residual
+  wave, and an exact component payment.
+- **Exact parent:** this PR's `K'=85` packet at
+  `7356a104a4ec2d21f6c0fc32a3fb3c394cf5e8cf`.
+- **Research source:** prize-DAG commit
+  `a0f03f3af3b8bffb303dfe8e0b338b40e49da5ee`; source-node tree
+  `5d5e1503591ec1ebca92847538f3b1a7d6ef6dfb`.
+- **Status:** PROVED ONE-ROW EXTENSION / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** The exact ordinary-plus-75-offset partition at
+  `K'=86`, its complete raw-safe split, and the residual best-single theorem.
+  A dedicated checker accepts only the two completed ordinary jobs retained
+  from a broader incomplete pilot; it does not promote the missing pilot job.
+  Every residual profile may use its best individually valid single adjacent
+  edge; no simultaneous composition of overlapping edges is asserted.
+- **Impact:** All 150 raw-wave jobs agree on 16,897,650 source units per
+  implementation and isolate 415,413 unsafe units. All 84 residual-wave jobs
+  agree on 62,159,220 carrier profiles per implementation. The global premium
+  is `41436891148468120556440841127823744176664445997`, below the exact
+  ceiling by `2429142732593969226237923721701123878841`; the component gap is
+  `12144862496270285686198005257330878943217549361781518735`. The closed
+  rank-nine prefix is `K'=10..86`, and the first open row is `K'=87`.
+- **Controls:** Supplemental manifest SHA-256
+  `d0869e5755252d08a59bfe763fd33c5032796ebc67ca410c7432d98d05762072`.
+  Primary and independent verifier SHA-256 values are
+  `a1078fb15349df3cf40000d90da98dfb5dcf8cf149b7f9a333b72121afd2b68a`
+  and `fabb09251f7d0b453ed4f2110dee233cefe4294c9b1f473a44e5911f61ad1de3`.
+  The primary rejects eight hostile mutations. Grande Finale builds in three
+  passes at 180 pages with PDF SHA-256
+  `4c3fa80a89397d0b131aae52a6f15b5f7a687ac0f5cf556464610094548566f0`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, and both prize
+  problems remain open.
+- **What to do next:** Test the best-single envelope at `K'=87` and seek a
+  symbolic adjacent-support continuation. Do not infer an interval from the
+  exact rows.
+
+### 2026-08-17 - Raw-clipped adjacent-support envelope closes `K'=87`
+
+- **Agent/model:** Codex, extending PR #1170 after proving the raw-clipped
+  fixed-union theorem, completing a paired raw-threshold wave, completing a
+  six-shard paired residual wave, and replaying the exact component payment.
+- **Exact parent:** this PR's `K'=86` packet at
+  `7214947e5f7bd2b350f056ee2bbf75c5c4effd06`.
+- **Research source:** prize-DAG commit
+  `b869fb9dd2e740e323bee74e7ee72475905901f5`; raw-clipped theorem-node tree
+  `f1e826876806f3e30287f4e64d86f655714af081`; row-node tree
+  `1c00acd2b2293b97623bbbec695d98aa8689d218`.
+- **Status:** PROVED REUSABLE COUPLING AND ONE-ROW EXTENSION / ZERO DEPLOYED
+  LEDGER MOVEMENT.
+- **What is being added:** A raw-clipped fixed-union theorem that converts
+  independent selected-incidence caps to circuit caps using exact extension-
+  factor floors, then intersects those caps with the adjacent-support
+  polytope. Dual fractional-knapsack orders evaluate the same rational
+  optimum. Only support-disjoint adjacent pairs compose. The finite packet
+  applies this theorem to the exact ordinary-plus-76-offset partition at
+  `K'=87`.
+- **Impact:** Fresh paired ordinary traversals agree on 542,840 source units.
+  All 152 raw-wave jobs agree on 17,801,784 source units per implementation
+  and isolate 511,677 unsafe units in offsets 1 through 43. All 86 residual-
+  wave jobs agree on 77,179,660 carrier profiles per implementation. The
+  offset-9 premium
+  `41460899125475443837881046685022762331499044695` is below the exact
+  ceiling by `15543567623247423995536789673894577398694`; the component gap
+  is `77712391681585193939443710876895639001790676368706144901`. The closed
+  rank-nine prefix is `K'=10..87`, and the first open row is `K'=88`.
+- **Controls:** Supplemental manifest SHA-256
+  `ec81aa702181ba7a683e9f2a1afeb942a968c7d0232d6e3e7f3e44669d3f0f8a`.
+  Primary and independent verifier SHA-256 values are
+  `da8e97ab5a3b8778acd4415b598e5086f8bd5942c275ad4644c45843cfbc0b40`
+  and `4f0c45d41bd6282fb167fe577e2428ecc9df11aab03ec81f37d1156bff9ad9be`.
+  The primary rejects ten hostile mutations; the two verifiers evaluate the
+  raw-clipped LP in opposite orientations and agree on its denominator-three
+  optimum. Grande Finale builds in three memory-capped passes at 181 pages
+  with PDF SHA-256
+  `0686647b70fb2155b28591ea381d6a9683947591dda1fb4a5a9a56859797b207`.
+- **Nonclaim:** Rank eight on `22..22525`, chronology on `22526..37995`,
+  aggregate error rank eleven, active-v4 movement, KoalaBear, LIST, MCA, and
+  both prize problems remain open.
+- **What to do next:** Test the raw-clipped envelope at `K'=88` and seek a
+  symbolic continuation. Do not infer an interval from the exact row.
+
+### 2026-08-18 - Quotient-pair affine-plane cap and endpoint direction bank
+
+- **Agent/model:** Codex, exporting two proved prize-DAG nodes as one compact
+  base-field-normalized split-pencil packet.
+- **Exact parent:** this PR at
+  `d296510e806d2bafbb08cb0c2fc25be6a3b03a50`.
+- **Research source:** `AllenGrahamHart/rs-mca-prize-dag` commit
+  `f557775d53192f027730b15c2f70330e1a56c116`; source-node trees
+  `2b2e264afd74e65cbde43b4c79e1702c04c7db4d` and
+  `3d2ecbdee129e5422c6cb7e7686384446977a34b`.
+- **Status:** PROVED CONDITIONAL ROUTE CUT / ZERO DEPLOYED LEDGER MOVEMENT.
+- **Source boundary:** The packet consumes a fully printed 520-type
+  coprime-direction quotient-pair interface, scalar span at most four,
+  affine-line occupancy at most 15, and a 29-record floor used only by the
+  dimension-four router. It does not claim that PR #1170 already derives
+  this interface.
+- **Result:** Affine scalar planes have occupancy at most 218. In dimension
+  three, the common received-pair core is at least 407831 and the minimum
+  shortened incidence slack is 178. In dimension four, either the same core
+  floor holds or one exact affine-three coordinate fiber contains at least
+  219 types and 6351 first-owned records. If plane occupancy 218 occurs, then
+  `2044<=K'<=5025`, at least 210 projective directions are represented,
+  aggregate unused direction degree is at most 41736, aggregate root
+  saturation exceeds 0.9618, and the dual 218-line arrangement has at least
+  210 multiplicity-15 points with at most 1603 other line pairs.
+- **Controls:** Two independently implemented standard-library verifiers
+  scan all 2982 endpoint values. Normal and optimized Python agree; the
+  primary rejects 12/12 hostile mutations and replays all frozen source
+  hashes when given the prize-DAG checkout. Manifest SHA-256 is
+  `d5889a949f95970b5d47b2acce1d9f3ac5a95f037e67e28c58a176e797b81e6d`;
+  primary and independent verifier SHA-256 values are
+  `5b0dcb31f69f31868d05123c1faf796020cef3f7999248b9d731f75ea50d7268`
+  and `314e80b0d322200a470bb365cafc39f615bf935747784b8c1669dbc784eff7a7`.
+- **Nonclaim:** The 218-plane is not excluded over the official field; no
+  shortened branch, rank-eleven family, active-v4 atom, KoalaBear row, LIST
+  row, MCA row, or prize problem is paid.
+- **What to do next:** Classify and price the near-saturated rational fibers,
+  or prove a finite-characteristic arrangement inequality with hypotheses
+  actually satisfied by this represented polynomial pencil.
+
+### 2026-08-18 - Pure-power router for the quotient-pair plane endpoint
+
+- **Agent/model:** Codex, extending the conditional plane-218 packet with a
+  proved quotient-periodic subclass router.
+- **Exact parent:** this PR at
+  `24f23478924ce26510935d3609c567f69ea08a1b`.
+- **Research source:** `AllenGrahamHart/rs-mca-prize-dag` commit
+  `b5e3a90d8415ea7de6c144d1fcd56c0e5c50b7d2`; source-node tree
+  `d47d9281c12e629b3c700f70b5ba30da711d9e10`.
+- **Status:** PROVED CONDITIONAL SUBCLASS ROUTER / ZERO DEPLOYED LEDGER
+  MOVEMENT.
+- **Result:** If the endpoint residual direction pencil is projectively
+  equivalent on the official smooth domain to `(X^e,1)`, exact fiber
+  capacity leaves only `e=2048,4096`. Degree 2048 forces `K'=2049`, all
+  218 directions and lines, and at most 72 missing root slots. Degree 4096
+  forces `4097<=K'<=4237`, at least 211 directions, at most seven
+  duplicate-direction lines, and at most 28744 missing slots.
+- **Controls:** Primary and independently written integer replays enumerate
+  every endpoint row and power-of-two divisor degree; the primary rejects
+  16 hostile mutations and source replay pins the extension node separately
+  from the original two-node packet. Manifest SHA-256 is
+  `a80eeade6753d777baf0d649fa45b8f33b7429c2451ad44e6ad7bacc7d049c83`;
+  primary and independent verifier SHA-256 values are
+  `7f34b6f176490ef4c0f53d65a3a94249c775847d7614c6b4086d2df8045d9fac`
+  and `f096414ab0d7fc3a1b1b093245c75bb33f81702ccb4b72310ea32311f342ba24`.
+- **Nonclaim:** The residual pencil is not proved pure-power; general
+  quotient-periodic rational maps are not classified; neither survivor,
+  rank eleven, an active-v4 atom, KoalaBear, LIST, MCA, or either prize
+  problem is paid.
+- **What to do next:** Use received-line and owner semantics to exclude the
+  two pure-power survivors, while separately classifying the general
+  quotient-periodic rational map.

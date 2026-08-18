@@ -1,0 +1,128 @@
+{
+  "schema": "kb-mca-rank11-k83-adjacent-support-payment-v1",
+  "exact_parent": "6b4902ccc5b4df02dddaea4969f3278dfc829953",
+  "previous_packet_sha256": "b5ef760938b36d09877fcda1d87c597de4f553a193af0050c05ddf24bfda2523",
+  "source_prize_dag": {
+    "repository": "AllenGrahamHart/rs-mca-prize-dag",
+    "commit": "f6849a90abfa9c8fe2e7b62dfbd2e510165957d1",
+    "nodes": {
+      "adjacent_flat": {
+        "id": "rate_half_mca_adjacent_flat_circuit_coupling",
+        "tree": "9371c74006cd60469ed8204c6a63a980e5bc4d2e",
+        "contract_sha256": "f13522164ec476abbfd3dbed10980921e8a9eb571393adad835c7c42d51388ce"
+      },
+      "single_carrier": {
+        "id": "rate_half_mca_sparse_circuit_single_completion_carrier",
+        "tree": "6bdb49f65ff1cae876358405a874bd67008a576d",
+        "contract_sha256": "288f425069d636b697ee6960e2a00980a69faa4dcb34e464d8093956a170e48b"
+      },
+      "support56": {
+        "id": "rate_half_mca_sparse_circuit_fixed_union_support56_coupling",
+        "tree": "56dad9cc81887640c12c566256152ecbba98c1f2",
+        "contract_sha256": "9bcc185828e42e0ca16133c166688c2491615e42065b90a4072481179e28dd06"
+      },
+      "adjacent_support": {
+        "id": "rate_half_mca_sparse_circuit_fixed_union_adjacent_support_coupling",
+        "tree": "c8c6a32f0a18892647d0135df319a63ce7c3d6c7",
+        "contract_sha256": "7bd4c049776213cf1aacfe4f2804aa485e19d3aca1102dd696d46d0e89989772"
+      },
+      "payment83": {
+        "id": "rate_half_mca_rank11_k83_adjacent_support_carrier_payment",
+        "tree": "cdabbd7b4b0e84828ff48546f58e84d5db35923b",
+        "contract_sha256": "aad7bc6273d52454832597c3d66e25731d8eba30d8fb92a97588f2ba8cadad47"
+      },
+      "pairwise_wall83": {
+        "id": "rate_half_mca_rank11_k83_pairwise_atlas_triple_carrier_wall",
+        "tree": "d3435f689de644a982fe6496441400a32ef29269",
+        "contract_sha256": "06a01a521241157263a72b3d90539bfbbc74c9a367603136efb173165c363187"
+      }
+    }
+  },
+  "record_floor": 274980728111260126,
+  "weights": {
+    "2": 36,
+    "3": 28,
+    "4": 21,
+    "5": 15,
+    "6": 10,
+    "7": 6,
+    "8": 3,
+    "9": 1
+  },
+  "adjacent_flat_theorem": {
+    "inequality": "(r+2)C_(r+2)<=(B-r)C(N,r+1)-(N-B)C_(r+1)",
+    "hypotheses": "rank-r flats <=B; rank-(r+1) flats <=B+1; N>=B"
+  },
+  "fixed_union_theorem": {
+    "dimension_range": "2<=d<=g-1",
+    "residual": "R=K-u-g>=0",
+    "outside_hypothesis": "N=m-u>=R+d-1",
+    "stratum_inequality": "(d+1-i)C_(d+1,i)+(N-R-d+1+i)C_(d,i)<=C(u,i)R C(N,d-i)",
+    "inside_range": "0<=i<=d-2",
+    "composition": "support-disjoint adjacent pairs only",
+    "k83_specializations": [
+      {
+        "union": 39,
+        "dimension": 7,
+        "support_pair": [6, 7],
+        "weighted_cap": 8478017284861369165407480838331054035298100270
+      },
+      {
+        "union": 38,
+        "dimension": 8,
+        "support_pair": [6, 7],
+        "weighted_cap": 8477891688603714304309009575486384320706321023
+      },
+      {
+        "union": 38,
+        "dimension": 8,
+        "support_pair": [7, 8],
+        "weighted_cap": 3633080436157729709981007224570029178990915695
+      }
+    ]
+  },
+  "k83": {
+    "q": 73,
+    "m": 67555,
+    "n": 1048659,
+    "partition": "ordinary plus offsets 1..72",
+    "lanes": 73,
+    "jobs": 146,
+    "ordinary_units": 446823,
+    "ordinary_raw_rows": 3127761,
+    "offset_units_formula": "(73-offset)*5476",
+    "primary_geometry_rows": 203167790,
+    "audit_geometry_rows": 393886640,
+    "global_lane": "offset2",
+    "global_branch": "s2=56/s3=54/s4=41/s5=33/offset2/c6F/c7F/c8F/c9F/raw-safe",
+    "completion_premium": 41364793335621487128860475977676014245181683050,
+    "safe_premium_ceiling": 41364814251146263394918185689469529403097578120,
+    "premium_ceiling_margin": 20915524776266057709711793515157915895070,
+    "rank_nine_marks": 39245831031211569055138749828512076497183258065060569994940679240,
+    "kernel_capacity": 91062886609451010657388988658515853190483255451669314533432,
+    "full_rank_capacity": 920370036742046655213829823082624244293779896263846169890468064,
+    "total_capacity": 920461099628656106224487212071282760146970379519297839205001496,
+    "required_component_incidence": 920461204198951229983425260617556238139848888096439280368333890,
+    "gap": 104570295123758938048546273477992878508577141441163332394
+  },
+  "captures": [
+    ["ap-Qr5dCpKMRHiLusDi0QczQU", "73d8348274b25911e7d0b13a404b2adb57ff24d022043be1b7d6ebed7548cb25"],
+    ["ap-81fxlyiICXYIVHi0GG1cQS", "dc2e285843645a3d5f0fa3e96dd2bab0a7b63ceffcf790db025405546dcf69f0"],
+    ["ap-DTDRrKPV8NvHxqZC4Q9ULg", "b4adf54a2d0f776a40cd8698f1950be1875b9f709a581cabd85ab17b5e50930b"],
+    ["ap-cEUnaW2ssU1ObLbSSllkVv", "e7714f76c755f4908c56bd55c551e2e0c6e39d025b00dad997fa81e9e36bb3e6"]
+  ],
+  "source_hashes": {
+    "primary_router": "1c19b328e667feb49b44c6e70744a37237c3a0dae8f09e55595108f31e9bf9b7",
+    "independent_router": "77dabfcfa552f7a1c5939f110b5142742bacd5df3c71947b1d8090030b24a7bf",
+    "merger": "c694c40dff948cff07d3fe8a0775047ae09ae2517063a2b654dc2a1cd713ad44"
+  },
+  "claims": {
+    "rank9_closed_prefix": [10, 83],
+    "rank9_remaining_interval": [84, 15528],
+    "first_pairwise_atlas_wall": 83,
+    "first_open_rank9_row": 84,
+    "rank11_paid": false,
+    "KoalaBear_closed": false,
+    "prize_problems_closed": false
+  }
+}

@@ -1,7 +1,7 @@
 # AGENTS.md — RS–MCA Resolution Protocol
 
-> **Updated:** 2026-07-29
-> **State snapshot:** `main@b13de8113a03f06b6fc22bbd2f289a8abcdf7e95`
+> **Updated:** 2026-08-13
+> **State snapshot:** `upstream/main@93fba1be3f3299b0ba4708d88715377bbb656e45`
 > **Supersedes:** all older priority lists in this file.
 
 Edit this workboard in place. Never append another “current focus”, “highest priority”, or competing task list.
@@ -80,6 +80,269 @@ At this snapshot:
 - The cumulative M31 rank-seven compiler now reaches `Q=147594` locally.  Its adjacent `Q=147595`, `k=4981` survivor is reduced to a varying proper-`G`, zero-excess cross-cofactor incidence terminal requiring an aggregate cap `2157928`; no v4 atom, higher-rank theorem, or row closure follows.
 - The KoalaBear equality-wall PR stack proves local normalization, a `Q=6,u=2` geometry reduction, and exclusion of 60 labelled `P3+C3` cases, but retains 405 labelled conic cases and lacks global ownership/add-back.  The separate column-far transverse-secant certificate is per fixed union only.  No large `U_paid` claimed by an abstract candidate-record compiler is banked; the live active value remains `null`.
 - The exact adjacent fixed-`G` Hahn relaxation has optimum `20737821.0968...`, above the list target, and its complementarity identity shows the proposed selection-gap hypothesis is target-equivalent.  This cuts the ordinary pairwise-distribution route without proving an unsafe list or moving the M31 row.
+- The affine-span transverse MCA compiler `thm:affine-span-mca` is refuted even under its printed direction-separation hypothesis.  An exact `GF(1009)` rank-one family has 31 pair-noncontained bad slopes against the claimed bound 23, with direction agreement `20<m=21`.  The corrected `thm:proper-subspace-mca` replaces its false extension factor, and the lifted-rank dichotomy isolates the full-lift branch.  There `W=C+<r_1>` has `d_1(W)=e` and every higher generalized weight MDS-sharp.  The punctured Johnson and Gram rungs lead to the exact-layer affine-line theorem, which pays every sparse-direction support `e<d`.  Beyond `d`, pair noncontainment caps the total common core of an affine explanation line; triple overlap synchronizes all top-third exact layers onto one global line, so its `N-m+1` cap is charged once.  Extending the exact suffix-minimum prefix with the mean-centered Gram cap, then absorbing one boundary layer by two top anchors and a second layer at residue two by an anchor/missed-set case split, leaves residual intervals `96151<=e<=1044238` on KoalaBear and `98232<=e<=1044241` on Mersenne-31.  At the first Mersenne residual, a normalized-direction Johnson count caps the boundary layer at `1450`; any unsafe family must then put at least `343071` slopes on the synchronized top line and give it a common core of size at least `m-2`.  That core absorbs every assigned pair of deficit at least `30791` into the same line, while the lower explanations form a punctured ordinary list of size at most `26`; the contradiction bound is `3535161<16777215`.  The fixed-cutoff generalization `h_0=65200` prices all intermediate exact layers and pays every Mersenne support through `e=101155`, directly through `101149` and by core absorption for the final six.  At the first wall `e=101156`, switching to `h_0=65258` and using residue two synchronizes both top boundary layers; the zero/one-top cases use an outside-core line cap or disjoint missed sets.  The largest of five exhaustive bounds is `16705799<16777215`.  Beyond that support, retaining every exact-layer direction class as an affine-line slot gives a global line bank; unsafe pigeonhole and total-core absorption pay all `23,649` supports through `e=124805`.  Recursive residual peeling then removes each forced parameterized affine line and either reaches the exact weighted prefix or violates the pairwise `K-1` intersection ceiling for the peeled inside cores.  Exact replay pays another `5,393` supports through `e=130198`, with at most five lines.  Bounding all removed lines jointly from their shared core budget gives a convex endpoint charge and pays 21 further supports through `e=130219`.  Retaining every forced total-core lower bound in that convex maximization pays `e=130220,130221`; both rows terminate after 38 lines with inside-core packing lower bound `142893`.  Splitting each subsequent selected line at actual core `e+10-65450` gives either weighted-prefix core absorption or a capped convex charge.  This pays `e=130222..130225`, with 14 lines on the first two rows and 70 on the last two.  Restoring each selected slot's exact-layer owner gives the inside-core bound `u>=ceil((lambda*h-e)/(lambda-1))`; with the capped-core branch, three lines pay every support `e=130226..130236`.  At adjacent `e=130237`, the bank forces only size-two shift-pair slots with inside core `807`; first-order packing reaches only `65529<e`.  A weight-`(1,5,5)` degree-264 interpolation kernel has dimension at least `938`; the capped bank still forces 2,705 distinct polynomial-pair cores, while two coprime kernel members have at most `52^2=2704` common pairs.  Thus every unsafe survivor forces a positive-`(Y,Z)`-degree common interpolation factor.  The full 7,583-line ledger and cofactor Bezout put at least 4,982 pairs on that factor; their core incidence forces the received pair onto it at least 126,188 times, leaving at most 4,049 inside exceptions.  The Mersenne residual starts at `e=130237`, with this near-total factor's classification open.  The adjacent KoalaBear cap loses its positive mean-centered denominator.  Neither remaining residual is an unsafe certificate.  The ordinary affine-span LIST theorem, common-core cancellation, directional Johnson compiler, gauge equivalence, and the selector-free all-LineRay error-affine-core set-pair theorem are not refuted by the example.
+- In the first Mersenne full-lift residual, the degree-one common-factor branch is now an exact `F`-rational projective star.  Polynomial-section parameterization and an ordinary Johnson cap of `802` exclude every nonconstant-coefficient linear factor against the `4982` captured sections.  This identifies the primitive-star shape but does not pay its population; the complementary factor branch has `(Y,Z)` degree at least two.
+- The same kernel's 938-dimensional quotient forces the primitive full gcd to have weight-`(1,5,5)` degree at most `217`, hence `(Y,Z)` degree at most `43`.  In the higher-degree branch this improves the factor mass to at least `5083` sections and `126266` inside points, leaving at most `3971` exceptions; reducible gcds remain allowed.
+- Base-field descent now removes geometric field-of-definition ambiguity from that branch.  Since the Mersenne characteristic exceeds 43, conjugation and Bezout leave at least `5079` selected pairs on `F(X)`-defined components; one absolutely irreducible base-field component carries at least `132`, while their union has at most `3974` inside exceptions.
+- The post-#1165 support-transverse refinement replaces the global final factor `L` by the exact selected-support margin `theta>=L`.  Its arbitrary-rank codeword gauge pays every intrinsic post-near KoalaBear family through affine error rank 9 by `110390969172308040`, with slack `164589758939087047`, conditional only on the separately pinned `2w` near-rational theorem.  At error ranks 10, 11, and 12, an over-budget family yields an actual identical support on which the original direction differs from a reconstructed codeword in at most `12`, `387`, or `12049` coordinates.  This is a direct distinct-slope route cut with zero active-v4 ledger movement; it does not transport first-match owners or close KoalaBear.
+- The rank-ten margin/interleaving split now pays the complete direct post-near KoalaBear affine-error-rank-10 branch.  At threshold T=667, the support-transverse high part costs 5143522968716559, the common-support interleaved low part costs 56727790457914040, and the disjoint near add-back costs 134944, for total 61871313426765543 and slack 213109414684629544.  The projection-collapse guard uses the actual sextic line field |F|=2130706433^6.  The same exact one-threshold formula first fails at error rank 11, whose minimum is 1040506078215897711 at T=876; an exact post-near constant-code star proves the per-pair multiplicity factor n-A is sharp.  This moves no active-v4 atom and does not close KoalaBear.
+- The rank-eleven successor now sums the record-local support margins before taking a minimum and compiles low-margin records into actual fixed minimizing pairs.  Every over-budget post-near error-rank-11 line forces one pair of deficiency at most 8 with weighted load at least 743449148, and independently a possibly different pair of deficiency at most 4 owning at least 200632 distinct slopes.  The complete printed-theorem core-deficiency cutoff has minimum 813929118931913384, while the stronger summed-margin relaxation has minimum 811958533186703629; both exceed the row budget.  A finite parallel-star control rules out distinct-neighbor promotion and a smaller one-pair multiplier.  Thus the next missing theorem couples different pair cores or routes dense parallel groups to a chronology owner.  This is a route cut with zero active-v4 ledger movement, not a rank-eleven payment or KoalaBear closure.
+- The dense-core owner substrate now has a guarded acceptance contract.  Any reuse of the active S/A/E large-owner chronology must charge the proved `2w` near-rational set separately from the 31-slope exception set, replacing the contained-owner target by `B*-(2w+31)-(n-g)`.  Any certificate computed in the effective `K=k+1` lattice envelope must also impose the exact degree-`<k` quotient guard and same-support pair-noncontainment test.  An explicit `(1_E,X^k)` record refutes silent dimension transport, while the deployed pole-line record passes the repaired guard with all frozen owner fields unassigned.  These results make the #1168 owner interface witness-sound and honestly priced; they do not construct the missing chronology owner, pay rank eleven, or move an active-v4 atom.
+- The post-near rank-eleven dense-locator packet now proves ninety-one local
+  results under its pinned 32-anchor/18-dense-root/ten-space setup.  High-core
+  absorption is exactly ten-dimensional; at least `990810934` parts per
+  billion of record/eleven-subset incidences enter positive-dimensional owner
+  or kernel components; and at least `148639925144138894` records have a
+  98-percent component star.  A full-rank owner of deficiency at most `22320`
+  is record-intrinsic.  One rank-nine cell carries at most `45567658` records;
+  a lifted original-row plane either has at most `1434405` records or shares a
+  `134944` received-pair core.  An overlap-correct fixed nine-subset carries
+  at least `2578110` records and `5868470021012020` marked extensions at the
+  shortest endpoint.  The coarse marked cap first closes rank nine at
+  `K'=20618`; residual petal-pair and exact convex-packing caps move that
+  crossing to `K'=15529`.  The weighted selected-support split-pencil theorem
+  then closes `K'=10`: full-density demand `11736940042024039` exceeds
+  capacity `9274769506943785` by `2462170535080254`.  Its common-core-offset
+  extension and global circuit-shadow census close `K'=11`: circuits of size
+  at least six contribute at least 45 rank-nine shadows, while supports of
+  size at most five coalesce by Vandermonde independence.  Full component
+  demand exceeds their combined capacity by
+  `30688896124707489315310500375861176301757493788368353875455912`.
+  At `K'=12`, every full-rank eleven-set selects one point of the
+  projective quotient line.  A catalecticant-pencil/cofactor argument bounds
+  all circuit supports of size at most five by
+  `11868577829520852215896202871552159662636920` incidences per record;
+  larger circuits still create at least 45 rank-nine shadows.  Retaining the
+  absolute corank-one kernel capacity, full component demand exceeds the
+  combined capacity by
+  `27610036928545251701531226723135591255162561992207452389418670`,
+  closing `K'=12`.
+  At `K'=13`, generalized MDS gives at most three circuit completions of one
+  independent deletion.  Three completions span the quotient plane and force
+  every support-at-most-five circuit into one carrier of size at most seven;
+  otherwise every deletion has at most two completions.  The resulting
+  sparse cap is
+  `99254447944649683780146155758753837527116020` incidences per record.
+  Retaining both corank-one and corank-two kernel terms and all four
+  `j=9,10,11,12` core-offset charts, full component demand exceeds complete
+  capacity by
+  `3617026878762290164882578515067303096680225900459379608374624`,
+  closing `K'=13`.
+  In arbitrary quotient dimension `q=K'-10`, every independent deletion
+  has at most `q` sparse-circuit completions.  Equality spans the quotient
+  and confines every support-at-most-five circuit to one carrier of size at
+  most `q+4`; otherwise deletion counting uses at most `q-1` completions.
+  A joint shadow ledger then charges a support-`c` circuit its exact
+  `55-C(11-c,2)` rank-nine shadows before granting only the premium
+  `26,18,11,5` for `c=2,3,4,5`.  Retaining every nonzero kernel corank,
+  scanning every core offset, and maximizing over both completion branches
+  closes all eight rows `K'=14..21`.  The smallest gap is
+  `205305519860193617784849691734671763401656917434567909452790` at
+  `K'=21`.  Exact integral heavy-owner optimization lowers the `K'=22`
+  core-offset chart to `9269974099565290`; a near-saturation carrier
+  dichotomy and the uniform corank-one cap `8147918` then close `K'=22`
+  with gap
+  `1232731756628187885277355254597101817411431837269258943471111`.
+  A completion-defect hierarchy with maximal support depths `7,2,1,0`
+  closes `K'=23` with gap
+  `1704262040773185642290284810631267267026794188450394076492364`.
+  Finally, a universal deletion/completion incidence cap and the full
+  55-shadow deficit weights `36,28,21,15,10,6,3,1` close every row
+  `K'=24..40`; the minimum gap is
+  `2272401814108959137912675549447888006236817090602808413697595`
+  at `K'=40`.
+  A rank-stratified elimination sharpens the actual retained-record isolated
+  allowance from the generic multiplicity bound `198*C(n',11)` to
+  `C(n',11)`: rank at most nine gives a kernel line, while rank ten leaves one
+  linear equation in the slope after ten-coordinate interpolation.  With all
+  component capacities unchanged, exact demand `R*C(m',11)-C(n',11)` closes
+  `K'=41` by
+  `3959829848992990899082071934034620604165114037293042026746826`.
+  A cross-support completion-defect theorem then prices the common
+  annihilator span instead of maximizing sparse support strata independently.
+  A support-`c` deletion with `q-s` completions confines target support `d`
+  to a carrier of size `q+c-1+s(d-1)` whenever
+  `c+(s+1)d-s-1<=10`.  For source support five, defects zero through four
+  and the complementary all-at-most-`q-5` branch are exhaustive.  Their
+  worst weighted premium closes `K'=42` by
+  `4081031051590194485758587836050845115467905186032497191061176`;
+  the same payment first fails at `K'=43` by
+  `2590504432899371163130658487199612335023802688487478696166262`.
+  Applying the terminal/fallback split successively at source supports
+  `5,4,3,2` gives 27 exhaustive leaves.  Their worst `K'=43` branch is
+  `c5_defect_2`, and exact demand exceeds capacity by
+  `4456829341030748859349785682161828589177837723939653522311506`.
+  Refining its two heaviest parent leaves at source support six gives 35
+  exhaustive leaves.  The active `K'=44` leaf is
+  `c5_defect_2__c6_defect_2`, and exact demand exceeds capacity by
+  `535634409944931896502583174279429171539133692200964798538249`.
+  The refined branch lattice first fails at `K'=45` by capacity excess
+  `5651502053446174523626296867091469400380654135040887972894842`.
+  On terminal support-four/support-five leaves, the two completion carriers
+  force a common zero closure of dimension `4..6` and defect
+  `0<=delta<=min(s_4,s_5)`.  Charging support-four circuits through their
+  external deletions sharpens exactly those leaves.  The complete Cartesian
+  product over supports `2..9` has `9!=362880` exhaustive leaves, including
+  `259200` joint-terminal leaves.  At `K'=45` its unique worst leaf is
+  all-fallback, and exact demand exceeds capacity by
+  `1616971801308361526826641488053709685917408248376428345137933`.
+  The full product first fails at `K'=46` by capacity excess
+  `5057508862309072579343840146913199075599800084788396842011438`.
+  Refining the support-four and support-five maxima to all exact defects
+  `s_c=q-M_c` recovers the joint charge throughout `s_4+s_5<q`, including
+  the former fallback/fallback regime.  The other-support product has
+  `8640` raw branches, `1182` distinct cap vectors, and nine componentwise
+  maximal vectors.  Exhausting every exact pair against those nine vectors
+  closes `K'=46..53`; the minimum gap is
+  `2503373059664320603163477388007627909210651834842589498907998` at
+  `K'=53`.  The refined payment first fails at `K'=54` by capacity excess
+  `2477882110233058360154706764229180240778698202487636349407165`.
+  That is only the wall of the support-four/support-five deep-defect method.
+  For every support `2<=c<=5`, an attaining completion carrier at exact
+  defect `s` forces every deletion carrier to have at most `s+c-1` points
+  outside it.  Splitting circuits by their exact outside count gives a
+  same-source collision cap.  Exactifying supports `2,3,4,5`, retaining the
+  support-four/support-five joint charge, and preserving every support-`6..9`
+  terminal/fallback branch leaves Pareto-frontier sizes `1,1,7`.  The active
+  branch has `s_2=s_3=s_4=s_5=floor(q/2)` and all higher supports fallback.
+  This closes `K'=54..59`; the minimum gap is
+  `2662571195028360324230500777441238424043251068116179184680206` at
+  `K'=59`.  The collision payment first fails at `K'=60` by capacity excess
+  `3672733965923291717387950853821894967875078243379846951201638`.
+  For a nonempty exact source carrier at support `c<=5` and a target support
+  `d` with `c+d<=11`, the mixed vanishing spaces intersect in dimension at
+  least `12-c-d`.  The target carrier therefore has at most `s+d-1` points
+  outside the source carrier.  Exact outside-count incidence prices every
+  such target, including the support-`6..9` fallback strata.  The resulting
+  payment closes `K'=60..70`; its minimum gap is
+  `854274172985042754802177028749324962520517760595473749602211` at
+  `K'=70`.  It first fails at `K'=71` by capacity excess
+  `824875968499878215752683873455674299360608616555107905777434`.
+  A fixed-union multicarrier theorem then prices every target support from
+  any positive-dimensional common vanishing space.  The support-two carrier
+  is a full projective parallel class, and its position relative to attaining
+  support-three and support-four deletions is transverse, proper-span, or
+  full completion.  The last position forces `M_c>=M_2+1`; the one-step
+  support-three/support-four case has six exhaustive fixed-union geometries.
+  At `K'=71` this excludes 961 impossible support-two/support-three defect
+  pairs and prices all six remaining one-step cases.  Exact replay closes
+  `K'=71` by
+  `118872281099445772155993127155914865045379156488810154591370`.
+  The carrier-trichotomy payment first fails at `K'=72` by capacity excess
+  `4821537739796415753639473905341364357966460110033651367468100`.
+  The full-completion pairwise carrier atlas removes that method wall. For
+  support `c`, transverse and proper-anchor positions give fixed unions
+  `(b_2+b_c,10-c)` and `(b_2+b_c-1,11-c)`; simultaneous full support-three
+  and support-`d` positions have exact overlap
+  `0<=t<=min(M_3-M_2+1,M_d-M_2)`. A base-field-normalized flat-coupled
+  census prices support four and five jointly in the original outside
+  evaluation matroid. Exact replay reroutes all 36 conservative failures at
+  `K'=72` and all 218 at `K'=73`, closing the rows by respective integral
+  gaps
+  `52200017935756118667066163970702686810349690944821612538425` and
+  `2120784774514292837614781442321448802184060878375874298355`.
+  Compact digest-pinned continuation then closes `K'=74..78`.  The five
+  exceptional frontiers contain respectively `729`, `1995`, `3800`, `7657`,
+  and `11552` exact defect tuples; every complete pairwise-atlas reroute and
+  all seven geometry lanes are safe.  The smallest payment gap in this block
+  is
+  `16716320840480454509867840664707020900684182599020170034` at `K'=76`.
+  The same digest-pinned atlas closes `K'=79..82`.  Their exceptional
+  frontiers contain respectively `19406`, `26104`, `39570`, and
+  `49900` defect tuples; all `133468965` reroute leaves and all
+  `674682540` geometry leaves are safe.  The smallest payment gap in this
+  block is
+  `46000440427984175715360686273569212546246763017890480411` at
+  `K'=81`.
+  The pairwise atlas first stalls at `K'=83`.  Its active completion
+  maxima are `(23,24,24,25)`, with two `(29,6)` carrier charges.  Their
+  forced dimension-four intersection on every union size `29..32` leaves
+  premium
+  `41411584407693108041789796771180703922717609427`, above the exact safe
+  ceiling by
+  `46770156546844646871611081711174519620031307`.  The uncoupled
+  branch-free baseline is also above the ceiling.  This is a proved method
+  wall, not a counterexample to MCA; under that restricted route the next
+  structural target was a nonseparable triple-carrier support-`3/4/5`
+  census.  A subsequent adjacent-flat circuit inequality supersedes this as
+  the active frontier.  A fixed `g`-dimensional vanishing space couples every
+  adjacent support pair `d/(d+1)` with `d<=g-1`; support-disjoint pairs may be
+  charged simultaneously.  With the single-carrier endpoint and exact
+  support-`2/3` partition `ordinary + offsets 1..72`, independent replay
+  closes `K'=83` at premium
+  `41364793335621487128860475977676014245181683050`, below the safe ceiling
+  by `20915524776266057709711793515157915895070`.  The exact component gap is
+  `104570295123758938048546273477992878508577141441163332394`.
+  The next exact partition `ordinary + offsets 1..73` has 74 independently
+  replayed lanes and closes `K'=84` at premium
+  `41388798786059119503097492734939028640066114130`, below its safe ceiling
+  by `44581160171407926086602515730765812413619`; the exact component gap is
+  `222890179708699305421112332292209416493280153112001413582`.
+  At `K'=85`, paired raw traversals exhaust the 74 positive offsets and
+  isolate exactly `331533` unsafe units in offsets `1..41`; offsets
+  `42..74` are entirely raw-safe.  Paired exhaustive carrier traversals show
+  that every residual profile is paid by its best individually valid single
+  adjacent edge, without composing overlapping edges.  The global premium is
+  `41412868016209776721228891386909879523306833354`, below the safe ceiling
+  by `1793645398692419426975603430807602228515`; the exact component gap is
+  `8967598503742781003071510733325918643075973211834024001`.
+  At `K'=86`, a dedicated checker accepts the two completed ordinary jobs
+  retained from a broader incomplete pilot, while paired raw traversals
+  exhaust all 75 positive offsets and isolate exactly `415413` unsafe units
+  in offsets `1..42`; offsets `43..75` are entirely raw-safe. Paired
+  exhaustive carrier traversals price `62159220` residual profiles per
+  implementation by the same best-single rule. The offset-32 premium is
+  `41436891148468120556440841127823744176664445997`, below the safe ceiling
+  by `2429142732593969226237923721701123878841`; the exact component gap is
+  `12144862496270285686198005257330878943217549361781518735`.
+  A raw-clipped fixed-union theorem now also permits independent selected-
+  incidence caps to be divided by their exact eleven-set extension factors,
+  floored to circuit caps, and imposed before the adjacent-support weighted
+  optimization. Its two fractional-knapsack allocation orders agree, and
+  only support-disjoint adjacent pairs compose. At `K'=87`, fresh paired
+  ordinary traversals and paired raw traversals exhaust the ordinary lane
+  and all 76 positive offsets, isolating exactly `511677` unsafe units in
+  offsets `1..43`; offsets `44..76` are entirely raw-safe. Paired exhaustive
+  raw-clipped traversals price `77179660` residual profiles per
+  implementation. The offset-9 premium is
+  `41460899125475443837881046685022762331499044695`, below the safe ceiling
+  by `15543567623247423995536789673894577398694`; the exact component gap is
+  `77712391681585193939443710876895639001790676368706144901`.
+  These refinements stay
+  in residual units and do not use the original-row core floor.
+  Canonical-basis, nine-shadow, projective-paving, bounded-parallel,
+  bounded-point/line, and shortening-weighted arguments remove the
+  fixed-kernel lane through `K'=1048576`.  Rank-eight owner-pair capacity
+  closes `K'>=37996`; on `22526..37995`, one owner has at least `200632`
+  records and deficiency at most four, matching the chronology terminal
+  guarded in #1169.  Dimension equality excludes every other component lane
+  at `K'=10`; at `K'=11` the chart-local fence remains above both selector
+  demands, but its full-circuit witness creates 54 neighboring rank-nine
+  shadows and is paid globally.  Thus the exact component boundary is: no
+  component target at `K'=10..21`; rank eight only on `22..87`; rank nine
+  or rank eight on `88..15528`; rank eight only on `15529..22525`;
+  chronology on `22526..37995`; and no
+  component target from `K'=37996` onward.  No active-v4 atom moves, and
+  error rank eleven is not paid.
+- The first open rank-nine row is now `K'=88`. No adjacent extrapolation is
+  claimed. Test whether the raw-clipped adjacent-support payment survives at
+  `K'=88` while seeking a symbolic continuation in `K'`; an exact-row replay
+  locates the obstruction but is not a substitute for an interval theorem.
+- A separate conditional quotient-pair split-pencil theorem is now frozen at
+  `experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md`.
+  Under its fully printed 520-type coprime-direction interface, every affine
+  scalar plane contains at most 218 selected types.  Equality forces
+  `2044<=K'<=5025`, at least 210 projective directions, aggregate unused
+  degree at most `41736`, and root saturation above `0.9618`.  This does not
+  claim that the present rank-eleven compiler reaches the interface.  Under
+  the additional hypothesis that the residual pencil is projectively
+  equivalent to `(X^e,1)`, only `e=2048,4096` survive: the first forces the
+  singleton row `K'=2049` with at most 72 missing root slots, while the
+  second is confined to `4097<=K'<=4237` with at most 28744 missing slots.
+  This does not exclude
+  the equality branch, pay rank eleven, or move an active-v4 atom.  The next
+  theorem is quotient-periodic rational-fiber classification/payment or a
+  finite-characteristic arrangement theorem for the represented pencil.
 - Grande Finale v4 explicitly supersedes the old v3 `prob:saturated-bc` status: primitive one-pencil MCA BC is proved; higher-dimensional MCA BC remains jointly governed by spread-component, large-owner, and exception routing; and the list-interior clause is governed by row-sharp list completion.  The spread-abundance and `prob:next` statements are intermediate forms, not additional terminal inputs.
 - `experimental/proximity_prize_results_v4.tex` is the current compact synthesis of proved partial results.  It is exposition/status guidance, not a replacement proof source for a live atom or adjacent-row closure.
 - A schema/hash pass is structural preflight only. The trusted-source registry is empty; parsing a manifest does not prove an atom.
