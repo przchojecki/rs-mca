@@ -5,7 +5,9 @@
     "repository": "AllenGrahamHart/rs-mca-prize-dag",
     "commit": "f557775d53192f027730b15c2f70330e1a56c116",
     "plane_cap_node_tree": "2b2e264afd74e65cbde43b4c79e1702c04c7db4d",
-    "direction_bank_node_tree": "3d2ecbdee129e5422c6cb7e7686384446977a34b"
+    "direction_bank_node_tree": "3d2ecbdee129e5422c6cb7e7686384446977a34b",
+    "pure_power_router_commit": "b5e3a90d8415ea7de6c144d1fcd56c0e5c50b7d2",
+    "pure_power_router_node_tree": "d47d9281c12e629b3c700f70b5ba30da711d9e10"
   },
   "result": {
     "affine_plane_occupancy_ceiling": 218,
@@ -13,11 +15,17 @@
     "endpoint_shortened_K_interval": [2044, 5025],
     "endpoint_projective_direction_floor": 210,
     "endpoint_aggregate_degree_deficit_ceiling": 41736,
-    "endpoint_dual_remaining_pair_ceiling": 1603
+    "endpoint_dual_remaining_pair_ceiling": 1603,
+    "pure_power_surviving_degrees": [2048, 4096],
+    "pure_power_2048_shortened_K": 2049,
+    "pure_power_2048_missing_slot_ceiling": 72,
+    "pure_power_4096_shortened_K_interval": [4097, 4237],
+    "pure_power_4096_missing_slot_ceiling": 28744
   },
   "verification": {
     "endpoint_states": 2982,
-    "hostile_mutations_rejected": 12,
+    "pure_power_states": 142,
+    "hostile_mutations_rejected": 16,
     "normal_python": "PASS",
     "optimized_python": "PASS",
     "independent_python": "PASS",
@@ -27,17 +35,19 @@
     "conditional_route_cut": true,
     "source_interface_proved_here": false,
     "endpoint_excluded": false,
+    "endpoint_pure_power_proved": false,
+    "pure_power_survivors_paid": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
     "KoalaBear_closed": false
   },
   "packet_file_sha256": {
-    "experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md": "d9bcd99392d5cf38f041f6e48a3e93cba2a5598e74fc5641c51525aa0773b600",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/README.md": "ed9dc874e4a4aff3152f9c66827b71b3d1a6213badd2fb72a7c041cc2886a318",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json": "0d72cc299765c6b30b2fd517379b4ae4384d0f9ba3058b1028b9d433bff24656",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/primary_output.txt": "5954e79b278d0ec01dd6cf4a0308da3db98a7397da0d392af6c1a0bf00066fa3",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/independent_output.txt": "2999aa923b9cc1ee7bf81e73fe05dfe9788abab7d917964cb5e05908990ac036",
-    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1.py": "5b0dcb31f69f31868d05123c1faf796020cef3f7999248b9d731f75ea50d7268",
-    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.py": "314e80b0d322200a470bb365cafc39f615bf935747784b8c1669dbc784eff7a7"
+    "experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md": "a19b5b97bf75f1b7801b342c63b2e3089ea051fde738617c207b813f15ec3eea",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/README.md": "f95628f5f8e568c86078ab92e814d886855fcaf2f2a78fc45d8c834268358190",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json": "9dc5e54a2017307619ffbe91cc7101d404fa5061a7c0ea8cc247659598289c77",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/primary_output.txt": "677fc0c2b5dda8614d5c26918c670445d1c78db85e6f449262a51cacb3af53d7",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/independent_output.txt": "f7da4542dd3f41d30d66c478712484aca033e4bc6d210a37186c127ac571dec7",
+    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1.py": "7f34b6f176490ef4c0f53d65a3a94249c775847d7614c6b4086d2df8045d9fac",
+    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.py": "f096414ab0d7fc3a1b1b093245c75bb33f81702ccb4b72310ea32311f342ba24"
   }
 }

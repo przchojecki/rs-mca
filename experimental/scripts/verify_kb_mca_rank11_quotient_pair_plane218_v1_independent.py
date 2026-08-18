@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json"
-CONTRACT_SHA256 = "0d72cc299765c6b30b2fd517379b4ae4384d0f9ba3058b1028b9d433bff24656"
+CONTRACT_SHA256 = "9dc5e54a2017307619ffbe91cc7101d404fa5061a7c0ea8cc247659598289c77"
 
 
 def check(condition: bool, message: str) -> None:
@@ -35,6 +35,7 @@ def main() -> None:
     cap = data["plane_cap"]
     router = data["dimension_router"]
     bank = data["endpoint_bank"]
+    power = data["pure_power_router"]
 
     n = row["n"]
     degree = row["K"]
@@ -94,6 +95,26 @@ def main() -> None:
     check(218 * 217 // 2 - 210 * (15 * 14 // 2) ==
           bank["dual_remaining_pair_ceiling"] == 1603, "dual pair budget")
 
+    pure_rows: dict[int, list[int]] = {}
+    for exponent in range(22):
+        e = 1 << exponent
+        for kprime in range(first_feasible, bank["shortened_K_ceiling"] + 1):
+            if e <= kprime - 1 and 28396 + 204 * kprime <= 218 * e:
+                pure_rows.setdefault(e, []).append(kprime)
+    check({e: (min(rows), max(rows), len(rows))
+           for e, rows in pure_rows.items()} ==
+          {2048: (2049, 2049, 1), 4096: (4097, 4237, 141)},
+          "pure-power row scan")
+    check(power["surviving_degrees"] == [2048, 4096], "pure-power degrees")
+    check(218 * 2048 - (28396 + 204 * 2049) ==
+          power["cases"]["2048"]["missing_slot_ceiling"] == 72,
+          "pure-power 2048 deficit")
+    check(210 * 4096 < 28396 + 204 * 4097 <= 211 * 4096,
+          "pure-power 4096 direction floor")
+    check(218 * 4096 - (28396 + 204 * 4097) ==
+          power["cases"]["4096"]["missing_slot_ceiling"] == 28744,
+          "pure-power 4096 deficit")
+
     note = " ".join(
         (ROOT / "experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md")
         .read_text()
@@ -104,9 +125,11 @@ def main() -> None:
     check("positive-characteristic line arrangements need" in note,
           "characteristic boundary")
     check("Neither output is paid" in note, "payment nonclaim")
+    check("neither proves that the endpoint pencil is pure-power" in note,
+          "pure-power nonclaim")
     print(
         "KB_RANK11_QUOTIENT_PAIR_PLANE218_INDEPENDENT_PASS "
-        f"states={scanned} directions={direction_minimum} pairs=1603"
+        f"states={scanned} directions={direction_minimum} pairs=1603 power=2048,4096"
     )
 
 

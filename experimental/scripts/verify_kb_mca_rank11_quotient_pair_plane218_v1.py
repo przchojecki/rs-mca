@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CERT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1"
 CONTRACT = CERT / "contract.json"
 MANIFEST = CERT / "manifest.json"
-CONTRACT_SHA256 = "0d72cc299765c6b30b2fd517379b4ae4384d0f9ba3058b1028b9d433bff24656"
+CONTRACT_SHA256 = "9dc5e54a2017307619ffbe91cc7101d404fa5061a7c0ea8cc247659598289c77"
 SOURCE_FILES = {
     "background/nodes/rate_half_mca_rank11_pair_pencil_affine_plane_cap_218_sharpening/statement.md":
         "f17a18c39f68994c689f484a0d50f4b800f3187b615f4f09b5b4b27751cd52bf",
@@ -27,6 +27,13 @@ SOURCE_FILES = {
         "aa62abc6626c36f03e81aa0e4a5497d7e19a08ebff079d7f4c4d02b4f7aef020",
     "background/nodes/rate_half_mca_rank11_pair_pencil_plane218_projective_direction_bank/proof.md":
         "44fc736822cdb6077c86a47f67a762840d211e2e05d643a969626aece784af90",
+}
+PURE_POWER_SOURCE_COMMIT = "b5e3a90d8415ea7de6c144d1fcd56c0e5c50b7d2"
+PURE_POWER_SOURCE_FILES = {
+    "background/nodes/rate_half_mca_rank11_pair_pencil_plane218_pure_power_router/statement.md":
+        "4a35eb89713755612d897b8217941a6edb71029a2e92b5d14dd5d8bd978cef31",
+    "background/nodes/rate_half_mca_rank11_pair_pencil_plane218_pure_power_router/proof.md":
+        "5985806e56c45b0730998d0a8703e238788b1de05ffbb7297270bb926d146a85",
 }
 
 
@@ -96,6 +103,36 @@ def check_source(source_root: Path, data: dict[str, Any]) -> None:
         ).stdout.strip()
         require(tree == provenance[key], f"source tree {key}")
 
+    extension_commit = provenance["pure_power_router_commit"]
+    require(extension_commit == PURE_POWER_SOURCE_COMMIT, "extension source commit")
+    extension_head = subprocess.run(
+        ["git", "rev-parse", extension_commit],
+        cwd=source_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    require(extension_head == extension_commit, "extension source commit resolution")
+    for path, expected in PURE_POWER_SOURCE_FILES.items():
+        payload = subprocess.run(
+            ["git", "show", f"{extension_commit}:{path}"],
+            cwd=source_root,
+            check=True,
+            capture_output=True,
+        ).stdout
+        require(hashlib.sha256(payload).hexdigest() == expected,
+                f"extension source hash {path}")
+    extension_tree = subprocess.run(
+        ["git", "rev-parse",
+         f"{extension_commit}:background/nodes/rate_half_mca_rank11_pair_pencil_plane218_pure_power_router"],
+        cwd=source_root,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    require(extension_tree == provenance["pure_power_router_node_tree"],
+            "extension source tree")
+
 
 def validate(raw: object) -> dict[str, int]:
     require(isinstance(raw, dict), "contract object")
@@ -107,8 +144,10 @@ def validate(raw: object) -> dict[str, int]:
     cap = data.get("plane_cap")
     router = data.get("dimension_router")
     bank = data.get("endpoint_bank")
+    power = data.get("pure_power_router")
     claims = data.get("claims")
-    require(all(isinstance(x, dict) for x in (row, source, cap, router, bank, claims)), "sections")
+    require(all(isinstance(x, dict) for x in
+                (row, source, cap, router, bank, power, claims)), "sections")
 
     n, K, m, s = row["n"], row["K"], row["m"], row["pair_core_size"]
     q, line = source["selected_types"], source["affine_line_cap"]
@@ -178,13 +217,58 @@ def validate(raw: object) -> dict[str, int]:
     require(bank["dual_rich_point_floor"] == 210, "dual rich points")
     require(bank["dual_remaining_pair_ceiling"] == remaining_pairs == 1603, "dual pair budget")
 
+    require(power["hypothesis"] == "PROJECTIVELY_EQUIVALENT_TO_XE_1", "power hypothesis")
+    require(power["domain_order"] == n, "power domain")
+    feasible: dict[int, list[int]] = {}
+    for exponent in range(22):
+        e = 1 << exponent
+        rows = [
+            kprime for kprime in range(bank_kmin, bank_kmax + 1)
+            if e <= kprime - 1 and b0 + b1 * kprime <= bank_lines * e
+        ]
+        if rows:
+            feasible[e] = rows
+    require(list(feasible) == power["surviving_degrees"] == [2048, 4096],
+            "power degrees")
+    cases = power["cases"]
+    require((min(feasible[2048]), max(feasible[2048]), len(feasible[2048])) ==
+            (2049, 2049, 1), "power 2048 rows")
+    full_2048 = b0 + b1 * 2049
+    require(cases["2048"] == {
+        "shortened_K_floor": 2049,
+        "shortened_K_ceiling": 2049,
+        "projective_direction_floor": 218,
+        "full_line_count": 218,
+        "missing_slot_ceiling": 72,
+    }, "power 2048 case")
+    require((ceil_div(full_2048, 2048), bank_lines * 2048 - full_2048) ==
+            (218, 72), "power 2048 arithmetic")
+    require((min(feasible[4096]), max(feasible[4096]), len(feasible[4096])) ==
+            (4097, 4237, 141), "power 4096 rows")
+    direction_4096 = min(ceil_div(b0 + b1 * kprime, 4096)
+                         for kprime in feasible[4096])
+    missing_4096 = max(bank_lines * 4096 - (b0 + b1 * kprime)
+                       for kprime in feasible[4096])
+    require(cases["4096"] == {
+        "shortened_K_floor": 4097,
+        "shortened_K_ceiling": 4237,
+        "projective_direction_floor": 211,
+        "duplicate_line_ceiling": 7,
+        "missing_slot_ceiling": 28744,
+    }, "power 4096 case")
+    require((direction_4096, bank_lines - direction_4096, missing_4096) ==
+            (211, 7, 28744), "power 4096 arithmetic")
+
     require(claims["source_interface_proved_here"] is False, "source nonclaim")
     require(claims["endpoint_excluded"] is False, "endpoint nonclaim")
+    require(claims["endpoint_pure_power_proved"] is False, "power-form nonclaim")
+    require(claims["pure_power_survivors_paid"] is False, "power-payment nonclaim")
     require(claims["rank11_paid"] is False, "rank11 nonclaim")
     require(claims["active_v4_ledger_movement"] == 0, "ledger nonclaim")
     require(claims["KoalaBear_closed"] is False, "row nonclaim")
     return {"plane": plane, "core": common, "margin": margin,
-            "directions": min_directions, "deficit": max_deficit}
+            "directions": min_directions, "deficit": max_deficit,
+            "power_degrees": len(feasible)}
 
 
 def tamper_selftest(data: dict[str, Any]) -> int:
@@ -200,6 +284,10 @@ def tamper_selftest(data: dict[str, Any]) -> int:
         lambda x: x["endpoint_bank"].__setitem__("projective_direction_floor", 209),
         lambda x: x["endpoint_bank"].__setitem__("aggregate_degree_deficit_ceiling", 41735),
         lambda x: x["endpoint_bank"].__setitem__("dual_remaining_pair_ceiling", 1604),
+        lambda x: x["pure_power_router"].__setitem__("surviving_degrees", [1024, 2048, 4096]),
+        lambda x: x["pure_power_router"]["cases"]["2048"].__setitem__("missing_slot_ceiling", 73),
+        lambda x: x["pure_power_router"]["cases"]["4096"].__setitem__("shortened_K_ceiling", 4238),
+        lambda x: x["pure_power_router"]["cases"]["4096"].__setitem__("missing_slot_ceiling", 28743),
         lambda x: x["claims"].__setitem__("rank11_paid", True),
     )
     caught = 0
@@ -227,13 +315,14 @@ def main() -> None:
     if args.source_root is not None:
         check_source(args.source_root, data)
     if args.tamper_selftest:
-        print(f"KB_RANK11_QUOTIENT_PAIR_PLANE218_TAMPER_PASS mutations={tamper_selftest(data)}/12")
+        print(f"KB_RANK11_QUOTIENT_PAIR_PLANE218_TAMPER_PASS mutations={tamper_selftest(data)}/16")
         return
     source = " checked" if args.source_root is not None else " skipped"
     print(
         "KB_RANK11_QUOTIENT_PAIR_PLANE218_PASS "
         f"cap={result['plane']} core={result['core']} margin={result['margin']} "
-        f"directions={result['directions']} deficit={result['deficit']} source={source.strip()}"
+        f"directions={result['directions']} deficit={result['deficit']} "
+        f"power_degrees={result['power_degrees']} source={source.strip()}"
     )
 
 

@@ -334,7 +334,12 @@ At this snapshot:
   scalar plane contains at most 218 selected types.  Equality forces
   `2044<=K'<=5025`, at least 210 projective directions, aggregate unused
   degree at most `41736`, and root saturation above `0.9618`.  This does not
-  claim that the present rank-eleven compiler reaches the interface, exclude
+  claim that the present rank-eleven compiler reaches the interface.  Under
+  the additional hypothesis that the residual pencil is projectively
+  equivalent to `(X^e,1)`, only `e=2048,4096` survive: the first forces the
+  singleton row `K'=2049` with at most 72 missing root slots, while the
+  second is confined to `4097<=K'<=4237` with at most 28744 missing slots.
+  This does not exclude
   the equality branch, pay rank eleven, or move an active-v4 atom.  The next
   theorem is quotient-periodic rational-fiber classification/payment or a
   finite-characteristic arrangement theorem for the represented pencil.

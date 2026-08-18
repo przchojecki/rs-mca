@@ -5658,3 +5658,36 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Classify and price the near-saturated rational fibers,
   or prove a finite-characteristic arrangement inequality with hypotheses
   actually satisfied by this represented polynomial pencil.
+
+### 2026-08-18 - Pure-power router for the quotient-pair plane endpoint
+
+- **Agent/model:** Codex, extending the conditional plane-218 packet with a
+  proved quotient-periodic subclass router.
+- **Exact parent:** this PR at
+  `24f23478924ce26510935d3609c567f69ea08a1b`.
+- **Research source:** `AllenGrahamHart/rs-mca-prize-dag` commit
+  `b5e3a90d8415ea7de6c144d1fcd56c0e5c50b7d2`; source-node tree
+  `d47d9281c12e629b3c700f70b5ba30da711d9e10`.
+- **Status:** PROVED CONDITIONAL SUBCLASS ROUTER / ZERO DEPLOYED LEDGER
+  MOVEMENT.
+- **Result:** If the endpoint residual direction pencil is projectively
+  equivalent on the official smooth domain to `(X^e,1)`, exact fiber
+  capacity leaves only `e=2048,4096`. Degree 2048 forces `K'=2049`, all
+  218 directions and lines, and at most 72 missing root slots. Degree 4096
+  forces `4097<=K'<=4237`, at least 211 directions, at most seven
+  duplicate-direction lines, and at most 28744 missing slots.
+- **Controls:** Primary and independently written integer replays enumerate
+  every endpoint row and power-of-two divisor degree; the primary rejects
+  16 hostile mutations and source replay pins the extension node separately
+  from the original two-node packet. Manifest SHA-256 is
+  `a80eeade6753d777baf0d649fa45b8f33b7429c2451ad44e6ad7bacc7d049c83`;
+  primary and independent verifier SHA-256 values are
+  `7f34b6f176490ef4c0f53d65a3a94249c775847d7614c6b4086d2df8045d9fac`
+  and `f096414ab0d7fc3a1b1b093245c75bb33f81702ccb4b72310ea32311f342ba24`.
+- **Nonclaim:** The residual pencil is not proved pure-power; general
+  quotient-periodic rational maps are not classified; neither survivor,
+  rank eleven, an active-v4 atom, KoalaBear, LIST, MCA, or either prize
+  problem is paid.
+- **What to do next:** Use received-line and owner semantics to exclude the
+  two pure-power survivors, while separately classifying the general
+  quotient-periodic rational map.

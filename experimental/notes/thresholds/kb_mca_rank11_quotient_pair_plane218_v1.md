@@ -7,6 +7,9 @@ Research source:
 The two source-node trees are
 `2b2e264afd74e65cbde43b4c79e1702c04c7db4d` and
 `3d2ecbdee129e5422c6cb7e7686384446977a34b`.
+The pure-power extension is sourced separately from
+`AllenGrahamHart/rs-mca-prize-dag@b5e3a90d8415ea7de6c144d1fcd56c0e5c50b7d2`,
+node tree `d47d9281c12e629b3c700f70b5ba30da711d9e10`.
 
 This note is a finite, base-field-normalized split-pencil theorem.  Its
 source interface is printed in full below.  In particular, this packet does
@@ -203,7 +206,56 @@ least 210 multiplicity-15 points.  Those points consume at least
 `210*C(15,2)=22,050` of the `C(218,2)=23,653` line pairs, leaving at most
 1,603 pairs for every other intersection.
 
-## 5. Exact frontier and nonclaims
+## 5. Pure-power quotient-periodic router
+
+There is one exact reduction inside the first frontier branch.  Assume, in
+addition to the source interface, that after a projective change of basis
+the coprime residual direction pencil is generated on `mu_N` by
+
+```text
+X^e, 1,
+```
+
+where `e` is a power-of-two divisor of `N=2^21` and `e<=k'-1`.  A represented
+direction has polynomial `X^e-y`; if it has a domain root, it has exactly
+`e` simple roots in `mu_N`.  Thus the full-coordinate count also obeys
+
+```text
+F<=r e<=218e.                                       (5.1)
+```
+
+Combining (5.1) with (4.2), (4.4), and the degree cap leaves exactly
+
+```text
+e in {2048,4096}.                                   (5.2)
+```
+
+For `e=2048`, capacity and degree force `k'=2049`.  Then `F>=446392`,
+whereas `217e=444416`, so all 218 directions occur.  The 218-line ceiling
+then gives exactly one full line per direction, and
+
+```text
+218e-F<=72.                                         (5.3)
+```
+
+For `e=4096`, the surviving interval and direction floor are
+
+```text
+4097<=k'<=4237,       r>=211.                       (5.4)
+```
+
+There are at most seven full lines beyond the first in each represented
+direction, and direct fiber capacity gives
+
+```text
+re-F<=218*4096-(28396+204*4097)=28744.              (5.5)
+```
+
+This theorem neither proves that the endpoint pencil is pure-power nor
+excludes or pays either surviving degree.  General quotient-periodic
+rational maps remain outside its scope.
+
+## 6. Exact frontier and nonclaims
 
 The equality branch is now a near-complete base-field split-pencil object:
 at least 210 members of one projective polynomial pencil spend more than
@@ -224,7 +276,7 @@ current rank-eleven route, exclude the 218-plane over the official field,
 pay either shortened branch, move an active-v4 atom, close KoalaBear, or
 resolve either prize problem.
 
-## 6. Replay
+## 7. Replay
 
 The standard-library primary and independent implementations are
 
@@ -234,6 +286,6 @@ experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.
 ```
 
 They recompute every displayed integer, scan all 2,982 endpoint values of
-`k'`, and verify the frozen source hashes when a prize-DAG checkout is
-provided.  The primary also rejects twelve hostile contract mutations.
-
+`k'` and every power-of-two pure-power degree, and verify the frozen source
+hashes when a prize-DAG checkout is provided.  The primary also rejects
+sixteen hostile contract mutations.

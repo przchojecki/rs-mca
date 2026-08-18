@@ -51,9 +51,32 @@
     "dual_rich_point_floor": 210,
     "dual_remaining_pair_ceiling": 1603
   },
+  "pure_power_router": {
+    "hypothesis": "PROJECTIVELY_EQUIVALENT_TO_XE_1",
+    "domain_order": 2097152,
+    "surviving_degrees": [2048, 4096],
+    "cases": {
+      "2048": {
+        "shortened_K_floor": 2049,
+        "shortened_K_ceiling": 2049,
+        "projective_direction_floor": 218,
+        "full_line_count": 218,
+        "missing_slot_ceiling": 72
+      },
+      "4096": {
+        "shortened_K_floor": 4097,
+        "shortened_K_ceiling": 4237,
+        "projective_direction_floor": 211,
+        "duplicate_line_ceiling": 7,
+        "missing_slot_ceiling": 28744
+      }
+    }
+  },
   "claims": {
     "source_interface_proved_here": false,
     "endpoint_excluded": false,
+    "endpoint_pure_power_proved": false,
+    "pure_power_survivors_paid": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
     "KoalaBear_closed": false,
@@ -64,7 +87,8 @@
     "commit": "f557775d53192f027730b15c2f70330e1a56c116",
     "plane_cap_node_tree": "2b2e264afd74e65cbde43b4c79e1702c04c7db4d",
     "direction_bank_node_tree": "3d2ecbdee129e5422c6cb7e7686384446977a34b",
+    "pure_power_router_commit": "b5e3a90d8415ea7de6c144d1fcd56c0e5c50b7d2",
+    "pure_power_router_node_tree": "d47d9281c12e629b3c700f70b5ba30da711d9e10",
     "load_bearing_external_lemma": false
   }
 }
-
