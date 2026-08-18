@@ -19,6 +19,12 @@ node tree `43fc63b7c2f721ec79c4c2b451aef9a2eb17eb01`.
 The complete type-population extension is sourced separately from
 `AllenGrahamHart/rs-mca-prize-dag@1d52ff3013b6ab4e94f39cf9d6627f7562d65cf8`,
 node tree `1bef7e27ed86ed76d5391e616bcb0a39e1681336`.
+The endpoint plane-line extension is sourced separately from
+`AllenGrahamHart/rs-mca-prize-dag@f0a13cc6e33399aa8192bf4879b9a9e7941371e3`,
+node tree `1763c945b9e4031424099486ecf7d44a9bc021a2`.
+Its direction-saturation extension is sourced separately from
+`AllenGrahamHart/rs-mca-prize-dag@1db90bbbef8c8e31b881de04dc9cedb387728c0f`,
+node tree `ddcb65d9d490042a6215457db9c1214246d2b456`.
 
 This note is a finite, base-field-normalized split-pencil theorem.  Its
 source interface is printed in full below.  In particular, this packet does
@@ -255,6 +261,37 @@ The first excluded population has doubled cross-product deficit
 18,372,095,406. This is a dense-owner and saturated-plane router, not a
 payment for that owner or the retained family.
 
+The extremal population admits a further exact design reduction.  A full
+218-owner plane `A` occurs on exactly `|J_A\J|` residual coordinates.  Its
+own endpoint shortening has local dimension at least 2,044, so it recurs at
+most `k'-2044` times.  The full-coordinate floor therefore requires 339 to
+358 distinct 218-point planes.  Balancing their incidences over 3,170 types
+forces at least 22,752 plane pairs to meet in a saturated 15-point line,
+hence at least 217 distinct saturated lines.  Every saturated line has at
+least
+
+```text
+k'-2609>=2351                                       (3.13)
+```
+
+residual common-core coordinates.
+
+Using each plane's internal bank is much stronger.  Every full coordinate
+contributes at least 210 distinct projective direction roots.  One direction
+polynomial has at most `k'-1` roots, while each represented saturated
+direction consumes 105 selected-point pairs.  Consequently
+
+```text
+41746<=R<=47836,                                    (3.14)
+roots(T_eta)>=2351 for every represented eta,
+aggregate unused direction degree <=30203244,
+aggregate root saturation >=5750430/6589409>0.8726. (3.15)
+```
+
+Thus `q=3170` is a calibrated finite `(Q)`/split-pencil direction bank.  The
+packet does not classify it as quotient-periodic, force a further common
+factor, or pay the endpoint.
+
 In scalar dimension four, either the original `407,831` common-core floor
 from (3.1) holds or one actual noncommon coordinate has at least 219 owners.
 Those owners lie in an
@@ -410,7 +447,8 @@ experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.
 ```
 
 They recompute every displayed integer, scan all 4,833 excluded pair-moment
-rows, all 2,868 population-factor rows, all 2,982 endpoint values of `k'`,
-and every power-of-two pure-power degree, and verify the frozen source hashes
-when a prize-DAG checkout is provided.  The primary also rejects thirty-two
-hostile contract mutations.
+rows, all 2,868 population-factor rows, both endpoint-design ledgers on all
+23 population-endpoint rows, all 2,982 plane-endpoint values of `k'`, and
+every power-of-two pure-power degree. They verify the frozen source hashes
+when a prize-DAG checkout is provided. The primary also rejects forty hostile
+contract mutations.

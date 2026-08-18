@@ -1,1 +1,1 @@
-KB_RANK11_QUOTIENT_PAIR_PLANE218_INDEPENDENT_PASS states=2982 core=452813 directions=210 pairs=1603 moment_rows=4833 moment_first=4836 population_rows=2868 qmax=3170 dense=80446 power=2048,4096
+KB_RANK11_QUOTIENT_PAIR_PLANE218_INDEPENDENT_PASS states=2982 core=452813 directions=210 pairs=1603 moment_rows=4833 moment_first=4836 population_rows=2868 qmax=3170 dense=80446 endpoint_directions=41746..47836 power=2048,4096

@@ -13,7 +13,11 @@
     "dimension_three_pair_moment_commit": "473f41afc6b76d747e534cb8e509a0353dcde3aa",
     "dimension_three_pair_moment_node_tree": "43fc63b7c2f721ec79c4c2b451aef9a2eb17eb01",
     "dimension_three_type_population_commit": "1d52ff3013b6ab4e94f39cf9d6627f7562d65cf8",
-    "dimension_three_type_population_node_tree": "1bef7e27ed86ed76d5391e616bcb0a39e1681336"
+    "dimension_three_type_population_node_tree": "1bef7e27ed86ed76d5391e616bcb0a39e1681336",
+    "dimension_three_endpoint_plane_line_commit": "f0a13cc6e33399aa8192bf4879b9a9e7941371e3",
+    "dimension_three_endpoint_plane_line_node_tree": "1763c945b9e4031424099486ecf7d44a9bc021a2",
+    "dimension_three_endpoint_direction_commit": "1db90bbbef8c8e31b881de04dc9cedb387728c0f",
+    "dimension_three_endpoint_direction_node_tree": "ddcb65d9d490042a6215457db9c1214246d2b456"
   },
   "result": {
     "affine_plane_occupancy_ceiling": 218,
@@ -30,6 +34,10 @@
     "dimension_three_dense_type_record_floor": 80446,
     "dimension_three_population_endpoint_K_interval": [4960, 4982],
     "dimension_three_population_endpoint_full_owner_floor": 985788,
+    "dimension_three_population_endpoint_plane_interval": [339, 358],
+    "dimension_three_population_endpoint_saturated_line_floor": 217,
+    "dimension_three_population_endpoint_direction_interval": [41746, 47836],
+    "dimension_three_population_endpoint_direction_deficit_ceiling": 30203244,
     "endpoint_shortened_K_interval": [2044, 5025],
     "endpoint_projective_direction_floor": 210,
     "endpoint_aggregate_degree_deficit_ceiling": 41736,
@@ -44,8 +52,9 @@
     "endpoint_states": 2982,
     "pair_moment_excluded_states": 4833,
     "type_population_factor_states": 2868,
+    "population_endpoint_design_states": 23,
     "pure_power_states": 142,
-    "hostile_mutations_rejected": 32,
+    "hostile_mutations_rejected": 40,
     "normal_python": "PASS",
     "optimized_python": "PASS",
     "independent_python": "PASS",
@@ -59,17 +68,18 @@
     "pure_power_survivors_paid": false,
     "shared_pair_core_payment_transported": false,
     "dense_quotient_type_paid": false,
+    "population_endpoint_paid": false,
     "rank11_paid": false,
     "active_v4_ledger_movement": 0,
     "KoalaBear_closed": false
   },
   "packet_file_sha256": {
-    "experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md": "b87152176f3a4c382c97688bb812eb2655439a25cce730ab1c23f3d97797b11f",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/README.md": "7bd1f01b7659befb3799d2564c1c9b831938fab05edde8a73d74552151a6907a",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json": "9a78e5173938af68998f31da1014b779fc822aec7108ab9968e6a4f50854a538",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/primary_output.txt": "92e124a783c252e21b55063d99f27f63289283d646452dd98b6d6b61a098426b",
-    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/independent_output.txt": "9e116e83b250021bb0cabe2794ef4887091087721be1fe0146f4a52596088059",
-    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1.py": "87215b1cd33a5ab2f53ff708804c72a88574a8872da7284cbae473c0b99969ff",
-    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.py": "16a73ae2636c5d208088b5718ffd16479e933a1793b7836855ce64cef2e043c9"
+    "experimental/notes/thresholds/kb_mca_rank11_quotient_pair_plane218_v1.md": "67614f668d1400ce188624a08b3efcffcbfc869f83d853e61df14ce8a613fe8c",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/README.md": "db35e5d2259eb21fbc1a6f40f200a19c6261a64299680ab8b68bdca90ae9cc98",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json": "0a8ac27dd3b25d7a280af7d04253f15b14a34ef5430328e5df17315f1b26829a",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/primary_output.txt": "31512ad5d312244c8606b86b0bd9233d19dec6649e2b0cc38ec0530f066a0114",
+    "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/independent_output.txt": "eafd4432f62f5b8b1151fbcf4b230c16e664300fb963051447596135324f6f3e",
+    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1.py": "b35302950966e351935cd67bf405ddf7c09cb9c70c21cdb9e301dbd01e46963d",
+    "experimental/scripts/verify_kb_mca_rank11_quotient_pair_plane218_v1_independent.py": "7e0378fc2df08b7a5931fe953262844c2234c1bddd99a25d748c364cf2497703"
   }
 }

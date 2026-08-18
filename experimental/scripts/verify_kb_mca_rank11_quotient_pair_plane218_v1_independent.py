@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT = ROOT / "experimental/data/certificates/kb-mca-rank11-quotient-pair-plane218-v1/contract.json"
-CONTRACT_SHA256 = "9a78e5173938af68998f31da1014b779fc822aec7108ab9968e6a4f50854a538"
+CONTRACT_SHA256 = "0a8ac27dd3b25d7a280af7d04253f15b14a34ef5430328e5df17315f1b26829a"
 
 
 def check(condition: bool, message: str) -> None:
@@ -40,6 +40,7 @@ def main() -> None:
     router = data["dimension_router"]
     moment = data["pair_overlap_moment"]
     population = data["type_population_router"]
+    endpoint = data["population_endpoint_design"]
     bank = data["endpoint_bank"]
     power = data["pure_power_router"]
 
@@ -157,6 +158,41 @@ def main() -> None:
     check(population["dense_type_paid"] is False,
           "type-population payment nonclaim")
 
+    endpoint_rows = []
+    direction_max = c2(3170) // c2(15)
+    for kprime in range(4960, 4983):
+        full = -13661092 + 2953 * kprime
+        planes = first_integer_at_least(full, kprime - 2044)
+        marks = 218 * planes
+        low = marks // 3170
+        high_points = marks - low * 3170
+        required_pairs = (3170 - high_points) * c2(low)
+        required_pairs += high_points * c2(low + 1)
+        saturated_pairs = c2(planes) - (15 * c2(planes) - required_pairs)
+        roots = 210 * full
+        direction_floor = first_integer_at_least(roots, kprime - 1)
+        deficit = direction_max * (kprime - 1) - roots
+        endpoint_rows.append((planes, saturated_pairs, direction_floor, deficit))
+    check(endpoint_rows[0] == (339, 22752, 41746, 30203244),
+          "endpoint first row")
+    check(endpoint_rows[-1] == (358, 27414, 44301, 17612776),
+          "endpoint last row")
+    check(min(item[1] for item in endpoint_rows) ==
+          endpoint["minimum_saturated_plane_pairs"] == 22752,
+          "endpoint saturated pairs")
+    check(first_integer_at_least(22752, c2(15)) ==
+          endpoint["distinct_saturated_line_floor"] == 217,
+          "endpoint saturated lines")
+    check(endpoint["saturated_line_residual_recurrence_floor"] == 2351,
+          "endpoint line recurrence")
+    check(direction_max == endpoint["direction_population_ceiling"] == 47836,
+          "endpoint direction ceiling")
+    check(Fraction(210 * 985788, direction_max * 4959) ==
+          Fraction(endpoint["aggregate_saturation_numerator"],
+                   endpoint["aggregate_saturation_denominator"]),
+          "endpoint aggregate saturation")
+    check(endpoint["endpoint_paid"] is False, "endpoint payment nonclaim")
+
     bank_rhs = 218 * core_size - line_cap * n
     c218 = bank["common_core_floor"]
     check((218 - line_cap) * (c218 - 1) < bank_rhs <= (218 - line_cap) * c218,
@@ -228,11 +264,14 @@ def main() -> None:
           "shared-core transport nonclaim")
     check("dense-owner and saturated-plane router, not a payment" in note,
           "dense-type payment nonclaim")
+    check("calibrated finite `(Q)`/split-pencil direction bank" in note,
+          "endpoint direction-bank scope")
     print(
         "KB_RANK11_QUOTIENT_PAIR_PLANE218_INDEPENDENT_PASS "
         f"states={scanned} core=452813 directions={direction_minimum} "
         f"pairs=1603 moment_rows={moment_rows} moment_first=4836 "
-        f"population_rows={population_rows} qmax=3170 dense=80446 power=2048,4096"
+        f"population_rows={population_rows} qmax=3170 dense=80446 "
+        f"endpoint_directions=41746..47836 power=2048,4096"
     )
 
 

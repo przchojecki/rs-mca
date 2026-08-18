@@ -14,6 +14,9 @@ source-interface transport.
 When the source family is additionally the complete retained quotient-type
 population carrying 255,011,043 records, the packet verifies `q<=3170`, an
 80,446-record dense type, and the saturated `q=3170` endpoint.
+That endpoint is further reduced to 339--358 rich planes, at least 217
+saturated lines, and a global bank of 41,746--47,836 projective directions
+with aggregate root saturation above 87.26 percent.
 
 Replay from the repository root:
 
