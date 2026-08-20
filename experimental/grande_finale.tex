@@ -8398,6 +8398,217 @@ couple several raw-margin levels, use cross-pair/core structure, or construct
 a chronology-correct owner; another single cutoff cannot suffice.
 \end{remark}
 
+\begin{proposition}[All-level scalar-resource barrier at rank twelve]
+\label{prop:mca-rank-twelve-scalar-resource-barrier}
+Retain the initial KoalaBear row and the post-near unsafe load
+\[
+ N=B_*-2d+1=274980728111260144.
+\]
+Put \(n=2097152\), \(m=1116048\), and
+\[
+ C=C_{11}(1048576)=3313389801746721900417.
+\]
+Consider the relaxation in which every selected record has raw margin
+\(r_\gamma\ge1\), truncated margin
+\(\theta_\gamma=\min\{d+1,r_\gamma\}\),
+\(\sum_\gamma\theta_\gamma\le C\), and guaranteed pair-core incidence
+\(m-r_\gamma\).  These hypotheses permit a histogram with total guaranteed
+core incidence exactly
+\[
+ 252089545421228709377370.
+ \tag{R12S}\label{eq:mca-rank-twelve-scalar-core-incidence}
+\]
+Consequently they cannot force any one coordinate through more than
+\[
+ 120205662451376300
+\]
+records.  This is short of the rank-ten child target
+\(248706399341288370\) by \(128500736889912070\).
+
+Even the stronger fantasy premise that every selected support contributes
+all \(m\) core incidences forces by averaging only
+\[
+ \left\lceil\frac{Nm}{n}\right\rceil
+ =146337362121160346,
+\]
+still short by \(102369037220128024\).  Thus no one-coordinate argument
+based only on averaging the selected-support core incidences, no matter how
+it layers the proved scalar margin resource, can produce the existing
+rank-ten child target.
+\end{proposition}
+
+\begin{proof}
+Give every record its mandatory unit of margin resource.  Promoting one
+record from \(\theta=1\) to the capped class \(\theta=d+1\) costs \(d\)
+additional units and may erase all \(m-1\) guaranteed incidences.  Spending
+one additional unit in the uncapped class erases only one incidence.  Since
+\((m-1)/d>1\), the incidence-minimizing histogram first promotes as many
+records as possible.  Exact division gives
+\[
+ \left\lfloor\frac{C-N}{d}\right\rfloor
+ =49103551414195675,
+ \qquad
+ C-N-49103551414195675d=56673.
+\]
+Hence the minimizer has that many capped records of raw margin \(m\), one
+record of margin \(1+56673\), and all remaining records of margin one.  Its
+incidence is
+\[
+ (N-49103551414195675)(m-1)-56673,
+\]
+which is \eqref{eq:mca-rank-twelve-scalar-core-incidence}.  Dividing by
+\(n\) and rounding up gives the displayed coordinate load.  The final
+full-support-incidence assertion is the same averaging calculation with
+total incidence \(Nm\).
+
+The coordinate load is attained within the declared relaxation.  Enumerate
+the required incidence units record by record and assign a record of size
+\(s_i\) the next \(s_i\) distinct residues in a cyclic traversal of the
+\(n\) coordinates.  Since \(s_i\le n\), no record repeats a coordinate, and
+every coordinate receives the floor or ceiling of the total incidence
+divided by \(n\).  The release verifier checks the exact integers and hostile
+unit mutations.
+\end{proof}
+
+\begin{remark}[Pair-count information does not repair the scalar barrier]
+\label{rem:mca-rank-twelve-scalar-pair-barrier}
+For the \(N-49103551414195675-1=225877176697064468\) margin-one records, a
+fixed minimizing pair owns at most
+\(n-(m-1)=981105\) slopes.  The histogram in
+\cref{prop:mca-rank-twelve-scalar-resource-barrier} therefore needs only
+\(230227321946\) pair types, whereas the proved sub-square interleaving cap
+is \(Q_{11}(1)=12761830235484\), with
+\(Q_{11}(1)^2<(2130706433)^6\).  Thus the current total resource,
+first core moment, fixed-pair multiplicity, and pair-type cap still admit
+the abstract packing.  This is a certificate-class no-go, not a claim that
+the histogram is Reed--Solomon realizable.
+\end{remark}
+
+\begin{theorem}[Actual-line supported-dual gluing-defect compiler]
+\label{thm:mca-actual-line-core-gluing-defect}
+Let \(\varnothing\ne\Gamma\subseteq Z_{\rm bad}\setminus N\) be distinct
+finite slopes on one actual received line \(r_0+\gamma r_1\).  For every
+\(\gamma\in\Gamma\), retain one exact pair-noncontained size-\(m\) support
+\(S_\gamma\) and its degree-\((<K)\) explanation \(h_\gamma\).  Assume all
+\(h_\gamma\) lie in one affine translate \(h_*+C'\), and choose
+\(b_\gamma\in C'\) minimizing
+\[
+ \widetilde\theta_\gamma
+ =|\{x\in S_\gamma:r_1(x)\ne b_\gamma(x)\}|.
+\]
+Put
+\[
+ a_\gamma=h_\gamma-\gamma b_\gamma,
+ H_\gamma=\{x:r_0(x)=a_\gamma(x),\ r_1(x)=b_\gamma(x)\},
+ \qquad U=\bigcup_{\gamma\in\Gamma}H_\gamma.
+\]
+For \(H\subseteq U\), let \(A_H\) be the annihilator of the restricted
+degree-\((<K)\) Reed--Solomon code, extended by zero from \(H\) to \(U\),
+and put
+\[
+ A=\sum_{\gamma\in\Gamma}A_{H_\gamma},
+ \qquad W=A_U.
+\]
+Let \(L\) be the space of functions on \(U\) whose restriction to every
+\(H_\gamma\) is represented by a degree-\((<K)\) polynomial.  Then
+\[
+ A^\perp=L,
+ \qquad W^\perp=C_K(U),
+ \qquad
+ \dim W-\dim A=\dim L-\dim C_K(U).
+ \tag{GL}\label{eq:mca-actual-line-core-gluing-defect}
+\]
+Moreover \(r_0|_U,r_1|_U\in L\), so their images in \(L/C_K(U)\) span a
+space of dimension \(c\in\{0,1,2\}\).  On the initial KoalaBear rank-twelve
+row, assume \(|U|\ge m\) and \(\dim C'=11\).  Then the \(c=0\) family
+contains at most
+\[
+ 981104+
+ \left\lfloor
+  \frac{3313389801746721900417-981104}{67473}
+ \right\rfloor
+ =49106899082787469
+ \tag{G0}\label{eq:mca-rank-twelve-gluing-rank-zero}
+\]
+distinct slopes.  This is below the rank-ten child target by
+\(199599500258500901\).
+
+If, in addition, every \(|H_\gamma|\ge K\) and the cores admit an ordering
+\(H_1,\ldots,H_t\) satisfying
+\[
+ |H_i\cap(H_1\cup\cdots\cup H_{i-1})|\ge K
+ \qquad(2\le i\le t),
+ \tag{GK}\label{eq:mca-core-incremental-k-overlap}
+\]
+then \(A=W\).  Consequently \eqref{eq:mca-core-incremental-k-overlap}
+routes the family to the paid \(c=0\) terminal on the initial rank-twelve
+row.
+\end{theorem}
+
+\begin{proof}
+Orthogonality to the zero-extended space \(A_H\) is exactly the condition
+that the restriction to \(H\) is a degree-\((<K)\) evaluation word.
+Intersecting these orthogonal complements proves \(A^\perp=L\).  Taking
+\(H=U\) proves \(W^\perp=C_K(U)\), and the dimension identity follows.
+The defining equalities on \(H_\gamma\) show that both received
+restrictions lie in \(L\).
+
+Their quotient image has dimension at most two.  Suppose first that it has
+dimension zero.  Then there are degree-\((<K)\) polynomials \(a,b\) agreeing
+with \(r_0,r_1\) on all of \(U\).  Split the records by raw support margin
+\(\widetilde\theta_\gamma\).  If
+\(\widetilde\theta_\gamma\le d\), then its selected support meets its
+complete pair core in at least \(m-d=K\) coordinates.  On those coordinates
+both the selected pair \((a_\gamma,b_\gamma)\) and \((a,b)\) equal the
+received pair.  Reed--Solomon uniqueness gives
+\((a_\gamma,b_\gamma)=(a,b)\).
+
+For these raw-low records, pair noncontainment supplies at least one support
+coordinate outside the complete common core
+\(G=\{x:r_0(x)=a(x),\ r_1(x)=b(x)\}\).  Such an exception coordinate
+determines \(\gamma\) uniquely from
+\((r_0-a)+\gamma(r_1-b)=0\); hence distinct slopes use disjoint nonempty
+exception sets.  Since \(U\subseteq G\) and \(|U|\ge m\), the raw-low count
+is at most \(n-|G|\le n-m=981104\).
+
+If the raw-low count is \(L_0\), every remaining record contributes
+\(d+1=67473\) to the nonuniform support-margin resource.  Therefore the
+total count is at most
+\[
+ L_0+
+ \left\lfloor\frac{C_{11}(1048576)-L_0}{67473}\right\rfloor.
+\]
+This expression is nondecreasing for integer
+\(0\le L_0\le981104\), so its endpoint is exactly
+\eqref{eq:mca-rank-twelve-gluing-rank-zero}.  This proves the stated
+rank-zero payment.  Quotient image dimensions one and two remain the two
+unpaid actual-line terminals.
+
+Finally, under \eqref{eq:mca-core-incremental-k-overlap}, a local section's
+degree-\((<K)\) representatives glue inductively: at each step the new and
+old representatives agree on at least \(K\) evaluation points, hence are
+identical.  Thus \(L=C_K(U)\), equivalently \(A=W\), which would make the
+received quotient image zero and invokes the paid terminal just proved.
+\end{proof}
+
+\begin{remark}[Exact rank-twelve realization target]
+\label{rem:mca-rank-twelve-gluing-target}
+The compiler moves no active-v4 atom and does not pay affine error rank
+twelve, but it pays the complete quotient-rank-zero subfamily in the exact
+initial-row units.  It replaces the vague missing ``cross-pair
+compatibility'' with two exact residual actual-line terminals: quotient
+image rank one, where exactly one
+projective scalar combination is globally polynomial on \(U\), and quotient
+image rank two, where none is.  Outside the guarded post-near domain,
+the same rank-zero formula is not claimed; a common pair core alone does not
+eliminate support-wise MCA-bad witnesses.  The next theorem must count
+or route these source-realizable rank-one and rank-two defect families while
+preserving the identical line, slopes, supports, explanations, field, and
+first-match chronology.  Abstract higher-order-MDS generation is
+insufficient: a three-core \((n,K)=(6,3)\) control has nominal full excess
+but one-dimensional gluing defect.
+\end{remark}
+
 
 \begin{proposition}[Exact rank-flat and common-zero reductions at the active rows]
 \label{prop:active-rank-flat-common-zero}

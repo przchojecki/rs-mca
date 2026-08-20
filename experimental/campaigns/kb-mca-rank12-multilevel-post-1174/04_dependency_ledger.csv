@@ -1,0 +1,10 @@
+dependency_id,statement,source,version,scope,proof_status,independent_check,notes
+D-001,Selected-record nonuniform support-margin resource,PR #1168,6a5dcdae1591fc7f044eda6a942bfe178521a48c,actual post-near record families,proved,replayed by #1174 reviews,load-bearing
+D-002,Raw-low heavy-core shortening and rank-eleven child target,PR #1174,1b613fc669158a690a52b64f0eeb440f10672f1e,complete shortened KoalaBear rows,proved,independent math and certificate GREEN,load-bearing
+D-003,Support-wise near-rational deletion of at most 2d slopes,PR #1160,c5f4ea7a0c78828c901ae5f3428894a8b2e2806b,initial actual received line,imported conditional,34 mutations and Sage FLINT replayed,divergent dependency
+D-004,Common-locator floor packet,scottdhughes fork,ed556ccb7527,old rank-twelve branch,conditional,pending clean replay,requires rank-two family 5170912 not supplied by #1174
+D-005,Four-block rank-twelve packet,scottdhughes fork,e3bca2fb3fb3,old adjacent endpoint,conditional,pending clean replay,downstream of D-004 and absent rank-two compiler
+D-006,Fundamental-circuit and Segre support routers,public proof DAG,5330928af9d262b24b7fe986ed837b09b9c05816;8eb59e7cb1fe4254ad44a3cb30e9c8b98f03053b,coordinate and support geometry,provisional,pending actual-record adapter,not an owner or payment
+D-007,Supported-dual dimension pair bridge and local-to-global generation criterion,SlopDotCash/proximityprize,acfa4f072d0c7fe8e706c80d8e21cb5b083f73a6,SYZ21 through SYZ25,public proved and probed,primary-source read,does not supply production realizability
+D-008,Unrestricted higher-order MDS needs exponential-scale fields,Brakensiek-Dhar-Gopi,arXiv:2212.11262,abstract core families,proved,primary-source read,rules out naive all-core MDS3 import
+D-009,Support-constrained parity-check realizability can fail for GRS over every field,Han-Yildiz-Hassibi,arXiv:2605.08644,abstract support masks,proved,primary-source read,actual received-line structure remains essential

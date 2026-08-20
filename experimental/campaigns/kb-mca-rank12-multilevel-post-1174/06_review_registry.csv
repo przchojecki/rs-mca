@@ -1,0 +1,5 @@
+review_id,claim_id,joint,reviewer_isolated,status,artifact,blocking_issue
+R-001,C-006,scalar optimizer proof scope and exact arithmetic,true,pass,reviews/independent_math_review.md,none
+R-002,C-008,actual-record binding gluing identities c-zero payment and residual scope,true,pass,reviews/independent_math_review.md,none
+R-003,C-006,fail-closed certificate custody exact ancestry and public wording,true,pass,reviews/independent_certificate_review.md,none
+R-004,C-008,fail-closed certificate custody dependency boundary and public wording,true,pass,reviews/independent_certificate_review.md,none

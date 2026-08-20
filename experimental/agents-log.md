@@ -4266,3 +4266,36 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Prove a multi-level raw-margin/core coupling or a
   chronology-correct owner at rank twelve.  Another single cutoff cannot
   force the first rank drop.
+
+### 2026-08-20 - KoalaBear rank-twelve scalar barrier and gluing route
+
+- **Agent/model:** Codex with isolated GitHub, external-literature,
+  adversarial computation, and independent mathematics lanes.
+- **Exact parent:** PR #1174 head
+  `1b613fc669158a690a52b64f0eeb440f10672f1e`.
+- **Files added or changed:** `experimental/grande_finale.tex`, the
+  `kb-mca-rank12-multilevel-post-1174` campaign, threshold note, exact
+  Python/Sage controls, canonical certificate packet, `agents.md`, and this
+  log.
+- **Status:** CANDIDATE PARTIAL RANK-TWELVE PAYMENT / EXACT METHOD BARRIER /
+  ZERO ACTIVE-V4 LEDGER MOVEMENT.
+- **What is being added:** The exact all-level truncated-margin resource and
+  selected-support first moment admit a balanced abstract extremizer forcing
+  only `120205662451376300` slopes through one coordinate, short of the
+  rank-ten child by `128500736889912070`.  The actual-line supported-dual
+  compiler identifies the local-polynomial gluing quotient and pays its
+  received-pair rank-zero branch by `49106899082787469`, leaving
+  `199599500258500901` slack.  Quotient ranks one and two are the exact
+  remaining realization terminals.
+- **Controls:** normal and optimized Python, eight hostile mutations, a
+  cyclic balanced-incidence construction, exact `GF(11)` post-near
+  rank-zero regression, the public SYZ25 negative and incremental-overlap
+  positive Sage controls, Wolfram integer replay, and full TeX compilation.
+- **Dependency boundary:** The packet is stacked on #1174 and remains
+  conditional on divergent #1160.  It must be replayed on an integration
+  tree containing both; the old locator/four-block chain is not imported.
+- **Nonclaim:** Quotient ranks one and two, affine error rank twelve, the
+  active-v4 chronology, and KoalaBear remain open.
+- **What to do next:** Prove an actual-record classifier/payment for the
+  rank-one and rank-two gluing-defect families, preserving the identical
+  received line, slopes, supports, explanations, field, and owner chronology.
