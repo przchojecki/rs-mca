@@ -1,0 +1,9 @@
+claim_id,statement,status,artifact,dependencies,controls,review_joints,rederivation,formalization
+C-001,Every complete shortened rank-one family has at most 4070947 slopes,provisionally-verified,experimental/grande_finale.tex,D-001;D-005,C-001,projective-line combinatorics and exhaustive integer scan,independent exact auditor,not_started
+C-002,The raw-low heavy-core theorem gives the printed proper-span or lossless-shortening dichotomy,provisionally-verified,experimental/grande_finale.tex,D-001;D-003,C-002;C-003,raw versus truncated margin and locator lift,independent mathematics reviewer,not_started
+C-003,Conditional on the pinned near deletion the complete direct post-near affine-error-rank-eleven branch is paid,provisionally-verified,experimental/grande_finale.tex,D-001;D-003;D-004;D-005,C-001;C-002;C-003,all-dimension recurrence and induction,independent mathematics reviewer,not_started
+C-004,The dense-core pair-type theorem is valid for raw margin cutoffs T at most d,provisionally-verified,experimental/grande_finale.tex,D-001;D-003,C-005,Cauchy core bound and fixed-pair packing,independent mathematics reviewer,not_started
+C-005,The single-threshold rank-twelve method requires at least 546519697764383119 slopes,provisionally-verified,experimental/grande_finale.tex,D-001;D-003,C-004,all-cutoff integer scan,independent exact auditor,not_started
+C-006,Affine error rank twelve remains unpaid,blocked,experimental/grande_finale.tex,D-001,C-004;C-005,multi-level coupling or chronology owner,pending,not_applicable
+C-007,The active-v4 ledger movement is zero,known,experimental/grande_finale.tex,D-002,C-006,scope and public wording,direct source comparison,not_applicable
+C-008,KoalaBear remains open,blocked,experimental/grande_finale.tex,D-002,C-006,complete chronology and final add-back,pending,not_applicable

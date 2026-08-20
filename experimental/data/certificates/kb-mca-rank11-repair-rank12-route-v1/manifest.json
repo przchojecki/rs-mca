@@ -1,0 +1,194 @@
+{
+  "active_source": "experimental/grande_finale.tex",
+  "active_source_sha256": "bc6f13fa666371596662997a99f3a43e57c39d7dc13e45675ae3c7bff3897dbe",
+  "canonical_payload_sha256": "f811fe07cfc3e98a9ecd4c74d4771f6d3c5f7380dead781f03e14b86b8c38752",
+  "claims": {
+    "active_v4_ledger_movement": 0,
+    "affine_error_rank_12_paid": false,
+    "complete_affine_error_rank_11_branch_paid": true,
+    "koalabear_closed": false,
+    "rank12_dense_core_route_proved": false,
+    "rank12_single_threshold_method_insufficient": true,
+    "uniform_rank_one_cap_proved": true
+  },
+  "files": [
+    {
+      "bytes": 33056,
+      "path": "agents.md",
+      "sha256": "012d714e1c46472ab2338ce15136c4c1d7e439336a15c9353426f4a276ddaeeb"
+    },
+    {
+      "bytes": 284727,
+      "path": "experimental/agents-log.md",
+      "sha256": "2f37926eaff0df8b350b8b071b118922db6305f1134326c4bbe214eed9fd2952"
+    },
+    {
+      "bytes": 1704,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/00_contract.md",
+      "sha256": "6a2ef72c56d1d439281402c467ac62dbc089337f2b0fbd8ec59fd51ba6dad60e"
+    },
+    {
+      "bytes": 1713,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/01_frontier_map.md",
+      "sha256": "9d5ec474db92a213c7a687c05639d0426860a74aaccd196b694b524b0e5fc930"
+    },
+    {
+      "bytes": 1886,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/02_controls.md",
+      "sha256": "79c1065be152babe85946e3741c132044facf41f837028effb51dff49146d835"
+    },
+    {
+      "bytes": 1328,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/03_idea_ledger.csv",
+      "sha256": "0bd60b2260138050cac5ab6a884636c99aabc54aa182e5538f70b5ff98fa807b"
+    },
+    {
+      "bytes": 670,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/04_dependency_ledger.csv",
+      "sha256": "fef7f0dd483b7fc06884686456581e29319fcfd613b4149a52528f1765cf76cc"
+    },
+    {
+      "bytes": 1836,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/05_claim_registry.csv",
+      "sha256": "511d64841c9121469e82fa08bf0c553dcecb8b134e8e38c19817b92f91678864"
+    },
+    {
+      "bytes": 2425,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/06_review_registry.csv",
+      "sha256": "95e307bdbb3256cb5717e7796f89183c6171b38a66d635f9959a439eaaf5000a"
+    },
+    {
+      "bytes": 4030,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/07_review_status.csv",
+      "sha256": "26a3e0c85ad101f53b46f13ae9fae52d9236146d85ee362ab0bf979d134c0886"
+    },
+    {
+      "bytes": 3420,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/PR_DESCRIPTION.md",
+      "sha256": "6e55c3583b9ee74d60e6eb272bab0e0d6f310d7af77abb3463fe7fda2379f736"
+    },
+    {
+      "bytes": 483,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/campaign.json",
+      "sha256": "cda18df09b0c8f793896698e647a0ef9cedf9a898ea202eb19d3dac54813852e"
+    },
+    {
+      "bytes": 1552,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/controls/gf11_truncated_margin_counterexample.sage",
+      "sha256": "629bb7550dcca1abe34e19a34e6068b2dcab5d357b7e3f231ad201d0623014b8"
+    },
+    {
+      "bytes": 6656,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/proofs/uniform_rank_one_repair_and_rank12_route.md",
+      "sha256": "656e26403c776b112368b76cf7036e707644d1f3e360572521570f20e3ef0cbc"
+    },
+    {
+      "bytes": 874,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/reviews/certificate_review.md",
+      "sha256": "c5cc4cfb6fb75636ebee258e2ddd89dd08905acb833abd68e4fd79eb704e9467"
+    },
+    {
+      "bytes": 9423,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/reviews/final_certificate_review.md",
+      "sha256": "0afb936fd28fbf521b416f2c9a51f018e5315b57ddde6bf38bc77d424397ff90"
+    },
+    {
+      "bytes": 10306,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/reviews/final_math_review.md",
+      "sha256": "49e04d1473dc078a36d417aa2fa98040356c523be54f5b442546da7fb68b80f7"
+    },
+    {
+      "bytes": 7763,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/reviews/final_publication_review.md",
+      "sha256": "f3960e025840a28dbd897752653b3ba66a18c0e62d4052df320a54fe4af1c637"
+    },
+    {
+      "bytes": 1269,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/reviews/literature_sweep.md",
+      "sha256": "2a2e3c011b0410e31b1ed9d857138be78755262e07ec5048e506754a36ff6d33"
+    },
+    {
+      "bytes": 2684,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/reviews/mathematics_audit.md",
+      "sha256": "ac6f4f1ea7cc7aa09ab1879cc217824f824bcdb2dd79fbbc26d751c8cfb624aa"
+    },
+    {
+      "bytes": 1026,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/reviews/wolfram_replay.md",
+      "sha256": "ada2240cd5caa1449412bbe224efb96508b3c9d53ec003a530566c2d0ad1a056"
+    },
+    {
+      "bytes": 613,
+      "path": "experimental/campaigns/kb-mca-rank11-repair-rank12-route-post-1173/source_integration_fragment.tex",
+      "sha256": "aa586ba141965faddff8fafa801c1d0a6807075bb7f17b359fa15869e2e4ba51"
+    },
+    {
+      "bytes": 1124,
+      "path": "experimental/data/certificates/kb-mca-rank11-repair-rank12-route-v1/README.md",
+      "sha256": "7d1d09197e782e99ff04a5c9fc14868410447e50ac472f4ccfdd5cf86b185b78"
+    },
+    {
+      "bytes": 5455,
+      "path": "experimental/data/certificates/kb-mca-rank11-repair-rank12-route-v1/result.json",
+      "sha256": "89a6700b5c0fe3a7f6c504aa5ccb09716cbea4a9b5a8e03bb017eb081e4aa700"
+    },
+    {
+      "bytes": 450067,
+      "path": "experimental/grande_finale.tex",
+      "sha256": "bc6f13fa666371596662997a99f3a43e57c39d7dc13e45675ae3c7bff3897dbe"
+    },
+    {
+      "bytes": 1000,
+      "path": "experimental/notes/thresholds/kb_mca_rank11_repair_rank12_route_v1.md",
+      "sha256": "9c55bcd5caf6c6a9b3796c9a18d079dff6d6891c9020928e69e29b99d6512ea1"
+    },
+    {
+      "bytes": 4367,
+      "path": "experimental/scripts/audit_kb_mca_rank11_repair_rank12_route_v1.py",
+      "sha256": "96dffbacc0a1a6e4d30b4996e8e217dd27885d4d43fded3f8211fb62a41d38a0"
+    },
+    {
+      "bytes": 7314,
+      "path": "experimental/scripts/verify_kb_mca_rank11_repair_rank12_route_manifest_v1.py",
+      "sha256": "c4e888dbd7c43141fdef125f1d6d328ffe15e5918bc60ff2be9e767a1402265d"
+    },
+    {
+      "bytes": 13945,
+      "path": "experimental/scripts/verify_kb_mca_rank11_repair_rank12_route_v1.py",
+      "sha256": "c2cd591a44e9a19afb8c1263ebb0368cb7ee1fabbce245468cee6e4f6d35f0c9"
+    }
+  ],
+  "imported_near_rational_dependency": {
+    "commit": "c5f4ea7a0c78828c901ae5f3428894a8b2e2806b",
+    "manifest": {
+      "blob": "d7442684309e51487a139979332a41c754650609",
+      "path": "experimental/data/certificates/kb-mca-supportwise-near-rational-two-anchor-repair-v1/manifest.json",
+      "sha256": "1854bc865a88d148f1a04676dcd566daf8fa7d50d1f16a5c105d9bbee69bae3c"
+    },
+    "note": {
+      "blob": "12bc4a0f06189829a9490928e4855d1aa958f940",
+      "path": "experimental/notes/thresholds/kb_mca_supportwise_near_rational_two_anchor_repair_v1.md",
+      "sha256": "7e75d67420f4ed37add3b4f6ea3aa45e043a782a6396f328b1e34ce659938989"
+    },
+    "pull_request": 1160,
+    "repository": "przchojecki/rs-mca",
+    "verifier": {
+      "blob": "3b4533b53e947466de55262e3577108f125738c0",
+      "path": "experimental/scripts/verify_kb_mca_supportwise_near_rational_two_anchor_repair_v1.py",
+      "sha256": "5d284cb0f857f2ff7c0797e911a2047009d6883d54f9d0df0a682627c09b5a35"
+    }
+  },
+  "parent": "2788d5ec3fb4b1d6f9c43a58a86ec2381e5f6804",
+  "result": "experimental/data/certificates/kb-mca-rank11-repair-rank12-route-v1/result.json",
+  "result_sha256": "89a6700b5c0fe3a7f6c504aa5ccb09716cbea4a9b5a8e03bb017eb081e4aa700",
+  "schema": "kb-mca-rank11-repair-rank12-route-manifest-v1",
+  "source_labels": [
+    "thm:mca-raw-low-heavy-core-shortening",
+    "thm:mca-uniform-rank-one-weighted-line",
+    "cor:mca-rank-eleven-repaired",
+    "thm:mca-dense-core-pair-type",
+    "prop:mca-rank-twelve-single-threshold-wall",
+    "rem:mca-rank-eleven-repair-scope"
+  ],
+  "supersedes_unsubmitted_candidate": "d01c546f4dca70e256c18c142873821b3bb48ab5"
+}

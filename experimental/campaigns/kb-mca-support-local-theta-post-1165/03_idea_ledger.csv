@@ -1,0 +1,5 @@
+idea_id,title,track,status,forecast,first_unjustified_step,control_result,dependency_status,owner,artifact,last_updated
+I-001,Old affine-span rank-eleven closure,barrier,refuted,likely no-go at final normal flat,claimed r=s occupancy bound,GF257 gives 87>8,old theorem refuted,explorer,notes/thresholds/kb_mca_support_local_theta_and_error_rank_router_v1.md,2026-08-13
+I-002,Support-local theta compiler,proof,candidate,likely proof by repairing final basis factor,endpoint optimization,10716 profiles pass,PR1165 parent proved,generator,experimental/grande_finale.tex,2026-08-13
+I-003,Error-to-explanation gauge,algebra,candidate,likely exact reversible shear,literal received line changes,GF257 inverse passes,linear-code input proved,generator,experimental/grande_finale.tex,2026-08-13
+I-004,Rank-ten direction-exception forest,frontier,explored,uncertain structural classification,chronology-preserving owner transport,exact thresholds pass,depends I-002/I-003,coordinator,notes/thresholds/kb_mca_support_local_theta_and_error_rank_router_v1.md,2026-08-13

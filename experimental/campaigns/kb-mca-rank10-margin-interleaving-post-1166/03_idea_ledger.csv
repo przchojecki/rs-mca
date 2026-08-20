@@ -1,0 +1,4 @@
+idea_id,title,track,status,forecast,first_unjustified_step,control_result,dependency_status,owner,artifact,last_updated
+I-001,one-threshold margin/interleaving split,proof,provisionally-verified,0.75,none after audit,C-001 through C-005 pass,dependencies pinned,root,experimental/grande_finale.tex,2026-08-13
+I-002,reduce fixed-pair multiplicity,barrier,refuted,0.10,n-A is sharp,C-003 falsifies,none,adversarial reviewer,rank10 note,2026-08-13
+I-003,aggregate rank-11 pair/core incidence,next-frontier,explored,0.35,missing correlation among distinct minimizing pairs,scalar methods fail,rank10 theorem required,root,frontier map,2026-08-13

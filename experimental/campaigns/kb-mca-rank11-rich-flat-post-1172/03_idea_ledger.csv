@@ -1,0 +1,5 @@
+idea_id,title,track,status,forecast,first_unjustified_step,control_result,dependency_status,artifact,last_updated
+I-001,anchored rich annihilator flats,structural,proved,transverse branch paid,none,passed,parent exact,proofs/anchored_rich_flat_router.md,2026-08-15
+I-002,ordered-basis flat count,combinatorial,proved,exact row-space census,none,2077+1286 finite controls,self-contained,proofs/anchored_rich_flat_router.md,2026-08-15
+I-003,common-factor flag synchronization,structural,open,strong next attack,route many emitted W spaces to one owner,pending,requires I-001 terminal,pending,2026-08-15
+I-004,Wronskian multiplicity collision,algebraic,open,possible bypass,prove special-domain strong subspace-design inequality,pending,no external theorem directly applies,pending,2026-08-15

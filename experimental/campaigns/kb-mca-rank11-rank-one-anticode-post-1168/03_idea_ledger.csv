@@ -1,0 +1,6 @@
+idea_id,title,track,status,forecast,first_unjustified_step,control_result,dependency_status,owner,artifact,last_updated
+I-001,rank-one minimizing-pair anticode classification,structural,proved,exact two-type router,none,GF3 exhaustive pass,self-contained,coordinator,proofs/rank_one_pair_anticode_router.md,2026-08-15
+I-002,maximal core overlap to rank-one difference,structural,proved,routes K-1 overlap cliques,none,GF5 common-root pass,RS MDS root bound,coordinator,proofs/rank_one_pair_anticode_router.md,2026-08-15
+I-003,fixed-right factor to complete correction ray,owner,proved,8147918 slope cap,first-match aggregation across different rays not supplied,exact arithmetic pass,self-contained common-core-aware affine-ray count,coordinator,proofs/rank_one_pair_anticode_router.md,2026-08-15
+I-004,fixed-left factor to affine correction space,owner,proved,proper branch cap 1031,nonproper linear component remains,exact arithmetic pass,self-contained proper branch,coordinator,proofs/rank_one_pair_anticode_router.md,2026-08-15
+I-005,aggregate rank-two pair graph,structural,open,next live theorem,force owner or bound rank-two cycles,pending,post-I-001/I-002,successor,pending,2026-08-15
