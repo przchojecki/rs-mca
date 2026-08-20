@@ -1,0 +1,8 @@
+claim_id,claim,status,unit,exact_value_or_terminal,nonclaim
+C-001,pairwise rank-one coefficient families enter one of two router types,PROVED,pair types,fixed-left or fixed-right factor,no aggregate forcing
+C-002,pairwise K-1 core overlap implies pairwise rank-one coefficients,PROVED,pair types,rank(M_e-M_f)=1,no converse
+C-003,fixed-right affine-ray branch is paid with arbitrary universal core,PROVED,distinct slopes,8147918,no sum over rays
+C-004,proper fixed-left correction space r<=10 is paid,PROVED,distinct slopes,<=1031,no automatic properness
+C-005,nonproper fixed-left branch emits linear correction component,PROVED,structural terminal,positive-dimensional affine intersection,no component payment
+C-006,KoalaBear rank eleven is paid,NOT_CLAIMED,distinct slopes,false,no closure
+C-007,active-v4 ledger movement,NOT_CLAIMED,integer,0,route cut only

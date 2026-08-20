@@ -1,0 +1,156 @@
+{
+  "active_source": "experimental/grande_finale.tex",
+  "active_source_sha256": "7fe84b53e038c962cd3ab663d2300c848e57c204a1e231dfeae160bca0178946",
+  "base": "1b613fc669158a690a52b64f0eeb440f10672f1e",
+  "canonical_result_sha256": "79b056f8e5cf87269c31e52b52c981a0887c0412fe38395ad71e4c058039e684",
+  "claims": {
+    "active_v4_ledger_movement": 0,
+    "affine_error_rank12_paid": false,
+    "gluing_rank_one_paid": false,
+    "gluing_rank_two_paid": false,
+    "gluing_rank_zero_paid": true,
+    "koalabear_closed": false,
+    "scalar_resource_barrier_proved": true
+  },
+  "dependencies": {
+    "near_repair_pr_1160": "c5f4ea7a0c78828c901ae5f3428894a8b2e2806b",
+    "parent_pr_1174": "1b613fc669158a690a52b64f0eeb440f10672f1e",
+    "public_circuit_atlas": {
+      "commits": [
+        "5330928af9d262b24b7fe986ed837b09b9c05816",
+        "8eb59e7cb1fe4254ad44a3cb30e9c8b98f03053b"
+      ],
+      "repository": "AllenGrahamHart/rs-mca-prize-dag"
+    },
+    "public_syz21_syz25": {
+      "commit": "acfa4f072d0c7fe8e706c80d8e21cb5b083f73a6",
+      "repository": "SlopDotCash/proximityprize"
+    }
+  },
+  "files": [
+    {
+      "bytes": 33889,
+      "path": "agents.md",
+      "sha256": "9b01ab7a59e4fcc91d6281fc5b1f02411ccd60e112a803433baf84b7b981836d"
+    },
+    {
+      "bytes": 286742,
+      "path": "experimental/agents-log.md",
+      "sha256": "e8ce51420f103443c760d7405ad92090ccaf4f8601035c19860741b0510b0170"
+    },
+    {
+      "bytes": 2473,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/00_contract.md",
+      "sha256": "cbef7b402b1efdf2cff7ff0814ce390bb78586855e0b991870490080c584cc04"
+    },
+    {
+      "bytes": 3791,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/01_frontier_map.md",
+      "sha256": "4996fd9b6bef7cb9ad74e532365356e5785f103b30961a37bca3ae1d4d131fbe"
+    },
+    {
+      "bytes": 1955,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/02_controls.md",
+      "sha256": "34b677f6b6781e72ee3b4ea219535690f5cfcbb7af1f473abd615fae638e3709"
+    },
+    {
+      "bytes": 2144,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/03_idea_ledger.csv",
+      "sha256": "f4eb345f7b5fb85a3dc67ecdda494f52e8f691f76d334db31169f332376f7820"
+    },
+    {
+      "bytes": 1965,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/04_dependency_ledger.csv",
+      "sha256": "dbbb24ba4ae5f2120a555999a469ff36d76c5ec616c12ac62e29c527a75897fb"
+    },
+    {
+      "bytes": 2506,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/05_claim_registry.csv",
+      "sha256": "e89a5505ddf61bea1efddf559d91c421679fa350fdb2a9d0098598723e3899f9"
+    },
+    {
+      "bytes": 597,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/06_review_registry.csv",
+      "sha256": "84323abfbdade0fc4a4b3734032c843153154071f7f39deb37d55c9cc37ff5f9"
+    },
+    {
+      "bytes": 2438,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/07_review_status.csv",
+      "sha256": "a6c7cd951bcdf37c1878498e5f343d3417a83e8f37f5d4b2dc702200f8c9e2ab"
+    },
+    {
+      "bytes": 2928,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/PR_DESCRIPTION.md",
+      "sha256": "c07e206f83632ce5fb8a88974670caf4329c875985a7cf297b57125d2a86b850"
+    },
+    {
+      "bytes": 280,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/campaign.json",
+      "sha256": "d6c0e427f6c78ceb8941209d93f463cf0f3a40c9ecd2ef8588c4c74eb9181b63"
+    },
+    {
+      "bytes": 2301,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/controls/gluing_rank_zero_post_near_counterexample.sage",
+      "sha256": "22d31f0293cd541bf8a5503c9839cf2a83e6932fcca4ff8cb2ece7c746b59bdd"
+    },
+    {
+      "bytes": 2069,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/controls/syz25_coplanar_core_generation.sage",
+      "sha256": "d1f08355603b1f3ab14a0fa015ebb56879cbf54ad7546c776b2c68ab78def1b0"
+    },
+    {
+      "bytes": 6155,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/proofs/actual_line_core_generation_route.md",
+      "sha256": "3ac90ea2747b13f867ef62dda19d9c9e381920cb3b3a4e04b5ef4a80215df8d7"
+    },
+    {
+      "bytes": 5259,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/proofs/scalar_resource_first_moment_barrier.md",
+      "sha256": "a28155b9b7233ad4d8f552430997239476476495dd8444e323204932e0a92408"
+    },
+    {
+      "bytes": 5258,
+      "path": "experimental/campaigns/kb-mca-rank12-multilevel-post-1174/reviews/literature_sweep.md",
+      "sha256": "b7426fd6e7d73d5dbd81b9575c009b7f7fd5dc0339a1fcea70c518abf0483ba6"
+    },
+    {
+      "bytes": 964,
+      "path": "experimental/data/certificates/kb-mca-rank12-scalar-gluing-route-v1/README.md",
+      "sha256": "eb45a082c0741d66386e53e84d85ea3795557b2eb7c42007c1e82c885876a75d"
+    },
+    {
+      "bytes": 1768,
+      "path": "experimental/data/certificates/kb-mca-rank12-scalar-gluing-route-v1/result.json",
+      "sha256": "0d2c2e7fa55afe5bf8cda8b029a9f0ac90c9e42d0e9da4e0068cdbabc9de1ea4"
+    },
+    {
+      "bytes": 459003,
+      "path": "experimental/grande_finale.tex",
+      "sha256": "7fe84b53e038c962cd3ab663d2300c848e57c204a1e231dfeae160bca0178946"
+    },
+    {
+      "bytes": 2474,
+      "path": "experimental/notes/thresholds/kb_mca_rank12_scalar_gluing_route_v1.md",
+      "sha256": "3d9f64cd68a2a429b290ee749aa1cb45b378f654caf8c53b13c60d6b9595b86d"
+    },
+    {
+      "bytes": 5916,
+      "path": "experimental/scripts/verify_kb_mca_rank12_scalar_gluing_route_manifest_v1.py",
+      "sha256": "3452a5e58f946dae5fb706c7c78fce52a09eee77a42f4ee380e8f37800b4d092"
+    },
+    {
+      "bytes": 13431,
+      "path": "experimental/scripts/verify_kb_mca_rank12_scalar_resource_barrier_v1.py",
+      "sha256": "58018c61b827f680c9746093fc59bc330bbf73ad621d31ffa8a6751ea997d4b6"
+    }
+  ],
+  "result": "experimental/data/certificates/kb-mca-rank12-scalar-gluing-route-v1/result.json",
+  "result_sha256": "0d2c2e7fa55afe5bf8cda8b029a9f0ac90c9e42d0e9da4e0068cdbabc9de1ea4",
+  "schema": "kb-mca-rank12-scalar-gluing-route-manifest-v1",
+  "source_labels": [
+    "prop:mca-rank-twelve-scalar-resource-barrier",
+    "rem:mca-rank-twelve-scalar-pair-barrier",
+    "thm:mca-actual-line-core-gluing-defect",
+    "rem:mca-rank-twelve-gluing-target"
+  ]
+}

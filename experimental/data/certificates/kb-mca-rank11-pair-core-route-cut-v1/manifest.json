@@ -1,0 +1,137 @@
+{
+  "schema": "kb-mca-rank11-pair-core-route-cut-v1",
+  "parent": "491ccdf53d54846f5a013b808960645275c64ed3",
+  "row": {
+    "p": 2130706433,
+    "extension_degree": 6,
+    "n": 2097152,
+    "K": 1048576,
+    "m": 1116048,
+    "w": 67472,
+    "near": 134944,
+    "budget": 274980728111395087
+  },
+  "explanation_dimension": 10,
+  "theta_resource": 106618568137036225644,
+  "fixed_pair_concentration": {
+    "legal_cutoffs": 65810,
+    "last_legal_cutoff": 65810,
+    "maximum_forced_weight": {
+      "cutoff": 6486,
+      "pair_cap": 2255946383610,
+      "forced_pair_weight": 743449148,
+      "forced_records": 114624,
+      "max_compatible_deficiency": 8
+    },
+    "maximum_forced_records": {
+      "cutoff": 1795,
+      "pair_cap": 1075288922022,
+      "forced_pair_weight": 360132809,
+      "forced_records": 200632,
+      "max_compatible_deficiency": 4
+    }
+  },
+  "core_deficiency_lp": {
+    "unconditional_current_theorems": {
+      "cutoff": 19737,
+      "pair_cap": 26130774875308,
+      "high_records": 5401690553097387,
+      "low_records": 808527428378681053,
+      "total": 813929118931913384,
+      "signed_slack": -538948390820518297,
+      "optimum_multiplicity": 1
+    },
+    "conditional_on_pointwise_theta_sum": {
+      "cutoff": 26033,
+      "pair_cap": 107486241601454,
+      "low_records": 811957734614064312,
+      "low_theta_used": 106597778100457375003,
+      "high_records": 798572504373,
+      "total": 811958533186703629,
+      "signed_slack": -536977805075308542,
+      "first_optimal_cutoff": 26033,
+      "last_optimal_cutoff": 65810,
+      "optimum_multiplicity": 39778
+    }
+  },
+  "abstract_singleton_packing": {
+    "status": "ABSTRACT_CERTIFICATE_CLASS_PACKING_NOT_RS_REALIZABILITY",
+    "deficiency": 1,
+    "local_margin": 1,
+    "pair_types": 821289819491,
+    "records_per_pair": 981105,
+    "post_near_records": 805771548351717555,
+    "total_with_near": 805771548351852499,
+    "excess_over_budget": 530790820240457412,
+    "theta_resource_used": 805771548351717555
+  },
+  "dependency_boundary": {
+    "unconditional_current_theorems": [
+      "support-local high-margin cap",
+      "sub-square common-support interleaving collapse",
+      "fixed-pair disjoint exception sets"
+    ],
+    "conditional_new_corollary": "sum_gamma theta_gamma <= C_10"
+  },
+  "claims": {
+    "rank11_paid": false,
+    "active_v4_ledger_movement": 0,
+    "KoalaBear_closed": false,
+    "route_cut": "NEEDS_CROSS_PAIR_COLLISION_OR_OWNER_THEOREM"
+  },
+  "provenance": {
+    "repository": "przchojecki/rs-mca",
+    "upstream_main_at_refresh": "93fba1be3f3299b0ba4708d88715377bbb656e45",
+    "exact_pr1167_parent": "491ccdf53d54846f5a013b808960645275c64ed3",
+    "exa_sources_reviewed": 55,
+    "load_bearing_external_lemma": false,
+    "wolfram_exact_replay": true
+  },
+  "packet_files": [
+    "agents.md",
+    "experimental/agents-log.md",
+    "experimental/grande_finale.tex",
+    "experimental/notes/thresholds/kb_mca_rank11_pair_core_route_cut_v1.md",
+    "experimental/data/certificates/kb-mca-rank11-pair-core-route-cut-v1/README.md",
+    "experimental/scripts/verify_kb_mca_rank11_pair_core_route_cut_v1.py",
+    "experimental/scripts/verify_kb_mca_rank11_pair_core_route_cut_v1.sage",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/campaign.json",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/00_contract.md",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/01_frontier_map.md",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/02_controls.md",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/03_idea_ledger.csv",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/04_dependency_ledger.csv",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/05_claim_registry.csv",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/06_review_registry.csv",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/07_review_status.csv",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/proofs/nonuniform_theta_pair_route_cut.md",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/threads/barrier_adversary.md",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/controls/gf7_parallel_star.sage",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/reviews/literature_sweep.md",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/reviews/wolfram_replay.md"
+  ],
+  "packet_file_sha256": {
+    "agents.md": "c7b189207291d701b6437282bea2d54887ce537066008d0125fd2acfdcdaa606",
+    "experimental/agents-log.md": "586d7e26af0622aeccafe2e2fb81a59fe91f7812eb325ea0e8060d6acc3ecb90",
+    "experimental/grande_finale.tex": "3c90bc82f38176b252b595a64e0831b026c30d4ac23a608a0643d22e6c0b4c8a",
+    "experimental/notes/thresholds/kb_mca_rank11_pair_core_route_cut_v1.md": "b0de5261b63f7682cb756d81d4bb602467a24244c809ab7422e5f0e692d2eaa8",
+    "experimental/data/certificates/kb-mca-rank11-pair-core-route-cut-v1/README.md": "5398cb0f68196b98b0be7145e133869cfacd17bef5f08a21e76bce1477f6de4d",
+    "experimental/scripts/verify_kb_mca_rank11_pair_core_route_cut_v1.py": "d7f97d12873967eafc8645e844ed0c89dcbac9c1b851330c49ad6054425ec668",
+    "experimental/scripts/verify_kb_mca_rank11_pair_core_route_cut_v1.sage": "f82aa9d85a51528abf05a31020dc8ebefa8a4e236af10b852cdc54efb31ed35e",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/campaign.json": "3719614e65c9bd408de2fa96bbb2088aa61aa4f41bff2beb166f763eb34e06d4",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/00_contract.md": "a2ef1f3fa22f279ff271891dfd1384b1807f9a1f0a2b60447ba68d30e0863138",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/01_frontier_map.md": "268cd2020aa60181ed9c17dd558da5b9287bed7c79e1523b73a60a202529ce7c",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/02_controls.md": "bc96e3681180fd25233cdadbbce9a75929572f70189839b55b4ee0f2b52cbd60",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/03_idea_ledger.csv": "4a4d4165ad9ed7a0a23b71c54b309fb0370fe9815c56522eed6a34c6f156820d",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/04_dependency_ledger.csv": "9f536c9f2960f0e3a3d0937503f42fa8480364600eb69e5b8a0ea17f64c129ef",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/05_claim_registry.csv": "17cb4a9963bbb116f513801409b360fee7867d60d778fdb4ceb6deae3725e789",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/06_review_registry.csv": "d0b041444d05ad09651cda722e53e3d5883fca4b3113f6c819cf895af43aa454",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/07_review_status.csv": "b7d8a1153405da8ffb4b17db4034d83b6a89392036fb0746935825b9c640e310",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/proofs/nonuniform_theta_pair_route_cut.md": "c11bc0943432776f917258e0e8e80b0fe19e042c1f65c5f1826079de7d747105",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/threads/barrier_adversary.md": "27c74dde4de9c4039decf1381def3e83c121ec7c66d3258d7147b033dcb5cd03",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/controls/gf7_parallel_star.sage": "e220e18fba70a9f4d39a722a7c20888546889750f8b1331afb0a3cbd9faf539b",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/reviews/literature_sweep.md": "977ca6cf6fb6d6f753bd035fda75d7e851086a29f3263cccb7bcae1c0c2dfd4f",
+    "experimental/campaigns/kb-mca-rank11-pair-core-post-1167/reviews/wolfram_replay.md": "ccfa7f3707106838027be1bf1b52c05de1ef924f75805b91922faa4a08b24bd2"
+  },
+  "payload_sha256": "ca624392d1842a69ca9212533af672e4325fa984dad11952443e247db80cb6c3"
+}

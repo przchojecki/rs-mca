@@ -1,0 +1,7 @@
+idea_id,title,track,status,forecast,first_unjustified_step,control_result,dependency_status,artifact,last_updated
+I-001,uniform weighted-line rank-one theorem,structural,candidate,pays rank-one uniformly,none,full residual scan,self-contained,proofs/uniform_rank_one_repair_and_rank12_route.md,2026-08-20
+I-002,raw-low heavy-core shortening,structural,candidate,repairs truncated-margin descent,none,GF11 hostile control and source proof,self-contained,proofs/uniform_rank_one_repair_and_rank12_route.md,2026-08-20
+I-003,corrected history-uniform rank-eleven induction,structural,candidate,pays affine error rank eleven,near-rational deletion imported separately,all-dimension scan,I-001/I-002 plus D-004,proofs/uniform_rank_one_repair_and_rank12_route.md,2026-08-20
+I-004,raw-guarded dense-core pair-type bound,combinatorial,candidate,bounds low pair types,none,small set-system controls,I-002,proofs/uniform_rank_one_repair_and_rank12_route.md,2026-08-20
+I-005,rank-twelve single-threshold wall,barrier,candidate,isolates missing multi-level theorem,single cutoff cannot force first drop,all-cutoff scan,I-002/I-003,proofs/uniform_rank_one_repair_and_rank12_route.md,2026-08-20
+I-006,multi-level raw-margin coupling,structural,open,attack affine error rank twelve,cross-level core correlation,pending,I-005,pending,2026-08-20

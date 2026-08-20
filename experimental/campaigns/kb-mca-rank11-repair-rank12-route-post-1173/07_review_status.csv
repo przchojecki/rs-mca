@@ -1,0 +1,26 @@
+claim_id,axis,status,reviewer,independence,artifact_version,review_date,evidence
+C-001,formal_evidence,pass,independent certificate reviewer,independent,raw-low repair final tree,2026-08-20,primary optimized mutation independent scan Sage and build gates pass
+C-001,statement_alignment,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,zero-normal domain and all shortened dimensions audited
+C-001,result_boundary,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,rank-one cap only
+C-001,public_wording,pass,independent publication reviewer,independent,raw-low repair final tree,2026-08-20,title scope and novelty pass
+C-001,specialist_or_external_review,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,weighted projective-line combinatorics rederived
+C-002,formal_evidence,pass,independent certificate reviewer,independent,raw-low repair final tree,2026-08-20,GF11 hostile guard and source-label gates pass
+C-002,statement_alignment,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,raw versus truncated margin and exact support lift audited
+C-002,result_boundary,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,proper-span or lossless-shortening dichotomy only
+C-002,public_wording,pass,independent publication reviewer,independent,raw-low repair final tree,2026-08-20,self-contained bridge and dependencies pass
+C-002,specialist_or_external_review,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,locator division and Johnson-graph reselection rederived
+C-003,formal_evidence,pass,independent certificate reviewer,independent,raw-low repair final tree,2026-08-20,all-dimension recurrence and external pin checks pass
+C-003,statement_alignment,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,conditional on exact PR1160 near deletion
+C-003,result_boundary,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,direct post-near rank eleven only and ledger movement zero
+C-003,public_wording,pass,independent publication reviewer,independent,raw-low repair final tree,2026-08-20,divergent-stack integration condition disclosed
+C-003,specialist_or_external_review,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,induction and exact slack rederived
+C-004,formal_evidence,pass,independent certificate reviewer,independent,raw-low repair final tree,2026-08-20,finite controls and exact arithmetic pass
+C-004,statement_alignment,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,positive denominator and raw-margin guards audited
+C-004,result_boundary,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,dense-core pair-type bound only
+C-004,public_wording,pass,independent publication reviewer,independent,raw-low repair final tree,2026-08-20,no owner or ledger overclaim
+C-004,specialist_or_external_review,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,Cauchy split and fixed-pair packing rederived
+C-005,formal_evidence,pass,independent certificate reviewer,independent,raw-low repair final tree,2026-08-20,all 67472 cutoff scan and adjacent endpoint pass
+C-005,statement_alignment,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,initial-row single-threshold formula audited
+C-005,result_boundary,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,method wall not a family lower bound or payment
+C-005,public_wording,pass,independent publication reviewer,independent,raw-low repair final tree,2026-08-20,rank twelve remains open
+C-005,specialist_or_external_review,pass,independent mathematics reviewer,independent,raw-low repair final tree,2026-08-20,unique optimizer and shortfall independently replayed

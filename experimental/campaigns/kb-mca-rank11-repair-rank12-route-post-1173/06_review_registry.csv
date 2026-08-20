@@ -1,0 +1,16 @@
+review_id,claim_id,joint,status,reviewer,reviewer_isolated,artifact,notes
+R-001,C-001,mathematics,pass,independent hostile mathematics reviewer,true,reviews/final_math_review.md,uniform rank-one proof and exhaustive scan GREEN
+R-002,C-002,mathematics,pass,independent hostile mathematics reviewer,true,reviews/final_math_review.md,raw-low support and shortening joints GREEN
+R-003,C-003,mathematics,pass,independent hostile mathematics reviewer,true,reviews/final_math_review.md,conditional rank-eleven induction GREEN with pinned D-004
+R-004,C-004,mathematics,pass,independent hostile mathematics reviewer,true,reviews/final_math_review.md,dense-core Cauchy and fixed-pair bounds GREEN
+R-005,C-005,mathematics,pass,independent hostile mathematics reviewer,true,reviews/final_math_review.md,single-threshold rank-twelve wall GREEN
+R-006,C-001,publication,pass,independent upstream and publication reviewer,true,reviews/final_publication_review.md,novelty scope and public wording PASS
+R-007,C-002,publication,pass,independent upstream and publication reviewer,true,reviews/final_publication_review.md,self-contained source bridge and dependency wording PASS
+R-008,C-003,publication,pass,independent upstream and publication reviewer,true,reviews/final_publication_review.md,conditional integration boundary PASS
+R-009,C-004,publication,pass,independent upstream and publication reviewer,true,reviews/final_publication_review.md,nonoverlap and result boundary PASS
+R-010,C-005,publication,pass,independent upstream and publication reviewer,true,reviews/final_publication_review.md,method-wall wording and nonclaim PASS
+R-011,C-001,certificate,pass,independent certificate and build reviewer,true,reviews/final_certificate_review.md,pre-seal arithmetic mutation source and build gates PASS
+R-012,C-002,certificate,pass,independent certificate and build reviewer,true,reviews/final_certificate_review.md,GF11 guard source labels and packet inventory PASS
+R-013,C-003,certificate,pass,independent certificate and build reviewer,true,reviews/final_certificate_review.md,exact recurrence external pin and unit checks PASS
+R-014,C-004,certificate,pass,independent certificate and build reviewer,true,reviews/final_certificate_review.md,finite controls and bound replay PASS
+R-015,C-005,certificate,pass,independent certificate and build reviewer,true,reviews/final_certificate_review.md,all-cutoff endpoint and nonclaim replay PASS

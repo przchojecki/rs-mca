@@ -30,6 +30,538 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-08-13 - KoalaBear rank-ten margin/interleaving payment
+
+- **Agent/model:** Codex with two isolated mathematical audits.
+- **Files added or changed:** experimental/grande_finale.tex,
+  experimental/notes/thresholds/kb_mca_rank10_margin_interleaving_split_v1.md,
+  experimental/data/certificates/kb-mca-rank10-margin-interleaving-v1/,
+  experimental/scripts/verify_kb_mca_rank10_margin_interleaving_v1.py,
+  its Sage replay, and
+  experimental/campaigns/kb-mca-rank10-margin-interleaving-post-1166/.
+- **Status:** PROVED DIRECT BRANCH PAYMENT / EXACT METHOD WALL.  Zero
+  active-v4 ledger movement; no KoalaBear closure.
+- **What is being added:** A self-contained sub-square-root interleaving
+  theorem and a uniform high/low margin split.  On the actual sextic line
+  field, error rank ten is paid at T=667 by
+  61871313426765543, with slack 213109414684629544.
+- **How it is useful:** It removes the first direction-exception terminal
+  left by the support-local theta router and proves the same scalar family
+  cannot pay rank eleven.
+- **What to do next:** Attack the aggregate common-core/collision structure
+  among distinct minimizing pairs at rank eleven; the fixed-pair factor is
+  sharp and cannot be reduced from current hypotheses.
+
+### 2026-08-13 - Support-local theta and error-rank router
+
+- **Agent/model:** Codex with isolated mathematics and custody review.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_support_local_theta_and_error_rank_router_v1.md`,
+  `experimental/data/certificates/kb-mca-support-local-theta-router-v1/`,
+  `experimental/scripts/verify_kb_mca_support_local_theta_router_v1.py`,
+  its Sage, FLINT, and Wolfram replays,
+  `experimental/campaigns/kb-mca-support-local-theta-post-1165/`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED LOCAL / CONDITIONAL DIRECT PAYMENT / ROUTE CUT.  Zero
+  active-v4 ledger movement; no KoalaBear closure.
+- **What is being added:** A strict support-local refinement of PR #1165's
+  proper-subspace compiler, with exact final factor `theta>=L`, plus an
+  arbitrary-rank reversible codeword gauge.  Conditional on the separately
+  pinned intrinsic near-rational charge `2w=134944`, every selected
+  KoalaBear error family of affine rank at most 9 is paid by
+  `110390969172308040`; ranks 10--12 either pay or emit exact same-support
+  direction-exception ceilings `12`, `387`, and `12049` on the original
+  record after inverse gauge.
+- **How it is useful:** It strengthens the safe post-#1165 compiler without
+  duplicating that PR's independent full-lift support-profile branch.  It
+  converts the first unpaid ranks into concrete actual-support terminals.
+- **What to do next:** Use the per-slope margin/interleaving split to pay
+  rank 10; ranks 11 and 12 remain separate terminals.
+
+### 2026-08-13 - Mersenne base-field component descent
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_common_factor_base_field_descent_v1.md`,
+  `experimental/verify_mca_full_lift_common_factor_base_field_descent_v1.py`,
+  `experimental/audit_mca_full_lift_common_factor_base_field_descent_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / BASE-FIELD NORMALIZATION.
+- **What is being added:** Characteristic-guarded conjugation and Bezout
+  bound the total selected mass living only on non-base-field geometric
+  components by `d^2`.
+- **How it is useful:** At least 5,079 selected pairs now lie on
+  `F(X)`-defined components, one such component carries at least 132, and
+  their union leaves at most 3,974 inside exceptions.
+- **What to do next:** Classify the base-field components, retaining the
+  possibility of a reducible union.
+
+### 2026-08-13 - Mersenne common-factor weighted-degree bound
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_common_factor_weighted_degree_bound_v1.md`,
+  `experimental/verify_mca_full_lift_common_factor_weighted_degree_bound_v1.py`,
+  `experimental/audit_mca_full_lift_common_factor_weighted_degree_bound_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / WEIGHTED-DEGREE BOUND.
+- **What is being added:** Kernel quotient dimension and the exact
+  `M(46)<938<=M(47)` threshold force full-gcd weighted degree at most
+  217 and `(Y,Z)` degree at most 43.
+- **How it is useful:** The higher-degree branch now carries at least 5,083
+  sections and 126,266 inside factor points, leaving at most 3,971
+  exceptions.
+- **What to do next:** Classify the possibly reducible degree-2--43 gcd or
+  pay the separate MCA projective-star population.
+
+### 2026-08-13 - Mersenne linear-factor projective-star router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_linear_factor_projective_star_router_v1.md`,
+  `experimental/verify_mca_full_lift_linear_factor_projective_star_router_v1.py`,
+  `experimental/audit_mca_full_lift_linear_factor_projective_star_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / LINEAR-FACTOR CLASSIFICATION.
+- **What is being added:** Polynomial-section parameterization and an exact
+  ordinary-Johnson cap of 802 exclude every nonconstant-coefficient linear
+  factor against the 4,982 captured sections.
+- **How it is useful:** The only degree-one survivor is an `F`-rational
+  projective star; the complementary factor branch has degree at least two.
+- **What to do next:** Prove the primitive-star population bound or classify
+  and charge the higher-degree factor branch.
+
+### 2026-08-13 - Mersenne common-factor mass router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_common_factor_mass_router_v1.md`,
+  `experimental/verify_mca_full_lift_common_factor_mass_router_v1.py`,
+  `experimental/audit_mca_full_lift_common_factor_mass_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / FACTOR CONCENTRATION.
+- **What is being added:** Cofactor Bezout captures at least 4,982 of the
+  7,583 selected pairs on the full interpolation factor; core incidence
+  puts the received pair on it at least 126,188 times.
+- **How it is useful:** The first Mersenne residual now has at most 4,049
+  inside exceptions to one degree-at-most-52 factor relation.
+- **What to do next:** Classify or charge that near-total factor without
+  assuming irreducibility, rationality, or split-pencil form.
+
+### 2026-08-13 - Mersenne interpolation common-factor router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_interpolation_common_factor_router_v1.md`,
+  `experimental/verify_mca_full_lift_interpolation_common_factor_router_v1.py`,
+  `experimental/audit_mca_full_lift_interpolation_common_factor_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / STRUCTURAL ROUTER / COPRIME BRANCH PAYMENT.
+- **What is being added:** A 938-dimensional weight-264 interpolation
+  kernel and a `2705>52^2` Bezout contradiction pay the coprime branch at
+  Mersenne support `e=130237`.
+- **How it is useful:** Every unsafe survivor now forces a common factor of
+  positive `(Y,Z)` degree over the algebraic closure of `F(X)`.
+- **What to do next:** Classify and charge that factor; do not assume without
+  proof that it is a split pencil.
+
+### 2026-08-13 - Mersenne exact-layer slot-core packing
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_exact_layer_slot_core_packing_v1.md`,
+  `experimental/verify_mca_full_lift_exact_layer_slot_core_packing_v1.py`,
+  `experimental/audit_mca_full_lift_exact_layer_slot_core_packing_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / ELEVEN-SUPPORT PAYMENT.
+- **What is being added:** Exact-layer incidence forces a selected
+  `lambda`-member affine explanation slot to have inside core at least
+  `ceil((lambda*h-e)/(lambda-1))`.
+- **How it is useful:** Combined with the capped-core dichotomy, three lines
+  pay every Mersenne support `130226<=e<=130236`.
+- **What to do next:** Control the size-two primitive shift-pair bank at
+  `e=130237`, or bridge to the high-support interval.
+
+### 2026-08-13 - Mersenne core-dichotomy capped charge
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_core_dichotomy_capped_charge_v1.md`,
+  `experimental/verify_mca_full_lift_core_dichotomy_capped_charge_v1.py`,
+  `experimental/audit_mca_full_lift_core_dichotomy_capped_charge_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / FOUR-SUPPORT PAYMENT.
+- **What is being added:** A selected line either has enough actual core for
+  weighted-prefix absorption of the original family or belongs to a
+  complementary capped convex envelope.
+- **How it is useful:** It pays Mersenne supports `130222<=e<=130225`; the
+  low-core branch closes by 14-line or 70-line inside-core packing.
+- **What to do next:** Replace the threshold-14 zero-core wall at `e=130226`
+  or bridge to the high-support interval.
+
+### 2026-08-13 - Mersenne lower-aware joint-core charge
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_lower_aware_joint_core_charge_v1.md`,
+  `experimental/verify_mca_full_lift_lower_aware_joint_core_charge_v1.py`,
+  `experimental/audit_mca_full_lift_lower_aware_joint_core_charge_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / TWO-SUPPORT PAYMENT.
+- **What is being added:** A majorization envelope retains every forced
+  total-core lower bound when maximizing the convex charge of previously
+  peeled parameterized lines.
+- **How it is useful:** It pays Mersenne supports `e=130220,130221`; both
+  terminate after 38 lines with packing lower bound `142893`.
+- **What to do next:** Add structure beyond first-order pairwise core
+  intersections at the adjacent residual-base wall `e=130222`, or bridge to
+  the high-support interval.
+
+### 2026-08-13 - Mersenne joint-core charge peeling
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_joint_core_charge_peeling_v1.md`,
+  `experimental/verify_mca_full_lift_joint_core_charge_peeling_v1.py`,
+  `experimental/audit_mca_full_lift_joint_core_charge_peeling_v1.py`,
+  `experimental/verify_mca_full_lift_joint_core_charge_peeling_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** Pairwise core geometry bounds the sum of the
+  actual cores of all peeled parameterized lines. Convex concentration then
+  gives a joint line charge that replaces the independent worst-case charge.
+- **How it is useful:** It pays all 21 Mersenne supports
+  `130199<=e<=130219`; the endpoint uses 13 lines and packing lower bound
+  `134835>130219`.
+- **What to do next:** Add structure for the zero-core line population at
+  the adjacent method wall `e=130220` or bridge to the high-support interval.
+
+### 2026-08-13 - Mersenne recursive line-peeling core-packing interval
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_recursive_line_peeling_core_packing_v1.md`,
+  `experimental/verify_mca_full_lift_recursive_line_peeling_core_packing_v1.py`,
+  `experimental/audit_mca_full_lift_recursive_line_peeling_core_packing_v1.py`,
+  `experimental/verify_mca_full_lift_recursive_line_peeling_core_packing_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** Repeatedly remove a forced parameterized affine
+  explanation line. The residual either enters the exact weighted prefix or
+  produces distinct inside cores whose pairwise intersections are at most
+  `K-1`, contradicting support-size packing.
+- **How it is useful:** It pays all `5,393` Mersenne supports
+  `124806<=e<=130198`; `3,837` terminate by prefix and `1,556` by core
+  packing, with at most five lines.
+- **What to do next:** Replace the residual-base obstruction at the adjacent
+  method wall `e=130199` or bridge toward the high-support interval.
+
+### 2026-08-13 - Mersenne boundary-line-bank absorption interval
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_boundary_line_bank_absorption_v1.md`,
+  `experimental/verify_mca_full_lift_boundary_line_bank_absorption_v1.py`,
+  `experimental/audit_mca_full_lift_boundary_line_bank_absorption_v1.py`,
+  `experimental/verify_mca_full_lift_boundary_line_bank_absorption_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** Every exact-layer direction class is retained as
+  an affine-line slot. Unsafe pigeonhole forces one large line, and
+  total-core absorption pays the remaining explanations.
+- **How it is useful:** It pays all `23,649` Mersenne supports
+  `101157<=e<=124805`; the endpoint bound is `16706559<16777215`.
+- **What to do next:** Sharpen the low-list payment at the adjacent method
+  wall `e=124806` or bridge toward the high-support interval.
+
+### 2026-08-13 - Mersenne fixed-cutoff residue-two anchor repair
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.md`,
+  `experimental/verify_mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.py`,
+  `experimental/audit_mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / SUPPORT PAYMENT.
+- **What is being added:** At the first fixed-cutoff wall, residue two lets
+  two top anchors absorb both boundary layers. The zero/one-top cases use
+  an outside-core line cap or pairwise-disjoint missed-set cap.
+- **How it is useful:** The largest of five exhaustive bounds is
+  `16705799<16777215`, paying Mersenne support `e=101156`.
+- **What to do next:** Treat the residue-zero support `e=101157`; no unsafe
+  certificate is claimed there.
+
+### 2026-08-13 - Mersenne fixed-cutoff boundary-stack interval
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_fixed_cutoff_boundary_stack_v1.md`,
+  `experimental/verify_mca_full_lift_fixed_cutoff_boundary_stack_v1.py`,
+  `experimental/verify_mca_full_lift_fixed_cutoff_boundary_stack_v1.c`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / INTERVAL PAYMENT.
+- **What is being added:** A fixed deficit cutoff combines an independently
+  truncated prefix, normalized-direction class caps for every intermediate
+  exact layer, and the synchronized top line; unsafe-core absorption handles
+  the final six supports.
+- **How it is useful:** It pays all 2,924 Mersenne full-lift supports
+  `98232<=e<=101155`; the endpoint bound is `3813469<16777215`.
+- **What to do next:** Replace the fixed-cutoff forcing wall at `e=101156`,
+  where the same charge exceeds budget by `174008`.
+
+### 2026-08-13 - Mersenne residue-zero common-core absorption
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_residue_zero_core_absorption_v1.md`,
+  `experimental/verify_mca_full_lift_residue_zero_core_absorption_v1.py`,
+  `experimental/audit_mca_full_lift_residue_zero_core_absorption_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / SUPPORT PAYMENT.
+- **What is being added:** The near-maximal core forced by the residue-zero
+  router synchronizes every assigned explanation of deficit at least
+  `30791` onto the same line. One punctured Johnson cap bounds the lower
+  explanations by `26`.
+- **How it is useful:** The contradiction bound
+  `98232*26+981129=3535161<16777215` pays Mersenne full-lift support
+  `e=98232` and moves the residual floor to `e=98233`.
+- **What to do next:** Test the same unsafe-core absorption compiler at
+  `e=98233` and locate its exact interval wall.
+
+### 2026-08-13 - Mersenne residue-zero direction-class router
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_residue_zero_direction_router_v1.md`,
+  `experimental/verify_mca_full_lift_residue_zero_direction_router_v1.py`,
+  `experimental/audit_mca_full_lift_residue_zero_direction_router_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION / STRUCTURAL ROUTER.
+- **What is being added:** A constant-block Johnson count permits at most
+  three normalized direction classes in the first residue-zero boundary
+  layer; outside-core line packing then caps that layer at `1450`.
+- **How it is useful:** Any unsafe Mersenne family at `e=98232` must put at
+  least `343071` slopes on the synchronized top line, forcing its common
+  core to have size at least `m-2`.
+- **What to do next:** Apply the successor common-core absorption theorem.
+  The router itself makes no safety or unsafety claim at this support.
+
+### 2026-08-13 - Mersenne residue-two boundary continuation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_two_boundary_layer_continuation_v1.md`,
+  `experimental/verify_mca_full_lift_two_boundary_layer_continuation_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A residue-two case split synchronizes two boundary
+  layers when two top anchors exist and otherwise prices the first boundary
+  by an outside-core line or a pairwise-disjoint missed-set cap.
+- **How it is useful:** It pays Mersenne-31 at `e=98231` by `16486411`,
+  leaving slack `290804`, and moves the residual floor to `e=98232`.
+- **What to do next:** Treat the residue-zero boundary defect or replace the
+  KoalaBear mean-centered endpoint chord.
+
+### 2026-08-13 - Mersenne boundary-anchor continuation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_boundary_anchor_continuation_v1.md`,
+  `experimental/verify_mca_full_lift_boundary_anchor_continuation_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A two-anchor case split absorbs the first exact
+  boundary layer beyond the synchronized top-third union when
+  `e-K mod 3` is nonzero.
+- **How it is useful:** It pays Mersenne-31 at `e=98230` by `16487313`,
+  leaving slack `289902`, and moves the residual floor to `e=98231`.
+- **What to do next:** Replace the rapidly growing boundary prefix at
+  `e=98231` or discharge the support-local rank-10 exception forest.
+
+### 2026-08-13 - Full-lift mean-centered global-line profile
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_mean_centered_global_line_profile_v1.md`,
+  `experimental/verify_mca_full_lift_mean_centered_global_line_profile_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** The full suffix-minimum Johnson/mean-centered
+  prefix is composed with the one-time cross-layer global-line charge,
+  including the explicit `A_H>K-1` full-lift scope guard.
+- **How it is useful:** It moves the residual floors to `e=96151` on
+  KoalaBear and `e=98230` on Mersenne-31.
+- **What to do next:** Replace the failed KoalaBear endpoint chord or save
+  `638658` at the first unpaid Mersenne support.
+
+### 2026-08-13 - Full-lift cross-layer global-line synchronization
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_top_third_global_line_payment_v1.md`,
+  `experimental/verify_mca_full_lift_top_third_global_line_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** The top-third triple-overlap argument synchronizes
+  all exact high-deficit layers onto one affine explanation line, so the
+  pair-noncontained total-core cap `N-m+1` is charged once rather than once
+  per layer.
+- **How it is useful:** It moves the Mersenne-31 full-lift residual floor
+  from `e=67453` to `e=97909`; the KoalaBear floor remains `e=95944`, but
+  its endpoint profile drops to `6336049`.
+- **What to do next:** Replace the common low-agreement Johnson prefix at
+  `H`; both rows now stop at an adjacent nonpositive prefix denominator.
+
+### 2026-08-13 - Full-lift top-third common-core continuation
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_full_lift_top_third_common_core_payment_v1.md`,
+  `experimental/verify_mca_full_lift_top_third_common_core_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A pair-noncontained total-core cap for affine
+  explanation lines whose outside agreement is at most `K-1`, followed by
+  the full-lift top-third profile.
+- **How it is useful:** It moves the residual floors to `e=95944` on
+  KoalaBear and `e=67453` on Mersenne-31.
+- **What to do next:** Replace the failed low-agreement Johnson prefix on
+  KoalaBear and save `470852` at the first unpaid Mersenne support.
+
+### 2026-08-13 - Top-third affine-line sparse-direction branch close
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_top_third_affine_line_payment_v1.md`,
+  `experimental/verify_mca_sparse_direction_top_third_affine_line_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A triple-overlap theorem putting every exact
+  high-deficit layer on one affine codeword line, plus a top-third
+  exact-layer/profile compiler.
+- **How it is useful:** It pays every sparse-direction support `e<d` on
+  both deployed rows.  The residual intervals now begin at `e=67472` and
+  `e=67448`, the actual minimum-distance boundaries.
+- **What to do next:** Use the full-lift near-MDS extension structure for
+  `e>=d`.  Support-only ordinary-list bounds have now completed their
+  natural branch.
+
+### 2026-08-13 - Terminal-deficit affine-line payment
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_terminal_deficit_line_payment_v1.md`,
+  `experimental/verify_mca_sparse_direction_terminal_deficit_line_payment_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** An affine-codeword-line theorem for the exact
+  terminal deficit layer of the sparse-direction compiler, plus a
+  prefix-plus-terminal slope profile.
+- **How it is useful:** It pays one further support in each deployed row,
+  moving the low-support walls to `e=64048` on KoalaBear and `e=65455` on
+  Mersenne-31, with profile bounds `181326343` and `16100647`.
+- **What to do next:** Control the last several high-deficit layers jointly
+  or retain the full-lift near-MDS extension structure.  KoalaBear
+  `e=64049` lacks the penultimate cumulative cap; Mersenne `e=65456` remains
+  valid but over budget by `342292`.
+
+### 2026-08-13 - Mean-centered Gram profile
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_mean_centered_gram_profile_v1.md`,
+  `experimental/verify_mca_sparse_direction_mean_centered_gram_profile_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A PSD incidence Gram theorem centered at the
+  block mean, plus the suffix-minimum closure needed to combine its raw
+  cumulative caps with the positive-Johnson caps.
+- **How it is useful:** It strengthens the preceding centered-Gram rung and
+  extends the low-support walls to `e=64047` on KoalaBear and `e=65454` on
+  Mersenne-31.  The endpoint profiles are `181731868` and `16101127`.
+- **What to do next:** KoalaBear `e=64048` lies beyond the positive PSD
+  chord denominator.  Mersenne `e=65455` remains theorem-legal but misses
+  budget by `342908`.  Neither failure is an unsafe certificate.
+
+### 2026-08-13 - Near-Johnson centered-Gram payment
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_near_johnson_gram_rank_v1.md`,
+  `experimental/verify_mca_sparse_direction_near_johnson_gram_rank_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A centered incidence-Gram rank bound for
+  equal-size ordinary-list agreement blocks in the first post-Johnson
+  regime, followed by a two-threshold sparse-direction slope compiler.
+- **How it is useful:** It extends the low-support payments from `63908` to
+  `64037` on KoalaBear and from `65236` to `65418` on Mersenne-31.  The
+  endpoint slope bounds are `198047217` and `16759641`.
+- **What to do next:** A stronger post-Johnson list theorem is needed at
+  KoalaBear `e=64038`; at Mersenne `e=65419`, the Gram theorem remains valid
+  but misses budget by `1434789`.  Neither failure is an unsafe certificate.
+
+### 2026-08-13 - Sparse-direction punctured Johnson profile
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_sparse_direction_punctured_johnson_profile_v1.md`,
+  `experimental/verify_mca_sparse_direction_punctured_johnson_profile_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED / EXACT FINITE CALIBRATION.
+- **What is being added:** A field-general ordinary-list Johnson incidence
+  cap after puncturing the codeword-gauged direction support, combined with
+  the deficit-dependent `floor(e/h)` slope-owner profile.  Exact arithmetic
+  pays `e<=63908` on KoalaBear and `e<=65236` on Mersenne-31, against the
+  previous top-rank low-support walls `e<=5` and `e<=1`.
+- **How it is useful:** It removes over sixty thousand support values from
+  each top-rank MCA residual without using the refuted affine-incidence
+  denominator.  The full-lift middle intervals are now exactly
+  `63909<=e<=1044238` and `65237<=e<=1044241`.
+- **What to do next:** Attack the adjacent nonpositive-Johnson strip using
+  the codimension-one near-MDS extension structure or a row-sharp
+  post-Johnson list theorem.  Denominator failure is not an unsafe-row
+  certificate.
+
+### 2026-08-13 - Affine-span MCA compiler repair and top-rank split
+
+- **Agent/model:** Codex.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/mca_affine_span_incidence_counterexample_v1.md`,
+  `experimental/verify_mca_affine_span_incidence_counterexample_v1.py`,
+  `experimental/verify_mca_affine_span_incidence_counterexample_v1_independent.py`,
+  `experimental/verify_mca_proper_subspace_occupancy_compiler_v1.py`,
+  `experimental/verify_mca_full_explanation_lifted_rank_gauge_dichotomy_v1.py`,
+  `agents.md`, and `experimental/agents-log.md`.
+- **Status:** PROVED COUNTEREXAMPLE / PROVED REPLACEMENT / ROUTE CUT.
+- **What is being added:** An exact `GF(1009)` Reed--Solomon received line
+  with 31 direction-separated MCA-bad slopes against the affine-span
+  compiler's claimed bound 23.  Two independently structured verifiers
+  reconstruct every maximal support and same-support pair-noncontainment
+  check.
+- **How it is useful:** It retracts `thm:affine-span-mca` and the dependent
+  active-row MCA rank payments while identifying the precise missing input:
+  local full incident rank does not bound proper-subspace occupancy of the
+  incident normals.  The corrected `thm:proper-subspace-mca` proves the
+  valid bound with final factor `max(1,e-(n-m))`, fully paying the first
+  KoalaBear ranks through nine and Mersenne rank one and printing the exact
+  remaining support walls.  The full-explanation lifted-rank dichotomy then
+  proves that each top cell has only two branches: lifted rank `K`, where an
+  affine hyperplane of codeword gauges drops explanation rank to `K-1`, and
+  lifted rank `K+1`, where no gauge drops rank.  This pays the rank-drop
+  suffixes at `e>=992852` and `e>=1037876` while isolating the full-lift
+  middle intervals as the true remaining top-rank residuals.  The additional
+  near-MDS extension theorem proves that `W=C+<r_1>` has first generalized
+  weight `e` and every higher weight MDS-sharp.  Its generic endpoint bound
+  still exceeds both budgets, ruling out another weight-hierarchy replay as
+  a closure route.
+- **What to do next:** Replace the false ordered-basis denominator by a
+  sharper aggregate theorem, or route the remaining top-rank K3 cells
+  through a different slope compiler.  The common-core cancellation and
+  ordinary affine-span LIST results are unaffected.  The selector-free
+  all-LineRay error-affine-core set-pair theorem is also unaffected: it uses
+  a zero-mask/Bollobas argument, not the rejected incidence denominator.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from
@@ -3682,3 +4214,88 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Run verifiers and audits on the integrated material,
   review mathematical notes before promotion, and close the original PRs as
   manually integrated once the integration commit is pushed.
+
+### 2026-08-13 - KoalaBear rank-eleven pair/core route cut
+
+- **Agent/model:** Codex with isolated exploration, adversarial, upstream, and
+  review lanes.
+- **Exact parent:** PR #1167 head
+  `491ccdf53d54846f5a013b808960645275c64ed3`.
+- **Files added or changed:** `experimental/grande_finale.tex`,
+  `experimental/notes/thresholds/kb_mca_rank11_pair_core_route_cut_v1.md`,
+  exact Python/Sage verifiers, canonical certificate packet, research
+  campaign, `agents.md`, and this log.
+- **Status:** PROVED LOCAL ROUTE CUT / ZERO DEPLOYED LEDGER MOVEMENT.
+- **What is being added:** A nonuniform support-margin resource theorem, an
+  actual fixed minimizing-pair compiler, exact rank-eleven terminals
+  `weight >= 743449148, deficiency <= 8` and
+  `slopes >= 200632, deficiency <= 4`, and two exact core-deficiency method
+  ceilings.  Neither ceiling fits the KoalaBear budget.
+- **Controls:** normal and optimized Python, hostile mutations, exact Sage
+  parallel-star sharpness, Wolfram integer replay, full TeX compilation, and
+  a targeted 55-result Exa literature sweep with no imported lemma.
+- **Nonclaim:** Error rank eleven remains unpaid; no active-v4 atom moves and
+  KoalaBear is not closed.
+- **What to do next:** Prove a same-line cross-pair collision theorem or a
+  chronology-correct owner for dense parallel pair cores.  Another scalar
+  threshold or smaller per-pair multiplier is ruled out.
+
+### 2026-08-20 - KoalaBear raw-low rank-eleven repair
+
+- **Agent/model:** Codex, with independent mathematics and certificate
+  review required after final sealing.
+- **Exact parent:** PR #1173 head
+  2788d5ec3fb4b1d6f9c43a58a86ec2381e5f6804.
+- **Files added or changed:** experimental/grande_finale.tex, the
+  kb-mca-rank11-repair-rank12-route-post-1173 campaign, threshold note,
+  exact verifier/auditor/manifest packet, agents.md, and this log.
+- **Status:** CANDIDATE DIRECT RANK-ELEVEN PAYMENT / RANK-TWELVE
+  SINGLE-CUTOFF METHOD WALL / ZERO ACTIVE-V4 LEDGER MOVEMENT.
+- **What is being added:** A uniform weighted projective-line cap of
+  4070947 for every complete shortened rank-one family; a self-contained
+  complete-agreement shortening/span theorem; and a raw-low heavy-core
+  induction whose top requirement is 248706399341288370.  Conditional on
+  the pinned 134944 near deletion, the rank-eleven slack is
+  26274328769971774.
+- **Exact remaining wall:** At affine error rank twelve, the unique best
+  initial-row single-cutoff requirement is 546519697764383119, a shortfall
+  of 271538969653122975.  The earlier 8681730 descendant and 279911
+  three-deficiency endpoint claim are withdrawn.
+- **Nonclaim:** Affine error rank twelve remains open; no active-v4 atom is
+  regenerated or moved, and KoalaBear is not closed.
+- **What to do next:** Prove a multi-level raw-margin/core coupling or a
+  chronology-correct owner at rank twelve.  Another single cutoff cannot
+  force the first rank drop.
+
+### 2026-08-20 - KoalaBear rank-twelve scalar barrier and gluing route
+
+- **Agent/model:** Codex with isolated GitHub, external-literature,
+  adversarial computation, and independent mathematics lanes.
+- **Exact parent:** PR #1174 head
+  `1b613fc669158a690a52b64f0eeb440f10672f1e`.
+- **Files added or changed:** `experimental/grande_finale.tex`, the
+  `kb-mca-rank12-multilevel-post-1174` campaign, threshold note, exact
+  Python/Sage controls, canonical certificate packet, `agents.md`, and this
+  log.
+- **Status:** CANDIDATE PARTIAL RANK-TWELVE PAYMENT / EXACT METHOD BARRIER /
+  ZERO ACTIVE-V4 LEDGER MOVEMENT.
+- **What is being added:** The exact all-level truncated-margin resource and
+  selected-support first moment admit a balanced abstract extremizer forcing
+  only `120205662451376300` slopes through one coordinate, short of the
+  rank-ten child by `128500736889912070`.  The actual-line supported-dual
+  compiler identifies the local-polynomial gluing quotient and pays its
+  received-pair rank-zero branch by `49106899082787469`, leaving
+  `199599500258500901` slack.  Quotient ranks one and two are the exact
+  remaining realization terminals.
+- **Controls:** normal and optimized Python, eight hostile mutations, a
+  cyclic balanced-incidence construction, exact `GF(11)` post-near
+  rank-zero regression, the public SYZ25 negative and incremental-overlap
+  positive Sage controls, Wolfram integer replay, and full TeX compilation.
+- **Dependency boundary:** The packet is stacked on #1174 and remains
+  conditional on divergent #1160.  It must be replayed on an integration
+  tree containing both; the old locator/four-block chain is not imported.
+- **Nonclaim:** Quotient ranks one and two, affine error rank twelve, the
+  active-v4 chronology, and KoalaBear remain open.
+- **What to do next:** Prove an actual-record classifier/payment for the
+  rank-one and rank-two gluing-defect families, preserving the identical
+  received line, slopes, supports, explanations, field, and owner chronology.

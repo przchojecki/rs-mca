@@ -1,0 +1,44 @@
+{
+  "canonical_payload_sha256": "675b02624c17373e435000dcbdc87746e7b4c9b2b0f0e1ccc5081c479b621fa6",
+  "claims": {
+    "active_v4_ledger_movement": 0,
+    "koalabear_closed": false,
+    "rank11_paid": false,
+    "rank_one_low_pair_anticode_paid": true
+  },
+  "files": [
+    {
+      "bytes": 2917,
+      "path": "experimental/campaigns/kb-mca-rank11-fixed-endpoint-post-1171/00_contract.md",
+      "sha256": "f971cd3b53320f20e466373bf2ae9f0f8c54c6df7a2a761b2df1503560b741fe"
+    },
+    {
+      "bytes": 6326,
+      "path": "experimental/campaigns/kb-mca-rank11-fixed-endpoint-post-1171/proofs/fixed_endpoint_owner_router.md",
+      "sha256": "a6e71eb3a85f93dfcf3d993e25940e619633a92b744c74be399e555ca06e65ae"
+    },
+    {
+      "bytes": 1983,
+      "path": "experimental/notes/thresholds/kb_mca_rank11_fixed_endpoint_owner_router_v1.md",
+      "sha256": "cfed95753ab705caae817fe96743848f05837efa3c3f3ce2134e5a78a4dd9bc2"
+    },
+    {
+      "bytes": 12633,
+      "path": "experimental/scripts/verify_kb_mca_rank11_fixed_endpoint_router_v1.py",
+      "sha256": "203b6da846187cf3c0d7d0cd8433666c9c9ae7b69f72e1c72fea4c83b1f14cf9"
+    },
+    {
+      "bytes": 4521,
+      "path": "experimental/scripts/audit_kb_mca_rank11_fixed_endpoint_router_v1.py",
+      "sha256": "aa56bf6bce1317841dbd6c4112ba7c0fc79cdfb2c06f3bcfe2e17e56c2b97f72"
+    },
+    {
+      "bytes": 2682,
+      "path": "experimental/data/certificates/kb-mca-rank11-fixed-endpoint-router-v1/result.json",
+      "sha256": "5350e2748a796f975917b776409969a94713ca0bfb15411f9fd052b31d760e79"
+    }
+  ],
+  "parent": "a3fc2d5aea86577cd50d8b95b6eb2155d4d940f6",
+  "result_sha256": "5350e2748a796f975917b776409969a94713ca0bfb15411f9fd052b31d760e79",
+  "schema": "kb-mca-rank11-fixed-endpoint-router-manifest-v2"
+}

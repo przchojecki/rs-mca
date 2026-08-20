@@ -1,0 +1,12 @@
+{
+  "active_v4_ledger_movement": 0,
+  "parent": "2788d5ec3fb4b1d6f9c43a58a86ec2381e5f6804",
+  "rank11_paid": true,
+  "rank12_paid": false,
+  "row": "KoalaBear MCA",
+  "schema": "kb-mca-rank11-repair-rank12-route-campaign-v1",
+  "schema_version": 2,
+  "status": "CANDIDATE_RAW_LOW_RANK11_PAYMENT_AND_RANK12_METHOD_WALL",
+  "supersedes_unsubmitted_candidate": "d01c546f4dca70e256c18c142873821b3bb48ab5",
+  "title": "KoalaBear raw-low rank-eleven payment and rank-twelve method wall"
+}

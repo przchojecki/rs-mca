@@ -1,0 +1,208 @@
+{
+  "claims": {
+    "active_v4_ledger_movement": 0,
+    "affine_error_rank_12_paid": false,
+    "complete_affine_error_rank_11_branch_paid": true,
+    "koalabear_closed": false,
+    "rank12_dense_core_route_proved": false,
+    "rank12_single_threshold_method_insufficient": true,
+    "uniform_rank_one_cap_proved": true
+  },
+  "finite_controls": {
+    "dense_core_families_checked": 2234476
+  },
+  "parent": "2788d5ec3fb4b1d6f9c43a58a86ec2381e5f6804",
+  "rank11_payment": {
+    "loads": {
+      "1": 4070948,
+      "10": 248706399341288370,
+      "2": 64241811,
+      "3": 1013639041,
+      "4": 15991635730,
+      "5": 252259306484,
+      "6": 3978753104997,
+      "7": 62747001947996,
+      "8": 989431810807346,
+      "9": 15600062750954861
+    },
+    "required_rank_ten_load": 248706399341288370,
+    "rows": [
+      {
+        "argmax_K": 2,
+        "child_load": 4070948,
+        "parent_load": 64241811,
+        "rank": 2,
+        "threshold": 515
+      },
+      {
+        "argmax_K": 3,
+        "child_load": 64241811,
+        "parent_load": 1013639041,
+        "rank": 3,
+        "threshold": 511
+      },
+      {
+        "argmax_K": 4,
+        "child_load": 1013639041,
+        "parent_load": 15991635730,
+        "rank": 4,
+        "threshold": 507
+      },
+      {
+        "argmax_K": 5,
+        "child_load": 15991635730,
+        "parent_load": 252259306484,
+        "rank": 5,
+        "threshold": 503
+      },
+      {
+        "argmax_K": 6,
+        "child_load": 252259306484,
+        "parent_load": 3978753104997,
+        "rank": 6,
+        "threshold": 499
+      },
+      {
+        "argmax_K": 7,
+        "child_load": 3978753104997,
+        "parent_load": 62747001947996,
+        "rank": 7,
+        "threshold": 496
+      },
+      {
+        "argmax_K": 8,
+        "child_load": 62747001947996,
+        "parent_load": 989431810807346,
+        "rank": 8,
+        "threshold": 492
+      },
+      {
+        "argmax_K": 9,
+        "child_load": 989431810807346,
+        "parent_load": 15600062750954861,
+        "rank": 9,
+        "threshold": 489
+      },
+      {
+        "argmax_K": 1048576,
+        "child_load": 15600062750954861,
+        "parent_load": 248706399341288370,
+        "rank": 10,
+        "threshold": 485
+      }
+    ],
+    "slack": 26274328769971774,
+    "transfer_scans": {
+      "10": {
+        "argmax": 1048576,
+        "cells_checked": 1048567,
+        "equal_steps": 0,
+        "maximum_parent_requirement": 248706399341288370,
+        "strict_decreases": 438765,
+        "strict_increases": 609801
+      },
+      "2": {
+        "argmax": 2,
+        "cells_checked": 1048575,
+        "equal_steps": 0,
+        "maximum_parent_requirement": 64241811,
+        "strict_decreases": 1048574,
+        "strict_increases": 0
+      },
+      "3": {
+        "argmax": 3,
+        "cells_checked": 1048574,
+        "equal_steps": 0,
+        "maximum_parent_requirement": 1013639041,
+        "strict_decreases": 1048573,
+        "strict_increases": 0
+      },
+      "4": {
+        "argmax": 4,
+        "cells_checked": 1048573,
+        "equal_steps": 0,
+        "maximum_parent_requirement": 15991635730,
+        "strict_decreases": 1048572,
+        "strict_increases": 0
+      },
+      "5": {
+        "argmax": 5,
+        "cells_checked": 1048572,
+        "equal_steps": 24,
+        "maximum_parent_requirement": 252259306484,
+        "strict_decreases": 1012132,
+        "strict_increases": 36415
+      },
+      "6": {
+        "argmax": 6,
+        "cells_checked": 1048571,
+        "equal_steps": 1,
+        "maximum_parent_requirement": 3978753104997,
+        "strict_decreases": 806052,
+        "strict_increases": 242517
+      },
+      "7": {
+        "argmax": 7,
+        "cells_checked": 1048570,
+        "equal_steps": 0,
+        "maximum_parent_requirement": 62747001947996,
+        "strict_decreases": 668401,
+        "strict_increases": 380168
+      },
+      "8": {
+        "argmax": 8,
+        "cells_checked": 1048569,
+        "equal_steps": 0,
+        "maximum_parent_requirement": 989431810807346,
+        "strict_decreases": 569750,
+        "strict_increases": 478818
+      },
+      "9": {
+        "argmax": 9,
+        "cells_checked": 1048568,
+        "equal_steps": 0,
+        "maximum_parent_requirement": 15600062750954861,
+        "strict_decreases": 496128,
+        "strict_increases": 552439
+      }
+    },
+    "uniform_rank_one_cap": 4070947,
+    "unsafe_post_near_load": 274980728111260144
+  },
+  "rank12_method_wall": {
+    "available_unsafe_load": 274980728111260144,
+    "best_threshold": 67472,
+    "required_parent_load": 546519697764383119,
+    "shortfall": 271538969653122975,
+    "target_rank_ten_load": 248706399341288370,
+    "thresholds_checked": 67472
+  },
+  "row": {
+    "K": 1048576,
+    "R": 1048576,
+    "budget": 274980728111395087,
+    "d": 67472,
+    "extension_degree": 6,
+    "m": 1116048,
+    "n": 2097152,
+    "near": 134944,
+    "p": 2130706433
+  },
+  "schema": "kb-mca-rank11-repair-rank12-route-v1",
+  "supersedes_unsubmitted_candidate": "d01c546f4dca70e256c18c142873821b3bb48ab5",
+  "uniform_rank_one": {
+    "argmax": 1,
+    "argmin": 913632,
+    "dimensions_checked": 1048576,
+    "endpoint_high": 4070464,
+    "endpoint_high_outside_weight": 508801,
+    "endpoint_high_q_deficiencies": 0,
+    "endpoint_high_t": 8,
+    "endpoint_low": 483,
+    "equal_steps": 625483,
+    "maximum": 4070947,
+    "minimum": 981112,
+    "strict_decreases": 423092,
+    "strict_increases": 0
+  }
+}

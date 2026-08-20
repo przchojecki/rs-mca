@@ -1392,92 +1392,2502 @@ specific finite residual atom, not an unproved multiplicity principle.
 
 
 
-\begin{theorem}[Affine-span transverse MCA compiler]
-\label{thm:affine-span-mca}
+\begin{proposition}[Counterexample to the affine-span transverse MCA compiler]
+\label{prop:affine-span-mca-counterexample}
+The affine-span MCA bound formerly printed here is false even under the
+direction-separation hypothesis.  There is a received line for
+\[
+ C=\RS[\F_{1009},\{0,\ldots,99\},1],
+ \qquad (n,K,m,w,s)=(100,1,21,20,1),
+\]
+with \(31\) distinct selected slopes and explanations in the
+one-dimensional constant code, while
+\[
+ \max_{c\in C}\operatorname{agr}(r_1,c)=20<21=m
+\]
+and the claimed bound was
+\[
+ \left\lfloor
+ \max\left\{
+ \frac{100^{\underline2}}{21\cdot20},
+ \frac{100^{\underline2}}{20^{\overline2}}
+ \right\}
+ \right\rfloor=23<31.
+\]
+Every selected maximal agreement support has size exactly \(21\) and is
+same-support pair-noncontained.
+\end{proposition}
+
+\begin{proof}
+Partition the domain into sets \(C_0,E,T,W\) of sizes \(20,30,21,29\).
+Put \((r_0,r_1)=(0,0)\) on \(C_0\).  Index \(E\) by
+\(1\le i\le30\) and put \((r_0,r_1)=(-i^2,i)\) at its \(i\)-th point.
+For slope \(i\), the zero codeword then agrees exactly on \(C_0\) and
+that point of \(E\).
+
+On \(T\), put \(r_0=1\) and choose \(21\) distinct fresh nonzero direction
+values avoiding \(1+i r_1=0\) for every \(1\le i\le30\).  At slope zero,
+the constant-one codeword agrees exactly on \(T\).  On \(W\), choose fresh
+direction values and choose each base value outside
+\(\{0,1\}\cup\{-i r_1:1\le i\le30\}\).  All choices exist in
+\(\F_{1009}\), and they remove every unintended selected agreement.
+
+The direction is zero on \(C_0\) and takes distinct nonzero values elsewhere,
+so its maximum agreement with a constant is exactly \(20\).  The selected
+explanations are zero and one, hence have affine span one.  On a
+zero-explanation support, the core forces a simultaneous constant pair to be
+\((0,0)\), but the remaining direction value is nonzero.  On \(T\), the
+direction values are distinct.  Thus every support is pair-noncontained.
+
+The proof failure is the asserted proper-subspace occupancy bound for the
+incident normals.  On each zero-explanation support, \(20\) normals lie on
+one line and one is transverse.  There are only \(40\) ordered bases, not the
+claimed lower count \(m w=420\).  The complete deterministic reconstruction
+is in
+\texttt{experimental/verify\_mca\_affine\_span\_incidence\_counterexample\_v1.py}.
+\end{proof}
+
+\begin{remark}[Scope of the route cut]
+The counterexample retracts only the MCA incidence compiler and statements
+that use its ordered-basis denominator.  It does not refute the ordinary
+affine-span list theorem, common-core cancellation, the directional Johnson
+compiler, codeword-direction gauge equivalence, or the selector-free
+all-LineRay error-affine-core set-pair theorem, whose proof uses zero-mask
+restriction and the Bollobas set-pair inequality instead.
+\end{remark}
+
+\begin{theorem}[Pair-noncontained proper-subspace MCA compiler]
+\label{thm:proper-subspace-mca}
 Let \(C=\RS[\F,D,K]\) have length \(n\), let
-\(r_\gamma=r_0+\gamma r_1\), and put \(m=K+w\).  Let
-\(\mathcal A=c_0+C'\subseteq C\) be an affine codeword subspace with
-\(\dim C'=s\ge1\).  Suppose the line direction is separated from the
-agreement ball,
+\(r_\gamma=r_0+\gamma r_1\), put \(w=m-K>0\), and let
+\(\mathcal A=c_0+C'\subseteq C\) have \(\dim C'=s\), where
+\(1\le s\le K\).  Let \(Z\subseteq\F\) be a set of distinct slopes such
+that for every \(\gamma\in Z\), some \(c_\gamma\in\mathcal A\) has
+agreement at least \(m\), and its maximal agreement support is
+same-support pair-noncontained.  Define
+\[
+ e=\min_{b\in C}\wt(r_1-b),\qquad
+ L=\max\{1,e-(n-m)\}.
+\]
+Then
 \begin{equation}
- \max_{c\in C}\operatorname{agr}(r_1,c)<m.
- \label{eq:direction-list-separated}
+ |Z|\le\left\lfloor\frac1L\max\left\{
+ \frac{n^{\underline{s+1}}}
+      {m(w+1)^{\overline{s-1}}},
+ \frac{(n-K+s)^{\underline{s+1}}}
+      {(w+1)^{\overline s}}
+ \right\}\right\rfloor .
+ \label{eq:proper-subspace-mca}
 \end{equation}
-Let \(Z\subseteq\F\) be a set of distinct slopes such that for every
-\(\gamma\in Z\) some \(c_\gamma\in\mathcal A\) satisfies
-\(\operatorname{agr}(r_\gamma,c_\gamma)\ge m\).  Then
+For \(s=1\), the empty rising product in the first denominator is one.
+\end{theorem}
+
+\begin{proof}
+Choose a basis \(c_1,\ldots,c_s\) of \(C'\).  As in the rejected proof,
+the agreement hyperplane at coordinate \(x\) has normal
+\[
+ v_x=(r_1(x),-c_1(x),\ldots,-c_s(x))\in\F^{s+1}.
+\]
+The normals incident with every selected parameter point span
+\(\F^{s+1}\).  Indeed, an annihilator with zero slope coordinate would
+give a nonzero codeword with at least \(m>K-1\) roots.  An annihilator with
+nonzero slope coordinate would give simultaneous codeword explanations for
+\(r_0\) and \(r_1\) on the same maximal support, contrary to
+pair noncontainment.
+
+Let \(W<\F^{s+1}\) have dimension \(j<s\), and put
+\(X_W=\{x:v_x\in W\}\).  If the slope coordinate vanishes on
+\(W^\perp\), then \(s+1-j\) independent codewords vanish on \(X_W\).
+Otherwise the kernel of that coordinate supplies \(s-j\) independent
+codewords.  The MDS generalized-weight formula gives in either case
+\[
+ |X_W|\le K-s+j.
+\]
+Consequently, after \(j=1,\ldots,s-1\) independent incident normals have
+been selected, there are at least \(w+s-j\) choices outside their span.
+These factors multiply to \((w+1)^{\overline{s-1}}\).
+
+After \(s\) independent normals have been selected, local full rank leaves
+at least one final choice.  If their hyperplane has an annihilator with
+nonzero slope coordinate, it contains at most \(n-e\) coordinate normals
+and leaves at least \(e-(n-m)\) incident choices.  If that slope coordinate
+is zero, the ordinary root bound leaves at least \(w+1\).  Interpolation on
+\(K\) coordinates gives \(e\le n-K\), so every case leaves at least \(L\)
+final choices.
+
+Let \(z\) be the number of zero normals and let \(g\le z\) be those whose
+agreement hyperplane contains every parameter point.  Common-zero MDS gives
+\(z\le K-s\).  Every selected point is therefore incident with at least
+\[
+ (m-g)(w+1)^{\overline{s-1}}L
+\]
+ordered normal bases, while there are at most
+\((n-z)^{\underline{s+1}}\) ordered independent coordinate tuples.
+For fixed \(z\), the resulting ratio is largest at \(g=z\).  Its successive
+ratio in \(z\) has the sign of
+\(n-(s+1)m+sz\), so its maximum on \(0\le z\le K-s\) is at an endpoint.
+The endpoints \(z=0\) and \(z=K-s\) are precisely the two terms in
+\eqref{eq:proper-subspace-mca}.
+\end{proof}
+
+\begin{theorem}[Support-transverse affine-span MCA compiler]
+\label{thm:support-transverse-affine-span-mca}
+Retain the code, received line, affine explanation space, and parameters of
+\cref{thm:proper-subspace-mca}, with \(n\ge m=K+w\), \(w>0\), and
+\(1\le s\le K\).  Let \(\varnothing\ne Z\subseteq\F\) be a set of
+distinct slopes.  Suppose that for every \(\gamma\in Z\) there are a
+codeword \(c_\gamma\in\mathcal A\) and an exact \(m\)-set
+\(S_\gamma\subseteq D\) such that \(r_\gamma=c_\gamma\) on
+\(S_\gamma\), while no pair in \(C^2\) explains \((r_0,r_1)\)
+simultaneously on that same set.  Define
+\begin{equation}
+ \theta_0=
+ \min_{\substack{\gamma\in Z\\ b\in C'}}
+ |\{x\in S_\gamma:r_1(x)\ne b(x)\}|,
+ \qquad
+ \theta=\min\{\theta_0,w+1\}.
+ \label{eq:support-local-mca-theta}
+\end{equation}
+Then \(\theta\ge1\), and
 \begin{equation}
  |Z|\le
  \left\lfloor
  \max\left\{
  \frac{n^{\underline{s+1}}}
-      {m\,w^{\overline s}},
+      {m\,\theta\,(w+1)^{\overline{s-1}}},
  \frac{(n-K+s)^{\underline{s+1}}}
-      {w^{\overline{s+1}}}
+      {\theta\,(w+1)^{\overline s}}
  \right\}
  \right\rfloor .
- \label{eq:affine-span-mca}
+ \label{eq:support-local-proper-subspace-mca}
 \end{equation}
-The second term is
-\(\binom{n-K+s}{s+1}/\binom{w+s}{s+1}\).  Failure of
-\eqref{eq:direction-list-separated} is an explicit direction-list cell:
-the direction word itself agrees with a codeword on at least \(m\)
-coordinates.
+The first rising product is empty when \(s=1\).  If \(e,L\) are the
+global direction-coset quantities of \cref{thm:proper-subspace-mca}, then
+\(\theta\ge L\).  Thus \eqref{eq:support-local-proper-subspace-mca}
+refines that theorem whenever the selected supports have more local
+transversality than is forced by the global direction distance.
 \end{theorem}
 
 \begin{proof}
-Choose a basis \(c_1,\ldots,c_s\) of \(C'\), write
-\(c_\gamma=c_0+\sum_i\lambda_{\gamma,i}c_i\), and associate the parameter
-point
-\(p_\gamma=(\gamma,\lambda_{\gamma,1},\ldots,\lambda_{\gamma,s})\in
-\F^{s+1}\).  Agreement at coordinate \(x\) is an affine hyperplane with
-normal
-\[
- v_x=(r_1(x),-c_1(x),\ldots,-c_s(x)).
-\]
-Let \(z\) be the number of zero normals and let \(g\le z\) of them agree
-identically.  Since every \(c_i\) vanishes at those \(z\) coordinates,
-the polynomial-space argument of \cref{thm:affine-span-list} gives
-\(z\le K-s\).
+Choose a basis \(c_1,\ldots,c_s\) of \(C'\) and use the same incident
+normal count as in \cref{thm:proper-subspace-mca}.  The lower-dimensional
+proper-normal-subspace argument is unchanged and supplies the factors
+\((w+1)^{\overline{s-1}}\).  At the final step, let
+\((\delta,\mu)\) span the annihilator of the selected \(s\)-space.  If
+\(\delta=0\), the ordinary root bound leaves at least
+\(w+1\ge\theta\) incident choices outside it.  If \(\delta\ne0\), put
+\(b=\delta^{-1}\sum_i\mu_i c_i\in C'\).  Every point of the actual
+support \(S_\gamma\) on which \(r_1\ne b\) has normal outside the
+selected space, so \eqref{eq:support-local-mca-theta} supplies at least
+\(\theta\) final choices.  Pair noncontainment gives \(\theta_0\ge1\):
+if \(r_1=b\) on \(S_\gamma\), then
+\((c_\gamma-\gamma b,b)\) explains \((r_0,r_1)\) there.
 
-The normals incident with any \(p_\gamma\) span \(\F^{s+1}\).  Otherwise
-a nonzero relation \((\delta,\mu)\) gives a word
-\(\delta r_1-\sum_i\mu_i c_i\) vanishing on at least \(m\) agreement
-coordinates.  If \(\delta=0\), a nonzero degree-\(<K\) codeword has more
-than \(K-1\) roots.  If \(\delta\ne0\), the direction word agrees with a
-codeword on at least \(m\) coordinates, contradicting
-\eqref{eq:direction-list-separated}.
-
-If \(W\le\F^{s+1}\) has dimension \(r\), with \(1\le r\le s\), then the
-coordinates with \(v_x\in W\) are common zeros of the
-\((s+1-r)\)-dimensional space indexed by \(W^\perp\).  If the slope
-coordinate vanishes on that whole space, these are common zeros of
-\((s+1-r)\) independent codewords and number at most
-\(K-s-1+r\).  Otherwise the kernel of the slope coordinate supplies
-\(s-r\) independent codewords, giving the uniform bound
-\(K-s+r\).  Put \(c=z-g\).  After \(r\) independent incident normals
-have been chosen, at least
+Keeping the zero-normal parameters $z,g$ from the preceding proof, every
+selected point therefore owns at least
+\((m-g)\theta(w+1)^{\overline{s-1}}\) ordered bases, while there are at
+most $(n-z)^{\underline{s+1}}$ ordered independent coordinate tuples.
+For fixed $z$, the ratio is largest at $g=z$; its successive ratio in
+$z$ again has the sign of $n-(s+1)m+sz$.  The two endpoints
+$z=0,K-s$ give \eqref{eq:support-local-proper-subspace-mca}.
+Finally, for every \(b\in C'\subseteq C\),
 \[
- (m-g)-(K-s+r-z)=w+s-r+c
+ |\{x\in S_\gamma:r_1(x)\ne b(x)\}|
+\ge \wt(r_1-b)-(n-m)\ge e-(n-m).
 \]
-further incident normals lie outside their span.  Therefore each slope
-point is incident with at least
-\[
- (m-g)\prod_{r=1}^{s}(w+s-r+c)
-\]
-ordered bases.
-Counting ordered independent coordinate tuples gives
-\[
- |Z|\le
- \frac{(n-g-c)^{\underline{s+1}}}
- {(m-g)(w+c)^{\overline s}},
- \qquad g,c\ge0,\quad g+c\le K-s.
-\]
-For fixed \(c\), the successive ratio in \(g\) has the sign of
-\(n-c-(s+1)m+sg\), so again there is no interior maximum.  Both endpoint
-families decrease with \(c\).  The endpoints \((g,c)=(0,0)\) and
-\((K-s,0)\) give the two terms of \eqref{eq:affine-span-mca}.
+Moreover \(e\le n-K\), so \(e-(n-m)\le w\).  If this difference is at
+most one, then $L=1\le\theta$; otherwise the preceding inequality and
+the cap $w+1$ give \(\theta\ge e-(n-m)=L\).  Hence \(\theta\ge L\).
 \end{proof}
+
+\begin{theorem}[Support-wise MCA error-rank gauge]
+\label{thm:mca-error-rank-gauge}
+Let \(C\le\F^D\) be a linear code, let
+\(r_\gamma=r_0+\gamma r_1\), and let \(Z\) contain at least two distinct
+slopes.  For every \(\gamma\in Z\), choose \(h_\gamma\in C\) and a
+support \(S_\gamma\) on which \(r_\gamma=h_\gamma\), with no
+simultaneous \(C^2\)-explanation of \((r_0,r_1)\) on that same support.
+Put
+\[
+ e_\gamma=r_\gamma-h_\gamma,
+ \qquad
+ a=\dim\Span\{e_\gamma-e_{\gamma_0}:\gamma\in Z\}.
+\]
+Then \(a\ge1\), and there is a codeword \(b\in C\) such that the
+two-way gauge
+\begin{equation}
+ r'_0=r_0,\qquad r'_1=r_1-b,
+ \qquad h'_\gamma=h_\gamma-\gamma b
+ \label{eq:mca-error-rank-gauge}
+\end{equation}
+preserves every finite slope, error word, agreement support, and
+same-support containment predicate, while
+\[
+ \dim\operatorname{Aff}\{h'_\gamma:\gamma\in Z\}=a-1.
+\]
+This is a reversible codeword translation, not identity of the received-line
+representative.
+\end{theorem}
+
+\begin{proof}
+First \(r_1\notin C\).  Otherwise, on every selected support the pair
+\((h_\gamma-\gamma r_1,r_1)\) would explain \((r_0,r_1)\), contrary
+to the hypothesis.  Fix \(\gamma_0\), and consider
+\[
+ E=\Span\{(\gamma-\gamma_0,h_\gamma-h_{\gamma_0}):\gamma\in Z\}
+ \le\F\oplus C.
+\]
+The map \((\delta,c)\mapsto\delta r_1-c\) is injective on \(E\): a
+kernel element with \(\delta\ne0\) would put \(r_1\) in \(C\), while
+\(\delta=0\) forces \(c=0\).  Its image is the affine error-difference
+space, so \(\dim E=a\).  The slope projection on \(E\) is nonzero;
+choose \((1,b)\in E\).  Under \eqref{eq:mca-error-rank-gauge}, the
+explanation differences are the image of \(E\) under
+\((\delta,c)\mapsto c-\delta b\), namely the kernel of the slope
+projection.  Their dimension is \(a-1\).
+
+The identity
+\[
+ r_0+\gamma(r_1-b)-(h_\gamma-\gamma b)
+ =r_0+\gamma r_1-h_\gamma
+\]
+proves error and support preservation.  Subtracting \(b\) from the second
+codeword of a simultaneous explanation, and adding it back for the inverse,
+proves preservation of same-support containment.
+\end{proof}
+
+\begin{remark}[Relation to the full-explanation lifted-rank split]
+When the selected explanations have full affine rank (K), the lifted pair
+space (E) above has dimension (K) or (K+1).  The gauge theorem gives
+explanation rank (K-1) in the first branch and (K) in the second.  Thus it
+is the arbitrary-rank existence adapter underlying the two numerical cases
+of \cref{thm:full-explanation-lifted-rank-dichotomy} below.  That theorem is
+sharper at full rank: it classifies every gauge, rather than selecting one.
+\end{remark}
+
+\begin{remark}[Exact first shortened-row calibration]
+For a shortened row \((n,K,m)=(R+K,K,d+K)\), the last factor is
+\(L=\max\{1,e-(R-d)\}\le d\).  At the first residual dimensions from the
+common-core staircase, exact integer evaluation gives
+\[
+\begin{array}{c|c|c|c}
+\text{row}&K&\text{paid for every }e&\text{additional paid walls}\\ \hline
+\text{KoalaBear}&14&s\le9&
+s=10,11,12,13:\ e\ge981108,981153,981861,992852\\
+\text{Mersenne-31}&6&s\le1&
+s=2,3,4,5:\ e\ge981144,981363,984779,1037876
+\end{array}
+\]
+At top rank, the required factors are \(182530>d=67472\) and
+\(882143>d=67448\), respectively, so this compiler does not pay those
+cells.  The exact replay is in
+\texttt{experimental/verify\_mca\_proper\_subspace\_occupancy\_compiler\_v1.py}.
+\end{remark}
+
+\begin{theorem}[Sparse-direction punctured Johnson MCA profile]
+\label{thm:sparse-direction-punctured-johnson-mca}
+Let \(C=\RS[\F,D,K]\) have
+\[
+  N=R+K,\qquad m=d+K,
+\]
+and let \(r_\gamma=r_0+\gamma r_1\).  Suppose
+\[
+  r_1=b+q,\qquad b\in C,\qquad
+  E=\operatorname{supp}(q),\qquad |E|=e<d.
+\]
+For every selected slope, assume an exact size-\(m\), same-support
+pair-noncontained agreement witness with explanation \(c_\gamma\), and put
+\(a_\gamma=c_\gamma-\gamma b\).  For each distinct selected transformed
+explanation define
+\[
+ h_a=m-|\{x\in D\setminus E:a(x)=r_0(x)\}|.
+\]
+Then \(1\le h_a\le e\), and one deficit-\(h\) explanation owns at most
+\(\lfloor e/h\rfloor\) selected slopes.
+
+Assume
+\begin{equation}
+  \Delta_e=(m-e)^2-(N-e)(K-1)>0.
+  \label{eq:punctured-johnson-positive}
+\end{equation}
+Put \(J_0=0\) and, for \(1\le h\le e\),
+\begin{equation}
+ J_h=\left\lfloor
+ \frac{(N-e)(m-h-K+1)}{(m-h)^2-(N-e)(K-1)}
+ \right\rfloor .
+ \label{eq:punctured-johnson-cap}
+\end{equation}
+The selected slope set \(Z\) satisfies
+\begin{equation}
+ |Z|\le \sum_{h=1}^e(J_h-J_{h-1})\left\lfloor\frac eh\right\rfloor
+ \le (e-1)J_{\lfloor e/2\rfloor}+J_e.
+ \label{eq:punctured-johnson-profile}
+\end{equation}
+For \(e=1\), the term indexed by zero in the last expression is zero.
+\end{theorem}
+
+\begin{proof}
+Outside \(E\), the direction equals \(b\).  If \(a\) agreed with \(r_0\)
+on at least \(m\) outside coordinates, an \(m\)-subset there would be
+simultaneously explained by \((a,b)\), contrary to same-support
+pair noncontainment.  Hence \(h_a\ge1\).  A size-\(m\) witness can use at
+most \(e\) coordinates of \(E\), so \(h_a\le e\).
+
+For \(x\in E\), agreement at slope \(\gamma\) is equivalent to
+\[
+  \frac{a(x)-r_0(x)}{q(x)}=\gamma.
+\]
+These ratio fibers are disjoint.  A deficit-\(h\) explanation needs at
+least \(h\) inside agreements, and therefore owns at most
+\(\lfloor e/h\rfloor\) slopes.
+
+Puncture \(E\) and fix \(h\).  Each explanation of deficit at most \(h\)
+has an agreement set of size at least \(A=m-h\) in length \(n'=N-e\).
+Agreement sets of two distinct degree-\(<K\) polynomials intersect in at
+most \(K-1\) coordinates.  If there are \(L\) explanations and \(s_x\)
+is the incidence multiplicity at coordinate \(x\), then
+\[
+ \sum_xs_x\ge LA,
+ \qquad
+ \sum_x\binom{s_x}{2}\le(K-1)\binom L2.
+\]
+Cauchy--Schwarz gives
+\[
+ \sum_x\binom{s_x}{2}\ge
+ \frac12\left(\frac{L^2A^2}{n'}-LA\right).
+\]
+Since \(A^2>n'(K-1)\), comparison yields \(L\le J_h\).  Condition
+\eqref{eq:punctured-johnson-positive} is the weakest, \(h=e\), denominator and hence makes
+every \(J_h\) legal.  The Johnson fractions are nondecreasing in \(h\).
+Applying their cumulative caps to the nonincreasing owner weights proves
+the first inequality in \eqref{eq:punctured-johnson-profile}.
+
+Finally put \(u=\lfloor e/2\rfloor\).  Bound all weights with \(h\le u\)
+by \(e\); every weight with \(h>u\) equals one.  The two telescoping blocks
+give
+\[
+ eJ_u+(J_e-J_u)=(e-1)J_u+J_e.
+\]
+\end{proof}
+
+\begin{remark}[Exact sparse-direction support walls]
+At the first shortened KoalaBear and Mersenne-31 rows, exact integer
+evaluation gives
+\[
+\begin{array}{c|c|c|c|c}
+\text{row}&K&\text{last paid }e&\Delta_e&
+ (e-1)J_{\lfloor e/2\rfloor}+J_e\\ \hline
+\text{KoalaBear}&14&63908&1218&4607583\\
+\text{Mersenne-31}&6&65236&2794&2605443
+\end{array}
+\]
+against budgets \(274980728111395087\) and \(16777215\).  At the adjacent
+supports the denominators are \(-5924\) and \(-1636\), so this theorem
+makes no claim there.  The exact scan is in
+\texttt{experimental/verify\_mca\_sparse\_direction\_punctured\_johnson\_profile\_v1.py}.
+\end{remark}
+
+\begin{theorem}[Near-Johnson centered-Gram list compiler]
+\label{thm:near-johnson-centered-gram}
+Let \(S_1,\ldots,S_L\) be distinct \(A\)-subsets of an \(n\)-set such
+that \(|S_i\cap S_j|\le c\) for \(i\ne j\), where \(A>c\).  Put
+\[
+  g=nc-A^2\ge0,
+  \qquad
+  G=(A-c)^2-cg.
+\]
+If \(G>0\), then
+\begin{equation}
+  L\le\left\lfloor\frac{nA(A-c)}{G}\right\rfloor.
+  \label{eq:near-johnson-centered-gram}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let \(B\) be the \(L\)-by-\(n\) incidence matrix and put
+\[
+  H=BB^{\mathsf T}-c\mathbf1\mathbf1^{\mathsf T}.
+\]
+Every row of \(B\) has sum \(A\), so
+\(\mathbf1=A^{-1}B\mathbf1_n\).  The images of both summands defining
+\(H\) therefore lie in \(\operatorname{col}(B)\), and
+\begin{equation}
+  \operatorname{rank}(H)\le\operatorname{rank}(B)\le n.
+  \label{eq:centered-gram-rank}
+\end{equation}
+
+Write \(\delta_{ij}=c-|S_i\cap S_j|\).  Then
+\(0\le\delta_{ij}\le c\) is integral and
+\[
+ \operatorname{tr}(H)=L(A-c),\qquad
+ \operatorname{tr}(H^2)=L(A-c)^2+2\sum_{i<j}\delta_{ij}^2.
+\]
+If \(s_x\) is the incidence multiplicity at coordinate \(x\), then
+Cauchy--Schwarz gives
+\[
+ 2\sum_{i<j}|S_i\cap S_j|
+ =\sum_xs_x^2-LA
+ \ge \frac{L^2A^2}{n}-LA.
+\]
+Thus, for \(\Delta=\sum_{i<j}\delta_{ij}\),
+\[
+ 2\Delta\le L\left(\frac{Lg}{n}+A-c\right).
+\]
+Since \(\delta_{ij}^2\le c\delta_{ij}\),
+\[
+ \operatorname{tr}(H^2)
+ \le L\left((A-c)^2+c(A-c)+\frac{cLg}{n}\right).
+\]
+The symmetric trace-rank inequality
+\(\operatorname{rank}(H)\ge\operatorname{tr}(H)^2/
+\operatorname{tr}(H^2)\), together with
+\eqref{eq:centered-gram-rank}, yields
+\[
+  L\bigl((A-c)^2-cg\bigr)\le nA(A-c),
+\]
+which is \eqref{eq:near-johnson-centered-gram}.
+\end{proof}
+
+\begin{corollary}[Sparse-direction near-Johnson MCA payment]
+\label{cor:sparse-direction-near-johnson-mca}
+Retain the hypotheses of
+\cref{thm:sparse-direction-punctured-johnson-mca}, put
+\[
+ u=\lfloor e/2\rfloor,
+ \qquad n=N-e,
+ \qquad c=K-1,
+ \qquad A=m-e,
+\]
+and assume
+\[
+ (m-u)^2-nc>0,qquad
+ g=nc-A^2\ge0,qquad
+ G=(A-c)^2-cg>0.
+\]
+Define
+\[
+ J_u=\left\lfloor\frac{n(m-u-K+1)}{(m-u)^2-nc}\right\rfloor,
+ \qquad
+ Q_e=\left\lfloor\frac{nA(A-c)}G\right\rfloor.
+\]
+Then
+\begin{equation}
+  |Z|\le(e-1)J_u+Q_e.                              \label{eq:near-johnson-mca}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let \(N_u\) be the number of transformed explanations with outside deficit
+at most \(u\), and let \(N_e\) be their total number.  The deficit-owner
+bound gives
+\[
+ |Z|\le eN_u+(N_e-N_u)=(e-1)N_u+N_e.
+\]
+The ordinary Johnson argument on the punctured row gives \(N_u\le J_u\).
+For each explanation counted by \(N_e\), choose exactly \(A=m-e\) outside
+agreement coordinates.  Distinct degree-\(<K\) explanations give distinct
+blocks with intersections at most \(c=K-1\), so
+\cref{thm:near-johnson-centered-gram} gives \(N_e\le Q_e\).
+\end{proof}
+
+\begin{remark}[Exact centered-Gram support walls]
+Together with the preceding Johnson prefix, exact integer evaluation of
+\eqref{eq:near-johnson-mca} expands the low-support walls to
+\[
+\begin{array}{c|c|c|c}
+\text{row}&K&\text{last paid }e&\text{endpoint bound}\\ \hline
+\text{KoalaBear}&14&64037&198047217\\
+\text{Mersenne-31}&6&65418&16759641
+\end{array}
+\]
+against budgets \(274980728111395087\) and \(16777215\).  At KoalaBear
+\(e=64038\), the centered-Gram denominator is \(-36911\).  At Mersenne
+\(e=65419\), it remains positive, but the valid bound \(18212004\) exceeds
+budget.  The exact replay is in
+\path{experimental/verify_mca_sparse_direction_near_johnson_gram_rank_v1.py}.
+\end{remark}
+
+\begin{theorem}[Mean-centered Gram list compiler]
+\label{thm:mean-centered-gram-list}
+Let \(S_1,\ldots,S_L\) be distinct \(A\)-subsets of an \(n\)-set with
+\(|S_i\cap S_j|\le c\) for \(i\ne j\), where \(A>c\).  Put
+\[
+ g=nc-A^2,
+ \qquad
+ T=(n-A)^2-(n-1)g.
+\]
+If
+\[
+ g\ge0,
+ \qquad
+ 2A^2\ge nc,
+ \qquad
+ T>0,
+\]
+then
+\begin{equation}
+ L\le\left\lfloor
+ \frac{(n-1)n^2(A-c)}{AT}
+ \right\rfloor.
+ \label{eq:mean-centered-gram-list}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Let \(B\) be the incidence matrix and put
+\[
+ P=I_n-\frac1nJ_n,
+ \qquad
+ H=BPB^{\mathsf T}.
+\]
+Then \(H\) is positive semidefinite and has rank at most \(n-1\).  Set
+\(p=A^2/n\).  The diagonal entries are \(A-p\), while an off-diagonal
+entry is
+\[
+ x_{ij}=|S_i\cap S_j|-p\in[-p,c-p].
+\]
+Convexity gives the endpoint-chord inequality
+\[
+ x_{ij}^2\le(c-2p)x_{ij}+p(c-p).
+\]
+The assumption \(2A^2\ge nc\) makes the chord slope nonpositive.  Since
+\(H\) is positive semidefinite,
+\[
+ 2\sum_{i<j}x_{ij}\ge-L(A-p).
+\]
+With \(C=p(c-p)=A^2g/n^2\), the preceding two displays imply
+\[
+ \operatorname{tr}(H^2)\le CL^2+A(A-c)L.
+\]
+Now \(\operatorname{tr}(H)=L(A-p)\).  The PSD trace-rank inequality gives
+\[
+ L\bigl((A-p)^2-(n-1)C\bigr)\le(n-1)A(A-c).
+\]
+Finally,
+\[
+ (A-p)^2-(n-1)C=\frac{A^2T}{n^2},
+\]
+which proves \eqref{eq:mean-centered-gram-list}.
+\end{proof}
+
+\begin{corollary}[Exact mean-centered sparse-direction profile]
+\label{cor:mean-centered-sparse-direction-profile}
+Retain the sparse-direction notation of
+\cref{thm:sparse-direction-punctured-johnson-mca}.  For each deficit
+threshold \(1\le h\le e\), put \(A_h=m-h\) and let \(C_h\) be the
+ordinary Johnson cap when \(A_h^2>(N-e)(K-1)\), and otherwise the cap in
+\cref{thm:mean-centered-gram-list} whenever its three hypotheses hold.
+Assume every \(C_h\) is defined, and put
+\[
+ B_0=0,
+ \qquad
+ B_h=\min_{h\le v\le e}C_v.
+\]
+Then
+\begin{equation}
+ |Z|\le\sum_{h=1}^e(B_h-B_{h-1})
+                    \left\lfloor\frac eh\right\rfloor.
+ \label{eq:mean-centered-sparse-direction-profile}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let \(N_h\) count distinct transformed explanations with outside deficit at
+most \(h\).  Puncturing the direction support and applying the appropriate
+ordinary-list theorem gives \(N_h\le C_h\).  For every \(v\ge h\), also
+\(N_h\le N_v\le C_v\), hence \(N_h\le B_h\).  The suffix minima are
+nondecreasing.  Apply the deficit owner weight \(\lfloor e/h\rfloor\) and
+sum by parts.
+\end{proof}
+
+\begin{remark}[Exact mean-centered support walls]
+The complete exact profile in
+\eqref{eq:mean-centered-sparse-direction-profile} expands the walls to
+\[
+\begin{array}{c|c|c|c}
+\text{row}&K&\text{last paid }e&\text{endpoint profile}\\ \hline
+\text{KoalaBear}&14&64047&181731868\\
+\text{Mersenne-31}&6&65454&16101127
+\end{array}
+\]
+At KoalaBear \(e=64048\), the endpoint denominator is
+\(T=-1499457466\).  At Mersenne \(e=65455\), every cap remains defined,
+but the exact profile is \(17120123>16777215\).  The replay is in
+\path{experimental/verify_mca_sparse_direction_mean_centered_gram_profile_v1.py}.
+\end{remark}
+
+\begin{theorem}[Terminal-deficit affine-line cap]
+\label{thm:terminal-deficit-affine-line}
+Retain the sparse-direction notation of
+\cref{thm:sparse-direction-punctured-johnson-mca}, assume \(e\ge K\), and
+put
+\[
+ n=N-e,
+ \qquad A=m-e,
+ \qquad c=K-1.
+\]
+If \(A>c\), then the number \(L_e\) of transformed explanations that own a
+selected slope and have exact outside deficit \(e\) satisfies
+\begin{equation}
+ L_e\le\left\lfloor\frac{n-c}{A-c}\right\rfloor.
+ \label{eq:terminal-deficit-affine-line}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+An exact-deficit-\(e\) explanation has exactly \(A=m-e\) outside
+agreements.  To own a selected slope it must therefore agree at all \(e\)
+coordinates of the direction support \(E\).  If two such explanations have
+slopes \(\gamma\ne\delta\), their normalized difference is a nonzero
+degree-\(<K\) codeword \(p\) whose restriction to \(E\) is the gauged
+direction \(q|_E\).  Every further terminal explanation gives the same
+normalized difference: the two codewords agree on \(E\), and evaluation on
+\(E\) is injective because \(e\ge K\).  Thus all terminal explanations lie
+on one affine codeword line.
+
+Outside \(E\), let \(G\) be the common agreement core on the zeros of
+\(p\), and write \(g=|G|\le K-1=c\).  Away from \(G\), a coordinate can be
+an agreement for at most one affine-line parameter.  Since each terminal
+explanation has \(A-g\) agreements away from the core,
+\[
+ L_e(A-g)\le n-g.
+\]
+The ratio \((n-g)/(A-g)\) increases with \(g\), so \(g\le c\) gives
+\eqref{eq:terminal-deficit-affine-line}.  The case \(L_e\le1\) is
+immediate.
+\end{proof}
+
+\begin{corollary}[Prefix-plus-terminal sparse-direction profile]
+\label{cor:prefix-terminal-sparse-direction-profile}
+For every \(1\le h<e\), let \(C_h\) be a proved cumulative cap on the
+number \(N_h\) of transformed explanations with outside deficit at most
+\(h\), and put
+\[
+ B_0=0,
+ \qquad B_h=\min_{h\le v<e}C_v.
+\]
+Then
+\begin{equation}
+ |Z|\le
+ \sum_{h=1}^{e-1}(B_h-B_{h-1})\left\lfloor\frac eh\right\rfloor
+ +\left\lfloor\frac{N-e-(K-1)}{m-e-(K-1)}\right\rfloor.
+ \label{eq:prefix-terminal-sparse-direction-profile}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+For \(h<e\), monotonicity gives
+\(N_h\le\min_{h\le v<e}C_v=B_h\).  Sum the nonincreasing owner weights
+\(\lfloor e/h\rfloor\) by parts over the prefix layers, then apply
+\cref{thm:terminal-deficit-affine-line} to the exact terminal layer, whose
+owner weight is one.
+\end{proof}
+
+\begin{remark}[Exact terminal-line support walls]
+Using the Johnson/mean-centered cumulative caps for \(h<e\),
+\eqref{eq:prefix-terminal-sparse-direction-profile} pays one further
+support in each deployed row:
+\[
+\begin{array}{c|c|c|r|r}
+\text{row}&K&\text{last paid }e&\text{terminal cap}&\text{total profile}\\ \hline
+\text{KoalaBear}&14&64048&287&181326343\\
+\text{Mersenne-31}&6&65455&493&16100647
+\end{array}
+\]
+At KoalaBear \(e=64049\), the cumulative cap at \(h=e-1\) is unavailable.
+At Mersenne \(e=65456\), the valid profile is
+\(17119507>16777215\).  The remaining full-lift intervals are therefore
+\(64049\le e\le1044238\) and \(65456\le e\le1044241\).  This is a
+support-wall refinement, not a proof of either deployed row.  The exact
+replay is in
+\path{experimental/verify_mca_sparse_direction_terminal_deficit_line_payment_v1.py}.
+\end{remark}
+
+\begin{theorem}[Top-third exact-layer affine-line cap]
+\label{thm:top-third-affine-line}
+Retain the sparse-direction notation of
+\cref{thm:sparse-direction-punctured-johnson-mca}.  Assume \(e\ge K\), put
+\[
+ s=\left\lfloor\frac{e-K}{3}\right\rfloor,
+ \qquad H=e-s-1,
+\]
+and assume \(N-m>s\).  For \(0\le r\le s\), let \(L_r\) be the number of
+selected explanations with exact outside deficit \(h=e-r\).  Then
+\begin{equation}
+ L_r\le
+ \left\lfloor\frac{N-e-(K-1)}{m-e+r-(K-1)}\right\rfloor.
+ \label{eq:top-third-affine-line}
+\end{equation}
+Every explanation counted by \(L_r\) owns at most one selected slope.
+\end{theorem}
+
+\begin{proof}
+For an explanation \(a_i\) in this layer, let \(S_i\subseteq E\) be its
+inside agreement set with its assigned slope.  Then
+\[
+ |E\setminus S_i|\le r.
+\]
+For explanations at distinct slopes \(\gamma_i,\gamma_j\), the normalized
+difference
+\[
+ p_{ij}=\frac{a_i-a_j}{\gamma_i-\gamma_j}
+\]
+is a degree-\(<K\) codeword and equals the gauged direction \(q\) on
+\(S_i\cap S_j\).  Any three inside agreement sets have intersection at
+least \(e-3r\ge K\).  Hence \(p_{ij}\) and \(p_{ik}\) agree on at least
+\(K\) evaluation coordinates and are equal.  Fixing two anchors puts the
+entire exact layer on one affine codeword line.
+
+Each member has \(A_r=m-e+r\) outside agreements.  The line has a common
+agreement core of size \(g\le K-1\), and outside that core each coordinate
+agrees for at most one line parameter.  Thus
+\[
+ L_r(A_r-g)\le N-e-g.
+\]
+The hypothesis \(N-m>s\) gives \(N-e>A_r\), so the ratio increases with
+\(g\); substituting \(g\le K-1\) proves
+\eqref{eq:top-third-affine-line}.  Finally \(r<e/2\), so the deficit-owner
+bound is \(\lfloor e/(e-r)\rfloor=1\).
+\end{proof}
+
+\begin{corollary}[Top-third sparse-direction profile]
+\label{cor:top-third-sparse-direction-profile}
+For \(1\le h\le H\), let \(C_h\) be a proved cumulative explanation cap
+and put
+\[
+ B_0=0,
+ \qquad B_h=\min_{h\le v\le H}C_v.
+\]
+Then
+\begin{align}
+ |Z|
+ &\le\sum_{h=1}^{H}(B_h-B_{h-1})
+       \left\lfloor\frac eh\right\rfloor
+   +\sum_{r=0}^{s}
+       \left\lfloor\frac{N-e-(K-1)}{m-e+r-(K-1)}\right\rfloor.
+ \label{eq:top-third-sparse-direction-profile}
+\end{align}
+If the positive punctured-Johnson caps \(J_h\) are defined through \(H\)
+and \(u=\lfloor e/2\rfloor\), the first sum is at most
+\[
+ (e-1)J_u+J_H.
+\]
+\end{corollary}
+
+\begin{proof}
+Apply cumulative summation by parts through \(H\).  The remaining exact
+layers are \(h=e-r\), \(0\le r\le s\); apply
+\cref{thm:top-third-affine-line}.  For the coarse prefix estimate, give
+layers through \(u\) weight at most \(e\) and all later prefix layers
+weight one.
+\end{proof}
+
+\begin{remark}[Complete sparse-direction branch payment]
+For the Johnson rational cap
+\[
+ F(n,A)=\frac{n(A-(K-1))}{A^2-n(K-1)},
+\]
+the function increases with \(n\) and decreases with \(A\).  Uniformly over
+\(K\le e<d\), conservative endpoint substitution gives
+\[
+ J_{\lfloor e/2\rfloor}\le31,
+ \qquad J_H\le47
+\]
+on both deployed rows.  Each affine-line summand is nondecreasing in \(e\),
+so its sum is maximal at \(e=d-1\).  The exact endpoint calculations are
+\[
+\begin{array}{c|r|r|r}
+\text{row}&\text{line sum}&\text{uniform total}&\text{budget}\\ \hline
+\text{KoalaBear}&9405342&11496959&274980728111395087\\
+\text{Mersenne-31}&9405365&11496238&16777215
+\end{array}
+\]
+Consequently every sparse-direction support \(1\le e<d\) is paid.  The
+remaining full-lift intervals are
+\[
+ 67472\le e\le1044238
+ \quad\text{and}\quad
+ 67448\le e\le1044241.
+\]
+This closes the low-support branch, not either deployed row.  The exact
+replay is in
+\path{experimental/verify_mca_sparse_direction_top_third_affine_line_payment_v1.py}.
+\end{remark}
+
+\begin{theorem}[Pair-noncontained total-core line cap]
+\label{thm:full-lift-total-core-line}
+Retain the notation of \cref{thm:top-third-affine-line}, but allow
+\(e\ge d\).  Put
+\[
+ r_{\min}=\max\{0,e-m\},
+ \qquad t=N-m.
+\]
+For \(r_{\min}\le r\le s\), set \(A_r=m-e+r\).  Then the exact-layer count
+satisfies
+\begin{equation}
+ L_r\le Q_r,\qquad
+ Q_r=
+ \begin{cases}
+ t+1,&A_r\le K-1,\\[2mm]
+ \left\lfloor\dfrac{N-e-(K-1)}{A_r-(K-1)}\right\rfloor,
+     &A_r>K-1.
+ \end{cases}
+ \label{eq:full-lift-total-core-line}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+The triple-overlap proof of \cref{thm:top-third-affine-line} still puts the
+exact layer on an affine explanation line
+\(a_\gamma=A+\gamma p\).  A coordinate agrees for every line parameter
+exactly when \(A=r_0\) and \(p=q\) there.  If this total common agreement
+core had at least \(m\) coordinates, the codeword pair \((A,b+p)\) would
+explain the received pair on an \(m\)-set, contradicting pair
+noncontainment.  Thus its size \(g\) is at most \(m-1\).  Away from the
+core, each coordinate agrees for at most one parameter, and therefore
+\[
+ L_r(m-g)\le N-g,
+ \qquad L_r\le N-m+1=t+1.
+\]
+When \(A_r>K-1\), outside-coordinate packing gives the second branch as in
+\cref{thm:top-third-affine-line}.  That branch is no larger than \(t+1\):
+after clearing its positive denominator, the difference is
+\(t(A_r-K)+r\ge0\).
+\end{proof}
+
+\begin{corollary}[Full-lift common-core profile]
+\label{cor:full-lift-common-core-profile}
+If the positive punctured-Johnson caps exist through \(H=e-s-1\), then
+\begin{equation}
+ |Z|\le
+ (e-1)J_{\lfloor e/2\rfloor}+J_H
+ +\sum_{r=r_{\min}}^{s}Q_r.
+ \label{eq:full-lift-common-core-profile}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Deficits through \(H\) use the two-threshold Johnson prefix.  Deficits
+above \(H\) and at most \(m\) are exactly the layers
+\(r_{\min}\le r\le s\); apply \cref{thm:full-lift-total-core-line}.
+\end{proof}
+
+\begin{remark}[Exact full-lift common-core walls]
+Exact integer evaluation of
+\eqref{eq:full-lift-common-core-profile} extends the complete walls to
+\[
+\begin{array}{c|r|r|r}
+\text{row}&\text{last paid }e&\text{endpoint bound}&\text{next bound}\\ \hline
+\text{KoalaBear}&95943&27414298&\text{undefined}\\
+\text{Mersenne-31}&67452&16266965&17248067
+\end{array}
+\]
+At KoalaBear \(e=95944\), the prefix Johnson denominator at \(H\) is
+\(-1037\).  The adjacent Mersenne bound exceeds budget by \(470852\).
+The remaining full-lift intervals are
+\[
+ 95944\le e\le1044238
+ \quad\text{and}\quad
+ 67453\le e\le1044241.
+\]
+Neither adjacent failure is an unsafe certificate.  The replay is in
+\path{experimental/verify_mca_full_lift_top_third_common_core_payment_v1.py}.
+\end{remark}
+
+\begin{theorem}[Cross-layer top-third global-line cap]
+\label{thm:full-lift-top-third-global-line}
+Retain the full-lift notation above and put
+\[
+ s=\left\lfloor\frac{e-K}{3}\right\rfloor,
+ \qquad r_{\min}=\max\{0,e-m\}.
+\]
+All selected explanations in the union of exact layers
+\[
+ r_{\min}\le r\le s,
+ \qquad h=e-r,
+\]
+lie on one common affine codeword line.  The number $L_{\mathrm{high}}$
+of explanations in this entire union satisfies
+\begin{equation}
+ L_{\mathrm{high}}\le N-m+1.
+ \label{eq:full-lift-top-third-global-line}
+\end{equation}
+Each explanation in the union owns at most one selected slope.
+\end{theorem}
+
+\begin{proof}
+For an explanation $a_i$, let $r_i\le s$ be its missed-coordinate
+allowance on the direction support $E$, and let $S_i\subseteq E$ be
+its inside agreement set.  For any three explanations,
+\[
+ |S_i\cap S_j\cap S_k|
+ \ge e-(r_i+r_j+r_k)
+ \ge e-3s
+ \ge K.
+\]
+For distinct slopes, the normalized pair difference
+\[
+ p_{ij}=\frac{a_i-a_j}{\gamma_i-\gamma_j}
+\]
+is a degree-$<K$ codeword equal to the gauged direction $q$ on
+$S_i\cap S_j$.  Hence $p_{ij}=p_{ik}$ by restriction injectivity on
+the displayed triple intersection.  Fixing two anchors synchronizes all
+pair directions and puts the entire cross-layer union on one affine
+codeword line.  Families of size at most two are immediate.
+
+Let $g$ be the line's total common agreement core.  As in
+\cref{thm:full-lift-total-core-line}, pair noncontainment gives
+$g\le m-1$.  Away from this core, each coordinate agrees for at most one
+line parameter.  Every selected explanation has at least $m-g$
+agreements off the common core when all $N$ coordinates are counted, so
+\[
+ L_{\mathrm{high}}(m-g)\le N-g.
+\]
+The right-hand ratio increases with $g$, and $g\le m-1$ yields
+$L_{\mathrm{high}}\le N-m+1$.  Finally $r_i\le s<e/2$, so the
+deficit-owner bound is one.
+\end{proof}
+
+\begin{corollary}[Full-lift global-line profile]
+\label{cor:full-lift-global-line-profile}
+Put $H=e-s-1$ and $u=\lfloor e/2\rfloor$.  If the positive
+punctured-Johnson caps $J_u,J_H$ exist, then
+\begin{equation}
+ |Z|\le (e-1)J_u+J_H+(N-m+1).
+ \label{eq:full-lift-global-line-profile}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Deficits at most $H$ form the Johnson prefix and contribute at most
+$(e-1)J_u+J_H$.  Every remaining possible deficit belongs to the
+cross-layer union in
+\cref{thm:full-lift-top-third-global-line}; charge its line cap once.
+\end{proof}
+
+\begin{remark}[Exact cross-layer global-line walls]
+Exact integer evaluation of
+\eqref{eq:full-lift-global-line-profile} gives
+\[
+\begin{array}{c|r|r|r}
+\text{row}&\text{last paid }e&\text{endpoint bound}&\text{largest bound}\\ \hline
+\text{KoalaBear}&95943&6336049&6336049\text{ at }e=95943\\
+\text{Mersenne-31}&97908&6682339&6683188\text{ at }e=97907
+\end{array}
+\]
+At the adjacent supports $e=95944$ and $e=97909$, the respective
+$H$-prefix Johnson denominators are $-1037$ and $-965$.  The
+remaining full-lift intervals are therefore
+\[
+ 95944\le e\le1044238
+ \quad\text{and}\quad
+ 97909\le e\le1044241.
+\]
+This replaces the per-layer top-third charge by one global charge.  It does
+not repair the failed prefix cap, certify either adjacent support unsafe,
+or close a deployed row.  The exact replay is in
+\path{experimental/verify_mca_full_lift_top_third_global_line_payment_v1.py}.
+\end{remark}
+
+\begin{corollary}[Full-lift mean-centered global-line profile]
+\label{cor:full-lift-mean-centered-global-line-profile}
+Retain the notation of
+\cref{thm:full-lift-top-third-global-line}, put
+\[
+ H=e-s-1,
+ \qquad c=K-1,
+\]
+and assume $m-H>c$.  For every $1\le h\le H$, put
+$A_h=m-h$, and let $C_h$ be the punctured ordinary-Johnson cap when
+$A_h^2>(N-e)c$, and otherwise the cap in
+\cref{thm:mean-centered-gram-list} whenever its three hypotheses hold.
+Assume every $C_h$ is defined, and put
+\[
+ B_0=0,
+ \qquad B_h=\min_{h\le v\le H}C_v.
+\]
+Then
+\begin{equation}
+ |Z|\le
+ \sum_{h=1}^{H}(B_h-B_{h-1})
+       \left\lfloor\frac eh\right\rfloor
+ +(N-m+1).
+ \label{eq:full-lift-mean-centered-global-line-profile}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let $N_h$ count transformed explanations with outside deficit at most
+$h$.  The earlier sparse-direction corollary was calibrated for $e<d$,
+but its ordinary set-system proof has no such hypothesis.  After puncturing
+the direction support, choose exactly $A_h=m-h$ outside agreement
+coordinates for every explanation.  The guard $m-H>c$ gives $A_h>c$
+throughout the prefix, and distinct degree-$<K$ explanations intersect in
+at most $c$ coordinates.  Thus $N_h\le C_h$.  For $v\ge h$, also
+$N_h\le N_v\le C_v$, so $N_h\le B_h$.  Summation by parts against the
+owner weights $\lfloor e/h\rfloor$ gives the displayed prefix charge.
+Every remaining deficit belongs to the cross-layer high union; apply
+\cref{thm:full-lift-top-third-global-line} once.
+\end{proof}
+
+\begin{remark}[Exact full-lift mean-centered walls]
+Exact evaluation of
+\eqref{eq:full-lift-mean-centered-global-line-profile} gives
+\[
+\begin{array}{c|r|r|r}
+\text{row}&\text{last paid }e&\text{endpoint bound}&\text{largest bound}\\ \hline
+\text{KoalaBear}&96150&479693401&479693401\text{ at }e=96150\\
+\text{Mersenne-31}&98229&16488216&16489118\text{ at }e=98228
+\end{array}
+\]
+At KoalaBear $e=96151$, the first undefined cap is at $h=H=64105$,
+where the mean-centered denominator is $-4625043784$.  At Mersenne-31
+$e=98230$, every cap remains defined but the profile is
+$17415873$, exceeding budget by $638658$.  The remaining full-lift
+intervals are
+\[
+ 96151\le e\le1044238
+ \quad\text{and}\quad
+ 98230\le e\le1044241.
+\]
+Neither adjacent failure is an unsafe certificate, and no deployed v4 atom
+moves.  The exact replay is in
+\path{experimental/verify_mca_full_lift_mean_centered_global_line_profile_v1.py}.
+\end{remark}
+
+\begin{corollary}[One-layer boundary-anchor continuation]
+\label{cor:full-lift-boundary-anchor-continuation}
+Retain the hypotheses and notation of
+\cref{cor:full-lift-mean-centered-global-line-profile}, and put
+\[
+ q=e-K-3s.
+\]
+For $0\le J\le H$, define
+\[
+ B^{(J)}_0=0,
+ \qquad B^{(J)}_h=\min_{h\le v\le J}C_v,
+ \qquad
+ P_J=\sum_{h=1}^{J}
+       (B^{(J)}_h-B^{(J)}_{h-1})
+       \left\lfloor\frac eh\right\rfloor,
+ \qquad P_0=0.
+\]
+If $H\ge2$, $q\ge1$, and $2(s+1)<e$, then
+\begin{equation}
+ |Z|\le\max\{P_H+1,\ P_{H-1}+N-m+1\}.
+ \label{eq:full-lift-boundary-anchor-continuation}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let $\mathcal A$ be the selected explanations with missed-coordinate
+allowance at most $s$, and let $\mathcal D$ be the exact boundary layer
+with allowance $s+1$.  If $|\mathcal A|\le1$, the complete prefix through
+$H$ and the one-slope ownership guard give $|Z|\le P_H+1$.
+
+Suppose $|\mathcal A|\ge2$, and choose distinct anchors $a,b\in\mathcal A$.
+For each $c\in\mathcal D$,
+\[
+ |S_a\cap S_b\cap S_c|
+ \ge e-s-s-(s+1)=K+q-1\ge K.
+\]
+The normalized pair differences for $(c,a)$ and $(c,b)$ agree with the
+gauged direction on this intersection.  Restriction injectivity for
+degree-$<K$ codewords makes them identical, so $c$ lies on the affine
+codeword line already containing $\mathcal A$.  Thus
+$\mathcal A\cup\mathcal D$ is one pair-noncontained line.  The guard
+$2(s+1)<e$ gives one-slope ownership throughout this union, and
+\cref{thm:full-lift-total-core-line} charges it by $N-m+1$.  The remaining
+prefix is bounded independently by $P_{H-1}$.
+\end{proof}
+
+\begin{remark}[First Mersenne boundary support]
+For Mersenne-31 at $e=98230$,
+\[
+ (s,q,H)=(32741,1,65488),\qquad
+ P_H=16434744,\qquad P_{H-1}=15506184,
+\]
+and $N-m+1=981129$.  Hence
+\eqref{eq:full-lift-boundary-anchor-continuation} gives
+\[
+ |Z|\le\max\{16434745,16487313\}=16487313<16777215,
+\]
+with slack $289902$.  At $e=98231$ the same legal bound is $17492173$,
+which exceeds budget by $714958$; the residue-two refinement below repairs
+that proof-method failure.
+The exact replay is in
+\path{experimental/verify_mca_full_lift_boundary_anchor_continuation_v1.py}.
+\end{remark}
+
+\begin{corollary}[Residue-two boundary-layer continuation]
+\label{cor:full-lift-two-boundary-layer-continuation}
+Retain the hypotheses and notation of
+\cref{cor:full-lift-boundary-anchor-continuation}.  Suppose in addition
+that
+\[
+ q=2,\qquad H\ge3,\qquad 2(s+2)<e,\qquad m-H>c,
+\]
+and put
+\[
+ Q_H=\left\lfloor\frac{N-e-c}{m-H-c}\right\rfloor,
+ \qquad
+ \Delta_H=\left\lfloor\frac{e}{s+1}\right\rfloor.
+\]
+Then
+\begin{equation}
+ |Z|\le\max\left\{
+ \begin{array}{l}
+ P_{H-2}+N-m+1,\\
+ P_{H-1}+Q_H+1,\\
+ P_{H-1}+2,\\
+ P_{H-1}+Q_H,\\
+ P_{H-1}+\Delta_H
+ \end{array}\right\}.
+ \label{eq:full-lift-two-boundary-layer-continuation}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Let $\mathcal A$ be the top-third union, and let
+$\mathcal D_1,\mathcal D_2$ be the exact layers of deficits $H,H-1$.
+Choose inside agreement sets at their layer sizes, so their missed sets
+have sizes $s+1,s+2$.  The guard $2(s+2)<e$ gives one-slope ownership.
+
+If $|\mathcal A|\ge2$, two top anchors meet every member of
+$\mathcal D_1\cup\mathcal D_2$ on at least
+\[
+ e-s-s-(s+2)=K+q-2=K
+\]
+common coordinates.  Restriction injectivity puts all three layers on one
+affine codeword line.  Total-core packing charges it by $N-m+1$, leaving
+$P_{H-2}$.
+
+Suppose $\mathcal A$ has one member.  If $|\mathcal D_1|\ge2$, that member
+and any two boundary members have at least
+$e-s-2(s+1)=K$ common coordinates, so $\mathcal D_1$ is one affine line.
+Charge the top member separately.  Every boundary member has exactly
+$m-H$ outside agreements, and outside-core line packing bounds the layer by
+$Q_H$.  This gives $P_{H-1}+Q_H+1$.  If
+$|\mathcal D_1|\le1$, direct charging gives $P_{H-1}+2$.
+
+Finally suppose $\mathcal A$ is empty, and write $R_i$ for the size-$(s+1)$
+missed set of a member of $\mathcal D_1$.  If some $R_a,R_b$ intersect,
+then every third member has
+\[
+ |S_a\cap S_b\cap S_j|
+ \ge e-(3(s+1)-1)=K+q-2=K.
+\]
+The fixed pair synchronizes the whole layer, giving $P_{H-1}+Q_H$.
+Otherwise the $R_i$ are pairwise disjoint, whence
+$|\mathcal D_1|(s+1)\le e$ and the charge is
+$P_{H-1}+\Delta_H$.  These cases are exhaustive.
+\end{proof}
+
+\begin{remark}[Second Mersenne boundary support]
+At Mersenne-31 $e=98231$,
+\[
+ (s,q,H)=(32741,2,65489),\quad
+ P_{H-2}=15505282,\quad P_{H-1}=16433719,
+\]
+while $N-m+1=981129$, $Q_H=484$, and $\Delta_H=3$.  The five cases in
+\eqref{eq:full-lift-two-boundary-layer-continuation} are
+\[
+ 16486411,\quad16434204,\quad16433721,\quad16434203,\quad16433722.
+\]
+Thus $|Z|\le16486411<16777215$, with slack $290804$.  At $e=98232$ the
+residue resets to $q=0$, so this corollary is inapplicable; that is not an
+unsafe certificate.  The Mersenne full-lift residual interval is now
+$98232\le e\le1044241$.  The exact replay is in
+\path{experimental/verify_mca_full_lift_two_boundary_layer_continuation_v1.py}.
+\end{remark}
+
+\begin{corollary}[Boundary direction-class router]
+\label{cor:full-lift-boundary-direction-router}
+Retain the pair-noncontained full-lift hypotheses and notation of
+\cref{thm:full-lift-top-third-global-line}, put
+\[
+ H=e-s-1,\qquad c=K-1,
+\]
+For $1\le h\le H-1$, define $C_h$ by the punctured Johnson or
+mean-centered rule in
+\cref{cor:full-lift-mean-centered-global-line-profile}, and suppose every
+such cap is defined.  Define the independently truncated prefix
+\[
+ B_0=0,\qquad B_h=\min_{h\le v\le H-1}C_v,
+ \qquad
+ P_{H-1}=\sum_{h=1}^{H-1}(B_h-B_{h-1})
+                 \left\lfloor\frac eh\right\rfloor.
+\]
+Let $\mathcal D$ be the exact deficit-$H$ layer, and write $q_{\rm dir}$
+for the gauged direction on its support $E$.  Put
+\[
+ A=2H-e,
+ \qquad
+ J=\left\lfloor\frac{e(A-c)}{A^2-ec}\right\rfloor,
+ \qquad
+ Q=\left\lfloor\frac{N-e-c}{m-H-c}\right\rfloor.
+\]
+If
+\[
+ A>0,\qquad A^2>ec,\qquad N-e>m-H>c,
+\]
+then
+\begin{equation}
+ |\mathcal D|\le 1+J(Q-1).
+ \label{eq:full-lift-boundary-direction-cap}
+\end{equation}
+If $\mathcal T$ is the synchronized union of deficits greater than $H$,
+then consequently
+\begin{equation}
+ |Z|\le P_{H-1}+1+J(Q-1)+|\mathcal T|.
+ \label{eq:full-lift-boundary-direction-router}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+The claim is immediate when $\mathcal D$ is empty.  Otherwise fix an anchor
+$(\gamma_0,c_0)\in\mathcal D$.  For every other member put
+\[
+ p_\gamma=\frac{c_\gamma-c_0}{\gamma-\gamma_0}.
+\]
+The chosen size-$H$ inside agreement sets meet in at least $A=2H-e$
+coordinates, and on this intersection $p_\gamma=q_{\rm dir}$.  Thus the
+intrinsic set
+\[
+ U_p=\{x\in E:q_{\rm dir}(x)=p(x)\}
+\]
+has size at least $A$ for every represented direction $p$.  Such a $p$ is
+nonzero: otherwise the two explanations would be the same codeword, while
+on their nonempty inside intersection that codeword would equal received
+words whose difference is $(\gamma-\gamma_0)q_{\rm dir}\ne0$.
+
+For distinct represented directions $p,p'$, the intersection
+$U_p\cap U_{p'}$ lies in the zero set of the nonzero degree-$<K$ codeword
+$p-p'$, and hence has size at most $c$.  Choosing $A$ points from every
+$U_p$ and applying the constant-block Johnson double count gives at most
+$J$ represented directions.
+
+For a fixed $p$, its members and the anchor lie on the affine codeword line
+$c_0+(\gamma-\gamma_0)p$.  Outside $E$ the received direction vanishes, so
+the common agreement core of this line lies in the zero set of the nonzero
+codeword $p$ and has size at most $c$.  Every member has $m-H$ outside
+agreements.  Since $N-e>m-H>c$, outside-core packing bounds the line by
+$Q$.  The anchor is repeated in each line closure, so each of the at most
+$J$ classes contributes at most $Q-1$ nonanchors.  This proves
+\eqref{eq:full-lift-boundary-direction-cap}.  The boundary and top layers
+have one-slope ownership; the independently truncated prefix charges all
+lower deficits, proving \eqref{eq:full-lift-boundary-direction-router}.
+\end{proof}
+
+\begin{remark}[First residue-zero Mersenne router]
+At Mersenne-31 $e=98232$,
+\[
+ (s,H,A)=(32742,65489,32746),\qquad J=3,\qquad Q=484,
+\]
+so $|\mathcal D|\le1450$.  The exact prefix is
+$P_{H-1}=16432695$, and therefore
+\[
+ |Z|\le16434145+|\mathcal T|.
+\]
+An unsafe family would need $|\mathcal T|\ge343071$.  If $g$ is the total
+common core of this affine line, line packing gives
+\[
+ g\ge
+ \left\lceil\frac{|\mathcal T|m-N}{|\mathcal T|-1}\right\rceil
+ \ge67452=m-2.
+\]
+Thus the first residue-zero obstruction is reduced to a near-maximal-core
+line.  The router alone is not a safety or unsafety certificate at
+$e=98232$; the following corollary absorbs the remaining layers into this
+line.  The exact router replay is in
+\path{experimental/verify_mca_full_lift_residue_zero_direction_router_v1.py},
+with an independent endpoint audit in
+\path{experimental/audit_mca_full_lift_residue_zero_direction_router_v1.py}.
+\end{remark}
+
+\begin{corollary}[First residue-zero Mersenne payment]
+\label{cor:full-lift-residue-zero-core-absorption}
+Under the pair-noncontained full-lift hypotheses, the Mersenne-31 support
+$e=98232$ is safe:
+\[
+ |Z|\le16777215.
+\]
+Consequently its full-lift residual interval starts at $e=98233$.
+\end{corollary}
+
+\begin{proof}
+Suppose instead that $|Z|>16777215$.  By the preceding router, the
+synchronized top line $\mathcal T$ has at least $343071$ members and total
+common agreement core $G$ of size at least $67452=m-2$.  Write the line as
+$c_\gamma=A_0+\gamma p$.  Its direction $p$ is nonzero.  Outside the
+gauged direction support $E$, a coordinate common to two line members must
+be a zero of $p$, so
+\[
+ |G\cap E|\ge67452-(K-1)=67447=:u.                 \tag{1}
+\]
+
+Take any selected slope $\delta$ whose assigned explanation has outside
+deficit $h\ge e-u+K=30791$.  Ownership supplies an inside agreement set
+$S_\delta$ of size $h$.  Choose two distinct top anchors.  By (1),
+\[
+ |G\cap E\cap S_\delta|\ge u+h-e\ge K.
+\]
+On these coordinates, both normalized differences from $c_\delta$ to the
+two anchors equal the gauged direction.  Restriction injectivity makes the
+two degree-$<K$ differences equal.  Subtracting their defining equations
+then identifies this common difference with $p$, and hence
+$c_\delta=A_0+\delta p$.  Thus every assigned pair with $h\ge30791$ joins
+the same affine line.  The nonzero direction makes its slope parameter
+injective, and total-core line packing charges all these slopes once by
+\[
+ N-m+1=981129.                                      \tag{2}
+\]
+
+Every remaining assigned explanation has $h\le30790$, so after puncturing
+$E$ it agrees with the outside received word on at least
+$m-30790=36664$ coordinates.  The ordinary Johnson count gives at most
+\[
+ \left\lfloor
+ \frac{950350(36664-5)}{36664^2-950350\cdot5}
+ \right\rfloor=26                                  \tag{3}
+\]
+distinct explanations.  Each owns at most $e=98232$ slopes.  Combining
+(2) and (3) yields
+\[
+ |Z|\le98232\cdot26+981129
+     =3535161<16777215,
+\]
+the desired contradiction.
+\end{proof}
+
+\begin{remark}[Exact absorption margin]
+The contradiction bound has margin $13242054$.  This payment does not
+claim safety at $e=98233$ or provide an unsafe certificate.  Its exact
+replay and independent audit are
+\path{experimental/verify_mca_full_lift_residue_zero_core_absorption_v1.py}
+and
+\path{experimental/audit_mca_full_lift_residue_zero_core_absorption_v1.py}.
+\end{remark}
+
+\begin{corollary}[Fixed-cutoff boundary-stack continuation]
+\label{cor:full-lift-fixed-cutoff-boundary-stack}
+Retain the pair-noncontained full-lift hypotheses and notation above.  Fix
+a target slope budget $B$ and $h_0<H$, and let $P_{h_0}(e)$ be the independently truncated
+Johnson/mean-centered prefix through $h_0$.  For every $h_0<h\le H$, put
+\[
+ A_h=2h-e,
+ \qquad
+ J_h=\left\lfloor\frac{e(A_h-c)}{A_h^2-ec}\right\rfloor,
+ \qquad
+ Q_h=\left\lfloor\frac{N-e-c}{m-h-c}\right\rfloor,
+\]
+and suppose
+\[
+ 2h>e,\qquad A_h^2>ec,\qquad N-e>m-h>c
+\]
+throughout this range.  Define
+\[
+ F_e=P_{h_0}(e)+\sum_{h=h_0+1}^{H}\{1+J_h(Q_h-1)\}.
+ \tag{BS1}
+\]
+Then
+\[
+ |Z|\le F_e+|\mathcal T|.                           \tag{BS2}
+\]
+In particular, $F_e+N-m+1\le B$ implies safety.  Otherwise suppose
+$F_e<B$, and put
+\[
+ L_e=B-F_e+1,
+ \qquad
+ g_e=\left\lceil\frac{L_em-N}{L_e-1}\right\rceil,
+ \qquad
+ u_e=g_e-c,
+ \qquad
+ a_e=e-u_e+K.
+\]
+If the punctured ordinary-Johnson cap
+\[
+ M_e=\left\lfloor
+ \frac{(N-e)(m-a_e+1-c)}{(m-a_e+1)^2-(N-e)c}
+ \right\rfloor                                      \tag{BS3}
+\]
+is defined and
+\[
+ eM_e+N-m+1\le B,                                  \tag{BS4}
+\]
+then the support is safe.
+\end{corollary}
+
+\begin{proof}
+The prefix handles deficits through $h_0$.  Fix an exact layer
+$h_0<h\le H$.  Every explanation owns one slope.  Relative to an anchor,
+its nonzero normalized codeword direction agrees with the gauged direction
+on at least $A_h=2h-e$ coordinates.  Distinct directions have intrinsic
+agreement sets meeting in at most $c$ coordinates, so the constant-block
+Johnson count gives at most $J_h$ classes.  Each class and the anchor form
+one nonzero affine line.  Its outside common core has size at most $c$, and
+outside-core packing gives $Q_h$ members.  Subtracting the repeated anchor
+prices the layer by $1+J_h(Q_h-1)$.  The unpriced top union is the one
+synchronized line $\mathcal T$, proving (BS2).
+
+If (BS2) does not pay directly and the family is unsafe, then
+$|\mathcal T|\ge L_e$ and total-core line packing forces core at least
+$g_e$.  At most $c$ core coordinates lie outside the gauged direction
+support, so at least $u_e$ lie inside it.  The two-anchor argument from
+\cref{cor:full-lift-residue-zero-core-absorption} absorbs every assigned
+pair of deficit at least $a_e$ into the same line.  The remaining
+explanations have outside agreement at least $m-a_e+1$; (BS3) counts them,
+the conservative owner multiplier $e$ prices their slopes, and (BS4) pays.
+\end{proof}
+
+\begin{remark}[Exact fixed-cutoff Mersenne interval]
+For Mersenne-31, take $h_0=65200$.  Exact integer replay pays every support
+\[
+ 98232\le e\le101155.
+\]
+The direct branch applies through $e=101149$; the final six supports use
+core absorption.  At $e=101155$,
+\[
+ \begin{aligned}
+ F_e&=16667033,& L_e&=110183,& g_e&=67446,\\
+ M_e&=28,& eM_e+N-m+1&=3813469.
+ \end{aligned}
+\]
+The final bound has slack $12963746$.  At adjacent $e=101156$, the same
+fixed-cutoff charge is $16951223$, above budget by $174008$.  This is a
+fixed-cutoff method wall, not an unsafe certificate.  The Mersenne
+full-lift residual interval is now $101156\le e\le1044241$.
+
+The endpoint verifier and full constant-memory C replay are
+\path{experimental/verify_mca_full_lift_fixed_cutoff_boundary_stack_v1.py}
+and
+\path{experimental/verify_mca_full_lift_fixed_cutoff_boundary_stack_v1.c}.
+\end{remark}
+
+\begin{corollary}[Residue-two repair at the fixed-cutoff wall]
+\label{cor:full-lift-fixed-cutoff-q2-anchor-repair}
+Retain the pair-noncontained Mersenne-31 full-lift hypotheses.  At
+\[
+ e=101156,\qquad (s,q,H)=(33716,2,67439),
+\]
+use the fixed-cutoff charge \((\mathrm{BS1})\) with \(h_0=65258\).
+Let \(\mathcal T\) be the synchronized top union, and let
+\(\mathcal D_1,\mathcal D_2\) be the exact layers of deficits
+\(H,H-1\).  The resulting charges are
+\[
+ F=16895280,\qquad
+ D_1=284224,\qquad D_2=258385.
+\]
+Then the complete slope family satisfies
+\[
+ |Z|\le16705799<16777215.
+\]
+Consequently this support is safe, and the residual Mersenne full-lift
+interval is \(101157\le e\le1044241\).
+\end{corollary}
+
+\begin{proof}
+Every member of \(\mathcal T\cup\mathcal D_1\cup\mathcal D_2\)
+owns at most one slope.  If \(|\mathcal T|\ge2\), two top anchors and
+any boundary member have at least
+\[
+ e-s-s-(s+2)=K+q-2=K
+\]
+common inside agreement coordinates.  Thus the top union and both
+boundary layers lie on one affine codeword line.  Removing both coarse
+boundary charges leaves
+\[
+ G=F-D_1-D_2=16352671.
+\]
+Unsafety would force at least \(16777215-G+1=424545\) members on that
+line.  Total-core packing then forces common core \(67452=m-2\), with
+at least \(67447\) core coordinates inside the gauged direction
+support.  The two-anchor absorption argument therefore synchronizes every
+assigned explanation of deficit at least \(33715\) onto the line.  The
+remaining punctured ordinary list has agreement at least \(33740\) and
+Johnson cap \(28\), whence
+\[
+ |Z|\le101156\cdot28+981129=3813497.
+\]
+
+Suppose next that \(|\mathcal T|=1\).  If
+\(|\mathcal D_1|\ge2\), the top anchor and any two first-boundary
+members share at least
+\[
+ e-s-2(s+1)=K
+\]
+inside coordinates, so \(\mathcal D_1\) is one affine codeword line.
+Its outside agreement is \(m-H=15\), and outside-core packing gives
+\(|\mathcal D_1|\le94742\).  The two subcases give
+\[
+ F-D_1+94742+1=16705799,\qquad
+ F-D_1+2=16611058.
+\]
+
+Finally suppose \(\mathcal T\) is empty.  If two first-boundary
+missed sets intersect, those two members and any third share at least
+\[
+ e-\{3(s+1)-1\}=K
+\]
+inside coordinates.  The layer is one affine line and contributes at
+most \(94742\), giving \(F-D_1+94742=16705798\).  Otherwise its
+missed sets are pairwise disjoint, so
+\(|\mathcal D_1|\le\lfloor e/(s+1)\rfloor=3\), giving
+\(F-D_1+3=16611059\).  These five exhaustive cases have maximum
+\(16705799\), as claimed.
+\end{proof}
+
+\begin{remark}[Scope and replay]
+At adjacent \(e=101157\), the residue resets to zero, so the preceding
+repair is inapplicable; no unsafe certificate is claimed.  The source-bound
+replay and independent constant audit are
+\path{experimental/verify_mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.py}
+and
+\path{experimental/audit_mca_full_lift_fixed_cutoff_q2_anchor_repair_v1.py}.
+\end{remark}
+
+\begin{corollary}[Boundary direction-class affine-line bank]
+\label{cor:full-lift-boundary-line-bank}
+Retain the pair-noncontained full-lift hypotheses and put
+\[
+ s=\left\lfloor\frac{e-K}{3}\right\rfloor,\qquad
+ H=e-s-1,\qquad U=\min(H,m),\qquad c=K-1.
+\]
+Fix \(h_0<U\), and let \(P_{h_0}(e)\) be the independently truncated
+Johnson/mean-centered prefix through \(h_0\).  For
+\(h_0<h\le U\), put
+\[
+ A_h=2h-e,\qquad
+ J_h=\left\lfloor\frac{e(A_h-c)}{A_h^2-ec}\right\rfloor,
+\]
+and suppose
+\[
+ 2h>e,\qquad A_h>c,\qquad A_h^2>ec
+\]
+throughout this range.  Define
+\[
+ G_e=\mathbf 1_{\{H<m\}}+\sum_{h=h_0+1}^{U}J_h,\qquad
+ C_e=P_{h_0}(e)+\sum_{h=h_0+1}^{U}(1-J_h).
+\]
+Then there are \(G_e\) affine explanation-line slots
+\(\mathcal L_i\) such that
+\[
+ |Z|\le C_e+\sum_{i=1}^{G_e}|\mathcal L_i|.        \tag{LB1}
+\]
+In particular, for target budget \(B\), unsafety forces one slot to
+have size at least
+\[
+ \lambda_e=
+ \left\lceil\frac{B-C_e+1}{G_e}\right\rceil.       \tag{LB2}
+\]
+If \(\lambda_e\ge2\), put
+\[
+ g_e=\left\lceil\frac{\lambda_em-N}{\lambda_e-1}\right\rceil,
+ \quad u_e=g_e-c,\quad a_e=e-u_e+K.
+\]
+When the punctured ordinary-Johnson cap
+\[
+ M_e=\left\lfloor
+ \frac{(N-e)(m-a_e+1-c)}
+ {(m-a_e+1)^2-(N-e)c}
+ \right\rfloor
+\]
+is defined and \(eM_e+N-m+1\le B\), the support is safe.
+\end{corollary}
+
+\begin{proof}
+Fix one anchor in an exact layer \(h_0<h\le U\).  Every selected
+explanation owns at most one slope because \(2h>e\).  Relative to the
+anchor, each nonzero normalized codeword direction agrees with the gauged
+direction on at least \(A_h\) inside coordinates.  Distinct directions
+have agreement blocks meeting in at most \(c\), so the constant-block
+Johnson count permits at most \(J_h\) direction classes.
+
+Each class together with the anchor is one affine explanation line.  Pad
+to exactly \(J_h\) classes with anchor-only slots.  The exact layer then
+satisfies
+\[
+ |\mathcal D_h|
+ =1-J_h+\sum_{j=1}^{J_h}|\mathcal L_{h,j}|.
+\]
+If \(H<m\), the cross-layer top union contributes one further affine line.
+Summing these identities and the prefix proves (LB1).  Notice that this
+argument uses no outside-core denominator.
+
+If the family is unsafe, pigeonhole gives (LB2).  Total-core line packing
+forces a common core of size at least \(g_e\), of which at least \(u_e\)
+coordinates lie inside the gauged direction support.  Two anchors from
+the large slot synchronize every assigned explanation of deficit at least
+\(a_e\) onto that same line.  The remaining explanations have outside
+agreement at least \(m-a_e+1\); the punctured ordinary-Johnson cap counts
+them, and the conservative owner multiplier \(e\) completes the payment.
+\end{proof}
+
+\begin{remark}[Exact Mersenne line-bank interval]
+For Mersenne-31, take \(h_0=65272\).  Exact replay pays every support
+\[
+ 101157\le e\le124805.
+\]
+At the endpoint,
+\[
+ \begin{aligned}
+ P_{h_0}&=1636955,& C_e&=1604577,&G_e&=34560,\\
+ \lambda_e&=440,&g_e&=65220,&M_e&=126,\\
+ eM_e+N-m+1&=16706559.
+ \end{aligned}
+\]
+The final margin is \(70656\).  At adjacent \(e=124806\), the same legal
+compiler gives \(16831491\), above budget by \(54276\).  This is a method
+wall, not an unsafe certificate.  The Mersenne residual interval is now
+\(124806\le e\le1044241\).
+
+The source-bound endpoint replay, independent audit, and full
+constant-memory interval replay are
+\path{experimental/verify_mca_full_lift_boundary_line_bank_absorption_v1.py},
+\path{experimental/audit_mca_full_lift_boundary_line_bank_absorption_v1.py},
+and
+\path{experimental/verify_mca_full_lift_boundary_line_bank_absorption_v1.c}.
+\end{remark}
+
+\begin{corollary}[Recursive affine-line peeling and inside-core packing]
+\label{cor:full-lift-recursive-line-peeling}
+Assume the hypotheses of
+Corollary~\ref{cor:full-lift-boundary-line-bank}, suppose \(H\ge m\), and
+put \(Q=N-m+1\).  Fix a cutoff \(b<m\) for which the prefix and every
+line-bank guard are valid.  Let \(\mathcal Z_r\) be the residual assigned
+slopes after \(r\) affine lines have been removed, with
+\(\mathcal Z_0=Z\) and deficit ceiling \(U_0=m\), and charge the removed
+lines by \(rQ\).
+Put
+\[
+ T_r=B-rQ,\qquad
+ G_r=\sum_{h=b+1}^{U_r}J_h,\qquad
+ C_r=P_b(e)+(U_r-b)-G_r.
+\]
+If the suffix-minimum prefix through \(U_r\) is defined and at most \(T_r\),
+then the support is safe.  Otherwise, whenever \(G_r>0\) and
+\(T_r-C_r+1>0\), an unsafe residual forces an affine line of size at least
+\[
+ \lambda_r=\left\lceil\frac{T_r-C_r+1}{G_r}\right\rceil.       \tag{RP1}
+\]
+For \(\lambda_r\ge2\), define
+\[
+ g_r=\max\left(0,
+       \left\lceil\frac{\lambda_rm-N}{\lambda_r-1}\right\rceil\right),
+ \qquad u_r=\max(g_r-c,0),
+ \qquad U_{r+1}=\min(U_r,e-u_r+K-1).             \tag{RP2}
+\]
+Remove the whole selected line and repeat.  The selected lines are distinct,
+and their inside-core sets \(I_i\) satisfy
+\[
+ |I_i|\ge u_i,\qquad |I_i\cap I_j|\le c.
+\]
+Consequently, if at any stage
+\[
+ \sum_{i=0}^{r}u_i-\binom{r+1}{2}c>e,             \tag{RP3}
+\]
+the assumed unsafe family is impossible.  Thus termination either at the
+weighted prefix or at (RP3) certifies safety.
+\end{corollary}
+
+\begin{proof}
+Apply the exact-layer line-bank identity to the residual assigned family.
+Empty layers only improve the resulting inequality, so
+\[
+ |\mathcal Z_r|\le C_r+\sum_{i=1}^{G_r}|\mathcal L_i|.
+\]
+If the original family is unsafe after \(r\) line charges, then
+\(|\mathcal Z_r|>T_r\), and pigeonhole gives (RP1).  The guard
+\(\lambda_r\ge2\) makes the selected slot an actual affine line rather than
+a padded singleton.  Total-core line packing gives \(g_r\).  At most \(c\)
+core coordinates lie outside the gauged direction support, and the
+common-core absorption argument places every residual explanation of
+deficit at least \(e-u_r+K\) on the same line.  Removing the whole line costs
+at most \(Q\) and gives (RP2).  Even when (RP2) does not lower the deficit
+ceiling, the selected line is absent from the next residual.
+
+Write a selected line as \(c_\gamma=a_i+\gamma b_i\).  Its total common
+core consists of coordinates where
+\((r_0,r_1)=(a_i,b_i)\).  Distinct selected lines have distinct codeword
+pairs.  At least one of \(a_i-a_j\) and \(b_i-b_j\) is therefore a nonzero
+degree-\(<K\) codeword, so two total cores, and hence two inside cores, meet
+in at most \(c=K-1\) coordinates.  Since every inside core lies in the same
+\(e\)-coordinate support, first-order inclusion--exclusion gives the reverse
+of (RP3), proving the contradiction.
+\end{proof}
+
+\begin{remark}[Exact Mersenne recursive-peeling interval]
+For Mersenne-31, start from \(b=65304\).  When its first line-bank layer
+fails a guard, take the least legal cutoff and add two guard layers.  Exact
+replay checks every prefix and line-bank denominator under this printed
+rule.  It pays all
+\[
+ 124806\le e\le130198.
+\]
+Of these \(5393\) supports, \(3837\) terminate at the weighted prefix and
+\(1556\) at (RP3), with at most five peeled lines.  The first packing
+termination is \(e=128340\), where two inside cores give
+\(62822+66574-5=129391>128340\).  At the last support, the five inside-core
+lower bounds give
+\[
+ 37718+33617+28204+20729+12942-10\cdot5
+ =133160>130198.
+\]
+At adjacent \(e=130199\), nine legal peels give packing lower bound
+\(126052\le130199\); the next residual target is \(7947054\), while the
+certified base charge is \(8154082\), so (RP1) no longer forces a line.  This
+is a method wall, not an unsafe certificate.  The Mersenne residual interval
+is now \(130199\le e\le1044241\).
+
+The endpoint replay, independent audit, and full constant-memory interval
+replay are
+\path{experimental/verify_mca_full_lift_recursive_line_peeling_core_packing_v1.py},
+\path{experimental/audit_mca_full_lift_recursive_line_peeling_core_packing_v1.py},
+and
+\path{experimental/verify_mca_full_lift_recursive_line_peeling_core_packing_v1.c}.
+\end{remark}
+
+\begin{corollary}[Joint-core charge for peeled explanation lines]
+\label{cor:full-lift-joint-core-charge}
+In the setting of
+Corollary~\ref{cor:full-lift-recursive-line-peeling}, suppose \(r\)
+distinct parameterized affine explanation lines have been removed, and let
+\(g_i\) be their actual total common-core sizes.  Put
+\[
+ S_r=\min\left\{r(m-1),e+\binom{r+1}{2}c\right\},
+ \quad q_r=\left\lfloor\frac{S_r}{m-1}\right\rfloor,
+ \quad z_r=S_r-q_r(m-1),
+\]
+and \(f(g)=(N-g)/(m-g)\), \(Q=N-m+1\).  Their total number of assigned
+slopes is at most
+\[
+ L_r=
+ \begin{cases}
+  rQ,&q_r=r,\\
+  \left\lfloor
+   q_rQ+f(z_r)+(r-q_r-1)f(0)
+  \right\rfloor,&q_r<r.
+ \end{cases}                                      \tag{JC1}
+\]
+Consequently the residual peeling target may be strengthened from
+\(B-rQ\) to \(B-L_r\).
+\end{corollary}
+
+\begin{proof}
+Let \(I_i\) be the part of the \(i\)th total core inside the fixed
+\(e\)-coordinate gauged direction support.  Distinct parameterized lines
+have distinct codeword pairs, so
+\(|I_i\cap I_j|\le c\).  Each line direction is a nonzero degree-\(<K\)
+codeword, so at most \(c\) further core coordinates lie outside that
+support.  Therefore
+\[
+ \sum_i g_i\le e+\binom r2c+rc
+              =e+\binom{r+1}{2}c,
+\]
+and \(g_i\le m-1\) by pair noncontainment.
+
+Off-core agreement sets on one line are disjoint, giving the rational cap
+\(f(g_i)\).  The function
+\[
+ f(g)=1+\frac{N-m}{m-g}
+\]
+is increasing and convex.  Moving core mass from the smaller of two
+interior arguments to the larger cannot decrease their sum.  Repeating
+this exchange concentrates all available mass at \(m-1\), at most one
+remainder \(z_r\), and zero.  The total number of slopes is integral, so
+flooring the resulting rational sum gives (JC1).
+\end{proof}
+
+\begin{remark}[Exact Mersenne joint-charge interval]
+Using \(B-L_r\) in the recursive line bank pays every support
+\[
+ 130199\le e\le130219.
+\]
+All 21 supports terminate by inside-core packing, using between four and
+thirteen lines.  At the endpoint, the thresholds are \(21\) and then twelve
+copies of \(18\), giving
+\[
+ 18393+12\cdot9736-\binom{13}{2}\cdot5
+ =134835>130219.
+\]
+At adjacent \(e=130220\), the first threshold is \(20\) and the next 42 are
+\(16\).  Their packing lower bound is only
+\[
+ 15811+42\cdot2041-\binom{43}{2}\cdot5
+ =97018.
+\]
+For \(r=43\), the joint core allowance is
+\(134950=2(m-1)+44\), the exact joint charge is \(1962895\), and the next
+threshold drops to \(13\), whose forced-core lower bound is zero.  Later
+thresholds cannot increase.  This is a method wall, not an unsafe
+certificate; the Mersenne residual is now
+\(130220\le e\le1044241\).
+
+The endpoint replay, independent rational audit, and full interval replay
+are
+\path{experimental/verify_mca_full_lift_joint_core_charge_peeling_v1.py},
+\path{experimental/audit_mca_full_lift_joint_core_charge_peeling_v1.py},
+and
+\path{experimental/verify_mca_full_lift_joint_core_charge_peeling_v1.c}.
+\end{remark}
+
+\begin{corollary}[Lower-aware joint-core charge]
+\label{cor:full-lift-lower-aware-joint-core-charge}
+In the setting of
+Corollary~\ref{cor:full-lift-joint-core-charge}, suppose the actual total
+cores also have certified lower bounds
+\(0\le\ell_i\le g_i\).  Sort the \(\ell_i\) decreasingly, start with
+\(x_i=\ell_i\), and distribute
+\[
+ S_r-\sum_i\ell_i
+\]
+units by filling \(x_1\) to \(m-1\), then \(x_2\), and so on.  Whenever
+the lower bounds are feasible, the removed lines contain at most
+\[
+ L_r^{\rm low}=\left\lfloor\sum_{i=1}^r
+          \frac{N-x_i}{m-x_i}\right\rfloor              \tag{LA1}
+\]
+assigned slopes.  Consequently the residual peeling target may be
+strengthened to \(B-L_r^{\rm low}\).
+\end{corollary}
+
+\begin{proof}
+Since line labels do not occur in the objective, sort both the lower bounds
+and a feasible core vector decreasingly.  This preserves the constraints:
+if \(\ell_i\ge\ell_j\) but \(g_i<g_j\), then swapping the two core values
+preserves both lower bounds.
+
+For two nonterminal coordinates \(x_i\ge x_j\), transfer mass from
+\(x_j-\ell_j\) to \(x_i\), stopping when \(x_i=m-1\) or
+\(x_j=\ell_j\).  Convexity of
+\(f(g)=(N-g)/(m-g)\) gives
+\[
+ f(x_i+d)+f(x_j-d)\ge f(x_i)+f(x_j).
+\]
+Iterating the exchange, and using monotonicity to spend all of the allowed
+mass, gives exactly the greedy vector in the statement.  Equation (JC1)
+supplies the common sum budget \(S_r\), so flooring the rational sum proves
+(LA1).
+\end{proof}
+
+\begin{remark}[Exact Mersenne lower-aware payment]
+At \(e=130220\) and \(e=130221\), the first 37 removed lines have forced
+total-core lower-bound runs \(15816\cdot4,2046\cdot33\).  The maximizing
+vectors are respectively
+\[
+ 18769,15816\cdot3,2046\cdot33
+ \quad\hbox{and}\quad
+ 18770,15816\cdot3,2046\cdot33,
+\]
+and both charges are \(609\).  One final threshold \(20\) is forced.  The
+38 inside-core lower bounds then give
+\[
+ 5\cdot15811+33\cdot2041-\binom{38}{2}\cdot5
+ =142893>e.
+\]
+Thus both supports are safe.
+
+At adjacent \(e=130222\), the compiler reaches 288 removed lines.  The
+maximizing vector is \(67453\cdot5,1037,0\cdot282\), its charge is
+\(4910044\), and the residual target \(11867171\) lies below the certified
+base \(12148280\).  This is a method wall, not an unsafe certificate; the
+Mersenne residual is now \(130222\le e\le1044241\).
+
+The endpoint replay and independent rational audit are
+\path{experimental/verify_mca_full_lift_lower_aware_joint_core_charge_v1.py}
+and
+\path{experimental/audit_mca_full_lift_lower_aware_joint_core_charge_v1.py}.
+\end{remark}
+
+\begin{corollary}[Core-dichotomy capped charge]
+\label{cor:full-lift-core-dichotomy-capped-charge}
+Fix an integer absorption cutoff $b$.  At every line selected by the
+recursive bank, split on its actual total core $g$.
+
+If $g\ge e+10-b$, every explanation of deficit at least $b+1$ lies on
+that line, and the original family has size at most
+\[
+ P_e(b)+(N-m+1),                                  \tag{CD1}
+\]
+where $P_e(b)$ is the exact weighted prefix through $b$.
+
+In the complementary branch, every peeled core has the individual cap
+\[
+ g_i\le G_e:=e+9-b.                               \tag{CD2}
+\]
+The lower-aware convex envelope remains valid after replacing its fill
+ceiling by $G_e$ and its common budget by
+\[
+ S_r=\min\left\{rG_e,e+\binom{r+1}{2}c\right\}.   \tag{CD3}
+\]
+\end{corollary}
+
+\begin{proof}
+A selected line has at least $g-c$ core coordinates inside the gauged
+direction support.  An explanation with inside agreement size $h$ and
+two line anchors shares at least $(g-c)+h-e$ of those coordinates.
+Restriction injectivity therefore puts it on the line whenever
+\[
+ h\ge e-g+c+K=e-g+11.
+\]
+The high-core threshold in the statement makes this at most $b+1$,
+proving (CD1).
+
+The integer complement of the high-core branch is (CD2).  Under that cap,
+sort the forced core lower bounds and greedily spend (CD3), filling each
+coordinate only to $G_e$.  The convex exchange in
+Corollary~\ref{cor:full-lift-lower-aware-joint-core-charge} applies
+unchanged and proves the capped joint charge.
+\end{proof}
+
+\begin{remark}[Exact Mersenne core-dichotomy payment]
+Take $b=65450$.  On $130222\le e\le130226$, the high-core bound (CD1)
+is at most $5161307<16777215$.  In the complementary branch,
+$e=130222,130223$ force fourteen threshold-18 lines and
+\[
+ 14\cdot9736-\binom{14}{2}\cdot5=135849>e.
+\]
+The next two supports force seventy threshold-16 lines and
+\[
+ 70\cdot2041-\binom{70}{2}\cdot5=130795>e.
+\]
+Thus every support $130222\le e\le130225$ is safe.
+
+At adjacent $e=130226$, the first threshold is 14 and has zero forced
+core.  After 14763 zero-lower-bound peels, the capped budget is
+$545032556=8412\cdot64785+61136$, the charge is $3199542$, and the
+next pigeonhole threshold is one.  This is a method wall, not an unsafe
+certificate; the Mersenne residual is now
+$130226\le e\le1044241$.
+
+The endpoint replay and independent rational audit are
+\path{experimental/verify_mca_full_lift_core_dichotomy_capped_charge_v1.py}
+and
+\path{experimental/audit_mca_full_lift_core_dichotomy_capped_charge_v1.py}.
+\end{remark}
+
+\begin{corollary}[Exact-layer slot-core incidence]
+\label{cor:full-lift-exact-layer-slot-core}
+Suppose a line slot selected by the recursive bank belongs to exact layer
+$h$ and contains $\lambda\ge2$ explanations.  If $u$ is their common core
+inside the gauged $e$-coordinate direction support, then
+\[
+ u\ge\left\lceil\frac{\lambda h-e}{\lambda-1}\right\rceil. \tag{EL1}
+\]
+Consequently, in the low-core branch of
+Corollary~\ref{cor:full-lift-core-dichotomy-capped-charge}, (EL1) may be used
+as the forced lower bound in the capped convex charge.
+\end{corollary}
+
+\begin{proof}
+Write the parameterized affine explanation line as
+$c_\gamma=a+\gamma b$.  At an inside coordinate outside the common core,
+the equation
+\[
+ r_0+\gamma r_1=a+\gamma b
+\]
+holds for at most one line parameter $\gamma$.  Every one of the $\lambda$
+members has at least $h$ inside agreements, whereas a core coordinate is
+counted $\lambda$ times.  Incidence counting in the fixed inside support
+therefore gives
+\[
+ \lambda h\le e+(\lambda-1)u,
+\]
+which is equivalent to (EL1).  This is already an inside-core bound and
+does not spend the outside zero allowance.  In the calibrated support
+interval the parent ceiling has $H\ge m$, so the optional cross-layer top
+slot is absent and every recursive-bank slot has one exact-layer owner.
+\end{proof}
+
+\begin{remark}[Exact Mersenne layer-aware payment]
+Retain absorption cutoff $65450$.  In the complementary capped-core branch,
+legal cutoffs $65516,\ldots,65521$ and (EL1) force three line cores of the
+following sizes:
+\[
+\begin{array}{c|c|c|c}
+e&b&\lambda&u\\ \hline
+130226&65516&14&60540\\
+130227&65516&5&49340\\
+130228&65517&13&60126\\
+130229&65517&4&43948\\
+130230&65518&11&59048\\
+130231&65518&4&43949\\
+130232&65519&9&57431\\
+130233,130234&65520&7&54736\\
+130235,130236&65521&4&43951
+\end{array}
+\]
+The displayed $\lambda$ is the forced minimum slot size and $h=b+1$ is the
+minimum possible exact layer.  In this range the right side of (EL1) is
+nondecreasing in both variables, so these substitutions are conservative.
+Distinct selected lines have pairwise inside-core intersection at most
+$c=5$.  Exact capped-charge replay therefore makes three lines violate
+inside-core packing on every support $130226\le e\le130236$; the smallest
+printed lower bound is
+\[
+ 3\cdot43948-\binom32\cdot5=131829>130229.
+\]
+
+At adjacent $e=130237$, cutoff $65521$ forces only size-two affine
+explanation slots.  Equation (EL1) gives $u=807$, and the first-order
+packing expression has maximum
+\[
+ \max_s\left\{807s-5\binom{s}{2}\right\}=65529<e.
+\]
+After 7583 such lower bounds the capped charge is $882245$, the residual
+target is $15894970$, and the next threshold is one.  This is a method wall,
+not an unsafe certificate.  The Mersenne full-lift residual is now
+$130237\le e\le1044241$; primitive shift-pair control is the next structural
+obstruction.
+
+The endpoint replay and independent rational audit are
+\path{experimental/verify_mca_full_lift_exact_layer_slot_core_packing_v1.py}
+and
+\path{experimental/audit_mca_full_lift_exact_layer_slot_core_packing_v1.py}.
+\end{remark}
+
+\begin{corollary}[First-wall interpolation common-factor router]
+\label{cor:full-lift-interpolation-common-factor-router}
+At Mersenne full-lift support $e=130237$, give $(X,Y,Z)$ weights
+$(1,5,5)$ and let $I_{264}$ be the vector space of weighted-degree at most
+$264$ polynomials vanishing at all gauged inside received points
+$(x,r_0(x),r_1(x))$.  Then
+\[
+ \dim I_{264}\ge 938.                              \tag{IF1}
+\]
+If the selected family is unsafe, the nonzero members of $I_{264}$ have a
+common factor of positive $(Y,Z)$-degree over the algebraic closure of
+$\F(X)$.
+\end{corollary}
+
+\begin{proof}
+The weight-$(1,5,5)$ monomial count is
+\[
+ \sum_{s=0}^{52}(s+1)(264-5s+1)=131175.
+\]
+Evaluation at the $130237$ received points has rank at most $130237$, which
+proves (IF1).
+
+In the complementary capped-core branch, every selected line at cutoff
+$65521$ has exact layer at least $65522$ and at least two members.  By
+Corollary~\ref{cor:full-lift-exact-layer-slot-core}, its inside core has
+size at least $807$.  Write the line as
+$c_\gamma=a+\gamma b$.  Its inside core is precisely the set on which
+$(r_0,r_1)=(a,b)$.
+
+For $Q\in I_{264}$, substitution gives a polynomial
+$Q(X,a(X),b(X))$ of degree at most $264$.  It has at least $807$ distinct
+roots, hence vanishes identically.  Thus every selected pair $(a,b)$ is a
+common $\F(X)$-rational zero of the interpolation kernel.
+
+After $2704$ removed lines, the capped convex charge is $132203$ and the
+residual target is $16645012$.  With base $13961576$ and group count
+$1933560$, the next strict pigeonhole threshold remains two.  Therefore an
+unsafe family forces $2705$ distinct polynomial-pair cores.
+
+Suppose instead that the kernel has no common factor of positive
+$(Y,Z)$-degree.  Over the algebraic closure of $\F(X)$, two generic kernel
+members are then coprime.  Their total $(Y,Z)$-degrees are at most
+$\lfloor264/5\rfloor=52$.  Affine Bezout bounds their common zero set by
+$52^2=2704$, contradicting the $2705$ distinct selected pairs.
+\end{proof}
+
+\begin{remark}[Common-factor residual]
+The corollary pays the coprime interpolation branch but does not identify
+the residual factor with a split pencil.  A further theorem must classify
+its ruled components or charge their line/core mass.  The Mersenne support
+residual remains $130237\le e\le1044241$, with its first support reduced to
+this common-factor branch.
+
+The exact calibration and independent audit are
+\path{experimental/verify_mca_full_lift_interpolation_common_factor_router_v1.py}
+and
+\path{experimental/audit_mca_full_lift_interpolation_common_factor_router_v1.py}.
+\end{remark}
+
+\begin{corollary}[Common-factor mass concentration]
+\label{cor:full-lift-common-factor-mass}
+In the unsafe branch of
+Corollary~\ref{cor:full-lift-interpolation-common-factor-router}, let $P$ be
+the full common interpolation factor and put
+$d=\deg_{Y,Z}P$.  At least
+\[
+ 7583-(52-d)^2\ge4982                              \tag{FM1}
+\]
+distinct selected polynomial pairs lie on $P$.  Moreover,
+\[
+ \#\{x\in E:P(x,r_0(x),r_1(x))=0\}\ge126188.       \tag{FM2}
+\]
+Thus at most $4049$ of the $130237$ inside coordinates are exceptional to
+the factor relation.
+\end{corollary}
+
+\begin{proof}
+After $7582$ low-core lines have been removed, the capped charge is
+$881897$, the target is $15895318$, and the strict line-bank threshold is
+still two.  Hence unsafety forces $7583$ distinct polynomial-pair cores.
+
+Divide every interpolation-kernel member by the full gcd $P$.  The cofactor
+family has gcd one and total $(Y,Z)$-degree at most $52-d$.  Two generic
+cofactors are coprime, so affine Bezout permits at most $(52-d)^2$ selected
+pairs outside $P=0$.  This proves (FM1), whose right side is minimized at
+$d=1$.
+
+For each of $t$ captured pairs, its inside core $U_i$ has size at least
+$u=807$ and lies in the set on the left of (FM2).  Distinct pair cores meet
+in at most five coordinates.  If $m_x$ is the core-incidence multiplicity,
+then
+\[
+ \sum_xm_x\ge tu,
+ \qquad
+ \sum_x\binom{m_x}{2}\le5\binom{t}{2}.
+\]
+Cauchy's inequality therefore gives
+\[
+ \left|\bigcup_iU_i\right|
+ \ge\left\lceil\frac{tu^2}{u+5(t-1)}\right\rceil.
+\]
+This is increasing in $t$.  At $t=4982$ it equals $126188$, proving (FM2).
+\end{proof}
+
+\begin{remark}
+The set in (FM2) is not asserted to be a common core shared by all captured
+sections.  Nor does the corollary assert that $P$ is irreducible, rational,
+or a split pencil.  Its output is a degree-at-most-$52$ relation holding on
+at least $96.89\%$ of the inside support and carrying at least $4982$
+degree-five polynomial sections.
+
+The exact calibration and all-degree audit are
+\path{experimental/verify_mca_full_lift_common_factor_mass_router_v1.py}
+and
+\path{experimental/audit_mca_full_lift_common_factor_mass_router_v1.py}.
+\end{remark}
+
+\begin{corollary}[Common-factor weighted-degree bound]
+\label{cor:full-lift-common-factor-weighted-degree}
+In the setting of Corollary~\ref{cor:full-lift-common-factor-mass}, the
+primitive full gcd satisfies
+\[
+ \operatorname{wdeg}_{(1,5,5)}P\le217,
+ \qquad \deg_{Y,Z}P\le43.                       \tag{WD1}
+\]
+Consequently, if $\deg_{Y,Z}P\ge2$, then at least $5083$ selected
+degree-five polynomial pairs lie on $P$, and
+\[
+ \#\{x\in E:P(x,r_0(x),r_1(x))=0\}\ge126266. \tag{WD2}
+\]
+Thus this higher-degree branch has at most $3971$ exceptional inside
+coordinates.
+\end{corollary}
+
+\begin{proof}
+Work over the algebraic closure.  Gauss's lemma makes the primitive
+representative $P$ a polynomial divisor of every member of $I_{264}$.  If
+$w=\operatorname{wdeg}_{(1,5,5)}P$, division by $P$ embeds the
+at-least-$938$-dimensional kernel into weighted degree at most $264-w$.
+The exact weighted-monomial count
+\[
+ M(D)=\sum_{s=0}^{\lfloor D/5\rfloor}(s+1)(D-5s+1)
+\]
+satisfies
+\[
+ M(46)=935<938\le990=M(47).
+\]
+Hence $264-w\ge47$, proving $w\le217$ and
+$\deg_{Y,Z}P\le\lfloor217/5\rfloor=43$.
+
+In the higher-degree branch, the factor-mass bound is minimized at $d=2$:
+\[
+ 7583-(52-d)^2\ge7583-50^2=5083.
+\]
+Applying the same core-incidence inequality as in
+Corollary~\ref{cor:full-lift-common-factor-mass} gives
+\[
+ \left\lceil
+ \frac{5083\cdot807^2}{807+5(5083-1)}
+ \right\rceil=126266,
+\]
+which proves (WD2).
+\end{proof}
+
+\begin{remark}
+The full gcd in this corollary may be reducible.  No irreducible-component
+classification or safety claim is implicit.  The exact threshold replay and
+independent enumeration are
+\path{experimental/verify_mca_full_lift_common_factor_weighted_degree_bound_v1.py}
+and
+\path{experimental/audit_mca_full_lift_common_factor_weighted_degree_bound_v1.py}.
+\end{remark}
+
+\begin{corollary}[Base-field component descent]
+\label{cor:full-lift-common-factor-base-field-descent}
+Retain the higher-degree branch of
+Corollary~\ref{cor:full-lift-common-factor-weighted-degree}.  Over the
+deployed Mersenne field
+\[
+ \F=\F_{p^4},\qquad p=2^{31}-1,
+\]
+let $P_{\rm bf}$ be the product of the geometric irreducible components of
+$P$ that are individually defined over $\F(X)$.  At least $5079$ selected
+polynomial pairs lie on $P_{\rm bf}$, and one absolutely irreducible
+$\F(X)$-component contains at least $132$ selected pairs.  Moreover,
+\[
+ \#\{x\in E:P_{\rm bf}(x,r_0(x),r_1(x))=0\}\ge126263. \tag{FD1}
+\]
+Thus at most $3974$ inside coordinates are exceptional to the base-field
+component union.
+\end{corollary}
+
+\begin{proof}
+Factor the radical of $P$ geometrically as $\prod_iR_i$, with
+$\delta_i=\deg_{Y,Z}R_i$ and $\sum_i\delta_i\le d\le43$.  Since
+$p>d$, a component field of definition cannot have nontrivial purely
+inseparable degree.  If $R_i$ is not defined over $\F(X)$, it therefore
+has a distinct conjugate $R_i^\sigma$.  Every $\F(X)$-rational point of
+$R_i$ also lies on $R_i^\sigma$, so Bezout bounds their number by
+$\delta_i^2$.
+
+Assign each selected pair outside the base-field component union to one
+non-base-field component containing it.  At most
+\[
+ \sum_{R_i\ {m not\ over}\ \F(X)}\delta_i^2\le d^2
+\]
+pairs are assigned.  Hence the retained number is at least
+\[
+ 7583-(52-d)^2-d^2=4879+104d-2d^2.
+\]
+This concave expression has endpoint values $5079$ and $5653$ on
+$2\le d\le43$, proving the uniform $5079$ bound.  There are at most $d$
+components, and exact integer minimization gives
+\[
+ \min_{2\le d\le43}
+ \left\lceil\frac{7583-(52-d)^2-d^2}{d}\right\rceil=132.
+\]
+Finally, the core-incidence bound at $t=5079$ gives
+\[
+ \left\lceil
+ \frac{5079\cdot807^2}{807+5(5079-1)}
+ \right\rceil=126263,
+\]
+which proves (FD1).
+\end{proof}
+
+\begin{remark}
+This is a base-field normalization, not an irreducibility or split-pencil
+theorem.  The exact degree scan and independent degree-partition audit are
+\path{experimental/verify_mca_full_lift_common_factor_base_field_descent_v1.py}
+and
+\path{experimental/audit_mca_full_lift_common_factor_base_field_descent_v1.py}.
+\end{remark}
+
+\begin{corollary}[Linear factor gives a projective star]
+\label{cor:full-lift-linear-factor-projective-star}
+In the setting of Corollary~\ref{cor:full-lift-common-factor-mass}, suppose
+the full common interpolation factor has total $(Y,Z)$-degree one.  Then,
+after projective rescaling, it has a primitive equation
+\[
+ P(X,Y,Z)=AY+BZ+C(X),
+ \qquad A,B\in\F,\quad (A,B)\ne(0,0),\quad \deg C\le5. \tag{LS1}
+\]
+All captured affine explanation lines share one $\F$-rational projective
+slope--codeword center.  If $A\ne0$, the center is finite:
+\[
+ \gamma_*=B/A,qquad c_*=-C/A.
+\]
+If $A=0$, every captured line has the same direction codeword $-C/B$, the
+center at projective slope infinity.
+\end{corollary}
+
+\begin{proof}
+Initially work over the algebraic closure and write
+$P=A(X)Y+B(X)Z+C(X)$ primitively.  The factor-mass corollary supplies at
+least $4982$ distinct sections $(a_i,b_i)\in\F[X]_{<6}^2$.  Subtracting two
+section equations and removing $\gcd(A,B)$ gives
+\[
+ (a_i,b_i)=(a_0+Bt_i,b_0-At_i),
+ \qquad
+ \deg t_i\le s:=5-\max(\deg A,\deg B).             \tag{LS2}
+\]
+Indeed, one section shows that $\gcd(A,B)$ also divides $C$, so primitivity
+makes it a unit.  In particular $\deg A,\deg B\le5$.
+
+Since $A$ and $B$ are coprime, the received pair induces a scalar word
+$\tau$ on every inside coordinate: use
+$(r_0-a_0)/B$ where $B\ne0$, and $-(r_1-b_0)/A$ otherwise.  Each $t_i$
+agrees with $\tau$ on its core of at least $807$ coordinates.  The ordinary
+constant-block Johnson cap for degree $s$ is
+\[
+ J_s=\left\lfloor
+ \frac{130237(807-s)}{807^2-130237s}\right\rfloor.
+\]
+For $s=0,1,2,3,4$ its exact values are
+$161,201,268,401,802$.  If either $A$ or $B$ were nonconstant, then
+$s\le4$, contradicting $4982>802$.  Hence $A,B$ are constants and
+$\deg C\le5$.
+
+If $A\ne0$, two distinct captured $\F$-rational pairs give
+$B/A=-(a_i-a_j)/(b_i-b_j)\in\F$, and then
+$-C/A=a_i+(B/A)b_i\in\F[X]_{<6}$.  Every captured line passes through that
+finite center.  If $A=0$, the common direction $-C/B$ lies in
+$\F[X]_{<6}$, proving the projective-infinity case.
+\end{proof}
+
+\begin{remark}
+This identifies the degree-one branch with the primitive projective-star
+shape; it does not prove the star population bound.  The complementary
+common-factor branch has $(Y,Z)$-degree at least two.
+
+The exact Johnson replay and independent audit are
+\path{experimental/verify_mca_full_lift_linear_factor_projective_star_router_v1.py}
+and
+\path{experimental/audit_mca_full_lift_linear_factor_projective_star_router_v1.py}.
+\end{remark}
+
+\begin{theorem}[Full-explanation lifted-rank gauge dichotomy]
+\label{thm:full-explanation-lifted-rank-dichotomy}
+Let \(C\leq\F^D\) have dimension \(K\), let
+\(r_\gamma=r_0+\gamma r_1\), and let \(Z\subseteq\F\) contain distinct
+slopes.  For every \(\gamma\in Z\), choose \(c_\gamma\in C\), and assume
+that the \(c_\gamma\) have full affine rank \(K\).  Fix
+\(\gamma_0\in Z\) and put
+\[
+ V=\operatorname{span}\{(\gamma-\gamma_0,
+                 c_\gamma-c_{\gamma_0}):\gamma\in Z\}
+       \leq \F\oplus C.
+\]
+Then \(\dim V\in\{K,K+1\}\), and exactly one of the following holds.
+\begin{enumerate}
+\item If \(\dim V=K\), there is a unique nonzero linear functional
+  \(\ell:C\to\F\) such that
+  \(V=\{(\ell(u),u):u\in C\}\).  The gauge
+  \[
+     r_1\longmapsto r_1-b,
+     \qquad c_\gamma\longmapsto c_\gamma-\gamma b
+  \]
+  drops the explanation affine rank to exactly \(K-1\) precisely for
+  \(b\in C\) satisfying \(\ell(b)=1\).  Thus the rank-dropping gauges form
+  an affine hyperplane in \(C\).
+\item If \(\dim V=K+1\), then \(V=\F\oplus C\), and every \(b\in C\)
+  leaves the explanation affine rank equal to \(K\).
+\end{enumerate}
+If, in addition, every chosen maximal agreement support is same-support
+pair-noncontained, then \(r_1\notin C\), and the selected error vectors
+\(r_\gamma-c_\gamma\) have affine rank exactly \(\dim V\).
+\end{theorem}
+
+\begin{proof}
+Projection of \(V\) to \(C\) is onto because the explanations have full
+affine rank.  Hence \(K\leq\dim V\leq K+1\).  If \(\dim V=K\), projection
+is an isomorphism and \(V\) is the graph of a unique functional \(\ell\).
+It is nonzero because the slopes are not all equal.  On anchored
+differences, the gauge is the map
+\[
+  T_b:V\longrightarrow C,\qquad T_b(a,u)=u-ab.
+\]
+For \(V=\{(\ell(u),u):u\in C\}\), this map is
+\(u\mapsto u-\ell(u)b\).  It has rank \(K-1\) exactly when
+\(\ell(b)=1\), in which case its image is \(\ker\ell\); otherwise it is
+invertible.  If \(\dim V=K+1\), then \(V=\F\oplus C\), and \(T_b\) is
+surjective for every \(b\).
+
+Suppose now that \(r_1\in C\).  On any selected agreement support,
+\(r_1\) explains the direction and \(c_\gamma-\gamma r_1\in C\) explains
+the base, contradicting pair noncontainment.  Thus \(r_1\notin C\).  The
+linear map
+\[
+  (a,u)\longmapsto ar_1-u
+\]
+is consequently injective on \(\F\oplus C\), and it sends the anchored
+lifted differences to the anchored error-vector differences.  Their affine
+rank is therefore \(\dim V\).
+\end{proof}
+
+\begin{theorem}[Full-lift near-MDS extension reduction]
+\label{thm:full-lift-near-mds-extension}
+Retain the hypotheses of
+\cref{thm:full-explanation-lifted-rank-dichotomy}, assume
+\(\dim V=K+1\), write \(N=|D|\), and put
+\[
+  W=C+\langle r_1\rangle,\qquad
+  e=\min_{b\in C}\wt(r_1-b).
+\]
+Then \(\dim W=K+1\), and the generalized Hamming weights of \(W\) are
+\[
+  d_1(W)=e,\qquad
+  d_j(W)=N-K+j-1\quad(2\le j\le K+1).
+  \tag{NM}
+\]
+The selected errors \(r_\gamma-c_\gamma\) lie in one affine coset of
+\(W\), have full affine rank \(K+1\), and determine their slopes uniquely.
+Moreover, if every selected maximal agreement support has size greater than
+\(K\), restriction of \(W\) to each such support is injective.
+\end{theorem}
+
+\begin{proof}
+Pair noncontainment gives \(r_1\notin C\), so \(W\) has dimension \(K+1\).
+Interpolation on \(K\) coordinates gives \(e\le N-K\).  Every nonzero word
+of \(W\) is either a nonzero RS word, of weight at least \(N-K+1\), or a
+nonzero scalar multiple of \(r_1-b\), of weight at least \(e\); a nearest
+\(b\) attains \(e\).  Thus \(d_1(W)=e\).
+
+Let \(A\le W\) have dimension \(j\ge2\).  If \(A\le C\), the RS MDS
+hierarchy gives \(|\operatorname{supp}A|\ge N-K+j\).  Otherwise
+\(\dim(A\cap C)=j-1\), and that RS subcode has at most \(K-j+1\) common
+zero coordinates.  Hence
+\[
+  |\operatorname{supp}A|\ge N-K+j-1.
+\]
+The generalized Singleton bound for the \([N,K+1]\) code \(W\) is the
+reverse inequality, proving \((\mathrm{NM})\).
+
+The map \((a,u)\mapsto ar_1-u\) is an isomorphism
+\(\F\oplus C\to W\), so the full lifted rank is exactly the error affine
+rank and equal errors have equal slopes.  Finally, a nonzero
+\(ar_1-u\in W\) vanishing on a selected support either contradicts the RS
+root bound when \(a=0\), or supplies simultaneous direction and base
+explanations when \(a\ne0\).  Pair noncontainment excludes both cases.
+\end{proof}
+
+\begin{remark}[Exact top-rank split at the first shortened rows]
+\label{rem:full-explanation-top-rank-split}
+The gauge preserves agreement supports, pair noncontainment, and
+\(e=\min_{b\in C}\wt(r_1-b)\).  Therefore the \(\dim V=K\) branch may use
+\cref{thm:proper-subspace-mca} at explanation rank \(K-1\).  Combining
+this with the already separate low-support and recursive-direction gates
+gives the following exact routing table; \(q\) is explanation affine rank
+and \(h=\dim V\), equivalently the error affine rank.
+\[
+\begin{array}{c|c|c|c}
+\text{row}&q&h&\text{currently paid support range}\\ \hline
+\text{KoalaBear}&14&14&e\le64047\ \text{or}\ e\ge992852\\
+\text{KoalaBear}&14&15&e\le96150\ \text{or}\ e\ge1044239\\
+\text{Mersenne-31}&6&6&e\le65454\ \text{or}\ e\ge1037876\\
+\text{Mersenne-31}&6&7&e\le130236\ \text{or}\ e\ge1044242
+\end{array}
+\]
+The proper-subspace/gauge improvement is only in the \(h=K\) rows.  The
+separate full-lift continuations extend the printed low walls in the
+\(h=K+1\) rows, but their remaining middle intervals stay unpaid.
+After the sparse-direction, centered-Gram, exact-layer, and interpolation
+continuations, the full-lift intervals are
+\(96151\le e\le1044238\) for KoalaBear and
+\(130237\le e\le1044241\) for Mersenne-31.  The latter first support is
+not paid: \cref{cor:full-lift-interpolation-common-factor-router} routes it
+to the separately declared common-factor branch.
+\Cref{thm:full-lift-near-mds-extension} shows that every generalized
+weight from rank two onward is already MDS-sharp.  Even at the best endpoint
+\(e=N-K\), the generic corrected compiler gives
+\[
+  743896698428332665>274980728111395087
+  \quad\text{and}\quad
+  219426634>16777215
+\]
+on KoalaBear and Mersenne-31, respectively.  Closing these cells therefore
+requires structure of the codimension-one RS extension beyond its weight
+hierarchy, or a sharper row-specific affine-list theorem.  A
+finite-field audit and the exact adjacent arithmetic are in
+\texttt{experimental/verify\_mca\_full\_explanation\_lifted\_rank\_gauge\_dichotomy\_v1.py}.
+\end{remark}
 
 \begin{theorem}[Directional Johnson ray compiler]
 \label{thm:directional-johnson-ray}
@@ -5185,35 +7595,1019 @@ in \cref{prop:q-exact-target} gives the claim; the next-dimension values
 mark the limit of the recursive compiler.
 \end{proof}
 
-\begin{proposition}[Exact affine-span MCA payments at the active rows]
-\label{prop:active-affine-span-mca}
-Assume \eqref{eq:direction-list-separated}.  If the codeword explanations
-of an MCA chart lie in one affine subspace of the actual
-\(\RS[\F,D,k]\) code of dimension \(s\), then
-\cref{thm:affine-span-mca} gives
+\begin{remark}[Retraction of the former active affine-span MCA payments]
+The former KoalaBear and Mersenne-31 MCA affine-span payments used the
+refuted ordered-basis denominator of
+\cref{prop:affine-span-mca-counterexample}.  Their falling- and
+rising-product evaluations were arithmetically correct evaluations of that
+expression, but they are not upper bounds for MCA slope families.  They
+therefore imply no affine-rank lower wall for a surviving MCA chart.  The
+ordinary affine-span list payments immediately above are unaffected.  The
+next proposition gives a distinct conditional wall from the repaired
+support-transverse theorem, with its deleted stratum and local margin stated
+explicitly.
+\end{remark}
+
+\begin{proposition}[Conditional post-deletion affine-error router on KoalaBear]
+\label{prop:kb-post-deletion-affine-error-router}
+Use the KoalaBear parameters
 \[
-\begin{array}{c|r|r|r}
-\text{row}&1\le s\le&
- \max\limits_{s\text{ in range}}|Z|&
- \text{compiler value at the next }s\\ \hline
-\text{KoalaBear MCA}&11&49107626893329409&1526096478566110535\\
-\text{Mersenne-31 MCA}&4&1756139&54600050
-\end{array}
-\tag{AF-MCA}\label{eq:active-affine-span-mca}
+ (n,k,m,w,B_*)=
+ (2097152,1048576,1116048,67472,274980728111395087).
 \]
-Both in-range maxima fit the full challenge budget.  Thus a surviving
-separated-direction MCA chart has codeword affine-span dimension at least
-\(12\) on KoalaBear and at least \(5\) on Mersenne-31, unless it has
-already been paid by another cell.  If separation fails, the residual is
-the explicit direction-list cell of \eqref{eq:direction-list-separated}.
+On one received line, let \(Z_{\rm bad}\) be the finite support-wise
+MCA-bad slopes and define the intrinsic near-rational stratum
+\[
+ N=\{\gamma\in Z_{\rm bad}:\min_{c\in C}\wt(r_\gamma-c)\le w\},
+ \qquad Z=Z_{\rm bad}\setminus N.
+\]
+Suppose \(|N|\le2w=134944\), as supplied under the printed KoalaBear
+hypotheses by the separately pinned two-anchor near-rational theorem.  Its
+guards hold here because $w\ge1$ and
+$3w=202416\le1048576=n-k$.
+For every \(\gamma\in Z\), choose one exact same-support-noncontained
+\(m\)-record, and let \(a\) be the affine rank of the resulting error
+words.  If \(a\le9\), then
+\[
+ |Z_{\rm bad}|\le
+ 110390969172173096+134944
+ =110390969172308040<B_*,
+\]
+with slack \(164589758939087047\).
+
+For \(|Z|\ge2\), apply \cref{thm:mca-error-rank-gauge} and recompute the
+margin \(\theta\) of \eqref{eq:support-local-mca-theta} in the translated
+explanation direction space.  At error ranks \(a=10,11,12\), the line is
+also paid whenever respectively
+\[
+ \theta\ge13,\qquad \theta\ge388,
+ \qquad \theta\ge12050.
+\]
+Consequently an over-budget line forces \(a\ge10\) for every selected
+post-deletion family.  At ranks \(10,11,12\), every such gauge emits an
+actual selected support and a codeword direction agreeing with the original
+\(r_1\) on all but at most respectively \(12,387,12049\) support
+coordinates.
 \end{proposition}
 
 \begin{proof}
-Substitute \(K=k\), \(m=a_+\), and the exact row budgets into
-\eqref{eq:affine-span-mca}.  Exact falling- and rising-product arithmetic
-gives the displayed values.  At the next dimensions this compiler exceeds
-the full budget, which records only the limit of the estimate.
+The exact-record selection is legitimate.  Given a bad witness
+\((S,c)\) with \(|S|\ge m\), suppose every \(m\)-subset of \(S\) were
+pair-contained.  Adjacent \(m\)-subsets overlap in
+\(m-1\ge K\) coordinates, so Reed--Solomon uniqueness makes their
+explaining pairs identical.  Connectedness of the \(m\)-subset Johnson
+graph would then glue one pair explaining all of \(S\), contradicting
+badness.  Hence some exact \(m\)-subwitness is pair-noncontained.
+
+If \(|Z|\le1\), the displayed bound is immediate.  Otherwise
+\cref{thm:mca-error-rank-gauge} gives a translated explanation family of
+affine dimension \(s=a-1\).  For \(2\le a\le9\), apply
+\cref{thm:support-transverse-affine-span-mca} with \(\theta\ge1\).  The
+largest cap occurs at \(s=8\) and is \(110390969172173096\).
+
+If \(a=1\), all translated explanations coincide.  Same-support
+noncontainment forces each selected support to contain a coordinate where
+the translated line direction is nonzero; at such a coordinate the
+agreement equation determines at most one finite slope.  Hence \(|Z|\le n\),
+which is smaller than the displayed cap.  The case \(a=0\) has at most one
+slope, since the injective map in the proof of
+\cref{thm:mca-error-rank-gauge} has nonzero slope projection.
+
+For \(a=10,11,12\), substitute \(s=9,10,11\) in
+\eqref{eq:support-local-proper-subspace-mca}.  Exact integer arithmetic
+shows that the least paying margins after the \(2w\) add-back are
+\(13,388,12050\).  At the preceding integers the totals are respectively
+\[
+ 285894151677963688,\qquad
+ 275500176064828033,\qquad
+ 274992929018868606,
+\]
+all strictly above \(B_*\).  Negating the paying condition gives the three
+same-record direction-exception terminals.  Explicitly, if $b_0\in C$
+is the gauge codeword from \cref{thm:mca-error-rank-gauge} and failure of
+the relevant margin produces $b_1$ in the translated explanation
+direction space, then $r'_1=r_1-b_0$ agrees with $b_1$ off the printed
+exception set.  Thus the inverse gauge transports the terminal to the
+original record as $r_1=b_0+b_1$ on the identical support outside that
+same set.
 \end{proof}
+
+
+\begin{theorem}[Sub-square-root common-support interleaving collapse]
+\label{thm:subsquare-interleaving-collapse}
+Let \(C\leq\F^D\) be an \(\F\)-linear code, put \(q=|\F|\), and fix an
+agreement threshold \(A\).  Let \(L\) be the largest ordinary list size
+at agreement \(A\), over all received words.  For \(\mu\geq1\), let
+\(L_\mu\) be the corresponding largest list of \(\mu\)-tuples in
+\(C^\mu\) agreeing with one received \(\mu\)-tuple on one common support
+of size at least \(A\).  If \(1\leq L<q\), then
+\[
+ L\leq L_\mu\leq
+ \left\lfloor\frac{L(q-1)}{q-L}\right\rfloor .
+\]
+In particular, if \(L^2<q\), then \(L_\mu=L\) for every \(\mu\geq1\).
+\end{theorem}
+
+\begin{proof}
+The case \(\mu=1\) is the definition of \(L\), so assume \(\mu\geq2\).
+The diagonal embedding gives \(L_\mu\geq L\).  For the reverse bound fix
+a common-support list \(X\subseteq C^\mu\), \(N=|X|\), and for
+\(\alpha=(\alpha_2,\ldots,\alpha_\mu)\in\F^{\mu-1}\) project by
+\[
+ \Phi_\alpha(c_1,\ldots,c_\mu)
+ =c_1+\sum_{i=2}^\mu\alpha_i c_i.
+\]
+The projected set is an ordinary list at the identical agreement
+threshold, so it has at most \(L\) images.  Cauchy--Schwarz gives at least
+\((N^2/L-N)/2\) unordered colliding pairs for every \(\alpha\).  A fixed
+distinct pair collides for at most \(q^{\mu-2}\) choices of \(\alpha\): if
+some difference after the first component is nonzero, fix all other
+coefficients and solve for that coefficient; if all those differences
+vanish, the nonzero first difference prevents collision.  Summing over
+all \(q^{\mu-1}\) projections yields
+\[
+ q^{\mu-1}(N^2/L-N)\leq N(N-1)q^{\mu-2},
+\]
+and hence \(N\leq L(q-1)/(q-L)\).  Finally
+\[
+ \frac{L(q-1)}{q-L}-L=\frac{L(L-1)}{q-L}<1
+\]
+when \(L^2<q\); integrality and the diagonal lower bound give equality.
+\end{proof}
+
+\begin{theorem}[Margin/interleaving split for a gauged MCA family]
+\label{thm:mca-margin-interleaving-split}
+Let \(C=\RS[\F,D,K]\) have length \(n\), put \(m=K+w\leq n\), and
+let \(Z\) be a finite family of distinct slopes with exact
+same-support-pair-noncontained \(m\)-records.  Suppose their explanations
+lie in one affine flat \(c_0+C'\subseteq C\), where
+\(s=\dim C'\).  For each \(\gamma\in Z\), define
+\[
+ \theta_\gamma=
+ \min\left\{w+1,
+ \min_{b\in C'}|\{x\in S_\gamma:r_1(x)\ne b(x)\}|\right\}.
+\]
+Fix an integer \(T\) with \(2\leq T\leq w\), put
+\[
+ A=m-T+1>K,
+ \qquad
+ M_s(T)=
+ \left\lfloor
+ \frac{\binom{n-K+s}{s}}{\binom{w-T+1+s}{s}}
+ \right\rfloor,
+\]
+and assume \(M_s(T)^2<|\F|\).  Define
+\[
+ H_0(T)=\left\lfloor\frac nT\right\rfloor
+\]
+and, for \(1\leq j\leq s\),
+\[
+ H_j(T)=\left\lfloor\max\left\{
+ \frac{n^{\underline{j+1}}}
+ {mT(w+1)^{\overline{j-1}}},
+ \frac{(n-K+j)^{\underline{j+1}}}
+ {T(w+1)^{\overline j}}
+ \right\}\right\rfloor .
+\]
+Then
+\begin{equation}
+ |Z|\leq
+ \max_{0\leq j\leq s}H_j(T)+(n-A)M_s(T).
+ \label{eq:mca-margin-interleaving-split}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Partition \(Z=Z_{\rm hi}\sqcup Z_{\rm lo}\) according as
+\(\theta_\gamma\geq T\) or \(\theta_\gamma\leq T-1\).
+If the affine explanation span of \(Z_{\rm hi}\) has direction dimension
+\(j\geq1\), its direction space is contained in \(C'\); minimizing over
+that smaller space cannot decrease the margins.  Thus
+\cref{thm:support-transverse-affine-span-mca} gives
+\(|Z_{\rm hi}|\leq H_j(T)\).  If \(j=0\), every explanation equals one
+word.  Each support contains at least \(T\) coordinates where the line
+direction is nonzero, and at each coordinate the agreement equation
+determines at most one slope.  Incidence counting gives
+\(|Z_{\rm hi}|\leq H_0(T)\).
+
+For every \(\gamma\in Z_{\rm lo}\), choose \(b_\gamma\in C'\) with at
+most \(T-1\) mismatches on \(S_\gamma\), and put
+\(a_\gamma=h_\gamma-\gamma b_\gamma\in c_0+C'\).  The pair
+\((a_\gamma,b_\gamma)\) agrees with \((r_0,r_1)\) on at least \(A\)
+common coordinates.  Translating the first component by \(c_0\) places
+all such pairs in the two-fold common-support interleaving of \(C'\).
+The ordinary affine-span list compiler
+\cref{thm:affine-span-list} bounds each projected ordinary list by
+\(M_s(T)\).  The hypothesis \(M_s(T)^2<|\F|\) and
+\cref{thm:subsquare-interleaving-collapse} therefore bound the number of
+distinct pairs by \(M_s(T)\).
+
+For one fixed pair \((a,b)\), let
+\(H_{a,b}=\{x:r_0(x)=a(x),\ r_1(x)=b(x)\}\); then
+\(|H_{a,b}|\geq A\).  Pair noncontainment gives every owning slope an
+actual \(x\in S_\gamma\setminus H_{a,b}\).  At such an \(x\),
+\[
+ \gamma=-\frac{r_0(x)-a(x)}{r_1(x)-b(x)}.
+\]
+Choosing one exception coordinate per slope is injective, so the pair
+owns at most \(n-|H_{a,b}|\leq n-A\) slopes.  Adding the disjoint high and
+low bounds proves \eqref{eq:mca-margin-interleaving-split}.
+\end{proof}
+
+\begin{proposition}[KoalaBear affine-error rank-ten payment]
+\label{prop:kb-affine-error-rank-ten-payment}
+Retain the intrinsic near-rational deletion and exact post-deletion record
+selection of \cref{prop:kb-post-deletion-affine-error-router}.  If the
+selected error words have affine rank \(a=10\), and the received line is
+over the deployed sextic field
+\[
+ |\F|=2130706433^6,
+\]
+then
+\[
+ |Z_{\rm bad}|\leq
+ 2w+5143522968716559+56727790457914040
+ =61871313426765543<B_*.
+\]
+The slack is \(213109414684629544\).  Thus the direct KoalaBear
+post-near affine-error-rank-ten branch is paid.  The same printed split
+does not pay affine error ranks \(11\) or \(12\).
+\end{proposition}
+
+\begin{proof}
+The reversible gauge \cref{thm:mca-error-rank-gauge} converts error rank
+\(a=10\) into an explanation flat of dimension \(s=9\), preserving the
+slopes, errors, exact supports, and same-support pair noncontainment.  Use
+\cref{thm:mca-margin-interleaving-split} with \(T=667\).  Exact integer
+arithmetic gives
+\[
+ A=1115382,\qquad
+ M_9(667)=57781140652,\qquad
+ M_9(667)^2<2130706433^6=|\F|,
+\]
+\[
+ \max_{0\leq j\leq9}H_j(667)=5143522968716559,\qquad
+ (n-A)M_9(667)=56727790457914040.
+\]
+Adding the disjoint near charge \(2w=134944\) proves the displayed bound.
+An exhaustive exact scan of \(2\leq T\leq w\) shows that \(T=16\) is the
+first paying threshold and \(T=667\) is the unique minimizer for \(s=9\).
+For \(s=10\), corresponding to error rank \(11\), the minimum of this
+formula is \(1040506078215897711>B_*\), attained at \(T=876\); the
+minima at \(s=11,12\) are larger still.
+\end{proof}
+
+\begin{theorem}[Nonuniform support-margin resource]
+\label{thm:mca-nonuniform-support-margin}
+Retain the hypotheses and notation of
+\cref{thm:support-transverse-affine-span-mca}, but define the individual
+support margins
+\[
+ \theta_\gamma=\min\left\{w+1,
+  \min_{b\in C'}|\{x\in S_\gamma:r_1(x)\ne b(x)\}|\right\}.
+\]
+Then
+\begin{equation}
+ \sum_{\gamma\in Z}\theta_\gamma\le C_s,
+ \qquad
+ C_s=\left\lfloor\max\left\{
+ \frac{n^{\underline{s+1}}}{m(w+1)^{\overline{s-1}}},
+ \frac{(n-K+s)^{\underline{s+1}}}{(w+1)^{\overline s}}
+ \right\}\right\rfloor .
+ \label{eq:mca-nonuniform-support-margin}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Use the ordered-normal-basis proof of
+\cref{thm:support-transverse-affine-span-mca}, before replacing the
+individual final-extension counts by their minimum.  With the proof's
+global zero-normal parameters \((z,g)\), the parameter point belonging to
+\(\gamma\) owns at least
+\[
+ (m-g)\theta_\gamma(w+1)^{\overline{s-1}}
+\]
+ordered independent coordinate-normal tuples.  One independent
+\((s+1)\)-tuple determines at most one parameter point.  Summing first gives
+\[
+ (m-g)(w+1)^{\overline{s-1}}
+ \sum_\gamma\theta_\gamma
+ \le (n-z)^{\underline{s+1}}.
+\]
+Here \((z,g)\) are global: a zero normal's affine incidence equation is either
+identically satisfied on the parameter flat or never satisfied.  Now
+\(0\le g\le z\le K-s\).  For fixed \(z\), the ratio is largest at \(g=z\),
+and the successive-ratio calculation in the cited proof puts its maximum at
+\(z=0\) or \(z=K-s\).  These are the two terms in
+\eqref{eq:mca-nonuniform-support-margin}.
+\end{proof}
+
+\begin{theorem}[Weighted minimizing-pair core route cut]
+\label{thm:mca-weighted-pair-core-route-cut}
+Retain the hypotheses of
+\cref{thm:mca-nonuniform-support-margin}.  Fix
+\(1\le\tau\le w-1\), and put
+\[
+ Q_s(\tau)=\left\lfloor
+  \frac{\binom{n-K+s}{s}}{\binom{w-\tau+s}{s}}
+ \right\rfloor ,
+ \qquad Q_s(\tau)^2<|\F|.
+\]
+For every \(\gamma\) with \(\theta_\gamma\le\tau\), fix one minimizing
+\(b_\gamma\in C'\), and put
+\[
+ a_\gamma=c_\gamma-\gamma b_\gamma,
+ \qquad \lambda_\gamma=\tau+1-\theta_\gamma,
+\]
+and group records by their ordered pair \((a_\gamma,b_\gamma)\).  If
+\(|Z|\ge E\) and \((\tau+1)E>C_s\), some fixed pair has total weight at
+least
+\begin{equation}
+ L_s(\tau,E)=\left\lceil
+ \frac{\max\{0,(\tau+1)E-C_s\}}{Q_s(\tau)}
+ \right\rceil .
+ \label{eq:mca-weighted-pair-load}
+\end{equation}
+For a fixed pair \((a,b)\), write
+\[
+ H_{a,b}=\{x\in D:r_0(x)=a(x),\ r_1(x)=b(x)\},
+ \qquad \delta=\max\{1,m-|H_{a,b}|\}.
+\]
+The pair owns at most
+\begin{equation}
+ c_\delta=\left\lfloor\frac{n-m+\delta}{\delta}\right\rfloor
+ \label{eq:mca-pair-core-multiplicity}
+\end{equation}
+records, and its weight is at most
+\(c_\delta(\tau+1-\delta)\).
+\end{theorem}
+
+\begin{proof}
+The positive-part identity and
+\eqref{eq:mca-nonuniform-support-margin} give
+\[
+ \sum_{\theta_\gamma\le\tau}
+   (\tau+1-\theta_\gamma)
+ =\sum_{\gamma\in Z}(\tau+1-\theta_\gamma)_+
+ \ge (\tau+1)|Z|-C_s.
+\]
+The selected pair \((a_\gamma,b_\gamma)\) agrees with the received pair on
+at least \(m-\tau>K\) coordinates.  The ordinary affine-span list theorem
+and the sub-square interleaving collapse
+\cref{thm:subsquare-interleaving-collapse} bound the number of distinct
+ordered pairs by \(Q_s(\tau)\).  Pigeonholing proves
+\eqref{eq:mca-weighted-pair-load}; there is no bipartite factor two because
+the interleaving theorem counts complete ordered pairs.
+
+Fix one pair and an owning record.  On \(S_\gamma\), the identity
+\[
+ r_0-a=-\gamma(r_1-b)
+\]
+shows that
+\(S_\gamma\cap H_{a,b}=\{x\in S_\gamma:r_1(x)=b(x)\}\).  Since the margin
+cap is inactive, \(\theta_\gamma=|S_\gamma\setminus H_{a,b}|\ge\delta\).
+For distinct finite slopes these exception sets are disjoint: at a point
+outside \(H_{a,b}\), the displayed equation determines \(\gamma\) uniquely.
+Their union lies in \(D\setminus H_{a,b}\).  Division by \(\delta\), with
+the harmless overestimate \(n-|H_{a,b}|\le n-m+1\) when
+\(|H_{a,b}|\ge m\), proves \eqref{eq:mca-pair-core-multiplicity}.  Each
+edge weight is at most \(\tau+1-\delta\), proving the final assertion.
+\end{proof}
+
+\begin{proposition}[KoalaBear rank-eleven pair-core terminal]
+\label{prop:kb-rank-eleven-pair-core-terminal}
+Retain the intrinsic near deletion, exact record selection, and reversible
+gauge of \cref{prop:kb-post-deletion-affine-error-router}.  Suppose the
+selected error words have affine rank \(11\), so the gauged explanations
+lie in an affine ten-flat over the deployed field
+\(|\F|=2130706433^6\).  If the received line has more than \(B_*\) bad
+slopes, then for each row below there exists a fixed actual minimizing pair
+satisfying that row.  The pairs supplied by the two independently optimized
+cutoffs need not coincide.
+\[
+\begin{array}{c|r|r|r}
+ \tau&\text{pair weight}&\text{owned slopes}&\delta\le\ \\ \hline
+ 6486&743449148&114624&8\\
+ 1795&360132809&200632&4
+\end{array}
+\tag{PC11}\label{eq:kb-rank-eleven-pair-core-terminal}
+\]
+Parallel records are allowed; the owned-slope column is not a
+distinct-neighbor degree.
+
+Moreover, the complete one-cutoff upper bound obtained from the printed
+high-margin theorem, all cumulative interleaved pair caps, and the exact
+core-deficiency multiplicities has unique minimum
+\[
+ 813929118931913384
+ =134944+5401690553097387+808527428378681053
+ >B_*
+\]
+at cutoff \(J=19737\).  Thus those inputs do not pay rank eleven.  The
+remaining theorem must couple different fixed pairs or route the dense
+parallel pair cores to a chronology-correct owner.
+\end{proposition}
+
+\begin{proof}
+An over-budget line leaves at least
+\(E=B_*-2w+1\) post-near slopes.  Apply
+\cref{thm:mca-weighted-pair-core-route-cut} with \(s=10\).  Exact integer
+optimization of \eqref{eq:mca-weighted-pair-load} gives the two rows of
+\eqref{eq:kb-rank-eleven-pair-core-terminal}; comparison with
+\(c_\delta(\tau+1-\delta)\) gives the displayed deficiency walls.
+
+For the final assertion, first fix one minimizing \(b_\gamma\), and hence
+one pair type \((a_\gamma,b_\gamma)\), for every selected record, once and
+for all cutoffs.  Let \(G(t)\) count distinct selected pair types
+whose deficiency is at most \(t\).  Such a pair has common agreement at
+least \(m-t\), so interleaving gives \(G(t)\le Q_{10}(t)\).  Since
+\(c_\delta\) decreases, summation by parts bounds the low records through
+\(J\) by
+\[
+ Q_{10}(1)c_1+
+ \sum_{\delta=2}^{J}
+   \bigl(Q_{10}(\delta)-Q_{10}(\delta-1)\bigr)c_\delta.
+\]
+The records with margin at least \(J+1\) are bounded by the maximum of the
+support-transverse theorem over affine subranks \(0\le j\le10\).  Scanning
+all \(1\le J\le w-1\), subject to the exact sub-square guard, gives the
+unique displayed minimum.  The release certificate recomputes every term,
+the adjacent cutoffs, and hostile mutations.
+\end{proof}
+
+\begin{remark}[Scope of the rank-eleven route cut]
+The proposition moves no active-v4 atom and does not close KoalaBear.  A
+small constant-code star shows that the fixed-pair multiplicity and parallel
+edges are genuine under the local hypotheses, so no simple-graph expansion
+or smaller per-pair multiplier may be inferred.  The missing result is an
+actual-record cross-pair compatibility or owner theorem, not another scalar
+threshold optimization.
+\end{remark}
+
+\begin{theorem}[Raw-low heavy-core shortening]
+\label{thm:mca-raw-low-heavy-core-shortening}
+Put \(R=1048576\) and \(d=67472\), and consider a complete shortened row
+
+\[
+ (n,K,m)=(R+K,K,d+K).
+\]
+
+Let \(Z\) be a selected family of distinct finite slopes whose explanations
+lie in one affine translate of a direction subcode \(C'\subseteq
+\F[X]_{<K}\) of dimension \(1\le s\le K\).  For each slope retain one exact
+size-\(m\) pair-noncontained support \(S_\gamma\), one explanation
+\(h_\gamma\), and one direction \(b_\gamma\in C'\) minimizing the raw
+support margin
+
+\[
+ \widetilde\theta_\gamma=
+ |\{x\in S_\gamma:r_1(x)\ne b_\gamma(x)\}|.
+\]
+
+Put \(a_\gamma=h_\gamma-\gamma b_\gamma\) and
+\(H_\gamma=\{x:r_0(x)=a_\gamma(x),\ r_1(x)=b_\gamma(x)\}\).  If
+\(1\le T\le d\), then some coordinate belongs to at least
+
+\[
+ I_s(K,L,T)=
+ \left\lceil
+ \frac{\bigl(L-\lfloor C_s(K)/(T+1)\rfloor\bigr)_+
+       (d+K-T)}{R+K}
+ \right\rceil
+ \tag{RLH}\label{eq:mca-raw-low-heavy-core}
+\]
+
+of the pair cores with \(\widetilde\theta_\gamma\le T\), where \(L=|Z|\)
+and \(C_s(K)\) is the support-margin resource in
+\cref{thm:mca-nonuniform-support-margin}.  At such a coordinate exactly
+one of the following source-bound conclusions applies:
+
+\begin{enumerate}
+\item a subfamily of at least \(I_s(K,L,T)\) slopes shortens to the row
+  \((R+K-1,K-1,d+K-1)\) with explanation direction dimension at most
+  \(s-1\); or
+\item the coordinate lies in the complete pair core of every selected
+  slope, and the whole family shortens to that row without losing a slope or
+  changing direction dimension.
+\end{enumerate}
+
+The second alternative is impossible when \(K=s\).
+\end{theorem}
+
+\begin{proof}
+The proved resource concerns
+\(\theta_\gamma=\min\{d+1,\widetilde\theta_\gamma\}\).  Since \(T\le d\),
+truncation is inactive on \(\widetilde\theta_\gamma\le T\), while every
+remaining record contributes at least \(T+1\) to the resource.  Thus at
+least \(L-\lfloor C_s(K)/(T+1)\rfloor\) records are raw-low.  On the selected
+support, scalar agreement and \(r_1=b_\gamma\) force
+\(r_0=a_\gamma\), so each raw-low pair core contains at least \(m-T\)
+support coordinates.  Double counting gives \eqref{eq:mca-raw-low-heavy-core}.
+
+Fix a heavy coordinate \(x\), an incident pair
+\(e_0=(a_0,b_0)\), and put
+
+\[
+ U_x=\operatorname{span}\{a_\gamma-a_0,b_\gamma-b_0:
+ x\in H_\gamma\}\le C'.
+\]
+
+Every generator vanishes at \(x\).  If \(U_x<C'\), subtract the codeword
+pair \(e_0\) from the received pair.  The incident scalar explanations then
+lie in \(U_x\), because
+
+\[
+ h_\gamma-a_0-\gamma b_0
+ =(a_\gamma-a_0)+\gamma(b_\gamma-b_0).
+\]
+
+Divide the received pair, explanations, and pair directions by \(X-x\), and
+delete \(x\).  Division is injective on \(U_x\), so the child direction has
+dimension at most \(s-1\).
+
+If \(U_x=C'\), every word of \(C'\) vanishes at \(x\).  Differences of any
+two selected \(a\)-coordinates and any two selected \(b\)-coordinates lie
+in \(C'\).  Hence every selected pair has the same value as \(e_0\) at
+\(x\), and \(e_0(x)=(r_0(x),r_1(x))\).  Thus \(x\) belongs to every selected
+pair core and the same locator division shortens the whole family.
+
+For completeness, the support used in the lift is the complete scalar
+agreement domain \(A_\gamma\), not an arbitrary coordinate-swapped
+size-\(m\) support.  It contains \(S_\gamma\) and is pair-noncontained.  If a
+shortened pair explained the shortened received pair on
+\(A_\gamma\setminus\{x\}\), multiplying by \(X-x\) and adding \(e_0\)
+would explain the original pair on \(A_\gamma\).  An exact size-\(m-1\) bad
+support exists after shortening: otherwise adjacent \((m-1)\)-subsets of
+the complete domain,
+which overlap in at least \(K-1\) coordinates, glue by Reed--Solomon
+uniqueness and connectedness of the Johnson graph to one explaining pair on
+the entire domain.
+
+Finally, if \(K=s\) and \(U_x=C'\), then \(C'=\F[X]_{<s}\), which contains
+the constant polynomial \(1\); it cannot vanish at \(x\).  This excludes the
+second alternative at the endpoint.
+\end{proof}
+
+\begin{theorem}[Uniform weighted-line cap in direction rank one]
+\label{thm:mca-uniform-rank-one-weighted-line}
+Put \(R=1048576\) and \(d=67472\).  On every complete shortened
+KoalaBear row
+\[
+ (n_K,K,m_K)=(R+K,K,d+K),
+ \qquad 1\le K\le R,
+\]
+a support-wise MCA-bad family whose explanation direction has dimension at
+most one contains at most \(4070947\) distinct finite affine slopes.
+\end{theorem}
+
+\begin{proof}
+The rank-zero case has at most \(n_K\) slopes and is smaller than the
+displayed bound, so consider an affine explanation line with direction
+\(\langle P\rangle\), where \(0\ne P\in\F[X]_{<K}\).  Delete the
+zero-normal coordinates whose incidence equation is identically satisfied
+on the entire affine parameter line.  They are roots of \(P\), so if their
+number is \(u\), then \(0\le u\le K-1\).  Set
+\[
+ j=K-u,\qquad n'=R+j,\qquad m'=d+j,\qquad
+ q=\left\lfloor\frac{m'}2\right\rfloor.
+\]
+After division by \(P(x)\) at a nonroot, each coordinate is an affine graph
+line in the projective parameter plane; a nonuniversal root gives a vertical
+line.  Merge identical lines while retaining their coordinate weights.
+Every selected parameter point is incident to total line weight at least
+\(m'\), and pair noncontainment forces at least two line classes.
+
+If no line class contributes more than \(q\) coordinates to an exact
+\(m'\)-support, that support owns at least \(q(m'-q)\) unordered cross-class
+pairs.  Two distinct projective lines meet in at most one point, so the
+cross-pair charges are disjoint and the number of selected points is at most
+\[
+ W_{\rm low}(n',m')=
+ \left\lfloor\frac{\binom{n'}2}{q(m'-q)}\right\rfloor.
+ \tag{WL1}\label{eq:mca-rank-one-low}
+\]
+Otherwise the support has a unique dominant line.  Suppose \(t\) globally
+distinct lines with coordinate weights \(w_i\) can dominate, and let
+\[
+ a_i=\max\{1,m'-\min(w_i,m'-1)\},\qquad 1\le i\le t.
+\]
+Then \(t\le\lfloor n'/(q+1)\rfloor\), \(1\le a_i\le q\), and a point
+charged to line \(i\) uses either one of the other \(t-1\) dominant lines or
+at least \(a_i\) units of the remaining line weight.  Hence the high part is
+at most
+\[
+ W_{\rm high}(n',m')=
+ \max_{\substack{1\le t\le\lfloor n'/(q+1)\rfloor\\
+                  a_i\in\{1,q\}\\
+                  n'-tm'+\sum_i a_i\ge0}}
+ \left\lfloor t(t-1)+
+ \left(n'-tm'+\sum_i a_i\right)\sum_i\frac1{a_i}\right\rfloor.
+ \tag{WL2}\label{eq:mca-rank-one-high}
+\]
+The endpoint restriction is exact.  Holding all variables but \(a_i\)
+fixed, the variable part is \(f(a)=(C_0+a)(Q_0+1/a)\).  If \(C_0\ge0\),
+then \(f''(a)=2C_0/a^3\ge0\), so a maximum is at an endpoint.  If
+\(C_0<0\), then \(f'(a)=Q_0-C_0/a^2>0\), so replacing \(a\) by \(q\)
+increases the objective and preserves feasibility.
+
+The low and high classes are disjoint.  The release verifier evaluates
+\[
+ W(R+j,d+j)=W_{\rm low}(R+j,d+j)+W_{\rm high}(R+j,d+j)
+\]
+for all \(1\le j\le1048576\).  Its maximum is attained at \(j=1\), where
+\[
+ W_{\rm low}=483,\qquad W_{\rm high}=4070464,\qquad W=4070947.
+\]
+The exact scan has \(423092\) strict decreases and \(625483\) equal adjacent
+values, so no omitted dimension is larger.
+\end{proof}
+
+\begin{corollary}[Repaired affine-error-rank-eleven payment]
+\label{cor:mca-rank-eleven-repaired}
+Put \(R=1048576\) and \(d=67472\), and retain the intrinsic near-rational
+deletion, exact record selection, and reversible gauge of
+\cref{prop:kb-post-deletion-affine-error-router}.  The complete direct
+post-near KoalaBear affine-error-rank-eleven branch fits the deployed budget.
+The exact raw-low induction requires at most
+\(248706399341288370\) post-near slopes, leaving slack
+\(26274328769971774\) below the unsafe load.
+\end{corollary}
+
+\begin{proof}
+For \(2\le s\le10\),
+define
+\[
+ C_s(K)=\left\lfloor\max\left\{
+ \frac{(R+K)^{\underline{s+1}}}
+      {(d+K)(d+1)^{\overline{s-1}}},
+ \frac{(R+s)^{\underline{s+1}}}
+      {(d+1)^{\overline s}}
+ \right\}\right\rfloor
+\]
+and, for a target child load \(M\) and \(1\le T\le d\),
+\[
+ \Lambda_s(K;M,T)=
+ \left\lfloor\frac{C_s(K)}{T+1}\right\rfloor+
+ \left\lfloor\frac{(M-1)(R+K)}{d+K-T}\right\rfloor+1.
+ \tag{R11L}\label{eq:mca-rank-eleven-raw-low-threshold}
+\]
+By \cref{thm:mca-raw-low-heavy-core-shortening}, a parent family of size at
+least \(\Lambda_s(K;M,T)\) has either a child of size at least \(M\) and
+direction dimension at most \(s-1\), or a lossless whole-family shortening.
+
+Set \(L_1=4070948\).  The following fixed thresholds and exact all-dimension
+scans define \(L_s\) recursively:
+\[
+\begin{array}{c|r|r|r|r}
+s&T_s&L_{s-1}&L_s&\arg\max_K\Lambda_s(K;L_{s-1},T_s)\\ \hline
+2&515&4070948&64241811&2\\
+3&511&64241811&1013639041&3\\
+4&507&1013639041&15991635730&4\\
+5&503&15991635730&252259306484&5\\
+6&499&252259306484&3978753104997&6\\
+7&496&3978753104997&62747001947996&7\\
+8&492&62747001947996&989431810807346&8\\
+9&489&989431810807346&15600062750954861&9\\
+10&485&15600062750954861&248706399341288370&1048576
+\end{array}
+\tag{R11}\label{eq:mca-rank-eleven-raw-low-recurrence}
+\]
+For each row the verifier checks every integer \(s\le K\le R\) and proves
+\[
+ \Lambda_s(K;L_{s-1},T_s)\le L_s.
+ \tag{R11I}\label{eq:mca-rank-eleven-raw-low-scan}
+\]
+
+Induct on \(s\).  The base \(s=1\) contradicts
+\cref{thm:mca-uniform-rank-one-weighted-line}.  For \(s\ge2\), apply
+\cref{thm:mca-raw-low-heavy-core-shortening} with \(T_s\).  A proper span
+produces at least \(L_{s-1}\) slopes in lower direction dimension, contrary
+to induction.  A full span shortens the complete family without loss.  It
+cannot persist through \(K=s\), so a proper span eventually occurs.
+
+The unsafe post-near load is
+\[
+ B_*-134944+1=274980728111260144>L_{10},
+\]
+with difference \(26274328769971774\).  Hence the rank-eleven branch is
+paid.
+\end{proof}
+
+\begin{theorem}[Dense-core pair-type bound]
+\label{thm:mca-dense-core-pair-type}
+Put \(R=1048576\) and \(d=67472\).  On a complete shortened row
+\((n,K,m)=(R+K,K,d+K)\), fix raw margins
+\(\widetilde\theta_\gamma\) as in
+\cref{thm:mca-raw-low-heavy-core-shortening}, and let \(1\le T\le d\).
+Let the raw-low records be those with
+\(\widetilde\theta_\gamma\le T\), and suppose their selected pair types
+have common cores \(H_e\).
+Put
+\[
+ h=d+K-T,\qquad \lambda=K-1.
+\]
+If \(h^2>\lambda n\), the number \(t\) of represented pair types is at most
+\[
+ Q(K,T)=\max\left\{
+ \left\lceil\frac n{2h}\right\rceil-1,
+ \left\lfloor\frac{n(h-\lambda)}{h^2-\lambda n}\right\rfloor
+ \right\}.
+ \tag{DC}\label{eq:mca-dense-core-pair-types}
+\]
+For an affine explanation family of dimension \(1\le s\le K\), define
+\[
+ C_s(K)=\left\lfloor\max\left\{
+ \frac{(R+K)^{\underline{s+1}}}
+      {(d+K)(d+1)^{\overline{s-1}}},
+ \frac{(R+s)^{\underline{s+1}}}
+      {(d+1)^{\overline s}}
+ \right\}\right\rfloor.
+\]
+Then the complete selected family \(Z_s\) satisfies
+\[
+ |Z_s|\le
+ D_s(K,T):=\left\lfloor\frac{C_s(K)}{T+1}\right\rfloor
+       +981105\,Q(K,T).
+ \tag{DCB}\label{eq:mca-dense-core-bound}
+\]
+\end{theorem}
+
+\begin{proof}
+Distinct pair cores intersect in at most \(K-1\) coordinates, since a common
+coordinate is a common root of two nonzero degree-\(<K\) pair differences.
+Writing \(r_x\) for the number of cores through \(x\) and
+\(S=\sum_xr_x\ge th\), we have
+\[
+ \sum_xr_x^2=S+2\sum_{e<f}|H_e\cap H_f|
+ \le S+\lambda t(t-1).
+\]
+Cauchy gives \(S^2\le n\sum_xr_x^2\).  If
+\(t<\lceil n/(2h)\rceil\), the first term of
+\eqref{eq:mca-dense-core-pair-types} applies.  Otherwise \(th\ge n/2\),
+and \(z^2/n-z\) is increasing for \(z\ge n/2\); substituting \(S\ge th\)
+and solving the resulting quadratic inequality yields the second term.
+
+Since \(T\le d\), truncation is inactive on the raw-low records, and the
+nonuniform margin resource bounds the remaining records by
+\(\lfloor C_s(K)/(T+1)\rfloor\).  For one fixed pair, put
+\(\delta=\max\{1,m-|H_e|\}\).  Its distinct-slope exception sets outside
+\(H_e\) are disjoint and each has at least \(\delta\) points, so it owns at
+most
+\[
+ \left\lfloor\frac{n-|H_e|}{\delta}\right\rfloor\le R-d+1=981105
+\]
+slopes.  Adding the disjoint high and low parts proves
+\eqref{eq:mca-dense-core-bound}.
+\end{proof}
+
+\begin{proposition}[Single-threshold wall at affine error rank twelve]
+\label{prop:mca-rank-twelve-single-threshold-wall}
+Retain the hypotheses of \cref{cor:mca-rank-eleven-repaired}.  At the initial
+KoalaBear row \(K=R=1048576\), no single raw-low cutoff in
+\cref{thm:mca-raw-low-heavy-core-shortening} can force the rank-ten load
+\(248706399341288370\) from the available unsafe load.  The exact best
+requirement is
+\[
+ \min_{1\le T\le d}
+ \Lambda_{11}(R;248706399341288370,T)
+ =546519697764383119,
+ \tag{R12W}\label{eq:mca-rank-twelve-single-threshold-wall}
+\]
+uniquely at \(T=d=67472\).  This exceeds the available
+\(274980728111260144\) slopes by \(271538969653122975\).
+\end{proposition}
+
+\begin{proof}
+For each of the \(67472\) legal cutoffs, the verifier evaluates the exact
+integer expression \eqref{eq:mca-rank-eleven-raw-low-threshold} at \(s=11\)
+and \(K=R\).  The displayed endpoint is the unique minimum; the adjacent
+cutoff \(T=67471\) requires \(546519951206547786\) slopes.  Therefore the
+raw-low heavy-core theorem that pays rank eleven cannot even force its first
+rank drop at rank twelve.  This is a sharp method wall, not a lower bound on
+the true rank-twelve family and not a payment.
+\end{proof}
+
+\begin{remark}[Scope after the repaired rank-eleven payment]
+\label{rem:mca-rank-eleven-repair-scope}
+This direct theorem removes affine error rank eleven from the post-near
+residual, but it does not regenerate the active-v4 first-match chronology or
+move a deployed ledger atom.  Affine error rank twelve remains open already
+at the initial row by
+\cref{prop:mca-rank-twelve-single-threshold-wall}.  Its next theorem must
+couple several raw-margin levels, use cross-pair/core structure, or construct
+a chronology-correct owner; another single cutoff cannot suffice.
+\end{remark}
+
+\begin{proposition}[All-level scalar-resource barrier at rank twelve]
+\label{prop:mca-rank-twelve-scalar-resource-barrier}
+Retain the initial KoalaBear row and the post-near unsafe load
+\[
+ N=B_*-2d+1=274980728111260144.
+\]
+Put \(n=2097152\), \(m=1116048\), and
+\[
+ C=C_{11}(1048576)=3313389801746721900417.
+\]
+Consider the relaxation in which every selected record has raw margin
+\(r_\gamma\ge1\), truncated margin
+\(\theta_\gamma=\min\{d+1,r_\gamma\}\),
+\(\sum_\gamma\theta_\gamma\le C\), and guaranteed pair-core incidence
+\(m-r_\gamma\).  These hypotheses permit a histogram with total guaranteed
+core incidence exactly
+\[
+ 252089545421228709377370.
+ \tag{R12S}\label{eq:mca-rank-twelve-scalar-core-incidence}
+\]
+Consequently they cannot force any one coordinate through more than
+\[
+ 120205662451376300
+\]
+records.  This is short of the rank-ten child target
+\(248706399341288370\) by \(128500736889912070\).
+
+Even the stronger fantasy premise that every selected support contributes
+all \(m\) core incidences forces by averaging only
+\[
+ \left\lceil\frac{Nm}{n}\right\rceil
+ =146337362121160346,
+\]
+still short by \(102369037220128024\).  Thus no one-coordinate argument
+based only on averaging the selected-support core incidences, no matter how
+it layers the proved scalar margin resource, can produce the existing
+rank-ten child target.
+\end{proposition}
+
+\begin{proof}
+Give every record its mandatory unit of margin resource.  Promoting one
+record from \(\theta=1\) to the capped class \(\theta=d+1\) costs \(d\)
+additional units and may erase all \(m-1\) guaranteed incidences.  Spending
+one additional unit in the uncapped class erases only one incidence.  Since
+\((m-1)/d>1\), the incidence-minimizing histogram first promotes as many
+records as possible.  Exact division gives
+\[
+ \left\lfloor\frac{C-N}{d}\right\rfloor
+ =49103551414195675,
+ \qquad
+ C-N-49103551414195675d=56673.
+\]
+Hence the minimizer has that many capped records of raw margin \(m\), one
+record of margin \(1+56673\), and all remaining records of margin one.  Its
+incidence is
+\[
+ (N-49103551414195675)(m-1)-56673,
+\]
+which is \eqref{eq:mca-rank-twelve-scalar-core-incidence}.  Dividing by
+\(n\) and rounding up gives the displayed coordinate load.  The final
+full-support-incidence assertion is the same averaging calculation with
+total incidence \(Nm\).
+
+The coordinate load is attained within the declared relaxation.  Enumerate
+the required incidence units record by record and assign a record of size
+\(s_i\) the next \(s_i\) distinct residues in a cyclic traversal of the
+\(n\) coordinates.  Since \(s_i\le n\), no record repeats a coordinate, and
+every coordinate receives the floor or ceiling of the total incidence
+divided by \(n\).  The release verifier checks the exact integers and hostile
+unit mutations.
+\end{proof}
+
+\begin{remark}[Pair-count information does not repair the scalar barrier]
+\label{rem:mca-rank-twelve-scalar-pair-barrier}
+For the \(N-49103551414195675-1=225877176697064468\) margin-one records, a
+fixed minimizing pair owns at most
+\(n-(m-1)=981105\) slopes.  The histogram in
+\cref{prop:mca-rank-twelve-scalar-resource-barrier} therefore needs only
+\(230227321946\) pair types, whereas the proved sub-square interleaving cap
+is \(Q_{11}(1)=12761830235484\), with
+\(Q_{11}(1)^2<(2130706433)^6\).  Thus the current total resource,
+first core moment, fixed-pair multiplicity, and pair-type cap still admit
+the abstract packing.  This is a certificate-class no-go, not a claim that
+the histogram is Reed--Solomon realizable.
+\end{remark}
+
+\begin{theorem}[Actual-line supported-dual gluing-defect compiler]
+\label{thm:mca-actual-line-core-gluing-defect}
+Let \(\varnothing\ne\Gamma\subseteq Z_{\rm bad}\setminus N\) be distinct
+finite slopes on one actual received line \(r_0+\gamma r_1\).  For every
+\(\gamma\in\Gamma\), retain one exact pair-noncontained size-\(m\) support
+\(S_\gamma\) and its degree-\((<K)\) explanation \(h_\gamma\).  Assume all
+\(h_\gamma\) lie in one affine translate \(h_*+C'\), and choose
+\(b_\gamma\in C'\) minimizing
+\[
+ \widetilde\theta_\gamma
+ =|\{x\in S_\gamma:r_1(x)\ne b_\gamma(x)\}|.
+\]
+Put
+\[
+ a_\gamma=h_\gamma-\gamma b_\gamma,
+ H_\gamma=\{x:r_0(x)=a_\gamma(x),\ r_1(x)=b_\gamma(x)\},
+ \qquad U=\bigcup_{\gamma\in\Gamma}H_\gamma.
+\]
+For \(H\subseteq U\), let \(A_H\) be the annihilator of the restricted
+degree-\((<K)\) Reed--Solomon code, extended by zero from \(H\) to \(U\),
+and put
+\[
+ A=\sum_{\gamma\in\Gamma}A_{H_\gamma},
+ \qquad W=A_U.
+\]
+Let \(L\) be the space of functions on \(U\) whose restriction to every
+\(H_\gamma\) is represented by a degree-\((<K)\) polynomial.  Then
+\[
+ A^\perp=L,
+ \qquad W^\perp=C_K(U),
+ \qquad
+ \dim W-\dim A=\dim L-\dim C_K(U).
+ \tag{GL}\label{eq:mca-actual-line-core-gluing-defect}
+\]
+Moreover \(r_0|_U,r_1|_U\in L\), so their images in \(L/C_K(U)\) span a
+space of dimension \(c\in\{0,1,2\}\).  On the initial KoalaBear rank-twelve
+row, assume \(|U|\ge m\) and \(\dim C'=11\).  Then the \(c=0\) family
+contains at most
+\[
+ 981104+
+ \left\lfloor
+  \frac{3313389801746721900417-981104}{67473}
+ \right\rfloor
+ =49106899082787469
+ \tag{G0}\label{eq:mca-rank-twelve-gluing-rank-zero}
+\]
+distinct slopes.  This is below the rank-ten child target by
+\(199599500258500901\).
+
+If, in addition, every \(|H_\gamma|\ge K\) and the cores admit an ordering
+\(H_1,\ldots,H_t\) satisfying
+\[
+ |H_i\cap(H_1\cup\cdots\cup H_{i-1})|\ge K
+ \qquad(2\le i\le t),
+ \tag{GK}\label{eq:mca-core-incremental-k-overlap}
+\]
+then \(A=W\).  Consequently \eqref{eq:mca-core-incremental-k-overlap}
+routes the family to the paid \(c=0\) terminal on the initial rank-twelve
+row.
+\end{theorem}
+
+\begin{proof}
+Orthogonality to the zero-extended space \(A_H\) is exactly the condition
+that the restriction to \(H\) is a degree-\((<K)\) evaluation word.
+Intersecting these orthogonal complements proves \(A^\perp=L\).  Taking
+\(H=U\) proves \(W^\perp=C_K(U)\), and the dimension identity follows.
+The defining equalities on \(H_\gamma\) show that both received
+restrictions lie in \(L\).
+
+Their quotient image has dimension at most two.  Suppose first that it has
+dimension zero.  Then there are degree-\((<K)\) polynomials \(a,b\) agreeing
+with \(r_0,r_1\) on all of \(U\).  Split the records by raw support margin
+\(\widetilde\theta_\gamma\).  If
+\(\widetilde\theta_\gamma\le d\), then its selected support meets its
+complete pair core in at least \(m-d=K\) coordinates.  On those coordinates
+both the selected pair \((a_\gamma,b_\gamma)\) and \((a,b)\) equal the
+received pair.  Reed--Solomon uniqueness gives
+\((a_\gamma,b_\gamma)=(a,b)\).
+
+For these raw-low records, pair noncontainment supplies at least one support
+coordinate outside the complete common core
+\(G=\{x:r_0(x)=a(x),\ r_1(x)=b(x)\}\).  Such an exception coordinate
+determines \(\gamma\) uniquely from
+\((r_0-a)+\gamma(r_1-b)=0\); hence distinct slopes use disjoint nonempty
+exception sets.  Since \(U\subseteq G\) and \(|U|\ge m\), the raw-low count
+is at most \(n-|G|\le n-m=981104\).
+
+If the raw-low count is \(L_0\), every remaining record contributes
+\(d+1=67473\) to the nonuniform support-margin resource.  Therefore the
+total count is at most
+\[
+ L_0+
+ \left\lfloor\frac{C_{11}(1048576)-L_0}{67473}\right\rfloor.
+\]
+This expression is nondecreasing for integer
+\(0\le L_0\le981104\), so its endpoint is exactly
+\eqref{eq:mca-rank-twelve-gluing-rank-zero}.  This proves the stated
+rank-zero payment.  Quotient image dimensions one and two remain the two
+unpaid actual-line terminals.
+
+Finally, under \eqref{eq:mca-core-incremental-k-overlap}, a local section's
+degree-\((<K)\) representatives glue inductively: at each step the new and
+old representatives agree on at least \(K\) evaluation points, hence are
+identical.  Thus \(L=C_K(U)\), equivalently \(A=W\), which would make the
+received quotient image zero and invokes the paid terminal just proved.
+\end{proof}
+
+\begin{remark}[Exact rank-twelve realization target]
+\label{rem:mca-rank-twelve-gluing-target}
+The compiler moves no active-v4 atom and does not pay affine error rank
+twelve, but it pays the complete quotient-rank-zero subfamily in the exact
+initial-row units.  It replaces the vague missing ``cross-pair
+compatibility'' with two exact residual actual-line terminals: quotient
+image rank one, where exactly one
+projective scalar combination is globally polynomial on \(U\), and quotient
+image rank two, where none is.  Outside the guarded post-near domain,
+the same rank-zero formula is not claimed; a common pair core alone does not
+eliminate support-wise MCA-bad witnesses.  The next theorem must count
+or route these source-realizable rank-one and rank-two defect families while
+preserving the identical line, slopes, supports, explanations, field, and
+first-match chronology.  Abstract higher-order-MDS generation is
+insufficient: a three-core \((n,K)=(6,3)\) control has nominal full excess
+but one-dimensional gluing defect.
+\end{remark}
 
 
 \begin{proposition}[Exact rank-flat and common-zero reductions at the active rows]
