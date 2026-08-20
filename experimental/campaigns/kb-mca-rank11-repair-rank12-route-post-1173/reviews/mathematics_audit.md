@@ -1,5 +1,9 @@
 # Adversarial mathematics audit
 
+> **SUPERSEDED PRE-REPAIR REVIEW.** This audit covers the withdrawn
+> truncated-margin recurrence and is retained only as failure provenance.
+> It is not evidence for the raw-low theorem now in the active source.
+
 Verdict: **GREEN for the corrected rank-eleven payment and the stated
 rank-twelve route cut; RED for rank-twelve payment, KoalaBear closure, or
 active-v4 ledger movement.**

@@ -1,5 +1,9 @@
 # Certificate and custody audit
 
+> **SUPERSEDED PRE-REPAIR REVIEW.** The arithmetic checked here includes
+> withdrawn rank-twelve descendant data.  It is retained as regression
+> provenance and is not a release attestation for the raw-low packet.
+
 Verdict: **GREEN**.
 
 The certificate binds the exact #1173 parent, the superseded unsubmitted

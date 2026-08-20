@@ -1,5 +1,10 @@
 # Wolfram exact replay
 
+> **SUPERSEDED PRE-REPAIR REPLAY.** These calculations concern the withdrawn
+> recurrence and endpoint histogram.  Fresh Wolfram export of the unpublished
+> repair was unavailable; exact Python and independent-product replays are the
+> current evidence.
+
 A stateless Wolfram Language replay independently evaluated:
 
 - every displayed rank-twelve barrier resource, pair-type cap, direct cap,

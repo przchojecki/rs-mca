@@ -4239,3 +4239,30 @@ Keep entries concise and link to the relevant files.
 - **What to do next:** Prove a same-line cross-pair collision theorem or a
   chronology-correct owner for dense parallel pair cores.  Another scalar
   threshold or smaller per-pair multiplier is ruled out.
+
+### 2026-08-20 - KoalaBear raw-low rank-eleven repair
+
+- **Agent/model:** Codex, with independent mathematics and certificate
+  review required after final sealing.
+- **Exact parent:** PR #1173 head
+  2788d5ec3fb4b1d6f9c43a58a86ec2381e5f6804.
+- **Files added or changed:** experimental/grande_finale.tex, the
+  kb-mca-rank11-repair-rank12-route-post-1173 campaign, threshold note,
+  exact verifier/auditor/manifest packet, agents.md, and this log.
+- **Status:** CANDIDATE DIRECT RANK-ELEVEN PAYMENT / RANK-TWELVE
+  SINGLE-CUTOFF METHOD WALL / ZERO ACTIVE-V4 LEDGER MOVEMENT.
+- **What is being added:** A uniform weighted projective-line cap of
+  4070947 for every complete shortened rank-one family; a self-contained
+  complete-agreement shortening/span theorem; and a raw-low heavy-core
+  induction whose top requirement is 248706399341288370.  Conditional on
+  the pinned 134944 near deletion, the rank-eleven slack is
+  26274328769971774.
+- **Exact remaining wall:** At affine error rank twelve, the unique best
+  initial-row single-cutoff requirement is 546519697764383119, a shortfall
+  of 271538969653122975.  The earlier 8681730 descendant and 279911
+  three-deficiency endpoint claim are withdrawn.
+- **Nonclaim:** Affine error rank twelve remains open; no active-v4 atom is
+  regenerated or moved, and KoalaBear is not closed.
+- **What to do next:** Prove a multi-level raw-margin/core coupling or a
+  chronology-correct owner at rank twelve.  Another single cutoff cannot
+  force the first rank drop.

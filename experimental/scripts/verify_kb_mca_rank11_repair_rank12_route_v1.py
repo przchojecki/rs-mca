@@ -56,8 +56,19 @@ def resource(s: int, k: int) -> int:
     return b_num // b_den
 
 
-def incidence(s: int, k: int, load: int) -> int:
-    return ceil_div(load * (D + k) - resource(s, k), R + k)
+def raw_low_parent_requirement(s: int, k: int, child_load: int, threshold: int) -> int:
+    """Least parent load forcing ``child_load`` records at one heavy core.
+
+    The proved resource controls the truncated margin.  For ``threshold <= D``
+    the records with truncated margin at most ``threshold`` also have raw
+    margin at most ``threshold``.  At most ``C_s(K)//(threshold+1)`` records
+    are outside that raw-low class.  Every raw-low pair core has at least
+    ``D+K-threshold`` coordinates, giving this exact inverse pigeonhole bound.
+    """
+
+    require(1 <= threshold <= D, "raw-low threshold")
+    high = resource(s, k) // (threshold + 1)
+    return high + ((child_load - 1) * (R + k)) // (D + k - threshold) + 1
 
 
 def weighted_line_cap(j: int) -> dict[str, int]:
@@ -133,32 +144,43 @@ def scan_uniform_rank_one() -> dict[str, int]:
     }
 
 
-def scan_transfer(s: int, first_k: int, load: int, target: int) -> dict[str, int]:
-    """Check incidence(s,k,load) >= target by one exact falling-product recurrence."""
+def scan_raw_low_transfer(
+    s: int,
+    child_load: int,
+    threshold: int,
+    parent_load: int,
+) -> dict[str, int]:
+    """Check the raw-low parent threshold on every ambient shortened row."""
 
     rise_a = rising(D + 1, s - 1)
     b_num = falling(R + s, s + 1)
     b_den = rising(D + 1, s)
-    p_num = falling(R + first_k, s + 1)
+    p_num = falling(R + s, s + 1)
 
     minimum = None
     argmin = 0
     checked = 0
-    decreases = 0
+    increases = decreases = equal = 0
     previous = None
 
-    for k in range(first_k, R + 1):
+    for k in range(s, R + 1):
         a_den = (D + k) * rise_a
         if p_num * b_den >= b_num * a_den:
             c = p_num // a_den
         else:
             c = b_num // b_den
-        value = ceil_div(load * (D + k) - c, R + k)
-        require(value >= target, f"rank {s} transfer at K={k}")
-        if minimum is None or value < minimum:
+        high = c // (threshold + 1)
+        value = high + ((child_load - 1) * (R + k)) // (D + k - threshold) + 1
+        require(value <= parent_load, f"rank {s} raw-low transfer at K={k}")
+        if minimum is None or value > minimum:
             minimum, argmin = value, k
-        if previous is not None and value < previous:
-            decreases += 1
+        if previous is not None:
+            if value > previous:
+                increases += 1
+            elif value < previous:
+                decreases += 1
+            else:
+                equal += 1
         previous = value
         checked += 1
         if k < R:
@@ -167,9 +189,11 @@ def scan_transfer(s: int, first_k: int, load: int, target: int) -> dict[str, int
     require(minimum is not None, "nonempty transfer scan")
     return {
         "cells_checked": checked,
-        "minimum": minimum,
-        "argmin": argmin,
+        "maximum_parent_requirement": minimum,
+        "argmax": argmin,
+        "strict_increases": increases,
         "strict_decreases": decreases,
+        "equal_steps": equal,
     }
 
 
@@ -189,121 +213,83 @@ def dense_cap(s: int, k: int, threshold: int) -> int:
 
 
 def rank11_data() -> dict[str, Any]:
-    loads: dict[int, int] = {10: BUDGET - NEAR + 1}
+    thresholds = {
+        2: 515,
+        3: 511,
+        4: 507,
+        5: 503,
+        6: 499,
+        7: 496,
+        8: 492,
+        9: 489,
+        10: 485,
+    }
+    loads: dict[int, int] = {1: 4_070_948}
     rows: list[dict[str, int]] = []
     scans: dict[str, dict[str, int]] = {}
-    for s in range(10, 1, -1):
-        next_load = incidence(s, s, loads[s])
+    for s in range(2, 11):
+        child_load = loads[s - 1]
+        threshold = thresholds[s]
+        scan = scan_raw_low_transfer(s, child_load, threshold, 10**40)
+        parent_load = scan["maximum_parent_requirement"]
+        # Replay with the now-frozen exact maximum as a fail-closed guard.
+        scan = scan_raw_low_transfer(s, child_load, threshold, parent_load)
         rows.append({
             "rank": s,
-            "load": loads[s],
-            "endpoint_resource": resource(s, s),
-            "next_load": next_load,
+            "threshold": threshold,
+            "child_load": child_load,
+            "parent_load": parent_load,
+            "argmax_K": scan["argmax"],
         })
-        loads[s - 1] = next_load
-    for row in rows:
-        s = row["rank"]
-        scans[str(s)] = scan_transfer(s, s, row["load"], row["next_load"])
-    require(loads[1] == 5_201_865, "rank-eleven final load")
-    require(loads[1] > 4_070_947, "rank-eleven contradiction")
+        loads[s] = parent_load
+        scans[str(s)] = scan
+    expected = {
+        1: 4_070_948,
+        2: 64_241_811,
+        3: 1_013_639_041,
+        4: 15_991_635_730,
+        5: 252_259_306_484,
+        6: 3_978_753_104_997,
+        7: 62_747_001_947_996,
+        8: 989_431_810_807_346,
+        9: 15_600_062_750_954_861,
+        10: 248_706_399_341_288_370,
+    }
+    require(loads == expected, "corrected rank-eleven raw-low thresholds")
+    unsafe = BUDGET - NEAR + 1
+    require(unsafe > loads[10], "rank-eleven contradiction")
     return {
-        "loads": {str(k): v for k, v in sorted(loads.items(), reverse=True)},
+        "loads": {str(k): v for k, v in sorted(loads.items())},
         "rows": rows,
         "transfer_scans": scans,
-        "forced_rank_one_load": loads[1],
+        "unsafe_post_near_load": unsafe,
+        "required_rank_ten_load": loads[10],
         "uniform_rank_one_cap": 4_070_947,
-        "slack": loads[1] - 4_070_947,
+        "slack": unsafe - loads[10],
     }
 
 
-def rank12_data() -> dict[str, Any]:
-    barriers = {s: 4280 + (s - 3) for s in range(3, 12)}
-    thresholds = {s: (249 if s >= 4 else 380) for s in range(3, 12)}
-    loads: dict[int, int] = {11: BUDGET - NEAR + 1}
-    rows: list[dict[str, int]] = []
-    scans: dict[str, dict[str, int]] = {}
+def rank12_method_wall(rank11: dict[str, Any]) -> dict[str, int]:
+    """Best single raw-low threshold at the initial rank-twelve row."""
 
-    for s in range(11, 2, -1):
-        k = barriers[s]
-        threshold = thresholds[s]
-        cap = dense_cap(s, k, threshold)
-        require(cap < loads[s], f"rank {s} barrier pays")
-        next_load = incidence(s, k + 1, loads[s])
-        row = {
-            "rank": s,
-            "barrier_K": k,
-            "threshold": threshold,
-            "load": loads[s],
-            "resource": resource(s, k),
-            "pair_type_cap": pair_type_cap(k, threshold),
-            "dense_cap": cap,
-            "slack": loads[s] - cap,
-            "drop_K": k + 1,
-            "next_load": next_load,
-        }
-        rows.append(row)
-        loads[s - 1] = next_load
-        scans[str(s)] = scan_transfer(s, k + 1, loads[s], next_load)
-
-    expected_loads = {
-        11: 274_980_728_111_260_144,
-        10: 18_729_383_598_438_495,
-        9: 1_275_719_855_410_716,
-        8: 86_895_415_230_834,
-        7: 5_918_985_683_045,
-        6: 403_186_331_995,
-        5: 27_464_496_807,
-        4: 1_870_872_170,
-        3: 127_444_922,
-        2: 8_681_730,
-    }
-    require(loads == expected_loads, "rank-twelve barrier loads")
-    require(min(row["slack"] for row in rows) == 364_201, "minimum barrier slack")
-
-    endpoint_threshold = 1_922
-    high = resource(2, 2) // (endpoint_threshold + 1)
-    low = loads[2] - high
-    q = pair_type_cap(2, endpoint_threshold)
-    c1 = FIBER
-    c2 = (R - D + 2) // 2
-    pair_types_min = ceil_div(low, c1)
-    deficiency_one_min = min(
-        r for r in range(q + 1)
-        if r * c1 + (q - r) * c2 >= low
-    )
-    extremal_capacity = deficiency_one_min * c1 + (q - deficiency_one_min) * c2
-    rank_one_descendant = incidence(2, 2, loads[2])
-
-    require((high, low, q) == (131_690, 8_550_040, 15), "rank-two endpoint split")
-    require(pair_types_min == 9 and deficiency_one_min == 3, "rank-two type floors")
-    require(extremal_capacity == 8_829_951, "rank-two independent capacity")
-    require(extremal_capacity - low == 279_911, "rank-two capacity excess")
-    require(rank_one_descendant == 558_412, "rank-one descendant load")
-
+    child = rank11["required_rank_ten_load"]
+    k = R
+    values = [
+        (raw_low_parent_requirement(11, k, child, threshold), threshold)
+        for threshold in range(1, D + 1)
+    ]
+    minimum, threshold = min(values)
+    unsafe = BUDGET - NEAR + 1
+    require((minimum, threshold) == (546_519_697_764_383_119, D), "rank-twelve method wall")
+    require(minimum > unsafe, "rank-twelve remains unpaid")
+    require(sum(value == minimum for value, _ in values) == 1, "unique rank-twelve threshold")
     return {
-        "loads": {str(k): v for k, v in sorted(loads.items(), reverse=True)},
-        "barrier_rows": rows,
-        "transfer_scans": scans,
-        "minimum_barrier_slack": min(row["slack"] for row in rows),
-        "descendant": {
-            "minimum_load": loads[2],
-            "maximum_direction_dimension": 2,
-            "minimum_ambient_K": 4_280,
-        },
-        "rank_two_endpoint": {
-            "threshold": endpoint_threshold,
-            "high": high,
-            "low": low,
-            "pair_types_max": q,
-            "pair_types_min": pair_types_min,
-            "deficiency_one_min": deficiency_one_min,
-            "capacity_delta_1": c1,
-            "capacity_delta_2": c2,
-            "independent_extremal_capacity": extremal_capacity,
-            "capacity_excess": extremal_capacity - low,
-            "saving_needed": extremal_capacity - low + 1,
-            "rank_one_descendant_min": rank_one_descendant,
-        },
+        "thresholds_checked": D,
+        "best_threshold": threshold,
+        "required_parent_load": minimum,
+        "available_unsafe_load": unsafe,
+        "shortfall": minimum - unsafe,
+        "target_rank_ten_load": child,
     }
 
 
@@ -340,7 +326,7 @@ def small_dense_core_controls() -> int:
 def build() -> dict[str, Any]:
     uniform = scan_uniform_rank_one()
     rank11 = rank11_data()
-    rank12 = rank12_data()
+    rank12 = rank12_method_wall(rank11)
     controls = small_dense_core_controls()
     return {
         "schema": "kb-mca-rank11-repair-rank12-route-v1",
@@ -359,12 +345,13 @@ def build() -> dict[str, Any]:
         },
         "uniform_rank_one": uniform,
         "rank11_payment": rank11,
-        "rank12_route": rank12,
+        "rank12_method_wall": rank12,
         "finite_controls": {"dense_core_families_checked": controls},
         "claims": {
             "uniform_rank_one_cap_proved": True,
             "complete_affine_error_rank_11_branch_paid": True,
-            "rank12_dense_core_route_proved": True,
+            "rank12_dense_core_route_proved": False,
+            "rank12_single_threshold_method_insufficient": True,
             "affine_error_rank_12_paid": False,
             "koalabear_closed": False,
             "active_v4_ledger_movement": 0,
@@ -380,7 +367,7 @@ def tamper_selftest(expected: dict[str, Any]) -> int:
     mutations = [
         ("uniform_rank_one", "maximum", expected["uniform_rank_one"]["maximum"] - 1),
         ("rank11_payment", "slack", expected["rank11_payment"]["slack"] + 1),
-        ("rank12_route", "minimum_barrier_slack", expected["rank12_route"]["minimum_barrier_slack"] + 1),
+        ("rank12_method_wall", "shortfall", expected["rank12_method_wall"]["shortfall"] + 1),
         ("claims", "complete_affine_error_rank_11_branch_paid", False),
         ("claims", "affine_error_rank_12_paid", True),
         ("claims", "koalabear_closed", True),
@@ -394,9 +381,9 @@ def tamper_selftest(expected: dict[str, Any]) -> int:
         except Reject:
             caught += 1
     changed = copy.deepcopy(expected)
-    changed["rank12_route"]["rank_two_endpoint"]["capacity_excess"] -= 1
+    changed["rank12_method_wall"]["best_threshold"] -= 1
     try:
-        require(changed == expected, "rank-two excess")
+        require(changed == expected, "rank-twelve method wall")
     except Reject:
         caught += 1
     changed = copy.deepcopy(expected)
@@ -440,8 +427,7 @@ def main() -> None:
         "KB_MCA_RANK11_REPAIR_RANK12_ROUTE_PASS "
         f"rank1_cap={result['uniform_rank_one']['maximum']} "
         f"rank11_slack={result['rank11_payment']['slack']} "
-        f"rank12_load={result['rank12_route']['descendant']['minimum_load']} "
-        f"rank2_gap={result['rank12_route']['rank_two_endpoint']['capacity_excess']} "
+        f"rank12_shortfall={result['rank12_method_wall']['shortfall']} "
         f"controls={result['finite_controls']['dense_core_families_checked']}"
     )
 

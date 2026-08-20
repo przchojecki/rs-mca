@@ -5,6 +5,8 @@
   "rank12_paid": false,
   "row": "KoalaBear MCA",
   "schema": "kb-mca-rank11-repair-rank12-route-campaign-v1",
-  "status": "PROVED_RANK11_REPAIR_AND_RANK12_ROUTE_CUT",
-  "supersedes_unsubmitted_candidate": "d01c546f4dca70e256c18c142873821b3bb48ab5"
+  "schema_version": 2,
+  "status": "CANDIDATE_RAW_LOW_RANK11_PAYMENT_AND_RANK12_METHOD_WALL",
+  "supersedes_unsubmitted_candidate": "d01c546f4dca70e256c18c142873821b3bb48ab5",
+  "title": "KoalaBear raw-low rank-eleven payment and rank-twelve method wall"
 }

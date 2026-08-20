@@ -1,11 +1,9 @@
-claim_id,claim,status,unit,exact_value,nonclaim
-C-001,uniform rank-one cap,PROVED,distinct slopes,4070947,all shortened dimensions
-C-002,complete affine error rank eleven branch,PROVED,branch payment,1,no active-v4 movement
-C-003,rank-twelve descendant load,PROVED,distinct slopes,8681730,dimension at most two
-C-004,rank-two endpoint low load,PROVED,distinct slopes,8550040,conditional on full rank two reaching K=2
-C-005,rank-two pair-type count,PROVED,pair types,9..15,not a classification
-C-006,minimum deficiency-one types,PROVED,pair types,3,capacity statement
-C-007,remaining capacity excess,PROVED,distinct slopes,279911,not an extremizer
-C-008,affine error rank twelve paid,NOT_CLAIMED,branch payment,0,open
-C-009,KoalaBear closed,NOT_CLAIMED,row closure,0,open
-C-010,active-v4 ledger movement,PROVED,ledger units,0,none
+claim_id,statement,status,artifact,dependencies,controls,review_joints,rederivation,formalization
+C-001,Every complete shortened rank-one family has at most 4070947 slopes,provisionally-verified,experimental/grande_finale.tex,D-001;D-005,C-001,projective-line combinatorics and exhaustive integer scan,independent exact auditor,not_started
+C-002,The raw-low heavy-core theorem gives the printed proper-span or lossless-shortening dichotomy,provisionally-verified,experimental/grande_finale.tex,D-001;D-003,C-002;C-003,raw versus truncated margin and locator lift,independent mathematics reviewer,not_started
+C-003,Conditional on the pinned near deletion the complete direct post-near affine-error-rank-eleven branch is paid,provisionally-verified,experimental/grande_finale.tex,D-001;D-003;D-004;D-005,C-001;C-002;C-003,all-dimension recurrence and induction,independent mathematics reviewer,not_started
+C-004,The dense-core pair-type theorem is valid for raw margin cutoffs T at most d,provisionally-verified,experimental/grande_finale.tex,D-001;D-003,C-005,Cauchy core bound and fixed-pair packing,independent mathematics reviewer,not_started
+C-005,The single-threshold rank-twelve method requires at least 546519697764383119 slopes,provisionally-verified,experimental/grande_finale.tex,D-001;D-003,C-004,all-cutoff integer scan,independent exact auditor,not_started
+C-006,Affine error rank twelve remains unpaid,blocked,experimental/grande_finale.tex,D-001,C-004;C-005,multi-level coupling or chronology owner,pending,not_applicable
+C-007,The active-v4 ledger movement is zero,known,experimental/grande_finale.tex,D-002,C-006,scope and public wording,direct source comparison,not_applicable
+C-008,KoalaBear remains open,blocked,experimental/grande_finale.tex,D-002,C-006,complete chronology and final add-back,pending,not_applicable

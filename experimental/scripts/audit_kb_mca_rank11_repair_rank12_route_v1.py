@@ -15,7 +15,6 @@ R = 1_048_576
 D = 67_472
 BUDGET = 274_980_728_111_395_087
 NEAR = 134_944
-FIBER = 981_105
 
 
 def down(x: int, r: int) -> int:
@@ -45,8 +44,9 @@ def c_resource(s: int, k: int) -> int:
     return value.numerator // value.denominator
 
 
-def transfer(s: int, k: int, load: int) -> int:
-    return ceilq(Fraction(load * (D + k) - c_resource(s, k), R + k))
+def raw_low_requirement(s: int, k: int, child: int, threshold: int) -> int:
+    high = c_resource(s, k) // (threshold + 1)
+    return high + ((child - 1) * (R + k)) // (D + k - threshold) + 1
 
 
 def line_cap(j: int) -> int:
@@ -90,15 +90,6 @@ def line_cap(j: int) -> int:
     return low + high
 
 
-def q_core(k: int, threshold: int) -> int:
-    n = R + k
-    h = D + k - threshold
-    lam = k - 1
-    den = h * h - lam * n
-    assert den > 0
-    return max((n + 2 * h - 1) // (2 * h) - 1, n * (h - lam) // den)
-
-
 def main() -> None:
     result = json.loads(RESULT.read_text())
 
@@ -111,40 +102,48 @@ def main() -> None:
     assert (maximum, argmax) == (4_070_947, 1)
     assert result["uniform_rank_one"]["maximum"] == maximum
 
-    loads = {10: BUDGET - NEAR + 1}
-    for s in range(10, 1, -1):
-        loads[s - 1] = transfer(s, s, loads[s])
-    assert loads[1] == 5_201_865
-    assert result["rank11_payment"]["forced_rank_one_load"] == loads[1]
+    thresholds = {2: 515, 3: 511, 4: 507, 5: 503, 6: 499,
+                  7: 496, 8: 492, 9: 489, 10: 485}
+    expected = {1: 4_070_948}
+    for s in range(2, 11):
+        threshold = thresholds[s]
+        expected[s] = max(
+            raw_low_requirement(s, k, expected[s - 1], threshold)
+            for k in range(s, R + 1)
+        )
+    assert expected == {
+        1: 4_070_948,
+        2: 64_241_811,
+        3: 1_013_639_041,
+        4: 15_991_635_730,
+        5: 252_259_306_484,
+        6: 3_978_753_104_997,
+        7: 62_747_001_947_996,
+        8: 989_431_810_807_346,
+        9: 15_600_062_750_954_861,
+        10: 248_706_399_341_288_370,
+    }
+    unsafe = BUDGET - NEAR + 1
+    assert unsafe - expected[10] == 26_274_328_769_971_774
+    assert result["rank11_payment"]["loads"] == {
+        str(k): value for k, value in expected.items()
+    }
 
-    loads12 = {11: BUDGET - NEAR + 1}
-    for s in range(11, 2, -1):
-        k = 4280 + s - 3
-        threshold = 249 if s >= 4 else 380
-        cap = c_resource(s, k) // (threshold + 1) + q_core(k, threshold) * FIBER
-        assert cap < loads12[s]
-        loads12[s - 1] = transfer(s, k + 1, loads12[s])
-    assert loads12[2] == 8_681_730
-
-    high = c_resource(2, 2) // 1923
-    low = loads12[2] - high
-    assert (high, low, q_core(2, 1922)) == (131_690, 8_550_040, 15)
-    c1 = FIBER
-    c2 = 490_553
-    assert 2 * c1 + 13 * c2 < low <= 3 * c1 + 12 * c2
-    assert 3 * c1 + 12 * c2 - low == 279_911
-    assert transfer(2, 2, loads12[2]) == 558_412
-
-    endpoint = result["rank12_route"]["rank_two_endpoint"]
-    assert endpoint["capacity_excess"] == 279_911
+    wall = min(
+        (raw_low_requirement(11, R, expected[10], threshold), threshold)
+        for threshold in range(1, D + 1)
+    )
+    assert wall == (546_519_697_764_383_119, D)
+    assert wall[0] - unsafe == 271_538_969_653_122_975
+    assert result["rank12_method_wall"]["required_parent_load"] == wall[0]
     assert result["claims"]["complete_affine_error_rank_11_branch_paid"] is True
     assert result["claims"]["affine_error_rank_12_paid"] is False
 
     print("KB_MCA_RANK11_REPAIR_RANK12_ROUTE_AUDIT_PASS")
     print(f"uniform_rank_one={maximum}")
-    print(f"rank11_final={loads[1]}")
-    print(f"rank12_rank2={loads12[2]}")
-    print(f"rank2_capacity_excess={endpoint['capacity_excess']}")
+    print(f"rank11_required={expected[10]}")
+    print(f"rank11_slack={unsafe - expected[10]}")
+    print(f"rank12_method_shortfall={wall[0] - unsafe}")
 
 
 if __name__ == "__main__":

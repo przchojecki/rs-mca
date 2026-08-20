@@ -1,6 +1,6 @@
-# Uniform rank-one repair and dense-core route for KoalaBear ranks eleven and twelve
+# Raw-low repair of KoalaBear affine error rank eleven
 
-## 1. Scope and exact interface
+## 1. Exact interface
 
 Write
 
@@ -8,30 +8,32 @@ Write
  R=n-K=1{,}048{,}576,\qquad d=m-K=67{,}472,
 \]
 
-so every complete shortening row has parameters
+so every complete shortening row is
 
 \[
  (n_K,K,m_K)=(R+K,K,d+K).
 \]
 
-The deployed budget and the disjoint near-rational charge are
+The conditional intrinsic near-rational deletion supplies at most
+134,944 slopes.  The unsafe post-near load is therefore
 
 \[
- B_*=274{,}980{,}728{,}111{,}395{,}087,
- \qquad N_{\rm near}=134{,}944.
-\]
-
-The exact unsafe post-near load is therefore
-
-\[
- L_{\rm unsafe}=B_*-N_{\rm near}+1
+ L_{\rm unsafe}=B_*-134944+1
  =274{,}980{,}728{,}111{,}260{,}144. \tag{1}
 \]
 
 For a selected explanation family in an affine translate of a direction
-subcode \(C'\) of dimension at most \(s\), freeze one exact bad support and one
-minimizing direction for every slope.  The pointwise support-margin theorem
-gives
+subcode \(C'\) of dimension at most \(s\), retain one exact bad support,
+explanation, and minimizing direction \(b_\gamma\) for every slope.  The
+proved support resource controls the truncated margin
+
+\[
+ \theta_\gamma=\min\{d+1,\widetilde\theta_\gamma\},\qquad
+ \widetilde\theta_\gamma=
+ |\{x\in S_\gamma:r_1(x)\ne b_\gamma(x)\}|,
+\]
+
+and gives
 
 \[
  \sum_\gamma\theta_\gamma\le C_s(K), \tag{2}
@@ -48,508 +50,184 @@ where
  \right\}\right\rfloor. \tag{3}
 \]
 
-For the corresponding minimizing pair \(e_\gamma=(a_\gamma,b_\gamma)\), put
+The earlier unsubmitted descent used \(\theta\) as the raw mismatch.  That
+is false when truncation is active.  The repaired argument uses only the
+raw-low class for a cutoff \(T\le d\).
+
+## 2. Raw-low heavy-core theorem
+
+At most
 
 \[
- H_\gamma=\{x:r_0(x)=a_\gamma(x),\ r_1(x)=b_\gamma(x)\}.
+ H_s(K,T)=\left\lfloor C_s(K)/(T+1)\right\rfloor \tag{4}
 \]
 
-On the selected support, scalar agreement and \(r_1=b_\gamma\) force
-\(r_0=a_\gamma\).  Hence
+records have raw margin exceeding \(T\).  Every remaining pair core contains
+at least \(d+K-T\) coordinates of the selected support.  Thus a family of
+size \(L\) has a coordinate incident with at least
 
 \[
- |H_\gamma|\ge d+K-\theta_\gamma. \tag{4}
-\]
-
-The complete-agreement shortening and pair-difference-span dichotomy from the
-predecessor stack will be used repeatedly:
-
-* a proper incident pair-difference span shortens one coordinate and lowers
-  direction dimension;
-* a full incident span makes the coordinate a whole-family pair-core
-  coordinate and shortens the complete family without losing a slope.
-
-Minimizing pairs are refrozen after every shortening.
-
-## 2. The gap in the first global-core draft
-
-The earlier unsubmitted candidate
-`d01c546f4dca70e256c18c142873821b3bb48ab5` correctly proved the heavy-core
-dichotomy and the displayed load recurrence, but its written induction jumped
-from an early rank drop to the final \(K=1\) rank-one cap without proving that
-the intervening rank-one family could be transported to \(K=1\) intact.
-
-That implication is not automatic: at \(K>1\), a rank-one family can first
-drop to a rank-zero parallel star.  The repair below is a cap for the complete
-rank-one family that is uniform in the ambient shortened dimension.  Once
-that theorem is installed, the descent induction is valid.
-
-## 3. Uniform weighted-line theorem for rank one
-
-Let the current direction code be \(C'=\langle P\rangle\), with
-\(0\ne P\in\mathbb F[X]_{<K}\).  After choosing a base pair, every pair type
-has the form
-
-\[
- (a_e,b_e)=(a_*,b_*)+(\alpha_eP,\beta_eP).
-\]
-
-For a coordinate with \(P(x)\ne0\), divide its affine error equation by
-\(P(x)\).  In the parameter plane with coordinates \((\gamma,z)\), the
-coordinate becomes an affine graph line
-
-\[
- z=A_x+\gamma B_x,
-\]
-
-while a pair type becomes the graph line
-
-\[
- z=\alpha_e+\gamma\beta_e.
-\]
-
-If \(P(x)=0\), then either the affine error vanishes identically, in which
-case the coordinate is a universal pair-core coordinate, or the agreement
-condition is a vertical line in the same projective parameter plane.
-Identical lines are merged while retaining coordinate multiplicity.
-
-Let \(u\) be the universal weight.  Since \(u\) is supported on the roots of
-\(P\),
-
-\[
- 0\le u\le K-1.
-\]
-
-After deleting that universal core, put
-
-\[
- j=K-u,\qquad n'=R+j,\qquad m'=d+j. \tag{5}
-\]
-
-Every selected parameter point is incident to weighted line mass at least
-\(m'\).  Pair noncontainment says its exact support contains at least two
-distinct line classes.
-
-### Lemma 3.1 (weighted projective-line cap)
-
-For \(n'\ge m'\ge2\), put
-
-\[
- q=\left\lfloor\frac{m'}2\right\rfloor.
-\]
-
-The number of selected finite parameter points is at most
-
-\[
- W(n',m')=W_{\rm low}(n',m')+W_{\rm high}(n',m'), \tag{6}
-\]
-
-where
-
-\[
- W_{\rm low}
- =\left\lfloor\frac{\binom{n'}2}{q(m'-q)}\right\rfloor, \tag{7}
-\]
-
-and
-
-\[
- W_{\rm high}
- =\max_{\substack{1\le t\le\lfloor n'/(q+1)\rfloor\\
-                  a_i\in\{1,q\}\\
-                  n'-tm'+\sum_i a_i\ge0}}
- \left\lfloor
- t(t-1)+
- \left(n'-tm'+\sum_i a_i\right)\sum_i\frac1{a_i}
- \right\rfloor. \tag{8}
-\]
-
-#### Proof
-
-If no line class contributes more than \(q\) coordinates to an exact
-\(m'\)-support, the support contains at least \(q(m'-q)\) unordered pairs
-from different classes.  Two distinct projective lines meet at at most one
-point, so these cross-pair charges are disjoint across selected points.  This
-gives (7).
-
-Otherwise there is a unique dominant class.  Let the globally distinct lines
-capable of dominating have weights \(w_i\), \(1\le i\le t\).  Then
-\(w_i\ge q+1\), so \(t\le\lfloor n'/(q+1)\rfloor\).  Define
-
-\[
- a_i=\max\{1,m'-\min(w_i,m'-1)\},\qquad 1\le a_i\le q,
-\]
-
-and
-
-\[
- W_0=n'-\sum_i(m'-a_i).
-\]
-
-A point charged to line \(i\) requires at least \(a_i\) coordinates from
-other line classes.  At most \(t-1\) charged points lie on another dominant
-line.  Every remaining charged point consumes non-dominant line weight, and
-those weights are disjoint along a fixed line.  Thus
-
-\[
- N_i\le t-1+\left\lfloor\frac{W_0}{a_i}\right\rfloor.
-\]
-
-Summing gives the objective in (8), before endpoint reduction.
-
-Hold all variables but one \(a_i\) fixed.  With
-
-\[
- C_0=n'-tm'+\sum_{j\ne i}a_j,\qquad
- Q_0=\sum_{j\ne i}\frac1{a_j},
-\]
-
-the variable part is
-
-\[
- f(a)=(C_0+a)(Q_0+1/a).
-\]
-
-If \(C_0\ge0\), then \(f''(a)=2C_0/a^3\ge0\), so a maximum is at an
-endpoint.  If \(C_0<0\), then \(f'(a)=Q_0-C_0/a^2>0\), so moving to
-\(a=q\) increases the objective and preserves feasibility.  Iteration gives
-\(a_i\in\{1,q\}\), proving (8).  The low and high cases are disjoint. ∎
-
-### Exact deployed uniformity
-
-Evaluate (6) at
-
-\[
- (n',m')=(R+j,d+j),\qquad 1\le j\le1{,}048{,}576.
-\]
-
-An exact integer scan gives
-
-\[
- \max_j W(R+j,d+j)=W(R+1,d+1)=4{,}070{,}947. \tag{9}
-\]
-
-At \(j=1\),
-
-\[
- W_{\rm low}=483,\qquad
- W_{\rm high}=4{,}070{,}464,
-\]
-
-and the high extremizer is \(t=8\), with all eight effective deficiencies
-equal to one.  The scan has no increase: there are \(423{,}092\) strict
-decreases and \(625{,}483\) equal adjacent values.  Therefore every rank-one
-family on every shortened row satisfies
-
-\[
- |Z_1|\le4{,}070{,}947. \tag{10}
-\]
-
-This is the missing uniform base case.
-
-## 4. Corrected rank-eleven payment
-
-For \(2\le s\le10\), define recursively
-
-\[
- L_{10}=L_{\rm unsafe},\qquad
- L_{s-1}=
+ I_s(K,L,T)=
  \left\lceil
- \frac{L_s(d+s)-C_s(s)}{R+s}
- \right\rceil. \tag{11}
+ \frac{(L-H_s(K,T))_+(d+K-T)}{R+K}
+ \right\rceil \tag{5}
 \]
 
-Exact evaluation gives
+raw-low pair cores.
+
+Fix an incident base pair \(e_0=(a_0,b_0)\) and put
 
 \[
-\begin{array}{c|r|r}
-s&C_s(s)&L_{s-1}\\ \hline
-10&861057176799343503&17695628624859819\\
-9&55413538236037195&1138737729126327\\
-8&3566101912297072&73278302796469\\
-7&229490967859328&4715427489703\\
-6&14768331186162&303431536894\\
-5&950366735057&19525148223\\
-4&61156835934&1256382675\\
-3&3935435218&80843204\\
-2&253241283&5201865
-\end{array} \tag{12}
+ U_x=\operatorname{span}\{a_\gamma-a_0,b_\gamma-b_0:
+ x\in H_\gamma\}\le C'. \tag{6}
 \]
 
-For every row in (12), the exact verifier checks all integers \(s\le K\le R\)
+All generators vanish at \(x\).
+
+- If \(U_x<C'\), subtract \(e_0\), divide by \(X-x\), and delete \(x\).
+  The incident explanations lie in \(U_x\), giving a source-bound child of
+  direction dimension at most \(s-1\).
+- If \(U_x=C'\), every word in \(C'\) vanishes at \(x\).  Differences of
+  every selected pair lie in \(C'\), so every pair agrees with the received
+  pair at \(x\).  The whole family shortens without losing a slope.
+- At \(K=s\), the second case is impossible because
+  \(C'=\mathbb F[X]_{<s}\) contains \(1\).
+
+The lift uses complete scalar agreement domains.  Any shortened pair
+explanation lifts by multiplying by \(X-x\) and adding \(e_0\).  Pair
+noncontainment and post-near status are therefore preserved.  An exact bad
+support in the child follows from Reed--Solomon uniqueness on adjacent
+subsets and connectedness of the Johnson graph.
+
+Equivalently, the least parent load forcing a target child load \(M\) is
+
+\[
+ \Lambda_s(K;M,T)=
+ H_s(K,T)+
+ \left\lfloor\frac{(M-1)(R+K)}{d+K-T}\right\rfloor+1. \tag{7}
+\]
+
+## 3. Uniform rank-one base
+
+For a rank-one direction polynomial \(P\), delete universal roots and put
+\(j=K-u\).  Nonroot coordinates become affine graph lines in the parameter
+plane; nonuniversal roots become vertical projective lines.  Merge identical
+lines with their coordinate weights.
+
+The low branch charges cross-class coordinate pairs.  The high branch has a
+unique dominant line and reduces exactly to endpoint deficiencies
+\(a_i\in\{1,q\}\).  The complete scan over
+\(1\le j\le1{,}048{,}576\) gives
+
+\[
+ |Z_1|\le4{,}070{,}947. \tag{8}
+\]
+
+The maximum occurs at \(j=1\), with low contribution \(483\) and high
+contribution \(4{,}070{,}464\).
+
+## 4. Corrected rank-eleven induction
+
+Set \(L_1=4{,}070{,}948\).  Use the following fixed raw cutoffs:
+
+\[
+\begin{array}{c|r|r|r|r}
+s&T_s&L_{s-1}&L_s&\arg\max K\\ \hline
+2&515&4070948&64241811&2\\
+3&511&64241811&1013639041&3\\
+4&507&1013639041&15991635730&4\\
+5&503&15991635730&252259306484&5\\
+6&499&252259306484&3978753104997&6\\
+7&496&3978753104997&62747001947996&7\\
+8&492&62747001947996&989431810807346&8\\
+9&489&989431810807346&15600062750954861&9\\
+10&485&15600062750954861&248706399341288370&1048576
+\end{array} \tag{9}
+\]
+
+For every row, the release verifier checks all integers \(s\le K\le R\)
 and proves
 
 \[
- I_s(K,L_s):=
- \left\lceil\frac{L_s(d+K)-C_s(K)}{R+K}\right\rceil
- \ge L_{s-1}. \tag{13}
+ \Lambda_s(K;L_{s-1},T_s)\le L_s. \tag{10}
 \]
 
-We now induct on \(s\).  The case \(s=1\) is (10), since
+Induction on \(s\) now closes.  A proper heavy-core span produces a child
+with at least \(L_{s-1}\) slopes.  A full span shortens the whole family and
+cannot persist through \(K=s\).  The base contradicts (8).
+
+Finally,
 
 \[
- L_1=5{,}201{,}865>4{,}070{,}947.
+ L_{\rm unsafe}-L_{10}
+ =26{,}274{,}328{,}769{,}971{,}774>0. \tag{11}
 \]
 
-For exact direction dimension \(s\), use a heavy coordinate.  A proper span
-produces a family of dimension at most \(s-1\) and load at least
-\(I_s(K,L_s)\ge L_{s-1}\), contradicting the induction hypothesis.  A full
-span shortens the entire family and preserves its load and dimension.  It
-cannot persist through \(K=s\), because the complete degree-\(<s\) code
-contains the constant polynomial \(1\).  Thus a proper span eventually
-occurs and gives the contradiction.
+Thus the direct post-near affine-error-rank-eleven branch is paid, conditional
+only on the separately pinned near-rational deletion.
 
-This proves, uniformly over all shortening histories,
+## 5. Guarded dense-core theorem
+
+For a raw cutoff \(T\le d\), the low records have cores of size at least
+\(h=d+K-T\).  Distinct pair cores meet in at most \(K-1\) coordinates.
+Cauchy therefore bounds the number of represented raw-low pair types by
 
 \[
- \boxed{\text{the complete affine-error-rank-eleven branch is paid}.} \tag{14}
+ Q(K,T)=\max\left\{
+ \left\lceil\frac n{2h}\right\rceil-1,
+ \left\lfloor\frac{n(h-K+1)}{h^2-(K-1)n}\right\rfloor
+ \right\},
 \]
 
-The slack at the uniform base case is
+when the denominator is positive.  Fixed-pair exception sets are disjoint,
+so a pair owns at most \(981{,}105\) slopes.  Hence
 
 \[
- 5{,}201{,}865-4{,}070{,}947=1{,}130{,}918. \tag{15}
+ |Z_s|\le \left\lfloor\frac{C_s(K)}{T+1}\right\rfloor
++981105\,Q(K,T). \tag{12}
 \]
 
-## 5. Dense-core pair-type bound
+This theorem is valid only with the raw-margin definition and \(T\le d\).
 
-The rank-twelve attack needs an additional population theorem.
+## 6. Exact rank-twelve method wall
 
-Fix a cutoff \(T\), and let the low records be those with
-\(\theta_\gamma\le T\).  Every represented low pair type has a core of size
-at least
+Apply (7) at the initial rank-twelve row \(s=11,K=R\), targeting the paid
+rank-ten threshold \(L_{10}\).  Scanning all \(67{,}472\) cutoffs gives
 
 \[
- h=d+K-T. \tag{16}
+ \min_T\Lambda_{11}(R;L_{10},T)
+ =546{,}519{,}697{,}764{,}383{,}119, \tag{13}
 \]
 
-For distinct pair types \(e\ne f\),
+uniquely at \(T=d\).  This exceeds the available unsafe load by
 
 \[
- |H_e\cap H_f|\le K-1, \tag{17}
+ 271{,}538{,}969{,}653{,}122{,}975. \tag{14}
 \]
 
-because a common coordinate is a common root of the two degree-\(<K\) pair
-differences, not both zero.
+Therefore the repaired single-threshold mechanism pays rank eleven but does
+not begin the rank-twelve descent.  The previous \(8{,}681{,}730\)
+descendant and \(279{,}911\) endpoint wall are withdrawn: they came from the
+invalid truncated-to-raw recurrence, and the latter also described only the
+exactly-three-deficiency-one histogram.
 
-Put
+## 7. Boundary
 
-\[
- n=R+K,\qquad \lambda=K-1.
-\]
+Proved:
 
-Let \(t\) be the number of represented low pair types and let \(r_x\) be the
-number of their cores containing coordinate \(x\).  With
-\(S=\sum_xr_x\ge th\),
+- complete-agreement locator shortening and the pair-difference-span
+  dichotomy;
+- the uniform rank-one cap \(4{,}070{,}947\);
+- the raw-low rank-eleven payment with slack
+  \(26{,}274{,}328{,}769{,}971{,}774\);
+- the guarded dense-core pair-type theorem;
+- the exact single-threshold rank-twelve method wall.
 
-\[
- \sum_xr_x^2
- =S+2\sum_{e<f}|H_e\cap H_f|
- \le S+\lambda t(t-1). \tag{18}
-\]
+Not proved:
 
-Cauchy gives \(S^2\le n\sum_xr_x^2\).  If
-\(t<\lceil n/(2h)\rceil\), this already bounds \(t\).  Otherwise \(th\ge n/2\),
-and \(z^2/n-z\) is increasing for \(z\ge n/2\).  Combining with (18) yields
+- an affine-error-rank-twelve payment or descendant;
+- active-v4 chronology or any ledger movement;
+- KoalaBear or prize closure.
 
-\[
- t\le
- \left\lfloor\frac{n(h-\lambda)}{h^2-\lambda n}\right\rfloor
-\]
-
-whenever \(h^2>\lambda n\).  Therefore
-
-\[
- Q(K,T)=
- \max\left\{
- \left\lceil\frac n{2h}\right\rceil-1,\,
- \left\lfloor\frac{n(h-\lambda)}{h^2-\lambda n}\right\rfloor
- \right\}. \tag{19}
-\]
-
-For one fixed pair type, put
-\(\delta=\max\{1,m_K-|H_e|\}\).  The exception sets outside \(H_e\) owned by
-distinct slopes are disjoint, and each has at least \(\delta\) coordinates.
-Thus one pair owns at most
-
-\[
- \left\lfloor\frac{n-|H_e|}{\delta}\right\rfloor
- \le R-d+1=981{,}105. \tag{20}
-\]
-
-The high-margin records number at most \(\lfloor C_s(K)/(T+1)\rfloor\).
-Consequently, when the denominator in (19) is positive,
-
-\[
- |Z_s|
- \le D_s(K,T):=
- \left\lfloor\frac{C_s(K)}{T+1}\right\rfloor
- +Q(K,T)\cdot981{,}105. \tag{21}
-\]
-
-## 6. Rank-twelve barrier descent
-
-Start with direction dimension \(11\) and load \(L_{11}=L_{\rm unsafe}\).
-Set
-
-\[
- b_s=4280+s-3\qquad(3\le s\le11), \tag{22}
-\]
-
-and use \(T_s=249\) for \(4\le s\le11\), while \(T_3=380\).
-
-At rank \(s\), whole-family shortening may continue while \(K>b_s\).  If it
-reaches \(K=b_s\), (21) is strictly below the current load.  Therefore a
-survivor must undergo a proper rank drop at some \(K\ge b_s+1\).  The exact
-all-dimension scan proves that the child load is at least the next value in
-the following table.
-
-\[
-\begin{array}{c|r|r|r|r|r}
-s&b_s&T_s&L_s&Q(b_s,T_s)&D_s(b_s,T_s)\\ \hline
-11&4288&249&274980728111260144&117&53518270603563833\\
-10&4287&249&18729383598438495&117&3444228821986659\\
-9&4286&249&1275719855410716&117&221654267733433\\
-8&4285&249&86895415230834&117&14264522438473\\
-7&4284&249&5918985683045&117&918078660722\\
-6&4283&249&403186331995&117&59188114029\\
-5&4282&249&27464496807&116&3915275120\\
-4&4281&249&1870872170&116&358435523\\
-3&4280&380&127444922&119&127080721
-\end{array} \tag{23}
-\]
-
-The corresponding next-rank loads are
-
-\[
-\begin{array}{c|r}
-\text{new rank}&\text{forced load}\\ \hline
-10&18729383598438495\\
-9&1275719855410716\\
-8&86895415230834\\
-7&5918985683045\\
-6&403186331995\\
-5&27464496807\\
-4&1870872170\\
-3&127444922\\
-2&8681730
-\end{array} \tag{24}
-\]
-
-The smallest barrier slack is \(364{,}201\), at rank three.
-
-Hence every over-budget affine-error-rank-twelve line produces a source-bound
-descendant of direction dimension at most two, ambient dimension at least
-\(4280\), and at least
-
-\[
- \boxed{8{,}681{,}730}
-\]
-
-distinct post-near slopes.  If the actual descendant dimension is at most
-one, (10) already contradicts this load.  Thus the immediate survivor has
-exact direction dimension two.
-
-## 7. Exact rank-two endpoint wall
-
-A rank-two survivor may either drop to rank one before reaching \(K=2\), or
-shorten with full span to the complete \(K=2\) row.  Monotonicity gives a
-rank-one descendant load of at least
-
-\[
- I_2(2,8{,}681{,}730)=558{,}412, \tag{25}
-\]
-
-which is below the sharp uniform rank-one cap and is therefore a genuine
-residual.
-
-If full rank two persists to \(K=2\), use cutoff
-
-\[
- T=1922.
-\]
-
-Then
-
-\[
- \left\lfloor\frac{C_2(2)}{1923}\right\rfloor=131{,}690
-\]
-
-high-margin slopes remain, so the low family has at least
-
-\[
- 8{,}681{,}730-131{,}690=8{,}550{,}040 \tag{26}
-\]
-
-slopes.  Formula (19) gives at most fifteen low pair types.  Since one pair
-has capacity at most
-
-\[
- c_\delta=
- \left\lfloor\frac{981{,}104+\delta}{\delta}\right\rfloor,
-\]
-
-there must be at least nine pair types.  Moreover,
-
-\[
- c_1=981{,}105,\qquad c_2=490{,}553,
-\]
-
-and two deficiency-one types plus thirteen types of deficiency at least two
-cannot carry (26).  Therefore at least three represented pair types satisfy
-
-\[
- |H_e|\ge m_2-1=67{,}473. \tag{27}
-\]
-
-The strongest independent-capacity relaxation is
-
-\[
- 3c_1+12c_2=8{,}829{,}951. \tag{28}
-\]
-
-It exceeds the required low load by only
-
-\[
- 8{,}829{,}951-8{,}550{,}040
- =279{,}911. \tag{29}
-\]
-
-Thus the exact remaining rank-two theorem is now small and source-specific:
-prove a cross-pair compatibility saving of \(279{,}912\) slopes, or route the
-near-saturated pair-core atlas to an already-paid rank-one anticode/rational
-owner.  Summing the fifteen independent fixed-pair capacities is the first
-unproved implication.
-
-## 8. Literature and method boundary
-
-The closest primary literature found in the targeted search is Rudnev and
-Wheeler's incidence theory for Möbius hyperbolae and the multiplicative
-subgroup intersection work of Shkredov and collaborators.  Those results do
-not directly supply (29): the complete pair cores are arbitrary subsets of
-the deployed evaluation subgroup, the slope field is the sextic extension,
-and the fifteen ratio maps are coupled through one received pair.  No
-external theorem is imported.
-
-The remaining attack should work with the simultaneous ratio maps
-
-\[
- \rho_e(x)=-
- \frac{r_0(x)-a_e(x)}{r_1(x)-b_e(x)}
-\]
-
-and prove that twelve near-perfect two-fiber matchings cannot coexist unless
-the pair matrices enter one of the already-paid rank-one anticode geometries.
-That is the first precise unproved implication after this packet.
-
-## 9. Claims and nonclaims
-
-This packet proves:
-
-* the uniform rank-one weighted-line theorem;
-* the corrected, history-uniform payment of affine error rank eleven;
-* the dense-core pair-type theorem;
-* the rank-twelve descent to the exact rank-one/rank-two residual above.
-
-It does not pay affine error rank twelve, regenerate the active-v4 first-match
-ledger, move a ledger atom, or close KoalaBear.
+The next rank-twelve theorem must couple multiple raw-margin levels, exploit
+cross-pair/core structure, or construct a chronology-correct owner.

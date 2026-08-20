@@ -8044,6 +8044,360 @@ actual-record cross-pair compatibility or owner theorem, not another scalar
 threshold optimization.
 \end{remark}
 
+\begin{theorem}[Raw-low heavy-core shortening]
+\label{thm:mca-raw-low-heavy-core-shortening}
+Put \(R=1048576\) and \(d=67472\), and consider a complete shortened row
+
+\[
+ (n,K,m)=(R+K,K,d+K).
+\]
+
+Let \(Z\) be a selected family of distinct finite slopes whose explanations
+lie in one affine translate of a direction subcode \(C'\subseteq
+\F[X]_{<K}\) of dimension \(1\le s\le K\).  For each slope retain one exact
+size-\(m\) pair-noncontained support \(S_\gamma\), one explanation
+\(h_\gamma\), and one direction \(b_\gamma\in C'\) minimizing the raw
+support margin
+
+\[
+ \widetilde\theta_\gamma=
+ |\{x\in S_\gamma:r_1(x)\ne b_\gamma(x)\}|.
+\]
+
+Put \(a_\gamma=h_\gamma-\gamma b_\gamma\) and
+\(H_\gamma=\{x:r_0(x)=a_\gamma(x),\ r_1(x)=b_\gamma(x)\}\).  If
+\(1\le T\le d\), then some coordinate belongs to at least
+
+\[
+ I_s(K,L,T)=
+ \left\lceil
+ \frac{\bigl(L-\lfloor C_s(K)/(T+1)\rfloor\bigr)_+
+       (d+K-T)}{R+K}
+ \right\rceil
+ \tag{RLH}\label{eq:mca-raw-low-heavy-core}
+\]
+
+of the pair cores with \(\widetilde\theta_\gamma\le T\), where \(L=|Z|\)
+and \(C_s(K)\) is the support-margin resource in
+\cref{thm:mca-nonuniform-support-margin}.  At such a coordinate exactly
+one of the following source-bound conclusions applies:
+
+\begin{enumerate}
+\item a subfamily of at least \(I_s(K,L,T)\) slopes shortens to the row
+  \((R+K-1,K-1,d+K-1)\) with explanation direction dimension at most
+  \(s-1\); or
+\item the coordinate lies in the complete pair core of every selected
+  slope, and the whole family shortens to that row without losing a slope or
+  changing direction dimension.
+\end{enumerate}
+
+The second alternative is impossible when \(K=s\).
+\end{theorem}
+
+\begin{proof}
+The proved resource concerns
+\(\theta_\gamma=\min\{d+1,\widetilde\theta_\gamma\}\).  Since \(T\le d\),
+truncation is inactive on \(\widetilde\theta_\gamma\le T\), while every
+remaining record contributes at least \(T+1\) to the resource.  Thus at
+least \(L-\lfloor C_s(K)/(T+1)\rfloor\) records are raw-low.  On the selected
+support, scalar agreement and \(r_1=b_\gamma\) force
+\(r_0=a_\gamma\), so each raw-low pair core contains at least \(m-T\)
+support coordinates.  Double counting gives \eqref{eq:mca-raw-low-heavy-core}.
+
+Fix a heavy coordinate \(x\), an incident pair
+\(e_0=(a_0,b_0)\), and put
+
+\[
+ U_x=\operatorname{span}\{a_\gamma-a_0,b_\gamma-b_0:
+ x\in H_\gamma\}\le C'.
+\]
+
+Every generator vanishes at \(x\).  If \(U_x<C'\), subtract the codeword
+pair \(e_0\) from the received pair.  The incident scalar explanations then
+lie in \(U_x\), because
+
+\[
+ h_\gamma-a_0-\gamma b_0
+ =(a_\gamma-a_0)+\gamma(b_\gamma-b_0).
+\]
+
+Divide the received pair, explanations, and pair directions by \(X-x\), and
+delete \(x\).  Division is injective on \(U_x\), so the child direction has
+dimension at most \(s-1\).
+
+If \(U_x=C'\), every word of \(C'\) vanishes at \(x\).  Differences of any
+two selected \(a\)-coordinates and any two selected \(b\)-coordinates lie
+in \(C'\).  Hence every selected pair has the same value as \(e_0\) at
+\(x\), and \(e_0(x)=(r_0(x),r_1(x))\).  Thus \(x\) belongs to every selected
+pair core and the same locator division shortens the whole family.
+
+For completeness, the support used in the lift is the complete scalar
+agreement domain \(A_\gamma\), not an arbitrary coordinate-swapped
+size-\(m\) support.  It contains \(S_\gamma\) and is pair-noncontained.  If a
+shortened pair explained the shortened received pair on
+\(A_\gamma\setminus\{x\}\), multiplying by \(X-x\) and adding \(e_0\)
+would explain the original pair on \(A_\gamma\).  An exact size-\(m-1\) bad
+support exists after shortening: otherwise adjacent \((m-1)\)-subsets of
+the complete domain,
+which overlap in at least \(K-1\) coordinates, glue by Reed--Solomon
+uniqueness and connectedness of the Johnson graph to one explaining pair on
+the entire domain.
+
+Finally, if \(K=s\) and \(U_x=C'\), then \(C'=\F[X]_{<s}\), which contains
+the constant polynomial \(1\); it cannot vanish at \(x\).  This excludes the
+second alternative at the endpoint.
+\end{proof}
+
+\begin{theorem}[Uniform weighted-line cap in direction rank one]
+\label{thm:mca-uniform-rank-one-weighted-line}
+Put \(R=1048576\) and \(d=67472\).  On every complete shortened
+KoalaBear row
+\[
+ (n_K,K,m_K)=(R+K,K,d+K),
+ \qquad 1\le K\le R,
+\]
+a support-wise MCA-bad family whose explanation direction has dimension at
+most one contains at most \(4070947\) distinct finite affine slopes.
+\end{theorem}
+
+\begin{proof}
+The rank-zero case has at most \(n_K\) slopes and is smaller than the
+displayed bound, so consider an affine explanation line with direction
+\(\langle P\rangle\), where \(0\ne P\in\F[X]_{<K}\).  Delete the
+zero-normal coordinates whose incidence equation is identically satisfied
+on the entire affine parameter line.  They are roots of \(P\), so if their
+number is \(u\), then \(0\le u\le K-1\).  Set
+\[
+ j=K-u,\qquad n'=R+j,\qquad m'=d+j,\qquad
+ q=\left\lfloor\frac{m'}2\right\rfloor.
+\]
+After division by \(P(x)\) at a nonroot, each coordinate is an affine graph
+line in the projective parameter plane; a nonuniversal root gives a vertical
+line.  Merge identical lines while retaining their coordinate weights.
+Every selected parameter point is incident to total line weight at least
+\(m'\), and pair noncontainment forces at least two line classes.
+
+If no line class contributes more than \(q\) coordinates to an exact
+\(m'\)-support, that support owns at least \(q(m'-q)\) unordered cross-class
+pairs.  Two distinct projective lines meet in at most one point, so the
+cross-pair charges are disjoint and the number of selected points is at most
+\[
+ W_{\rm low}(n',m')=
+ \left\lfloor\frac{\binom{n'}2}{q(m'-q)}\right\rfloor.
+ \tag{WL1}\label{eq:mca-rank-one-low}
+\]
+Otherwise the support has a unique dominant line.  Suppose \(t\) globally
+distinct lines with coordinate weights \(w_i\) can dominate, and let
+\[
+ a_i=\max\{1,m'-\min(w_i,m'-1)\},\qquad 1\le i\le t.
+\]
+Then \(t\le\lfloor n'/(q+1)\rfloor\), \(1\le a_i\le q\), and a point
+charged to line \(i\) uses either one of the other \(t-1\) dominant lines or
+at least \(a_i\) units of the remaining line weight.  Hence the high part is
+at most
+\[
+ W_{\rm high}(n',m')=
+ \max_{\substack{1\le t\le\lfloor n'/(q+1)\rfloor\\
+                  a_i\in\{1,q\}\\
+                  n'-tm'+\sum_i a_i\ge0}}
+ \left\lfloor t(t-1)+
+ \left(n'-tm'+\sum_i a_i\right)\sum_i\frac1{a_i}\right\rfloor.
+ \tag{WL2}\label{eq:mca-rank-one-high}
+\]
+The endpoint restriction is exact.  Holding all variables but \(a_i\)
+fixed, the variable part is \(f(a)=(C_0+a)(Q_0+1/a)\).  If \(C_0\ge0\),
+then \(f''(a)=2C_0/a^3\ge0\), so a maximum is at an endpoint.  If
+\(C_0<0\), then \(f'(a)=Q_0-C_0/a^2>0\), so replacing \(a\) by \(q\)
+increases the objective and preserves feasibility.
+
+The low and high classes are disjoint.  The release verifier evaluates
+\[
+ W(R+j,d+j)=W_{\rm low}(R+j,d+j)+W_{\rm high}(R+j,d+j)
+\]
+for all \(1\le j\le1048576\).  Its maximum is attained at \(j=1\), where
+\[
+ W_{\rm low}=483,\qquad W_{\rm high}=4070464,\qquad W=4070947.
+\]
+The exact scan has \(423092\) strict decreases and \(625483\) equal adjacent
+values, so no omitted dimension is larger.
+\end{proof}
+
+\begin{corollary}[Repaired affine-error-rank-eleven payment]
+\label{cor:mca-rank-eleven-repaired}
+Put \(R=1048576\) and \(d=67472\), and retain the intrinsic near-rational
+deletion, exact record selection, and reversible gauge of
+\cref{prop:kb-post-deletion-affine-error-router}.  The complete direct
+post-near KoalaBear affine-error-rank-eleven branch fits the deployed budget.
+The exact raw-low induction requires at most
+\(248706399341288370\) post-near slopes, leaving slack
+\(26274328769971774\) below the unsafe load.
+\end{corollary}
+
+\begin{proof}
+For \(2\le s\le10\),
+define
+\[
+ C_s(K)=\left\lfloor\max\left\{
+ \frac{(R+K)^{\underline{s+1}}}
+      {(d+K)(d+1)^{\overline{s-1}}},
+ \frac{(R+s)^{\underline{s+1}}}
+      {(d+1)^{\overline s}}
+ \right\}\right\rfloor
+\]
+and, for a target child load \(M\) and \(1\le T\le d\),
+\[
+ \Lambda_s(K;M,T)=
+ \left\lfloor\frac{C_s(K)}{T+1}\right\rfloor+
+ \left\lfloor\frac{(M-1)(R+K)}{d+K-T}\right\rfloor+1.
+ \tag{R11L}\label{eq:mca-rank-eleven-raw-low-threshold}
+\]
+By \cref{thm:mca-raw-low-heavy-core-shortening}, a parent family of size at
+least \(\Lambda_s(K;M,T)\) has either a child of size at least \(M\) and
+direction dimension at most \(s-1\), or a lossless whole-family shortening.
+
+Set \(L_1=4070948\).  The following fixed thresholds and exact all-dimension
+scans define \(L_s\) recursively:
+\[
+\begin{array}{c|r|r|r|r}
+s&T_s&L_{s-1}&L_s&\arg\max_K\Lambda_s(K;L_{s-1},T_s)\\ \hline
+2&515&4070948&64241811&2\\
+3&511&64241811&1013639041&3\\
+4&507&1013639041&15991635730&4\\
+5&503&15991635730&252259306484&5\\
+6&499&252259306484&3978753104997&6\\
+7&496&3978753104997&62747001947996&7\\
+8&492&62747001947996&989431810807346&8\\
+9&489&989431810807346&15600062750954861&9\\
+10&485&15600062750954861&248706399341288370&1048576
+\end{array}
+\tag{R11}\label{eq:mca-rank-eleven-raw-low-recurrence}
+\]
+For each row the verifier checks every integer \(s\le K\le R\) and proves
+\[
+ \Lambda_s(K;L_{s-1},T_s)\le L_s.
+ \tag{R11I}\label{eq:mca-rank-eleven-raw-low-scan}
+\]
+
+Induct on \(s\).  The base \(s=1\) contradicts
+\cref{thm:mca-uniform-rank-one-weighted-line}.  For \(s\ge2\), apply
+\cref{thm:mca-raw-low-heavy-core-shortening} with \(T_s\).  A proper span
+produces at least \(L_{s-1}\) slopes in lower direction dimension, contrary
+to induction.  A full span shortens the complete family without loss.  It
+cannot persist through \(K=s\), so a proper span eventually occurs.
+
+The unsafe post-near load is
+\[
+ B_*-134944+1=274980728111260144>L_{10},
+\]
+with difference \(26274328769971774\).  Hence the rank-eleven branch is
+paid.
+\end{proof}
+
+\begin{theorem}[Dense-core pair-type bound]
+\label{thm:mca-dense-core-pair-type}
+Put \(R=1048576\) and \(d=67472\).  On a complete shortened row
+\((n,K,m)=(R+K,K,d+K)\), fix raw margins
+\(\widetilde\theta_\gamma\) as in
+\cref{thm:mca-raw-low-heavy-core-shortening}, and let \(1\le T\le d\).
+Let the raw-low records be those with
+\(\widetilde\theta_\gamma\le T\), and suppose their selected pair types
+have common cores \(H_e\).
+Put
+\[
+ h=d+K-T,\qquad \lambda=K-1.
+\]
+If \(h^2>\lambda n\), the number \(t\) of represented pair types is at most
+\[
+ Q(K,T)=\max\left\{
+ \left\lceil\frac n{2h}\right\rceil-1,
+ \left\lfloor\frac{n(h-\lambda)}{h^2-\lambda n}\right\rfloor
+ \right\}.
+ \tag{DC}\label{eq:mca-dense-core-pair-types}
+\]
+For an affine explanation family of dimension \(1\le s\le K\), define
+\[
+ C_s(K)=\left\lfloor\max\left\{
+ \frac{(R+K)^{\underline{s+1}}}
+      {(d+K)(d+1)^{\overline{s-1}}},
+ \frac{(R+s)^{\underline{s+1}}}
+      {(d+1)^{\overline s}}
+ \right\}\right\rfloor.
+\]
+Then the complete selected family \(Z_s\) satisfies
+\[
+ |Z_s|\le
+ D_s(K,T):=\left\lfloor\frac{C_s(K)}{T+1}\right\rfloor
+       +981105\,Q(K,T).
+ \tag{DCB}\label{eq:mca-dense-core-bound}
+\]
+\end{theorem}
+
+\begin{proof}
+Distinct pair cores intersect in at most \(K-1\) coordinates, since a common
+coordinate is a common root of two nonzero degree-\(<K\) pair differences.
+Writing \(r_x\) for the number of cores through \(x\) and
+\(S=\sum_xr_x\ge th\), we have
+\[
+ \sum_xr_x^2=S+2\sum_{e<f}|H_e\cap H_f|
+ \le S+\lambda t(t-1).
+\]
+Cauchy gives \(S^2\le n\sum_xr_x^2\).  If
+\(t<\lceil n/(2h)\rceil\), the first term of
+\eqref{eq:mca-dense-core-pair-types} applies.  Otherwise \(th\ge n/2\),
+and \(z^2/n-z\) is increasing for \(z\ge n/2\); substituting \(S\ge th\)
+and solving the resulting quadratic inequality yields the second term.
+
+Since \(T\le d\), truncation is inactive on the raw-low records, and the
+nonuniform margin resource bounds the remaining records by
+\(\lfloor C_s(K)/(T+1)\rfloor\).  For one fixed pair, put
+\(\delta=\max\{1,m-|H_e|\}\).  Its distinct-slope exception sets outside
+\(H_e\) are disjoint and each has at least \(\delta\) points, so it owns at
+most
+\[
+ \left\lfloor\frac{n-|H_e|}{\delta}\right\rfloor\le R-d+1=981105
+\]
+slopes.  Adding the disjoint high and low parts proves
+\eqref{eq:mca-dense-core-bound}.
+\end{proof}
+
+\begin{proposition}[Single-threshold wall at affine error rank twelve]
+\label{prop:mca-rank-twelve-single-threshold-wall}
+Retain the hypotheses of \cref{cor:mca-rank-eleven-repaired}.  At the initial
+KoalaBear row \(K=R=1048576\), no single raw-low cutoff in
+\cref{thm:mca-raw-low-heavy-core-shortening} can force the rank-ten load
+\(248706399341288370\) from the available unsafe load.  The exact best
+requirement is
+\[
+ \min_{1\le T\le d}
+ \Lambda_{11}(R;248706399341288370,T)
+ =546519697764383119,
+ \tag{R12W}\label{eq:mca-rank-twelve-single-threshold-wall}
+\]
+uniquely at \(T=d=67472\).  This exceeds the available
+\(274980728111260144\) slopes by \(271538969653122975\).
+\end{proposition}
+
+\begin{proof}
+For each of the \(67472\) legal cutoffs, the verifier evaluates the exact
+integer expression \eqref{eq:mca-rank-eleven-raw-low-threshold} at \(s=11\)
+and \(K=R\).  The displayed endpoint is the unique minimum; the adjacent
+cutoff \(T=67471\) requires \(546519951206547786\) slopes.  Therefore the
+raw-low heavy-core theorem that pays rank eleven cannot even force its first
+rank drop at rank twelve.  This is a sharp method wall, not a lower bound on
+the true rank-twelve family and not a payment.
+\end{proof}
+
+\begin{remark}[Scope after the repaired rank-eleven payment]
+\label{rem:mca-rank-eleven-repair-scope}
+This direct theorem removes affine error rank eleven from the post-near
+residual, but it does not regenerate the active-v4 first-match chronology or
+move a deployed ledger atom.  Affine error rank twelve remains open already
+at the initial row by
+\cref{prop:mca-rank-twelve-single-threshold-wall}.  Its next theorem must
+couple several raw-margin levels, use cross-pair/core structure, or construct
+a chronology-correct owner; another single cutoff cannot suffice.
+\end{remark}
+
 
 \begin{proposition}[Exact rank-flat and common-zero reductions at the active rows]
 \label{prop:active-rank-flat-common-zero}

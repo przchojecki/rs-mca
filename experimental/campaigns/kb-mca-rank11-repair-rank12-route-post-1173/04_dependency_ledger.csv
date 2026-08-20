@@ -1,6 +1,6 @@
-dependency_id,description,status,source,exact_pin,use
-D-001,anchored rich-flat predecessor,proved,scottdhughes/rs-mca,2788d5ec3fb4b1d6f9c43a58a86ec2381e5f6804,stack parent
-D-002,pointwise support-margin resource,proved,PR #1168,6a5dcdae1591fc7f044eda6a942bfe178521a48c,core mass
-D-003,complete-agreement shortening semantics,proved,source-bound adapter,460e3c663a339e62fbeb91d233f8635431dee218,shortening
-D-004,near-rational 2w charge,proved,PR #1160,c5f4ea7a0c78828c901ae5f3428894a8b2e2806b,add-back
-D-005,rank-one anticode geometries,proved,PR #1171,a3fc2d5aea86577cd50d8b95b6eb2155d4d940f6,next-owner target
+dependency_id,description,proof_status,source,exact_pin,use
+D-001,exact selected-record and support-margin parent,proved,PR #1168,6a5dcdae1591fc7f044eda6a942bfe178521a48c,truncated-margin resource and records
+D-002,stack parent,proved,PR #1173,2788d5ec3fb4b1d6f9c43a58a86ec2381e5f6804,git ancestry only
+D-003,complete-agreement shortening and span dichotomy,proved,this packet,thm:mca-raw-low-heavy-core-shortening,source-bound descent
+D-004,near-rational 2w charge,imported external dependency,PR #1160,c5f4ea7a0c78828c901ae5f3428894a8b2e2806b,conditional add-back
+D-005,uniform weighted-line cap,proved,this packet,thm:mca-uniform-rank-one-weighted-line,rank-one base

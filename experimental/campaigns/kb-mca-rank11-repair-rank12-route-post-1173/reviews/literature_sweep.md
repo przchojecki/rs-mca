@@ -1,5 +1,10 @@
 # Targeted primary-literature sweep
 
+> **PRIOR-ENDPOINT CONTEXT ONLY.** The rank-two endpoint motivating this
+> sweep has been withdrawn.  No external theorem is load-bearing for the
+> raw-low rank-eleven payment; rank twelve is now stopped at the initial
+> single-threshold wall.
+
 The next residual was compared against primary incidence and subgroup
 literature, including:
 
