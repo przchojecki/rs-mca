@@ -1,0 +1,93 @@
+{
+  "block_audits": [
+    {
+      "block_index": 0,
+      "block_size": 177,
+      "color_sizes": [
+        30,
+        30,
+        30,
+        29,
+        29,
+        29
+      ],
+      "colors": 6,
+      "local_distribution_count": 8568,
+      "local_witness_size": 13,
+      "maximum_cover_multiplicity": 8,
+      "minimum_cover_multiplicity": 1,
+      "pattern_count": 89,
+      "selected_eight_subsets": 254104519142
+    },
+    {
+      "block_index": 1,
+      "block_size": 166,
+      "color_sizes": [
+        28,
+        28,
+        28,
+        28,
+        27,
+        27
+      ],
+      "colors": 6,
+      "local_distribution_count": 6188,
+      "local_witness_size": 12,
+      "maximum_cover_multiplicity": 8,
+      "minimum_cover_multiplicity": 1,
+      "pattern_count": 108,
+      "selected_eight_subsets": 253974874986
+    },
+    {
+      "block_index": 2,
+      "block_size": 166,
+      "color_sizes": [
+        28,
+        28,
+        28,
+        28,
+        27,
+        27
+      ],
+      "colors": 6,
+      "local_distribution_count": 6188,
+      "local_witness_size": 12,
+      "maximum_cover_multiplicity": 8,
+      "minimum_cover_multiplicity": 1,
+      "pattern_count": 108,
+      "selected_eight_subsets": 253974874986
+    }
+  ],
+  "block_sizes": [
+    177,
+    166,
+    166
+  ],
+  "cover_sha256": "500ebb342a0071ff2a935b44feee785ea0e46fbc9d41d14ff92ffb22db6fd61c",
+  "face_size": 8,
+  "global_block_distribution_count": 666,
+  "global_witness_size": 35,
+  "local_witness_sizes": [
+    13,
+    12,
+    12
+  ],
+  "optimizer_claims_optimality": false,
+  "optimizer_payload_sha256": "85137596d011b269a5c1e5ded05929e99d4c79315c4e3e25b10f76e8a755c008",
+  "optimizer_status": "FEASIBLE",
+  "payload_sha256": "b4c72a1784c5a741cbe34c76971af134a3c04663fdc17481f600c35c851deb04",
+  "pigeonhole_budget": 34,
+  "previous_parity_selected_eight_subsets": 2725371892323,
+  "previous_uniform_six_color_selected_eight_subsets": 911798442756,
+  "proof_summary": [
+    "Every 35-composition across the macroblocks reaches at least one recorded local threshold.",
+    "Every color composition at that local threshold dominates a frozen weight-eight pattern for the same block.",
+    "Therefore every 35-subset of the 509 rows contains a frozen selected eight-face."
+  ],
+  "reduction_factor_against_parity": 3.5763488281374567,
+  "reduction_factor_against_uniform_six_color": 1.1965006689301794,
+  "row_count": 509,
+  "schema": "atlas-nonuniform-hierarchical-cover-freeze-audit/v1",
+  "selected_eight_subsets": 762054269114,
+  "status": "PASS_EXACT_NONUNIFORM_HIERARCHICAL_35_TO_8_COVER"
+}
