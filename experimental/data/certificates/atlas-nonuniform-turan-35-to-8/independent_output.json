@@ -1,0 +1,71 @@
+{
+  "block_reports": [
+    {
+      "block_index": 0,
+      "block_size": 177,
+      "color_sizes": [
+        30,
+        30,
+        30,
+        29,
+        29,
+        29
+      ],
+      "colors": 6,
+      "local_distribution_count": 8568,
+      "local_witness_size": 13,
+      "maximum_cover_multiplicity": 8,
+      "minimum_cover_multiplicity": 1,
+      "pattern_count": 89,
+      "selected_eight_subsets": 254104519142
+    },
+    {
+      "block_index": 1,
+      "block_size": 166,
+      "color_sizes": [
+        28,
+        28,
+        28,
+        28,
+        27,
+        27
+      ],
+      "colors": 6,
+      "local_distribution_count": 6188,
+      "local_witness_size": 12,
+      "maximum_cover_multiplicity": 8,
+      "minimum_cover_multiplicity": 1,
+      "pattern_count": 108,
+      "selected_eight_subsets": 253974874986
+    },
+    {
+      "block_index": 2,
+      "block_size": 166,
+      "color_sizes": [
+        28,
+        28,
+        28,
+        28,
+        27,
+        27
+      ],
+      "colors": 6,
+      "local_distribution_count": 6188,
+      "local_witness_size": 12,
+      "maximum_cover_multiplicity": 8,
+      "minimum_cover_multiplicity": 1,
+      "pattern_count": 108,
+      "selected_eight_subsets": 253974874986
+    }
+  ],
+  "cover_sha256": "500ebb342a0071ff2a935b44feee785ea0e46fbc9d41d14ff92ffb22db6fd61c",
+  "face_size": 8,
+  "global_block_distribution_count": 666,
+  "global_witness_size": 35,
+  "payload_sha256": "6c565e0081d6e861bbd502094bb5591402c9a41028718d3a86cbed7d6357a66b",
+  "proof_scope": "Exact coverage and cardinality only; no optimality claim.",
+  "row_count": 509,
+  "schema": "atlas-nonuniform-hierarchical-cover-independent-audit/v1",
+  "selected_eight_subsets": 762054269114,
+  "status": "PASS_INDEPENDENT_NONUNIFORM_HIERARCHICAL_35_TO_8_COVER"
+}
