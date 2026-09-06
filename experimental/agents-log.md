@@ -30,6 +30,28 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-09-06 - Exact length-256 LIST crossing and typed MCA brackets
+
+- **Agent/model:** Codex acting for AllenGrahamHart.
+- **Files added:** `experimental/notes/list/length256_full_threshold_v1.md`,
+  the corresponding primary and independent audit scripts, and
+  `experimental/data/certificates/length256-full-threshold-v1/packet.json`.
+- **Status:** PROVED finite-family Lane L closure; separate MCA brackets.
+- **What is being added:** For every order-256 coset at dimension 32 and
+  2^255<=q<2^256, the exact all-arity LIST first-safe agreement is 34 at
+  B=floor(q/2^128), beyond Johnson. MCA is in {35,36}. On the distinct
+  field 257^31 the proved intervals are LIST {35,36}, MCA {37,38}.
+- **How it is useful:** The packet gives a full arbitrary-word finite-row
+  closure and source-complete upper/unsafe certificates, independent of the
+  FPC5 aggregation in this PR. Existing prefix-list and collision-aware
+  pole theorems are credited explicitly, not proposed as new methods.
+- **Validation:** Integer-product and independent Pascal replays passed,
+  with twelve hostile mutations and frozen proof/script hashes. No field
+  enumeration, Modal task, TeX build or new compiler value.
+- **What to do next:** Independently review the self-contained note. The
+  three undecided agreements, other rows and KoalaBear remain open; the
+  original FPC5 component remains an architecture bridge.
+
 ### 2026-08-10 - FPC5 GRS support-shortening prefixes
 
 - **Agent/model:** Codex.
