@@ -1,0 +1,81 @@
+{
+  "architecture": "DIRECT",
+  "k": 32,
+  "n": 256,
+  "near_cap": {
+    "budget_max": "340282366920938463463374607431768211455",
+    "budget_min": "170141183460469231731687303715884105728",
+    "johnson_squared_agreement": 7936,
+    "largest_safe_grid_radius": [
+      111,
+      128
+    ],
+    "list_common_support_arities": "all",
+    "list_first_safe_agreement": 34,
+    "list_safe_upper": "103822805756204557481443916015906283000",
+    "list_unsafe_agreement": 33,
+    "list_unsafe_lower": "1544364235623542792536478250736605959625",
+    "mca_first_safe_options": [
+      35,
+      36
+    ],
+    "mca_safe_agreement": 36,
+    "mca_safe_upper": "60405996076337197080112823863800019200",
+    "mca_unsafe_agreement": 34,
+    "mca_unsafe_lower": "340282366920938463463374607431768211457",
+    "pole_selected_list": "680564733841876926926749214863536422912",
+    "q_lower_inclusive": "57896044618658097711785492504343953926634992332820282019728792003956564819968",
+    "q_upper_exclusive": "115792089237316195423570985008687907853269984665640564039457584007913129639936",
+    "real_right_endpoint_included": false,
+    "real_safe_right_endpoint": [
+      223,
+      256
+    ],
+    "shifted_list_lower": "10129212486589707139283372056301856735188"
+  },
+  "nonclaims": [
+    "KoalaBear closure",
+    "FPC5 aggregation",
+    "near-cap MCA 35 safety",
+    "tower LIST 35 safety",
+    "tower MCA 37 safety",
+    "grand prize resolution"
+  ],
+  "pr_1151_parent": "f7edd54f889c970825c271c626347dc92f878cdb",
+  "schema": "length256-full-threshold-v1",
+  "shifted_dimension": 33,
+  "source_sha256": {
+    "notes/list/length256_full_threshold_v1.md": "51f8d3374781bb46f08afeb96f88cf5be0f19cf94ce969e25d2828fb9db73f2b",
+    "scripts/audit_length256_full_threshold_v1.py": "ed82c9033ed3421c474fbd8c9d48664680958b25729c81be8ad96aceb0b949a5",
+    "scripts/verify_length256_full_threshold_v1.py": "0cee63628696956c37023e3f1abba63e9e8e72469a8d015b5c725bb36d6a8e13"
+  },
+  "status": "PROVED_FINITE_FAMILY",
+  "target_bits": 128,
+  "tower": {
+    "budget": "1499986596337394119150021185100322782",
+    "coefficient_field": 257,
+    "extension_degree": 31,
+    "list_common_support_arities": "all",
+    "list_first_safe_options": [
+      35,
+      36
+    ],
+    "list_safe_agreement": 36,
+    "list_safe_upper": "988788626249567214108989676341964600",
+    "list_unsafe_agreement": 34,
+    "list_unsafe_lower": "39259919098956305586103396666312515318",
+    "mca_first_safe_options": [
+      37,
+      38
+    ],
+    "mca_safe_agreement": 38,
+    "mca_safe_upper": "906996938083141097298991349306306594",
+    "mca_unsafe_agreement": 36,
+    "pole_pair_root_upper": "35999356627069448459237634770720909923613948153813400726981746971016676896",
+    "pole_selected_list": "1499986596337394119150021185100322783",
+    "q": "510418989351370756385471987562075329801799753598808217293070249498399284993",
+    "shifted_list_lower": "5948274198113131568974754021501527474"
+  },
+  "upstream_main": "93fba1be3f3299b0ba4708d88715377bbb656e45",
+  "workboard_item": "L"
+}

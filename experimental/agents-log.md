@@ -30,6 +30,241 @@ Keep entries concise and link to the relevant files.
 
 ## Entries
 
+### 2026-09-06 - Exact length-256 LIST crossing and typed MCA brackets
+
+- **Agent/model:** Codex acting for AllenGrahamHart.
+- **Files added:** `experimental/notes/list/length256_full_threshold_v1.md`,
+  the corresponding primary and independent audit scripts, and
+  `experimental/data/certificates/length256-full-threshold-v1/packet.json`.
+- **Status:** PROVED finite-family Lane L closure; separate MCA brackets.
+- **What is being added:** For every order-256 coset at dimension 32 and
+  2^255<=q<2^256, the exact all-arity LIST first-safe agreement is 34 at
+  B=floor(q/2^128), beyond Johnson. MCA is in {35,36}. On the distinct
+  field 257^31 the proved intervals are LIST {35,36}, MCA {37,38}.
+- **How it is useful:** The packet gives a full arbitrary-word finite-row
+  closure and source-complete upper/unsafe certificates, independent of the
+  FPC5 aggregation in this PR. Existing prefix-list and collision-aware
+  pole theorems are credited explicitly, not proposed as new methods.
+- **Validation:** Integer-product and independent Pascal replays passed,
+  with twelve hostile mutations and frozen proof/script hashes. No field
+  enumeration, Modal task, TeX build or new compiler value.
+- **What to do next:** Independently review the self-contained note. The
+  three undecided agreements, other rows and KoalaBear remain open; the
+  original FPC5 component remains an architecture bridge.
+
+### 2026-08-10 - FPC5 GRS support-shortening prefixes
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Extended
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md`; added
+  `experimental/scripts/verify_list_fpc5_constant_weight_shortening_v1.py`;
+  updated this log.
+- **Status:** PROVED / PARTIAL PAYMENT / EXACT ROUTE CUT. No full FPC5 or
+  Prize endpoint is claimed.
+- **What is being added:** Every fixed FPC5 GRS syndrome shell injects into a
+  binary constant-weight code. Complementing supports and fixing a common
+  `j`-set gives an exact Plotkin-Johnson cap after shortening, with the full
+  required-background incidence factor retained.
+- **How it is useful:** At `n=8192`, this pays the complete rate-`1/8`
+  source-scale prefix `M=29..32` and rate-`1/16` prefix `M=57..67`, including
+  all 57 `M=61` cells and the 37 cells outside the adjacent-dimension strip.
+  Exact replay stops at `M=33` and `M=68`; rate-half `M=5` and rate-quarter
+  `M=13` also remain above this cap.
+- **What to do next:** Seek a stronger shell/split-divisor theorem at those
+  four stopping scales or a symbolic shortening-depth bound on later rows.
+  Do not interpret a failed upper bound as evidence that a contributor
+  family exists.
+
+### 2026-08-10 - FPC5 shifted-Johnson and first-layout payment
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Extended
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md`; added
+  `experimental/scripts/verify_list_fpc5_shifted_johnson_v1.py`; updated this
+  log entry.
+- **Status:** PROVED / PARTIAL PAYMENT / EXACT ROUTE CUT. No complete FPC5
+  source payment or Prize endpoint is claimed.
+- **What is being added:** Haboeck's proved quadratic MCA bound and `thm:A`
+  give an exact adjacent-dimension list cap for the FPC5 GRS shells, retaining
+  `binom(b,u)`. Canonical first-layout domination then pays all source layouts
+  and touched sets for selected exact cells.
+- **How it is useful:** At `n=8192`, the unique shifted cells at the first live
+  scales of rates `1/2`, `1/4`, and `1/8` receive global upper-field
+  payments. At rate `1/16`, `M=61`, defects `248` and `292` are jointly paid
+  for `q>=2^254`, while defects `286,...,291` provably exceed this exact
+  aggregate bound below `2^256`.
+- **What to do next:** Use a stronger guarded split-pencil or joint-background
+  census for the six failed cells and the region `a^2<=N(K-1)`; do not repeat
+  Haboeck scans there or drop either binomial multiplier.
+
+### 2026-08-10 - Fixed-background GRS boundary payment
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Extended
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md` and this log
+  entry.
+- **Status:** PROVED / PARTIAL PAYMENT. No middle-polarity aggregate or row
+  endpoint is supplied.
+- **What is being added:** Summing the exact fixed-background singleton or
+  positive-Johnson bounds gives `binom(b,u)` and
+  `binom(b,u)Nell/[d^2-N(d-ell)]`, respectively. Both are polynomial within
+  fixed distance of `u=0` or `u=b`.
+- **How it is useful:** This pays a region that can survive joint-background
+  Johnson, since `J_bg=bJ_fix-Nu(b-u)`, while retaining the exact entropy
+  price for choosing required background zeros.
+- **What to do next:** Attack middle background polarity with a
+  base-field-normalized shell census or a guard/chronology coalescence; do
+  not drop the binomial factor.
+
+### 2026-08-10 - General t-petal GRS syndrome-shell specialization
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Extended
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md` and this log
+  entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. The theorem identifies a local
+  exact shell; it supplies no noninjective list bound or aggregate payment.
+- **What is being added:** A chart with locator degree `d` and `c` Hankel
+  rows is canonically the weight-`d` syndrome shell of the `D=d+c` row
+  weighted Vandermonde check on the core. For `D<N` its kernel is
+  `RS[F,C,N-D]`; for `D>=N` the fixed chart is singleton. MDS distance gives
+  support overlap at most `d-c-1`.
+- **How it is useful:** It connects the FPC5 Pade-Hankel endpoint directly to
+  the repository's syndrome-catalecticant language and separates the
+  automatic injective branch from the genuine ordinary-list wall.
+- **What to do next:** Bound the derived exact GRS shells in the live
+  parameter family while retaining background and chronology filters, or
+  exploit many untouched petals. Do not present the shell identification as
+  a list-size bound.
+
+### 2026-08-10 - General t-petal fixed joint-owner packing
+
+- **Agent/model:** Codex.
+- **Files added or changed:** Extended
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md` and this log
+  entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. The payment is per fixed owner;
+  no aggregate owner, deployed-row, or endpoint bound is supplied.
+- **What is being added:** At joint-owner degree `q`, candidate marked sets
+  give the exact packing ratio
+  `binom(N+b-q,r-q+1)/binom(d+max(0,u)-q,r-q+1)`. Every bounded
+  co-deficiency owner chamber is polynomial.
+- **How it is useful:** This is the first arbitrary-`t` counting theorem
+  after the affine-coordinate reductions and matches the fixed-owner
+  discipline of the split-pencil program.
+- **What to do next:** Coalesce the realized `Q` strata with source-bound
+  first-match chronology; summing the fixed-owner bound over all divisors can
+  still be exponential. The proof is analytic and makes no computational
+  claim.
+
+### 2026-08-10 - General t-petal joint anchor owner
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/list_tpetal_joint_anchor_owner_v1.md` and this log
+  entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. No split-point, aggregate owner,
+  deployed-row, or endpoint bound is supplied.
+- **What is being added:** The single gcd `gcd(H,F L_(R_0))` recovers both
+  common defect roots and common background-agreement roots relative to an
+  exact anchor. Owner-containment strata are exactly `H=QK` with printed
+  dimension, and every other background root is an affine equation in `H`.
+- **How it is useful:** It replaces two potentially independent owner ledgers
+  by one determinant-coordinate stratum and exposes the complete background
+  guard in the primitive remainder chart.
+- **What to do next:** Bound split coordinates inside the joint-owner strata
+  and aggregate realized owners with source-bound first-match chronology.
+  The proof is analytic and makes no computational claim.
+
+### 2026-08-10 - General t-petal anchor Pade chart
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/list_tpetal_anchor_pade_chart_v1.md` and this log
+  entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. No split-point, aggregate owner,
+  deployed-row, or endpoint bound is supplied.
+- **What is being added:** Every determinant coordinate in the general-`t`
+  monic anchor chart has the explicit remainder inverse
+  `G_H=F+rem_F(-Lambda H W^(-1))`, with a unique reconstructed numerator and
+  an exact root-local primitive predicate, including the derivative guard at
+  roots common to `F` and `G_H`.
+- **How it is useful:** It converts arbitrary-`t` full-petal cells from an
+  abstract affine split-flat problem to the same primitive
+  determinant/remainder language used by the three-petal LS6 route. The live
+  object is now the split-root maximum for a printed remainder graph.
+- **What to do next:** Prove a dimension-uniform split-root or first-owner
+  bound for that graph while retaining the primitive and exact guards. The
+  proof is analytic and makes no computational claim.
+
+### 2026-08-10 - General t-petal anchor coordinate
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/list_tpetal_anchor_coordinate_v1.md` and this log
+  entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. No split-point, aggregate owner,
+  deployed-row, or endpoint bound is supplied.
+- **What is being added:** On the monic chart from the general-`t` dimension
+  theorem, `(FB-GW)/Lambda` is an affine bijection to all polynomials of
+  degree at most `e-1`. For a squarefree exact anchor it also satisfies
+  `gcd(H,F)=gcd(G,F)`, recovering every common-defect owner by one gcd.
+- **How it is useful:** It extends the exact determinant and owner coordinates
+  already available in the two- and three-petal cells to every `t`, closing
+  coefficient multiplicity and fixed-owner ambiguity before the live
+  maximum-to-mean count.
+- **What to do next:** Bound the coordinates whose reconstructed locators
+  split and pass the exact guards without summing independent gcd strata.
+  The proof is analytic and makes no computational claim.
+
+### 2026-08-10 - General t-petal saturated-slice dimension
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/list_tpetal_saturated_slice_dimension_v1.md` and
+  this log entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. No split-point count, deployed
+  row, or endpoint is supplied.
+- **What is being added:** For any labelled `t`-petal pair slice with
+  `d<h<=2d+1` and one primitive degree-`d` anchor, the cross-determinant
+  quotient has an `e`-dimensional target and a one-line kernel. Thus the pair
+  slice and locator image have exact dimension `e+1`, and the monic locator
+  chart is an affine `e`-flat. The proof also shows that primitive defect
+  roots avoid petal roots automatically.
+- **How it is useful:** It complements the three-petal LS6 coordinates in
+  this PR and removes the arbitrary-`t` linearization gap for full-petal LIST
+  cells. The remaining problem is the dimension-uniform split-point and
+  aggregate owner count, not an unproved high-`t` syzygy formula.
+- **What to do next:** Apply a uniform split-locator maximum theorem to the
+  typed affine charts, retaining exact source and owner filters. The proof is
+  analytic; no Python, Sage, Lean, or Modal run is claimed.
+
+### 2026-08-07 - Rate-half three-petal LS6 reductions
+
+- **Agent/model:** Codex.
+- **Files added or changed:**
+  `experimental/notes/l1/list_fpc5_three_petal_ls6_reductions_v1.md`,
+  `experimental/scripts/verify_list_fpc5_three_petal_ls6_reductions_v1.py`,
+  and this log entry.
+- **Status:** PROVED / ARCHITECTURE BRIDGE. No deployed row, live `U_Q`, or
+  endpoint moves.
+- **What is being added:** A direct polynomial proof that every guarded
+  three-petal LS6 source with locator-ratio degree below defect is empty
+  (including every common pencil), plus an exact parametrization of the
+  low-multiplier range as a ladder of ordinary locator-prefix cells with
+  invariant effective depth, and an exact primitive pair determinant of
+  degree at most `ell-2a` whose distance-only Johnson denominator is the live
+  nonpositive parameter `J`.
+- **How it is useful:** Removes the complete short-syzygy source stratum and
+  maps the surviving low-multiplier FPC5 slice to the live pruned
+  locator-prefix problem `Q` without a field-sized average-scale loss, and
+  directs shift-pair work toward collective determinant compatibility rather
+  than pairwise distance.
+- **What to do next:** Review the source-to-LS6 reduction and owner binding,
+  prove maximum-to-mean control uniformly along the prefix ladder, and handle
+  the high-multiplier split-in-subspace range. The included stdlib verifier is
+  a finite-field regression companion, not the proof source.
+
 ### 2026-07-29 - Reviewed PR integration wave 1087--1120
 
 - **Agent/model:** Codex, selectively integrating static-review results from

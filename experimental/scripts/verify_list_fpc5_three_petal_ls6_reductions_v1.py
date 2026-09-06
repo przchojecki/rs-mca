@@ -1,0 +1,471 @@
+#!/usr/bin/env python3
+"""Exact regression checks for the three-petal guarded LS6 reductions."""
+
+from __future__ import annotations
+
+from collections import defaultdict
+from itertools import product
+from math import comb
+
+
+MOD = 257
+
+
+def trim(poly: list[int]) -> list[int]:
+    out = [value % MOD for value in poly]
+    while len(out) > 1 and out[-1] == 0:
+        out.pop()
+    return out
+
+
+def add(left: list[int], right: list[int]) -> list[int]:
+    size = max(len(left), len(right))
+    return trim(
+        [
+            (left[i] if i < len(left) else 0)
+            + (right[i] if i < len(right) else 0)
+            for i in range(size)
+        ]
+    )
+
+
+def scale(poly: list[int], scalar: int) -> list[int]:
+    return trim([scalar * value for value in poly])
+
+
+def mul(left: list[int], right: list[int]) -> list[int]:
+    out = [0] * (len(left) + len(right) - 1)
+    for i, x_value in enumerate(left):
+        for j, y_value in enumerate(right):
+            out[i + j] = (out[i + j] + x_value * y_value) % MOD
+    return trim(out)
+
+
+def divmod_poly(
+    numerator: list[int], denominator: list[int]
+) -> tuple[list[int], list[int]]:
+    remainder = trim(numerator)
+    denominator = trim(denominator)
+    quotient = [0] * max(1, len(remainder) - len(denominator) + 1)
+    inverse = pow(denominator[-1], -1, MOD)
+    while remainder != [0] and len(remainder) >= len(denominator):
+        shift = len(remainder) - len(denominator)
+        coefficient = remainder[-1] * inverse % MOD
+        quotient[shift] = coefficient
+        for index, value in enumerate(denominator):
+            remainder[index + shift] -= coefficient * value
+        remainder = trim(remainder)
+    return trim(quotient), remainder
+
+
+def degree(poly: list[int]) -> int:
+    return len(trim(poly)) - 1
+
+
+def derivative(poly: list[int]) -> list[int]:
+    return trim([index * value for index, value in enumerate(poly)][1:] or [0])
+
+
+def evaluate(poly: list[int], point: int) -> int:
+    value = 0
+    for coefficient in reversed(poly):
+        value = (value * point + coefficient) % MOD
+    return value
+
+
+def roots(poly: list[int]) -> list[int]:
+    return [point for point in range(MOD) if evaluate(poly, point) == 0]
+
+
+def extended_gcd(
+    left: list[int], right: list[int]
+) -> tuple[list[int], list[int], list[int]]:
+    old_r, r = trim(left), trim(right)
+    old_s, s = [1], [0]
+    old_t, t = [0], [1]
+    while r != [0]:
+        quotient, remainder = divmod_poly(old_r, r)
+        old_r, r = r, remainder
+        old_s, s = s, add(old_s, scale(mul(quotient, s), -1))
+        old_t, t = t, add(old_t, scale(mul(quotient, t), -1))
+    leading_inverse = pow(old_r[-1], -1, MOD)
+    return (
+        scale(old_r, leading_inverse),
+        scale(old_s, leading_inverse),
+        scale(old_t, leading_inverse),
+    )
+
+
+def inverse_mod(poly: list[int], modulus: list[int]) -> list[int]:
+    divisor, coefficient, _ = extended_gcd(poly, modulus)
+    assert divisor == [1]
+    _, remainder = divmod_poly(coefficient, modulus)
+    return remainder
+
+
+def monic(poly: list[int]) -> list[int]:
+    poly = trim(poly)
+    return scale(poly, pow(poly[-1], -1, MOD))
+
+
+def gcd_poly(left: list[int], right: list[int]) -> list[int]:
+    left, right = trim(left), trim(right)
+    while right != [0]:
+        _, remainder = divmod_poly(left, right)
+        left, right = right, remainder
+    return monic(left)
+
+
+def check_prefix_ladder() -> int:
+    checks = 0
+    for ell, a, e in ((7, 2, 2), (9, 2, 4), (11, 3, 7)):
+        s = ell - a
+        assert a <= e <= s
+        l2 = [3, 1] + [0] * (ell - 2) + [1]
+        l3 = [11, 2] + [0] * (ell - 2) + [1]
+        m_poly = mul(l2, l3)
+        e_poly = [5 + index for index in range(e)] + [7]
+        leading = e_poly[-1]
+
+        for seed in (0, 19, 43):
+            q_poly = [seed + 13 + 2 * index for index in range(e - a)] + [leading]
+            tail = [seed + 17 + 3 * index for index in range(s - e + 1)]
+            t_poly, remainder = divmod_poly(mul(m_poly, q_poly), e_poly)
+            d_poly = add(t_poly, tail)
+            v_poly = add(scale(remainder, -1), mul(e_poly, tail))
+
+            quotient, actual_remainder = divmod_poly(mul(d_poly, e_poly), m_poly)
+            assert quotient == q_poly
+            assert actual_remainder == v_poly
+            assert degree(d_poly) == 2 * ell - a
+            assert d_poly[-1] == 1
+            assert degree(v_poly) <= s
+            depth = (2 * ell - a) - (s - e) - 1
+            assert depth == ell + e - 1
+            assert depth - (e - a) == ell + a - 1
+            assert (e - a + 1) + (s - e + 1) == ell - 2 * a + 2
+            assert (2 * ell - a) - 2 * (ell - 2 * a + 1) == 3 * a - 2
+            checks += 1
+    return checks
+
+
+def check_common_pencil() -> int:
+    checks = 0
+    for ell, a in ((5, 1), (7, 2), (11, 3)):
+        s = ell - a
+        p_poly = [7, 3] + [0] * (ell - 2) + [1]
+        q_poly = [1 + 2 * index for index in range(s)] + [1]
+        for z0, z2, z3, scalar in ((13, 29, 47, 5), (61, 83, 109, 17)):
+            m0 = (z0 - z2) * (z0 - z3) % MOD
+            e_poly = scale(add(p_poly, [-z0]), scalar)
+            l2 = add(p_poly, [-z2])
+            l3 = add(p_poly, [-z3])
+            v_poly = scale(q_poly, -m0)
+            d_poly = scale(
+                mul(q_poly, add(p_poly, [z0 - z2 - z3])),
+                pow(scalar, -1, MOD),
+            )
+
+            assert mul(d_poly, e_poly) == add(mul(mul(l2, l3), q_poly), v_poly)
+            assert degree(q_poly) == s > 0
+            assert degree(d_poly) == 2 * ell - a
+            quotient_d, remainder_d = divmod_poly(d_poly, q_poly)
+            quotient_v, remainder_v = divmod_poly(v_poly, q_poly)
+            assert remainder_d == [0] and remainder_v == [0]
+            assert quotient_d != [0] and quotient_v != [0]
+            checks += 1
+
+        # In the aligned case E is constant, so e=0<a and DE is already
+        # the degree->s canonical remainder.
+        aligned_e = [pow(19, -1, MOD)]
+        d_probe = [1] + [0] * (2 * ell - a - 1) + [1]
+        assert degree(mul(d_probe, aligned_e)) == 2 * ell - a > s
+        checks += 1
+    return checks
+
+
+def check_inverse_source_ratio() -> int:
+    ell = 7
+    lambda_value = 19
+    lambda_inverse = pow(lambda_value, -1, MOD)
+    lambda_factor = (lambda_inverse - 1) % MOD
+    fixtures = (
+        (
+            [5, 2, 0, 1, 4, 0, 3, 1],
+            [9, 1, 7, 0, 0, 5, 2, 1],
+            [13, 4, 1, 0, 6, 3, 0, 1],
+        ),
+        (
+            [11, 6, 2, 0, 5, 1, 4, 1],
+            [3, 8, 0, 7, 1, 0, 2, 1],
+            [17, 1, 5, 2, 0, 4, 6, 1],
+        ),
+    )
+    checks = 0
+    for l1, l2, l3 in fixtures:
+        _, ratio = divmod_poly(mul(l1, inverse_mod(l2, l3)), l3)
+        inverse_multiplier = add(l1, mul(l2, scale(ratio, lambda_factor)))
+        _, residue_l2 = divmod_poly(inverse_multiplier, l2)
+        _, residue_l3 = divmod_poly(inverse_multiplier, l3)
+        _, expected_l2 = divmod_poly(l1, l2)
+        _, expected_l3 = divmod_poly(scale(l1, lambda_inverse), l3)
+        assert residue_l2 == expected_l2
+        assert residue_l3 == expected_l3
+        if degree(ratio) >= 1:
+            assert degree(inverse_multiplier) == ell + degree(ratio)
+        checks += 1
+    return checks
+
+
+def check_pair_determinant() -> int:
+    ell, a, e = 7, 2, 4
+    s, j = ell - a, 2 * ell - a
+    l2 = [3, 1] + [0] * (ell - 2) + [1]
+    l3 = [11, 2] + [0] * (ell - 2) + [1]
+    modulus = mul(l2, l3)
+    multiplier = [5, 6, 7, 8, 1]
+    fixtures: list[tuple[list[int], list[int], list[int]]] = []
+
+    for seed in range(1, 80):
+        quotient = [13 + seed, 17 + 2 * seed, 1]
+        tail = [19 + 3 * seed, 23 + 5 * seed]
+        base, remainder = divmod_poly(mul(modulus, quotient), multiplier)
+        locator = add(base, tail)
+        value = add(scale(remainder, -1), mul(multiplier, tail))
+        if degree(locator) != j or locator[-1] != 1:
+            continue
+        if gcd_poly(locator, modulus) != [1]:
+            continue
+        if gcd_poly(locator, quotient) != [1]:
+            continue
+        if gcd_poly(locator, value) != [1]:
+            continue
+        fixtures.append((locator, quotient, value))
+        if len(fixtures) == 2:
+            break
+
+    assert len(fixtures) == 2
+    d1, q1, v1 = fixtures[0]
+    d2, q2, v2 = fixtures[1]
+    determinant = add(mul(d1, q2), scale(mul(d2, q1), -1))
+    numerator = add(mul(d2, v1), scale(mul(d1, v2), -1))
+    quotient_h, remainder_h = divmod_poly(numerator, modulus)
+    assert determinant != [0]
+    assert remainder_h == [0] and quotient_h == determinant
+    assert degree(determinant) <= ell - 2 * a
+    assert degree(gcd_poly(d1, d2)) <= degree(determinant)
+    assert degree(q1) == degree(q2) == e - a
+
+    for ell_value, b_value, a_value in ((17, 9, 1), (23, 15, 2), (31, 27, 4)):
+        locator_degree = 2 * ell_value - a_value
+        core_size = 4 * ell_value + b_value - 2
+        intersection = ell_value - 2 * a_value
+        johnson = (
+            ell_value * (4 * a_value - b_value + 2)
+            + a_value * a_value
+            + 2 * a_value * b_value
+            - 4 * a_value
+        )
+        assert locator_degree * locator_degree - core_size * intersection == johnson
+        assert johnson <= 0
+    return 1
+
+
+def check_determinant_chart() -> tuple[int, int, int]:
+    ell, a, e = 7, 2, 4
+    s, j, h = ell - a, 2 * ell - a, ell - 2 * a
+    l2 = [3, 1] + [0] * (ell - 2) + [1]
+    l3 = [11, 2] + [0] * (ell - 2) + [1]
+    modulus = mul(l2, l3)
+    multiplier = [5, 6, 7, 8, 1]
+
+    base_fixture = None
+    for seed in range(1, 2001):
+        quotient = [13 + seed, 17 + 2 * seed, 1]
+        tail = [19 + 3 * seed, 23 + 5 * seed]
+        base, remainder = divmod_poly(mul(modulus, quotient), multiplier)
+        locator = add(base, tail)
+        value = add(scale(remainder, -1), mul(multiplier, tail))
+        if degree(locator) != j or locator[-1] != 1:
+            continue
+        if gcd_poly(locator, modulus) != [1]:
+            continue
+        if gcd_poly(locator, quotient) != [1]:
+            continue
+        if gcd_poly(locator, derivative(locator)) != [1]:
+            continue
+        if not roots(locator):
+            continue
+        base_fixture = (locator, quotient, value)
+        break
+    assert base_fixture is not None
+    d0, q0, v0 = base_fixture
+    q0_inverse = inverse_mod(q0, d0)
+
+    chart = []
+    for coefficients in product(range(3), repeat=h + 1):
+        determinant = trim(list(coefficients))
+        residue = divmod_poly(
+            scale(mul(determinant, q0_inverse), -1), d0
+        )[1]
+        locator = add(d0, residue)
+        quotient, quotient_remainder = divmod_poly(
+            add(determinant, mul(locator, q0)), d0
+        )
+        value, value_remainder = divmod_poly(
+            add(mul(locator, v0), scale(mul(modulus, determinant), -1)), d0
+        )
+        assert quotient_remainder == [0] and value_remainder == [0]
+        assert degree(locator) == j and locator[-1] == 1
+        assert degree(quotient) == e - a and quotient[-1] == q0[-1]
+        assert degree(value) <= s
+        assert mul(locator, multiplier) == add(mul(modulus, quotient), value)
+        assert add(mul(d0, quotient), scale(mul(locator, q0), -1)) == determinant
+
+        for point in roots(d0):
+            assert (evaluate(locator, point) == 0) == (
+                evaluate(determinant, point) == 0
+            )
+        for point in roots(locator):
+            primitive_at_point = evaluate(quotient, point) != 0
+            if evaluate(d0, point) != 0:
+                assert primitive_at_point == (evaluate(determinant, point) != 0)
+            else:
+                local_guard = (
+                    evaluate(derivative(determinant), point)
+                    + evaluate(derivative(locator), point) * evaluate(q0, point)
+                ) % MOD
+                assert primitive_at_point == (local_guard != 0)
+        chart.append((determinant, locator, quotient))
+
+    pair_checks = 0
+    for h_left, d_left, q_left in chart[:12]:
+        for h_right, d_right, q_right in chart[12:24]:
+            cross = add(mul(d_left, q_right), scale(mul(d_right, q_left), -1))
+            numerator = add(
+                mul(d_left, h_right), scale(mul(d_right, h_left), -1)
+            )
+            quotient, remainder = divmod_poly(numerator, d0)
+            assert remainder == [0] and quotient == cross
+            assert degree(cross) <= h
+            pair_checks += 1
+    return len(chart), pair_checks, len(roots(d0))
+
+
+def exact_quotient(numerator: list[int], denominator: list[int]) -> list[int]:
+    quotient, remainder = divmod_poly(numerator, denominator)
+    assert remainder == [0]
+    return quotient
+
+
+def split_locator(points: range) -> list[int]:
+    value = [1]
+    for point in points:
+        value = mul(value, [(-point) % MOD, 1])
+    return value
+
+
+def check_canonical_owner_packing() -> tuple[int, int, int, int]:
+    ell, a = 3, 1
+    j, h, s = 2 * ell - a, ell - 2 * a, ell - a
+    d0 = split_locator(range(j))
+    q0 = [1]
+    multiplier = [7, 1]
+    v0 = [1]
+    modulus = add(mul(d0, multiplier), scale(v0, -1))
+    base_roots = frozenset(roots(d0))
+    owners: dict[tuple[int, ...], list[frozenset[int]]] = defaultdict(list)
+    split_points = 0
+
+    for coefficients in product(range(MOD), repeat=h + 1):
+        coordinate = trim(list(coefficients))
+        dh = add(d0, scale(coordinate, -1))
+        qh = [1]
+        vh = add(v0, scale(mul(coordinate, multiplier), -1))
+        assert degree(vh) <= s
+        assert mul(dh, multiplier) == add(mul(modulus, qh), vh)
+        if coordinate == [0]:
+            continue
+        dh_roots = frozenset(roots(dh))
+        if len(dh_roots) != j:
+            continue
+        split_points += 1
+        owner = gcd_poly(d0, coordinate)
+        assert owner == gcd_poly(d0, dh)
+        g = degree(owner)
+        aa = exact_quotient(d0, owner)
+        bb = exact_quotient(dh, owner)
+        kk = exact_quotient(coordinate, owner)
+        assert 0 <= g <= h
+        assert gcd_poly(owner, aa) == gcd_poly(owner, bb) == [1]
+        assert gcd_poly(aa, bb) == [1]
+        assert degree(aa) == degree(bb) == j - g
+        assert degree(kk) <= h - g
+        assert kk == add(mul(aa, qh), scale(mul(bb, q0), -1))
+        assert gcd_poly(kk, aa) == gcd_poly(kk, bb) == [1]
+        assert gcd_poly(owner, qh) == [1]
+        owners[tuple(owner)].append(dh_roots - base_roots)
+
+    assert split_points >= 100 and len(owners) >= 2
+    pair_checks = 0
+    for owner_key, family in owners.items():
+        g = degree(list(owner_key))
+        choose_size = h - g + 1
+        bound = comb(MOD - j, choose_size) // comb(j - g, choose_size)
+        assert len(family) <= bound
+        for left_index, left_roots in enumerate(family):
+            for right_roots in family[left_index + 1 :]:
+                assert len(left_roots & right_roots) <= h - g
+                pair_checks += 1
+
+    arithmetic_checks = 0
+    for ell_value in range(4, 40):
+        for a_value in range(1, max(2, ell_value // 3)):
+            h_value = ell_value - 2 * a_value
+            if h_value < 0:
+                continue
+            for b_value in range(ell_value):
+                v = 2 * ell_value + a_value + b_value - 2
+                for c_value in range(h_value + 1):
+                    width = ell_value + a_value + c_value
+                    size = c_value + 1
+                    if size <= min(width, v):
+                        assert comb(v, size) < 3**size * comb(width, size)
+                        arithmetic_checks += 1
+    return split_points, len(owners), pair_checks, arithmetic_checks
+
+
+def main() -> None:
+    prefix_checks = check_prefix_ladder()
+    pencil_checks = check_common_pencil()
+    ratio_checks = check_inverse_source_ratio()
+    pair_checks = check_pair_determinant()
+    chart_checks, collective_checks, base_roots = check_determinant_chart()
+    owner_points, owners, owner_pairs, owner_arithmetic = (
+        check_canonical_owner_packing()
+    )
+    assert prefix_checks == 9
+    assert pencil_checks == 9
+    assert ratio_checks == 2
+    assert pair_checks == 1
+    assert chart_checks == 81
+    assert collective_checks == 144
+    assert base_roots >= 1
+    print(
+        "PASS: three-petal LS6 source-ratio exclusion and prefix ladder",
+        f"prefix_checks={prefix_checks}",
+        f"pencil_checks={pencil_checks}",
+        f"ratio_checks={ratio_checks}",
+        f"pair_checks={pair_checks}",
+        f"chart_checks={chart_checks}",
+        f"collective_checks={collective_checks}",
+        f"base_roots={base_roots}",
+        f"owner_points={owner_points}",
+        f"owners={owners}",
+        f"owner_pairs={owner_pairs}",
+        f"owner_arithmetic={owner_arithmetic}",
+    )
+
+
+if __name__ == "__main__":
+    main()
